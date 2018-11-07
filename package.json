@@ -13,7 +13,9 @@
     "axios": "^0.18.0",
     "cors": "^2.8.4",
     "express": "^4.16.4",
-    "firebaseui": "^3.4.1"
+    "firebase-tools": "^6.0.1",
+    "firebaseui": "^3.4.1",
+    "global": "^4.3.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"

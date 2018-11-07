@@ -1,6 +1,20 @@
-const https = require('https');
-var admin = require("firebase-admin");
-var functions = require('firebase-functions');
+const functions = require('firebase-functions');
+const admin = require("firebase-admin");
+admin.initializeApp();
+
+const db = admin.firestore();
+// const serviceAccount = require("./private_key.json");
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+// });
+
+
+const express = require('express');
+const app = express();
+app.use(express.json());
+const port = 8000;
+
+
 
 // const serviceAccount = require("./private_key.json");
 
@@ -11,20 +25,14 @@ var functions = require('firebase-functions');
 
 
 
-// var db = admin.firestore();
-// var students = db.collection('students').doc('NKMNNypkVXUj4BSSyTPb').collection('assignments').doc('jKqbaQTm5lQikF6MMD9K').sheetMusic
+// const db = admin.firestore();
+// const students = db.collection('students').doc('NKMNNypkVXUj4BSSyTPb').collection('assignments').doc('jKqbaQTm5lQikF6MMD9K').sheetMusic
 // //db.ref().set({'name' : 'test'});
 
 // console.log("THIS", students);
 
-var serviceAccount = require("./private_key.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
 
 
-var db = admin.firestore();
 // collection = db.collection('students').get().then(function(student) {
 //     student.forEach(function(doc){
 //         console.log(doc.data())
@@ -32,20 +40,19 @@ var db = admin.firestore();
 //     })
 // });
 
-collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('assignments').get().then(function(student) {
-    student.forEach(function(doc){
-        console.log(doc.data)
-    })
-});
+// collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('assignments').get().then(function(student) {
+//     student.forEach(function(doc){
+//         console.log(doc.data)
+//     })
+// });
 
-var field_list = ["dueDate", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
-collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('assignments').doc('jKqbaQTm5lQikF6MMD9K').get()
-    .then(function(res) {
-        field_list.forEach(function(field){
-            console.log([field, ":", res.get(field)].join(' '))
-
-        })
-})
+// const field_list = ["dueDate", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
+// collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('assignments').doc('jKqbaQTm5lQikF6MMD9K').get()
+//     .then(function(res) {
+//         field_list.forEach(function(field){
+//             console.log([field, ":", res.get(field)].join(' '))
+//         })
+// })
 
 
 
@@ -64,38 +71,36 @@ collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('a
 //     console.log('ERROR:' + err.message);
 // });
 
-// const port = 8000;
-
 // exports.studentAssignments = functions.https.onRequest(req, res) => {
 //     res.status(200).send()
 // }
 
 
-// app.listen(port, () => {
-//     console.log(`\n===== RUNNING ON PORT ${port} =====\n`);
-// });
+app.listen(port, () => {
+    console.log(`\n===== RUNNING ON PORT ${port} =====\n`);
+});
 
-// const express = require('express');
 
-// const app = express();
-// const port = 8000;
+// Endpoints
+app.get('/', (req, res) => {
+    res.send('hello world');
+});
 
-// app.use(express.json());
-
-// // Endpoints
 // app.get('/', (req, res) => {
-//     res.send('hello world');
+//     const collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").get();
+//     console.log('**********', collection);
+//     return collection;
+
+    // .get()
+    // .then(function(student) {
+    //     student.forEach(function(doc){
+    //         res.status(200).json(doc.get())
+    //     })
+    // })
+    
 // });
 
-// app.get('/student/assignments', (req, res) => {
-//     db('assignments')
-//         .then(assignments => {
-//             res.status(200).json(assignments)
-//         })
-//         .catch(err => {
-//             res.status(500).json(err);
-//         })
-// });
+
 
 
 

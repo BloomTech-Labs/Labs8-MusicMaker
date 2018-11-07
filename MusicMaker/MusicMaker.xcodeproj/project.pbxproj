@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
+		399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */; };
+		399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */; };
 		BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */; };
 		BFD3E5612192393A00D84FF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3E5602192393A00D84FF2 /* ViewController.swift */; };
 		BFD3E5642192393A00D84FF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5622192393A00D84FF2 /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 		14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30673F6A357782EEB3E98417 /* Pods-MusicMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UnsubmittedAssignmentViewController.storyboard; sourceTree = "<group>"; };
+		399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsubmittedAssignmentViewController.swift; sourceTree = "<group>"; };
 		BFD3E55B2192393A00D84FF2 /* MusicMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFD3E5602192393A00D84FF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,7 +78,9 @@
 			children = (
 				BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */,
 				BFD3E5602192393A00D84FF2 /* ViewController.swift */,
+				399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */,
 				BFD3E5622192393A00D84FF2 /* Main.storyboard */,
+				399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */,
 				BFD3E5652192393B00D84FF2 /* Assets.xcassets */,
 				BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */,
 				BFD381BA219255540038F974 /* GoogleService-Info.plist */,
@@ -153,6 +159,7 @@
 			files = (
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
 				BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */,
+				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				BFD3E5642192393A00D84FF2 /* Main.storyboard in Resources */,
 				BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */,
 			);
@@ -232,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */,
 				BFD3E5612192393A00D84FF2 /* ViewController.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,
 			);

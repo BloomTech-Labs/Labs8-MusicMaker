@@ -9,7 +9,25 @@
 import UIKit
 
 class AssignmentMusicPieceTableViewCell: UITableViewCell {
+    
+    // MARK: - Properties
+    
+    var musicPiece: String? {
+        didSet {
+            guard let musicPiece = musicPiece else {
+                musicPieceLabel.text = "Music Piece: Unknown"
+                return
+            }
+            
+            musicPieceLabel.text = "Music Piece: \(musicPiece)"
+        }
+    }
 
+    // MARK: - Outlets
+    
+    @IBOutlet weak var musicPieceLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     
 
 }

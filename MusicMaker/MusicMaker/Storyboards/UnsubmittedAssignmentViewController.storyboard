@@ -289,6 +289,10 @@
                                         <constraint firstAttribute="trailing" secondItem="NOi-b9-l72" secondAttribute="trailing" id="i05-lY-6xd"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="collectionView" destination="NOi-b9-l72" id="Jwa-am-7Ie"/>
+                                    <outlet property="musicPieceLabel" destination="41G-wQ-nSC" id="lSZ-gP-Y12"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

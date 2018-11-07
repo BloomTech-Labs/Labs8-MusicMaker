@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UnsubmittedAssignmentViewController: UIViewController {
+class UnsubmittedAssignmentViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +16,30 @@ class UnsubmittedAssignmentViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    // MARK: - UITableViewDataSource
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AssignmentHeaderCell", for: indexPath) as! AssignmentHeaderTableViewCell
+            
+            cell.assignmentTitleLabel.text = "this is a test assignment"
+            cell.dueDateLabel.text = "DEC 9"
+            cell.dueTimeLabel.text = "8:00 PM"
+            cell.instrumentLabel.text = "🎻"
+            
+            return cell
+        default:
+            fatalError("We forgot a case: \(indexPath.row)")
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 

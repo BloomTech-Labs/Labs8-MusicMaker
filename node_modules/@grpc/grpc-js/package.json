@@ -1,0 +1,50 @@
+{
+  "name": "@grpc/grpc-js",
+  "version": "0.2.0",
+  "description": "gRPC Library for Node - pure JS core",
+  "homepage": "https://grpc.io/",
+  "repository": "https://github.com/grpc/grpc-node/tree/master/packages/grpc-js-core",
+  "main": "build/src/index.js",
+  "engines": {
+    "node": ">=8.4"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Google Inc."
+  },
+  "types": "build/src/index.d.ts",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/lodash": "^4.14.108",
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^9.4.6",
+    "clang-format": "^1.0.55",
+    "gts": "^0.5.1",
+    "typescript": "~2.7.0"
+  },
+  "contributors": [
+    {
+      "name": "Google Inc."
+    }
+  ],
+  "_id": "@grpc/js-core@0.1.0",
+  "scripts": {
+    "build": "npm run compile",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "format": "clang-format -i -style=\"{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}\" src/*.ts test/*.ts",
+    "lint": "tslint -c node_modules/google-ts-style/tslint.json -p . -t codeFrame --type-check",
+    "prepare": "npm run compile",
+    "test": "gulp test",
+    "check": "gts check",
+    "fix": "gts fix",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "files": [
+    "build/src/*.{js,d.ts}"
+  ]
+}

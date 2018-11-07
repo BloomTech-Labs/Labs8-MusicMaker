@@ -1,0 +1,33 @@
+{
+    "name": "@types/tough-cookie",
+    "version": "2.3.4",
+    "description": "TypeScript definitions for tough-cookie",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Leonard Thieu",
+            "url": "https://github.com/leonard-thieu",
+            "githubUsername": "leonard-thieu"
+        },
+        {
+            "name": "LiJinyao",
+            "url": "https://github.com/LiJinyao",
+            "githubUsername": "LiJinyao"
+        },
+        {
+            "name": "Michael Wei",
+            "url": "https://github.com/no2chem",
+            "githubUsername": "no2chem"
+        }
+    ],
+    "main": "",
+    "types": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "be39a364314ff26d1ecd6011d3cdfd5d806c25eb7d880d15746c491494da6565",
+    "typeScriptVersion": "2.2"
+}

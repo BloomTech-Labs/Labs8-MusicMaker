@@ -31,3 +31,18 @@ class AssignmentMusicPieceTableViewCell: UITableViewCell {
     
 
 }
+
+extension AssignmentMusicPieceTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 7
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MusicSheetPageCell", for: indexPath) as! MusicSheetPageCollectionViewCell
+        
+        return cell
+    }
+    
+    // Don't forget to set the collection view's delegate and data source to be AssignmentMusicPieceTableViewCell
+}

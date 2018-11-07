@@ -267,14 +267,28 @@
                                                 <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IuE-Ab-xE7">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MusicSheetPageCell" id="IuE-Ab-xE7" customClass="MusicSheetPageCollectionViewCell" customModule="MusicMaker" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="26" width="112" height="148"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                         <rect key="frame" x="0.0" y="0.0" width="112" height="148"/>
                                                         <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pUf-nk-t6Z">
+                                                                <rect key="frame" x="0.0" y="0.0" width="112" height="148"/>
+                                                            </imageView>
+                                                        </subviews>
                                                     </view>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="pUf-nk-t6Z" secondAttribute="bottom" id="8Ly-5b-I49"/>
+                                                        <constraint firstAttribute="trailing" secondItem="pUf-nk-t6Z" secondAttribute="trailing" id="cG7-2I-e4z"/>
+                                                        <constraint firstItem="pUf-nk-t6Z" firstAttribute="top" secondItem="IuE-Ab-xE7" secondAttribute="top" id="gyK-fZ-23W"/>
+                                                        <constraint firstItem="pUf-nk-t6Z" firstAttribute="leading" secondItem="IuE-Ab-xE7" secondAttribute="leading" id="zFO-cs-NYk"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="imageView" destination="pUf-nk-t6Z" id="22P-nv-Fm0"/>
+                                                    </connections>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>

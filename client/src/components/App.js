@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import { Route } from 'react-router-dom';
+
+import * as routes from '../constants/routes';
+
+import Navigation from './Navigation';
+import landingView from '../views/landingView';
+import signupView from '../views/signupView';
+import signinView from '../views/signinView';
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Navigation />
+
+        <Route
+          exact path={ routes.LANDING }
+          component={ landingView }
+        />
+
+        <Route
+          exact path={ routes.SIGN_UP }
+          component={ signupView }
+        />
+
+        <Route
+          exact path={ routes.SIGN_IN }
+          component={ signinView }
+        />
       </div>
     );
   }

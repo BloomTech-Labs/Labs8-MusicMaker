@@ -16,6 +16,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addDismissKeyboardGestureRecognizer()
+    
     }
     
     
@@ -128,9 +129,13 @@ class SignUpViewController: UIViewController {
         guard let email = emailTextField.text,
             let password = passwordTextField.text,
             let firstName = firstNameTextField.text,
-            let lastName = lastNameTextField.text
-        
+            let lastName = lastNameTextField.text,
+            let confirmedPassword = confirmPasswordTextField.text,
+            let instrument = instrumentButton.titleLabel?.text,
+            let level = levelButton.titleLabel?.text
         else {return}
+        
+        guard password == confirmedPassword else {return}
         
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
@@ -156,10 +161,11 @@ class SignUpViewController: UIViewController {
             
             let database = Firestore.firestore()
             
+            let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level]
+            
             if let user = user {
                 let usersUniqueIdentifier = user.user.uid
-                print(usersUniqueIdentifier)
-                database.collection("students").document(usersUniqueIdentifier).collection("settings").addDocument(data: ["email" : email])
+                database.collection("students").document(usersUniqueIdentifier).collection("settings").addDocument(data: userDocumentInformation)
             }
         }
     }

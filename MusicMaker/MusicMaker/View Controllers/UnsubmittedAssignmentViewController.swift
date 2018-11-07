@@ -28,14 +28,20 @@ class UnsubmittedAssignmentViewController: UITableViewController {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! AssignmentHeaderTableViewCell
             
-            cell.assignmentTitleLabel.text = "this is a test assignment"
-            cell.dueDateLabel.text = "DEC 9"
-            cell.dueTimeLabel.text = "8:00 PM"
-            cell.instrumentLabel.text = "🎻"
+//            cell.assignmentTitleLabel.text = "this is a test assignment"
+//            cell.dueDateLabel.text = "DEC 9"
+//            cell.dueTimeLabel.text = "8:00 PM"
+//            cell.instrumentLabel.text = "🎻"
+            
+            cell.assignmentTitle = "this is a test assignment"
+            cell.dueDate = Date()   // sets date and time in custom cell
+            cell.instrument = "🎻"
             
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MusicPieceCell", for: indexPath) as! AssignmentMusicPieceTableViewCell
+            
+            cell.musicPiece = "this is a test music piece name that is really really long because i want to see"
             
             return cell
         default:

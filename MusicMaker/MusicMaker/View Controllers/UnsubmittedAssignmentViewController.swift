@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PDFKit
 
 class UnsubmittedAssignmentViewController: UITableViewController {
 
@@ -42,6 +43,7 @@ class UnsubmittedAssignmentViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MusicPieceCell", for: indexPath) as! AssignmentMusicPieceTableViewCell
             
             cell.musicPiece = "this is a test music piece name that is really really long because i want to see"
+            cell.pdfDocument = PDFDocument(url: Bundle.main.url(forResource: "SamplePDF", withExtension: "pdf")!)
             
             return cell
         default:

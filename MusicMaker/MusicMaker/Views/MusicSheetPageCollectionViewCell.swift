@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import PDFKit
 
 class MusicSheetPageCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Outlet
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var pdfView: PDFView!
 }

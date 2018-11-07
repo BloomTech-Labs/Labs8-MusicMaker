@@ -13,6 +13,7 @@
 		39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */; };
 		39CA2B5721938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B5621938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift */; };
 		39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B582193901700C6018E /* MusicSheetPageCollectionViewCell.swift */; };
+		39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B5A219397DA00C6018E /* SamplePDF.pdf */; };
 		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
 		BFD381CC219354C70038F974 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CB219354C70038F974 /* QRScannerViewController.swift */; };
@@ -33,6 +34,7 @@
 		39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B5621938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentMusicPieceTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B582193901700C6018E /* MusicSheetPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSheetPageCollectionViewCell.swift; sourceTree = "<group>"; };
+		39CA2B5A219397DA00C6018E /* SamplePDF.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SamplePDF.pdf; sourceTree = "<group>"; };
 		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		BFD381CB219354C70038F974 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			children = (
 				BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */,
 				BFD3E5652192393B00D84FF2 /* Assets.xcassets */,
+				39CA2B5A219397DA00C6018E /* SamplePDF.pdf */,
 				BFD381BA219255540038F974 /* GoogleService-Info.plist */,
 				BFD3E56A2192393B00D84FF2 /* Info.plist */,
 			);
@@ -234,6 +237,7 @@
 				39CA2B532193607700C6018E /* SplitView.storyboard in Resources */,
 				BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */,
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
+				39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */,
 				BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */,

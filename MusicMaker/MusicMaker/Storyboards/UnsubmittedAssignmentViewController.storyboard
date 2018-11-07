@@ -274,20 +274,21 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="112" height="148"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pUf-nk-t6Z">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azh-Nd-NeK" customClass="PDFView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="112" height="148"/>
-                                                            </imageView>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
                                                         </subviews>
                                                     </view>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="pUf-nk-t6Z" secondAttribute="bottom" id="8Ly-5b-I49"/>
-                                                        <constraint firstAttribute="trailing" secondItem="pUf-nk-t6Z" secondAttribute="trailing" id="cG7-2I-e4z"/>
-                                                        <constraint firstItem="pUf-nk-t6Z" firstAttribute="top" secondItem="IuE-Ab-xE7" secondAttribute="top" id="gyK-fZ-23W"/>
-                                                        <constraint firstItem="pUf-nk-t6Z" firstAttribute="leading" secondItem="IuE-Ab-xE7" secondAttribute="leading" id="zFO-cs-NYk"/>
+                                                        <constraint firstAttribute="trailing" secondItem="azh-Nd-NeK" secondAttribute="trailing" id="4CK-VR-4xc"/>
+                                                        <constraint firstItem="azh-Nd-NeK" firstAttribute="leading" secondItem="IuE-Ab-xE7" secondAttribute="leading" id="fLF-cg-KJq"/>
+                                                        <constraint firstAttribute="bottom" secondItem="azh-Nd-NeK" secondAttribute="bottom" id="gZ5-k5-03E"/>
+                                                        <constraint firstItem="azh-Nd-NeK" firstAttribute="top" secondItem="IuE-Ab-xE7" secondAttribute="top" id="rt3-d2-h40"/>
                                                     </constraints>
                                                     <connections>
-                                                        <outlet property="imageView" destination="pUf-nk-t6Z" id="22P-nv-Fm0"/>
+                                                        <outlet property="pdfView" destination="azh-Nd-NeK" id="zcs-F4-nZC"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>

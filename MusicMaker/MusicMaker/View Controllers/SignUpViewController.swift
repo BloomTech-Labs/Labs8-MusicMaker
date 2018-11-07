@@ -12,13 +12,58 @@ import Firebase
 class SignUpViewController: UIViewController {
 
     
+    // MARK: - View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addDismissKeyboardGestureRecognizer()
+    }
+    
+    
+    
+    // MARK: - Private
+    
+    //Adds a gesture recognizer that calls dismissKeyboard(_:)
+    private func addDismissKeyboardGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    //Resigns the first responder for the textField when clicking away from the keyboard
+    @objc private func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        firstNameTextField.resignFirstResponder()
+        lastNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        confirmPasswordTextField.resignFirstResponder()
+    }
+    
     // MARK: - IBOutlets
     
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField! {
+        didSet {
+            firstNameTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var lastNameTextField: UITextField! {
+        didSet {
+            lastNameTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var emailTextField: UITextField! {
+        didSet {
+            emailTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var passwordTextField: UITextField! {
+        didSet {
+            passwordTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var confirmPasswordTextField: UITextField! {
+        didSet {
+            confirmPasswordTextField.delegate = self
+        }
+    }
     @IBOutlet weak var levelButton: UIButton!
     @IBOutlet weak var instrumentButton: UIButton!
     
@@ -118,8 +163,10 @@ class SignUpViewController: UIViewController {
             }
         }
     }
-    
-    
-    
+}
+
+
+// MARK: - UITextFieldDelegate
+extension SignUpViewController: UITextFieldDelegate {
     
 }

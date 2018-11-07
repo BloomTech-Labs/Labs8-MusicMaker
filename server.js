@@ -27,9 +27,9 @@ const app = express();
 
 app.get('/teachers', async (req, res, next) => {
   try {
-    const teacherRef = await db.collection('teachers').get();
+    const teachersRef = await db.collection('teachers').get();
     const teachers = [];
-    teacherRef.forEach((doc) => {
+    teachersRef.forEach((doc) => {
       teachers.push({
         id: doc.id,
         data: doc.data
@@ -41,57 +41,41 @@ app.get('/teachers', async (req, res, next) => {
   }
 });
 
-// GET and GET by id
-
-app.get('/', (req, res) => {
-  console.log('GET test');
-  res.send('hello!');
-});
-
-app.get('/:id', (req, res) => {
-  console.log('GET by id test');
-  res.send('hello!');
-});
-
-///////////////////////
-
 // POST
 
-app.post('/', (req, res) => {
-  console.log('POST test');
-
-  var username = req.body.username;
-  var email = req.body.email;
-
-  var referencePath = 'Users/+username+';
-  var userReference = firebase.database().ref(referencePath);
-  userReference.set({Username: username, Email: email }),
-  function(err) {
-    if(err) {
-      res.send('An error was encountered while posting the data.' + err);
-    } else {
-      res.send('User saved successfully!');
-    }
-  };
-});
+// app.post('/teachers', async (req, res, next) => {
+//   try {
+//     const name = req.body;
+//     // if(!name) throw new Error('Name is blank!');
+//     const teacherData = { name };
+//     const teachersRef = await db.collection('teachers').add(teacherData);
+//     res.json({
+//       id: teachersRef.id,
+//       teacherData
+//     });
+//   } catch(err) {
+//     console.log(err.message);
+//     next(err);
+//   }
+// });
 
 ///////////////////////
 
 // PUT
 
-app.put('/', (req, res) => {
-  console.log('PUT test');
-  res.send('hello!');
-});
+// app.put('/', (req, res) => {
+//   console.log('PUT test');
+//   res.send('hello!');
+// });
 
 ///////////////////////
 
 // DELETE
 
-app.delete('/', (req, res) => {
-  console.log('DELETE test');
-  res.send('hello!');
-});
+// app.delete('/', (req, res) => {
+//   console.log('DELETE test');
+//   res.send('hello!');
+// });
 
 ///////////////////////
 

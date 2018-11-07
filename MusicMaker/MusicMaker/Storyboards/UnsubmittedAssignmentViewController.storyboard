@@ -241,12 +241,53 @@
                                     <outlet property="instrumentLabel" destination="4NT-Tv-mq6" id="Y42-t4-X1U"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MusicPieceCell" rowHeight="248" id="LL9-J6-nHu" customClass="AssignmentMusicPieceTableViewCell" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="247" width="768" height="248"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MusicPieceCell" rowHeight="258" id="LL9-J6-nHu" customClass="AssignmentMusicPieceTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="247" width="768" height="258"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LL9-J6-nHu" id="NGR-oW-vyv">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="247.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="257.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music Piece: Waltz from Sleeping Beauty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41G-wQ-nSC">
+                                            <rect key="frame" x="20" y="11" width="461" height="28"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NOi-b9-l72">
+                                            <rect key="frame" x="0.0" y="47" width="768" height="200"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="200" id="VKh-CL-XHb"/>
+                                            </constraints>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="sqY-gZ-Ghr">
+                                                <size key="itemSize" width="112" height="148"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IuE-Ab-xE7">
+                                                    <rect key="frame" x="20" y="26" width="112" height="148"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="112" height="148"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </view>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </collectionViewCell>
+                                            </cells>
+                                        </collectionView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="41G-wQ-nSC" firstAttribute="top" secondItem="NGR-oW-vyv" secondAttribute="topMargin" id="3lI-V1-CfS"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="41G-wQ-nSC" secondAttribute="trailing" id="931-0D-8rt"/>
+                                        <constraint firstItem="NOi-b9-l72" firstAttribute="leading" secondItem="NGR-oW-vyv" secondAttribute="leading" id="SKy-0O-IlI"/>
+                                        <constraint firstItem="NOi-b9-l72" firstAttribute="bottom" secondItem="NGR-oW-vyv" secondAttribute="bottomMargin" id="Zef-dD-OTr"/>
+                                        <constraint firstItem="41G-wQ-nSC" firstAttribute="leading" secondItem="NGR-oW-vyv" secondAttribute="leadingMargin" id="drZ-nV-jqv"/>
+                                        <constraint firstItem="NOi-b9-l72" firstAttribute="top" secondItem="41G-wQ-nSC" secondAttribute="bottom" constant="8" id="fW4-4F-mbm"/>
+                                        <constraint firstAttribute="trailing" secondItem="NOi-b9-l72" secondAttribute="trailing" id="i05-lY-6xd"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

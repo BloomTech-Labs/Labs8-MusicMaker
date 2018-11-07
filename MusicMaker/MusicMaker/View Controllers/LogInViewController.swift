@@ -1,14 +1,14 @@
 //
-//  UnsubmittedAssignmentViewController.swift
+//  LogInViewController.swift
 //  MusicMaker
 //
-//  Created by Linh Bouniol on 11/6/18.
+//  Created by Vuk Radosavljevic on 11/7/18.
 //  Copyright © 2018 Vuk. All rights reserved.
 //
 
 import UIKit
 
-class UnsubmittedAssignmentViewController: UIViewController {
+class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */; };
 		399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */; };
+		39CA2B532193607700C6018E /* SplitView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B522193607700C6018E /* SplitView.storyboard */; };
+		39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */; };
+		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
+		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
+		BFD381CC219354C70038F974 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CB219354C70038F974 /* QRScannerViewController.swift */; };
+		BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CD219355460038F974 /* SignUpViewController.swift */; };
+		BFD381D0219355510038F974 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CF219355510038F974 /* LogInViewController.swift */; };
 		BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */; };
-		BFD3E5612192393A00D84FF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3E5602192393A00D84FF2 /* ViewController.swift */; };
-		BFD3E5642192393A00D84FF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5622192393A00D84FF2 /* Main.storyboard */; };
 		BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5652192393B00D84FF2 /* Assets.xcassets */; };
 		BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */; };
 		CCA6E76E82020309C9BE8F98 /* Pods_MusicMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */; };
@@ -21,13 +25,17 @@
 /* Begin PBXFileReference section */
 		14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30673F6A357782EEB3E98417 /* Pods-MusicMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.debug.xcconfig"; sourceTree = "<group>"; };
-		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UnsubmittedAssignmentViewController.storyboard; sourceTree = "<group>"; };
 		399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsubmittedAssignmentViewController.swift; sourceTree = "<group>"; };
+		39CA2B522193607700C6018E /* SplitView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplitView.storyboard; sourceTree = "<group>"; };
+		39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		BFD381CB219354C70038F974 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		BFD381CD219355460038F974 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		BFD381CF219355510038F974 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BFD3E55B2192393A00D84FF2 /* MusicMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFD3E5602192393A00D84FF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BFD3E5632192393A00D84FF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFD3E5652192393B00D84FF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFD3E5682192393B00D84FF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFD3E56A2192393B00D84FF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +63,68 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BFD381C4219353A50038F974 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BFD381CD219355460038F974 /* SignUpViewController.swift */,
+				BFD381CF219355510038F974 /* LogInViewController.swift */,
+				BFD381CB219354C70038F974 /* QRScannerViewController.swift */,
+				399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		BFD381C5219353B30038F974 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */,
+				BFD381C22193525F0038F974 /* Authentication.storyboard */,
+				399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */,
+				39CA2B522193607700C6018E /* SplitView.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		BFD381C6219353CF0038F974 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */,
+				BFD3E5652192393B00D84FF2 /* Assets.xcassets */,
+				BFD381BA219255540038F974 /* GoogleService-Info.plist */,
+				BFD3E56A2192393B00D84FF2 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BFD381C7219353DF0038F974 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BFD381C8219353E60038F974 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BFD381C9219353EA0038F974 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		BFD381CA219353F40038F974 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		BFD3E5522192393A00D84FF2 = {
 			isa = PBXGroup;
 			children = (
@@ -76,15 +146,13 @@
 		BFD3E55D2192393A00D84FF2 /* MusicMaker */ = {
 			isa = PBXGroup;
 			children = (
-				BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */,
-				BFD3E5602192393A00D84FF2 /* ViewController.swift */,
-				399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */,
-				BFD3E5622192393A00D84FF2 /* Main.storyboard */,
-				399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */,
-				BFD3E5652192393B00D84FF2 /* Assets.xcassets */,
-				BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */,
-				BFD381BA219255540038F974 /* GoogleService-Info.plist */,
-				BFD3E56A2192393B00D84FF2 /* Info.plist */,
+				BFD381CA219353F40038F974 /* Extensions */,
+				BFD381C9219353EA0038F974 /* Model Controllers */,
+				BFD381C8219353E60038F974 /* Models */,
+				BFD381C7219353DF0038F974 /* Views */,
+				BFD381C6219353CF0038F974 /* Supporting Files */,
+				BFD381C4219353A50038F974 /* View Controllers */,
+				BFD381C5219353B30038F974 /* Storyboards */,
 			);
 			path = MusicMaker;
 			sourceTree = "<group>";
@@ -157,10 +225,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39CA2B532193607700C6018E /* SplitView.storyboard in Resources */,
+				BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */,
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
 				BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
-				BFD3E5642192393A00D84FF2 /* Main.storyboard in Resources */,
 				BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,22 +309,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */,
-				BFD3E5612192393A00D84FF2 /* ViewController.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,
+				BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */,
+				BFD381D0219355510038F974 /* LogInViewController.swift in Sources */,
+				BFD381CC219354C70038F974 /* QRScannerViewController.swift in Sources */,
+				39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BFD3E5622192393A00D84FF2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BFD3E5632192393A00D84FF2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -390,7 +454,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NB32394B2A;
-				INFOPLIST_FILE = MusicMaker/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MusicMaker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,7 +473,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NB32394B2A;
-				INFOPLIST_FILE = MusicMaker/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MusicMaker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -42,6 +42,7 @@ app.get('/teachers', async (req, res, next) => {
 });
 
 // committing with GET request for now
+// additional comment to resubmit PR
 
 // POST
 

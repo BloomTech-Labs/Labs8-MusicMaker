@@ -1,29 +1,44 @@
+const admin = require('firebase-admin');
 const express = require('express');
 
 // Firebase-specific dependencies
 
 const firebase = require('firebase');
 const config = {
-  apiKey: "AIzaSyA-0FrKFRAPkMvFTTdFzrAKJZDrE-XrwhE",
-   authDomain: "testdb-6e089.firebaseapp.com",
-   databaseURL: "https://testdb-6e089.firebaseio.com",
-   projectId: "testdb-6e089",
-   storageBucket: "",
-   messagingSenderId: "274645799385"
+    apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
+    authDomain: "musicmaker-4b2e8.firebaseapp.com",
+    databaseURL: "https://musicmaker-4b2e8.firebaseio.com",
+    projectId: "musicmaker-4b2e8",
+    storageBucket: "musicmaker-4b2e8.appspot.com",
+    messagingSenderId: "849993185408"
 };
+const Firestore = require('@google-cloud/firestore');
+const firestore = new Firestore({
+  projectId: "musicmaker-4b2e8",
+});
 firebase.initializeApp(config);
-
+const db = firebase.firestore();
+const settings = {timestamptsInSnapshots: true};
+firestore.settings(settings);
 ///////////////////////
 
 const app = express();
-
 // test GET request, adding key/value pair to Firebase
 
-app.get('/', (req, res) => {
-  console.log('GET request test');
-  res.send('hello!');
-
-  firebase.database().ref('/Tests').set({Test: 'Hello world!' });
+app.get('/teachers', async (req, res, next) => {
+  try {
+    const teacherRef = await db.collection('teachers').get();
+    const teachers = [];
+    teacherRef.forEach((doc) => {
+      teachers.push({
+        id: doc.id,
+        data: doc.data
+      });
+    });
+    res.json(teachers);
+  } catch(err) {
+    next(err);
+  }
 });
 
 // GET and GET by id

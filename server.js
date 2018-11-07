@@ -41,6 +41,8 @@ app.get('/teachers', async (req, res, next) => {
   }
 });
 
+// committing with GET request for now
+
 // POST
 
 // app.post('/teachers', async (req, res, next) => {

@@ -9,16 +9,52 @@
 import UIKit
 
 class AssignmentHeaderTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    // MARK: - Properties
+    
+    var assignmentTitle: String? {
+        didSet {
+            assignmentTitleLabel.text = assignmentTitle
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    var dueDate: Date? {
+        didSet {
+            guard let dueDate = dueDate else {
+                dueDateLabel.text = "Not"
+                dueTimeLabel.text = "Due"
+                return
+            }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d"
+            dueDateLabel.text = dateFormatter.string(from: dueDate)
+            
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "h:mm a"
+            dueTimeLabel.text = timeFormatter.string(from: dueDate)
+        }
     }
+    
+    var instrument: String? {
+        didSet {
+            instrumentLabel.text = instrument
+        }
+    }
+    
+    var level: String? { // maybe as an enum?
+        didSet {
+            // pick image based on level
+        }
+    }
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var assignmentTitleLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var dueTimeLabel: UILabel!
+    @IBOutlet weak var instrumentLabel: UILabel!
+    // replace star labels with an image view to indicate the level
 
+    
 }

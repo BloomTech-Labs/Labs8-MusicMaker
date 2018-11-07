@@ -4,9 +4,9 @@ import { Route } from 'react-router-dom';
 import * as routes from '../constants/routes';
 
 import Navigation from './Navigation';
-import landingView from '../views/landingView';
-import signupView from '../views/signupView';
-import signinView from '../views/signinView';
+import LandingPageView from '../views/landingView';
+import SignUpView from '../views/signupView';
+import SignInView from '../views/signinView';
 
 import './App.css';
 
@@ -18,17 +18,17 @@ class App extends Component {
 
         <Route
           exact path={ routes.LANDING }
-          component={ landingView }
+          component={ LandingPageView }
         />
 
         <Route
           exact path={ routes.SIGN_UP }
-          component={ signupView }
+          component={ SignUpView }
         />
 
         <Route
           exact path={ routes.SIGN_IN }
-          component={ signinView }
+          component={ SignInView }
         />
       </div>
     );

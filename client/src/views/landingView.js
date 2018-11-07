@@ -1,24 +1,15 @@
-// import React, { Component } from 'react';
+import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 
-// class SignIn extends Component {
-//     componentWillUpdate(nextProps) {
-//         if (nextProps.auth) {
-//             this.context.router.history.push('/app');
-//         }
-//     }
+class LandingPageView extends Component {
 
-//     render() {
-//         return(
-//            <div>
+    render() {
+        return(
+           <div>
+               <p>Landing Page</p>
+           </div> 
+        ) 
+    }
+}
 
-//            </div> 
-//         ) 
-//     }
-// }
-
-// function mapStateToProps({  }) {
-//     return {  };
-// }
-
-// export default connect(mapStateToProps, {  })(SignIn);
+export default (LandingPageView);

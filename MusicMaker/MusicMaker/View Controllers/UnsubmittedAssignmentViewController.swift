@@ -19,19 +19,23 @@ class UnsubmittedAssignmentViewController: UITableViewController {
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AssignmentHeaderCell", for: indexPath) as! AssignmentHeaderTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! AssignmentHeaderTableViewCell
             
             cell.assignmentTitleLabel.text = "this is a test assignment"
             cell.dueDateLabel.text = "DEC 9"
             cell.dueTimeLabel.text = "8:00 PM"
             cell.instrumentLabel.text = "🎻"
+            
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MusicPieceCell", for: indexPath) as! AssignmentMusicPieceTableViewCell
             
             return cell
         default:

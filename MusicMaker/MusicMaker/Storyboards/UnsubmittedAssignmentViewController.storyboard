@@ -12,16 +12,16 @@
         <scene sceneID="eoW-vP-84y">
             <objects>
                 <tableViewController id="3n0-iy-li9" customClass="UnsubmittedAssignmentViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6CS-05-EvE">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6CS-05-EvE">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssignmentHeaderCell" rowHeight="219" id="qGe-SX-Gia" customClass="AssignmentHeaderTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="219" id="qGe-SX-Gia" customClass="AssignmentHeaderTableViewCell" customModule="MusicMaker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="768" height="219"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qGe-SX-Gia" id="Nob-jp-yDG">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="219"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="218.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MusicLines" translatesAutoresizingMaskIntoConstraints="NO" id="lhe-B1-Nw1">
@@ -240,6 +240,14 @@
                                     <outlet property="dueTimeLabel" destination="ho8-fz-rE6" id="xb0-lK-QeE"/>
                                     <outlet property="instrumentLabel" destination="4NT-Tv-mq6" id="Y42-t4-X1U"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MusicPieceCell" rowHeight="248" id="LL9-J6-nHu" customClass="AssignmentMusicPieceTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="247" width="768" height="248"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LL9-J6-nHu" id="NGR-oW-vyv">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="247.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>

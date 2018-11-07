@@ -291,6 +291,10 @@
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
+                                            <connections>
+                                                <outlet property="dataSource" destination="LL9-J6-nHu" id="Pzg-11-PbS"/>
+                                                <outlet property="delegate" destination="LL9-J6-nHu" id="SgZ-3c-BLI"/>
+                                            </connections>
                                         </collectionView>
                                     </subviews>
                                     <constraints>

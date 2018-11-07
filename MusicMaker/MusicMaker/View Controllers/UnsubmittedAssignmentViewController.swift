@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UnsubmittedAssignmentViewController: UIViewController {
+class UnsubmittedAssignmentViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

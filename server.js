@@ -45,21 +45,21 @@ app.get('/teachers', async (req, res, next) => {
 
 // POST
 
-// app.post('/teachers', async (req, res, next) => {
-//   try {
-//     const name = req.body;
-//     // if(!name) throw new Error('Name is blank!');
-//     const teacherData = { name };
-//     const teachersRef = await db.collection('teachers').add(teacherData);
-//     res.json({
-//       id: teachersRef.id,
-//       teacherData
-//     });
-//   } catch(err) {
-//     console.log(err.message);
-//     next(err);
-//   }
-// });
+app.post('/teachers', async (req, res, next) => {
+  try {
+    const { email }  = req.body.settings;
+    // if(!name) throw new Error('Name is blank!');
+    const teacherData = { email };
+    const teachersRef = await db.collection('documents/teachers').add(teacherData);
+    res.json({
+      id: teachersRef.id,
+      teacherData
+    });
+  } catch(err) {
+    console.log(err.message);
+    next(err);
+  }
+});
 
 ///////////////////////
 

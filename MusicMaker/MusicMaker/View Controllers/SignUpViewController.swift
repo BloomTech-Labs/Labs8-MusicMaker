@@ -38,6 +38,26 @@ class SignUpViewController: UIViewController {
         confirmPasswordTextField.resignFirstResponder()
     }
     
+    private func presentForgotPasswordAlert() {
+        let alert = UIAlertController(title: "Reset Password", message: "Enter your email address to reset your password", preferredStyle: .alert)
+        var resetPasswordWithEmailTextField: UITextField?
+        alert.addTextField { (textField) in
+            textField.borderStyle = UITextField.BorderStyle.none
+            textField.backgroundColor = UIColor.clear
+            textField.attributedPlaceholder = NSAttributedString(string: "Enter your email address",attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            resetPasswordWithEmailTextField = textField
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { _ in
+            Auth.auth().sendPasswordReset(withEmail: resetPasswordWithEmailTextField?.text ?? "", completion: { (error) in
+            })
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var firstNameTextField: UITextField! {
@@ -70,6 +90,9 @@ class SignUpViewController: UIViewController {
     
     // MARK: - IBActions
     
+    @IBAction func forgotPassword(_ sender: Any) {
+        presentForgotPasswordAlert()
+    }
     @IBAction func selectLevel(_ sender: UIButton) {
         
         let beginnerAction = UIAlertAction(title: "Beginner", style: .default) { (action) in

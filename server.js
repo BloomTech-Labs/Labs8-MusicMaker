@@ -84,9 +84,9 @@ app.get('/teachers', async (req, res, next) => {
 ////////////////////////////////////////////////////////// STUDENTS /////////////////////////////////////////////////////////////
 
 //GET all of student aassignments
-app.get('/student/:id', async (req, res, next) => {
+app.get('/student/:id_student', async (req, res, next) => {
         try {
-        const studentId = req.params.id;
+        const studentId = req.params['id_student'];
 
         const assignmentsRef = await db.collection('students').doc(studentId).collection('assignments').get();
         const assignments = [];

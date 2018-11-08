@@ -21,7 +21,9 @@ class RecordButtonTableViewCell: UITableViewCell {
     override func awakeFromNib() {  // This will never be called if the cell is created in code.
         super.awakeFromNib()
         
-        recordButton.layer.cornerRadius = 2
+        recordButton.layer.cornerRadius = 5
+        recordButton.clipsToBounds = true
+//        recordButton.layer.borderWidth = 1
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

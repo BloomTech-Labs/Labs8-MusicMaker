@@ -370,6 +370,9 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <state key="normal" title="Tap To Record" image="RecordIcon"/>
+                                            <connections>
+                                                <action selector="recordButtonTapped:" destination="hal-Rq-1Ak" eventType="touchUpInside" id="avm-6Z-eHt"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -377,6 +380,9 @@
                                         <constraint firstItem="Hgb-qT-0lm" firstAttribute="centerY" secondItem="43K-dp-uDy" secondAttribute="centerY" id="dpu-9a-SAS"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="recordButton" destination="Hgb-qT-0lm" id="ymV-sT-eYR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

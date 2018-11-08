@@ -71,9 +71,8 @@
                                     <constraint firstItem="Bfo-rF-LzT" firstAttribute="leading" secondItem="ZbL-Lk-XmZ" secondAttribute="leading" id="rQv-OM-UzJ"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRR-OI-zIU">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRR-OI-zIU" customClass="CameraPreviewView" customModule="MusicMaker" customModuleProvider="target">
                                 <rect key="frame" x="608" y="864" width="160" height="160"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="2ij-iz-zzl"/>
                                     <constraint firstAttribute="height" constant="160" id="I4y-4W-oLd"/>
@@ -96,6 +95,7 @@
                         <viewLayoutGuide key="safeArea" id="XN8-7i-aqZ"/>
                     </view>
                     <connections>
+                        <outlet property="cameraPreviewView" destination="PRR-OI-zIU" id="KGq-OS-K3m"/>
                         <outlet property="collectionView" destination="Bfo-rF-LzT" id="aTm-ck-rs5"/>
                     </connections>
                 </viewController>

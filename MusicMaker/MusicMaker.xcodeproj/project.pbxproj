@@ -17,6 +17,7 @@
 		39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B5C21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift */; };
 		39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B5E2194AED500C6018E /* RecordButtonTableViewCell.swift */; };
 		39CA2B612194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */; };
+		39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */; };
 		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
 		BFD381CC219354C70038F974 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CB219354C70038F974 /* QRScannerViewController.swift */; };
@@ -41,6 +42,7 @@
 		39CA2B5C21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentInstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B5E2194AED500C6018E /* RecordButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSaveSubmitTableViewCell.swift; sourceTree = "<group>"; };
+		39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordingViewController.storyboard; sourceTree = "<group>"; };
 		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		BFD381CB219354C70038F974 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */,
 				BFD381C22193525F0038F974 /* Authentication.storyboard */,
 				399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */,
+				39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */,
 				39CA2B522193607700C6018E /* SplitView.storyboard */,
 			);
 			path = Storyboards;
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39CA2B532193607700C6018E /* SplitView.storyboard in Resources */,
+				39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */,
 				BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */,
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
 				39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */,

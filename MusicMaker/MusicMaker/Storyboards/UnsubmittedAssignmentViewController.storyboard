@@ -363,14 +363,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgb-qT-0lm">
-                                            <rect key="frame" x="288" y="5.5" width="192" height="50"/>
+                                            <rect key="frame" x="234" y="5.5" width="300" height="50"/>
                                             <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Wed-02-qw7"/>
+                                                <constraint firstAttribute="width" constant="300" id="mGG-5a-dF6"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <state key="normal" title="Tap To Record" image="RecordIcon">
-                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             </state>
                                             <connections>
                                                 <action selector="recordButtonTapped:" destination="hal-Rq-1Ak" eventType="touchUpInside" id="avm-6Z-eHt"/>
@@ -389,15 +390,28 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="81" id="EY2-oo-8W9">
                                 <rect key="frame" x="0.0" y="738" width="768" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EY2-oo-8W9" id="CDR-dh-F3I">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EY2-oo-8W9" id="CDR-dh-F3I">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="81"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2k-yD-eYg">
-                                            <rect key="frame" x="288" y="15" width="192" height="50"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2k-yD-eYg">
+                                            <rect key="frame" x="120" y="15.5" width="192" height="50"/>
                                             <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" constant="192" id="sui-u0-odJ"/>
                                                 <constraint firstAttribute="height" constant="50" id="yex-8N-pjf"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <state key="normal" title="Save">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgn-wz-yJI">
+                                            <rect key="frame" x="457" y="15.5" width="192" height="50"/>
+                                            <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="192" id="8dg-Ki-KgU"/>
+                                                <constraint firstAttribute="height" constant="50" id="dfe-rF-m5E"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <state key="normal" title="Submit">
@@ -405,6 +419,13 @@
                                             </state>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="cgn-wz-yJI" firstAttribute="centerY" secondItem="CDR-dh-F3I" secondAttribute="centerY" id="NQE-cW-7aX"/>
+                                        <constraint firstItem="G2k-yD-eYg" firstAttribute="leading" secondItem="CDR-dh-F3I" secondAttribute="leading" constant="120" id="R1e-Hy-i6u"/>
+                                        <constraint firstItem="G2k-yD-eYg" firstAttribute="centerY" secondItem="CDR-dh-F3I" secondAttribute="centerY" id="Z8m-xk-Rj3"/>
+                                        <constraint firstAttribute="trailing" secondItem="cgn-wz-yJI" secondAttribute="trailing" constant="120" id="df6-ir-00L"/>
+                                        <constraint firstItem="cgn-wz-yJI" firstAttribute="leading" secondItem="G2k-yD-eYg" secondAttribute="trailing" constant="145" id="gei-SY-vpv"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

@@ -1,15 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import { connect } from 'react-redux';
 
-class DashboardView extends Component {
+import PasswordChangeForm from "../components/UpdatePW";
 
-    render() {
-        return(
-           <div>
-               <p>Dashboard Page</p>
-           </div> 
-        ) 
-    }
+class DashboardView extends Component {
+  render() {
+    return (
+      <div>
+        <p>Dashboard Page</p>
+        <div>
+          <PasswordChangeForm />
+        </div>
+      </div>
+    );
+  }
 }
 
-export default (DashboardView);
+export default DashboardView;

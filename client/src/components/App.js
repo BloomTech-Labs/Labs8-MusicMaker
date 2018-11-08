@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import withAuthentication from './withAuthentication';
 
 import * as routes from '../constants/routes';
-import { firebase } from '../firebase';
 
 import Navigation from './Navigation';
 import LandingPageView from '../views/landingView';
@@ -13,26 +13,10 @@ import DashboardView from '../views/dashboardView';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      authUser: null
-    };
-  }
-
-  componentDidMount() {
-    firebase.auth.onAuthStateChanged(authUser => {
-      authUser
-        ? this.setState({ authUser })
-        : this.setState({ authUser: null });
-    });
-  }
-
   render() {
     return (
       <div className="App">
-        <Navigation authUser={ this.state.authUser }/>
+        <Navigation />
 
         <Route
           exact path={ routes.LANDING }
@@ -55,4 +39,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withAuthentication(App);

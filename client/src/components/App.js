@@ -7,6 +7,7 @@ import Navigation from './Navigation';
 import LandingPageView from '../views/landingView';
 import SignUpView from '../views/signupView';
 import SignInView from '../views/signinView';
+import DashboardView from '../views/dashboardView';
 
 import './App.css';
 
@@ -29,6 +30,11 @@ class App extends Component {
         <Route
           exact path={ routes.SIGN_IN }
           component={ SignInView }
+        />
+
+        <Route
+          exact path={ routes.DASHBOARD }
+          component={ DashboardView }
         />
       </div>
     );

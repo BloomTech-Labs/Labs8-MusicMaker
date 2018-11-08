@@ -41,26 +41,87 @@ app.get('/teachers', async (req, res, next) => {
   }
 });
 
-// committing with GET request for now
-// additional comment to resubmit PR
+// GET a list of all students studying under a specific teacher
 
-// POST
-
-app.post('/teachers', async (req, res, next) => {
+app.get('/teachers/:id', async (req, res, next) => {
   try {
-    const { email }  = req.body.settings;
-    // if(!name) throw new Error('Name is blank!');
-    const teacherData = { email };
-    const teachersRef = await db.collection('documents/teachers').add(teacherData);
-    res.json({
-      id: teachersRef.id,
-      teacherData
+    const id = req.params.id;
+    // if(!id) throw new Error('Please provide a teacher ID.');
+    const studentsRef = await db.collection('teachers').doc(id).collection('students').get();
+    const students = [];
+    studentsRef.forEach((doc) => {
+      students.push({
+        id: doc.id,
+        data: doc.data
+      });
     });
+    res.json(students);
+  } catch (err) {
+    next (err);
+  }
+});
+
+
+// GET a list of all assignments listed under a specific teacher
+// can consider changing this to a more high-level 'assignments' endpoint
+
+app.get('/teachers/:id/assignments', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    // if(!id) throw new Error('Please provide a teacher ID.');
+    const assignmentsRef = await db.collection('teachers').doc(id).collection('assignments').get();
+    const assignments = [];
+    assignmentsRef.forEach((doc) => {
+      assignments.push({
+        id: doc.id,
+        data: doc.data
+      });
+    });
+    res.json(assignments);
   } catch(err) {
-    console.log(err.message);
     next(err);
   }
 });
+
+// GET a list of all assignments for a specific student
+// I can make this into a teachers -> students type endpoint, but it seems unnecessary for now
+
+app.get('/students/:id/assignments', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    // if(!id) throw new Error('Please provide a student ID.');
+    const assignmentsRef = await db.collection('students').doc(id).collection('assignments').get();
+    const assignments = [];
+    assignmentsRef.forEach((doc) => {
+      assignments.push({
+        id: doc.id,
+        data: doc.data
+      });
+    });
+    res.json(assignments);
+  } catch(err) {
+    next(err);
+  }
+});
+
+
+// POST
+
+// app.post('/teachers', async (req, res, next) => {
+//   try {
+//     const { email }  = req.body.email;
+//     // if(!name) throw new Error('Name is blank!');
+//     const teacherData = { email };
+//     const teachersRef = await db.collection('teachers').document('').add(teacherData);
+//     res.json({
+//       id: teachersRef.id,
+//       teacherData
+//     });
+//   } catch(err) {
+//     console.log(err.message);
+//     next(err);
+//   }
+// });
 
 ///////////////////////
 

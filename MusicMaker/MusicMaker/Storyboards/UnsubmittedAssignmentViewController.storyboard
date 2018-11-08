@@ -313,6 +313,42 @@
                                     <outlet property="musicPieceLabel" destination="41G-wQ-nSC" id="lSZ-gP-Y12"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="172" id="cIG-0w-tq2">
+                                <rect key="frame" x="0.0" y="505" width="768" height="172"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cIG-0w-tq2" id="OL0-yp-Vuy">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="172"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I34-B2-X7v">
+                                            <rect key="frame" x="20" y="11" width="131.5" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Teacher" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdC-rr-T5R">
+                                            <rect key="frame" x="670.5" y="139.5" width="77.5" height="21.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bodyTextLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzA-OE-7Ir">
+                                            <rect key="frame" x="20" y="60" width="117.5" height="21.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="nzA-OE-7Ir" firstAttribute="top" secondItem="I34-B2-X7v" secondAttribute="bottom" constant="19" id="IMS-rh-pHj"/>
+                                        <constraint firstItem="wdC-rr-T5R" firstAttribute="bottom" secondItem="OL0-yp-Vuy" secondAttribute="bottomMargin" id="Kxd-3P-89K"/>
+                                        <constraint firstItem="I34-B2-X7v" firstAttribute="leading" secondItem="OL0-yp-Vuy" secondAttribute="leadingMargin" id="Uzf-J3-C5H"/>
+                                        <constraint firstItem="nzA-OE-7Ir" firstAttribute="leading" secondItem="OL0-yp-Vuy" secondAttribute="leadingMargin" id="WJo-Na-dzJ"/>
+                                        <constraint firstItem="wdC-rr-T5R" firstAttribute="trailing" secondItem="OL0-yp-Vuy" secondAttribute="trailingMargin" id="dhg-6t-W8o"/>
+                                        <constraint firstItem="I34-B2-X7v" firstAttribute="top" secondItem="OL0-yp-Vuy" secondAttribute="topMargin" id="vCG-BK-9xK"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="3n0-iy-li9" id="5q4-ej-dBf"/>

@@ -23,6 +23,8 @@
 		BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */; };
 		BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5652192393B00D84FF2 /* Assets.xcassets */; };
 		BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */; };
+		BFEF007B2194D6EA00FA6DF6 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEF007A2194D6E900FA6DF6 /* TextFieldEffects.swift */; };
+		BFEF007D2194D70400FA6DF6 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEF007C2194D70400FA6DF6 /* HoshiTextField.swift */; };
 		CCA6E76E82020309C9BE8F98 /* Pods_MusicMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,8 @@
 		BFD3E5652192393B00D84FF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFD3E5682192393B00D84FF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFD3E56A2192393B00D84FF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFEF007A2194D6E900FA6DF6 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
+		BFEF007C2194D70400FA6DF6 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
 		F6FDA1FA291F03420ADB77C5 /* Pods-MusicMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */,
+				BFEF007A2194D6E900FA6DF6 /* TextFieldEffects.swift */,
+				BFEF007C2194D70400FA6DF6 /* HoshiTextField.swift */,
 				39CA2B5621938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift */,
 				39CA2B582193901700C6018E /* MusicSheetPageCollectionViewCell.swift */,
 				39CA2B5C21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift */,
@@ -321,10 +327,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFEF007D2194D70400FA6DF6 /* HoshiTextField.swift in Sources */,
 				39CA2B5721938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift in Sources */,
 				399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,
 				BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */,
+				BFEF007B2194D6EA00FA6DF6 /* TextFieldEffects.swift in Sources */,
 				BFD381D0219355510038F974 /* LogInViewController.swift in Sources */,
 				BFD381CC219354C70038F974 /* QRScannerViewController.swift in Sources */,
 				39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */,

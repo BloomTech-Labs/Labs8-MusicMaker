@@ -16,10 +16,10 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addDismissKeyboardGestureRecognizer()
-    
+ 
     }
     
-    
+
     
     // MARK: - Private
     
@@ -146,6 +146,24 @@ class SignUpViewController: UIViewController {
         popover?.sourceRect = sender.bounds
         
         present(alert, animated: true, completion: nil)
+    }
+    @IBAction func showPassword(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            if passwordTextField.isSecureTextEntry == false {
+                passwordTextField.isSecureTextEntry = true
+            } else {
+                passwordTextField.isSecureTextEntry = false
+            }
+        case 1:
+            if confirmPasswordTextField.isSecureTextEntry == false {
+                confirmPasswordTextField.isSecureTextEntry = true
+            } else {
+                confirmPasswordTextField.isSecureTextEntry = false
+            }
+        default:
+            break
+        }
     }
     
     @IBAction func createAccount(_ sender: Any) {

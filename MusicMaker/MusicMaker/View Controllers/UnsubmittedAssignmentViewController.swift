@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PDFKit
 
 class UnsubmittedAssignmentViewController: UITableViewController {
 
@@ -19,19 +20,30 @@ class UnsubmittedAssignmentViewController: UITableViewController {
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AssignmentHeaderCell", for: indexPath) as! AssignmentHeaderTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! AssignmentHeaderTableViewCell
             
-            cell.assignmentTitleLabel.text = "this is a test assignment"
-            cell.dueDateLabel.text = "DEC 9"
-            cell.dueTimeLabel.text = "8:00 PM"
-            cell.instrumentLabel.text = "🎻"
+//            cell.assignmentTitleLabel.text = "this is a test assignment"
+//            cell.dueDateLabel.text = "DEC 9"
+//            cell.dueTimeLabel.text = "8:00 PM"
+//            cell.instrumentLabel.text = "🎻"
+            
+            cell.assignmentTitle = "this is a test assignment"
+            cell.dueDate = Date()   // sets date and time in custom cell
+            cell.instrument = "🎻"
+            
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MusicPieceCell", for: indexPath) as! AssignmentMusicPieceTableViewCell
+            
+            cell.musicPiece = "this is a test music piece name that is really really long because i want to see"
+            cell.pdfDocument = PDFDocument(url: Bundle.main.url(forResource: "SamplePDF", withExtension: "pdf")!)
             
             return cell
         default:

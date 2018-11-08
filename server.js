@@ -141,6 +141,15 @@ app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) =>
     }
 });
 
+//POST a video from a student
+app.post('/student/:id', async (req, res, next) => {
+    try{
+
+    } catch (err) {
+    next (err);
+    }
+});
+
 // server instantiation
 
 const server = app.listen(8000, function () {

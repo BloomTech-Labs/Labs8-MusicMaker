@@ -188,6 +188,7 @@ app.get('/teachers', async (req, res, next) => {
   }
 });
 
+
 // committing with GET request for now
 
 // POST
@@ -228,15 +229,15 @@ app.get('/teachers', async (req, res, next) => {
 
 /////////////////////// STUDENTS /////////////////////////////////////////////
 
-app.get('/assignments', async (req, res, next) => {
+app.get('/:id/assignments', async (req, res, next) => {
         try {
-        const assignmentsRef = await db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('assignments').get();
+        const studentId = req.params.id;
+        const assignmentsRef = await db.collection('students').doc(studentId).collection('assignments').get();
         const assignments = [];
-        assignmentsRef.forEach((doc) => {
+        assignmentsRef.forEach((snap) => {
             assignments.push({
-            id: doc.id,
-            data: doc.data
-            
+            id: snap.id,
+            data: snap.data
             });
         });
         res.json(assignments);
@@ -244,6 +245,15 @@ app.get('/assignments', async (req, res, next) => {
         next(err);
         }
   });
+
+
+// const field_list = ["dueDate", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
+// collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('assignments').doc('jKqbaQTm5lQikF6MMD9K').get()
+//     .then(function(res) {
+//         field_list.forEach(function(field){
+//             console.log([field, ":", res.get(field)].join(' '))
+//          })
+// })
 
 
 // server instantiation

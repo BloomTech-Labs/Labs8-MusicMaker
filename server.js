@@ -61,6 +61,28 @@ app.get('/teachers/:id', async (req, res, next) => {
   }
 });
 
+
+// GET a list of all assignments listed under a specific teacher
+// can consider changing this to a more high-level 'assignments' endpoint
+
+app.get('/teachers/:id/assignments', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    // if(!id) throw new Error('Please provide a teacher ID.');
+    const assignmentsRef = await db.collection('teachers').doc(id).collection('assignments').get();
+    const assignments = [];
+    assignmentsRef.forEach((doc) => {
+      assignments.push({
+        id: doc.id,
+        data: doc.data
+      });
+    });
+    res.json(assignments);
+  } catch(err) {
+    next(err);
+  }
+});
+
 // POST
 
 app.post('/teachers', async (req, res, next) => {

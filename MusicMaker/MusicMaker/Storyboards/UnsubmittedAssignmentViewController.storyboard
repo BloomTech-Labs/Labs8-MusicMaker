@@ -374,6 +374,7 @@
                                             </state>
                                             <connections>
                                                 <action selector="recordButtonTapped:" destination="hal-Rq-1Ak" eventType="touchUpInside" id="avm-6Z-eHt"/>
+                                                <segue destination="NdW-Gj-ZSF" kind="show" id="rQf-wG-mvz"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -390,12 +391,12 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SaveSubmitCell" rowHeight="81" id="EY2-oo-8W9" customClass="AssignmentSaveSubmitTableViewCell" customModule="MusicMaker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="755" width="768" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EY2-oo-8W9" id="CDR-dh-F3I">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EY2-oo-8W9" id="CDR-dh-F3I">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="81"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2k-yD-eYg">
-                                            <rect key="frame" x="120" y="21.5" width="192" height="50"/>
+                                            <rect key="frame" x="120" y="21" width="192" height="50"/>
                                             <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="192" id="sui-u0-odJ"/>
@@ -410,7 +411,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgn-wz-yJI">
-                                            <rect key="frame" x="457" y="21.5" width="192" height="50"/>
+                                            <rect key="frame" x="457" y="21" width="192" height="50"/>
                                             <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="192" id="8dg-Ki-KgU"/>
@@ -450,6 +451,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXL-Vj-yxI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="17.96875" y="78.515625"/>
+        </scene>
+        <!--RecordingViewController-->
+        <scene sceneID="omY-Zy-mdh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RecordingViewController" id="NdW-Gj-ZSF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DCW-Iw-Oqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="688" y="183"/>
         </scene>
     </scenes>
     <resources>

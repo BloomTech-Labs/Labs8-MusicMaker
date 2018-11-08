@@ -5,12 +5,14 @@ import { withRouter } from 'react-router-dom';
 import { auth } from '../firebase';
 import * as routes from '../constants/routes';
 import { SignUpLink } from './signupView';
+import ForgotPW from '../components/ForgotPW';
 
 const SignInPage = ({ history }) =>
     <div>
         <h1>Sign In</h1>
         <SignInView history ={ history } />
         <SignUpLink />
+        <ForgotPW />
     </div>
 
 const byPropKey = (propertyName, value) => () => ({

@@ -141,14 +141,24 @@ app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) =>
     }
 });
 
-//POST a video from a student
-app.post('/student/:id', async (req, res, next) => {
+// //POST a video from a student
+// app.post('/student/:id', async (req, res, next) => {
+//     try{
+
+//     } catch (err) {
+//     next (err);
+//     }
+// });
+
+//PUT will update a students information in settings
+app.put('/student/:id', async (req, res, next) => {
     try{
 
     } catch (err) {
     next (err);
     }
 });
+
 
 // server instantiation
 

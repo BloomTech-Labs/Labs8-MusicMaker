@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import withAuthentication from './withAuthentication';
 
 import * as routes from '../constants/routes';
 
@@ -7,6 +8,7 @@ import Navigation from './Navigation';
 import LandingPageView from '../views/landingView';
 import SignUpView from '../views/signupView';
 import SignInView from '../views/signinView';
+import DashboardView from '../views/dashboardView';
 
 import './App.css';
 
@@ -20,19 +22,21 @@ class App extends Component {
           exact path={ routes.LANDING }
           component={ LandingPageView }
         />
-
         <Route
           exact path={ routes.SIGN_UP }
           component={ SignUpView }
         />
-
         <Route
           exact path={ routes.SIGN_IN }
           component={ SignInView }
+        />
+        <Route
+          exact path={ routes.DASHBOARD }
+          component={ DashboardView }
         />
       </div>
     );
   }
 }
 
-export default App;
+export default withAuthentication(App);

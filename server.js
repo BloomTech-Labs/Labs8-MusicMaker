@@ -82,6 +82,29 @@ app.post('/teachers', async (req, res, next) => {
 
 ///////////////////////
 
+//=================================================== STUDENTS =================================================================
+
+//GET all of student aassignments
+app.get('/student/:idStudent', async (req, res, next) => {
+    try {
+    const studentId = req.params['idStudent'];
+
+    const assignmentsRef = await db.collection('students').doc(studentId).collection('assignments').get();
+    const assignments = [];
+    assignmentsRef.forEach((snap) => {
+        assignments.push({
+        id: snap.id,
+        data: snap.data
+        });
+    });
+    res.json(assignments);
+    } catch(err) {
+    next(err);
+    }
+});
+
+
+
 // server instantiation
 
 const server = app.listen(8000, function () {

@@ -20,7 +20,7 @@ class UnsubmittedAssignmentViewController: UITableViewController {
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,6 +56,11 @@ class UnsubmittedAssignmentViewController: UITableViewController {
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecordButtonCell", for: indexPath) as! RecordButtonTableViewCell
             
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SaveSubmitCell", for: indexPath) as! AssignmentSaveSubmitTableViewCell
+            
+//            cell.delegate = self
             return cell
         default:
             fatalError("We forgot a case: \(indexPath.row)")

@@ -151,6 +151,7 @@ const express = require('express');
 // Firebase-specific dependencies
 
 const firebase = require('firebase');
+var storage = require('@google-cloud/storage');
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
     authDomain: "musicmaker-4b2e8.firebaseapp.com",
@@ -229,9 +230,10 @@ app.get('/teachers', async (req, res, next) => {
 
 /////////////////////// STUDENTS /////////////////////////////////////////////
 
-app.get('/:id/assignments', async (req, res, next) => {
+app.get('/student/:id', async (req, res, next) => {
         try {
         const studentId = req.params.id;
+
         const assignmentsRef = await db.collection('students').doc(studentId).collection('assignments').get();
         const assignments = [];
         assignmentsRef.forEach((snap) => {
@@ -246,14 +248,43 @@ app.get('/:id/assignments', async (req, res, next) => {
         }
   });
 
+  app.get('/student/:id_student/assigment/:id_assignment', async (req, res, next) => {
+    try {
+        const studentId = req.params['id_student'];
+        const assignmentId = req.params['id_assignment'];
 
-// const field_list = ["dueDate", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
-// collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('assignments').doc('jKqbaQTm5lQikF6MMD9K').get()
-//     .then(function(res) {
-//         field_list.forEach(function(field){
-//             console.log([field, ":", res.get(field)].join(' '))
-//          })
-// })
+        const string_list = ["feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
+        const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get()
+
+        json_res = {};
+        for (let i =0; i < string_list.length; i++){
+            let value = assigmentRef.get(string_list[i]);
+            if(!("object" == typeof(value))){
+                json_res[string_list[i]] = value;
+            }else{
+                console.log("Error: Should not have object in this list")
+            }
+        }
+        let dueDate = assigmentRef.get("dueDate");
+        json_res["dueDate"] = dueDate;
+
+        
+        // let musicSheet = assigmentRef.get("sheetMusic");
+        // let segments = musicSheet['0']._key.path.segments
+        // let dir_name = segments[segments.length -2];
+        // let filename = segments[segments.length -1];
+        // //console.log(musicSheet['0']._key.path.segments);
+
+        // var gsReference = storage.refFromURL('gs://musicmaker-4b2e8.appspot.com/' + dir_name + '/' + filename);
+
+        // //gs://musicmaker-4b2e8.appspot.com
+        // gs://musicmaker-4b2e8.appspot.com
+        
+        res.json(json_res);
+      } catch (err) {
+        next (err);
+      }
+});
 
 
 // server instantiation

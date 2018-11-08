@@ -83,6 +83,28 @@ app.get('/teachers/:id/assignments', async (req, res, next) => {
   }
 });
 
+// GET a list of all assignments for a specific student
+// I can make this into a teachers -> students type endpoint, but it seems unnecessary for now
+
+app.get('/students/:id/assignments', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    // if(!id) throw new Error('Please provide a student ID.');
+    const assignmentsRef = await db.collection('students').doc(id).collection('assignments').get();
+    const assignments = [];
+    assignmentsRef.forEach((doc) => {
+      assignments.push({
+        id: doc.id,
+        data: doc.data
+      });
+    });
+    res.json(assignments);
+  } catch(err) {
+    next(err);
+  }
+});
+
+
 // POST
 
 app.post('/teachers', async (req, res, next) => {

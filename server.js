@@ -1,157 +1,9 @@
-// // const https = require('https');
-// var admin = require("firebase-admin");
-// var functions = require('firebase-functions');
-//  // const serviceAccount = require("./private_key.json");
-//  //  admin.initializeApp({
-// //      credential: admin.credential.cert(serviceAccount),
-// //      databaseURL: 'https://musicmaker-4b2e8.firebaseio.com'
-// //    });
-//  // var db = admin.firestore();
-// // var students = db.collection('students').doc('NKMNNypkVXUj4BSSyTPb').collection('assignments').doc('jKqbaQTm5lQikF6MMD9K').sheetMusic
-// // //db.ref().set({'name' : 'test'});
-//  // console.log("THIS", students);
-//  var serviceAccount = require("./private_key.json");
-//  admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-// });
-//  var db = admin.firestore();
-// // collection = db.collection('students').get().then(function(student) {
-// //     student.forEach(function(doc){
-// //         console.log(doc.data())
-        
-// //     })
-// // });
-//  collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('assignments').get().then(function(student) {
-//     student.forEach(function(doc){
-//         console.log(doc.data)
-//     })
-// });
-//  var field_list = ["dueDate", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
-// collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('assignments').doc('jKqbaQTm5lQikF6MMD9K').get()
-//     .then(function(res) {
-//         field_list.forEach(function(field){
-//             console.log([field, ":", res.get(field)].join(' '))
-//          })
-// })
-//  // let baseUrl = 'https://firestore.googleapis.com/v1beta1/'
-// // https.get(firebaseEndpoint, (resp) => {
-// //     let data = '';
-    
-// //     resp.on('data', (chunk) => {
-// //         data += chunk;
-// //     });
-//  //     resp.on('end', () => {
-// //         console.log(JSON.parse(data).explanation);
-// //     });
-// // }).on('error', (error) => {
-// //     console.log('ERROR:' + err.message);
-// // });
-//  // const port = 8000;
-//  // exports.studentAssignments = functions.https.onRequest(req, res) => {
-// //     res.status(200).send()
-// // }
-//  // app.listen(port, () => {
-// //     console.log(`\n===== RUNNING ON PORT ${port} =====\n`);
-// // });
-//  // const express = require('express');
-//  // const app = express();
-// // const port = 8000;
-//  // app.use(express.json());
-//  // // Endpoints
-// // app.get('/', (req, res) => {
-// //     res.send('hello world');
-// // });
-//  // app.get('/student/assignments', (req, res) => {
-// //     db('assignments')
-// //         .then(assignments => {
-// //             res.status(200).json(assignments)
-// //         })
-// //         .catch(err => {
-// //             res.status(500).json(err);
-// //         })
-// // });
-// const https = require('https');
-// var admin = require("firebase-admin");
-// var functions = require('firebase-functions');
-//  // const serviceAccount = require("./private_key.json");
-//  //  admin.initializeApp({
-// //      credential: admin.credential.cert(serviceAccount),
-// //      databaseURL: 'https://musicmaker-4b2e8.firebaseio.com'
-// //    });
-//  // var db = admin.firestore();
-// // var students = db.collection('students').doc('NKMNNypkVXUj4BSSyTPb').collection('assignments').doc('jKqbaQTm5lQikF6MMD9K').sheetMusic
-// // //db.ref().set({'name' : 'test'});
-//  // console.log("THIS", students);
-//  var serviceAccount = require("./private_key.json");
-//  admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-// });
-//  var db = admin.firestore();
-// // collection = db.collection('students').get().then(function(student) {
-// //     student.forEach(function(doc){
-// //         console.log(doc.data())
-        
-// //     })
-// // });
-//  collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('assignments').get().then(function(student) {
-//     student.forEach(function(doc){
-//         console.log(doc.data)
-//     })
-// });
-//  var field_list = ["dueDate", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
-// collection = db.collection('students').doc("NKMNNypkVXUj4BSSyTPb").collection('assignments').doc('jKqbaQTm5lQikF6MMD9K').get()
-//     .then(function(res) {
-//         field_list.forEach(function(field){
-//             console.log([field, ":", res.get(field)].join(' '))
-//          })
-// })
-//  // let baseUrl = 'https://firestore.googleapis.com/v1beta1/'
-// // https.get(firebaseEndpoint, (resp) => {
-// //     let data = '';
-    
-// //     resp.on('data', (chunk) => {
-// //         data += chunk;
-// //     });
-//  //     resp.on('end', () => {
-// //         console.log(JSON.parse(data).explanation);
-// //     });
-// // }).on('error', (error) => {
-// //     console.log('ERROR:' + err.message);
-// // });
-//  // const port = 8000;
-//  // exports.studentAssignments = functions.https.onRequest(req, res) => {
-// //     res.status(200).send()
-// // }
-//  // app.listen(port, () => {
-// //     console.log(`\n===== RUNNING ON PORT ${port} =====\n`);
-// // });
-//  // const express = require('express');
-//  // const app = express();
-// // const port = 8000;
-//  // app.use(express.json());
-//  // // Endpoints
-// // app.get('/', (req, res) => {
-// //     res.send('hello world');
-// // });
-//  // app.get('/student/assignments', (req, res) => {
-// //     db('assignments')
-// //         .then(assignments => {
-// //             res.status(200).json(assignments)
-// //         })
-// //         .catch(err => {
-// //             res.status(500).json(err);
-// //         })
-// // });
-
-// ================================================== EVAN ========================================================================= 
-
 const admin = require('firebase-admin');
 const express = require('express');
 
 // Firebase-specific dependencies
-
 const firebase = require('firebase');
-var storage = require('@google-cloud/storage');
+const storage = require('@google-cloud/storage'); 
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
     authDomain: "musicmaker-4b2e8.firebaseapp.com",
@@ -171,6 +23,7 @@ firestore.settings(settings);
 ///////////////////////
 
 const app = express();
+
 // test GET request, adding key/value pair to Firebase
 
 app.get('/teachers', async (req, res, next) => {
@@ -228,8 +81,9 @@ app.get('/teachers', async (req, res, next) => {
 //   res.send('hello!');
 // });
 
-/////////////////////// STUDENTS /////////////////////////////////////////////
+////////////////////////////////////////////////////////// STUDENTS /////////////////////////////////////////////////////////////
 
+//GET all of student aassignments
 app.get('/student/:id', async (req, res, next) => {
         try {
         const studentId = req.params.id;
@@ -248,7 +102,8 @@ app.get('/student/:id', async (req, res, next) => {
         }
   });
 
-  app.get('/student/:id_student/assigment/:id_assignment', async (req, res, next) => {
+//GET a single from a student
+app.get('/student/:id_student/assigment/:id_assignment', async (req, res, next) => {
     try {
         const studentId = req.params['id_student'];
         const assignmentId = req.params['id_assignment'];
@@ -281,11 +136,10 @@ app.get('/student/:id', async (req, res, next) => {
         // gs://musicmaker-4b2e8.appspot.com
         
         res.json(json_res);
-      } catch (err) {
-        next (err);
-      }
+    } catch (err) {
+    next (err);
+    }
 });
-
 
 // server instantiation
 

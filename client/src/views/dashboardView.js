@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import { connect } from 'react-redux';
 
 import PasswordChangeForm from "../components/UpdatePW";
+import TeacherDashboardView from "./teacherDashboardView";
 
 class DashboardView extends Component {
   render() {
@@ -9,6 +10,7 @@ class DashboardView extends Component {
       <div>
         <p>Dashboard Page</p>
         <div>
+          <TeacherDashboardView />
           <PasswordChangeForm />
         </div>
       </div>

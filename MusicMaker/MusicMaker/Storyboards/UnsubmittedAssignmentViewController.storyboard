@@ -333,15 +333,17 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bodyTextLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzA-OE-7Ir">
-                                            <rect key="frame" x="20" y="60" width="117.5" height="21.5"/>
+                                            <rect key="frame" x="20" y="60" width="728" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="wdC-rr-T5R" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nzA-OE-7Ir" secondAttribute="bottom" constant="30" id="HP7-yA-3eV"/>
                                         <constraint firstItem="nzA-OE-7Ir" firstAttribute="top" secondItem="I34-B2-X7v" secondAttribute="bottom" constant="19" id="IMS-rh-pHj"/>
                                         <constraint firstItem="wdC-rr-T5R" firstAttribute="bottom" secondItem="OL0-yp-Vuy" secondAttribute="bottomMargin" id="Kxd-3P-89K"/>
+                                        <constraint firstItem="nzA-OE-7Ir" firstAttribute="trailing" secondItem="OL0-yp-Vuy" secondAttribute="trailingMargin" id="PLb-YO-bwp"/>
                                         <constraint firstItem="I34-B2-X7v" firstAttribute="leading" secondItem="OL0-yp-Vuy" secondAttribute="leadingMargin" id="Uzf-J3-C5H"/>
                                         <constraint firstItem="nzA-OE-7Ir" firstAttribute="leading" secondItem="OL0-yp-Vuy" secondAttribute="leadingMargin" id="WJo-Na-dzJ"/>
                                         <constraint firstItem="wdC-rr-T5R" firstAttribute="trailing" secondItem="OL0-yp-Vuy" secondAttribute="trailingMargin" id="dhg-6t-W8o"/>

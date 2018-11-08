@@ -8,6 +8,8 @@
 
 import UIKit
 
+// need delegate
+
 class AssignmentSaveSubmitTableViewCell: UITableViewCell {
     
     // MARK: - Outlets/Actions
@@ -27,7 +29,10 @@ class AssignmentSaveSubmitTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        saveButton.layer.cornerRadius = 5
+        saveButton.clipsToBounds = true
+        submitButton.layer.cornerRadius = 5
+        submitButton.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

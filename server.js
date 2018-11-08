@@ -107,21 +107,21 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 
 // POST
 
-app.post('/teachers', async (req, res, next) => {
-  try {
-    const { email }  = req.body.email;
-    // if(!name) throw new Error('Name is blank!');
-    const teacherData = { email };
-    const teachersRef = await db.collection('teachers').document('').add(teacherData);
-    res.json({
-      id: teachersRef.id,
-      teacherData
-    });
-  } catch(err) {
-    console.log(err.message);
-    next(err);
-  }
-});
+// app.post('/teachers', async (req, res, next) => {
+//   try {
+//     const { email }  = req.body.email;
+//     // if(!name) throw new Error('Name is blank!');
+//     const teacherData = { email };
+//     const teachersRef = await db.collection('teachers').document('').add(teacherData);
+//     res.json({
+//       id: teachersRef.id,
+//       teacherData
+//     });
+//   } catch(err) {
+//     console.log(err.message);
+//     next(err);
+//   }
+// });
 
 ///////////////////////
 

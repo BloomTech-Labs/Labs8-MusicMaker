@@ -108,7 +108,7 @@ app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) =>
         const studentId = req.params['idStudent'];
         const assignmentId = req.params['idAssignment'];
 
-        const string_list = ["feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
+        const string_list = ["assignmentName","feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
         const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get()
 
         const json_res = {};
@@ -150,14 +150,17 @@ app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) =>
 //     }
 // });
 
-//PUT will update a students information in settings
-app.put('/student/:id', async (req, res, next) => {
-    try{
+//POST will update a students information in settings
+// app.post('/student/:idStudent/settings', async (req, res, next) => {
+//     try{
+//         const ref = await db.collection('students').doc(id).collection('settings').set({
 
-    } catch (err) {
-    next (err);
-    }
-});
+//         })
+
+//     } catch (err) {
+//     next (err);
+//     }
+// });
 
 
 // server instantiation

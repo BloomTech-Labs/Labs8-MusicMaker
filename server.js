@@ -82,6 +82,66 @@ app.post('/teachers', async (req, res, next) => {
 
 ///////////////////////
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//GET a single assignment from a student
+app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {
+    try {
+        const studentId = req.params['idStudent'];
+        const assignmentId = req.params['idAssignment'];
+    
+        const stringList = ["assignmentName", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
+        const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get()
+    
+        jsonRes = {};
+        for (let i =0; i < stringList.length; i++){
+            let value = assigmentRef.get(stringList[i]);
+            if(!("object" == typeof(value))){
+                jsonRes[stringList[i]] = value;
+            }else{
+                console.log("Error: Should not have object in this list")
+            }
+        }
+        let dueDate = assigmentRef.get("dueDate");
+        jsonRes["dueDate"] = dueDate;
+    
+        
+        // let musicSheet = assigmentRef.get("sheetMusic");
+        // let segments = musicSheet['0']._key.path.segments
+        // let dir_name = segments[segments.length -2];
+        // let filename = segments[segments.length -1];
+        // //console.log(musicSheet['0']._key.path.segments);
+    
+        // var gsReference = storage.refFromURL('gs://musicmaker-4b2e8.appspot.com/' + dir_name + '/' + filename);
+    
+        // //gs://musicmaker-4b2e8.appspot.com
+        // gs://musicmaker-4b2e8.appspot.com
+        
+        res.json(jsonRes);
+    } catch (err) {
+    next (err);
+    }
+    });
+
 // server instantiation
 
 const server = app.listen(8000, function () {

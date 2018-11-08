@@ -355,6 +355,29 @@
                                     <outlet property="teacherLabel" destination="wdC-rr-T5R" id="JH6-Ld-zmg"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordButtonCell" rowHeight="61" id="hal-Rq-1Ak" customClass="RecordButtonTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="677" width="768" height="61"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hal-Rq-1Ak" id="43K-dp-uDy">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="61"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgb-qT-0lm">
+                                            <rect key="frame" x="288" y="5.5" width="192" height="50"/>
+                                            <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="Wed-02-qw7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <state key="normal" title="Tap To Record" image="RecordIcon"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Hgb-qT-0lm" firstAttribute="centerX" secondItem="43K-dp-uDy" secondAttribute="centerX" id="Eai-4r-OdX"/>
+                                        <constraint firstItem="Hgb-qT-0lm" firstAttribute="centerY" secondItem="43K-dp-uDy" secondAttribute="centerY" id="dpu-9a-SAS"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="3n0-iy-li9" id="5q4-ej-dBf"/>
@@ -369,6 +392,7 @@
     </scenes>
     <resources>
         <image name="MusicLines" width="18" height="140"/>
+        <image name="RecordIcon" width="40" height="40"/>
         <image name="TrebleSymbol" width="70" height="140"/>
     </resources>
 </document>

@@ -72,7 +72,7 @@ class RecordingViewController: UIViewController {
         cameraPreviewView.videoPreviewLayer.session = captureSession  // display the capture
     }
     
-    private func bestCamera() -> AVCaptureDevice {
+    private func bestCamera() -> AVCaptureDevice { // might need to change for ipad?
         // can allow user to choose different types of camera: dual, front, back
         if let device = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back) {
             return device

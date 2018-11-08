@@ -46,8 +46,6 @@ extension AssignmentMusicPieceTableViewCell: UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MusicSheetPageCell", for: indexPath) as! MusicSheetPageCollectionViewCell
         
-        cell.pdfView.displayMode = .singlePage
-        cell.pdfView.autoScales = true
         cell.pdfView.document = pdfDocument!
         
         if let pdfPage = pdfDocument?.page(at: indexPath.item) {

@@ -313,7 +313,7 @@
                                     <outlet property="musicPieceLabel" destination="41G-wQ-nSC" id="lSZ-gP-Y12"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="172" id="cIG-0w-tq2">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InstructionCell" rowHeight="172" id="cIG-0w-tq2" customClass="AssignmentInstructionsTableViewCell" customModule="MusicMaker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="505" width="768" height="172"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cIG-0w-tq2" id="OL0-yp-Vuy">
@@ -348,6 +348,10 @@
                                         <constraint firstItem="I34-B2-X7v" firstAttribute="top" secondItem="OL0-yp-Vuy" secondAttribute="topMargin" id="vCG-BK-9xK"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bodyTextLabel" destination="nzA-OE-7Ir" id="mWc-bL-P3f"/>
+                                    <outlet property="teacherLabel" destination="wdC-rr-T5R" id="JH6-Ld-zmg"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

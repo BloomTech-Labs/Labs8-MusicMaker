@@ -20,6 +20,7 @@ class SignUpViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
     }
     
+    
 
     @objc func keyboardWillShow(_ notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -225,6 +226,7 @@ class SignUpViewController: UIViewController {
                 let usersUniqueIdentifier = user.user.uid
                 database.collection("students").document(usersUniqueIdentifier).collection("settings").addDocument(data: userDocumentInformation)
             }
+            self.performSegue(withIdentifier: "ShowSplitView", sender: nil)
         }
     }
 }

@@ -12,9 +12,23 @@ import FirebaseAuth
 class LogInViewController: UIViewController {
 
 
+    // MARK: - View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addDismissKeyboardGestureRecognizer()
+    }
+    
     // MARK: - IBOutlets
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField! {
+        didSet {
+            emailTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var passwordTextField: UITextField! {
+        didSet {
+            passwordTextField.delegate = self
+        }
+    }
     
     // MARK: - IBActions
     
@@ -32,5 +46,32 @@ class LogInViewController: UIViewController {
                 NSLog("Error signing in")
             }
         }
+    }
+    
+    // MARK: - Private
+    
+    //Adds a gesture recognizer that calls dismissKeyboard(_:)
+    private func addDismissKeyboardGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    //Resigns the first responder for the textField when clicking away from the keyboard
+    @objc private func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension LogInViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.tag == 0 {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            passwordTextField.resignFirstResponder()
+        }
+        return true
     }
 }

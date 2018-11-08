@@ -1,28 +1,42 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import { Route } from 'react-router-dom';
+import withAuthentication from './withAuthentication';
+
+import * as routes from '../constants/routes';
+
+import Navigation from './Navigation';
+import LandingPageView from '../views/landingView';
+import SignUpView from '../views/signupView';
+import SignInView from '../views/signinView';
+import DashboardView from '../views/dashboardView';
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Navigation />
+
+        <Route
+          exact path={ routes.LANDING }
+          component={ LandingPageView }
+        />
+        <Route
+          exact path={ routes.SIGN_UP }
+          component={ SignUpView }
+        />
+        <Route
+          exact path={ routes.SIGN_IN }
+          component={ SignInView }
+        />
+        <Route
+          exact path={ routes.DASHBOARD }
+          component={ DashboardView }
+        />
       </div>
     );
   }
 }
 
-export default App;
+export default withAuthentication(App);

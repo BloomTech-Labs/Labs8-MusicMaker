@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssignmentHeaderCell" rowHeight="219" id="qGe-SX-Gia" customClass="AssignmentHeaderTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="219" id="qGe-SX-Gia" customClass="AssignmentHeaderTableViewCell" customModule="MusicMaker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="768" height="219"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qGe-SX-Gia" id="Nob-jp-yDG">
@@ -239,6 +239,120 @@
                                     <outlet property="dueDateLabel" destination="qs4-y6-e7X" id="Y3D-dC-O8E"/>
                                     <outlet property="dueTimeLabel" destination="ho8-fz-rE6" id="xb0-lK-QeE"/>
                                     <outlet property="instrumentLabel" destination="4NT-Tv-mq6" id="Y42-t4-X1U"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MusicPieceCell" rowHeight="258" id="LL9-J6-nHu" customClass="AssignmentMusicPieceTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="247" width="768" height="258"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LL9-J6-nHu" id="NGR-oW-vyv">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="258"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music Piece: Waltz from Sleeping Beauty" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41G-wQ-nSC">
+                                            <rect key="frame" x="20" y="11" width="451" height="28"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NOi-b9-l72">
+                                            <rect key="frame" x="0.0" y="47" width="768" height="200"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="200" id="VKh-CL-XHb"/>
+                                            </constraints>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="sqY-gZ-Ghr">
+                                                <size key="itemSize" width="112" height="148"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MusicSheetPageCell" id="IuE-Ab-xE7" customClass="MusicSheetPageCollectionViewCell" customModule="MusicMaker" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="26" width="112" height="148"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="112" height="148"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azh-Nd-NeK" customClass="PDFView">
+                                                                <rect key="frame" x="0.0" y="0.0" width="112" height="148"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
+                                                        </subviews>
+                                                    </view>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="azh-Nd-NeK" secondAttribute="trailing" id="4CK-VR-4xc"/>
+                                                        <constraint firstItem="azh-Nd-NeK" firstAttribute="leading" secondItem="IuE-Ab-xE7" secondAttribute="leading" id="fLF-cg-KJq"/>
+                                                        <constraint firstAttribute="bottom" secondItem="azh-Nd-NeK" secondAttribute="bottom" id="gZ5-k5-03E"/>
+                                                        <constraint firstItem="azh-Nd-NeK" firstAttribute="top" secondItem="IuE-Ab-xE7" secondAttribute="top" id="rt3-d2-h40"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="pdfView" destination="azh-Nd-NeK" id="zcs-F4-nZC"/>
+                                                    </connections>
+                                                </collectionViewCell>
+                                            </cells>
+                                            <connections>
+                                                <outlet property="dataSource" destination="LL9-J6-nHu" id="Pzg-11-PbS"/>
+                                                <outlet property="delegate" destination="LL9-J6-nHu" id="SgZ-3c-BLI"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="41G-wQ-nSC" firstAttribute="top" secondItem="NGR-oW-vyv" secondAttribute="topMargin" id="3lI-V1-CfS"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="41G-wQ-nSC" secondAttribute="trailing" id="931-0D-8rt"/>
+                                        <constraint firstItem="NOi-b9-l72" firstAttribute="leading" secondItem="NGR-oW-vyv" secondAttribute="leading" id="SKy-0O-IlI"/>
+                                        <constraint firstItem="NOi-b9-l72" firstAttribute="bottom" secondItem="NGR-oW-vyv" secondAttribute="bottomMargin" id="Zef-dD-OTr"/>
+                                        <constraint firstItem="41G-wQ-nSC" firstAttribute="leading" secondItem="NGR-oW-vyv" secondAttribute="leadingMargin" id="drZ-nV-jqv"/>
+                                        <constraint firstItem="NOi-b9-l72" firstAttribute="top" secondItem="41G-wQ-nSC" secondAttribute="bottom" constant="8" id="fW4-4F-mbm"/>
+                                        <constraint firstAttribute="trailing" secondItem="NOi-b9-l72" secondAttribute="trailing" id="i05-lY-6xd"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="collectionView" destination="NOi-b9-l72" id="Jwa-am-7Ie"/>
+                                    <outlet property="musicPieceLabel" destination="41G-wQ-nSC" id="lSZ-gP-Y12"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InstructionCell" rowHeight="172" id="cIG-0w-tq2" customClass="AssignmentInstructionsTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="505" width="768" height="172"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cIG-0w-tq2" id="OL0-yp-Vuy">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="172"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I34-B2-X7v">
+                                            <rect key="frame" x="20" y="11" width="131.5" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Teacher" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdC-rr-T5R">
+                                            <rect key="frame" x="670.5" y="139.5" width="77.5" height="21.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bodyTextLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzA-OE-7Ir">
+                                            <rect key="frame" x="20" y="60" width="728" height="21.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="wdC-rr-T5R" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nzA-OE-7Ir" secondAttribute="bottom" constant="30" id="HP7-yA-3eV"/>
+                                        <constraint firstItem="nzA-OE-7Ir" firstAttribute="top" secondItem="I34-B2-X7v" secondAttribute="bottom" constant="19" id="IMS-rh-pHj"/>
+                                        <constraint firstItem="wdC-rr-T5R" firstAttribute="bottom" secondItem="OL0-yp-Vuy" secondAttribute="bottomMargin" id="Kxd-3P-89K"/>
+                                        <constraint firstItem="nzA-OE-7Ir" firstAttribute="trailing" secondItem="OL0-yp-Vuy" secondAttribute="trailingMargin" id="PLb-YO-bwp"/>
+                                        <constraint firstItem="I34-B2-X7v" firstAttribute="leading" secondItem="OL0-yp-Vuy" secondAttribute="leadingMargin" id="Uzf-J3-C5H"/>
+                                        <constraint firstItem="nzA-OE-7Ir" firstAttribute="leading" secondItem="OL0-yp-Vuy" secondAttribute="leadingMargin" id="WJo-Na-dzJ"/>
+                                        <constraint firstItem="wdC-rr-T5R" firstAttribute="trailing" secondItem="OL0-yp-Vuy" secondAttribute="trailingMargin" id="dhg-6t-W8o"/>
+                                        <constraint firstItem="I34-B2-X7v" firstAttribute="top" secondItem="OL0-yp-Vuy" secondAttribute="topMargin" id="vCG-BK-9xK"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bodyTextLabel" destination="nzA-OE-7Ir" id="mWc-bL-P3f"/>
+                                    <outlet property="teacherLabel" destination="wdC-rr-T5R" id="JH6-Ld-zmg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

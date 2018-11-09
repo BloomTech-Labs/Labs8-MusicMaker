@@ -16,12 +16,29 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addDismissKeyboardGestureRecognizer()
+       
+    }
+    
+    //Adds an observer to listen for the keyboardWillShowNotification & keyboardWillHideNotifcation
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIWindow.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
     }
     
-    
 
+    //Removes the observer for the keyboardWillShowNotification & keyboardWillHideNotifcation
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
+    }
+
+
+    
+    
+    // MARK: - Private
+    //Used to move the views frame up when the keyboard is about to be shown so the textfields can be seen
     @objc func keyboardWillShow(_ notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
@@ -30,6 +47,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    //Used to move the views frame back to the normal position when the keyboard goes away
     @objc func keyboardWillHide(_ notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
@@ -37,10 +55,6 @@ class SignUpViewController: UIViewController {
             }
         }
     }
-    
-    
-    // MARK: - Private
-    
     //Adds a gesture recognizer that calls dismissKeyboard(_:)
     private func addDismissKeyboardGestureRecognizer() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
@@ -56,25 +70,7 @@ class SignUpViewController: UIViewController {
         confirmPasswordTextField.resignFirstResponder()
     }
     
-    private func presentForgotPasswordAlert() {
-        let alert = UIAlertController(title: "Reset Password", message: "Enter your email address to reset your password", preferredStyle: .alert)
-        var resetPasswordWithEmailTextField: UITextField?
-        alert.addTextField { (textField) in
-            textField.borderStyle = UITextField.BorderStyle.none
-            textField.backgroundColor = UIColor.clear
-            textField.attributedPlaceholder = NSAttributedString(string: "Enter your email address",attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-            resetPasswordWithEmailTextField = textField
-        }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { _ in
-            Auth.auth().sendPasswordReset(withEmail: resetPasswordWithEmailTextField?.text ?? "", completion: { (error) in
-            })
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
-    }
+
     
     // MARK: - IBOutlets
     
@@ -108,9 +104,7 @@ class SignUpViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func forgotPassword(_ sender: Any) {
-        presentForgotPasswordAlert()
-    }
+ 
     @IBAction func selectLevel(_ sender: UIButton) {
         
         let beginnerAction = UIAlertAction(title: "Beginner", style: .default) { (action) in
@@ -165,6 +159,8 @@ class SignUpViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    //Used to toggle the password textfields to show or hide the password
     @IBAction func showPassword(_ sender: UIButton) {
         switch sender.tag {
         case 0:
@@ -235,6 +231,7 @@ class SignUpViewController: UIViewController {
 // MARK: - UITextFieldDelegate
 extension SignUpViewController: UITextFieldDelegate {
     
+    //Goes to the next textfield in the order of which they are when the next button is clicked on the keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField.tag {
         case 0:

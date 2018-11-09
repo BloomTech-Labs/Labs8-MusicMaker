@@ -4,7 +4,7 @@ import withAuthentication from './withAuthentication';
 
 import * as routes from '../constants/routes';
 
-import Navigation from './Navigation';
+// import Navigation from './Navigation';
 import LandingPageView from '../views/landingView';
 import SignUpView from '../views/signupView';
 import SignInView from '../views/signinView';
@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navigation />
+        {/* <Navigation /> */}
 
         <Route
           exact path={ routes.LANDING }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Route, NavLink } from 'react-router-dom';
 
-import SignOutButton from '../components/SignOutButton.js';
+import SignOutButton from '../components/SignOutButton';
+// import Assignments from '../constants/routes';
 
 class DashboardNavigation  extends Component {
     render() {

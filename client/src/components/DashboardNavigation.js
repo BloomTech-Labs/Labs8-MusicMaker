@@ -3,7 +3,7 @@ import { Route, NavLink } from 'react-router-dom';
 
 import SignOutButton from '../components/SignOutButton.js';
 
-class TeacherDashboardView  extends Component {
+class DashboardNavigation  extends Component {
     render() {
         return(
             <div className="teacher-dashboard">
@@ -18,13 +18,12 @@ class TeacherDashboardView  extends Component {
                     </nav>
                 </header>
                 <main>
-                    {/* <Route exact path="/" component={} />
-                    <Route path="/assignment" component={Home} /> */}
+                    {/* <Route exact path={Not sure if home will be the landing page or something else} component={} />
+                    <Route path={routes.ASSIGNMENT} component={DashboardAssignmentView} /> */}
                 </main>
             </div>
         )
     }
 
 }
-
-export default TeacherDashboardView;
+export default DashboardNavigation;

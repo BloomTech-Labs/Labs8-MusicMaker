@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 const express = require('express');
+const fs = require('fs');
 
 // Firebase-specific dependencies
 
@@ -166,7 +167,7 @@ app.get('/student/:idStudent', async (req, res, next) => {
 
 
 //GET a single assignment from a student
-app.get('/sm/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {
+app.get('/sm/student/:idStudent/assigment/:idAssignment/music.pdf', async (req, res, next) => {
   try {
       const studentId = req.params['idStudent'];
       const assignmentId = req.params['idAssignment'];
@@ -184,14 +185,34 @@ app.get('/sm/student/:idStudent/assigment/:idAssignment', async (req, res, next)
         projectId: 'musicmaker-4b2e8'
        // keyFilename: '/' + dir_name + '/' + filename
       });
-      const streamBuffers = require('stream-buffers');
-      var bucket = storage.bucket(dir_name);
-    
+
+//       const [buckets] = await storage.getBuckets();
+// console.log('Buckets:');
+// buckets.forEach(bucket => {
+//   console.log(bucket.name);
+// });
+
+
+
+      const options = {
+        
+          destination : 'temp/' + studentId + '_' + 'music.pdf',
+    }
       
-      var result = bucket.file(filename).download({
-           destination : 'temp/' + studentId + '_' + 'music.pdf',
-      }, function(err) {console.log(err);});
-      res.download('temp/' + studentId + '_' + 'music.pdf');
+      var bucket = storage.bucket('musicmaker-4b2e8.appspot.com');
+     
+
+      await storage.bucket('musicmaker-4b2e8.appspot.com')
+                   .file(dir_name + '/' + filename)
+                   .download(options);
+
+
+       //res.download('temp/' + studentId + '_' + 'music.pdf');
+       
+        fs.readFile('temp/' + studentId + '_' + 'music.pdf', function(err,data){
+          res.contentType("application/pdf");
+          res.send(data );
+        });
   } catch (err) {
   next (err);
   }

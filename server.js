@@ -145,7 +145,7 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 
 //=================================================== STUDENTS =================================================================
 
-//GET all of student aassignments
+//GET all of student's assignments
 app.get('/student/:idStudent', async (req, res, next) => {
     try {
     const studentId = req.params['idStudent'];
@@ -163,6 +163,40 @@ app.get('/student/:idStudent', async (req, res, next) => {
     next(err);
     }
 });
+
+
+//GET a single assignment from a student
+app.get('/sm/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {
+  try {
+      const studentId = req.params['idStudent'];
+      const assignmentId = req.params['idAssignment'];
+  
+      const stringList = ["assignmentName", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
+      const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get()
+  
+      jsonRes = {};
+      let musicSheet = assigmentRef.get("sheetMusic");
+      let segments = musicSheet['0']._key.path.segments
+      let dir_name = segments[segments.length -2];
+      let filename = segments[segments.length -1];
+      console.log(musicSheet['0']._key.path.segments);
+      var storage = require('@google-cloud/storage')({
+        projectId: 'musicmaker-4b2e8'
+       // keyFilename: '/' + dir_name + '/' + filename
+      });
+      const streamBuffers = require('stream-buffers');
+      var bucket = storage.bucket(dir_name);
+    
+      
+      var result = bucket.file(filename).download({
+           destination : 'temp/' + studentId + '_' + 'music.pdf',
+      }, function(err) {console.log(err);});
+      res.download('temp/' + studentId + '_' + 'music.pdf');
+  } catch (err) {
+  next (err);
+  }
+  });
+
 
 //GET a single assignment from a student
 app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {

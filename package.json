@@ -16,7 +16,8 @@
     "express": "^4.16.4",
     "firebase": "^5.5.7",
     "firebase-admin": "^6.1.0",
-    "firebaseui": "^3.4.1"
+    "firebaseui": "^3.4.1",
+    "stream-buffers": "^3.0.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"

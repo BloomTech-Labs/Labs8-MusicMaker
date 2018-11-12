@@ -145,26 +145,18 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 ///////////////////////
 
 //=================================================== STUDENTS =================================================================
+function parseDate(date){
+  const month = date.getMonth() + 1;
+  const day = date.getDate() + 1;
+  const year = date.getFullYear();
+  const hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+  const minute = date.getMinutes() == '0' ? '00' : date.getMinutes();
+  const amPm = date.getHours() >= 12 ? "PM" : "AM";
+  const reformattedDueDate = month + "/" + day + "/" + year + " " + hour + ":" + minute + " " + amPm
+  return reformattedDueDate;
+};
 
-// GET all of student's assignments
-// app.get('/student/assignments/:idStudent', async (req, res, next) => {
-//     try {
-//     const studentId = req.params['idStudent'];
-
-//     const assignmentsRef = await db.collection('students').doc(studentId).collection('assignments').get();
-//     const assignments = [];
-//     assignmentsRef.forEach((snap) => {
-//         assignments.push({
-//         id: snap.id,
-//         data: snap.data
-//         });
-//     });
-//     res.json(assignments);
-//     } catch(err) {
-//     next(err);
-//     }
-// });
-
+// GET list of all of student's assignments: assignmentName, dueDate, and status
 app.get('/student/assignments/:idStudent', async (req, res, next) => {
   try {
   const studentId = req.params['idStudent'];
@@ -174,8 +166,8 @@ app.get('/student/assignments/:idStudent', async (req, res, next) => {
   const allAssignments = await assignmentsRef.get()
   .then(snap => {
     snap.forEach(doc => {
-      console.log(doc.id, `=>`, doc.data());
-      assignments[doc.id] = [doc.data().assignmentName, doc.data().dueDate, doc.data().status];
+      reformattedDueDate = parseDate(doc.data().dueDate);
+      assignments[doc.id] = [doc.data().assignmentName, reformattedDueDate, doc.data().status];
     })
   })
   res.json(assignments);

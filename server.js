@@ -3,8 +3,8 @@ const express = require('express');
 const fs = require('fs');
 
 // Firebase-specific dependencies
-
 const firebase = require('firebase');
+
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
     authDomain: "musicmaker-4b2e8.firebaseapp.com",
@@ -13,6 +13,7 @@ const config = {
     storageBucket: "musicmaker-4b2e8.appspot.com",
     messagingSenderId: "849993185408"
 };
+
 const Firestore = require('@google-cloud/firestore');
 const firestore = new Firestore({
   projectId: "musicmaker-4b2e8",
@@ -21,6 +22,11 @@ firebase.initializeApp(config);
 const db = firebase.firestore();
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
+
+const storage = require('@google-cloud/storage')({
+  projectId: 'musicmaker-4b2e8'
+});
+
 ///////////////////////
 
 const app = express();
@@ -190,7 +196,6 @@ app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) =>
       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId);
       const getDoc = await assignmentRef.get()
       .then(doc => {
-        console.log('*************', doc.data())
         root = doc.data();
         reformattedDueDate = parseDate(root.dueDate);
         assignment[doc.id] = [root.assignmentName, reformattedDueDate, root.teacher, root.instrument, root.level, root.piece, root.instructions, root.feedback]
@@ -204,54 +209,73 @@ app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) =>
   });
 
 
-//GET student pdf
-app.get('/sm/student/:idStudent/assigment/:idAssignment/music.pdf', async (req, res, next) => {
+//GET student sheetMusic(pdf)
+app.get('/student/:idStudent/assigment/:idAssignment/sheetMusic', async (req, res, next) => {
   try {
       const studentId = req.params['idStudent'];
       const assignmentId = req.params['idAssignment'];
   
-      const stringList = ["assignmentName", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
-      const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get()
-  
-      jsonRes = {};
-      let musicSheet = assigmentRef.get("sheetMusic");
-      let segments = musicSheet['0']._key.path.segments
-      let dir_name = segments[segments.length -2];
-      let filename = segments[segments.length -1];
-      console.log(musicSheet['0']._key.path.segments);
-      var storage = require('@google-cloud/storage')({
-        projectId: 'musicmaker-4b2e8'
-       // keyFilename: '/' + dir_name + '/' + filename
-      });
+      const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
 
-//       const [buckets] = await storage.getBuckets();
-// console.log('Buckets:');
-// buckets.forEach(bucket => {
-//   console.log(bucket.name);
-// });
-
-
-
+      const musicSheet = assignmentRef.get("sheetMusic");
+      const segments = musicSheet['0']._key.path.segments
+      const dirName = segments[segments.length -2];
+      const filename = segments[segments.length -1];
       const options = {
-        
-          destination : 'temp/' + studentId + '_' + 'music.pdf',
-    }
-      
-      var bucket = storage.bucket('musicmaker-4b2e8.appspot.com');
+          destination : 'temp/' + studentId + '_' + filename,
+      };
+
+      const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
       await storage.bucket('musicmaker-4b2e8.appspot.com')
-                   .file(dir_name + '/' + filename)
+                   .file(dirName + '/' + filename)
                    .download(options);
 
-       //res.download('temp/' + studentId + '_' + 'music.pdf');
-       
-        fs.readFile('temp/' + studentId + '_' + 'music.pdf', function(err,data){
-          res.contentType("application/pdf");
-          res.send(data );
-        });
+      const readFile = await fs.readFile('temp/' + studentId + '_' + filename, (err, data) => {
+        res.contentType("application/pdf");
+        res.send(data);
+      });
+
   } catch (err) {
   next (err);
   }
   });
+
+//   //GET student sheetMusic(pdf)
+// app.get('/student/:idStudent/assigment/:idAssignment/sheetMusic', async (req, res, next) => {
+//   try {
+//       const studentId = req.params['idStudent'];
+//       const assignmentId = req.params['idAssignment'];
+  
+//       const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get()
+  
+//       jsonRes = {};
+//       let musicSheet = assigmentRef.get("sheetMusic");
+//       let segments = musicSheet['0']._key.path.segments
+//       let dir_name = segments[segments.length -2];
+//       let filename = segments[segments.length -1];
+//       console.log(musicSheet['0']._key.path.segments);
+//       var storage = require('@google-cloud/storage')({
+//         projectId: 'musicmaker-4b2e8'
+//       });
+//       const options = {
+        
+//           destination : 'temp/' + studentId + '_' + 'music.pdf',
+//     }
+      
+//       var bucket = storage.bucket('musicmaker-4b2e8.appspot.com');
+//       await storage.bucket('musicmaker-4b2e8.appspot.com')
+//                    .file(dir_name + '/' + filename)
+//                    .download(options);
+
+       
+//         fs.readFile('temp/' + studentId + '_' + 'music.pdf', function(err,data){
+//           res.contentType("application/pdf");
+//           res.send(data );
+//         });
+//   } catch (err) {
+//   next (err);
+//   }
+//   });
 
 
 // server instantiation

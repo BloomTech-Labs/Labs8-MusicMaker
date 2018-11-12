@@ -146,25 +146,82 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 
 //=================================================== STUDENTS =================================================================
 
-//GET all of student's assignments
-app.get('/student/:idStudent', async (req, res, next) => {
-    try {
-    const studentId = req.params['idStudent'];
+// GET all of student's assignments
+// app.get('/student/assignments/:idStudent', async (req, res, next) => {
+//     try {
+//     const studentId = req.params['idStudent'];
 
-    const assignmentsRef = await db.collection('students').doc(studentId).collection('assignments').get();
-    const assignments = [];
-    assignmentsRef.forEach((snap) => {
-        assignments.push({
-        id: snap.id,
-        data: snap.data
-        });
-    });
-    res.json(assignments);
-    } catch(err) {
-    next(err);
-    }
+//     const assignmentsRef = await db.collection('students').doc(studentId).collection('assignments').get();
+//     const assignments = [];
+//     assignmentsRef.forEach((snap) => {
+//         assignments.push({
+//         id: snap.id,
+//         data: snap.data
+//         });
+//     });
+//     res.json(assignments);
+//     } catch(err) {
+//     next(err);
+//     }
+// });
+
+app.get('/student/assignments/:idStudent', async (req, res, next) => {
+  try {
+  const studentId = req.params['idStudent'];
+  const assignments = {};
+
+  const assignmentsRef =  await db.collection('students').doc(studentId).collection('assignments');
+  const allAssignments = await assignmentsRef.get()
+  .then(snap => {
+    snap.forEach(doc => {
+      console.log(doc.id, `=>`, doc.data());
+      assignments[doc.id] = [doc.data().assignmentName, doc.data().dueDate, doc.data().status];
+    })
+  })
+  res.json(assignments);
+  } catch(err) {
+  next(err);
+  }
 });
 
+//GET a single assignment from a student
+app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {
+  try {
+      const studentId = req.params['idStudent'];
+      const assignmentId = req.params['idAssignment'];
+  
+      const stringList = ["assignmentName", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
+      const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get()
+  
+      jsonRes = {};
+      for (let i =0; i < stringList.length; i++){
+          let value = assigmentRef.get(stringList[i]);
+          if(!("object" == typeof(value))){
+              jsonRes[stringList[i]] = value;
+          }else{
+              console.log("Error: Should not have object in this list")
+          }
+      }
+      let dueDate = assigmentRef.get("dueDate");
+      jsonRes["dueDate"] = dueDate;
+  
+      
+      // let musicSheet = assigmentRef.get("sheetMusic");
+      // let segments = musicSheet['0']._key.path.segments
+      // let dir_name = segments[segments.length -2];
+      // let filename = segments[segments.length -1];
+      // //console.log(musicSheet['0']._key.path.segments);
+  
+      // var gsReference = storage.refFromURL('gs://musicmaker-4b2e8.appspot.com/' + dir_name + '/' + filename);
+  
+      // //gs://musicmaker-4b2e8.appspot.com
+      // gs://musicmaker-4b2e8.appspot.com
+      
+      res.json(jsonRes);
+  } catch (err) {
+  next (err);
+  }
+  });
 
 //GET a single assignment from a student
 app.get('/sm/student/:idStudent/assigment/:idAssignment/music.pdf', async (req, res, next) => {
@@ -200,12 +257,9 @@ app.get('/sm/student/:idStudent/assigment/:idAssignment/music.pdf', async (req, 
     }
       
       var bucket = storage.bucket('musicmaker-4b2e8.appspot.com');
-     
-
       await storage.bucket('musicmaker-4b2e8.appspot.com')
                    .file(dir_name + '/' + filename)
                    .download(options);
-
 
        //res.download('temp/' + studentId + '_' + 'music.pdf');
        
@@ -218,45 +272,6 @@ app.get('/sm/student/:idStudent/assigment/:idAssignment/music.pdf', async (req, 
   }
   });
 
-
-//GET a single assignment from a student
-app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {
-    try {
-        const studentId = req.params['idStudent'];
-        const assignmentId = req.params['idAssignment'];
-    
-        const stringList = ["assignmentName", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
-        const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get()
-    
-        jsonRes = {};
-        for (let i =0; i < stringList.length; i++){
-            let value = assigmentRef.get(stringList[i]);
-            if(!("object" == typeof(value))){
-                jsonRes[stringList[i]] = value;
-            }else{
-                console.log("Error: Should not have object in this list")
-            }
-        }
-        let dueDate = assigmentRef.get("dueDate");
-        jsonRes["dueDate"] = dueDate;
-    
-        
-        // let musicSheet = assigmentRef.get("sheetMusic");
-        // let segments = musicSheet['0']._key.path.segments
-        // let dir_name = segments[segments.length -2];
-        // let filename = segments[segments.length -1];
-        // //console.log(musicSheet['0']._key.path.segments);
-    
-        // var gsReference = storage.refFromURL('gs://musicmaker-4b2e8.appspot.com/' + dir_name + '/' + filename);
-    
-        // //gs://musicmaker-4b2e8.appspot.com
-        // gs://musicmaker-4b2e8.appspot.com
-        
-        res.json(jsonRes);
-    } catch (err) {
-    next (err);
-    }
-    });
 
 // server instantiation
 

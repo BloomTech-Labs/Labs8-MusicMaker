@@ -10,6 +10,18 @@ import UIKit
 import AVFoundation
 
 class CameraPreviewView: UIView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        videoPreviewLayer.videoGravity = .resizeAspectFill
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        videoPreviewLayer.videoGravity = .resizeAspectFill
+    }
 
     override class var layerClass: AnyClass {
         return AVCaptureVideoPreviewLayer.self

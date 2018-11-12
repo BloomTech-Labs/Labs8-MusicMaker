@@ -74,12 +74,10 @@ class RecordingViewController: UIViewController {
     
     private func bestCamera() -> AVCaptureDevice { // might need to change for ipad?
         // can allow user to choose different types of camera: dual, front, back
-        if let device = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back) {
-            return device
-        } else if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) { // one camera
+        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
             return device
         } else {
-            fatalError("Missing expected back camera device")
+            fatalError("Missing expected front camera device")
         }
     }
 

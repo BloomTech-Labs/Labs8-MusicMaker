@@ -156,13 +156,13 @@ function parseDate(date){
   return reformattedDueDate;
 };
 
-// GET list of all of student's assignments: assignmentName, dueDate, and status
+// GET list of all of student's assignments, details: assignmentName, dueDate, and status
 app.get('/student/assignments/:idStudent', async (req, res, next) => {
   try {
   const studentId = req.params['idStudent'];
   const assignments = {};
 
-  const assignmentsRef =  await db.collection('students').doc(studentId).collection('assignments');
+  const assignmentsRef =  await db.collection('students').doc(studentId).collection('assignments').orderBy('dueDate', 'desc');
   const allAssignments = await assignmentsRef.get()
   .then(snap => {
     snap.forEach(doc => {
@@ -176,14 +176,16 @@ app.get('/student/assignments/:idStudent', async (req, res, next) => {
   }
 });
 
-//GET a single assignment from a student
+//GET a single assignment from a student, details: assignmentName, dueDate, teacher, instrument, level, piece, sheetMusic, instructions, video, feedback
 app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {
   try {
       const studentId = req.params['idStudent'];
       const assignmentId = req.params['idAssignment'];
-  
-      const stringList = ["assignmentName", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
-      const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get()
+      const stringList = ["assignmentName", "dueDate", "teacher", "instrument", "level", "piece", "sheetMusic", "instructions", "video", "feedback"];
+      
+      const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId);
+      const singleAssignment = await assignmentRef.get()
+      .then(/*add code below with some tweaks to make it work*/)
   
       jsonRes = {};
       for (let i =0; i < stringList.length; i++){

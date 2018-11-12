@@ -152,7 +152,7 @@ function parseDate(date){
   const hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
   const minute = date.getMinutes() == '0' ? '00' : date.getMinutes();
   const amPm = date.getHours() >= 12 ? "PM" : "AM";
-  const reformattedDueDate = month + "/" + day + "/" + year + " " + hour + ":" + minute + " " + amPm
+  const reformattedDueDate = month + "/" + day + "/" + year + " at " + hour + ":" + minute + " " + amPm
   return reformattedDueDate;
 };
 
@@ -166,58 +166,45 @@ app.get('/student/assignments/:idStudent', async (req, res, next) => {
   const allAssignments = await assignmentsRef.get()
   .then(snap => {
     snap.forEach(doc => {
-      reformattedDueDate = parseDate(doc.data().dueDate);
-      assignments[doc.id] = [doc.data().assignmentName, reformattedDueDate, doc.data().status];
+      root = doc.data();
+      reformattedDueDate = parseDate(root.dueDate);
+      assignments[doc.id] = [root.assignmentName, reformattedDueDate, root.status];
     })
   })
+
   res.json(assignments);
+
   } catch(err) {
   next(err);
   }
 });
 
-//GET a single assignment from a student, details: assignmentName, dueDate, teacher, instrument, level, piece, sheetMusic, instructions, video, feedback
+
+//GET a single assignment from a student, details: assignmentName, dueDate, teacher, instrument, level, piece, instructions, feedback
 app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {
   try {
       const studentId = req.params['idStudent'];
       const assignmentId = req.params['idAssignment'];
-      const stringList = ["assignmentName", "dueDate", "teacher", "instrument", "level", "piece", "sheetMusic", "instructions", "video", "feedback"];
-      
-      const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId);
-      const singleAssignment = await assignmentRef.get()
-      .then(/*add code below with some tweaks to make it work*/)
-  
-      jsonRes = {};
-      for (let i =0; i < stringList.length; i++){
-          let value = assigmentRef.get(stringList[i]);
-          if(!("object" == typeof(value))){
-              jsonRes[stringList[i]] = value;
-          }else{
-              console.log("Error: Should not have object in this list")
-          }
-      }
-      let dueDate = assigmentRef.get("dueDate");
-      jsonRes["dueDate"] = dueDate;
-  
-      
-      // let musicSheet = assigmentRef.get("sheetMusic");
-      // let segments = musicSheet['0']._key.path.segments
-      // let dir_name = segments[segments.length -2];
-      // let filename = segments[segments.length -1];
-      // //console.log(musicSheet['0']._key.path.segments);
-  
-      // var gsReference = storage.refFromURL('gs://musicmaker-4b2e8.appspot.com/' + dir_name + '/' + filename);
-  
-      // //gs://musicmaker-4b2e8.appspot.com
-      // gs://musicmaker-4b2e8.appspot.com
-      
-      res.json(jsonRes);
+      const assignment = {};      
+
+      const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId);
+      const getDoc = await assignmentRef.get()
+      .then(doc => {
+        console.log('*************', doc.data())
+        root = doc.data();
+        reformattedDueDate = parseDate(root.dueDate);
+        assignment[doc.id] = [root.assignmentName, reformattedDueDate, root.teacher, root.instrument, root.level, root.piece, root.instructions, root.feedback]
+      })
+
+      res.json(assignment);
+
   } catch (err) {
   next (err);
   }
   });
 
-//GET a single assignment from a student
+
+//GET student pdf
 app.get('/sm/student/:idStudent/assigment/:idAssignment/music.pdf', async (req, res, next) => {
   try {
       const studentId = req.params['idStudent'];

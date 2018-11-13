@@ -55,6 +55,8 @@ class RecordingViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cameraPreviewView: CameraPreviewView!
     @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var previousPageButton: UIButton!
+    @IBOutlet weak var nextPageButton: UIButton!
     
     // MARK: - Actions
     
@@ -77,6 +79,12 @@ class RecordingViewController: UIViewController {
             }
             recordOutput.startRecording(to: newRecordingURL(), recordingDelegate: self)
         }
+    }
+    
+    @IBAction func previousPage(_ sender: Any) {
+    }
+    
+    @IBAction func nextPage(_ sender: Any) {
     }
     
     // MARK: - View Lifecycle

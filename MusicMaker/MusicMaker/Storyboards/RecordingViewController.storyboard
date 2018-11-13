@@ -62,9 +62,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.87239747560000003" green="0.87861778810000002" blue="0.89727872549999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <button opaque="NO" alpha="0.7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xU8-l6-fPd">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avn-11-zEy">
+                                <rect key="frame" x="0.0" y="20" width="300" height="1004"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="previousPage:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="R6t-T2-3VW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xU8-l6-fPd">
                                 <rect key="frame" x="8" y="900" width="116" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="0.8343313769035533" green="0.05459179966684876" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="Record"/>
                                 <connections>
@@ -75,6 +83,13 @@
                                 <rect key="frame" x="608" y="864" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJB-6W-c67">
+                                <rect key="frame" x="308" y="20" width="300" height="1004"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="nextPage:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="iDm-LP-RHE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="XN8-7i-aqZ"/>
@@ -82,7 +97,9 @@
                     <connections>
                         <outlet property="cameraPreviewView" destination="PRR-OI-zIU" id="KGq-OS-K3m"/>
                         <outlet property="collectionView" destination="Bfo-rF-LzT" id="aTm-ck-rs5"/>
+                        <outlet property="nextPageButton" destination="nJB-6W-c67" id="NtS-9I-fpn"/>
                         <outlet property="pdfView" destination="Ul5-ws-YGD" id="h80-Cw-NT8"/>
+                        <outlet property="previousPageButton" destination="Avn-11-zEy" id="akT-W0-t0M"/>
                         <outlet property="recordButton" destination="xU8-l6-fPd" id="Bow-J2-YNE"/>
                     </connections>
                 </viewController>

@@ -70,6 +70,14 @@
                                     <action selector="previousPage:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="R6t-T2-3VW"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJB-6W-c67">
+                                <rect key="frame" x="307" y="20" width="300" height="1004"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.54566055950000003" green="0.80749914570000003" blue="0.94783074239999998" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="nextPage:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="iDm-LP-RHE"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xU8-l6-fPd">
                                 <rect key="frame" x="8" y="900" width="116" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -80,24 +88,26 @@
                                     <action selector="toggleRecord:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="YVB-2L-a8a"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LqY-p8-p0g">
+                                <rect key="frame" x="13" y="28" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.30214041095890409" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="CloseButton"/>
+                                <connections>
+                                    <action selector="close:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="hDW-8n-s19"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PRR-OI-zIU" customClass="CameraPreviewView" customModule="MusicMaker" customModuleProvider="target">
                                 <rect key="frame" x="608" y="864" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJB-6W-c67">
-                                <rect key="frame" x="307" y="20" width="300" height="1004"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.54566055950000003" green="0.80749914570000003" blue="0.94783074239999998" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="nextPage:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="iDm-LP-RHE"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="XN8-7i-aqZ"/>
                     </view>
                     <connections>
                         <outlet property="cameraPreviewView" destination="PRR-OI-zIU" id="KGq-OS-K3m"/>
+                        <outlet property="closeButton" destination="LqY-p8-p0g" id="G90-jv-enV"/>
                         <outlet property="collectionView" destination="Bfo-rF-LzT" id="aTm-ck-rs5"/>
                         <outlet property="nextPageButton" destination="nJB-6W-c67" id="NtS-9I-fpn"/>
                         <outlet property="pdfView" destination="Ul5-ws-YGD" id="h80-Cw-NT8"/>
@@ -111,6 +121,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CloseButton" width="60" height="60"/>
         <image name="Record" width="116" height="116"/>
     </resources>
 </document>

@@ -24,7 +24,7 @@ class RecordingViewController: UIViewController {
         }
     }
     
-    private var videoPosition: VideoPosition = .topRight {
+    private var videoPosition: VideoPosition = .topLeft {
         didSet {
             self.view.setNeedsLayout()
             
@@ -57,6 +57,7 @@ class RecordingViewController: UIViewController {
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var previousPageButton: UIButton!
     @IBOutlet weak var nextPageButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     
     // MARK: - Actions
     
@@ -89,6 +90,10 @@ class RecordingViewController: UIViewController {
         pdfView.goToNextPage(sender)
     }
     
+    @IBAction func close(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -117,6 +122,8 @@ class RecordingViewController: UIViewController {
         let columnWidth: CGFloat = 160.0
         let recordButtonMargin: CGFloat = 20.0
         let recordButtonSize: CGFloat = 100.0
+        let closeButtonMargin: CGFloat = 10.0
+        let closeButtonSize: CGFloat = 60.0
         
         // View Positioning
         switch videoPosition {
@@ -124,6 +131,7 @@ class RecordingViewController: UIViewController {
             pdfView.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
             previousPageButton.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
             nextPageButton.frame = CGRect(x: safeArea.left + columnWidth + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+            closeButton.frame = CGRect(x: safeArea.left + columnWidth + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
             collectionView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
             collectionView.contentInset = UIEdgeInsets(top: columnWidth, left: 0, bottom: 0, right: 0)
             collectionView.scrollIndicatorInsets = collectionView.contentInset
@@ -136,6 +144,7 @@ class RecordingViewController: UIViewController {
             pdfView.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
             previousPageButton.frame = CGRect(x: safeArea.left, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
             nextPageButton.frame = CGRect(x: safeArea.left + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+            closeButton.frame = CGRect(x: safeArea.left + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
             collectionView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
             collectionView.contentInset = UIEdgeInsets(top: columnWidth, left: 0, bottom: 0, right: 0)
             collectionView.scrollIndicatorInsets = collectionView.contentInset
@@ -148,6 +157,7 @@ class RecordingViewController: UIViewController {
             pdfView.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
             previousPageButton.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
             nextPageButton.frame = CGRect(x: safeArea.left + columnWidth + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+            closeButton.frame = CGRect(x: safeArea.left + columnWidth + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
             collectionView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
             collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: columnWidth, right: 0)
             collectionView.scrollIndicatorInsets = collectionView.contentInset
@@ -160,6 +170,7 @@ class RecordingViewController: UIViewController {
             pdfView.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
             previousPageButton.frame = CGRect(x: safeArea.left, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
             nextPageButton.frame = CGRect(x: safeArea.left + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+            closeButton.frame = CGRect(x: safeArea.left + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
             collectionView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
             collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: columnWidth, right: 0)
             collectionView.scrollIndicatorInsets = collectionView.contentInset

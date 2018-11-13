@@ -43,6 +43,19 @@ class RecordingViewController: UIViewController {
         if recordOutput.isRecording {
             recordOutput.stopRecording()
         } else {
+            switch UIApplication.shared.statusBarOrientation {
+            case .portrait:
+                recordOutput.connection(with: .video)?.videoOrientation = .portrait
+            case .portraitUpsideDown:
+                recordOutput.connection(with: .video)?.videoOrientation = .portraitUpsideDown
+            case .landscapeLeft:
+                recordOutput.connection(with: .video)?.videoOrientation = .landscapeLeft
+            case .landscapeRight:
+                recordOutput.connection(with: .video)?.videoOrientation = .landscapeRight
+            default:
+                //???
+                break;
+            }
             recordOutput.startRecording(to: newRecordingURL(), recordingDelegate: self)
         }
     }
@@ -71,6 +84,20 @@ class RecordingViewController: UIViewController {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: columnWidth, right: 0)
         cameraPreviewView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: bounds.height - safeArea.bottom - columnWidth, width: columnWidth, height: columnWidth)
         recordButton.frame = CGRect(x: 0, y: bounds.height - safeArea.bottom - 100, width: 100, height: 100)
+        
+        switch UIApplication.shared.statusBarOrientation {
+        case .portrait:
+            cameraPreviewView.videoPreviewLayer.connection?.videoOrientation = .portrait
+        case .portraitUpsideDown:
+            cameraPreviewView.videoPreviewLayer.connection?.videoOrientation = .portraitUpsideDown
+        case .landscapeLeft:
+            cameraPreviewView.videoPreviewLayer.connection?.videoOrientation = .landscapeLeft
+        case .landscapeRight:
+            cameraPreviewView.videoPreviewLayer.connection?.videoOrientation = .landscapeRight
+        default:
+            //???
+            break;
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

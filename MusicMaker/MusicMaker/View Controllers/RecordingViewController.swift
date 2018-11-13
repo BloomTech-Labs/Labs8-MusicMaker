@@ -12,11 +12,25 @@ import AVFoundation
 
 class RecordingViewController: UIViewController {
     
+    enum VideoPosition {
+        case topLeft, topRight, bottomLeft, bottomRight
+    }
+    
     // MARK: - Properties
     
     var pdfDocument: PDFDocument? {
         didSet {
             collectionView.reloadData()
+        }
+    }
+    
+    private var videoPosition: VideoPosition = .topLeft {
+        didSet {
+            self.view.setNeedsLayout()
+            
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
         }
     }
     
@@ -54,7 +68,7 @@ class RecordingViewController: UIViewController {
                 recordOutput.connection(with: .video)?.videoOrientation = .landscapeRight
             default:
                 //???
-                break;
+                break
             }
             recordOutput.startRecording(to: newRecordingURL(), recordingDelegate: self)
         }
@@ -74,17 +88,37 @@ class RecordingViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        // Setup
         let bounds = view.bounds
         let safeArea = view.safeAreaInsets
         
         let columnWidth: CGFloat = 160.0
+        let recordButtonMargin: CGFloat = 20.0
+        let recordButtonSize: CGFloat = 100.0
         
-        pdfView.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
-        collectionView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: columnWidth, right: 0)
-        cameraPreviewView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: bounds.height - safeArea.bottom - columnWidth, width: columnWidth, height: columnWidth)
-        recordButton.frame = CGRect(x: 0, y: bounds.height - safeArea.bottom - 100, width: 100, height: 100)
+        // View Positioning
+        switch videoPosition {
+        case .topLeft:
+            pdfView.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
+            collectionView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
+            collectionView.contentInset = UIEdgeInsets(top: columnWidth, left: 0, bottom: 0, right: 0)
+            collectionView.scrollIndicatorInsets = collectionView.contentInset
+            cameraPreviewView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: columnWidth)
+            recordButton.frame = CGRect(x: bounds.width - recordButtonMargin - recordButtonSize, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
+        case .topRight:
+            break
+        case .bottomLeft:
+            break
+        case .bottomRight:
+            pdfView.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
+            collectionView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
+            collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: columnWidth, right: 0)
+            collectionView.scrollIndicatorInsets = collectionView.contentInset
+            cameraPreviewView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: bounds.height - columnWidth, width: columnWidth, height: columnWidth)
+            recordButton.frame = CGRect(x: recordButtonMargin, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
+        }
         
+        // Camera orientation
         switch UIApplication.shared.statusBarOrientation {
         case .portrait:
             cameraPreviewView.videoPreviewLayer.connection?.videoOrientation = .portrait
@@ -96,7 +130,7 @@ class RecordingViewController: UIViewController {
             cameraPreviewView.videoPreviewLayer.connection?.videoOrientation = .landscapeRight
         default:
             //???
-            break;
+            break
         }
     }
     

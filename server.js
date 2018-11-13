@@ -240,8 +240,40 @@ app.get('/student/:idStudent/assigment/:idAssignment/sheetMusic', async (req, re
   }
   });
 
-  //GET student can get their recorded video
+//GET student can get their recorded video
+app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, next) => {
+  try {
+      const studentId = req.params['idStudent'];
+      const assignmentId = req.params['idAssignment'];
+  
+      const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
 
+      const video = assignmentRef.get("video");
+      // console.log('1**********************************', video)
+      const segments = video['0']._key.path.segments;
+      // console.log('2**********************************', segments)
+      const dirName = segments[segments.length -2];
+      console.log('3**********************************', dirName)
+      const filename = segments[segments.length -1];
+      console.log('3**********************************', filename)
+      const options = {
+          destination : 'temp/' + studentId + '_' + filename,
+      };
+
+      const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
+      await storage.bucket('musicmaker-4b2e8.appspot.com')
+                   .file(dirName + '/' + filename)
+                   .download(options);
+
+      const readFile = await fs.readFile('temp/' + studentId + '_' + filename, (err, data) => {
+        res.contentType("video/mov");
+        res.send(data);
+      });
+
+  } catch (err) {
+  next (err);
+  }
+  });
 
 // server instantiation
 

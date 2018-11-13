@@ -374,7 +374,7 @@
                                             </state>
                                             <connections>
                                                 <action selector="recordButtonTapped:" destination="hal-Rq-1Ak" eventType="touchUpInside" id="avm-6Z-eHt"/>
-                                                <segue destination="NdW-Gj-ZSF" kind="show" id="rQf-wG-mvz"/>
+                                                <segue destination="NdW-Gj-ZSF" kind="presentation" modalPresentationStyle="fullScreen" id="rQf-wG-mvz"/>
                                             </connections>
                                         </button>
                                     </subviews>

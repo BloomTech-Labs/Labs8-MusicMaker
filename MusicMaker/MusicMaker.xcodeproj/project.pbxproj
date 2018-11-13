@@ -25,6 +25,7 @@
 		BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */; };
 		BFEF007B2194D6EA00FA6DF6 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEF007A2194D6E900FA6DF6 /* TextFieldEffects.swift */; };
 		BFEF007D2194D70400FA6DF6 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEF007C2194D70400FA6DF6 /* HoshiTextField.swift */; };
+		BFEF0085219B591900FA6DF6 /* Teachers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFEF0084219B591900FA6DF6 /* Teachers.storyboard */; };
 		CCA6E76E82020309C9BE8F98 /* Pods_MusicMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		BFD3E56A2192393B00D84FF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFEF007A2194D6E900FA6DF6 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
 		BFEF007C2194D70400FA6DF6 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
+		BFEF0084219B591900FA6DF6 /* Teachers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Teachers.storyboard; sourceTree = "<group>"; };
 		F6FDA1FA291F03420ADB77C5 /* Pods-MusicMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +93,7 @@
 			children = (
 				BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */,
 				BFD381C22193525F0038F974 /* Authentication.storyboard */,
+				BFEF0084219B591900FA6DF6 /* Teachers.storyboard */,
 				399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */,
 				39CA2B522193607700C6018E /* SplitView.storyboard */,
 			);
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39CA2B532193607700C6018E /* SplitView.storyboard in Resources */,
+				BFEF0085219B591900FA6DF6 /* Teachers.storyboard in Resources */,
 				BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */,
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
 				39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */,

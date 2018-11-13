@@ -6,7 +6,6 @@ class LandingPageView extends Component {
     return (
       <div>
         <h1>Landing Page</h1>
-        <object data="http://localhost:8000/sm/student/NKMNNypkVXUj4BSSyTPb/assigment/jKqbaQTm5lQikF6MMD9K/music.pdf" width="1000px" height="1000px" />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
           consequat nisl in ornare. Nulla quis fringilla ipsum, blandit luctus

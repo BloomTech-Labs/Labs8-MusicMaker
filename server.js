@@ -209,7 +209,7 @@ app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) =>
   });
 
 
-//GET student sheetMusic(pdf)
+//GET student can get their sheetMusic(pdf)
 app.get('/student/:idStudent/assigment/:idAssignment/sheetMusic', async (req, res, next) => {
   try {
       const studentId = req.params['idStudent'];

@@ -22,11 +22,23 @@ class RecordingViewController: UIViewController {
     
     private var captureSession: AVCaptureSession!
     private var recordOutput: AVCaptureMovieFileOutput!
+    private var lastRecordedURL: URL?
 
-    // MARK: - Outlet
+    // MARK: - Outlets
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cameraPreviewView: CameraPreviewView!
+    @IBOutlet weak var recordButton: UIButton!
+    
+    // MARK: - Actions
+    
+    @IBAction func toggleRecord(_ sender: Any) {
+        if recordOutput.isRecording {
+            recordOutput.stopRecording()
+        } else {
+            recordOutput.startRecording(to: newRecordingURL(), recordingDelegate: self)
+        }
+    }
     
     // MARK: - View Lifecycle
     
@@ -81,9 +93,23 @@ class RecordingViewController: UIViewController {
         }
     }
 
-    // setup the directory to return a url so we can use it to store the recording
+    // Want to save record url directly to core data, for now this is for testing
+    // save the recording as a uuid in core data, but gives back url so we can store the recording
     
-    // MARK: - AVCaptureFileOutputRecordingDelegate
+    // setup the directory to return a url so we can use it to store the recording
+    private func newRecordingURL() -> URL {
+        let fm = FileManager.default
+        let documentsDir = try! fm.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        
+        return documentsDir.appendingPathComponent(UUID().uuidString).appendingPathExtension("mov")
+    }
+    
+    private func updateViews() {
+        guard isViewLoaded else { return }
+        
+        let recordingButtonImageName = recordOutput.isRecording ? "Stop" : "Record"
+        recordButton.setImage(UIImage(named: recordingButtonImageName)!, for: .normal)
+    }
 }
 
 extension RecordingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -101,5 +127,21 @@ extension RecordingViewController: UICollectionViewDelegate, UICollectionViewDat
         }
         
         return cell
+    }
+}
+
+extension RecordingViewController: AVCaptureFileOutputRecordingDelegate {
+    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
+        DispatchQueue.main.async {
+            self.updateViews()
+        }
+    }
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+        DispatchQueue.main.async {
+            self.updateViews()
+            
+            self.lastRecordedURL = outputFileURL
+        }
     }
 }

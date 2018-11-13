@@ -15,12 +15,14 @@ class CameraPreviewView: UIView {
         super.init(frame: frame)
         
         videoPreviewLayer.videoGravity = .resizeAspectFill
+        videoPreviewLayer.masksToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         videoPreviewLayer.videoGravity = .resizeAspectFill
+        videoPreviewLayer.masksToBounds = true
     }
 
     override class var layerClass: AnyClass {

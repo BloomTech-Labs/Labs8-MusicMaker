@@ -270,8 +270,16 @@ app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, ne
         // console.log('6**********************************', res.send(data));
 
       });
-      displaysVideo.pipe(res);
       // console.log('7**********************************', displaysVideo);
+
+  } catch (err) {
+  next (err);
+  }
+  });
+
+  //POST students can create a video
+app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, next) => {
+  try {
 
   } catch (err) {
   next (err);

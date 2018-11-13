@@ -58,6 +58,21 @@ class RecordingViewController: UIViewController {
         setupCapture()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        let bounds = view.bounds
+        let safeArea = view.safeAreaInsets
+        
+        let columnWidth: CGFloat = 160.0
+        
+        pdfView.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
+        collectionView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: columnWidth, right: 0)
+        cameraPreviewView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: bounds.height - safeArea.bottom - columnWidth, width: columnWidth, height: columnWidth)
+        recordButton.frame = CGRect(x: 0, y: bounds.height - safeArea.bottom - 100, width: 100, height: 100)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

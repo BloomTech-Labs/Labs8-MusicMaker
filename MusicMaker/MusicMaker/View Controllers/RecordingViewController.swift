@@ -26,6 +26,13 @@ class RecordingViewController: UIViewController {
 
     // MARK: - Outlets
     
+    @IBOutlet weak var pdfView: PDFView! {
+        didSet {
+            pdfView.displayMode = .singlePage
+            pdfView.autoScales = true
+        }
+    }
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cameraPreviewView: CameraPreviewView!
     @IBOutlet weak var recordButton: UIButton!
@@ -127,6 +134,15 @@ extension RecordingViewController: UICollectionViewDelegate, UICollectionViewDat
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let indexPath = collectionView.indexPathsForSelectedItems?.first else { return }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MusicSheetPageCollectionViewCell else { return }
+        
+        pdfView.document = cell.pdfView.document
+        pdfView.go(to: cell.pdfView!.currentPage!)
+        
     }
 }
 

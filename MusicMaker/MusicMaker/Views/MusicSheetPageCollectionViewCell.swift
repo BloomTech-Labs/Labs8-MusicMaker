@@ -17,6 +17,7 @@ class MusicSheetPageCollectionViewCell: UICollectionViewCell {
         didSet {
             pdfView.displayMode = .singlePage
             pdfView.autoScales = true
+            pdfView.isUserInteractionEnabled = false
         }
     }
     

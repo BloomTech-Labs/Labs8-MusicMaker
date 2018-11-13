@@ -100,6 +100,7 @@
                     <connections>
                         <outlet property="cameraPreviewView" destination="PRR-OI-zIU" id="KGq-OS-K3m"/>
                         <outlet property="collectionView" destination="Bfo-rF-LzT" id="aTm-ck-rs5"/>
+                        <outlet property="pdfView" destination="Ul5-ws-YGD" id="h80-Cw-NT8"/>
                         <outlet property="recordButton" destination="xU8-l6-fPd" id="Bow-J2-YNE"/>
                     </connections>
                 </viewController>

@@ -230,7 +230,7 @@ app.get('/student/:idStudent/assigment/:idAssignment/sheetMusic', async (req, re
                    .file(dirName + '/' + filename)
                    .download(options);
 
-      const readFile = await fs.readFile('temp/' + studentId + '_' + filename, (err, data) => {
+      const displaysFile = await fs.readFile('temp/' + studentId + '_' + filename, (err, data) => {
         res.contentType("application/pdf");
         res.send(data);
       });
@@ -253,22 +253,25 @@ app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, ne
       const segments = video['0']._key.path.segments;
       // console.log('2**********************************', segments)
       const dirName = segments[segments.length -2];
-      console.log('3**********************************', dirName)
       const filename = segments[segments.length -1];
-      console.log('3**********************************', filename)
       const options = {
           destination : 'temp/' + studentId + '_' + filename,
       };
-
       const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
       await storage.bucket('musicmaker-4b2e8.appspot.com')
                    .file(dirName + '/' + filename)
                    .download(options);
 
-      const readFile = await fs.readFile('temp/' + studentId + '_' + filename, (err, data) => {
+      const displaysVideo = await fs.readFile('temp/' + studentId + '_' + filename, (err, data) => {
         res.contentType("video/mov");
+        // console.log('4**********************************', res.contentType("video/mov"));
+        // console.log('5**********************************', displaysVideo.pipe(res))
         res.send(data);
+        // console.log('6**********************************', res.send(data));
+
       });
+      displaysVideo.pipe(res);
+      // console.log('7**********************************', displaysVideo);
 
   } catch (err) {
   next (err);

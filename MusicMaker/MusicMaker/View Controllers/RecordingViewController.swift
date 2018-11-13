@@ -230,14 +230,25 @@ class RecordingViewController: UIViewController {
     }
     
     @objc private func draggedView(_ sender: UIPanGestureRecognizer) {
-        isDraggingVideo = true
-//        self.view.bringSubviewToFront(viewDrag)
         let location = sender.location(in: self.view)
         cameraPreviewView.center = location
-//        sender.setTranslation(CGPoint.zero, in: self.view)
         
-        if sender.state == .ended || sender.state == .cancelled {
+        if sender.state == .began {
+            isDraggingVideo = true
+            
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                self.cameraPreviewView.layer.cornerRadius = 10
+                self.cameraPreviewView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                self.cameraPreviewView.alpha = 0.8
+            }, completion: nil)
+        } else if sender.state == .ended || sender.state == .cancelled {
             isDraggingVideo = false
+            
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                self.cameraPreviewView.layer.cornerRadius = 0
+                self.cameraPreviewView.transform = CGAffineTransform.identity
+                self.cameraPreviewView.alpha = 1.0
+            }, completion: nil)
         }
         
         // set the video position
@@ -256,7 +267,6 @@ class RecordingViewController: UIViewController {
                 videoPosition = .bottomRight
             }
         }
-        
     }
     
     @objc private func pinchedView(_ sender:UIPinchGestureRecognizer){

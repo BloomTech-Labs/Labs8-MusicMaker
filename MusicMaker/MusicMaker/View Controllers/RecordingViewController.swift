@@ -37,6 +37,9 @@ class RecordingViewController: UIViewController {
     private var captureSession: AVCaptureSession!
     private var recordOutput: AVCaptureMovieFileOutput!
     private var lastRecordedURL: URL?
+    
+    private var panGesture = UIPanGestureRecognizer()
+    private var pinchGesture = UIPinchGestureRecognizer()
 
     // MARK: - Outlets
     
@@ -78,6 +81,18 @@ class RecordingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchedView(_:)))
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(draggedView(_:)))
+        
+        cameraPreviewView.layer.cornerRadius = 10
+        cameraPreviewView.layer.masksToBounds = true
+        cameraPreviewView.videoPreviewLayer.videoGravity = AVLayerVideoGravity.resize
+        pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchedView(_:)))
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(draggedView(_:)))
+        cameraPreviewView.isUserInteractionEnabled = true
+        cameraPreviewView.addGestureRecognizer(panGesture)
+        cameraPreviewView.addGestureRecognizer(pinchGesture)
         
         // Test
         pdfDocument = PDFDocument(url: Bundle.main.url(forResource: "SamplePDF", withExtension: "pdf")!)
@@ -207,6 +222,20 @@ class RecordingViewController: UIViewController {
         
         let recordingButtonImageName = recordOutput.isRecording ? "Stop" : "Record"
         recordButton.setImage(UIImage(named: recordingButtonImageName)!, for: .normal)
+    }
+    
+    @objc private func draggedView(_ sender:UIPanGestureRecognizer){
+        self.view.bringSubviewToFront(viewDrag)
+        let translation = sender.translation(in: self.view)
+        viewDrag.center = CGPoint(x: viewDrag.center.x + translation.x, y: viewDrag.center.y + translation.y)
+        sender.setTranslation(CGPoint.zero, in: self.view)
+    }
+    
+    @objc private func pinchedView(_ sender:UIPinchGestureRecognizer){
+        if sender.state == .began || sender.state == .changed {
+            sender.view?.transform = (sender.view?.transform.scaledBy(x: sender.scale, y: sender.scale))!
+            sender.scale = 1.0
+        }
     }
 }
 

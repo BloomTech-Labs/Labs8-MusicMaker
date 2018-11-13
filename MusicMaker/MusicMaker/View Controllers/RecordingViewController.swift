@@ -82,12 +82,10 @@ class RecordingViewController: UIViewController {
     }
     
     @IBAction func previousPage(_ sender: Any) {
-        pdfView.currentPage
         pdfView.goToPreviousPage(sender)
     }
     
     @IBAction func nextPage(_ sender: Any) {
-        pdfView.currentPage
         pdfView.goToNextPage(sender)
     }
     

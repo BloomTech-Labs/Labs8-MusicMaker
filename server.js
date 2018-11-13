@@ -240,6 +240,9 @@ app.get('/student/:idStudent/assigment/:idAssignment/sheetMusic', async (req, re
   }
   });
 
+  //GET student can get their recorded video
+
+
 // server instantiation
 
 const server = app.listen(8000, function () {

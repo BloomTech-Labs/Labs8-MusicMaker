@@ -121,7 +121,7 @@ class RecordingViewController: UIViewController {
         
         let columnWidth: CGFloat = 160.0
         let recordButtonMargin: CGFloat = 20.0
-        let recordButtonSize: CGFloat = 100.0
+        let recordButtonSize: CGFloat = 80.0
         let closeButtonMargin: CGFloat = 10.0
         let closeButtonSize: CGFloat = 60.0
         
@@ -252,8 +252,7 @@ class RecordingViewController: UIViewController {
     private func updateViews() {
         guard isViewLoaded else { return }
         
-        let recordingButtonImageName = recordOutput.isRecording ? "Stop" : "Record"
-        recordButton.setImage(UIImage(named: recordingButtonImageName)!, for: .normal)
+        recordButton.isSelected = recordOutput.isRecording
     }
     
     @objc private func draggedView(_ sender: UIPanGestureRecognizer) {

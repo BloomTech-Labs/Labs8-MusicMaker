@@ -79,11 +79,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xU8-l6-fPd">
-                                <rect key="frame" x="8" y="900" width="116" height="116"/>
+                                <rect key="frame" x="26" y="918" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="0.8343313769035533" green="0.05459179966684876" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="Record"/>
+                                <state key="normal" image="RecordButton"/>
+                                <state key="selected" image="StopButton"/>
                                 <connections>
                                     <action selector="toggleRecord:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="YVB-2L-a8a"/>
                                 </connections>
@@ -122,6 +123,7 @@
     </scenes>
     <resources>
         <image name="CloseButton" width="60" height="60"/>
-        <image name="Record" width="116" height="116"/>
+        <image name="RecordButton" width="80" height="80"/>
+        <image name="StopButton" width="80" height="80"/>
     </resources>
 </document>

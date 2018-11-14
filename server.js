@@ -249,9 +249,7 @@ app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, ne
       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
 
       const video = assignmentRef.get("video");
-      // console.log('1**********************************', video)
       const segments = video['0']._key.path.segments;
-      // console.log('2**********************************', segments)
       const dirName = segments[segments.length -2];
       const filename = segments[segments.length -1];
       const options = {
@@ -264,13 +262,8 @@ app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, ne
 
       const displaysVideo = await fs.readFile('temp/' + studentId + '_' + filename, (err, data) => {
         res.contentType("video/mov");
-        // console.log('4**********************************', res.contentType("video/mov"));
-        // console.log('5**********************************', displaysVideo.pipe(res))
         res.send(data);
-        // console.log('6**********************************', res.send(data));
-
       });
-      // console.log('7**********************************', displaysVideo);
 
   } catch (err) {
   next (err);
@@ -278,7 +271,7 @@ app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, ne
   });
 
   //POST students can create a video
-app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, next) => {
+app.post('/student/:idStudent/assigment/:idAssignment/uploadVideo', async (req, res, next) => {
   try {
 
   } catch (err) {

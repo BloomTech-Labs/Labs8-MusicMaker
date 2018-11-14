@@ -271,6 +271,16 @@ app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, ne
   }
   });
 
+//POST students can create a video
+app.post('/student/:idStudent/assigment/:idAssignment/uploadVideo', async (req, res, next) => {
+  try {
+
+  } catch (err) {
+  next (err);
+  }
+});
+
+
 
 // server instantiation
 

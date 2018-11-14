@@ -22,7 +22,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://musicmaker-4b2e8.firebaseio.com"
 });
-const db = firebase.firestore();
+const db = admin.firestore();
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
 
@@ -114,11 +114,29 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 
 // POST
 
+// add individual teacher with just an ID
+
+// app.post('/teachers', (req, res) => {
+//   function saveID(sender_psid, count) {
+//     let data = new Object();
+//     data.ID = sender_psid[count];
+//     db.collection('teachers').update(data);
+//   }
+// });
+
 app.post('/teachers', async (req, res, next) => {
-  MusicMaker.prototype.addTeacher = function(data) {
-    let collection = firebase.firestore().collection('teachers');
-    return collection.add(data);
-  };
+  (res => {
+    const obj = res;
+    const teacherData = {
+      firstName: obj.firstName,
+      lastName: obj.lastName
+    };
+    return db.collection('teachers').doc(id).collection('settings').doc(id)
+      .update(teacherData).then(() => {
+        console.log('New teacher added to database!');
+        res.json(teacherData);
+      })
+  });
 });
 
 ///////////////////////

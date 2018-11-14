@@ -22,19 +22,22 @@ class ContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(hideMenu))
+        print(self.children)
+        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(hideSideMenu))
         teachersView.addGestureRecognizer(touchGesture)
-        NotificationCenter.default.addObserver(self, selector: #selector(test), name: NSNotification.Name("test"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showSideMenu), name: NSNotification.Name("test"), object: nil)
     }
     
-    @objc func hideMenu() {
-        UIView.animate(withDuration: 0.4) {
+    @objc private func hideSideMenu() {
+        NotificationCenter.default.post(name: NSNotification.Name("hidingMenu"), object: nil)
+        
+        
+        UIView.animate(withDuration: 0.4, delay: 0.2, options: [], animations: {
             self.sideMenu.alpha = 0
-            self.teachersView.backgroundColor = UIColor(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
-        }
+        })
     }
     
-    @objc func test() {
+    @objc private func showSideMenu() {
         self.view.bringSubviewToFront(sideMenu)
         UIView.animate(withDuration: 0.4) {
             self.sideMenu.alpha = 1

@@ -39,7 +39,7 @@
                             <constraint firstItem="IUY-lx-04l" firstAttribute="top" secondItem="KeX-Wx-RhS" secondAttribute="top" id="MXQ-02-u1m"/>
                             <constraint firstItem="IUY-lx-04l" firstAttribute="leading" secondItem="bWO-lA-2JF" secondAttribute="leading" id="b8Q-eb-f4Q"/>
                             <constraint firstItem="yHF-vV-e5p" firstAttribute="bottom" secondItem="bWO-lA-2JF" secondAttribute="bottom" id="bd8-CO-m0F"/>
-                            <constraint firstItem="IUY-lx-04l" firstAttribute="bottom" secondItem="bWO-lA-2JF" secondAttribute="bottom" id="kCP-b3-2rV"/>
+                            <constraint firstItem="IUY-lx-04l" firstAttribute="bottom" secondItem="KeX-Wx-RhS" secondAttribute="bottom" id="kCP-b3-2rV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bWO-lA-2JF"/>
                     </view>
@@ -52,19 +52,73 @@
             </objects>
             <point key="canvasLocation" x="-100" y="112"/>
         </scene>
-        <!--View Controller-->
+        <!--Side Menu View Controller-->
         <scene sceneID="5bE-Li-8mr">
             <objects>
-                <viewController id="Rks-YH-0aT" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5MS-uC-tmN">
+                <viewController id="Rks-YH-0aT" customClass="SideMenuViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="5MS-uC-tmN">
                         <rect key="frame" x="0.0" y="0.0" width="94" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OH0-HP-cGS">
+                                <rect key="frame" x="0.0" y="0.0" width="154" height="667"/>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="HNe-tp-cDv">
+                                <rect key="frame" x="28" y="70" width="38" height="547"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uf-SI-fsS">
+                                        <rect key="frame" x="4" y="0.0" width="30" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="1"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oY-Hh-SHz">
+                                        <rect key="frame" x="4" y="113" width="30" height="95.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="2"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdo-L7-xLC">
+                                        <rect key="frame" x="4" y="225.5" width="30" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="3"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auW-eN-YKf">
+                                        <rect key="frame" x="4" y="338.5" width="30" height="95.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="4"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azs-KA-MyD">
+                                        <rect key="frame" x="4" y="451" width="30" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="5"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="HNe-tp-cDv" secondAttribute="trailing" constant="12" id="Udk-ki-1IW"/>
+                            <constraint firstAttribute="trailing" secondItem="OH0-HP-cGS" secondAttribute="trailing" constant="-60" id="ePa-OU-kmD"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="HNe-tp-cDv" secondAttribute="bottom" constant="50" id="hVi-gE-gm7"/>
+                            <constraint firstItem="HNe-tp-cDv" firstAttribute="leading" secondItem="5MS-uC-tmN" secondAttribute="leadingMargin" constant="12" id="m96-Tk-ZJa"/>
+                            <constraint firstAttribute="bottom" secondItem="OH0-HP-cGS" secondAttribute="bottom" id="tdi-8u-hEr"/>
+                            <constraint firstItem="HNe-tp-cDv" firstAttribute="top" secondItem="5MS-uC-tmN" secondAttribute="topMargin" constant="50" id="vKx-BY-Eee"/>
+                            <constraint firstItem="OH0-HP-cGS" firstAttribute="top" secondItem="5MS-uC-tmN" secondAttribute="top" id="zLv-Rq-WKi"/>
+                            <constraint firstItem="OH0-HP-cGS" firstAttribute="leading" secondItem="5MS-uC-tmN" secondAttribute="leading" id="zii-DA-2gV"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="button1" destination="7uf-SI-fsS" id="d7q-g2-IcX"/>
+                        <outlet property="button2" destination="3oY-Hh-SHz" id="mVe-Dr-6ZV"/>
+                        <outlet property="button3" destination="cdo-L7-xLC" id="eVX-E0-fcb"/>
+                        <outlet property="button4" destination="auW-eN-YKf" id="GGd-yG-nld"/>
+                        <outlet property="button5" destination="azs-KA-MyD" id="uL7-tm-GO6"/>
+                        <outlet property="menuImageView" destination="OH0-HP-cGS" id="nQc-11-wYm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIs-a3-CIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="434" y="-317"/>
+            <point key="canvasLocation" x="433.60000000000002" y="-317.09145427286359"/>
         </scene>
         <!--Teachers-->
         <scene sceneID="eXn-P2-x0L">

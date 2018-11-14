@@ -13,5 +13,13 @@ class MusicSheetPageCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Outlet
     
-    @IBOutlet weak var pdfView: PDFView!
+    @IBOutlet weak var pdfView: PDFView! {
+        didSet {
+            pdfView.displayMode = .singlePage
+            pdfView.autoScales = true
+            pdfView.isUserInteractionEnabled = false
+        }
+    }
+    
+    // maybe use layout subviews to fix scrolling of the pdf page?
 }

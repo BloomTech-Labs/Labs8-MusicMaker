@@ -34,6 +34,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>MusicMaker needs camera access to allow you to record videos.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>MusicMaker needs microphone access to allow you to record videos with sounds.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -6,6 +6,10 @@ class LandingPageView extends Component {
     return (
       <div>
         <h1>Landing Page</h1>
+        <video id="videoPlayer" controls>
+          <source src="http://localhost:8000/student/NKMNNypkVXUj4BSSyTPb/assigment/jKqbaQTm5lQikF6MMD9K/video" type="video/mp4">
+        </source>
+</video>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
           consequat nisl in ornare. Nulla quis fringilla ipsum, blandit luctus

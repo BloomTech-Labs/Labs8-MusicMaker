@@ -216,8 +216,12 @@ app.get('/student/:idStudent/assigment/:idAssignment/sheetMusic', async (req, re
       const assignmentId = req.params['idAssignment'];
   
       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
+      console.log('0**********************', assignmentRef);
 
       const musicSheet = assignmentRef.get("sheetMusic");
+      console.log('1**********************', musicSheet['0']._key.path);
+      console.log('1**********************', Object.keys(musicSheet['0']._key.path));
+
       const segments = musicSheet['0']._key.path.segments
       const dirName = segments[segments.length -2];
       const filename = segments[segments.length -1];
@@ -256,6 +260,10 @@ app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, ne
       const filename = segments[segments.length -1];
       const storagePath = dirName + '/' + filename; 
       const localPath = 'temp/' + studentId + '_' + filename;
+
+
+
+      
       // const stat = fs.statSync(localPath);
       // const fileSize = stat.size;
       // const range = req.headers.range;

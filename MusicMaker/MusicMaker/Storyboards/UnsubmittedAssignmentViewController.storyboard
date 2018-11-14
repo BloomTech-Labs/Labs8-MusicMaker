@@ -355,6 +355,91 @@
                                     <outlet property="teacherLabel" destination="wdC-rr-T5R" id="JH6-Ld-zmg"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordButtonCell" rowHeight="78" id="hal-Rq-1Ak" customClass="RecordButtonTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="677" width="768" height="78"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hal-Rq-1Ak" id="43K-dp-uDy">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="78"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgb-qT-0lm">
+                                            <rect key="frame" x="234" y="10" width="300" height="50"/>
+                                            <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="Wed-02-qw7"/>
+                                                <constraint firstAttribute="width" constant="300" id="mGG-5a-dF6"/>
+                                            </constraints>
+                                            <state key="normal" title="Tap To Record" image="RecordIcon">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="recordButtonTapped:" destination="hal-Rq-1Ak" eventType="touchUpInside" id="avm-6Z-eHt"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Hgb-qT-0lm" firstAttribute="centerX" secondItem="43K-dp-uDy" secondAttribute="centerX" id="LsZ-WT-M4y"/>
+                                        <constraint firstItem="Hgb-qT-0lm" firstAttribute="top" secondItem="43K-dp-uDy" secondAttribute="top" constant="10" id="c8P-sm-Fyj"/>
+                                        <constraint firstAttribute="bottom" secondItem="Hgb-qT-0lm" secondAttribute="bottom" constant="10" id="kI4-cd-4V0"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="recordButton" destination="Hgb-qT-0lm" id="ymV-sT-eYR"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SaveSubmitCell" rowHeight="81" id="EY2-oo-8W9" customClass="AssignmentSaveSubmitTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="755" width="768" height="81"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EY2-oo-8W9" id="CDR-dh-F3I">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="81"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2k-yD-eYg">
+                                            <rect key="frame" x="120" y="21.5" width="192" height="50"/>
+                                            <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="192" id="sui-u0-odJ"/>
+                                                <constraint firstAttribute="height" constant="50" id="yex-8N-pjf"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <state key="normal" title="Save">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="saveButtonTapped:" destination="EY2-oo-8W9" eventType="touchUpInside" id="biS-1G-uDf"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgn-wz-yJI">
+                                            <rect key="frame" x="457" y="21.5" width="192" height="50"/>
+                                            <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="192" id="8dg-Ki-KgU"/>
+                                                <constraint firstAttribute="height" constant="50" id="dfe-rF-m5E"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <state key="normal" title="Submit">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="submitButtonTapped:" destination="EY2-oo-8W9" eventType="touchUpInside" id="msv-sZ-gR2"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="G2k-yD-eYg" firstAttribute="top" secondItem="CDR-dh-F3I" secondAttribute="topMargin" constant="10" id="4Lb-dc-9PT"/>
+                                        <constraint firstAttribute="bottom" secondItem="cgn-wz-yJI" secondAttribute="bottom" constant="10" id="7rg-m8-lHq"/>
+                                        <constraint firstItem="G2k-yD-eYg" firstAttribute="leading" secondItem="CDR-dh-F3I" secondAttribute="leading" constant="120" id="R1e-Hy-i6u"/>
+                                        <constraint firstAttribute="bottom" secondItem="G2k-yD-eYg" secondAttribute="bottom" constant="10" id="SIx-ba-q6S"/>
+                                        <constraint firstAttribute="trailing" secondItem="cgn-wz-yJI" secondAttribute="trailing" constant="120" id="df6-ir-00L"/>
+                                        <constraint firstItem="cgn-wz-yJI" firstAttribute="leading" secondItem="G2k-yD-eYg" secondAttribute="trailing" constant="145" id="gei-SY-vpv"/>
+                                        <constraint firstItem="cgn-wz-yJI" firstAttribute="top" secondItem="CDR-dh-F3I" secondAttribute="topMargin" constant="10" id="yXR-cq-nDg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="saveButton" destination="G2k-yD-eYg" id="i2A-9j-qka"/>
+                                    <outlet property="submitButton" destination="cgn-wz-yJI" id="iDY-pc-FHr"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="3n0-iy-li9" id="5q4-ej-dBf"/>
@@ -369,6 +454,7 @@
     </scenes>
     <resources>
         <image name="MusicLines" width="18" height="140"/>
+        <image name="RecordIcon" width="40" height="40"/>
         <image name="TrebleSymbol" width="70" height="140"/>
     </resources>
 </document>

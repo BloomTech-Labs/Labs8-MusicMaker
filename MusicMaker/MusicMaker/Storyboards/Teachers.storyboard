@@ -17,13 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ACr-0v-glA" userLabel="Menu View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ACr-0v-glA" userLabel="Menu View">
                                 <rect key="frame" x="0.0" y="0.0" width="112.5" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tM8-iW-C6h">
-                                        <rect key="frame" x="33" y="237" width="46" height="30"/>
+                                        <rect key="frame" x="17" y="237" width="79" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Home" image="user_male"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,6 +55,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="blurredView" destination="TE0-gn-PpV" id="I9a-Ee-wEI"/>
+                        <outlet property="homeButton" destination="tM8-iW-C6h" id="u4A-l2-DTQ"/>
                         <outlet property="menuView" destination="ACr-0v-glA" id="wq6-TV-LPR"/>
                     </connections>
                 </viewController>
@@ -83,5 +84,6 @@
     </scenes>
     <resources>
         <image name="menu" width="30" height="30"/>
+        <image name="user_male" width="30" height="30"/>
     </resources>
 </document>

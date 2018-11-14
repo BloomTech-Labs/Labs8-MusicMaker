@@ -13,6 +13,11 @@ class TeachersViewController: UIViewController {
     
     // MARK: - IBOutlets
     
+    @IBOutlet weak var homeButton: UIButton! {
+        didSet {
+            homeButton.centerVertically()
+        }
+    }
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var blurredView: UIView!
     var addedMenuAsSubview = false

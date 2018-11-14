@@ -16,6 +16,7 @@
 		39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B5A219397DA00C6018E /* SamplePDF.pdf */; };
 		39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B5C21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift */; };
 		BF5D51FA219B8C7900DFF213 /* TeachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D51F9219B8C7900DFF213 /* TeachersViewController.swift */; };
+		BF5D51FC219BC67000DFF213 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D51FB219BC67000DFF213 /* UIButton+Extensions.swift */; };
 		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
 		BFD381CC219354C70038F974 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CB219354C70038F974 /* QRScannerViewController.swift */; };
@@ -42,6 +43,7 @@
 		39CA2B5A219397DA00C6018E /* SamplePDF.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SamplePDF.pdf; sourceTree = "<group>"; };
 		39CA2B5C21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentInstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		BF5D51F9219B8C7900DFF213 /* TeachersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersViewController.swift; sourceTree = "<group>"; };
+		BF5D51FB219BC67000DFF213 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIButton+Extensions.swift"; path = "MusicMaker/Storyboards/UIButton+Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		BFD381CB219354C70038F974 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		BFD381CA219353F40038F974 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BF5D51FB219BC67000DFF213 /* UIButton+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */,
 				39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */,
 				39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */,
+				BF5D51FC219BC67000DFF213 /* UIButton+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

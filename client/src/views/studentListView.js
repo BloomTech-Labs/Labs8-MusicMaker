@@ -1,11 +1,10 @@
 import React, { Component} from 'react';
 import { Route, NavLink } from 'react-router-dom';
 
-import SignOutButton from '../components/SignOutButton';
 import DashbardNavigation from '../components/DashboardNavigation';
 import SideBar from '../components/SideBar';
 
-class StudentListView extends Components {
+class StudentListView extends Component {
     state = {
         students: []
     }
@@ -13,15 +12,12 @@ class StudentListView extends Components {
     render() {
         return(
             <div className="sudentlist-view">
+                <DashbardNavigation />
+                <SideBar />
                 <h1>Students</h1>
-                    <nav>
-                        <DashbardNavigation />
-                        <SignOutButton />
-                    </nav>
-                    <SideBar />
                 <div className="studentList">
                     {this.state.students.map(student => 
-                        <div key={sudent.id}>
+                        <div key={student.id}>
                             <NavLink to={`/studentView/${student.id}`}>
                                 <h3>{student.firstName} {student.lastName}:</h3>
                                 <h3>{student.instrument}</h3>

@@ -10,6 +10,7 @@ import SignUpView from '../views/signupView';
 import SignInView from '../views/signinView';
 import DashboardView from '../views/dashboardView';
 import DashboardBillingView from '../views/dashboardBillingView';
+import StudentListView from '../views/studentListView';
 
 import './App.css';
 
@@ -18,7 +19,10 @@ class App extends Component {
     return (
       <div className="App">
         {/* <Navigation /> */}
-
+        <Route 
+          path="/students" 
+          component={StudentListView}
+        />
         <Route
           exact path={ routes.LANDING }
           component={ LandingPageView }

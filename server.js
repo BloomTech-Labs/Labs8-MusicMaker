@@ -253,51 +253,15 @@ app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, ne
       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
 
       const video = assignmentRef.get("video");
-      // console.log('1**********************************', video)
       const segments = video['0']._key.path.segments;
-      // console.log('2**********************************', segments)
       const dirName = segments[segments.length -2];
       const filename = segments[segments.length -1];
       const storagePath = dirName + '/' + filename; 
       const localPath = 'temp/' + studentId + '_' + filename;
-
-
-
-      
-      // const stat = fs.statSync(localPath);
-      // const fileSize = stat.size;
-      // const range = req.headers.range;
-      
-      // if (range) {
-      //   const parts = range.replace(/bytes=/, "").split("-")
-      //   const start = parseInt(parts[0], 10)
-      //   const end = parts[1]
-      //     ? parseInt(parts[1], 10)
-      //     : fileSize-1
-    
-      //   const chunksize = (end-start)+1
-      //   const file = fs.createReadStream(localPath, {start, end})
-      //   const head = {
-      //     'Content-Range': `bytes ${start}-${end}/${fileSize}`,
-      //     'Accept-Ranges': 'bytes',
-      //     'Content-Length': chunksize,
-      //     'Content-Type': 'video/mov',
-      //   }
-    
-      //   res.writeHead(206, head)
-      //   file.pipe(res)
-      // } else {
-      //   const head = {
-      //     'Content-Length': fileSize,
-      //     'Content-Type': 'video/mov',
-      //   }
-      //   res.writeHead(200, head)
-      //   fs.createReadStream(localPath).pipe(res)
-      // }
-
       const options = {
           destination : localPath,
       };
+
       const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
       await storage.bucket('musicmaker-4b2e8.appspot.com')
                    .file(storagePath)
@@ -305,13 +269,8 @@ app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, ne
 
       const displaysVideo = await fs.readFile(localPath, (err, data) => {
         res.contentType("video/mov");
-        // console.log('4**********************************', res.contentType("video/mov"));
-        // console.log('5**********************************', displaysVideo.pipe(res))
         res.send(data);
-        // console.log('6**********************************', res.send(data));
-
       });
-      // console.log('7**********************************', displaysVideo);
 
   } catch (err) {
   next (err);

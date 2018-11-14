@@ -25,8 +25,8 @@ class DashboardBillingView extends Component {
 
         </div> // payment-info-box
         <div className = 'subscription-text'>
-          <input type = 'checkbox' name = 'option1' value = 'monthly'> 1 Month Subscription - $20</br>
-          <input type = 'checkbox' name = 'option2' value = 'oneclient'> 1 Client - $1.99</br>
+          <input type = 'checkbox' name = 'option1' value = 'monthly' /> 1 Month Subscription - $20<br/>
+          <input type = 'checkbox' name = 'option2' value = 'oneclient' /> 1 Client - $1.99<br/>
         </div>
         <button className = 'buy-button'>Buy Now</button>
       </div> // billing-wrapper

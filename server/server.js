@@ -147,13 +147,13 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 // });
 
 app.post('/teachers', (req, res) => {
-  let teacherData = {
-    firstName: req.firstName,
-    lastName: req.lastName
-  }
-  return db.collection('teachers').set(teacherData).then(function() {
-    console.log('Teacher information successfully added!');
-  })
+  let data = {
+    QRCode: req.QRCode,
+    email: req.email
+  };
+
+  let setTeacher = db.collection('teachers').set(data);
+  res.json(data);
 })
 
 ///////////////////////

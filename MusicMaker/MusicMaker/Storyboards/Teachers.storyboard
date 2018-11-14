@@ -43,6 +43,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bWO-lA-2JF"/>
                     </view>
+                    <connections>
+                        <outlet property="sideMenu" destination="IUY-lx-04l" id="aCq-fI-ANV"/>
+                        <outlet property="teachersView" destination="yHF-vV-e5p" id="c0J-8W-qmQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFC-MN-eTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -65,14 +69,18 @@
         <!--Teachers-->
         <scene sceneID="eXn-P2-x0L">
             <objects>
-                <viewController id="RAX-kR-dSc" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeachersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RAX-kR-dSc" customClass="TeachersViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uvy-aJ-JWT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" title="Teachers" id="Gce-Dn-phq">
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="76a-st-ObW"/>
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="76a-st-ObW">
+                            <connections>
+                                <action selector="showSideMenu:" destination="RAX-kR-dSc" id="3ya-wm-c9T"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jhg-Kt-wfK" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -93,6 +93,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BF5D5215219CCAA100DFF213 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		BFD381C4219353A50038F974 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +198,7 @@
 		BFD3E55D2192393A00D84FF2 /* MusicMaker */ = {
 			isa = PBXGroup;
 			children = (
+				BF5D5215219CCAA100DFF213 /* Protocols */,
 				BFD381CA219353F40038F974 /* Extensions */,
 				BFD381C9219353EA0038F974 /* Model Controllers */,
 				BFD381C8219353E60038F974 /* Models */,

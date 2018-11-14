@@ -107,21 +107,12 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 
 // POST
 
-// app.post('/teachers', async (req, res, next) => {
-//   try {
-//     const { email }  = req.body.email;
-//     // if(!name) throw new Error('Name is blank!');
-//     const teacherData = { email };
-//     const teachersRef = await db.collection('teachers').document('').add(teacherData);
-//     res.json({
-//       id: teachersRef.id,
-//       teacherData
-//     });
-//   } catch(err) {
-//     console.log(err.message);
-//     next(err);
-//   }
-// });
+app.post('/teachers', async (req, res, next) => {
+  MusicMaker.prototype.addTeacher = function(data) {
+    let collection = firebase.firestore().collection('teachers');
+    return collection.add(data);
+  };
+});
 
 ///////////////////////
 
@@ -169,10 +160,10 @@ app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) =>
     try {
         const studentId = req.params['idStudent'];
         const assignmentId = req.params['idAssignment'];
-    
+
         const stringList = ["assignmentName", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
         const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get()
-    
+
         jsonRes = {};
         for (let i =0; i < stringList.length; i++){
             let value = assigmentRef.get(stringList[i]);
@@ -184,19 +175,19 @@ app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) =>
         }
         let dueDate = assigmentRef.get("dueDate");
         jsonRes["dueDate"] = dueDate;
-    
-        
+
+
         // let musicSheet = assigmentRef.get("sheetMusic");
         // let segments = musicSheet['0']._key.path.segments
         // let dir_name = segments[segments.length -2];
         // let filename = segments[segments.length -1];
         // //console.log(musicSheet['0']._key.path.segments);
-    
+
         // var gsReference = storage.refFromURL('gs://musicmaker-4b2e8.appspot.com/' + dir_name + '/' + filename);
-    
+
         // //gs://musicmaker-4b2e8.appspot.com
         // gs://musicmaker-4b2e8.appspot.com
-        
+
         res.json(jsonRes);
     } catch (err) {
     next (err);

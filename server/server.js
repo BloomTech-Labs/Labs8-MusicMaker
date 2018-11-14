@@ -116,28 +116,45 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 
 // add individual teacher with just an ID
 
-// app.post('/teachers', (req, res) => {
-//   function saveID(sender_psid, count) {
-//     let data = new Object();
-//     data.ID = sender_psid[count];
-//     db.collection('teachers').update(data);
+// app.post('/teachers', async (req, res, next) => {
+//   try {
+//     const firstName = req.body.firstName;
+//     const lastName = req.body.lastName;
+//     const data = { firstName, lastName };
+//     const ref = await db.collection('teachers').doc(id).collection('settings').doc(id);
+//     res.json({
+//       id: ref.id,
+//       data
+//     });
+//   } catch(err) {
+//     next(err);
 //   }
 // });
 
-app.post('/teachers', async (req, res, next) => {
-  (res => {
-    const obj = res;
-    const teacherData = {
-      firstName: obj.firstName,
-      lastName: obj.lastName
-    };
-    return db.collection('teachers').doc(id).collection('settings').doc(id)
-      .update(teacherData).then(() => {
-        console.log('New teacher added to database!');
-        res.json(teacherData);
-      })
-  });
-});
+// app.post('/teachers', async (req, res, next) => {
+//   (res => {
+//     const obj = res;
+//     const teacherData = {
+//       firstName: obj.firstName,
+//       lastName: obj.lastName
+//     };
+//     return db.collection('teachers').doc(id).collection('settings').doc(id)
+//       .update(teacherData).then(() => {
+//         console.log('New teacher added to database!');
+//         res.json(teacherData);
+//       })
+//   });
+// });
+
+app.post('/teachers', (req, res) => {
+  let teacherData = {
+    firstName: req.firstName,
+    lastName: req.lastName
+  }
+  return db.collection('teachers').set(teacherData).then(function() {
+    console.log('Teacher information successfully added!');
+  })
+})
 
 ///////////////////////
 

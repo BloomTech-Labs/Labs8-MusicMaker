@@ -19,9 +19,43 @@ class SignUpViewController: UIViewController {
     
     }
     
+    //Adds an observer to listen for the keyboardWillShowNotification & keyboardWillHideNotifcation
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
+    }
+    
+    
+    //Removes the observer for the keyboardWillShowNotification & keyboardWillHideNotifcation
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
+    }
+    
+    
     
     
     // MARK: - Private
+    
+    //Used to move the views frame up when the keyboard is about to be shown so the textfields can be seen
+    @objc func keyboardWillShow(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= (keyboardSize.height - 10)
+            }
+        }
+    }
+    
+    //Used to move the views frame back to the normal position when the keyboard goes away
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += (keyboardSize.height - 10)
+            }
+        }
+    }
     
     //Adds a gesture recognizer that calls dismissKeyboard(_:)
     private func addDismissKeyboardGestureRecognizer() {
@@ -124,6 +158,27 @@ class SignUpViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    // Used to toggle the password textfields to show or hide entry
+    @IBAction func toggleSecureEntryOnPasswordTextFields(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            if passwordTextField.isSecureTextEntry == false {
+                passwordTextField.isSecureTextEntry = true
+            } else {
+                passwordTextField.isSecureTextEntry = false
+            }
+        case 1:
+            if confirmPasswordTextField.isSecureTextEntry == false {
+                confirmPasswordTextField.isSecureTextEntry = true
+            } else {
+                confirmPasswordTextField.isSecureTextEntry = false
+            }
+        default:
+            break
+        }
+    }
+    
     
     @IBAction func createAccount(_ sender: Any) {
         guard let email = emailTextField.text,

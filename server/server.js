@@ -4,6 +4,7 @@ const express = require('express');
 // Firebase-specific dependencies
 
 const firebase = require('firebase');
+const serviceAccount = require('./musicmaker-4b2e8-firebase-adminsdk-v1pkr-34d1984175.json');
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
     authDomain: "musicmaker-4b2e8.firebaseapp.com",
@@ -17,9 +18,15 @@ const firestore = new Firestore({
   projectId: "musicmaker-4b2e8",
 });
 firebase.initializeApp(config);
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://musicmaker-4b2e8.firebaseio.com"
+});
 const db = firebase.firestore();
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
+
+
 ///////////////////////
 
 const app = express();

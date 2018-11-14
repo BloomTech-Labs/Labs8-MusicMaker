@@ -22,6 +22,10 @@
 		39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */; };
 		BF5D5209219CB05900DFF213 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */; };
 		BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5208219CB05900DFF213 /* HoshiTextField.swift */; };
+		BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5D520B219CC7F200DFF213 /* Teachers.storyboard */; };
+		BF5D520E219CC8CA00DFF213 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D520D219CC8CA00DFF213 /* ContainerViewController.swift */; };
+		BF5D5210219CC8E800DFF213 /* TeachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */; };
+		BF5D5212219CC8F500DFF213 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */; };
 		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
 		BFD381CC219354C70038F974 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CB219354C70038F974 /* QRScannerViewController.swift */; };
@@ -51,6 +55,10 @@
 		39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordingViewController.storyboard; sourceTree = "<group>"; };
 		BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
 		BF5D5208219CB05900DFF213 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
+		BF5D520B219CC7F200DFF213 /* Teachers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Teachers.storyboard; sourceTree = "<group>"; };
+		BF5D520D219CC8CA00DFF213 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersViewController.swift; sourceTree = "<group>"; };
+		BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		BFD381CB219354C70038F974 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +96,9 @@
 		BFD381C4219353A50038F974 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */,
+				BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */,
+				BF5D520D219CC8CA00DFF213 /* ContainerViewController.swift */,
 				BFD381CD219355460038F974 /* SignUpViewController.swift */,
 				BFD381CF219355510038F974 /* LogInViewController.swift */,
 				BFD381CB219354C70038F974 /* QRScannerViewController.swift */,
@@ -103,6 +114,7 @@
 				BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */,
 				BFD381C22193525F0038F974 /* Authentication.storyboard */,
 				399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */,
+				BF5D520B219CC7F200DFF213 /* Teachers.storyboard */,
 				39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */,
 				39CA2B522193607700C6018E /* SplitView.storyboard */,
 			);
@@ -264,6 +276,7 @@
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
 				39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */,
 				BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */,
+				BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */,
 			);
@@ -353,10 +366,13 @@
 				39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */,
 				BFD381D0219355510038F974 /* LogInViewController.swift in Sources */,
 				BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */,
+				BF5D520E219CC8CA00DFF213 /* ContainerViewController.swift in Sources */,
 				BFD381CC219354C70038F974 /* QRScannerViewController.swift in Sources */,
 				39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */,
+				BF5D5210219CC8E800DFF213 /* TeachersViewController.swift in Sources */,
 				39C108FF2194FD9800180F37 /* CameraPreviewView.swift in Sources */,
 				39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */,
+				BF5D5212219CC8F500DFF213 /* SideMenuViewController.swift in Sources */,
 				39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

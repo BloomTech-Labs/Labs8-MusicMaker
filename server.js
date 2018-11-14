@@ -207,15 +207,20 @@ app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) =>
   }
   });
 
-  //GET student can get their sheetMusic(pdf)
+
+//GET student can get their sheetMusic(pdf)
 app.get('/student/:idStudent/assigment/:idAssignment/sheetMusic', async (req, res, next) => {
   try {
       const studentId = req.params['idStudent'];
       const assignmentId = req.params['idAssignment'];
   
       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
-      
+      console.log('0**********************', assignmentRef);
+
       const musicSheet = assignmentRef.get("sheetMusic");
+      console.log('1**********************', musicSheet['0']._key.path);
+      console.log('1**********************', Object.keys(musicSheet['0']._key.path));
+
       const segments = musicSheet['0']._key.path.segments
       const dirName = segments[segments.length -2];
       const filename = segments[segments.length -1];
@@ -270,7 +275,6 @@ app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, ne
   next (err);
   }
   });
-
 
 // server instantiation
 

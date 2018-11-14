@@ -4,7 +4,8 @@
   "description": "A web application for music teachers to view and grade student performance practice with an associated iOS app for student video submission.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "qrcode": "nodemon qrcode.js"
   },
   "repository": "https://github.com/Lambda-School-Labs/Labs8-MusicMaker.git",
   "author": "Keiran <keirankozlowski@gmail.com>",
@@ -18,7 +19,8 @@
     "firebase-admin": "^5.12.1",
     "firebase-functions": "^1.0.3",
     "firebase-tools": "^6.0.1",
-    "firebaseui": "^3.4.1"
+    "firebaseui": "^3.4.1",
+    "qrcode": "^1.3.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"

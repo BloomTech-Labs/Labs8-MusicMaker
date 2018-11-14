@@ -9,6 +9,7 @@ import LandingPageView from '../views/landingView';
 import SignUpView from '../views/signupView';
 import SignInView from '../views/signinView';
 import DashboardView from '../views/dashboardView';
+import DashboardBillingView from '../views/dashboardBillingView';
 
 import './App.css';
 

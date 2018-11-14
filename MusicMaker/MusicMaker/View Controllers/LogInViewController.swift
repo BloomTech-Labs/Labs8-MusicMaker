@@ -32,6 +32,10 @@ class LogInViewController: UIViewController {
     
     // MARK: - IBActions
     
+    @IBAction func showOrHidePasswordEntry(_ sender: Any) {
+         passwordTextField.isSecureTextEntry = passwordTextField.isSecureTextEntry ? false : true
+    }
+    
     @IBAction func login(_ sender: Any) {
         
         guard let email = emailTextField.text, email != "",
@@ -47,6 +51,9 @@ class LogInViewController: UIViewController {
             }
         }
     }
+    @IBAction func forgotPassword(_ sender: Any) {
+        presentForgotPasswordAlert()
+    }
     
     // MARK: - Private
     
@@ -61,6 +68,28 @@ class LogInViewController: UIViewController {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
+    
+    //Presents an alert controller when the user clicks forgot password which sends a password reset option to their email address
+    private func presentForgotPasswordAlert() {
+        let alert = UIAlertController(title: "Reset Password", message: "Enter your email address to reset your password", preferredStyle: .alert)
+        var resetPasswordWithEmailTextField: UITextField?
+        alert.addTextField { (textField) in
+            textField.borderStyle = UITextField.BorderStyle.none
+            textField.backgroundColor = UIColor.clear
+            textField.attributedPlaceholder = NSAttributedString(string: "Enter your email address",attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            resetPasswordWithEmailTextField = textField
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { _ in
+            Auth.auth().sendPasswordReset(withEmail: resetPasswordWithEmailTextField?.text ?? "", completion: { (error) in
+            })
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: - UITextFieldDelegate

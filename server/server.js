@@ -252,6 +252,17 @@ app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) =>
     }
     });
 
+//=================================================== STRIPE BACKEND =================================================================
+
+
+
+
+
+
+
+
+
+
 // server instantiation
 
 const server = app.listen(8000, function () {

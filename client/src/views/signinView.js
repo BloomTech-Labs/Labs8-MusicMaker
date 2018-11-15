@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { auth, provider, authFuncs } from '../firebase';
+import { auth } from '../firebase';
 import * as routes from '../constants/routes';
 import { SignUpLink } from './signupView';
 import ForgotPW from '../components/ForgotPW';
@@ -42,7 +42,7 @@ class SignInView extends Component {
             history,
         } = this.props;
 
-        authFuncs.doSignInWithEmailAndPassword(email, password)
+        auth.doSignInWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState({ ...INITIAL_STATE });
                 history.push(routes.DASHBOARD);
@@ -55,17 +55,6 @@ class SignInView extends Component {
     }
 
     render() {
-        provider.auth().signInWithPopup(provider).then(function(result) {
-            const token = result.credential.accessToken;
-            const user = result.user;
-
-          }).catch(function(error) {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            const email = error.email;
-            const credential = error.credential;
-          });
-
         const {
             email,
             password,

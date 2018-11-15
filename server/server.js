@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 const express = require('express');
+const QRcode = require('qrcode');
 
 // Firebase-specific dependencies
 
@@ -28,6 +29,9 @@ firestore.settings(settings);
 
 
 ///////////////////////
+
+// GET a QR code
+
 
 const app = express();
 // test GET request, adding key/value pair to Firebase

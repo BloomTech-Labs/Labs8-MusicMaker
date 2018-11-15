@@ -62,13 +62,38 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.87239747560000003" green="0.87861778810000002" blue="0.89727872549999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <button opaque="NO" alpha="0.7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xU8-l6-fPd">
-                                <rect key="frame" x="8" y="900" width="116" height="116"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avn-11-zEy">
+                                <rect key="frame" x="0.0" y="20" width="300" height="1004"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="previousPage:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="R6t-T2-3VW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJB-6W-c67">
+                                <rect key="frame" x="307" y="20" width="300" height="1004"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="nextPage:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="iDm-LP-RHE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xU8-l6-fPd">
+                                <rect key="frame" x="26" y="918" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="0.8343313769035533" green="0.05459179966684876" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="Record"/>
+                                <state key="normal" image="RecordButton"/>
+                                <state key="selected" image="StopButton"/>
                                 <connections>
                                     <action selector="toggleRecord:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="YVB-2L-a8a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LqY-p8-p0g">
+                                <rect key="frame" x="13" y="28" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.30214041095890409" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="CloseButton"/>
+                                <connections>
+                                    <action selector="close:" destination="N0R-Sf-4MK" eventType="touchUpInside" id="hDW-8n-s19"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PRR-OI-zIU" customClass="CameraPreviewView" customModule="MusicMaker" customModuleProvider="target">
@@ -81,8 +106,11 @@
                     </view>
                     <connections>
                         <outlet property="cameraPreviewView" destination="PRR-OI-zIU" id="KGq-OS-K3m"/>
+                        <outlet property="closeButton" destination="LqY-p8-p0g" id="G90-jv-enV"/>
                         <outlet property="collectionView" destination="Bfo-rF-LzT" id="aTm-ck-rs5"/>
+                        <outlet property="nextPageButton" destination="nJB-6W-c67" id="NtS-9I-fpn"/>
                         <outlet property="pdfView" destination="Ul5-ws-YGD" id="h80-Cw-NT8"/>
+                        <outlet property="previousPageButton" destination="Avn-11-zEy" id="akT-W0-t0M"/>
                         <outlet property="recordButton" destination="xU8-l6-fPd" id="Bow-J2-YNE"/>
                     </connections>
                 </viewController>
@@ -92,6 +120,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Record" width="116" height="116"/>
+        <image name="CloseButton" width="60" height="60"/>
+        <image name="RecordButton" width="80" height="80"/>
+        <image name="StopButton" width="80" height="80"/>
     </resources>
 </document>

@@ -1,9 +1,13 @@
 const admin = require('firebase-admin');
 const express = require('express');
+const QRCode = require('qrcode');
 const fs = require('fs');
+
 
 // Firebase-specific dependencies
 const firebase = require('firebase');
+
+const serviceAccount = require('./musicmaker-4b2e8-firebase-adminsdk-v1pkr-34d1984175.json');
 
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -19,7 +23,11 @@ const firestore = new Firestore({
   projectId: "musicmaker-4b2e8",
 });
 firebase.initializeApp(config);
-const db = firebase.firestore();
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://musicmaker-4b2e8.firebaseio.com"
+});
+const db = admin.firestore();
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
 
@@ -30,6 +38,21 @@ const storage = require('@google-cloud/storage')({
 ///////////////////////
 
 const app = express();
+
+// GET a QR code
+
+app.get('/qrcode', async (req, res, next) => {
+  try {
+    let stringGen = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16);
+    let code = QRCode.toString(stringGen, function (err, string) {
+      console.log(string);
+      res.json(string);
+    })
+  } catch(err) {
+    next(err);
+  }
+});
+
 // test GET request, adding key/value pair to Firebase
 
 app.get('/teachers', async (req, res, next) => {
@@ -146,21 +169,47 @@ app.get('/teacher/:idTeacher/assigment/:idAssignment/sheetMusic', async (req, re
 
 // POST
 
+// add individual teacher with just an ID
+
 // app.post('/teachers', async (req, res, next) => {
 //   try {
-//     const { email }  = req.body.email;
-//     // if(!name) throw new Error('Name is blank!');
-//     const teacherData = { email };
-//     const teachersRef = await db.collection('teachers').document('').add(teacherData);
+//     const firstName = req.body.firstName;
+//     const lastName = req.body.lastName;
+//     const data = { firstName, lastName };
+//     const ref = await db.collection('teachers').doc(id).collection('settings').doc(id);
 //     res.json({
-//       id: teachersRef.id,
-//       teacherData
+//       id: ref.id,
+//       data
 //     });
 //   } catch(err) {
-//     console.log(err.message);
 //     next(err);
 //   }
 // });
+
+// app.post('/teachers', async (req, res, next) => {
+//   (res => {
+//     const obj = res;
+//     const teacherData = {
+//       firstName: obj.firstName,
+//       lastName: obj.lastName
+//     };
+//     return db.collection('teachers').doc(id).collection('settings').doc(id)
+//       .update(teacherData).then(() => {
+//         console.log('New teacher added to database!');
+//         res.json(teacherData);
+//       })
+//   });
+// });
+
+// app.post('/teachers', (req, res) => {
+//   let data = {
+//     QRCode: req.QRCode,
+//     email: req.email
+//   };
+//
+//   let setTeacher = db.collection('teachers').set(data);
+//   res.json(data);
+// })
 
 ///////////////////////
 
@@ -302,7 +351,6 @@ app.get('/teacher/:idTeacher/assigment/:idAssignment/sheetMusic', async (req, re
 //   next (err);
 //   }
 //   });
-
 
 // server instantiation
 

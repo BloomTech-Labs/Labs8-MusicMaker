@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUY-lx-04l" userLabel="SideMenu">
-                                <rect key="frame" x="0.0" y="0.0" width="94" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="124" height="667"/>
                                 <connections>
                                     <segue destination="Rks-YH-0aT" kind="embed" id="gc2-Mb-a9j"/>
                                 </connections>
@@ -32,7 +32,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="IUY-lx-04l" firstAttribute="width" secondItem="KeX-Wx-RhS" secondAttribute="width" multiplier="0.25" id="Acd-ec-lWr"/>
+                            <constraint firstItem="IUY-lx-04l" firstAttribute="width" secondItem="KeX-Wx-RhS" secondAttribute="width" multiplier="0.33" id="Acd-ec-lWr"/>
                             <constraint firstItem="yHF-vV-e5p" firstAttribute="top" secondItem="KeX-Wx-RhS" secondAttribute="top" id="Atk-lT-qFp"/>
                             <constraint firstItem="yHF-vV-e5p" firstAttribute="leading" secondItem="bWO-lA-2JF" secondAttribute="leading" id="Fgk-9k-Tfm"/>
                             <constraint firstItem="yHF-vV-e5p" firstAttribute="trailing" secondItem="bWO-lA-2JF" secondAttribute="trailing" id="Kwq-W1-Qlm"/>
@@ -57,63 +57,66 @@
             <objects>
                 <viewController id="Rks-YH-0aT" customClass="SideMenuViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="5MS-uC-tmN">
-                        <rect key="frame" x="0.0" y="0.0" width="94" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="124" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OH0-HP-cGS">
-                                <rect key="frame" x="0.0" y="0.0" width="154" height="667"/>
-                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="HNe-tp-cDv">
-                                <rect key="frame" x="28" y="70" width="38" height="547"/>
+                                <rect key="frame" x="0.0" y="70" width="124" height="547"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uf-SI-fsS">
-                                        <rect key="frame" x="4" y="0.0" width="30" height="96"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="1"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uf-SI-fsS">
+                                        <rect key="frame" x="30" y="0.0" width="64" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Home" image="user">
+                                            <color key="titleColor" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oY-Hh-SHz">
-                                        <rect key="frame" x="4" y="113" width="30" height="95.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="2"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oY-Hh-SHz">
+                                        <rect key="frame" x="10.5" y="113" width="103" height="95.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Assignments" image="assignments">
+                                            <color key="titleColor" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdo-L7-xLC">
-                                        <rect key="frame" x="4" y="225.5" width="30" height="96"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="3"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdo-L7-xLC">
+                                        <rect key="frame" x="23.5" y="225.5" width="77" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Settings" image="settings">
+                                            <color key="titleColor" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auW-eN-YKf">
-                                        <rect key="frame" x="4" y="338.5" width="30" height="95.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="4"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="auW-eN-YKf">
+                                        <rect key="frame" x="19.5" y="338.5" width="85" height="95.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" image="password">
+                                            <string key="title">Reset
+Password</string>
+                                            <color key="titleColor" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azs-KA-MyD">
-                                        <rect key="frame" x="4" y="451" width="30" height="96"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="5"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azs-KA-MyD">
+                                        <rect key="frame" x="27" y="451" width="70" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Logout" image="logout">
+                                            <color key="titleColor" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                     </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="HNe-tp-cDv" secondAttribute="trailing" constant="12" id="Udk-ki-1IW"/>
-                            <constraint firstAttribute="trailing" secondItem="OH0-HP-cGS" secondAttribute="trailing" constant="-60" id="ePa-OU-kmD"/>
+                            <constraint firstAttribute="trailing" secondItem="HNe-tp-cDv" secondAttribute="trailing" id="Udk-ki-1IW"/>
                             <constraint firstAttribute="bottomMargin" secondItem="HNe-tp-cDv" secondAttribute="bottom" constant="50" id="hVi-gE-gm7"/>
-                            <constraint firstItem="HNe-tp-cDv" firstAttribute="leading" secondItem="5MS-uC-tmN" secondAttribute="leadingMargin" constant="12" id="m96-Tk-ZJa"/>
-                            <constraint firstAttribute="bottom" secondItem="OH0-HP-cGS" secondAttribute="bottom" id="tdi-8u-hEr"/>
+                            <constraint firstItem="HNe-tp-cDv" firstAttribute="leading" secondItem="5MS-uC-tmN" secondAttribute="leading" id="m96-Tk-ZJa"/>
                             <constraint firstItem="HNe-tp-cDv" firstAttribute="top" secondItem="5MS-uC-tmN" secondAttribute="topMargin" constant="50" id="vKx-BY-Eee"/>
-                            <constraint firstItem="OH0-HP-cGS" firstAttribute="top" secondItem="5MS-uC-tmN" secondAttribute="top" id="zLv-Rq-WKi"/>
-                            <constraint firstItem="OH0-HP-cGS" firstAttribute="leading" secondItem="5MS-uC-tmN" secondAttribute="leading" id="zii-DA-2gV"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="button1" destination="7uf-SI-fsS" id="d7q-g2-IcX"/>
-                        <outlet property="button2" destination="3oY-Hh-SHz" id="mVe-Dr-6ZV"/>
-                        <outlet property="button3" destination="cdo-L7-xLC" id="eVX-E0-fcb"/>
-                        <outlet property="button4" destination="auW-eN-YKf" id="GGd-yG-nld"/>
-                        <outlet property="button5" destination="azs-KA-MyD" id="uL7-tm-GO6"/>
-                        <outlet property="menuImageView" destination="OH0-HP-cGS" id="nQc-11-wYm"/>
+                        <outlet property="assignmentsButton" destination="3oY-Hh-SHz" id="mVe-Dr-6ZV"/>
+                        <outlet property="logoutButton" destination="azs-KA-MyD" id="uL7-tm-GO6"/>
+                        <outlet property="profileButton" destination="7uf-SI-fsS" id="d7q-g2-IcX"/>
+                        <outlet property="resetPasswordButton" destination="auW-eN-YKf" id="GGd-yG-nld"/>
+                        <outlet property="settingsButton" destination="cdo-L7-xLC" id="eVX-E0-fcb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIs-a3-CIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -161,6 +164,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="assignments" width="30" height="30"/>
+        <image name="logout" width="30" height="30"/>
         <image name="menu" width="30" height="30"/>
+        <image name="password" width="30" height="30"/>
+        <image name="settings" width="30" height="30"/>
+        <image name="user" width="30" height="30"/>
     </resources>
 </document>

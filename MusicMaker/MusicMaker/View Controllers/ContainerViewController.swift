@@ -28,7 +28,6 @@ class ContainerViewController: UIViewController {
         
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(hideSideMenu))
         teachersView.addGestureRecognizer(touchGesture)
-//        NotificationCenter.default.addObserver(self, selector: #selector(showSideMenu1), name: .shouldShowSideMenu, object: nil)
     }
     
     @objc private func hideSideMenu() {
@@ -36,11 +35,9 @@ class ContainerViewController: UIViewController {
             self.sideMenu.alpha = 0
         })
         sideMenuViewController.animateHidingOfMenu()
+        self.sideMenu.layer.shadowOpacity = 0
     }
     
-    @objc private func showSideMenu1() {
-
-    }
 
 }
 
@@ -52,6 +49,7 @@ extension ContainerViewController: TeachersViewControllerDelegate {
             self.sideMenu.alpha = 1
         }
         sideMenuViewController.animateShowingOfMenu()
+        self.sideMenu.layer.shadowOpacity = 0.8
     }
 }
 

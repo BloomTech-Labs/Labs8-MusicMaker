@@ -146,15 +146,15 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 //   });
 // });
 
-app.post('/teachers', (req, res) => {
-  let data = {
-    QRCode: req.QRCode,
-    email: req.email
-  };
-
-  let setTeacher = db.collection('teachers').set(data);
-  res.json(data);
-})
+// app.post('/teachers', (req, res) => {
+//   let data = {
+//     QRCode: req.QRCode,
+//     email: req.email
+//   };
+//
+//   let setTeacher = db.collection('teachers').set(data);
+//   res.json(data);
+// })
 
 ///////////////////////
 

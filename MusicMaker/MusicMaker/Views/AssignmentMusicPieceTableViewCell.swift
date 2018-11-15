@@ -50,6 +50,7 @@ extension AssignmentMusicPieceTableViewCell: UICollectionViewDelegate, UICollect
         
         if let pdfPage = pdfDocument?.page(at: indexPath.item) {
             cell.pdfView.go(to: pdfPage)
+            cell.setNeedsLayout()
         }
         
         return cell

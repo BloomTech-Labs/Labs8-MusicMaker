@@ -1,9 +1,13 @@
 const admin = require('firebase-admin');
 const express = require('express');
+const QRCode = require('qrcode');
 const fs = require('fs');
+
 
 // Firebase-specific dependencies
 const firebase = require('firebase');
+
+const serviceAccount = require('./musicmaker-4b2e8-firebase-adminsdk-v1pkr-34d1984175.json');
 
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -19,7 +23,11 @@ const firestore = new Firestore({
   projectId: "musicmaker-4b2e8",
 });
 firebase.initializeApp(config);
-const db = firebase.firestore();
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://musicmaker-4b2e8.firebaseio.com"
+});
+const db = admin.firestore();
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
 
@@ -30,6 +38,21 @@ const storage = require('@google-cloud/storage')({
 ///////////////////////
 
 const app = express();
+
+// GET a QR code
+
+app.get('/qrcode', async (req, res, next) => {
+  try {
+    let stringGen = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16);
+    let code = QRCode.toString(stringGen, function (err, string) {
+      console.log(string);
+      res.json(string);
+    })
+  } catch(err) {
+    next(err);
+  }
+});
+
 // test GET request, adding key/value pair to Firebase
 
 app.get('/teachers', async (req, res, next) => {
@@ -114,21 +137,47 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 
 // POST
 
+// add individual teacher with just an ID
+
 // app.post('/teachers', async (req, res, next) => {
 //   try {
-//     const { email }  = req.body.email;
-//     // if(!name) throw new Error('Name is blank!');
-//     const teacherData = { email };
-//     const teachersRef = await db.collection('teachers').document('').add(teacherData);
+//     const firstName = req.body.firstName;
+//     const lastName = req.body.lastName;
+//     const data = { firstName, lastName };
+//     const ref = await db.collection('teachers').doc(id).collection('settings').doc(id);
 //     res.json({
-//       id: teachersRef.id,
-//       teacherData
+//       id: ref.id,
+//       data
 //     });
 //   } catch(err) {
-//     console.log(err.message);
 //     next(err);
 //   }
 // });
+
+// app.post('/teachers', async (req, res, next) => {
+//   (res => {
+//     const obj = res;
+//     const teacherData = {
+//       firstName: obj.firstName,
+//       lastName: obj.lastName
+//     };
+//     return db.collection('teachers').doc(id).collection('settings').doc(id)
+//       .update(teacherData).then(() => {
+//         console.log('New teacher added to database!');
+//         res.json(teacherData);
+//       })
+//   });
+// });
+
+// app.post('/teachers', (req, res) => {
+//   let data = {
+//     QRCode: req.QRCode,
+//     email: req.email
+//   };
+//
+//   let setTeacher = db.collection('teachers').set(data);
+//   res.json(data);
+// })
 
 ///////////////////////
 
@@ -187,6 +236,44 @@ app.get('/student/assignments/:idStudent', async (req, res, next) => {
 
 //GET a single assignment from a student, details: assignmentName, dueDate, teacher, instrument, level, piece, instructions, feedback
 app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {
+
+    try {
+        const studentId = req.params['idStudent'];
+        const assignmentId = req.params['idAssignment'];
+
+        const stringList = ["assignmentName", "feedback","instructions", "instrument", "level", "piece","sheetMusic","status","teacher", "video"];
+        const assigmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get()
+
+        jsonRes = {};
+        for (let i =0; i < stringList.length; i++){
+            let value = assigmentRef.get(stringList[i]);
+            if(!("object" == typeof(value))){
+                jsonRes[stringList[i]] = value;
+            }else{
+                console.log("Error: Should not have object in this list")
+            }
+        }
+        let dueDate = assigmentRef.get("dueDate");
+        jsonRes["dueDate"] = dueDate;
+
+
+        // let musicSheet = assigmentRef.get("sheetMusic");
+        // let segments = musicSheet['0']._key.path.segments
+        // let dir_name = segments[segments.length -2];
+        // let filename = segments[segments.length -1];
+        // //console.log(musicSheet['0']._key.path.segments);
+
+        // var gsReference = storage.refFromURL('gs://musicmaker-4b2e8.appspot.com/' + dir_name + '/' + filename);
+
+        // //gs://musicmaker-4b2e8.appspot.com
+        // gs://musicmaker-4b2e8.appspot.com
+
+        res.json(jsonRes);
+    } catch (err) {
+    next (err);
+    }
+    });
+
   try {
       const studentId = req.params['idStudent'];
       const assignmentId = req.params['idAssignment'];
@@ -270,7 +357,6 @@ app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, ne
   next (err);
   }
   });
-
 
 // server instantiation
 

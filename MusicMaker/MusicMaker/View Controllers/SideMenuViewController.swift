@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import GoogleSignIn
 
 class SideMenuViewController: UIViewController {
 
@@ -46,6 +47,7 @@ class SideMenuViewController: UIViewController {
     @IBAction func logoutUser(_ sender: Any) {
         do {
             try Auth.auth().signOut()
+            GIDSignIn.sharedInstance().signOut()
             let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
             let initialVC = storyboard.instantiateViewController(withIdentifier: "FirstNavController")
             self.present(initialVC, animated: true, completion: nil)

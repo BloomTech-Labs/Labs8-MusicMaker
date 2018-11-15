@@ -4,12 +4,12 @@ import withAuthentication from './withAuthentication';
 
 import * as routes from '../constants/routes';
 
-// import Navigation from './Navigation';
+import Navigation from './Navigation';
 import LandingPageView from '../views/landingView';
 import SignUpView from '../views/signupView';
 import SignInView from '../views/signinView';
 import DashboardView from '../views/dashboardView';
-import DashboardBillingView from '../views/dashboardBillingView';
+// import DashboardBillingView from '../views/dashboardBillingView';
 import StudentListView from '../views/studentListView';
 
 import './App.css';
@@ -18,9 +18,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <Navigation /> */}
+        <Navigation />
         <Route 
-          path="/students" 
+          path={ routes.STUDENTS }
           component={StudentListView}
         />
         <Route

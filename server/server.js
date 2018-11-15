@@ -111,6 +111,9 @@ app.get('/students/:id/assignments', async (req, res, next) => {
   }
 });
 
+//GET teacher can get an assignment's sheetMusic(pdf)
+
+
 
 // POST
 
@@ -151,125 +154,125 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 ///////////////////////
 
 //=================================================== STUDENTS =================================================================
-function parseDate(date){
-  const month = date.getMonth() + 1;
-  const day = date.getDate() + 1;
-  const year = date.getFullYear();
-  const hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
-  const minute = date.getMinutes() == '0' ? '00' : date.getMinutes();
-  const amPm = date.getHours() >= 12 ? "PM" : "AM";
-  const reformattedDueDate = month + "/" + day + "/" + year + " at " + hour + ":" + minute + " " + amPm
-  return reformattedDueDate;
-};
+// function parseDate(date){
+//   const month = date.getMonth() + 1;
+//   const day = date.getDate() + 1;
+//   const year = date.getFullYear();
+//   const hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+//   const minute = date.getMinutes() == '0' ? '00' : date.getMinutes();
+//   const amPm = date.getHours() >= 12 ? "PM" : "AM";
+//   const reformattedDueDate = month + "/" + day + "/" + year + " at " + hour + ":" + minute + " " + amPm
+//   return reformattedDueDate;
+// };
 
-// GET list of all of student's assignments, details: assignmentName, dueDate, and status
-app.get('/student/assignments/:idStudent', async (req, res, next) => {
-  try {
-  const studentId = req.params['idStudent'];
-  const assignments = {};
+// // GET list of all of student's assignments, details: assignmentName, dueDate, and status
+// app.get('/student/assignments/:idStudent', async (req, res, next) => {
+//   try {
+//   const studentId = req.params['idStudent'];
+//   const assignments = {};
 
-  const assignmentsRef =  await db.collection('students').doc(studentId).collection('assignments').orderBy('dueDate', 'desc');
-  const allAssignments = await assignmentsRef.get()
-  .then(snap => {
-    snap.forEach(doc => {
-      root = doc.data();
-      reformattedDueDate = parseDate(root.dueDate);
-      assignments[doc.id] = [root.assignmentName, reformattedDueDate, root.status];
-    })
-  })
+//   const assignmentsRef =  await db.collection('students').doc(studentId).collection('assignments').orderBy('dueDate', 'desc');
+//   const allAssignments = await assignmentsRef.get()
+//   .then(snap => {
+//     snap.forEach(doc => {
+//       root = doc.data();
+//       reformattedDueDate = parseDate(root.dueDate);
+//       assignments[doc.id] = [root.assignmentName, reformattedDueDate, root.status];
+//     })
+//   })
 
-  res.json(assignments);
+//   res.json(assignments);
 
-  } catch(err) {
-  next(err);
-  }
-});
+//   } catch(err) {
+//   next(err);
+//   }
+// });
 
-//GET a single assignment from a student, details: assignmentName, dueDate, teacher, instrument, level, piece, instructions, feedback
-app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {
-  try {
-      const studentId = req.params['idStudent'];
-      const assignmentId = req.params['idAssignment'];
-      const assignment = {};      
+// //GET a single assignment from a student, details: assignmentName, dueDate, teacher, instrument, level, piece, instructions, feedback
+// app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {
+//   try {
+//       const studentId = req.params['idStudent'];
+//       const assignmentId = req.params['idAssignment'];
+//       const assignment = {};      
 
-      const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId);
-      const getDoc = await assignmentRef.get()
-      .then(doc => {
-        root = doc.data();
-        reformattedDueDate = parseDate(root.dueDate);
-        assignment[doc.id] = [root.assignmentName, reformattedDueDate, root.teacher, root.instrument, root.level, root.piece, root.instructions, root.feedback]
-      })
+//       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId);
+//       const getDoc = await assignmentRef.get()
+//       .then(doc => {
+//         root = doc.data();
+//         reformattedDueDate = parseDate(root.dueDate);
+//         assignment[doc.id] = [root.assignmentName, reformattedDueDate, root.teacher, root.instrument, root.level, root.piece, root.instructions, root.feedback]
+//       })
 
-      res.json(assignment);
+//       res.json(assignment);
 
-  } catch (err) {
-  next (err);
-  }
-  });
+//   } catch (err) {
+//   next (err);
+//   }
+//   });
 
-  //GET student can get their sheetMusic(pdf)
-app.get('/student/:idStudent/assigment/:idAssignment/sheetMusic', async (req, res, next) => {
-  try {
-      const studentId = req.params['idStudent'];
-      const assignmentId = req.params['idAssignment'];
+// //GET student can get their sheetMusic(pdf)
+// app.get('/student/:idStudent/assigment/:idAssignment/sheetMusic', async (req, res, next) => {
+//   try {
+//       const studentId = req.params['idStudent'];
+//       const assignmentId = req.params['idAssignment'];
   
-      const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
+//       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
       
-      const musicSheet = assignmentRef.get("sheetMusic");
-      const segments = musicSheet['0']._key.path.segments
-      const dirName = segments[segments.length -2];
-      const filename = segments[segments.length -1];
-      const options = {
-          destination : 'temp/' + studentId + '_' + filename,
-      };
+//       const musicSheet = assignmentRef.get("sheetMusic");
+//       const segments = musicSheet['0']._key.path.segments
+//       const dirName = segments[segments.length -2];
+//       const filename = segments[segments.length -1];
+//       const options = {
+//           destination : 'temp/' + studentId + '_' + filename,
+//       };
 
-      const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
-      await storage.bucket('musicmaker-4b2e8.appspot.com')
-                   .file(dirName + '/' + filename)
-                   .download(options);
+//       const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
+//       await storage.bucket('musicmaker-4b2e8.appspot.com')
+//                    .file(dirName + '/' + filename)
+//                    .download(options);
 
-      const displaysFile = await fs.readFile('temp/' + studentId + '_' + filename, (err, data) => {
-        res.contentType("application/pdf");
-        res.send(data);
-      });
+//       const displaysFile = await fs.readFile('temp/' + studentId + '_' + filename, (err, data) => {
+//         res.contentType("application/pdf");
+//         res.send(data);
+//       });
 
-  } catch (err) {
-  next (err);
-  }
-  });
+//   } catch (err) {
+//   next (err);
+//   }
+//   });
 
-//GET student can get their recorded video
-app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, next) => {
-  try {
-      const studentId = req.params['idStudent'];
-      const assignmentId = req.params['idAssignment'];
+// //GET student can get their recorded video
+// app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, next) => {
+//   try {
+//       const studentId = req.params['idStudent'];
+//       const assignmentId = req.params['idAssignment'];
   
-      const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
+//       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
 
-      const video = assignmentRef.get("video");
-      const segments = video['0']._key.path.segments;
-      const dirName = segments[segments.length -2];
-      const filename = segments[segments.length -1];
-      const storagePath = dirName + '/' + filename; 
-      const localPath = 'temp/' + studentId + '_' + filename;
-      const options = {
-          destination : localPath,
-      };
+//       const video = assignmentRef.get("video");
+//       const segments = video['0']._key.path.segments;
+//       const dirName = segments[segments.length -2];
+//       const filename = segments[segments.length -1];
+//       const storagePath = dirName + '/' + filename; 
+//       const localPath = 'temp/' + studentId + '_' + filename;
+//       const options = {
+//           destination : localPath,
+//       };
 
-      const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
-      await storage.bucket('musicmaker-4b2e8.appspot.com')
-                   .file(storagePath)
-                   .download(options);
+//       const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
+//       await storage.bucket('musicmaker-4b2e8.appspot.com')
+//                    .file(storagePath)
+//                    .download(options);
 
-      const displaysVideo = await fs.readFile(localPath, (err, data) => {
-        res.contentType("video/mov");
-        res.send(data);
-      });
+//       const displaysVideo = await fs.readFile(localPath, (err, data) => {
+//         res.contentType("video/mov");
+//         res.send(data);
+//       });
 
-  } catch (err) {
-  next (err);
-  }
-  });
+//   } catch (err) {
+//   next (err);
+//   }
+//   });
 
 
 // server instantiation

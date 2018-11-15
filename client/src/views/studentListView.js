@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import DashbardNavigation from '../components/DashboardNavigation';
 import SideBar from '../components/SideBar';
@@ -11,7 +11,7 @@ class StudentListView extends Component {
 
     render() {
         return(
-            <div className="sudentlist-view">
+            <div className="studentlist-view">
                 <DashbardNavigation />
                 <SideBar />
                 <h1>Students</h1>

@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-// import { connect } from 'react-redux';
-
-import Navigation from '../components/Navigation.js';
 
 class LandingPageView extends Component {
   render() {
     return (
       <div>
-        <Navigation />
         <h1>Landing Page</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo

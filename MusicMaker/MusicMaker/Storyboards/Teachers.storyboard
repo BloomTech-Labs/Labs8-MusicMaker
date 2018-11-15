@@ -99,6 +99,9 @@ Password</string>
                                         <state key="normal" title="Logout" image="logout">
                                             <color key="titleColor" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="logoutUser:" destination="Rks-YH-0aT" eventType="touchUpInside" id="JRO-Fx-MoA"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

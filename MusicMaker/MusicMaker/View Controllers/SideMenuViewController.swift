@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SideMenuViewController: UIViewController {
 
@@ -39,13 +40,28 @@ class SideMenuViewController: UIViewController {
         }
     }
     
+    
+    // MARK: - IBActions
+    
+    @IBAction func logoutUser(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
+            let initialVC = storyboard.instantiateViewController(withIdentifier: "FirstNavController")
+            self.present(initialVC, animated: true, completion: nil)
+        } catch {
+            //Update UI to let them know it couldn't sign them out
+            print(error)
+        }
+    }
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         setupSideMenuToBeOffScreen()
     }
     
     // MARK: - Private Methods
-    //Moves the buttoms and the imageview off screen so when the menu shows it can animate it on screen
+    //Moves the buttoms off screen so when the menu shows for the first time it can animate it onto the screen
     private func setupSideMenuToBeOffScreen() {
         self.profileButton.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
         self.assignmentsButton.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
@@ -101,8 +117,5 @@ class SideMenuViewController: UIViewController {
         UIView.animate(withDuration: 0.4, delay: 0.4, options: [.curveEaseIn, .allowUserInteraction], animations: {
             self.logoutButton.transform = .identity
         })
-        
-
-        
     }
 }

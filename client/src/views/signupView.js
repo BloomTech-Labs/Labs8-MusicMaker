@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import { auth } from '../firebase';
+import { authFuncs } from '../firebase';
 
 import * as routes from "../constants/routes";
 
@@ -44,7 +44,7 @@ class SignUpView extends Component {
           history,
       } = this.props;
 
-      auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+      authFuncs.doCreateUserWithEmailAndPassword(email, passwordOne)
         .then(authUser => {
             this.setState({ ...INITIAL_STATE });
             history.push(routes.LANDING);

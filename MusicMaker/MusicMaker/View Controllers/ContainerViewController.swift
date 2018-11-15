@@ -18,23 +18,21 @@ class ContainerViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet weak var teachersView: UIView!
-    
+    var sideMenuViewController: SideMenuViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.children)
+        sideMenuViewController = self.children[0] as? SideMenuViewController
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(hideSideMenu))
         teachersView.addGestureRecognizer(touchGesture)
-        NotificationCenter.default.addObserver(self, selector: #selector(showSideMenu), name: NSNotification.Name("test"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showSideMenu), name: .shouldShowSideMenu, object: nil)
     }
     
     @objc private func hideSideMenu() {
-        NotificationCenter.default.post(name: NSNotification.Name("hidingMenu"), object: nil)
-        
-        
         UIView.animate(withDuration: 0.4, delay: 0.2, options: [], animations: {
             self.sideMenu.alpha = 0
         })
+        sideMenuViewController.animateHidingOfMenu()
     }
     
     @objc private func showSideMenu() {
@@ -42,6 +40,7 @@ class ContainerViewController: UIViewController {
         UIView.animate(withDuration: 0.4) {
             self.sideMenu.alpha = 1
         }
+        sideMenuViewController.animateShowingOfMenu()
     }
 
 }

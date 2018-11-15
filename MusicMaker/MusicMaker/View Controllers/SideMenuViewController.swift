@@ -20,14 +20,12 @@ class SideMenuViewController: UIViewController {
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(animateHidingOfMenu), name: NSNotification.Name("hidingMenu"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(animateShowingOfMenu), name: NSNotification.Name("test"), object: nil)
-
         menuImageView.image = UIImage(named: "SideMenu")
         setupSideMenuToBeOffScreen()
-        
     }
     
+    // MARK: - Private Methods
+    //Moves the buttoms and the imageview off screen so when the menu shows it can animate it on screen
     private func setupSideMenuToBeOffScreen() {
         menuImageView.transform = CGAffineTransform(translationX: -self.menuImageView.frame.width, y: 0)
         self.button1.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
@@ -38,7 +36,7 @@ class SideMenuViewController: UIViewController {
     }
     
     
-    @objc private func animateHidingOfMenu() {
+    func animateHidingOfMenu() {
         
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseIn, .allowUserInteraction], animations: {
             self.button1.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
@@ -58,12 +56,9 @@ class SideMenuViewController: UIViewController {
         UIView.animate(withDuration: 0.4, delay: 0.2, options: .curveEaseIn, animations: {
             self.button3.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
         })
-        
-        
     }
     
-    @objc private func animateShowingOfMenu() {
- 
+    func animateShowingOfMenu() {
         
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseIn, animations: {
             self.menuImageView.transform = .identity
@@ -82,13 +77,5 @@ class SideMenuViewController: UIViewController {
             self.button1.transform = .identity
             self.button5.transform = .identity
         })
-        
-        
- 
     }
-    
-
-    
-    
-
 }

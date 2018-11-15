@@ -9,9 +9,15 @@
 import UIKit
 import PDFKit
 
+protocol AssignmentMusicPieceTableViewCellDelegate: class {
+    func musicPiecePageWasSelected(for cell: AssignmentMusicPieceTableViewCell, with page: PDFPage)
+}
+
 class AssignmentMusicPieceTableViewCell: UITableViewCell {
     
     // MARK: - Properties
+    
+    weak var delegate: AssignmentMusicPieceTableViewCellDelegate?
     
     var musicPiece: String? {
         didSet {
@@ -54,6 +60,13 @@ extension AssignmentMusicPieceTableViewCell: UICollectionViewDelegate, UICollect
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MusicSheetPageCollectionViewCell else { return }
+        guard let page = cell.pdfView.currentPage else { return }
+        
+        delegate?.musicPiecePageWasSelected(for: self, with: page)
     }
     
     // Don't forget to set the collection view's delegate and data source to be AssignmentMusicPieceTableViewCell

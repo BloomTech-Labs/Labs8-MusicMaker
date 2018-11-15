@@ -1,6 +1,6 @@
 const admin = require('firebase-admin');
 const express = require('express');
-const QRcode = require('qrcode');
+const QRCode = require('qrcode');
 
 // Firebase-specific dependencies
 
@@ -30,10 +30,22 @@ firestore.settings(settings);
 
 ///////////////////////
 
+const app = express();
+
 // GET a QR code
 
+app.get('/qrcode', async (req, res, next) => {
+  try {
+    let stringGen = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16);
+    let code = QRCode.toString(stringGen, function (err, string) {
+      console.log(string);
+      res.json(string);
+    })
+  } catch(err) {
+    next(err);
+  }
+});
 
-const app = express();
 // test GET request, adding key/value pair to Firebase
 
 app.get('/teachers', async (req, res, next) => {

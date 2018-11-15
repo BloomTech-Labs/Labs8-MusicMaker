@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 class SignUpViewController: UIViewController {
 
@@ -16,7 +17,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addDismissKeyboardGestureRecognizer()
-    
+ 
     }
     
     //Adds an observer to listen for the keyboardWillShowNotification & keyboardWillHideNotifcation

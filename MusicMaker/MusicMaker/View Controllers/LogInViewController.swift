@@ -8,15 +8,20 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
+import GoogleSignIn
 
-class LogInViewController: UIViewController {
-
+class LogInViewController: UIViewController, GIDSignInUIDelegate {
+    
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addDismissKeyboardGestureRecognizer()
+        GIDSignIn.sharedInstance().uiDelegate = self
+//        GIDSignIn.sharedInstance().signIn()
     }
+    
     
     // MARK: - IBOutlets
     @IBOutlet weak var emailTextField: UITextField! {
@@ -60,6 +65,7 @@ class LogInViewController: UIViewController {
     //Adds a gesture recognizer that calls dismissKeyboard(_:)
     private func addDismissKeyboardGestureRecognizer() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)
     }
     

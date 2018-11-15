@@ -180,6 +180,9 @@ class RecordingViewController: UIViewController {
             recordButton.frame = CGRect(x: recordButtonMargin, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
         }
         
+        pdfView.minScaleFactor = 0.01
+        pdfView.scaleFactor = pdfView.scaleFactorForSizeToFit
+        
         // Camera orientation
         switch UIApplication.shared.statusBarOrientation {
         case .portrait:

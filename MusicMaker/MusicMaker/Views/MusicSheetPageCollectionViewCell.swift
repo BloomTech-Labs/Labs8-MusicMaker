@@ -30,6 +30,4 @@ class MusicSheetPageCollectionViewCell: UICollectionViewCell {
         pdfView.minScaleFactor = 0.01
         pdfView.scaleFactor = pdfView.scaleFactorForSizeToFit
     }
-    
-    // maybe use layout subviews to fix scrolling of the pdf page?
 }

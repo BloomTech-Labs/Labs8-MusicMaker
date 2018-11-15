@@ -15,10 +15,15 @@ class TeachersViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    
+    // MARK: - Properties
+    weak var delegate: TeachersViewControllerDelegate?
+    
     // MARK: - IBActions
     //Posts a notification to let other views know to show the side menu
     @IBAction func showSideMenu(_ sender: Any) {
-        NotificationCenter.default.post(name: .shouldShowSideMenu, object: nil)
+        delegate?.showSideMenu()
+//        NotificationCenter.default.post(name: .shouldShowSideMenu, object: nil)
     }
 
 }

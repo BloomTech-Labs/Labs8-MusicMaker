@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A622B5FB4D6BF78A0153FDE7B967B0D"
+               BlueprintIdentifier = "AEE027E3E75C3895277122E5065467D8"
                BuildableName = "Pods_MusicMaker.framework"
                BlueprintName = "Pods-MusicMaker"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A622B5FB4D6BF78A0153FDE7B967B0D"
+            BlueprintIdentifier = "AEE027E3E75C3895277122E5065467D8"
             BuildableName = "Pods_MusicMaker.framework"
             BlueprintName = "Pods-MusicMaker"
             ReferencedContainer = "container:Pods.xcodeproj">

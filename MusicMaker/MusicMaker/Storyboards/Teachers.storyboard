@@ -12,7 +12,7 @@
         <!--Container View Controller-->
         <scene sceneID="aq5-35-mkD">
             <objects>
-                <viewController id="e9s-42-Qsp" customClass="ContainerViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContainerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="e9s-42-Qsp" customClass="ContainerViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KeX-Wx-RhS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

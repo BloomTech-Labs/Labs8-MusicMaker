@@ -36,6 +36,10 @@
 		BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */; };
 		BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5652192393B00D84FF2 /* Assets.xcassets */; };
 		BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */; };
+		BFE771A8219E43F900DCE42A /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE771A7219E43F900DCE42A /* UserProfile.storyboard */; };
+		BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */; };
+		BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */; };
+		BFE771AE219E6B2600DCE42A /* SideMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */; };
 		CCA6E76E82020309C9BE8F98 /* Pods_MusicMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +77,10 @@
 		BFD3E5652192393B00D84FF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFD3E5682192393B00D84FF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFD3E56A2192393B00D84FF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFE771A7219E43F900DCE42A /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+TransitionAnimations.swift"; path = "MusicMaker/Storyboards/UIViewController+TransitionAnimations.swift"; sourceTree = SOURCE_ROOT; };
+		BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDelegate.swift; sourceTree = "<group>"; };
 		F6FDA1FA291F03420ADB77C5 /* Pods-MusicMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				BF5D5218219D17F100DFF213 /* TeachersViewControllerDelegate.swift */,
+				BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -108,6 +117,7 @@
 		BFD381C4219353A50038F974 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */,
 				BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */,
 				BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */,
 				BF5D520D219CC8CA00DFF213 /* ContainerViewController.swift */,
@@ -127,6 +137,7 @@
 				BFD381C22193525F0038F974 /* Authentication.storyboard */,
 				399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */,
 				BF5D520B219CC7F200DFF213 /* Teachers.storyboard */,
+				BFE771A7219E43F900DCE42A /* UserProfile.storyboard */,
 				39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */,
 				39CA2B522193607700C6018E /* SplitView.storyboard */,
 			);
@@ -178,6 +189,7 @@
 		BFD381CA219353F40038F974 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */,
 				BF5D5216219CD23100DFF213 /* UIButton+Extensions.swift */,
 			);
 			path = Extensions;
@@ -294,6 +306,7 @@
 				BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */,
+				BFE771A8219E43F900DCE42A /* UserProfile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,8 +424,11 @@
 				BF5D520E219CC8CA00DFF213 /* ContainerViewController.swift in Sources */,
 				BFD381CC219354C70038F974 /* QRScannerViewController.swift in Sources */,
 				39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */,
+				BFE771AE219E6B2600DCE42A /* SideMenuDelegate.swift in Sources */,
+				BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */,
 				BF5D5210219CC8E800DFF213 /* TeachersViewController.swift in Sources */,
 				39C108FF2194FD9800180F37 /* CameraPreviewView.swift in Sources */,
+				BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */,
 				BF5D5219219D17F100DFF213 /* TeachersViewControllerDelegate.swift in Sources */,
 				39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */,
 				BF5D5212219CC8F500DFF213 /* SideMenuViewController.swift in Sources */,

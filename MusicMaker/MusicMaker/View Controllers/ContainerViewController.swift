@@ -25,6 +25,7 @@ class ContainerViewController: UIViewController {
         sideMenuViewController = self.children[0] as? SideMenuViewController
         teachersViewController =  self.children[1].children[0] as? TeachersViewController
         teachersViewController.delegate = self
+        sideMenuViewController.delegate = self
         
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(hideSideMenu))
         teachersView.addGestureRecognizer(touchGesture)
@@ -50,6 +51,14 @@ extension ContainerViewController: TeachersViewControllerDelegate {
         }
         sideMenuViewController.animateShowingOfMenu()
         self.sideMenu.layer.shadowOpacity = 0.8
+    }
+}
+
+extension ContainerViewController: SideMenuDelegate {
+    func userProfileClicked() {
+        let storyboard = UIStoryboard(name: "Teachers", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "UserProfile")
+        self.presentDetail(viewController)
     }
 }
 

@@ -2,7 +2,11 @@ const admin = require('firebase-admin');
 const express = require('express');
 const QRCode = require('qrcode');
 const fs = require('fs');
-
+const cors = require('cors');
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 // Firebase-specific dependencies
 const firebase = require('firebase');
@@ -38,6 +42,7 @@ const storage = require('@google-cloud/storage')({
 ///////////////////////
 
 const app = express();
+app.use(cors(corsOptions));
 
 // GET a QR code
 

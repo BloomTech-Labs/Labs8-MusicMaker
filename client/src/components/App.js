@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import withAuthentication from './withAuthentication';
 
 import * as routes from '../constants/routes';
+import * as actions from '../actions';
 
 import Navigation from './Navigation';
 import LandingPageView from '../views/landingView';
@@ -12,11 +13,12 @@ import DashboardView from '../views/dashboardView';
 // import DashboardBillingView from '../views/dashboardBillingView';
 import StudentListView from '../views/studentListView';
 import DummyPdfView from '../views/dummyPdfView';
-
+import DummyQrcodeView from '../views/dummyQrView';
 
 import './App.css';
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
@@ -25,7 +27,7 @@ class App extends Component {
           path={ routes.ASSIGNMENTS }
           component={DummyPdfView}
         />
-          <Route 
+        <Route 
           path={ routes.STUDENTS }
           component={StudentListView}
         />
@@ -44,6 +46,11 @@ class App extends Component {
         <Route
           exact path={ routes.DASHBOARD }
           component={ DashboardView }
+        />
+        <Route 
+          path={ routes.QR_CODE }
+          render={() => <DummyQrcodeView {...this.props } />}
+          // {/* component={DummyQrcodeView} */}
         />
       </div>
     );

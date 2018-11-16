@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
             <NavLink to="/assignments">Assignments</NavLink>
             <NavLink to="/billing">Billing</NavLink>
             <NavLink to="/settings">Settings</NavLink>
+            <NavLink to="/qrcode">QR Code</NavLink>
         </div>
     )
 }

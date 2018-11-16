@@ -16,12 +16,6 @@ class UserProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func goBackToTeachers(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Teachers", bundle: nil)
-        let teachersVC = storyboard.instantiateViewController(withIdentifier: "ContainerViewController")
-        self.dismissDetail()
-    }
-    
     /*
     // MARK: - Navigation
 

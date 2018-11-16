@@ -156,7 +156,7 @@ Password</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="jax-Rw-bUY" kind="show" id="h23-J5-agB"/>
+                        <segue destination="jax-Rw-bUY" kind="show" identifier="ShowUserProfile" id="h23-J5-agB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jhg-Kt-wfK" userLabel="First Responder" sceneMemberID="firstResponder"/>

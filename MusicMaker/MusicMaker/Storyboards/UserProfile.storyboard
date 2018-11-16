@@ -28,13 +28,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zcf-yU-lSg"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bfh-Kb-VTq">
-                        <barButtonItem key="leftBarButtonItem" title="Teachers" id="TXt-QM-EYj">
-                            <connections>
-                                <action selector="goBackToTeachers:" destination="cuX-cd-C0V" id="ex6-Xx-FeF"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFj-33-We7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

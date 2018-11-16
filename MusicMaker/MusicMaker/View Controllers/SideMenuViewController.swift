@@ -51,9 +51,6 @@ class SideMenuViewController: UIViewController {
     
     @IBAction func showUserProfile(_ sender: Any) {
         delegate?.userProfileClicked()
-//        let storyboard = UIStoryboard(name: "Teachers", bundle: nil)
-//        let viewController = storyboard.instantiateViewController(withIdentifier: "UserProfile")
-//        self.presentDetail(viewController)
     }
     
     @IBAction func logoutUser(_ sender: Any) {

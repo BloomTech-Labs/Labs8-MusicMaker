@@ -25,10 +25,16 @@ class TeachersViewController: UIViewController {
         delegate?.showSideMenu()
 //        NotificationCenter.default.post(name: .shouldShowSideMenu, object: nil)
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowUserProfile" {
+            print(1)
+        }
+    }
+    
+    
 }
 
-//Notification for when the user clicks on the menu button 
-extension NSNotification.Name {
-    static let shouldShowSideMenu = NSNotification.Name("ShouldShowSideMenu")
-}
+
+
+

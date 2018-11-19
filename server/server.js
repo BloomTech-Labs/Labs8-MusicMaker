@@ -2,12 +2,13 @@ const admin = require('firebase-admin');
 const express = require('express');
 const QRCode = require('qrcode');
 const fs = require('fs');
-
+const cors = require('cors');
 
 // Firebase-specific dependencies
 const firebase = require('firebase');
+// firebase.database.enableLogging(true);
 
-const serviceAccount = require('./musicmaker-4b2e8-firebase-adminsdk-v1pkr-34d1984175.json');
+// const serviceAccount = require('./musicmaker-4b2e8-firebase-adminsdk-v1pkr-34d1984175.json');
 
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -23,11 +24,11 @@ const firestore = new Firestore({
   projectId: "musicmaker-4b2e8",
 });
 firebase.initializeApp(config);
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://musicmaker-4b2e8.firebaseio.com"
-});
-const db = admin.firestore();
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://musicmaker-4b2e8.firebaseio.com"
+// });
+const db = firebase.firestore();
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
 
@@ -164,6 +165,8 @@ app.get('/teacher/:idTeacher/assigment/:idAssignment/sheetMusic', async (req, re
   next (err);
   }
   });
+
+  //GET teacher can get a student's recorded video
 
 
 

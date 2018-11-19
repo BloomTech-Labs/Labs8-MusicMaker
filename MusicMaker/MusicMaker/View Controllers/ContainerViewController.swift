@@ -28,22 +28,24 @@ class ContainerViewController: UIViewController {
         teachersViewController.delegate = self
         sideMenuViewController.delegate = self
         
-        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(hideSideMenu))
-        teachersView.addGestureRecognizer(touchGesture)
+//        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(hideMenuFromUserTap))
+//        teachersView.addGestureRecognizer(touchGesture)
     }
     
-    @objc private func hideSideMenu() {
+//    @objc private func hideMenuFromUserTap() {
+//        showSideMenu()
+//    }
+//
+    private func hideSideMenu() {
         UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
             self.sideMenu.alpha = 0
         })
         sideMenuViewController.animateHidingOfMenu()
-    
+        
         UIView.animate(withDuration: 0.4, delay: 0.2, options: [], animations: {
             self.teachersView.transform = .identity
         })
     }
-    
- 
     
 
 }
@@ -51,14 +53,19 @@ class ContainerViewController: UIViewController {
 // MARK: - TeachersViewControllerDelegate
 extension ContainerViewController: TeachersViewControllerDelegate {
     func showSideMenu() {
-        self.view.bringSubviewToFront(sideMenu)
-        UIView.animate(withDuration: 0.4) {
-            self.sideMenu.alpha = 1
+        if !teachersViewController.sideMenuIsShowing {
+            self.view.bringSubviewToFront(sideMenu)
+            UIView.animate(withDuration: 0.4) {
+                self.sideMenu.alpha = 1
+            }
+            sideMenuViewController.animateShowingOfMenu()
+            UIView.animate(withDuration: 0.4) {
+                self.teachersView.transform = CGAffineTransform(translationX: self.sideMenu.frame.width, y: 0)
+            }
+        } else {
+            hideSideMenu()
         }
-        sideMenuViewController.animateShowingOfMenu()
-        UIView.animate(withDuration: 0.4) {
-            self.teachersView.transform = CGAffineTransform(translationX: self.sideMenu.frame.width, y: 0)
-        }
+     
     }
 }
 

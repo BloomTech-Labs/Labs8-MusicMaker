@@ -144,7 +144,7 @@ app.get('/teacher/:idTeacher/assigment/:idAssignment/sheetMusic', async (req, re
       const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get();
 
       const musicSheet = assignmentRef.get("sheetMusic");
-      const segments = musicSheet['0']._key.path.segments
+      const segments = musicSheet._key.path.segments
       const dirName = segments[segments.length -2];
       const filename = segments[segments.length -1];
       const options = {
@@ -166,7 +166,48 @@ app.get('/teacher/:idTeacher/assigment/:idAssignment/sheetMusic', async (req, re
   }
   });
 
-  //GET teacher can get a student's recorded video
+//GET teacher can get a student's recorded video
+// app.get('/teacher/:idTeacher/student/:idStudent/video', async (req, res, next) => {
+//   try {
+//       const teacherId = req.params['idTeacher'];
+//       const studentId = req.params['idStudent'];
+//       const assignmentId = req.params['idAssignment'];
+
+  
+//       const studentRef =  await db.collection('teachers').doc(teacherId).collection('students').doc(studentId).get();
+//       console.log('0******************************************', studentRef)
+      
+//       const student = studentRef.get("student");
+//       console.log('1******************************************', student)
+//       const assignmentRef =  await db.collection(student).doc(studentId).collection('assignmentId').doc(assignmentId).get();
+//       console.log('2******************************************', assignmentRef)
+//       const video = studentRef.get("video");
+//       console.log('3******************************************', video)
+
+
+//       // const segments = video['0']._key.path.segments;
+//       // const dirName = segments[segments.length -2];
+//       // const filename = segments[segments.length -1];
+//       // const storagePath = dirName + '/' + filename; 
+//       // const localPath = 'temp/' + teacherId + '_' + filename;
+//       // const options = {
+//       //     destination : localPath,
+//       // };
+
+//       // const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
+//       // await storage.bucket('musicmaker-4b2e8.appspot.com')
+//       //              .file(storagePath)
+//       //              .download(options);
+
+//       // const displaysVideo = await fs.readFile(localPath, (err, data) => {
+//       //   res.contentType("video/mov");
+//       //   res.send(data);
+//       // });
+
+//   } catch (err) {
+//   next (err);
+//   }
+// });
 
 
 

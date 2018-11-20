@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import GoogleSignIn
 import AVFoundation
+import UIKit.UIGestureRecognizerSubclass
 
 class SignUpViewController: UIViewController {
     
@@ -31,7 +32,7 @@ class SignUpViewController: UIViewController {
             
             // variable setup
             let translation = recognizer.translation(in: popupView)
-            var fraction = -translation.y / popupOffset
+            var fraction = translation.y / popupOffset
             
             // adjust the fraction for the current state and reversed state
             if currentState == .open { fraction *= -1 }
@@ -82,7 +83,6 @@ class SignUpViewController: UIViewController {
         let transitionAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1, animations: {
             switch state {
             case .open:
-                //                self.videoPreviewLayer?.isHidden = false
                 self.qrView.isHidden = false
                 self.bottomConstraint.constant = 0
                 self.popupView.layer.cornerRadius = 30
@@ -169,7 +169,7 @@ class SignUpViewController: UIViewController {
         runningAnimators.append(outTitleAnimator)
     }
     
-    private func animateTransition() {
+    private func animateTransitionDown() {
         
         // ensure that the animators array is empty (which implies new animations need to be created)
         guard runningAnimators.isEmpty else { return }
@@ -246,6 +246,81 @@ class SignUpViewController: UIViewController {
         runningAnimators.append(inTitleAnimator)
         runningAnimators.append(outTitleAnimator)
     }
+    
+    private func animateTransitionUp() {
+        
+        // ensure that the animators array is empty (which implies new animations need to be created)
+        guard runningAnimators.isEmpty else { return }
+        
+        // an animator for the transition
+        let transitionAnimator = UIViewPropertyAnimator(duration: 1, dampingRatio: 1, animations: {
+            
+            self.qrView.isHidden = false
+            self.bottomConstraint.constant = 0
+            self.popupView.layer.cornerRadius = 30
+            self.view.layoutIfNeeded()
+        })
+        
+        
+        // the transition completion block
+        transitionAnimator.addCompletion { position in
+            if let isRunning = self.captureSession?.isRunning {
+                if !isRunning {
+                    self.captureSession?.startRunning()
+                }
+            }
+            // update the state
+            switch position {
+            case .start:
+                self.currentState = State.open
+            case .end:
+                self.currentState = State.closed
+                self.qrView.isHidden = self.currentState == .open ? false : true
+            case .current:
+                ()
+            }
+            
+            // manually reset the constraint positions
+            switch self.currentState {
+            case .open:
+                self.bottomConstraint.constant = 0
+            case .closed:
+                self.bottomConstraint.constant = self.popupOffset
+            }
+            
+            // remove all running animators
+            self.runningAnimators.removeAll()
+            
+        }
+        
+        // an animator for the title that is transitioning into view
+        let inTitleAnimator = UIViewPropertyAnimator(duration: 1, curve: .easeIn, animations: {
+            self.qrView.isHidden = true
+            //            self.closedTitleLabel.alpha = 1
+            
+        })
+        inTitleAnimator.scrubsLinearly = false
+        
+        // an animator for the title that is transitioning out of view
+        let outTitleAnimator = UIViewPropertyAnimator(duration: 1, curve: .easeOut, animations: {
+            
+            
+            self.qrView.isHidden = true
+            //            self.openTitleLabel.alpha = 0
+            
+        })
+        outTitleAnimator.scrubsLinearly = false
+        
+        // start all animators
+        transitionAnimator.startAnimation()
+        inTitleAnimator.startAnimation()
+        outTitleAnimator.startAnimation()
+        
+        // keep track of all running animators
+        runningAnimators.append(transitionAnimator)
+        runningAnimators.append(inTitleAnimator)
+        runningAnimators.append(outTitleAnimator)
+    }
 
     // MARK: - Enumerations
     private enum State {
@@ -268,7 +343,7 @@ class SignUpViewController: UIViewController {
         return recognizer
     }()
     
-    private let popupOffset: CGFloat = 440
+    private let popupOffset: CGFloat = -440
     private var currentState: State = .closed {
         didSet {
             if currentState == .open {
@@ -294,7 +369,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addDismissKeyboardGestureRecognizer()
- 
+        setupCaptureSession()
     }
     
     //Adds an observer to listen for the keyboardWillShowNotification & keyboardWillHideNotifcation
@@ -319,7 +394,7 @@ class SignUpViewController: UIViewController {
     
     private func setupCaptureSession() {
         captureSession = AVCaptureSession()
-         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera], mediaType: AVMediaType.video, position: .back)
+         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
         guard let captureDevice = deviceDiscoverySession.devices.first else {
             //Update UI to let user know no device was found
             print("Failed getting a capture device")
@@ -411,6 +486,10 @@ class SignUpViewController: UIViewController {
             popupView.layer.shadowRadius = 10
         }
     }
+    
+    @IBOutlet weak var signUpButton: UIButton!
+    
+    
     @IBOutlet weak var firstNameTextField: UITextField! {
         didSet {
             firstNameTextField.delegate = self
@@ -459,7 +538,7 @@ class SignUpViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func addTeacher(_ sender: UITextField) {
-        animateTransition()
+        
     }
     
     @IBAction func selectLevel(_ sender: UITextField) {
@@ -616,7 +695,7 @@ extension SignUpViewController: UITextFieldDelegate {
     //Disables keyboard on select level textfield since their are three options to
     //choose from
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField.tag == 5 || textField.tag == 6 {
+        if textField.tag == 5 || textField.tag == 6 || textField.tag == 7 {
             return false
         }
         return true
@@ -643,7 +722,7 @@ extension SignUpViewController: AVCaptureMetadataOutputObjectsDelegate {
                     teacherTextField.text = qrCodeString
                     captureSession?.stopRunning()
                     playSound()
-                    animateTransition()
+                    animateTransitionDown()
                 }
             }
         }
@@ -666,3 +745,12 @@ extension SignUpViewController: AVCaptureMetadataOutputObjectsDelegate {
 
 
 
+class InstantPanGestureRecognizer: UIPanGestureRecognizer {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+        if (self.state == UIGestureRecognizer.State.began) { return }
+        super.touchesBegan(touches, with: event)
+        self.state = UIGestureRecognizer.State.began
+    }
+    
+}

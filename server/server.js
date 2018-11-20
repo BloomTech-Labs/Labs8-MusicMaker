@@ -135,7 +135,7 @@ app.get('/students/:id/assignments', async (req, res, next) => {
   }
 });
 
-//GET teacher can get an assignment's sheetMusic(pdf)
+//GET teacher can get an assignment's sheetMusic(pdf) before it's assigned to the student(s)
 app.get('/teacher/:idTeacher/assigment/:idAssignment/sheetMusic', async (req, res, next) => {
   try {
       const teacherId = req.params['idTeacher'];
@@ -166,48 +166,40 @@ app.get('/teacher/:idTeacher/assigment/:idAssignment/sheetMusic', async (req, re
   }
   });
 
-//GET teacher can get a student's recorded video
-// app.get('/teacher/:idTeacher/student/:idStudent/video', async (req, res, next) => {
-//   try {
-//       const teacherId = req.params['idTeacher'];
-//       const studentId = req.params['idStudent'];
-//       const assignmentId = req.params['idAssignment'];
-
+//GET teacher can get a student's recorded video 
+// will need to create authentication/middleware where only the student's teacher and the student itself can access this endpoint
+app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, next) => {
+  try {
+      const studentId = req.params['idStudent'];
+      const assignmentId = req.params['idAssignment'];
   
-//       const studentRef =  await db.collection('teachers').doc(teacherId).collection('students').doc(studentId).get();
-//       console.log('0******************************************', studentRef)
-      
-//       const student = studentRef.get("student");
-//       console.log('1******************************************', student)
-//       const assignmentRef =  await db.collection(student).doc(studentId).collection('assignmentId').doc(assignmentId).get();
-//       console.log('2******************************************', assignmentRef)
-//       const video = studentRef.get("video");
-//       console.log('3******************************************', video)
+      const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
 
+      const video = assignmentRef.get("video");
+      const segments = video['0']._key.path.segments;
+      const dirName = segments[segments.length -2];
+      const filename = segments[segments.length -1];
+      const storagePath = dirName + '/' + filename; 
+      const localPath = 'temp/' + studentId + '_' + filename;
+      const options = {
+          destination : localPath,
+      };
 
-//       // const segments = video['0']._key.path.segments;
-//       // const dirName = segments[segments.length -2];
-//       // const filename = segments[segments.length -1];
-//       // const storagePath = dirName + '/' + filename; 
-//       // const localPath = 'temp/' + teacherId + '_' + filename;
-//       // const options = {
-//       //     destination : localPath,
-//       // };
+      const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
+      await storage.bucket('musicmaker-4b2e8.appspot.com')
+                   .file(storagePath)
+                   .download(options);
 
-//       // const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
-//       // await storage.bucket('musicmaker-4b2e8.appspot.com')
-//       //              .file(storagePath)
-//       //              .download(options);
+      const displaysVideo = await fs.readFile(localPath, (err, data) => {
+        res.contentType("video/mov");
+        res.send(data);
+      });
 
-//       // const displaysVideo = await fs.readFile(localPath, (err, data) => {
-//       //   res.contentType("video/mov");
-//       //   res.send(data);
-//       // });
+  } catch (err) {
+  next (err);
+  }
+  });
 
-//   } catch (err) {
-//   next (err);
-//   }
-// });
 
 
 
@@ -355,39 +347,6 @@ app.get('/teacher/:idTeacher/assigment/:idAssignment/sheetMusic', async (req, re
 
 //       const displaysFile = await fs.readFile('temp/' + studentId + '_' + filename, (err, data) => {
 //         res.contentType("application/pdf");
-//         res.send(data);
-//       });
-
-//   } catch (err) {
-//   next (err);
-//   }
-//   });
-
-// //GET student can get their recorded video
-// app.get('/student/:idStudent/assigment/:idAssignment/video', async (req, res, next) => {
-//   try {
-//       const studentId = req.params['idStudent'];
-//       const assignmentId = req.params['idAssignment'];
-  
-//       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
-
-//       const video = assignmentRef.get("video");
-//       const segments = video['0']._key.path.segments;
-//       const dirName = segments[segments.length -2];
-//       const filename = segments[segments.length -1];
-//       const storagePath = dirName + '/' + filename; 
-//       const localPath = 'temp/' + studentId + '_' + filename;
-//       const options = {
-//           destination : localPath,
-//       };
-
-//       const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
-//       await storage.bucket('musicmaker-4b2e8.appspot.com')
-//                    .file(storagePath)
-//                    .download(options);
-
-//       const displaysVideo = await fs.readFile(localPath, (err, data) => {
-//         res.contentType("video/mov");
 //         res.send(data);
 //       });
 

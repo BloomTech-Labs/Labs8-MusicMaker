@@ -207,8 +207,8 @@ class SignUpViewController: UIViewController {
             let firstName = firstNameTextField.text,
             let lastName = lastNameTextField.text,
             let confirmedPassword = confirmPasswordTextField.text,
-            let instrument = instrumentButton.titleLabel?.text,
-            let level = levelButton.titleLabel?.text
+            let instrument = selectInstrumentTextField.text,
+            let level = selectLevelTextField.text
         else {return}
         
         guard password == confirmedPassword else {return}

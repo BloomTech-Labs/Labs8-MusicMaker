@@ -23,16 +23,16 @@ class SignUpViewController: UIViewController {
     //Adds an observer to listen for the keyboardWillShowNotification & keyboardWillHideNotifcation
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIWindow.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIWindow.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
     }
     
     
     //Removes the observer for the keyboardWillShowNotification & keyboardWillHideNotifcation
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
     }
     
     
@@ -100,23 +100,42 @@ class SignUpViewController: UIViewController {
             confirmPasswordTextField.delegate = self
         }
     }
-    @IBOutlet weak var levelButton: UIButton!
-    @IBOutlet weak var instrumentButton: UIButton!
+    
+    @IBOutlet weak var selectLevelTextField: UITextField! {
+        didSet {
+            selectLevelTextField.delegate = self
+        }
+    }
+        
+    @IBOutlet weak var selectInstrumentTextField: UITextField! {
+        didSet {
+            selectInstrumentTextField.delegate = self
+        }
+    }
+    
+
     
     // MARK: - IBActions
     
-    @IBAction func selectLevel(_ sender: UIButton) {
-        
+    @IBAction func selectLevel(_ sender: UITextField) {
+        presentLevelAlertController(on: sender)
+    }
+   
+    @IBAction func selectInstrument(_ sender: UITextField) {
+        presentInstrumentAlertController(on: sender)
+    }
+    
+    private func presentLevelAlertController(on textField: UITextField) {
         let beginnerAction = UIAlertAction(title: "Beginner", style: .default) { (action) in
-            sender.setTitle("Beginner", for: .normal)
+            textField.text = "Beginner"
         }
         
         let intermediateAction = UIAlertAction(title: "Intermediate", style: .default) { (action) in
-            sender.setTitle("Intermediate", for: .normal)
+            textField.text = "Intermediate"
         }
         
         let expertAction = UIAlertAction(title: "Expert", style: .default) { (action) in
-            sender.setTitle("Expert", for: .normal)
+            textField.text = "Expert"
         }
         
         let alert = UIAlertController(title: "Select your level of experience", message: "", preferredStyle: .actionSheet)
@@ -127,23 +146,23 @@ class SignUpViewController: UIViewController {
         //Used if its an ipad to present as a popover
         let popover = alert.popoverPresentationController
         popover?.permittedArrowDirections = .down
-        popover?.sourceView = sender
-        popover?.sourceRect = sender.bounds
+        popover?.sourceView = textField
+        popover?.sourceRect = textField.bounds
         
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func selectInstrument(_ sender: UIButton) {
+    private func presentInstrumentAlertController(on textField: UITextField) {
         let trumpetAction = UIAlertAction(title: "Trumpet", style: .default) { (action) in
-            sender.setTitle("Trumpet", for: .normal)
+            textField.text = "Trumpet"
         }
         
         let fluteAction = UIAlertAction(title: "Flute", style: .default) { (action) in
-            sender.setTitle("Flute", for: .normal)
+            textField.text = "Flute"
         }
         
         let violinAction = UIAlertAction(title: "Violin", style: .default) { (action) in
-            sender.setTitle("Violin", for: .normal)
+            textField.text = "Violin"
         }
         
         let alert = UIAlertController(title: "Select Your Instrument", message: "", preferredStyle: .actionSheet)
@@ -154,11 +173,12 @@ class SignUpViewController: UIViewController {
         //Used if its an ipad to present as a popover
         let popover = alert.popoverPresentationController
         popover?.permittedArrowDirections = .down
-        popover?.sourceView = sender
-        popover?.sourceRect = sender.bounds
+        popover?.sourceView = textField
+        popover?.sourceRect = textField.bounds
         
         present(alert, animated: true, completion: nil)
     }
+    
     
     // Used to toggle the password textfields to show or hide entry
     @IBAction func toggleSecureEntryOnPasswordTextFields(_ sender: UIButton) {
@@ -231,6 +251,7 @@ class SignUpViewController: UIViewController {
 // MARK: - UITextFieldDelegate
 extension SignUpViewController: UITextFieldDelegate {
     
+    //Makes the next textfield the first responder when filling out sign in
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField.tag {
         case 0:
@@ -246,4 +267,16 @@ extension SignUpViewController: UITextFieldDelegate {
         }
         return true
     }
+    
+    //Disables keyboard on select level textfield since their are three options to
+    //choose from
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField.tag == 5 || textField.tag == 6 {
+            return false
+        }
+        return true
+    }
+    
+    
+    
 }

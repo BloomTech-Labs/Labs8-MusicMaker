@@ -12,7 +12,7 @@ import Firebase
 
 class UserProfileViewController: UIViewController {
 
-    
+    //Reference to firestore 
     let database = Firestore.firestore()
     
     

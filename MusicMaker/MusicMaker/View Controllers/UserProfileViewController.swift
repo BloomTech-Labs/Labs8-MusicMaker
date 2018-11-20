@@ -7,13 +7,32 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import Firebase
 
 class UserProfileViewController: UIViewController {
 
+    
+    let database = Firestore.firestore()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Sample for querying firestore for student information
+        guard let currentUsersUniqueID = Auth.auth().currentUser?.uid else {return}
+        print(currentUsersUniqueID)
+        let studentsCollectionReference = database.collection("students").document(currentUsersUniqueID).collection("settings").document("ttvfhwBIy5OSmCD5tMrh")
+        studentsCollectionReference.getDocument { (document, error) in
+            if let document = document {
+                if let dataDescription = document.data() {
+                    print(dataDescription["level"])
+                }
+            } else {
+                print("Document does not exist in cache")
+            }
+        }
 
-        // Do any additional setup after loading the view.
     }
     
     /*

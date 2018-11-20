@@ -103,10 +103,7 @@ class MenuButton: UIButton {
     }
     
     func animateToMenu() {
-        //        let firstLineAnimateToMenu = UIBezierPath()
-        //        firstLineAnimateToMenu.move(to: CGPoint(x: bounds.minX + 5, y: bounds.minY + 5))
-        //        firstLineAnimateToMenu.addLine(to: CGPoint(x: bounds.minX + 35, y: bounds.minY + 5))
-        //
+     
         let firstLineMenuAnimation = CABasicAnimation(keyPath: "path")
         firstLineMenuAnimation.toValue = firstLinePath.cgPath
         firstLineMenuAnimation.duration = 0.5
@@ -114,9 +111,7 @@ class MenuButton: UIButton {
         firstLineMenuAnimation.fillMode = .forwards
         firstLineShape.add(firstLineMenuAnimation, forKey: "pathAnimationToMenu")
         
-        //        let thirdLineAnimateToMenu = UIBezierPath()
-        //        thirdLineAnimateToMenu.move(to: CGPoint(x: bounds.minX + 5, y: bounds.maxY - 5))
-        //        thirdLineAnimateToMenu.addLine(to: CGPoint(x: bounds.minX + 35, y: bounds.maxY - 5))
+      
         
         let thirdLineMenuAnimation = CABasicAnimation(keyPath: "path")
         thirdLineMenuAnimation.toValue = thirdLinePath.cgPath
@@ -124,11 +119,7 @@ class MenuButton: UIButton {
         thirdLineMenuAnimation.isRemovedOnCompletion = false
         thirdLineMenuAnimation.fillMode = .forwards
         thirdLineShape.add(thirdLineMenuAnimation, forKey: "pathAnimationToMenu")
-        
-        //        let secondLineAnimateToMenuPath = UIBezierPath()
-        //        secondLineAnimateToMenuPath.move(to: CGPoint(x: bounds.minX  + 5, y: bounds.maxY / 2))
-        //        secondLineAnimateToMenuPath.addLine(to: CGPoint(x: bounds.minX + 35, y: bounds.maxY / 2))
-        
+     
         let secondLineMenuAnimation = CABasicAnimation(keyPath: "path")
         secondLineMenuAnimation.toValue = secondLinePath.cgPath
         secondLineMenuAnimation.duration = 0.5

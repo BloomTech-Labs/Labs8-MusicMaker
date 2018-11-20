@@ -64,6 +64,7 @@ extension ContainerViewController: TeachersViewControllerDelegate {
             }
         } else {
             hideSideMenu()
+            teachersViewController.menuButton.animateToMenu()
         }
      
     }
@@ -74,6 +75,9 @@ extension ContainerViewController: SideMenuDelegate {
         let storyboard = UIStoryboard(name: "Teachers", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "UserProfile")
         teachersViewController.navigationController?.pushViewController(viewController, animated: true)
+        if teachersViewController.sideMenuIsShowing {
+            hideSideMenu()
+        }
     }
     
 

@@ -32,7 +32,6 @@ class UserProfileViewController: UIViewController {
                 print("Document does not exist in cache")
             }
         }
-
     }
     
     /*

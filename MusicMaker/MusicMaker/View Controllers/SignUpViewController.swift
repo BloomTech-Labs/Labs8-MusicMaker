@@ -338,27 +338,27 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     
-    @IBOutlet weak var firstNameTextField: UITextField! {
+    @IBOutlet weak var firstNameTextField: HoshiTextField! {
         didSet {
             firstNameTextField.delegate = self
         }
     }
-    @IBOutlet weak var lastNameTextField: UITextField! {
+    @IBOutlet weak var lastNameTextField: HoshiTextField! {
         didSet {
             lastNameTextField.delegate = self
         }
     }
-    @IBOutlet weak var emailTextField: UITextField! {
+    @IBOutlet weak var emailTextField: HoshiTextField! {
         didSet {
             emailTextField.delegate = self
         }
     }
-    @IBOutlet weak var passwordTextField: UITextField! {
+    @IBOutlet weak var passwordTextField: HoshiTextField! {
         didSet {
             passwordTextField.delegate = self
         }
     }
-    @IBOutlet weak var confirmPasswordTextField: UITextField! {
+    @IBOutlet weak var confirmPasswordTextField: HoshiTextField! {
         didSet {
             confirmPasswordTextField.delegate = self
         }
@@ -547,6 +547,29 @@ extension SignUpViewController: UITextFieldDelegate {
             return false
         }
         return true
+    }
+    
+    //Checks for erros
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        switch textField.tag {
+        case 3:
+            if passwordTextField.text?.count ?? 0 < 6 {
+                passwordTextField.activeBorderLayer.backgroundColor = UIColor.red.cgColor
+                passwordTextField.placeholderLabel.textColor = UIColor.red
+            }
+        case 4:
+            if confirmPasswordTextField.text != passwordTextField.text {
+                confirmPasswordTextField.activeBorderLayer.backgroundColor = UIColor.red.cgColor
+                confirmPasswordTextField.placeholderLabel.textColor = UIColor.red
+            }
+        default:
+            ()
+        }
+        
+        
+        
+        
     }
 }
 

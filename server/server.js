@@ -184,6 +184,15 @@ app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
   }
 });
 
+//PUT should update teachers settings info.: email and name
+app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
+  try{
+ 
+  } catch (err){
+    next (err);
+  }
+});
+
 // POST
 
 // add individual teacher with just an ID

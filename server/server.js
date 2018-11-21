@@ -175,6 +175,7 @@ app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
     const getSettings = await settingsRef.get()
     .then(doc => {
       global = doc.data();
+      console.log('*********************', global)
       settings[doc.id] = [global.email, global.name.firstName, global.name.lastName]
     })
     res.json(settings);
@@ -187,6 +188,14 @@ app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
 //PUT should update teachers settings info.: email and name
 app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
   try{
+    const teacherId = req.params['idTeacher'];
+    const settings = {};
+
+    const settingsRef = await db.collection('teachers').doc(teacherId);
+    const updateSettings = await settingsRef.update({id, name})
+    .then(doc => {
+      console.log('1********************************', global)
+    })
  
   } catch (err){
     next (err);

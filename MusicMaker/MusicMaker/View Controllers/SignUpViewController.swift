@@ -14,6 +14,150 @@ import UIKit.UIGestureRecognizerSubclass
 
 class SignUpViewController: UIViewController {
     
+    
+    // MARK: - View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addDismissKeyboardGestureRecognizer()
+        qrView.setupCaptureSession()
+        let captureMetadataOutput = AVCaptureMetadataOutput()
+        qrView.captureSession?.addOutput(captureMetadataOutput)
+        
+        //The queue sets the dispatch queue which to execute the delegate methods on
+        // this queue must be serial to ensure that metadata objects are are delievered
+        // in the order they were recieved
+        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        
+        //Only metadata objects whose type matches one of the strings in this property are forwarded to the delegate
+        captureMetadataOutput.metadataObjectTypes = captureMetadataOutput.availableMetadataObjectTypes
+        
+        qrView.isHidden = true
+        qrView.captureSession?.startRunning()
+    }
+    
+    //Adds an observer to listen for the keyboardWillShowNotification & keyboardWillHideNotifcation
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIWindow.keyboardWillShowNotification, object: nil)
+        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
+    }
+    
+    
+    //Removes the observer for the keyboardWillShowNotification & keyboardWillHideNotifcation
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
+        //        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
+    }
+    
+    
+    
+    // MARK: - Properties
+    private lazy var panRecognizer: InstantPanGestureRecognizer = {
+        let recognizer = InstantPanGestureRecognizer()
+        recognizer.addTarget(self, action: #selector(popupViewPanned(recognizer:)))
+        return recognizer
+    }()
+    
+    //Amount the bottom constraint should be offset by when its open
+    private let popupOffset: CGFloat = -440
+    
+    //Hides the qrView when the popup menu is closed, current state is set to closed to start
+    private var currentState: State = .closed {
+        didSet {
+            qrView.isHidden = currentState == .open ? false : true
+        }
+    }
+    
+    /// All of the currently running animators.
+    private var runningAnimators = [UIViewPropertyAnimator]()
+    
+    /// The progress of each animator. This array is parallel to the `runningAnimators` array.
+    private var animationProgress = [CGFloat]()
+    
+    //Used to play sound when a QR Code is scanned
+    var player: AVAudioPlayer?
+    
+    
+    
+    // MARK: - IBOutlets
+    @IBOutlet weak var qrView: QRView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var popupView: UIView! {
+        didSet {
+            popupView.addGestureRecognizer(panRecognizer)
+            popupView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+            popupView.layer.shadowColor = UIColor.black.cgColor
+            popupView.layer.shadowOpacity = 0.3
+            popupView.layer.shadowRadius = 10
+        }
+    }
+    
+    @IBOutlet weak var signUpButton: UIButton!
+    
+    
+    @IBOutlet weak var firstNameTextField: HoshiTextField! {
+        didSet {
+            firstNameTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var lastNameTextField: HoshiTextField! {
+        didSet {
+            lastNameTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var emailTextField: HoshiTextField! {
+        didSet {
+            emailTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var passwordTextField: HoshiTextField! {
+        didSet {
+            passwordTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var confirmPasswordTextField: HoshiTextField! {
+        didSet {
+            confirmPasswordTextField.delegate = self
+        }
+    }
+    
+    @IBOutlet weak var selectLevelTextField: UITextField! {
+        didSet {
+            selectLevelTextField.delegate = self
+        }
+    }
+    
+    @IBOutlet weak var selectInstrumentTextField: UITextField! {
+        didSet {
+            selectInstrumentTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var teacherTextField: UITextField! {
+        didSet {
+            teacherTextField.delegate = self
+        }
+    }
+    
+    
+    
+    // MARK: - Enumerations
+    private enum State {
+        case open
+        case closed
+        
+        var opposite: State {
+            switch self {
+            case .open: return .closed
+            case .closed: return .open
+            }
+        }
+        
+    }
+    
+    
+    
     // MARK: - Animations
     @objc private func popupViewPanned(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
@@ -169,90 +313,18 @@ class SignUpViewController: UIViewController {
         runningAnimators.append(outTitleAnimator)
     }
 
-    // MARK: - Enumerations
-    private enum State {
-        case open
-        case closed
-        
-        var opposite: State {
-            switch self {
-            case .open: return .closed
-            case .closed: return .open
-            }
-        }
-        
-    }
+
     
-    // MARK: - Properties
-    private lazy var panRecognizer: InstantPanGestureRecognizer = {
-        let recognizer = InstantPanGestureRecognizer()
-        recognizer.addTarget(self, action: #selector(popupViewPanned(recognizer:)))
-        return recognizer
-    }()
-    
-    private let popupOffset: CGFloat = -440
-    private var currentState: State = .closed {
-        didSet {
-            if currentState == .open {
-                qrView.isHidden = false
-            } else {
-                qrView.isHidden = true
-            }
-        }
-    }
-    
-    /// All of the currently running animators.
-    private var runningAnimators = [UIViewPropertyAnimator]()
-    
-    /// The progress of each animator. This array is parallel to the `runningAnimators` array.
-    private var animationProgress = [CGFloat]()
-    
-    
-    var player: AVAudioPlayer?
-    private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-    
-    // MARK: - View Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addDismissKeyboardGestureRecognizer()
-        qrView.setupCaptureSession()
-        let captureMetadataOutput = AVCaptureMetadataOutput()
-        qrView.captureSession?.addOutput(captureMetadataOutput)
-        
-        //The queue sets the dispatch queue which to execute the delegate methods on
-        // this queue must be serial to ensure that metadata objects are are delievered
-        // in the order they were recieved
-        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        
-        //Only metadata objects whose type matches one of the strings in this property are forwarded to the delegate
-        captureMetadataOutput.metadataObjectTypes = captureMetadataOutput.availableMetadataObjectTypes
-        
-        qrView.isHidden = true
-        qrView.captureSession?.startRunning()
-    }
-    
-    //Adds an observer to listen for the keyboardWillShowNotification & keyboardWillHideNotifcation
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIWindow.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
-    }
-    
-    
-    //Removes the observer for the keyboardWillShowNotification & keyboardWillHideNotifcation
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-//        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
-    }
+   
     
     
     
     
-    // MARK: - Private
+    
+    // MARK: - Private Methods
     
     //Used to move the views frame up when the keyboard is about to be shown so the textfields can be seen
-    @objc func keyboardWillShow(_ notification: NSNotification) {
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
                 self.view.frame.origin.y -= (keyboardSize.height - 10)
@@ -261,7 +333,7 @@ class SignUpViewController: UIViewController {
     }
     
     //Used to move the views frame back to the normal position when the keyboard goes away
-    @objc func keyboardWillHide(_ notification: NSNotification) {
+    @objc private func keyboardWillHide(_ notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
                 self.view.frame.origin.y += (keyboardSize.height - 10)
@@ -285,71 +357,9 @@ class SignUpViewController: UIViewController {
         animateTransitionIfNeeded(to: .closed, duration: 1)
     }
     
-    // MARK: - IBOutlets
-    
-    @IBOutlet weak var qrView: QRView!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var popupView: UIView! {
-        didSet {
-            popupView.addGestureRecognizer(panRecognizer)
-            popupView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-            popupView.layer.shadowColor = UIColor.black.cgColor
-            popupView.layer.shadowOpacity = 0.3
-            popupView.layer.shadowRadius = 10
-        }
-    }
-    
-    @IBOutlet weak var signUpButton: UIButton!
-    
-    
-    @IBOutlet weak var firstNameTextField: HoshiTextField! {
-        didSet {
-            firstNameTextField.delegate = self
-        }
-    }
-    @IBOutlet weak var lastNameTextField: HoshiTextField! {
-        didSet {
-            lastNameTextField.delegate = self
-        }
-    }
-    @IBOutlet weak var emailTextField: HoshiTextField! {
-        didSet {
-            emailTextField.delegate = self
-        }
-    }
-    @IBOutlet weak var passwordTextField: HoshiTextField! {
-        didSet {
-            passwordTextField.delegate = self
-        }
-    }
-    @IBOutlet weak var confirmPasswordTextField: HoshiTextField! {
-        didSet {
-            confirmPasswordTextField.delegate = self
-        }
-    }
-    
-    @IBOutlet weak var selectLevelTextField: UITextField! {
-        didSet {
-            selectLevelTextField.delegate = self
-        }
-    }
-        
-    @IBOutlet weak var selectInstrumentTextField: UITextField! {
-        didSet {
-            selectInstrumentTextField.delegate = self
-        }
-    }
-    @IBOutlet weak var teacherTextField: UITextField! {
-        didSet {
-            teacherTextField.delegate = self
-        }
-    }
-    
-
-    
     // MARK: - IBActions
     
+    //When the user clicks the teacher text field, present the QR Scanner in the popup menu
     @IBAction func addTeacher(_ sender: UITextField) {
         animateTransitionIfNeeded(to: .open, duration: 1)
     }
@@ -564,7 +574,7 @@ extension SignUpViewController: AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
-    
+    //Plays scanning sound when a QR Code is scanned
     func playSound() {
         guard let url = Bundle.main.url(forResource: "scannedSound", withExtension: "mp3") else {
             print("url not found")

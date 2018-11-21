@@ -53,119 +53,126 @@ app.get('/qrcode', async (req, res, next) => {
   }
 });
 
-// test GET request, adding key/value pair to Firebase
+// // test GET request, adding key/value pair to Firebase
 
-app.get('/teachers', async (req, res, next) => {
-  try {
-    const teachersRef = await db.collection('teachers').get();
-    const teachers = [];
-    teachersRef.forEach((doc) => {
-      teachers.push({
-        id: doc.id,
-        data: doc.data
-      });
-    });
-    res.json(teachers);
-  } catch(err) {
-    next(err);
-  }
-});
+// app.get('/teachers', async (req, res, next) => {
+//   try {
+//     const teachersRef = await db.collection('teachers').get();
+//     const teachers = [];
+//     teachersRef.forEach((doc) => {
+//       teachers.push({
+//         id: doc.id,
+//         data: doc.data
+//       });
+//     });
+//     res.json(teachers);
+//   } catch(err) {
+//     next(err);
+//   }
+// });
 
-// GET a list of all students studying under a specific teacher
+// // GET a list of all students studying under a specific teacher
 
-app.get('/teachers/:id', async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    // if(!id) throw new Error('Please provide a teacher ID.');
-    const studentsRef = await db.collection('teachers').doc(id).collection('students').get();
-    const students = [];
-    studentsRef.forEach((doc) => {
-      students.push({
-        id: doc.id,
-        data: doc.data
-      });
-    });
-    res.json(students);
-  } catch (err) {
+// app.get('/teachers/:id', async (req, res, next) => {
+//   try {
+//     const id = req.params.id;
+//     // if(!id) throw new Error('Please provide a teacher ID.');
+//     const studentsRef = await db.collection('teachers').doc(id).collection('students').get();
+//     const students = [];
+//     studentsRef.forEach((doc) => {
+//       students.push({
+//         id: doc.id,
+//         data: doc.data
+//       });
+//     });
+//     res.json(students);
+//   } catch (err) {
+//     next (err);
+//   }
+// });
+
+
+// // GET a list of all assignments listed under a specific teacher
+// // can consider changing this to a more high-level 'assignments' endpoint
+
+// app.get('/teachers/:id/assignments', async (req, res, next) => {
+//   try {
+//     const id = req.params.id;
+//     // if(!id) throw new Error('Please provide a teacher ID.');
+//     const assignmentsRef = await db.collection('teachers').doc(id).collection('assignments').get();
+//     const assignments = [];
+//     assignmentsRef.forEach((doc) => {
+//       assignments.push({
+//         id: doc.id,
+//         data: doc.data
+//       });
+//     });
+//     res.json(assignments);
+//   } catch(err) {
+//     next(err);
+//   }
+// });
+
+// // GET a list of all assignments for a specific student
+// // I can make this into a teachers -> students type endpoint, but it seems unnecessary for now
+
+// app.get('/students/:id/assignments', async (req, res, next) => {
+//   try {
+//     const id = req.params.id;
+//     // if(!id) throw new Error('Please provide a student ID.');
+//     const assignmentsRef = await db.collection('students').doc(id).collection('assignments').get();
+//     const assignments = [];
+//     assignmentsRef.forEach((doc) => {
+//       assignments.push({
+//         id: doc.id,
+//         data: doc.data
+//       });
+//     });
+//     res.json(assignments);
+//   } catch(err) {
+//     next(err);
+//   }
+// });
+
+// //GET teacher can get an assignment's sheetMusic(pdf)
+// app.get('/teacher/:idTeacher/assigment/:idAssignment/sheetMusic', async (req, res, next) => {
+//   try {
+//       const teacherId = req.params['idTeacher'];
+//       const assignmentId = req.params['idAssignment'];
+  
+//       const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get();
+
+//       const musicSheet = assignmentRef.get("sheetMusic");
+//       const segments = musicSheet['0']._key.path.segments
+//       const dirName = segments[segments.length -2];
+//       const filename = segments[segments.length -1];
+//       const options = {
+//           destination : 'temp/' + teacherId + '_' + filename,
+//       };
+
+//       const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
+//       await storage.bucket('musicmaker-4b2e8.appspot.com')
+//                    .file(dirName + '/' + filename)
+//                    .download(options);
+
+//       const displaysFile = await fs.readFile('temp/' + teacherId + '_' + filename, (err, data) => {
+//         res.contentType("application/pdf");
+//         res.send(data);
+//       });
+
+//   } catch (err) {
+//   next (err);
+//   }
+//   });
+
+//GET should retrieve teachers settings info.: email and name
+app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
+  try{
+
+  } catch (err){
     next (err);
   }
 });
-
-
-// GET a list of all assignments listed under a specific teacher
-// can consider changing this to a more high-level 'assignments' endpoint
-
-app.get('/teachers/:id/assignments', async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    // if(!id) throw new Error('Please provide a teacher ID.');
-    const assignmentsRef = await db.collection('teachers').doc(id).collection('assignments').get();
-    const assignments = [];
-    assignmentsRef.forEach((doc) => {
-      assignments.push({
-        id: doc.id,
-        data: doc.data
-      });
-    });
-    res.json(assignments);
-  } catch(err) {
-    next(err);
-  }
-});
-
-// GET a list of all assignments for a specific student
-// I can make this into a teachers -> students type endpoint, but it seems unnecessary for now
-
-app.get('/students/:id/assignments', async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    // if(!id) throw new Error('Please provide a student ID.');
-    const assignmentsRef = await db.collection('students').doc(id).collection('assignments').get();
-    const assignments = [];
-    assignmentsRef.forEach((doc) => {
-      assignments.push({
-        id: doc.id,
-        data: doc.data
-      });
-    });
-    res.json(assignments);
-  } catch(err) {
-    next(err);
-  }
-});
-
-//GET teacher can get an assignment's sheetMusic(pdf)
-app.get('/teacher/:idTeacher/assigment/:idAssignment/sheetMusic', async (req, res, next) => {
-  try {
-      const teacherId = req.params['idTeacher'];
-      const assignmentId = req.params['idAssignment'];
-  
-      const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get();
-
-      const musicSheet = assignmentRef.get("sheetMusic");
-      const segments = musicSheet['0']._key.path.segments
-      const dirName = segments[segments.length -2];
-      const filename = segments[segments.length -1];
-      const options = {
-          destination : 'temp/' + teacherId + '_' + filename,
-      };
-
-      const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
-      await storage.bucket('musicmaker-4b2e8.appspot.com')
-                   .file(dirName + '/' + filename)
-                   .download(options);
-
-      const displaysFile = await fs.readFile('temp/' + teacherId + '_' + filename, (err, data) => {
-        res.contentType("application/pdf");
-        res.send(data);
-      });
-
-  } catch (err) {
-  next (err);
-  }
-  });
-
-
 
 // POST
 

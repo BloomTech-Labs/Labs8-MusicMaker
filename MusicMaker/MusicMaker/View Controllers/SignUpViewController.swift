@@ -209,14 +209,26 @@ class SignUpViewController: UIViewController {
     
     
     var player: AVAudioPlayer?
-    private var captureSession: AVCaptureSession?
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addDismissKeyboardGestureRecognizer()
-        setupCaptureSession()
+        qrView.setupCaptureSession()
+        let captureMetadataOutput = AVCaptureMetadataOutput()
+        qrView.captureSession?.addOutput(captureMetadataOutput)
+        
+        //The queue sets the dispatch queue which to execute the delegate methods on
+        // this queue must be serial to ensure that metadata objects are are delievered
+        // in the order they were recieved
+        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        
+        //Only metadata objects whose type matches one of the strings in this property are forwarded to the delegate
+        captureMetadataOutput.metadataObjectTypes = captureMetadataOutput.availableMetadataObjectTypes
+        
+        qrView.isHidden = true
+        qrView.captureSession?.startRunning()
     }
     
     //Adds an observer to listen for the keyboardWillShowNotification & keyboardWillHideNotifcation
@@ -238,53 +250,6 @@ class SignUpViewController: UIViewController {
     
     
     // MARK: - Private
-    
-    private func setupCaptureSession() {
-        captureSession = AVCaptureSession()
-         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
-        guard let captureDevice = deviceDiscoverySession.devices.first else {
-            //Update UI to let user know no device was found
-            print("Failed getting a capture device")
-            return
-        }
-        do {
-            /*
-             An AVCaptureDeviceInput is a capture input that provides media
-             from a capture device to a capture session. Add the input to the
-             capture session
-             */
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            captureSession?.addInput(input)
-            
-            //Sets the frame for the QR scanner, its invisible since the size is set to
-            // zero by default
-            
-            
-        } catch {
-            //Update UI to let user know
-            print(error)
-        }
-        
-        let captureMetadataOutput = AVCaptureMetadataOutput()
-        captureSession?.addOutput(captureMetadataOutput)
-        
-        //The queue sets the dispatch queue which to execute the delegate methods on
-        // this queue must be serial to ensure that metadata objects are are delievered
-        // in the order they were recieved
-        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        
-        //Only metadata objects whose type matches one of the strings in this property are forwarded to the delegate
-        captureMetadataOutput.metadataObjectTypes = captureMetadataOutput.availableMetadataObjectTypes
-        
-        
-        qrView.videoPreviewLayer.session = captureSession!
-        qrView.videoPreviewLayer.videoGravity = AVLayerVideoGravity.resize
-        qrView.layer.masksToBounds = true
-        qrView.layer.cornerRadius = 20
-        qrView.isHidden = true
-        captureSession?.startRunning()
-    }
-    
     
     //Used to move the views frame up when the keyboard is about to be shown so the textfields can be seen
     @objc func keyboardWillShow(_ notification: NSNotification) {
@@ -591,7 +556,7 @@ extension SignUpViewController: AVCaptureMetadataOutputObjectsDelegate {
                 if let qrCodeString = metadataObject.stringValue {
                     print(metadataObject.stringValue!)
                     teacherTextField.text = qrCodeString
-                    captureSession?.stopRunning()
+                    qrView.captureSession?.stopRunning()
                     playSound()
                     animateTransitionIfNeeded(to: .closed, duration: 1)
                 }

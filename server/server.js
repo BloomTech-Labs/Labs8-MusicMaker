@@ -7,7 +7,7 @@ const fs = require('fs');
 // Firebase-specific dependencies
 const firebase = require('firebase');
 
-const serviceAccount = require('./musicmaker-4b2e8-firebase-adminsdk-v1pkr-34d1984175.json');
+// const serviceAccount = require('./musicmaker-4b2e8-firebase-adminsdk-v1pkr-34d1984175.json');
 
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -23,11 +23,11 @@ const firestore = new Firestore({
   projectId: "musicmaker-4b2e8",
 });
 firebase.initializeApp(config);
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://musicmaker-4b2e8.firebaseio.com"
-});
-const db = admin.firestore();
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://musicmaker-4b2e8.firebaseio.com"
+// });
+const db = firebase.firestore();
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
 
@@ -168,6 +168,16 @@ app.get('/qrcode', async (req, res, next) => {
 //GET should retrieve teachers settings info.: email and name
 app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
   try{
+    const teacherId = req.params['idTeacher'];
+    const settings = {};
+
+    const settingsRef = await db.collection('teachers').doc(teacherId);
+    const getSettings = await settingsRef.get()
+    .then(doc => {
+      global = doc.data();
+      settings[doc.id] = [global.email, global.name.firstName, global.name.lastName]
+    })
+    res.json(settings);
 
   } catch (err){
     next (err);

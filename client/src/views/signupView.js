@@ -5,6 +5,8 @@ import { auth } from '../firebase';
 
 import * as routes from "../constants/routes";
 
+import "../css/index.css";
+
 const INITIAL_STATE = {
 //   firstName: "",
 //   lastName: "",
@@ -15,8 +17,8 @@ const INITIAL_STATE = {
 };
 
 const SignUpPage = ({ history }) => (
-  <div>
-    <h1>Sign Up</h1>
+  <div className="container">
+    <h1 className="subheader">Sign Up</h1>
     <SignUpView history={ history }/>
   </div>
 );
@@ -75,7 +77,7 @@ class SignUpView extends Component {
     // lastName === ''
 
     return (
-        <form onSubmit={this.onSubmit}>
+        <form className="bodyText" onSubmit={this.onSubmit}>
             {/* <input 
                 value={ firstName }
                 onChange={ event => this.setState(byPropKey('firstName', event.target.value)) }
@@ -115,7 +117,7 @@ class SignUpView extends Component {
 }
 
 const SignUpLink = () => (
-  <p>
+  <p className="bodyText">
     Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
   </p>
 );

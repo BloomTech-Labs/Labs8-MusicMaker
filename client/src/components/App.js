@@ -13,9 +13,6 @@ import DashboardView from '../views/dashboardView';
 import StudentListView from '../views/studentListView';
 import DummyPdfView from '../views/dummyPdfView';
 
-
-import './App.css';
-
 class App extends Component {
   render() {
     return (

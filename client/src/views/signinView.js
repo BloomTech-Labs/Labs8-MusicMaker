@@ -8,9 +8,11 @@ import * as routes from '../constants/routes';
 import { SignUpLink } from './signupView';
 import ForgotPW from '../components/ForgotPW';
 
+import "../css/index.css";
+
 const SignInPage = ({ history }) =>
-    <div>
-        <h1>Sign In</h1>
+    <div className="container">
+        <h1 className="subheader">Sign In</h1>
         <SignInView history = { history } />
         <SignUpLink />
         <ForgotPW />
@@ -80,7 +82,7 @@ class SignInView extends Component {
         email === '';
 
         return(
-           <form >
+           <form className="bodyText">
                <input 
                     value={ email }
                     onChange={ event => this.setState(byPropKey('email', event.target.value))}

@@ -1,13 +1,11 @@
 const admin = require('firebase-admin');
+const cors = require('cors');
+const fs = require('fs');
 const express = require('express');
 const QRCode = require('qrcode');
-const fs = require('fs');
-
 
 // Firebase-specific dependencies
 const firebase = require('firebase');
-
-// const serviceAccount = require('./musicmaker-4b2e8-firebase-adminsdk-v1pkr-34d1984175.json');
 
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -23,10 +21,6 @@ const firestore = new Firestore({
   projectId: "musicmaker-4b2e8",
 });
 firebase.initializeApp(config);
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: "https://musicmaker-4b2e8.firebaseio.com"
-// });
 const db = firebase.firestore();
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
@@ -38,7 +32,8 @@ const storage = require('@google-cloud/storage')({
 ///////////////////////
 
 const app = express();
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
 // GET a QR code
 
@@ -176,7 +171,6 @@ app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
     const getSettings = await settingsRef.get()
     .then(doc => {
       global = doc.data();
-      console.log('*********************', global)
       settings[doc.id] = [global.email, global.name.firstName, global.name.lastName]
     })
     res.json(settings);
@@ -186,26 +180,29 @@ app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
   }
 });
 
-//PUT should update teachers settings info.: email and name
-app.put('/teacher/:idTeacher/settingsEdit', async (req, res) => {
+//PUT should update teachers settings info.: email and name(firstName and lastName)
+app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
   try{
     const teacherId = req.params['idTeacher'];
-    const email = await req.body['email'];
-    // console.log('*****************************', email)
-    // res.send(200, 'hi');
-    // const settings = {};
+    const {email, firstName, lastName} = await req.body;
 
-    const settingsRef = await db.collection('teachers').doc(teacherId).update({email});
-    res.send(200, 'Success')
-    // // const updateSettings = await settingsRef.update({firstName, lastName})
-    // console.log('0*********************************************', settingsRef)
-    // // .then(doc => {
-    // //   console.log('1********************************', global)
-    // // })
+    if (!email) {
+      res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
+    } else if (!firstName || !lastName) {
+      res.status(411).send({REQUIRED: `FIRST NAME AND LAST NAME CANNOT BE LEFT BLANK`});
+    } else{
+     const settingsRef = await db.collection('teachers').doc(teacherId).update({
+        'email': email,
+        'name' : {
+          'firstName': firstName,
+          'lastName': lastName
+        }
+      });
+      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  
+    }
  
   } catch (err){
-    // next (err);
-    console.log(err);
+    next (err);
   }
 });
 

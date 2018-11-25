@@ -12,6 +12,11 @@ import GoogleSignIn
 
 class SideMenuViewController: UIViewController {
 
+    
+    // MARK: - Delegate
+    weak var delegate: SideMenuDelegate?
+    
+    
     // MARK: - IBOutlets
     @IBOutlet weak var profileButton: UIButton! {
         didSet {
@@ -43,6 +48,10 @@ class SideMenuViewController: UIViewController {
     
     
     // MARK: - IBActions
+    
+    @IBAction func showUserProfile(_ sender: Any) {
+        delegate?.userProfileClicked()
+    }
     
     @IBAction func logoutUser(_ sender: Any) {
         do {

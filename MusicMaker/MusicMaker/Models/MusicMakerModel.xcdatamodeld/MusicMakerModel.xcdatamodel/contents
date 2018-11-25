@@ -13,14 +13,14 @@
         <attribute name="scoreDocumentURL" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="teacher" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Teacher" inverseName="assignments" inverseEntity="Teacher" syncable="YES"/>
+        <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Teacher" inverseName="assignments" inverseEntity="Teacher" syncable="YES"/>
     </entity>
     <entity name="Teacher" representedClassName="Teacher" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Assignment" inverseName="teacher" inverseEntity="Assignment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Assignment" positionX="286.58203125" positionY="27.39453125" width="128" height="238"/>
+        <element name="Assignment" positionX="286.58203125" positionY="27.39453125" width="128" height="240"/>
         <element name="Teacher" positionX="83.09375" positionY="43.85546875" width="128" height="73"/>
     </elements>
 </model>

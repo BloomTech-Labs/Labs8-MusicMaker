@@ -1,6 +1,7 @@
 const admin = require('firebase-admin');
 const express = require('express');
 const QRCode = require('qrcode');
+const rootRef = firebase.database().ref();
 
 // Firebase-specific dependencies
 
@@ -48,20 +49,32 @@ app.get('/qrcode', async (req, res, next) => {
 
 // test GET request, adding key/value pair to Firebase
 
-app.get('/teachers', async (req, res, next) => {
-  try {
-    const teachersRef = await db.collection('teachers').get();
-    const teachers = [];
-    teachersRef.forEach((doc) => {
-      teachers.push({
-        id: doc.id,
-        data: doc.data
-      });
+// app.get('/teachers', async (req, res, next) => {
+//   try {
+//     const teachersRef = await db.collection('teachers').get();
+//     const teachers = [];
+//     teachersRef.forEach((doc) => {
+//       teachers.push({
+//         id: doc.id,
+//         data: doc.data
+//       });
+//     });
+//     res.json(teachers);
+//   } catch(err) {
+//     next(err);
+//   }
+// });
+
+app.get('/teachers', (req, res) => {
+  rootRef
+    .child('teachers')
+    .once('value')
+    .then(snapshot => {
+      res.status(200).json(snapshot.val());
+    })
+    .catch(err => {
+      res.status(500).json({ err });
     });
-    res.json(teachers);
-  } catch(err) {
-    next(err);
-  }
 });
 
 // GET a list of all students studying under a specific teacher

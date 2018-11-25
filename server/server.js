@@ -1,11 +1,11 @@
 const admin = require('firebase-admin');
 const express = require('express');
 const QRCode = require('qrcode');
-const rootRef = firebase.database().ref();
 
 // Firebase-specific dependencies
 
-const firebase = require('firebase');
+const firebase = require('./firebase.js');
+const rootRef = firebase.database().ref();
 const serviceAccount = require('./musicmaker-4b2e8-firebase-adminsdk-v1pkr-34d1984175.json');
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -18,11 +18,6 @@ const config = {
 const Firestore = require('@google-cloud/firestore');
 const firestore = new Firestore({
   projectId: "musicmaker-4b2e8",
-});
-firebase.initializeApp(config);
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://musicmaker-4b2e8.firebaseio.com"
 });
 const db = admin.firestore();
 const settings = {timestampsInSnapshots: true};

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 393E237E21AB422700620D94 /* MusicMakerModel.xcdatamodeld */; };
+		393E238221AB4B5200620D94 /* MusicMakerModel+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238121AB4B5200620D94 /* MusicMakerModel+Convenience.swift */; };
+		393E238421AB4C1E00620D94 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238321AB4C1E00620D94 /* CoreData.swift */; };
 		399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */; };
 		399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */; };
 		39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C108FC2194E55900180F37 /* RecordingViewController.swift */; };
@@ -72,6 +74,8 @@
 		14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30673F6A357782EEB3E98417 /* Pods-MusicMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		393E237F21AB422700620D94 /* MusicMakerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MusicMakerModel.xcdatamodel; sourceTree = "<group>"; };
+		393E238121AB4B5200620D94 /* MusicMakerModel+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MusicMakerModel+Convenience.swift"; sourceTree = "<group>"; };
+		393E238321AB4C1E00620D94 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UnsubmittedAssignmentViewController.storyboard; sourceTree = "<group>"; };
 		399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsubmittedAssignmentViewController.swift; sourceTree = "<group>"; };
 		39C108FC2194E55900180F37 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
@@ -248,6 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				393E237E21AB422700620D94 /* MusicMakerModel.xcdatamodeld */,
+				393E238321AB4C1E00620D94 /* CoreData.swift */,
+				393E238121AB4B5200620D94 /* MusicMakerModel+Convenience.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -571,6 +577,7 @@
 				39CA2B5721938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift in Sources */,
 				399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */,
 				39CA2B612194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift in Sources */,
+				393E238421AB4C1E00620D94 /* CoreData.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,
 				39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */,
 				393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */,
@@ -594,6 +601,7 @@
 				BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */,
 				39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */,
 				BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */,
+				393E238221AB4B5200620D94 /* MusicMakerModel+Convenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

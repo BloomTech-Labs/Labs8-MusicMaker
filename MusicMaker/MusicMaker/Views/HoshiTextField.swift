@@ -73,7 +73,7 @@ import UIKit
     private let placeholderInsets = CGPoint(x: 0, y: 6)
     private let textFieldInsets = CGPoint(x: 0, y: 12)
     private let inactiveBorderLayer = CALayer()
-    private let activeBorderLayer = CALayer()    
+    let activeBorderLayer = CALayer()    
     private var activePlaceholderPoint: CGPoint = CGPoint.zero
     
     // MARK: - TextFieldEffects
@@ -107,7 +107,10 @@ import UIKit
 
 		UIView.animate(withDuration: 0.4, animations: {
 			self.placeholderLabel.alpha = 1.0
+            
+            //Sets it back to normal colors
             self.placeholderLabel.textColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
+            self.activeBorderLayer.backgroundColor = self.borderActiveColor?.cgColor
 //            UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
             
 		})

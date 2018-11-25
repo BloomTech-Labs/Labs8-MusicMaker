@@ -38,6 +38,7 @@ const storage = require('@google-cloud/storage')({
 ///////////////////////
 
 const app = express();
+app.use(express.json())
 
 // GET a QR code
 
@@ -186,19 +187,25 @@ app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
 });
 
 //PUT should update teachers settings info.: email and name
-app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
+app.put('/teacher/:idTeacher/settingsEdit', async (req, res) => {
   try{
     const teacherId = req.params['idTeacher'];
-    const settings = {};
+    const email = await req.body['email'];
+    // console.log('*****************************', email)
+    // res.send(200, 'hi');
+    // const settings = {};
 
-    const settingsRef = await db.collection('teachers').doc(teacherId);
-    const updateSettings = await settingsRef.update({id, name})
-    .then(doc => {
-      console.log('1********************************', global)
-    })
+    const settingsRef = await db.collection('teachers').doc(teacherId).update({email});
+    res.send(200, 'Success')
+    // // const updateSettings = await settingsRef.update({firstName, lastName})
+    // console.log('0*********************************************', settingsRef)
+    // // .then(doc => {
+    // //   console.log('1********************************', global)
+    // // })
  
   } catch (err){
-    next (err);
+    // next (err);
+    console.log(err);
   }
 });
 

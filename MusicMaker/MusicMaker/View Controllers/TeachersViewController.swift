@@ -51,7 +51,3 @@ class TeachersViewController: UIViewController {
     
     
 }
-
-
-
-

@@ -1,8 +1,7 @@
 const admin = require('firebase-admin');
 const express = require('express');
-const fs = require('fs');
 const QRCode = require('qrcode');
-const cors = require('cors');
+
 
 // Firebase-specific dependencies
 

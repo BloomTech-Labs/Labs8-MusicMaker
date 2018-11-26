@@ -180,28 +180,23 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 //   res.json(data);
 // })
 
-app.post('/teachers/add', async (req, res, next) => {
+app.post('/createTeacher', async (req, res, next) => {
   try {
-    const email = await req.body.email;
-    const firstName = await req.body.firstName;
-    const lastName = await req.body.lastName;
-    const data = await { email, firstName, lastName };
+    const { email, firstName, lastName } = await req.body;
 
-    if(!email || !firstName || !lastName) {
-      res.status(411).send({ error: 'Please fill out all required fields.' });
+    if(!email) {
+      res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
+    } else if (!firstName || !lastName) {
+      res.status(411).send({REQUIRED: `FIRST NAME AND LAST NAME CANNOT BE LEFT BLANK`});
     } else {
-      const settingsRef = await db.collection('teachers').doc(id).add({
+      const teachersRef = await db.collection('teachers').add({
         'email': email,
         'name': {
           'firstName': firstName,
           'lastName': lastName
         }
       });
-      res.status(200).send({ message: 'Teacher successfully added!' })
-      // res.json({
-      //   id: settingsRef.id,
-      //   data
-      // });
+      res.status(200).send({ MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW TEACHER' });
     }
   } catch(err) {
     next(err);

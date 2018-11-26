@@ -374,7 +374,7 @@
                                             </state>
                                             <connections>
                                                 <action selector="recordButtonTapped:" destination="hal-Rq-1Ak" eventType="touchUpInside" id="avm-6Z-eHt"/>
-                                                <segue destination="NdW-Gj-ZSF" kind="presentation" modalPresentationStyle="fullScreen" id="rQf-wG-mvz"/>
+                                                <segue destination="NdW-Gj-ZSF" kind="presentation" identifier="ShowRecord" modalPresentationStyle="fullScreen" id="rQf-wG-mvz"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -447,6 +447,9 @@
                             <outlet property="delegate" destination="3n0-iy-li9" id="Zpe-iz-we3"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="NdW-Gj-ZSF" kind="presentation" identifier="ShowPagePreview" modalPresentationStyle="fullScreen" id="NOd-jS-MWc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXL-Vj-yxI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -466,4 +469,7 @@
         <image name="RecordIcon" width="40" height="40"/>
         <image name="TrebleSymbol" width="70" height="140"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="NOd-jS-MWc"/>
+    </inferredMetricsTieBreakers>
 </document>

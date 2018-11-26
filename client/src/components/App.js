@@ -11,7 +11,7 @@ import SignInView from '../views/signinView';
 import DashboardView from '../views/dashboardView';
 // import DashboardBillingView from '../views/dashboardBillingView';
 import StudentListView from '../views/studentListView';
-import DummyPdfView from '../views/dummyPdfView';
+import Settings from '../views/dashboardSettingView';
 
 
 import './App.css';
@@ -22,8 +22,8 @@ class App extends Component {
       <div className="App">
         <Navigation />
         <Route 
-          path={ routes.ASSIGNMENTS }
-          component={DummyPdfView}
+          path={ routes.SETTINGS }
+          component={Settings}
         />
           <Route 
           path={ routes.STUDENTS }

@@ -1,13 +1,13 @@
 const admin = require('firebase-admin');
 const express = require('express');
+const fs = require('fs');
 const QRCode = require('qrcode');
 const cors = require('cors');
 
 // Firebase-specific dependencies
 
-const firebase = require('./firebase.js');
-const rootRef = firebase.database().ref();
-const serviceAccount = require('./musicmaker-4b2e8-firebase-adminsdk-v1pkr-34d1984175.json');
+const firebase = require('firebase');
+
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
     authDomain: "musicmaker-4b2e8.firebaseapp.com",
@@ -16,13 +16,19 @@ const config = {
     storageBucket: "musicmaker-4b2e8.appspot.com",
     messagingSenderId: "849993185408"
 };
+
 const Firestore = require('@google-cloud/firestore');
 const firestore = new Firestore({
   projectId: "musicmaker-4b2e8",
 });
-const db = admin.firestore();
+firebase.initializeApp(config);
+const db = firebase.firestore();
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
+
+const storage = require('@google-cloud/storage')({
+  projectId: 'musicmaker-4b2e8'
+});
 
 
 ///////////////////////
@@ -158,15 +164,15 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 //   }
 // });
 
-// app.post('/teachers', async (req, res, next) => {
+// app.post('/teachers/addTest', async (req, res, next) => {
 //   (res => {
 //     const obj = res;
 //     const teacherData = {
 //       firstName: obj.firstName,
 //       lastName: obj.lastName
 //     };
-//     return db.collection('teachers').doc(id).collection('settings').doc(id)
-//       .update(teacherData).then(() => {
+//     return db.collection('teachers').doc(id)
+//       .add(teacherData).then(() => {
 //         console.log('New teacher added to database!');
 //         res.json(teacherData);
 //       })
@@ -193,7 +199,7 @@ app.post('/teachers/add', async (req, res, next) => {
     if(!email || firstName || lastName) {
       res.status(411).send({ error: 'Please fill out all required fields.' });
     } else {
-      const settingsRef = await db.collection('teachers').add({
+      const teachersRef = await db.collection('teachers').add({
         'email': email,
         'name': {
           'firstName': firstName,
@@ -202,7 +208,7 @@ app.post('/teachers/add', async (req, res, next) => {
       });
       res.status(200).send({ message: 'Teacher successfully added!' })
       // res.json({
-      //   id: settingsRef.id,
+      //   id: teachersRef.id,
       //   data
       // });
     }

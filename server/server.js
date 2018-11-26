@@ -1,6 +1,7 @@
 const admin = require('firebase-admin');
 const express = require('express');
 const QRCode = require('qrcode');
+const cors = require('cors');
 
 // Firebase-specific dependencies
 
@@ -27,6 +28,8 @@ firestore.settings(settings);
 ///////////////////////
 
 const app = express();
+app.use(express.json());
+app.use(cors());
 
 // GET a QR code
 
@@ -180,23 +183,28 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 //   res.json(data);
 // })
 
-app.post('/createTeacher', async (req, res, next) => {
+app.post('/teachers/add', async (req, res, next) => {
   try {
-    const { email, firstName, lastName } = await req.body;
+    const email = await req.body.email;
+    const firstName = await req.body.firstName;
+    const lastName = await req.body.lastName;
+    const data = await { email, firstName, lastName };
 
-    if(!email) {
-      res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
-    } else if (!firstName || !lastName) {
-      res.status(411).send({REQUIRED: `FIRST NAME AND LAST NAME CANNOT BE LEFT BLANK`});
+    if(!email || !firstName || !lastName) {
+      res.status(411).send({ error: 'Please fill out all required fields.' });
     } else {
-      const teachersRef = await db.collection('teachers').add({
+      const settingsRef = await db.collection('teachers').doc(id).collection('settings').doc(id).update({
         'email': email,
         'name': {
           'firstName': firstName,
           'lastName': lastName
         }
       });
-      res.status(200).send({ MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW TEACHER' });
+      res.status(200).send({ message: 'Teacher successfully added!' })
+      // res.json({
+      //   id: ref.id,
+      //   data
+      // });
     }
   } catch(err) {
     next(err);

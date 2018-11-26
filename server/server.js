@@ -63,17 +63,17 @@ app.get('/teachers', async (req, res, next) => {
   }
 });
 
-app.get('/teachers', (req, res) => {
-  rootRef
-    .child('teachers')
-    .once('value')
-    .then(snapshot => {
-      res.status(200).json(snapshot.val());
-    })
-    .catch(err => {
-      res.status(500).json({ err });
-    });
-});
+// app.get('/teachers', (req, res) => {
+//   rootRef
+//     .child('teachers')
+//     .once('value')
+//     .then(snapshot => {
+//       res.status(200).json(snapshot.val());
+//     })
+//     .catch(err => {
+//       res.status(500).json({ err });
+//     });
+// });
 
 // GET a list of all students studying under a specific teacher
 
@@ -190,10 +190,10 @@ app.post('/teachers/add', async (req, res, next) => {
     const lastName = await req.body.lastName;
     const data = await { email, firstName, lastName };
 
-    if(!email || !firstName || !lastName) {
+    if(!email || firstName || lastName) {
       res.status(411).send({ error: 'Please fill out all required fields.' });
     } else {
-      const settingsRef = await db.collection('teachers').doc(id).collection('settings').doc(id).update({
+      const settingsRef = await db.collection('teachers').add({
         'email': email,
         'name': {
           'firstName': firstName,
@@ -202,11 +202,12 @@ app.post('/teachers/add', async (req, res, next) => {
       });
       res.status(200).send({ message: 'Teacher successfully added!' })
       // res.json({
-      //   id: ref.id,
+      //   id: settingsRef.id,
       //   data
       // });
     }
-  } catch(err) {
+  }
+   catch(err) {
     next(err);
   }
 });

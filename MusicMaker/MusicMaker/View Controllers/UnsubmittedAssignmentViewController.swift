@@ -17,6 +17,9 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
         // Do any additional setup after loading the view.
     }
     
+    // This is our dummy assignment that is in core data
+    var assignment: Assignment? = MusicMakerModelController.shared.teachers.first?.assignments?.anyObject() as? Assignment
+    
     var pdfDocument = PDFDocument(url: Bundle.main.url(forResource: "SamplePDF", withExtension: "pdf")!)!
     
     // MARK: - UITableViewDataSource
@@ -36,7 +39,7 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
 //            cell.dueTimeLabel.text = "8:00 PM"
 //            cell.instrumentLabel.text = "🎻"
             
-            cell.assignmentTitle = "this is a test assignment"
+            cell.assignmentTitle = assignment?.title
             cell.dueDate = Date()   // sets date and time in custom cell
             cell.instrument = "🎻"
             

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 393E237E21AB422700620D94 /* MusicMakerModel.xcdatamodeld */; };
+		393E238421AB4C1E00620D94 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238321AB4C1E00620D94 /* CoreData.swift */; };
+		393E238621AB564200620D94 /* Teacher+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238521AB564200620D94 /* Teacher+Convenience.swift */; };
+		393E238821AB565800620D94 /* Assignment+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238721AB565800620D94 /* Assignment+Convenience.swift */; };
+		393E238A21AB9F7900620D94 /* MusicMakerModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238921AB9F7900620D94 /* MusicMakerModelController.swift */; };
 		399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */; };
 		399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */; };
 		39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C108FC2194E55900180F37 /* RecordingViewController.swift */; };
@@ -70,6 +75,11 @@
 /* Begin PBXFileReference section */
 		14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30673F6A357782EEB3E98417 /* Pods-MusicMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.debug.xcconfig"; sourceTree = "<group>"; };
+		393E237F21AB422700620D94 /* MusicMakerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MusicMakerModel.xcdatamodel; sourceTree = "<group>"; };
+		393E238321AB4C1E00620D94 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		393E238521AB564200620D94 /* Teacher+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+Convenience.swift"; sourceTree = "<group>"; };
+		393E238721AB565800620D94 /* Assignment+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment+Convenience.swift"; sourceTree = "<group>"; };
+		393E238921AB9F7900620D94 /* MusicMakerModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicMakerModelController.swift; sourceTree = "<group>"; };
 		399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UnsubmittedAssignmentViewController.storyboard; sourceTree = "<group>"; };
 		399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsubmittedAssignmentViewController.swift; sourceTree = "<group>"; };
 		39C108FC2194E55900180F37 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +255,10 @@
 		BFD381C8219353E60038F974 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				393E237E21AB422700620D94 /* MusicMakerModel.xcdatamodeld */,
+				393E238321AB4C1E00620D94 /* CoreData.swift */,
+				393E238521AB564200620D94 /* Teacher+Convenience.swift */,
+				393E238721AB565800620D94 /* Assignment+Convenience.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,6 +266,7 @@
 		BFD381C9219353EA0038F974 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				393E238921AB9F7900620D94 /* MusicMakerModelController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -294,8 +309,8 @@
 			children = (
 				BF5D5215219CCAA100DFF213 /* Protocols */,
 				BFD381CA219353F40038F974 /* Extensions */,
-				BFD381C9219353EA0038F974 /* Model Controllers */,
 				BFD381C8219353E60038F974 /* Models */,
+				BFD381C9219353EA0038F974 /* Model Controllers */,
 				BFD381C7219353DF0038F974 /* Views */,
 				BFD381C6219353CF0038F974 /* Supporting Files */,
 				BFD381C4219353A50038F974 /* View Controllers */,
@@ -568,11 +583,15 @@
 				39CA2B5721938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift in Sources */,
 				399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */,
 				39CA2B612194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift in Sources */,
+				393E238621AB564200620D94 /* Teacher+Convenience.swift in Sources */,
+				393E238421AB4C1E00620D94 /* CoreData.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,
 				39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */,
+				393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */,
 				BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */,
 				39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */,
 				BFD381D0219355510038F974 /* LogInViewController.swift in Sources */,
+				393E238821AB565800620D94 /* Assignment+Convenience.swift in Sources */,
 				BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */,
 				BF5D520E219CC8CA00DFF213 /* ContainerViewController.swift in Sources */,
 				39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */,
@@ -581,6 +600,7 @@
 				BFE771AE219E6B2600DCE42A /* SideMenuDelegate.swift in Sources */,
 				BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */,
 				BF5D5210219CC8E800DFF213 /* TeachersViewController.swift in Sources */,
+				393E238A21AB9F7900620D94 /* MusicMakerModelController.swift in Sources */,
 				39C108FF2194FD9800180F37 /* CameraPreviewView.swift in Sources */,
 				BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */,
 				BF5D5219219D17F100DFF213 /* TeachersViewControllerDelegate.swift in Sources */,
@@ -590,6 +610,7 @@
 				BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */,
 				39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */,
 				BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */,
+				393E238221AB4B5200620D94 /* MusicMakerModel+Convenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,6 +917,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		393E237E21AB422700620D94 /* MusicMakerModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				393E237F21AB422700620D94 /* MusicMakerModel.xcdatamodel */,
+			);
+			currentVersion = 393E237F21AB422700620D94 /* MusicMakerModel.xcdatamodel */;
+			path = MusicMakerModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BFD3E5532192393A00D84FF2 /* Project object */;
 }

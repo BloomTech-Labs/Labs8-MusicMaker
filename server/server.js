@@ -30,35 +30,35 @@ const app = express();
 
 // GET a QR code
 
-app.get('/qrcode', async (req, res, next) => {
-  try {
-    let stringGen = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16);
-    let code = QRCode.toString(stringGen, function (err, string) {
-      console.log(string);
-      res.json(string);
-    })
-  } catch(err) {
-    next(err);
-  }
-});
-
-// test GET request, adding key/value pair to Firebase
-
-// app.get('/teachers', async (req, res, next) => {
+// app.get('/qrcode', async (req, res, next) => {
 //   try {
-//     const teachersRef = await db.collection('teachers').get();
-//     const teachers = [];
-//     teachersRef.forEach((doc) => {
-//       teachers.push({
-//         id: doc.id,
-//         data: doc.data
-//       });
-//     });
-//     res.json(teachers);
+//     let stringGen = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16);
+//     let code = QRCode.toString(stringGen, function (err, string) {
+//       console.log(string);
+//       res.json(string);
+//     })
 //   } catch(err) {
 //     next(err);
 //   }
 // });
+
+// test GET request, adding key/value pair to Firebase
+
+app.get('/teachers', async (req, res, next) => {
+  try {
+    const teachersRef = await db.collection('teachers').get();
+    const teachers = [];
+    teachersRef.forEach((doc) => {
+      teachers.push({
+        id: doc.id,
+        data: doc.data
+      });
+    });
+    res.json(teachers);
+  } catch(err) {
+    next(err);
+  }
+});
 
 app.get('/teachers', (req, res) => {
   rootRef
@@ -179,6 +179,31 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 //   let setTeacher = db.collection('teachers').set(data);
 //   res.json(data);
 // })
+
+app.post('/teachers/add', async (req, res, next) => {
+  try {
+    const email = await req.body.email;
+    const firstName = await req.body.firstName;
+    const lastName = await req.body.lastName;
+    const data = await { email, firstName, lastName };
+
+    if(!email || !firstName || !lastName) {
+      res.status(411).send({ error: 'Please fill out all required fields.' });
+    } else {
+      const settingsRef = await db.collection('teachers').doc(id).update({
+        'email': email,
+        'name': {
+          'firstName': firstName,
+          'lastName': lastName
+        }
+      });
+      res.status(200).send({ message: 'Teacher successfully added!' })
+      res.json(data);
+    }
+  } catch(err) {
+    next(err);
+  }
+});
 
 ///////////////////////
 

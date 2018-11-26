@@ -25,6 +25,11 @@ class TeachersViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var menuButton: MenuButton!
+    @IBOutlet weak var delete: UIImageView! {
+        didSet {
+            delete.createInitialsImage(for: "Vuk Radosavljevic", backgroundColor: .lightGray)
+        }
+    }
     
     // MARK: - Properties
     weak var delegate: TeachersViewControllerDelegate?

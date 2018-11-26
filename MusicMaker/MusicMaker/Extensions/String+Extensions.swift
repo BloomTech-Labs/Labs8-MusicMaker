@@ -19,7 +19,7 @@ extension String {
             initials.append(firstInitial)
         }
         
-        if let lastInitial = firstAndLastName.first?.first {
+        if let lastInitial = firstAndLastName.last?.first {
             initials.append(lastInitial)
         }
         

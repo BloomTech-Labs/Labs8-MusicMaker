@@ -206,6 +206,15 @@ app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
   }
 });
 
+//POST should create and add teacher to teacher list and their settings info.: email and name(firstName and lastName)
+app.put('/teacher/settings', async (req, res, next) => {
+  try{
+
+  } catch (err){
+    next (err);
+  }
+});
+
 // POST
 
 // add individual teacher with just an ID

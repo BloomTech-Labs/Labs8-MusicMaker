@@ -9,7 +9,10 @@ import LandingPageView from '../views/landingView';
 import SignUpView from '../views/signupView';
 import SignInView from '../views/signinView';
 import DashboardView from '../views/dashboardView';
-import DashboardBillingView from '../views/dashboardBillingView';
+// import DashboardBillingView from '../views/dashboardBillingView';
+import StudentListView from '../views/studentListView';
+import Settings from '../views/dashboardSettingView';
+
 
 import './App.css';
 
@@ -18,7 +21,14 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation />
-
+        <Route 
+          path={ routes.SETTINGS }
+          component={Settings}
+        />
+          <Route 
+          path={ routes.STUDENTS }
+          component={StudentListView}
+        />
         <Route
           exact path={ routes.LANDING }
           component={ LandingPageView }

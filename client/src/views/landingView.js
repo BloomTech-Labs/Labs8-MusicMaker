@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { connect } from 'react-redux';
 
 class LandingPageView extends Component {
   render() {
@@ -24,6 +23,7 @@ class LandingPageView extends Component {
           arcu. Mauris hendrerit nibh mi, non fermentum quam pharetra non. Etiam
           eu felis ac tortor accumsan finibus quis in odio. Suspendisse potenti.
         </p>
+        <button> BUY NOW </button>
       </div>
     );
   }

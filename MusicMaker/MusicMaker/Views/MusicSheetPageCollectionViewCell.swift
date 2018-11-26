@@ -13,5 +13,21 @@ class MusicSheetPageCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Outlet
     
-    @IBOutlet weak var pdfView: PDFView!
+    @IBOutlet weak var pdfView: PDFView! {
+        didSet {
+            pdfView.displayMode = .singlePage
+            pdfView.autoScales = false
+            pdfView.isUserInteractionEnabled = false
+            pdfView.minScaleFactor = 0.01
+            
+            setNeedsLayout()
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        pdfView.minScaleFactor = 0.01
+        pdfView.scaleFactor = pdfView.scaleFactorForSizeToFit
+    }
 }

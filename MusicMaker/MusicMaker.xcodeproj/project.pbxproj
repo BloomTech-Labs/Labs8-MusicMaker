@@ -9,37 +9,96 @@
 /* Begin PBXBuildFile section */
 		399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */; };
 		399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */; };
+		39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C108FC2194E55900180F37 /* RecordingViewController.swift */; };
+		39C108FF2194FD9800180F37 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C108FE2194FD9800180F37 /* CameraPreviewView.swift */; };
 		39CA2B532193607700C6018E /* SplitView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B522193607700C6018E /* SplitView.storyboard */; };
 		39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */; };
 		39CA2B5721938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B5621938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift */; };
 		39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B582193901700C6018E /* MusicSheetPageCollectionViewCell.swift */; };
 		39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B5A219397DA00C6018E /* SamplePDF.pdf */; };
 		39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B5C21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift */; };
+		39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B5E2194AED500C6018E /* RecordButtonTableViewCell.swift */; };
+		39CA2B612194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */; };
+		39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */; };
+		BF5D5209219CB05900DFF213 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */; };
+		BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5208219CB05900DFF213 /* HoshiTextField.swift */; };
+		BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5D520B219CC7F200DFF213 /* Teachers.storyboard */; };
+		BF5D520E219CC8CA00DFF213 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D520D219CC8CA00DFF213 /* ContainerViewController.swift */; };
+		BF5D5210219CC8E800DFF213 /* TeachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */; };
+		BF5D5212219CC8F500DFF213 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */; };
+		BF5D5217219CD23100DFF213 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5216219CD23100DFF213 /* UIButton+Extensions.swift */; };
+		BF5D5219219D17F100DFF213 /* TeachersViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5218219D17F100DFF213 /* TeachersViewControllerDelegate.swift */; };
+		BF69F2B921A4F68100EAB8CE /* MusicMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69F2B821A4F68100EAB8CE /* MusicMakerTests.swift */; };
+		BF69F2C721A4F8A500EAB8CE /* MusicMakerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69F2C621A4F8A500EAB8CE /* MusicMakerUITests.swift */; };
 		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
-		BFD381CC219354C70038F974 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CB219354C70038F974 /* QRScannerViewController.swift */; };
 		BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CD219355460038F974 /* SignUpViewController.swift */; };
 		BFD381D0219355510038F974 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CF219355510038F974 /* LogInViewController.swift */; };
 		BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */; };
 		BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5652192393B00D84FF2 /* Assets.xcassets */; };
 		BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */; };
+		BFD3EEF321ABC8160097D5AA /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEF221ABC8160097D5AA /* String+Extensions.swift */; };
+		BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEF421ABCB8A0097D5AA /* UIImage+Extensions.swift */; };
+		BFE771A8219E43F900DCE42A /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE771A7219E43F900DCE42A /* UserProfile.storyboard */; };
+		BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */; };
+		BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */; };
+		BFE771AE219E6B2600DCE42A /* SideMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */; };
+		BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D521A352E100DCE42A /* MenuButton.swift */; };
+		BFE771D821A49BE700DCE42A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D721A49BE700DCE42A /* QRView.swift */; };
+		BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */; };
+		BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */; };
 		CCA6E76E82020309C9BE8F98 /* Pods_MusicMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF69F2BB21A4F68100EAB8CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFD3E5532192393A00D84FF2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFD3E55A2192393A00D84FF2;
+			remoteInfo = MusicMaker;
+		};
+		BF69F2C921A4F8A500EAB8CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFD3E5532192393A00D84FF2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFD3E55A2192393A00D84FF2;
+			remoteInfo = MusicMaker;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30673F6A357782EEB3E98417 /* Pods-MusicMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UnsubmittedAssignmentViewController.storyboard; sourceTree = "<group>"; };
 		399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsubmittedAssignmentViewController.swift; sourceTree = "<group>"; };
+		39C108FC2194E55900180F37 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
+		39C108FE2194FD9800180F37 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		39CA2B522193607700C6018E /* SplitView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplitView.storyboard; sourceTree = "<group>"; };
 		39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B5621938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentMusicPieceTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B582193901700C6018E /* MusicSheetPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSheetPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		39CA2B5A219397DA00C6018E /* SamplePDF.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SamplePDF.pdf; sourceTree = "<group>"; };
 		39CA2B5C21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentInstructionsTableViewCell.swift; sourceTree = "<group>"; };
+		39CA2B5E2194AED500C6018E /* RecordButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonTableViewCell.swift; sourceTree = "<group>"; };
+		39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSaveSubmitTableViewCell.swift; sourceTree = "<group>"; };
+		39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordingViewController.storyboard; sourceTree = "<group>"; };
+		BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
+		BF5D5208219CB05900DFF213 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
+		BF5D520B219CC7F200DFF213 /* Teachers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Teachers.storyboard; sourceTree = "<group>"; };
+		BF5D520D219CC8CA00DFF213 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersViewController.swift; sourceTree = "<group>"; };
+		BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		BF5D5216219CD23100DFF213 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIButton+Extensions.swift"; path = "MusicMaker/Storyboards/UIButton+Extensions.swift"; sourceTree = SOURCE_ROOT; };
+		BF5D5218219D17F100DFF213 /* TeachersViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersViewControllerDelegate.swift; sourceTree = "<group>"; };
+		BF69F2B621A4F68100EAB8CE /* MusicMakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicMakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF69F2B821A4F68100EAB8CE /* MusicMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicMakerTests.swift; sourceTree = "<group>"; };
+		BF69F2BA21A4F68100EAB8CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF69F2C421A4F8A400EAB8CE /* MusicMakerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicMakerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF69F2C621A4F8A500EAB8CE /* MusicMakerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicMakerUITests.swift; sourceTree = "<group>"; };
+		BF69F2C821A4F8A500EAB8CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
-		BFD381CB219354C70038F974 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		BFD381CD219355460038F974 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BFD381CF219355510038F974 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BFD3E55B2192393A00D84FF2 /* MusicMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,10 +106,34 @@
 		BFD3E5652192393B00D84FF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFD3E5682192393B00D84FF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFD3E56A2192393B00D84FF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFD3EEF221ABC8160097D5AA /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		BFD3EEF421ABCB8A0097D5AA /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		BFE771A7219E43F900DCE42A /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+TransitionAnimations.swift"; path = "MusicMaker/Storyboards/UIViewController+TransitionAnimations.swift"; sourceTree = SOURCE_ROOT; };
+		BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDelegate.swift; sourceTree = "<group>"; };
+		BFE771D521A352E100DCE42A /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		BFE771D721A49BE700DCE42A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
+		BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantPanGestureRecognizer.swift; sourceTree = "<group>"; };
+		BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scannedSound.mp3; sourceTree = "<group>"; };
 		F6FDA1FA291F03420ADB77C5 /* Pods-MusicMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BF69F2B321A4F68100EAB8CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF69F2C121A4F8A400EAB8CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFD3E5582192393A00D84FF2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,13 +154,45 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BF5D5215219CCAA100DFF213 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BF5D5218219D17F100DFF213 /* TeachersViewControllerDelegate.swift */,
+				BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		BF69F2B721A4F68100EAB8CE /* MusicMakerTests */ = {
+			isa = PBXGroup;
+			children = (
+				BF69F2B821A4F68100EAB8CE /* MusicMakerTests.swift */,
+				BF69F2BA21A4F68100EAB8CE /* Info.plist */,
+			);
+			path = MusicMakerTests;
+			sourceTree = "<group>";
+		};
+		BF69F2C521A4F8A500EAB8CE /* MusicMakerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BF69F2C621A4F8A500EAB8CE /* MusicMakerUITests.swift */,
+				BF69F2C821A4F8A500EAB8CE /* Info.plist */,
+			);
+			path = MusicMakerUITests;
+			sourceTree = "<group>";
+		};
 		BFD381C4219353A50038F974 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */,
+				BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */,
+				BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */,
+				BF5D520D219CC8CA00DFF213 /* ContainerViewController.swift */,
 				BFD381CD219355460038F974 /* SignUpViewController.swift */,
+				BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */,
 				BFD381CF219355510038F974 /* LogInViewController.swift */,
-				BFD381CB219354C70038F974 /* QRScannerViewController.swift */,
 				399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */,
+				39C108FC2194E55900180F37 /* RecordingViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -88,6 +203,9 @@
 				BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */,
 				BFD381C22193525F0038F974 /* Authentication.storyboard */,
 				399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */,
+				BF5D520B219CC7F200DFF213 /* Teachers.storyboard */,
+				BFE771A7219E43F900DCE42A /* UserProfile.storyboard */,
+				39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */,
 				39CA2B522193607700C6018E /* SplitView.storyboard */,
 			);
 			path = Storyboards;
@@ -99,6 +217,7 @@
 				BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */,
 				BFD3E5652192393B00D84FF2 /* Assets.xcassets */,
 				39CA2B5A219397DA00C6018E /* SamplePDF.pdf */,
+				BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */,
 				BFD381BA219255540038F974 /* GoogleService-Info.plist */,
 				BFD3E56A2192393B00D84FF2 /* Info.plist */,
 			);
@@ -108,10 +227,17 @@
 		BFD381C7219353DF0038F974 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BFE771D721A49BE700DCE42A /* QRView.swift */,
+				BFE771D521A352E100DCE42A /* MenuButton.swift */,
+				BF5D5208219CB05900DFF213 /* HoshiTextField.swift */,
+				BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */,
 				39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */,
 				39CA2B5621938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift */,
 				39CA2B582193901700C6018E /* MusicSheetPageCollectionViewCell.swift */,
 				39CA2B5C21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift */,
+				39CA2B5E2194AED500C6018E /* RecordButtonTableViewCell.swift */,
+				39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */,
+				39C108FE2194FD9800180F37 /* CameraPreviewView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -133,6 +259,10 @@
 		BFD381CA219353F40038F974 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */,
+				BF5D5216219CD23100DFF213 /* UIButton+Extensions.swift */,
+				BFD3EEF221ABC8160097D5AA /* String+Extensions.swift */,
+				BFD3EEF421ABCB8A0097D5AA /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -141,6 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				BFD3E55D2192393A00D84FF2 /* MusicMaker */,
+				BF69F2B721A4F68100EAB8CE /* MusicMakerTests */,
+				BF69F2C521A4F8A500EAB8CE /* MusicMakerUITests */,
 				BFD3E55C2192393A00D84FF2 /* Products */,
 				5405EB2258EE9A3121DEE7CE /* Pods */,
 				E4DB184FD5558558B4A602A2 /* Frameworks */,
@@ -151,6 +283,8 @@
 			isa = PBXGroup;
 			children = (
 				BFD3E55B2192393A00D84FF2 /* MusicMaker.app */,
+				BF69F2B621A4F68100EAB8CE /* MusicMakerTests.xctest */,
+				BF69F2C421A4F8A400EAB8CE /* MusicMakerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,6 +292,7 @@
 		BFD3E55D2192393A00D84FF2 /* MusicMaker */ = {
 			isa = PBXGroup;
 			children = (
+				BF5D5215219CCAA100DFF213 /* Protocols */,
 				BFD381CA219353F40038F974 /* Extensions */,
 				BFD381C9219353EA0038F974 /* Model Controllers */,
 				BFD381C8219353E60038F974 /* Models */,
@@ -180,6 +315,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BF69F2B521A4F68100EAB8CE /* MusicMakerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF69F2BF21A4F68100EAB8CE /* Build configuration list for PBXNativeTarget "MusicMakerTests" */;
+			buildPhases = (
+				BF69F2B221A4F68100EAB8CE /* Sources */,
+				BF69F2B321A4F68100EAB8CE /* Frameworks */,
+				BF69F2B421A4F68100EAB8CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF69F2BC21A4F68100EAB8CE /* PBXTargetDependency */,
+			);
+			name = MusicMakerTests;
+			productName = MusicMakerTests;
+			productReference = BF69F2B621A4F68100EAB8CE /* MusicMakerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BF69F2C321A4F8A400EAB8CE /* MusicMakerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF69F2CB21A4F8A500EAB8CE /* Build configuration list for PBXNativeTarget "MusicMakerUITests" */;
+			buildPhases = (
+				BF69F2C021A4F8A400EAB8CE /* Sources */,
+				BF69F2C121A4F8A400EAB8CE /* Frameworks */,
+				BF69F2C221A4F8A400EAB8CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF69F2CA21A4F8A500EAB8CE /* PBXTargetDependency */,
+			);
+			name = MusicMakerUITests;
+			productName = MusicMakerUITests;
+			productReference = BF69F2C421A4F8A400EAB8CE /* MusicMakerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		BFD3E55A2192393A00D84FF2 /* MusicMaker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFD3E56D2192393B00D84FF2 /* Build configuration list for PBXNativeTarget "MusicMaker" */;
@@ -189,6 +360,7 @@
 				BFD3E5582192393A00D84FF2 /* Frameworks */,
 				BFD3E5592192393A00D84FF2 /* Resources */,
 				5557C5A2CD6649390CC6D456 /* [CP] Embed Pods Frameworks */,
+				3F2849AD4A2F5EB05A28E97D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,10 +377,18 @@
 		BFD3E5532192393A00D84FF2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1000;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Vuk;
 				TargetAttributes = {
+					BF69F2B521A4F68100EAB8CE = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = BFD3E55A2192393A00D84FF2;
+					};
+					BF69F2C321A4F8A400EAB8CE = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = BFD3E55A2192393A00D84FF2;
+					};
 					BFD3E55A2192393A00D84FF2 = {
 						CreatedOnToolsVersion = 10.0;
 					};
@@ -228,22 +408,42 @@
 			projectRoot = "";
 			targets = (
 				BFD3E55A2192393A00D84FF2 /* MusicMaker */,
+				BF69F2B521A4F68100EAB8CE /* MusicMakerTests */,
+				BF69F2C321A4F8A400EAB8CE /* MusicMakerUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BF69F2B421A4F68100EAB8CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF69F2C221A4F8A400EAB8CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFD3E5592192393A00D84FF2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				39CA2B532193607700C6018E /* SplitView.storyboard in Resources */,
+				39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */,
 				BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */,
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
 				39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */,
 				BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */,
+				BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */,
+				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */,
+				BFE771A8219E43F900DCE42A /* UserProfile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +472,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3F2849AD4A2F5EB05A28E97D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5557C5A2CD6649390CC6D456 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -282,7 +504,9 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
@@ -298,7 +522,9 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
@@ -317,23 +543,70 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BF69F2B221A4F68100EAB8CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF69F2B921A4F68100EAB8CE /* MusicMakerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF69F2C021A4F8A400EAB8CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF69F2C721A4F8A500EAB8CE /* MusicMakerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFD3E5572192393A00D84FF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF5D5217219CD23100DFF213 /* UIButton+Extensions.swift in Sources */,
+				BF5D5209219CB05900DFF213 /* TextFieldEffects.swift in Sources */,
 				39CA2B5721938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift in Sources */,
 				399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */,
+				39CA2B612194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,
+				39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */,
 				BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */,
+				39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */,
 				BFD381D0219355510038F974 /* LogInViewController.swift in Sources */,
-				BFD381CC219354C70038F974 /* QRScannerViewController.swift in Sources */,
+				BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */,
+				BF5D520E219CC8CA00DFF213 /* ContainerViewController.swift in Sources */,
 				39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */,
+				BFE771D821A49BE700DCE42A /* QRView.swift in Sources */,
+				BFD3EEF321ABC8160097D5AA /* String+Extensions.swift in Sources */,
+				BFE771AE219E6B2600DCE42A /* SideMenuDelegate.swift in Sources */,
+				BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */,
+				BF5D5210219CC8E800DFF213 /* TeachersViewController.swift in Sources */,
+				39C108FF2194FD9800180F37 /* CameraPreviewView.swift in Sources */,
+				BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */,
+				BF5D5219219D17F100DFF213 /* TeachersViewControllerDelegate.swift in Sources */,
+				BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */,
 				39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */,
+				BF5D5212219CC8F500DFF213 /* SideMenuViewController.swift in Sources */,
+				BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */,
 				39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */,
+				BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF69F2BC21A4F68100EAB8CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFD3E55A2192393A00D84FF2 /* MusicMaker */;
+			targetProxy = BF69F2BB21A4F68100EAB8CE /* PBXContainerItemProxy */;
+		};
+		BF69F2CA21A4F8A500EAB8CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFD3E55A2192393A00D84FF2 /* MusicMaker */;
+			targetProxy = BF69F2C921A4F8A500EAB8CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */ = {
@@ -347,6 +620,88 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BF69F2BD21A4F68100EAB8CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NB32394B2A;
+				INFOPLIST_FILE = MusicMakerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vuk.MusicMakerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusicMaker.app/MusicMaker";
+			};
+			name = Debug;
+		};
+		BF69F2BE21A4F68100EAB8CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NB32394B2A;
+				INFOPLIST_FILE = MusicMakerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vuk.MusicMakerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusicMaker.app/MusicMaker";
+			};
+			name = Release;
+		};
+		BF69F2CC21A4F8A500EAB8CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NB32394B2A;
+				INFOPLIST_FILE = MusicMakerUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vuk.MusicMakerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MusicMaker;
+			};
+			name = Debug;
+		};
+		BF69F2CD21A4F8A500EAB8CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NB32394B2A;
+				INFOPLIST_FILE = MusicMakerUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vuk.MusicMakerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MusicMaker;
+			};
+			name = Release;
+		};
 		BFD3E56B2192393B00D84FF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -504,6 +859,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BF69F2BF21A4F68100EAB8CE /* Build configuration list for PBXNativeTarget "MusicMakerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF69F2BD21A4F68100EAB8CE /* Debug */,
+				BF69F2BE21A4F68100EAB8CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF69F2CB21A4F8A500EAB8CE /* Build configuration list for PBXNativeTarget "MusicMakerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF69F2CC21A4F8A500EAB8CE /* Debug */,
+				BF69F2CD21A4F8A500EAB8CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BFD3E5562192393A00D84FF2 /* Build configuration list for PBXProject "MusicMaker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

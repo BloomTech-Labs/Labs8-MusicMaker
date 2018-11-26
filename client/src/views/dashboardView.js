@@ -1,22 +1,24 @@
 import React, { Component } from "react";
-// import { connect } from 'react-redux';
 
-// import PasswordChangeForm from "../components/UpdatePW";
-import DashboardNavigaton from "../components/DashboardNavigation";
+import DashboardNavigation from "../components/DashboardNavigation";
 import SideBar from "../components/SideBar";
+
+import "../css/index.css";
 
 class DashboardView extends Component {
   render() {
     return (
-      <div>
-          <DashboardNavigaton />
-          <div>New Asignment</div>
-          <div> + </div>
+      <div className="container">
+        <div className="flex-container">
           <SideBar />
-          {/* <PasswordChangeForm /> */}
+          <div className="block-container" id="newAssignment">
+            <div className="subheader">New Assignment</div>
+            <button className="bodyText"> + </button>
+          </div>
+        </div>
       </div>
     );
-   }
- }
- 
- export default DashboardView;
+  }
+}
+
+export default DashboardView;

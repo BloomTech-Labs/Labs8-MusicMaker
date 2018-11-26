@@ -199,7 +199,7 @@ app.post('/teachers/add', async (req, res, next) => {
       });
       res.status(200).send({ message: 'Teacher successfully added!' })
       // res.json({
-      //   id: ref.id,
+      //   id: settingsRef.id,
       //   data
       // });
     }

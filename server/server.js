@@ -190,7 +190,7 @@ app.post('/teachers/add', async (req, res, next) => {
     if(!email || !firstName || !lastName) {
       res.status(411).send({ error: 'Please fill out all required fields.' });
     } else {
-      const settingsRef = await db.collection('teachers').doc(id).update({
+      const settingsRef = await db.collection('teachers').doc(id).add({
         'email': email,
         'name': {
           'firstName': firstName,
@@ -198,7 +198,10 @@ app.post('/teachers/add', async (req, res, next) => {
         }
       });
       res.status(200).send({ message: 'Teacher successfully added!' })
-      res.json(data);
+      // res.json({
+      //   id: ref.id,
+      //   data
+      // });
     }
   } catch(err) {
     next(err);

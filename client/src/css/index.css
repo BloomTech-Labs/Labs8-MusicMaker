@@ -148,6 +148,12 @@ body {
   width: 100%;
   margin: 0 auto;
 }
+.container .flex-container {
+  display: flex;
+}
+.container .block-container {
+  display: block;
+}
 .container .jumbotron {
   margin: 20px auto;
 }
@@ -159,14 +165,6 @@ body {
 .container .bodyText {
   font-size: 2em;
   margin: 20px auto;
-}
-.container .buyNow_Button {
-  width: 200px;
-  height: 50px;
-  border: 1px solid black;
-  background: white;
-  font-size: 2em;
-  font-weight: bold;
 }
 .nav {
   display: flex;
@@ -190,4 +188,29 @@ body {
 }
 .signOutButton .signOutButton:hover {
   cursor: pointer;
+}
+.buyNow_Button {
+  width: 200px;
+  height: 50px;
+  border: 1px solid black;
+  background: white;
+  font-size: 2em;
+  font-weight: bold;
+}
+#newAssignment {
+  margin: auto 20%;
+}
+#newAssignment .bodyText {
+  margin: 20px 50%;
+}
+.sidebar {
+  width: 15%;
+  font-size: 2em;
+  border: 1px solid black;
+  padding: 0 1%;
+  margin: 20px 0;
+}
+.sidebar .item {
+  display: block;
+  margin: 20px 0;
 }

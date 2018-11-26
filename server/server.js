@@ -196,8 +196,10 @@ app.post('/teachers/add', async (req, res, next) => {
     const lastName = await req.body.lastName;
     const data = await { email, firstName, lastName };
 
-    if(!email || firstName || lastName) {
-      res.status(411).send({ error: 'Please fill out all required fields.' });
+    if(!email) {
+      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
+    } else if(!firstName || !lastName) {
+      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
     } else {
       const teachersRef = await db.collection('teachers').add({
         'email': email,

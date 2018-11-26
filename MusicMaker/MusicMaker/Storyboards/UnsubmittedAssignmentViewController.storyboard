@@ -388,36 +388,12 @@
                                     <outlet property="recordButton" destination="Hgb-qT-0lm" id="ymV-sT-eYR"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="358" id="f9O-ST-ICw" customClass="AssignmentPlaybackTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaybackCell" rowHeight="358" id="f9O-ST-ICw" customClass="AssignmentPlaybackTableViewCell" customModule="MusicMaker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="755" width="768" height="358"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f9O-ST-ICw" id="XYQ-nV-or2">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="357.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLl-bO-u6w">
-                                            <rect key="frame" x="20" y="11" width="728" height="336"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgZ-KK-RMh">
-                                                    <rect key="frame" x="332" y="136" width="64" height="64"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" image="PlayButton"/>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstItem="BgZ-KK-RMh" firstAttribute="centerY" secondItem="TLl-bO-u6w" secondAttribute="centerY" id="6y3-QK-bTP"/>
-                                                <constraint firstAttribute="width" secondItem="TLl-bO-u6w" secondAttribute="height" multiplier="13:6" id="bPj-G5-7Uc"/>
-                                                <constraint firstItem="BgZ-KK-RMh" firstAttribute="centerX" secondItem="TLl-bO-u6w" secondAttribute="centerX" id="gbx-ax-leU"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="TLl-bO-u6w" firstAttribute="leading" secondItem="XYQ-nV-or2" secondAttribute="leadingMargin" id="0M8-NQ-6V7"/>
-                                        <constraint firstItem="TLl-bO-u6w" firstAttribute="trailing" secondItem="XYQ-nV-or2" secondAttribute="trailingMargin" id="8WX-0b-qTC"/>
-                                        <constraint firstItem="TLl-bO-u6w" firstAttribute="top" secondItem="XYQ-nV-or2" secondAttribute="topMargin" id="OMi-70-BLQ"/>
-                                        <constraint firstItem="TLl-bO-u6w" firstAttribute="bottom" secondItem="XYQ-nV-or2" secondAttribute="bottomMargin" id="rKa-SM-5OW"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SaveSubmitCell" rowHeight="81" id="EY2-oo-8W9" customClass="AssignmentSaveSubmitTableViewCell" customModule="MusicMaker" customModuleProvider="target">
@@ -498,7 +474,6 @@
     </scenes>
     <resources>
         <image name="MusicLines" width="18" height="140"/>
-        <image name="PlayButton" width="64" height="64"/>
         <image name="RecordIcon" width="40" height="40"/>
         <image name="TrebleSymbol" width="70" height="140"/>
     </resources>

@@ -8,6 +8,7 @@
 
 import UIKit
 import PDFKit
+import AVFoundation
 
 class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusicPieceTableViewCellDelegate {
 
@@ -25,7 +26,7 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,6 +65,12 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
             
             return cell
         case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaybackCell", for: indexPath) as! AssignmentPlaybackTableViewCell
+            
+            cell.playerViewController?.player = AVPlayer(url: URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_adv_example_hevc/master.m3u8")!)
+            
+            return cell
+        case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SaveSubmitCell", for: indexPath) as! AssignmentSaveSubmitTableViewCell
             
 //            cell.delegate = self

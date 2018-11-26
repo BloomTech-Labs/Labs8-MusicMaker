@@ -206,6 +206,56 @@ app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
   }
 });
 
+//PUT should update teachers settings info.: email and name(firstName and lastName)
+app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
+  try{
+    const teacherId = req.params['idTeacher'];
+    const {email, firstName, lastName} = await req.body;
+
+    if (!email) {
+      res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
+    } else if (!firstName || !lastName) {
+      res.status(411).send({REQUIRED: `FIRST NAME AND LAST NAME CANNOT BE LEFT BLANK`});
+    } else{
+     const settingsRef = await db.collection('teachers').doc(teacherId).update({
+        'email': email,
+        'name' : {
+          'firstName': firstName,
+          'lastName': lastName
+        }
+      });
+      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  
+    }
+ 
+  } catch (err){
+    next (err);
+  }
+});
+
+app.post('/createTeacher', async (req, res, next) => {
+  try {
+    const { email, firstName, lastName} = await req.body;
+
+    if(!email) {
+      res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
+    } else if (!firstName || !lastName) {
+      res.status(411).send({REQUIRED: `FIRST NAME AND LAST NAME CANNOT BE LEFT BLANK`});
+    } else {
+      const teachersRef = await db.collection('teachers').add({
+        'email': email,
+        'name': {
+          'firstName': firstName,
+          'lastName': lastName
+        }
+      });
+      res.status(200).send({ MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW TEACHER' });
+ 
+    }
+  } catch(err) {
+    next(err);
+  }
+});
+
 // POST
 
 // add individual teacher with just an ID

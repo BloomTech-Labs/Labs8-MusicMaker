@@ -3,10 +3,13 @@
 
 import React, { Component } from 'react';
 
+import Sidebar from '../components/SideBar';
+
 class DashboardBillingView extends Component {
   render() {
     return (
       <div className = 'billing-wrapper'>
+        <Sidebar />
         <h1>Billing</h1>
         <div className = 'payment-info-box'>
 

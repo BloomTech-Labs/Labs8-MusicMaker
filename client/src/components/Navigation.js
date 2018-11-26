@@ -18,14 +18,11 @@ const Navigation = ({ authUser }) => (
 const NavigationAuth = () => (
   <div className="nav">
     <div className="left">
-      <Link to={routes.LANDING}>
+      <Link to={routes.DASHBOARD}>
         <img className="item" src={homeIcon} />
       </Link>
     </div>
     <div className="right">
-      <Link to={routes.DASHBOARD} className="item">
-        Dashboard
-      </Link>
       <SignOutButton className="item" />
     </div>
   </div>

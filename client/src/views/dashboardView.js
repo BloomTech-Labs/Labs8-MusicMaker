@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import DashboardNavigation from "../components/DashboardNavigation";
 import SideBar from "../components/SideBar";
 
 import "../css/index.css";

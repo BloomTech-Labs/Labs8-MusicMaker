@@ -5,8 +5,8 @@ import { auth } from '../firebase';
 import * as routes from '../constants/routes';
 
 const PasswordForgetPage = () =>
-  <div>
-    <h1>Reset Password?</h1>
+  <div className="container">
+    <h1 className="bodyText">Reset Password?</h1>
     <PasswordForgetForm />
   </div>
 

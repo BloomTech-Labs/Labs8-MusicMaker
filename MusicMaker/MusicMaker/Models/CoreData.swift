@@ -14,7 +14,7 @@ class CoreDataStack {
     static let shared = CoreDataStack()
     
     lazy var container: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "MusicMakerModel")  // dataModelName
+        let container = NSPersistentContainer(name: "MusicMakerModel")
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error {
                 // Kills the app and returns an error

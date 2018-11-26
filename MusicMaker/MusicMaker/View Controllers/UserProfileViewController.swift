@@ -22,7 +22,7 @@ class UserProfileViewController: UIViewController {
         //Sample for querying firestore for student information
         guard let currentUsersUniqueID = Auth.auth().currentUser?.uid else {return}
         print(currentUsersUniqueID)
-        let studentsCollectionReference = database.collection("students").document(currentUsersUniqueID).collection("settings").document("ttvfhwBIy5OSmCD5tMrh")
+        let studentsCollectionReference = database.collection("students").document(currentUsersUniqueID)
         studentsCollectionReference.getDocument { (document, error) in
             if let document = document {
                 if let dataDescription = document.data() {

@@ -55,6 +55,7 @@ class SignUpViewController: UIViewController {
     // MARK: - Properties
     private lazy var panRecognizer: InstantPanGestureRecognizer = {
         let recognizer = InstantPanGestureRecognizer()
+        recognizer.cancelsTouchesInView = false
         recognizer.addTarget(self, action: #selector(popupViewPanned(recognizer:)))
         return recognizer
     }()
@@ -93,9 +94,7 @@ class SignUpViewController: UIViewController {
             popupView.layer.shadowRadius = 10
         }
     }
-    
-    @IBOutlet weak var signUpButton: UIButton!
-    
+        
     
     @IBOutlet weak var firstNameTextField: HoshiTextField! {
         didSet {
@@ -343,24 +342,32 @@ class SignUpViewController: UIViewController {
     
     //Adds a gesture recognizer that calls dismissKeyboard(_:)
     private func addDismissKeyboardGestureRecognizer() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
     }
     
+    
+    
+    
     //Resigns the first responder for the textField when clicking away from the keyboard
-    @objc private func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+    @objc private func dismissKeyboard() {
+        resignFirstResponderForAllTextFields()
+        animateTransitionIfNeeded(to: .closed, duration: 1)
+    }
+    
+    private func resignFirstResponderForAllTextFields() {
         firstNameTextField.resignFirstResponder()
         lastNameTextField.resignFirstResponder()
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         confirmPasswordTextField.resignFirstResponder()
-        animateTransitionIfNeeded(to: .closed, duration: 1)
     }
     
     // MARK: - IBActions
     
     //When the user clicks the teacher text field, present the QR Scanner in the popup menu
     @IBAction func addTeacher(_ sender: UITextField) {
+        resignFirstResponderForAllTextFields()
         animateTransitionIfNeeded(to: .open, duration: 1)
     }
     
@@ -455,7 +462,8 @@ class SignUpViewController: UIViewController {
             let lastName = lastNameTextField.text,
             let confirmedPassword = confirmPasswordTextField.text,
             let instrument = selectInstrumentTextField.text,
-            let level = selectLevelTextField.text
+            let level = selectLevelTextField.text,
+            let teacher = teacherTextField.text
         else {return}
         
         guard password == confirmedPassword else {return}
@@ -484,11 +492,12 @@ class SignUpViewController: UIViewController {
             
             let database = Firestore.firestore()
             
-            let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level]
+            let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level, "teacher" : teacher]
             
             if let user = user {
                 let usersUniqueIdentifier = user.user.uid
-                database.collection("students").document(usersUniqueIdentifier).collection("settings").addDocument(data: userDocumentInformation)
+                database.collection("students").document(usersUniqueIdentifier).collection("assignments")
+                database.collection("students").document(usersUniqueIdentifier).setData(userDocumentInformation)
             }
         }
     }

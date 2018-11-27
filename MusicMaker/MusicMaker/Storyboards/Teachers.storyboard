@@ -142,19 +142,12 @@ Password</string>
                         <viewLayoutGuide key="safeArea" id="TeA-Y6-gtb"/>
                     </view>
                     <navigationItem key="navigationItem" title="Teachers" id="Gce-Dn-phq">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="olD-gy-ztf">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KxZ-7X-WOI" customClass="MenuButton" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="showSideMenu:" destination="RAX-kR-dSc" eventType="touchUpInside" id="NhQ-Y2-YrM"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="fNU-Ir-s9y">
+                            <connections>
+                                <action selector="showSideMenu:" destination="RAX-kR-dSc" id="v8R-WE-ZYS"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="menuButton" destination="KxZ-7X-WOI" id="Sae-0U-OmG"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jhg-Kt-wfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -257,6 +250,7 @@ Password</string>
         <image name="assignments" width="30" height="30"/>
         <image name="cancel" width="30" height="30"/>
         <image name="logout" width="30" height="30"/>
+        <image name="menu" width="30" height="30"/>
         <image name="password" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
         <image name="user" width="30" height="30"/>

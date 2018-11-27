@@ -64,7 +64,6 @@ extension ContainerViewController: TeachersViewControllerDelegate {
             }
         } else {
             hideSideMenu()
-            teachersViewController.menuButton.animateToMenu()
         }
      
     }
@@ -74,9 +73,6 @@ extension ContainerViewController: TeachersViewControllerDelegate {
 extension ContainerViewController: SideMenuDelegate {
     func userProfileClicked() {
         self.performSegue(withIdentifier: "ShowUserProfile", sender: nil)
-        if teachersViewController.sideMenuIsShowing {
-            hideSideMenu()
-        }
     }
     
 

@@ -17,30 +17,22 @@ class TeachersViewController: UIViewController {
         self.view.addGestureRecognizer(touchGesture)
     }
     
+    
+    // MARK: - Properties
+    var sideMenuIsShowing = false
+    
     @objc private func hideMenuFromUserTap() {
-        if sideMenuIsShowing {
-            showSideMenu(self)
-        }
+        showSideMenu(self)
     }
     
-    // MARK: - IBOutlets
-    @IBOutlet weak var menuButton: MenuButton!
     
     // MARK: - Properties
     weak var delegate: TeachersViewControllerDelegate?
-    var sideMenuIsShowing = false
+    
+    
     // MARK: - IBActions
-    //Posts a notification to let other views know to show the side menu
     @IBAction func showSideMenu(_ sender: Any) {
         delegate?.showSideMenu()
-        if !sideMenuIsShowing {
-            menuButton.animateToX()
-            sideMenuIsShowing = true
-        } else {
-            menuButton.animateToMenu()
-            sideMenuIsShowing = false
-        }
-
+        sideMenuIsShowing = sideMenuIsShowing ? false : true
     }
-    
 }

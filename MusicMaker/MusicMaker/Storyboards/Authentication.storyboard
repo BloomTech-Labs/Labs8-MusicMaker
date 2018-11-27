@@ -41,6 +41,9 @@
                                                 <state key="normal" title="Log In">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="24"/>
+                                                </variation>
                                                 <connections>
                                                     <segue destination="fJc-Zd-r9S" kind="show" id="Ucy-tT-VyJ"/>
                                                 </connections>
@@ -51,6 +54,9 @@
                                                 <state key="normal" title="Sign Up">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="24"/>
+                                                </variation>
                                                 <connections>
                                                     <segue destination="dtM-Of-Z43" kind="show" id="1yD-s6-ZGH"/>
                                                 </connections>
@@ -63,6 +69,9 @@
                                         <state key="normal" title="Sign In With Google">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="24"/>
+                                        </variation>
                                     </button>
                                 </subviews>
                             </stackView>

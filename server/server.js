@@ -44,17 +44,36 @@ app.post('/teacher/:idTeacher/createAssignment', async (req, res, next) => {
   try {
     const teacherId = req.params['idTeacher'];
     const { assignmentName, instructions, instrument, level, piece, sheetMusic } = req.body;
-  
-    const addTeacherAssign = db.collection('teachers').doc(teacherId).collection('assignments').add({
-      'assignmentName': assignmentName,
-      'instructions': instructions,
-      'instrument': instrument,
-      'level': level,
-      'piece': piece
-    });
+    // const assignments = {};
 
-    res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW ASSIGNMENT'});
+    if (!assignmentName || !instructions || !instrument || !level || !piece) {
+      res.status(411).send({REQUIRED: 'YOU MUST HAVE ALL FIELDS FILLED'});
+    } 
+    // else if (assignmentName > 0) {
+    //   const teacherAssingmentsRef = await db.collection('teachers').doc(teacherId).collection('assignments').get()
+    //   // console.log('0******************************************', teacherAssingmentsRef)
+    //   // console.log('1******************************************', Object.keys(teacherAssingmentsRef))
+    //   .then(snap => {
+    //     snap.forEach(doc => {
+    //       global = doc.data();
+    //       assignments[doc.id] = [global.assignmentName];
+    //     })
+    //   })
 
+    //   console.log('2**********************************', assignment) // This returns a list of an array of a teachers assignments within an array, 
+    //                                                                  //need to check if each of those assignment names matches the new name and if does throw an error
+    //   res.status(411).send({ERROR: 'YOU CANNOT HAVE AN ASSIGNMENT WITH THE SAME NAME'});
+    // } 
+    else {
+      const addTeacherAssign = await db.collection('teachers').doc(teacherId).collection('assignments').add({
+        'assignmentName': assignmentName,
+        'instructions': instructions,
+        'instrument': instrument,
+        'level': level,
+        'piece': piece
+      });
+      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW ASSIGNMENT'});
+    };
   }
    catch(err) {
     next(err);

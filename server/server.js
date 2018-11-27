@@ -210,6 +210,9 @@ app.post('/teachers/add', async (req, res, next) => {
             },
             'qrcode': QRCode.toString(Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16), function(err, string) {
               console.log(string);
+            }),
+            'qrcode_raw': QRCode.toDataURL(Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16), function(err, url) {
+              console.log(url);
             })
         })
       res.status(200).send({ message: 'Teacher successfully added!' })

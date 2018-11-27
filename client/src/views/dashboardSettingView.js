@@ -15,19 +15,19 @@ class Settings extends Component {
     };
   }
 
-  componentDidMount() {
-    axios
-      .get("http://localhost:8000/teacher/AHnU7PuWMohJWEWZJbvd/settings")
-      .then(res => {
-        // console.log('*******************', Object.values(res.data)[0])
-        this.setState({
-          email: Object.values(res.data)[0][0],
-          firstName: Object.values(res.data)[0][1],
-          lastName: Object.values(res.data)[0][2]
-        });
-      })
-      .catch(err => console.error("Settings AXIOS ERROR:", err));
-  }
+    componentDidMount() {
+        axios
+            .get('https://firestore.googleapis.com/v1beta1/projects/musicmaker-4b2e8/databases/(default)/documents/teachers/AHnU7PuWMohJWEWZJbvd')
+            .then(res => {
+                console.log('*******************', Object.values(res.data), res.data)
+                this.setState({
+                    email: Object.values(res.data)[0][0],
+                    firstName: Object.values(res.data)[0][1],
+                    lastName: Object.values(res.data)[0][2]
+                })
+            })
+            .catch(err => console.error('SETTINGS AXIOS ERROR:', err));
+    }
 
   render() {
     return (

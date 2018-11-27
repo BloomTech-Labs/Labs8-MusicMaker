@@ -9,7 +9,7 @@ import SignOutButton from "../components/SignOutButton";
 import "../css/index.css";
 import homeIcon from "../less/imgs/homeIcon.png";
 
-const Navigation = ({ authUser }) => (
+const Navigation = () => (
   <AuthUserContext.Consumer>
     {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
   </AuthUserContext.Consumer>

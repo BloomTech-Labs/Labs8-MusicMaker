@@ -3,6 +3,7 @@ const fs = require('fs');
 const express = require('express');
 const QRCode = require('qrcode');
 
+
 // Firebase-specific dependencies
 const firebase = require('firebase');
 
@@ -31,22 +32,22 @@ const storage = require('@google-cloud/storage')({
 ///////////////////////
 
 const app = express();
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 // GET a QR code
 
-app.get('/qrcode', async (req, res, next) => {
-  try {
-    let stringGen = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16);
-    let code = QRCode.toString(stringGen, function (err, string) {
-      console.log(string);
-      res.json(string);
-    })
-  } catch(err) {
-    next(err);
-  }
-});
+// app.get('/qrcode', async (req, res, next) => {
+//   try {
+//     let stringGen = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16);
+//     let code = QRCode.toString(stringGen, function (err, string) {
+//       console.log(string);
+//       res.json(string);
+//     })
+//   } catch(err) {
+//     next(err);
+//   }
+// });
 
 // // test GET request, adding key/value pair to Firebase
 
@@ -65,6 +66,21 @@ app.get('/qrcode', async (req, res, next) => {
 //     next(err);
 //   }
 // });
+
+
+// app.get('/teachers', (req, res) => {
+//   rootRef
+//     .child('teachers')
+//     .once('value')
+//     .then(snapshot => {
+//       res.status(200).json(snapshot.val());
+//     })
+//     .catch(err => {
+//       res.status(500).json({ err });
+//     });
+// });
+
+// GET a list of all students studying under a specific teacher
 
 // // GET a list of all students studying under a specific teacher
 
@@ -224,15 +240,15 @@ app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
 //   }
 // });
 
-// app.post('/teachers', async (req, res, next) => {
+// app.post('/teachers/addTest', async (req, res, next) => {
 //   (res => {
 //     const obj = res;
 //     const teacherData = {
 //       firstName: obj.firstName,
 //       lastName: obj.lastName
 //     };
-//     return db.collection('teachers').doc(id).collection('settings').doc(id)
-//       .update(teacherData).then(() => {
+//     return db.collection('teachers').doc(id)
+//       .add(teacherData).then(() => {
 //         console.log('New teacher added to database!');
 //         res.json(teacherData);
 //       })
@@ -248,6 +264,37 @@ app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
 //   let setTeacher = db.collection('teachers').set(data);
 //   res.json(data);
 // })
+
+app.post('/teachers/add', async (req, res, next) => {
+  try {
+    const email = await req.body.email;
+    const firstName = await req.body.firstName;
+    const lastName = await req.body.lastName;
+    const data = await { email, firstName, lastName };
+
+    if(!email) {
+      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
+    } else if(!firstName || !lastName) {
+      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
+    } else {
+      const teachersRef = await db.collection('teachers').add({
+        'email': email,
+        'name': {
+          'firstName': firstName,
+          'lastName': lastName
+        }
+      });
+      res.status(200).send({ message: 'Teacher successfully added!' })
+      // res.json({
+      //   id: teachersRef.id,
+      //   data
+      // });
+    }
+  }
+   catch(err) {
+    next(err);
+  }
+});
 
 ///////////////////////
 
@@ -389,6 +436,17 @@ app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
 //   next (err);
 //   }
 //   });
+
+//=================================================== STRIPE BACKEND =================================================================
+
+
+
+
+
+
+
+
+
 
 // server instantiation
 

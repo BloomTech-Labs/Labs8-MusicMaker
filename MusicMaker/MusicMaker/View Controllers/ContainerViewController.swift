@@ -22,28 +22,27 @@ class ContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.sideMenu.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
         self.sideMenu.layer.shadowOpacity = 0.8
+        self.sideMenu.alpha = 1
+        self.view.bringSubviewToFront(sideMenu)
         sideMenuViewController = self.children[0] as? SideMenuViewController
         teachersViewController =  self.children[1].children[0] as? TeachersViewController
         teachersViewController.delegate = self
         sideMenuViewController.delegate = self
-        
-//        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(hideMenuFromUserTap))
-//        teachersView.addGestureRecognizer(touchGesture)
     }
     
-//    @objc private func hideMenuFromUserTap() {
-//        showSideMenu()
-//    }
-//
     private func hideSideMenu() {
         UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
-            self.sideMenu.alpha = 0
-        })
-        sideMenuViewController.animateHidingOfMenu()
-        
-        UIView.animate(withDuration: 0.4, delay: 0.2, options: [], animations: {
+            self.sideMenu.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.teachersView.transform = .identity
+        })
+    }
+    
+    private func showSideMenu() {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+            self.sideMenu.transform = .identity
+            self.teachersView.transform = CGAffineTransform(translationX: self.sideMenu.frame.width, y: 0)
         })
     }
     
@@ -52,21 +51,8 @@ class ContainerViewController: UIViewController {
 
 // MARK: - TeachersViewControllerDelegate
 extension ContainerViewController: TeachersViewControllerDelegate {
-    func showSideMenu() {
-        if !teachersViewController.sideMenuIsShowing {
-            self.view.bringSubviewToFront(sideMenu)
-            UIView.animate(withDuration: 0.4) {
-                self.sideMenu.alpha = 1
-            }
-            sideMenuViewController.animateShowingOfMenu()
-            UIView.animate(withDuration: 0.4) {
-                self.teachersView.transform = CGAffineTransform(translationX: self.sideMenu.frame.width, y: 0)
-            }
-        } else {
-            hideSideMenu()
-            teachersViewController.menuButton.animateToMenu()
-        }
-     
+    func menuButtonTapped() {
+        teachersViewController.sideMenuIsShowing ? hideSideMenu() : showSideMenu()
     }
 }
 
@@ -74,12 +60,7 @@ extension ContainerViewController: TeachersViewControllerDelegate {
 extension ContainerViewController: SideMenuDelegate {
     func userProfileClicked() {
         self.performSegue(withIdentifier: "ShowUserProfile", sender: nil)
-        if teachersViewController.sideMenuIsShowing {
-            hideSideMenu()
-        }
     }
-    
-
 }
 
 

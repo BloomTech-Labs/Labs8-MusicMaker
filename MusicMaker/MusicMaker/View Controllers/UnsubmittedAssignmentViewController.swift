@@ -26,7 +26,11 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        if let _ = assignment?.localRecordingURL {
+            return 6
+        } else {
+            return 4
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,6 +97,7 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let recordVC = segue.destination as? RecordingViewController else { return }
         
+        recordVC.assignment = assignment
         recordVC.pdfDocument = pdfDocument
         
         if segue.identifier == "ShowPagePreview" {

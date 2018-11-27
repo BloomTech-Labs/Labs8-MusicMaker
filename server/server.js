@@ -176,6 +176,39 @@ app.use(cors());
 //   }
 //   });
 
+// Settings
+
+app.post('/createTeacher', async (req, res, next) => {
+  try {
+    const email = await req.body.email;
+    const firstName = await req.body.firstName;
+    const lastName = await req.body.lastName;
+    const data = await { email, firstName, lastName };
+
+    if(!email) {
+      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
+    } else if(!firstName || !lastName) {
+      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
+    } else {
+      const teachersRef = await db.collection('teachers').add({
+        'email': email,
+        'name': {
+          'firstName': firstName,
+          'lastName': lastName
+        }
+      });
+      res.status(200).send({ message: 'Teacher successfully added!' })
+      // res.json({
+      //   id: teachersRef.id,
+      //   data
+      // });
+    }
+  }
+   catch(err) {
+    next(err);
+  }
+});
+
 //GET should retrieve teachers settings info.: email and name
 app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
   try{
@@ -265,36 +298,7 @@ app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
 //   res.json(data);
 // })
 
-app.post('/teachers/add', async (req, res, next) => {
-  try {
-    const email = await req.body.email;
-    const firstName = await req.body.firstName;
-    const lastName = await req.body.lastName;
-    const data = await { email, firstName, lastName };
 
-    if(!email) {
-      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
-    } else if(!firstName || !lastName) {
-      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
-    } else {
-      const teachersRef = await db.collection('teachers').add({
-        'email': email,
-        'name': {
-          'firstName': firstName,
-          'lastName': lastName
-        }
-      });
-      res.status(200).send({ message: 'Teacher successfully added!' })
-      // res.json({
-      //   id: teachersRef.id,
-      //   data
-      // });
-    }
-  }
-   catch(err) {
-    next(err);
-  }
-});
 
 ///////////////////////
 

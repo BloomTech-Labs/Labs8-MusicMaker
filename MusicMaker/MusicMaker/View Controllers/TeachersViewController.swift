@@ -22,7 +22,9 @@ class TeachersViewController: UIViewController {
     var sideMenuIsShowing = false
     
     @objc private func hideMenuFromUserTap() {
-        showSideMenu(self)
+        if sideMenuIsShowing {
+            showSideMenu(self)
+        }
     }
     
     
@@ -32,7 +34,7 @@ class TeachersViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func showSideMenu(_ sender: Any) {
-        delegate?.showSideMenu()
+        delegate?.menuButtonTapped()
         sideMenuIsShowing = sideMenuIsShowing ? false : true
     }
 }

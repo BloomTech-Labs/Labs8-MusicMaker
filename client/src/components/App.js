@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import withAuthentication from "./withAuthentication";
 
 import * as routes from "../constants/routes";
-
 import Navigation from "./Navigation";
 import LandingPageView from "../views/landingView";
 import SignUpView from "../views/signupView";

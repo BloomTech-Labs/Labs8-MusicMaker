@@ -20,7 +20,14 @@ class RecordingViewController: UIViewController {
     
     var pdfDocument: PDFDocument? {
         didSet {
-            collectionView.reloadData()
+            collectionView?.reloadData()
+        }
+    }
+    
+    var pdfPage: PDFPage? {
+        didSet {
+            guard let pdfPage = pdfPage else { return }
+            pdfView?.go(to: pdfPage)
         }
     }
     
@@ -106,8 +113,13 @@ class RecordingViewController: UIViewController {
         cameraPreviewView.addGestureRecognizer(panGesture)
 //        cameraPreviewView.addGestureRecognizer(pinchGesture)
         
-        // Test
-        pdfDocument = PDFDocument(url: Bundle.main.url(forResource: "SamplePDF", withExtension: "pdf")!)
+        collectionView.reloadData()
+        
+        pdfView.document = pdfDocument
+        
+        if let pdfPage = pdfPage {
+            pdfView.go(to: pdfPage)
+        }
         
         setupCapture()
     }
@@ -179,6 +191,9 @@ class RecordingViewController: UIViewController {
             }
             recordButton.frame = CGRect(x: recordButtonMargin, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
         }
+        
+        pdfView.minScaleFactor = 0.01
+        pdfView.scaleFactor = pdfView.scaleFactorForSizeToFit
         
         // Camera orientation
         switch UIApplication.shared.statusBarOrientation {
@@ -324,7 +339,6 @@ extension RecordingViewController: UICollectionViewDelegate, UICollectionViewDat
         guard let indexPath = collectionView.indexPathsForSelectedItems?.first else { return }
         guard let cell = collectionView.cellForItem(at: indexPath) as? MusicSheetPageCollectionViewCell else { return }
         
-        pdfView.document = cell.pdfView.document
         pdfView.go(to: cell.pdfView!.currentPage!)
         
     }

@@ -12,6 +12,7 @@
 		393E238621AB564200620D94 /* Teacher+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238521AB564200620D94 /* Teacher+Convenience.swift */; };
 		393E238821AB565800620D94 /* Assignment+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238721AB565800620D94 /* Assignment+Convenience.swift */; };
 		393E238A21AB9F7900620D94 /* MusicMakerModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238921AB9F7900620D94 /* MusicMakerModelController.swift */; };
+		393E238C21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238B21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift */; };
 		399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */; };
 		399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */; };
 		39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C108FC2194E55900180F37 /* RecordingViewController.swift */; };
@@ -79,6 +80,7 @@
 		393E238521AB564200620D94 /* Teacher+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+Convenience.swift"; sourceTree = "<group>"; };
 		393E238721AB565800620D94 /* Assignment+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment+Convenience.swift"; sourceTree = "<group>"; };
 		393E238921AB9F7900620D94 /* MusicMakerModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicMakerModelController.swift; sourceTree = "<group>"; };
+		393E238B21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPlaybackTableViewCell.swift; sourceTree = "<group>"; };
 		399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UnsubmittedAssignmentViewController.storyboard; sourceTree = "<group>"; };
 		399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsubmittedAssignmentViewController.swift; sourceTree = "<group>"; };
 		39C108FC2194E55900180F37 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				39CA2B5E2194AED500C6018E /* RecordButtonTableViewCell.swift */,
 				39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */,
 				39C108FE2194FD9800180F37 /* CameraPreviewView.swift */,
+				393E238B21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				393E238421AB4C1E00620D94 /* CoreData.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,
 				39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */,
+				393E238C21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift in Sources */,
 				393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */,
 				BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */,
 				39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */,

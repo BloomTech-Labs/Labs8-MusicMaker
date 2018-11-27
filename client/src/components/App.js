@@ -10,8 +10,8 @@ import SignUpView from "../views/signupView";
 import SignInView from "../views/signinView";
 import DashboardView from "../views/dashboardView";
 import StudentListView from "../views/studentListView";
-// import DashboardAssignmentsView from '../views/dashboardAssignmentsView';
-// import CreateAssignmentView from '../views/createAssignmentView';
+import DashboardAssignmentsView from '../views/dashboardAssignmentsView';
+import CreateAssignmentView from '../views/createAssignmentView';
 import DashboardBillingView from "../views/dashboardBillingView";
 import DashboardSettingView from "../views/dashboardSettingView";
 import DummyPdfView from "../views/dummyPdfView";
@@ -25,10 +25,12 @@ class App extends Component {
         <Route exact path={routes.SIGN_UP} component={SignUpView} />
         <Route exact path={routes.SIGN_IN} component={SignInView} />
         <Route exact path={routes.DASHBOARD} component={DashboardView} />
-        <Route path={routes.STUDENTS} component={StudentListView} />
-        <Route path={routes.ASSIGNMENTS} component={DummyPdfView} />
-        <Route path={routes.BILLING} component={DashboardBillingView} />
-        <Route path={routes.SETTINGS} component={DashboardSettingView} />
+        <Route exact path={routes.STUDENTS} component={StudentListView} />
+        <Route exact path={routes.SETTINGS} component={DashboardSettingView} />
+        <Route exact path={routes.CREATE_ASSIGNMENT} component={CreateAssignmentView} />
+        <Route exact path={routes.ASSIGNMENTS} component={DashboardAssignmentsView} />
+        <Route exact path={routes.BILLING} component={DashboardBillingView} />
+        <Route exact path={routes.SETTINGS} component={DashboardSettingView} />
       </div>
     );
   }

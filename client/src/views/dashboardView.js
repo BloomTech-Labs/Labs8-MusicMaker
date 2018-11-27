@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 import SideBar from "../components/SideBar";
 
@@ -12,7 +13,7 @@ class DashboardView extends Component {
           <SideBar />
           <div className="block-container" id="newAssignment">
             <div className="subheader">New Assignment</div>
-            <button className="bodyText"> + </button>
+            <NavLink to='/assignments/create' className="bodyText"> + </NavLink>
           </div>
         </div>
       </div>

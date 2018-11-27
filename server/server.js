@@ -1,4 +1,3 @@
-const admin = require('firebase-admin');
 const cors = require('cors');
 const fs = require('fs');
 const express = require('express');

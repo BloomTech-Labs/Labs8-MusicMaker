@@ -11,7 +11,7 @@ class DashboardView extends Component {
       <div className="container">
         <div className="flex-container">
           <SideBar />
-          <div className="block-container" id="newAssignment">
+          <div className="block-container">
             <div className="subheader">New Assignment</div>
             <NavLink to='/assignments/create' className="bodyText"> + </NavLink>
           </div>

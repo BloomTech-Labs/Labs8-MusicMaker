@@ -11,7 +11,7 @@ class CreateAssignmentView extends Component {
         <div className="flex-container">
           <Sidebar />
           <div className="block-container">
-            <form type="submit">
+            <form className="assignmentForm" type="submit">
               <div>
                 <input
                   className="subheader"
@@ -27,24 +27,25 @@ class CreateAssignmentView extends Component {
                   name="piece"
                   placeholder="Piece"
                 />
-                <input
-                  className="bodyText"
-                  type="text"
-                  name="instrument"
-                  placeholder="Instrument"
-                />
-                <input
-                  className="bodyText"
-                  type="text"
-                  name="level"
-                  placeholder="Level"
-                />
+                <select className="bodyText" name="instrument">
+                  <option value="guitar">Guitar</option>
+                  <option value="piano">Piano</option>
+                  <option value="trumpet">Trumpet</option>
+                  <option value="violin">Violin</option>
+                  <option value="saxophone">Saxophone</option>
+                  <option value="drum">Drum</option>
+                </select>
+                <select className="bodyText" name="level">
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="advanced">Advanced</option>
+                </select>
               </div>
               <div>
                 <label className="bodyText">Instructions</label>
                 <input className="bodyText" type="text" name="instructions" />
               </div>
-              <button>Submit</button>
+              <button className="submit">Submit</button>
             </form>
           </div>
         </div>

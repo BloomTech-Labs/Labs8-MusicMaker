@@ -9,44 +9,84 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Initial View Controller-->
         <scene sceneID="s8g-2y-g6v">
             <objects>
-                <viewController id="XI5-s7-70o" sceneMemberID="viewController">
+                <viewController id="XI5-s7-70o" customClass="InitialViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Saw-Ca-gp5">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="24Z-3h-aKb">
-                                <rect key="frame" x="299.5" y="436" width="169" height="152"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="myy-8J-8eI">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="musicmaker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CgE-AS-gAZ">
+                                <rect key="frame" x="136" y="70" width="496" height="93"/>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="80"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="45"/>
+                                </variation>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="X5R-H7-0sb">
+                                <rect key="frame" x="136" y="263" width="496" height="134"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="St2-S3-LHn">
-                                        <rect key="frame" x="0.0" y="0.0" width="169" height="72"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                        <state key="normal" title="Sign Up"/>
-                                        <connections>
-                                            <segue destination="dtM-Of-Z43" kind="show" id="1yD-s6-ZGH"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftt-ap-eik">
-                                        <rect key="frame" x="0.0" y="80" width="169" height="72"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                        <state key="normal" title="Log In"/>
-                                        <connections>
-                                            <segue destination="fJc-Zd-r9S" kind="show" id="Ucy-tT-VyJ"/>
-                                        </connections>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="gFR-08-8JN">
+                                        <rect key="frame" x="0.0" y="0.0" width="496" height="47"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftt-ap-eik">
+                                                <rect key="frame" x="0.0" y="0.0" width="228" height="47"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
+                                                <state key="normal" title="Log In">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="fJc-Zd-r9S" kind="show" id="Ucy-tT-VyJ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="St2-S3-LHn">
+                                                <rect key="frame" x="268" y="0.0" width="228" height="47"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
+                                                <state key="normal" title="Sign Up">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="dtM-Of-Z43" kind="show" id="1yD-s6-ZGH"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JhT-tc-C9b">
+                                        <rect key="frame" x="0.0" y="87" width="496" height="47"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
+                                        <state key="normal" title="Sign In With Google">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                     </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="24Z-3h-aKb" firstAttribute="centerX" secondItem="Saw-Ca-gp5" secondAttribute="centerX" id="1Yb-et-K4N"/>
-                            <constraint firstItem="24Z-3h-aKb" firstAttribute="centerY" secondItem="Saw-Ca-gp5" secondAttribute="centerY" id="8UR-HG-54h"/>
+                            <constraint firstItem="myy-8J-8eI" firstAttribute="trailing" secondItem="Saw-Ca-gp5" secondAttribute="trailing" id="5dd-L2-au8"/>
+                            <constraint firstItem="myy-8J-8eI" firstAttribute="top" secondItem="Saw-Ca-gp5" secondAttribute="top" id="COT-Ae-xQb"/>
+                            <constraint firstItem="CgE-AS-gAZ" firstAttribute="centerX" secondItem="Saw-Ca-gp5" secondAttribute="centerX" id="SWS-PH-Ida"/>
+                            <constraint firstItem="myy-8J-8eI" firstAttribute="leading" secondItem="Saw-Ca-gp5" secondAttribute="leading" id="TRp-GI-v4v"/>
+                            <constraint firstItem="CgE-AS-gAZ" firstAttribute="top" secondItem="Vwe-AN-Kzz" secondAttribute="top" id="Ud7-l6-BWK"/>
+                            <constraint firstItem="X5R-H7-0sb" firstAttribute="width" secondItem="CgE-AS-gAZ" secondAttribute="width" id="VNs-jH-Emv"/>
+                            <constraint firstItem="X5R-H7-0sb" firstAttribute="centerX" secondItem="Saw-Ca-gp5" secondAttribute="centerX" id="VzE-Um-SPb"/>
+                            <constraint firstItem="X5R-H7-0sb" firstAttribute="top" secondItem="CgE-AS-gAZ" secondAttribute="bottom" constant="100" id="n88-wK-FUP"/>
+                            <constraint firstItem="myy-8J-8eI" firstAttribute="bottom" secondItem="Saw-Ca-gp5" secondAttribute="bottom" id="ooq-wg-DKx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vwe-AN-Kzz"/>
                     </view>
                     <navigationItem key="navigationItem" id="Euy-h8-trc"/>
+                    <connections>
+                        <outlet property="loginButton" destination="ftt-ap-eik" id="bg0-Gt-Ok5"/>
+                        <outlet property="signInWithGoogle" destination="JhT-tc-C9b" id="9fO-5a-CYc"/>
+                        <outlet property="signupButton" destination="St2-S3-LHn" id="NmA-7U-rUs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQV-4B-11T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -470,7 +510,7 @@
             <objects>
                 <navigationController storyboardIdentifier="FirstNavController" automaticallyAdjustsScrollViewInsets="NO" id="hXq-Sd-QM9" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d0S-6S-4qZ">
+                    <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d0S-6S-4qZ">
                         <rect key="frame" x="0.0" y="20" width="768" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -485,6 +525,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="background" width="1756" height="2082"/>
         <image name="eye" width="37.5" height="37.5"/>
         <image name="invisible" width="30" height="30"/>
     </resources>

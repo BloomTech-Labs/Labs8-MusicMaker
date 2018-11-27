@@ -39,6 +39,7 @@
 		BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */; };
 		BFD3EEF321ABC8160097D5AA /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEF221ABC8160097D5AA /* String+Extensions.swift */; };
 		BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEF421ABCB8A0097D5AA /* UIImage+Extensions.swift */; };
+		BFD3EEF921AD1CB50097D5AA /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEF821AD1CB50097D5AA /* InitialViewController.swift */; };
 		BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */; };
 		BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */; };
 		BFE771AE219E6B2600DCE42A /* SideMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */; };
@@ -107,6 +108,7 @@
 		BFD3E56A2192393B00D84FF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFD3EEF221ABC8160097D5AA /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		BFD3EEF421ABCB8A0097D5AA /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		BFD3EEF821AD1CB50097D5AA /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+TransitionAnimations.swift"; path = "MusicMaker/Storyboards/UIViewController+TransitionAnimations.swift"; sourceTree = SOURCE_ROOT; };
 		BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		BFD381C4219353A50038F974 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BFD3EEF821AD1CB50097D5AA /* InitialViewController.swift */,
 				BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */,
 				BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */,
 				BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */,
@@ -574,6 +577,7 @@
 				39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */,
 				BFE771D821A49BE700DCE42A /* QRView.swift in Sources */,
 				BFD3EEF321ABC8160097D5AA /* String+Extensions.swift in Sources */,
+				BFD3EEF921AD1CB50097D5AA /* InitialViewController.swift in Sources */,
 				BFE771AE219E6B2600DCE42A /* SideMenuDelegate.swift in Sources */,
 				BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */,
 				BF5D5210219CC8E800DFF213 /* TeachersViewController.swift in Sources */,

@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
   res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :)'});
 });
 
-// UNGRADED ASSIGNMENTS : POST - GET - PUT --------------------------------------------------------------------------------------------
+// UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment)  --------------------------------------------------------------------------------------------
 
 //POST should create and add a new ungraded assignment under a teacher
 //details: assignmentName, instructions, instrument, level, piece
@@ -87,9 +87,7 @@ app.post('/teacher/:idTeacher/createAssignment', async (req, res, next) => {
 
 //GET should retrieve teacher's all ungraded assignments
 //details: assignmentName, instructions, instrument, level, piece
-//sheetMusic will be retrieved in another endpoint below
 app.get('/teacher/:idTeacher/assignments', async (req, res, next) => {
-// app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) => {
   try{
       const teacherId = req.params['idTeacher'];
       const assignments = {};  
@@ -113,7 +111,6 @@ app.get('/teacher/:idTeacher/assignments', async (req, res, next) => {
 //details: assignmentName, instructions, instrument, level, piece
 //sheetMusic will be retrieved in another endpoint below
 app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) => {
-// app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) => {
   try{
       const teacherId = req.params['idTeacher'];
       const assignmentId = req.params['idAssignment'];
@@ -131,9 +128,6 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) =
     next (err);
   }
 });
-
-
-
 
 //SETTINGS : POST - GET - PUT ---------------------------------------------------------------------------------------------------------
 

@@ -189,6 +189,17 @@ body {
 .signOutButton .signOutButton:hover {
   cursor: pointer;
 }
+.sidebar {
+  width: 15%;
+  font-size: 2em;
+  border: 1px solid black;
+  padding: 0 1%;
+  margin: 20px 0;
+}
+.sidebar .item {
+  display: block;
+  margin: 20px 0;
+}
 .buyNow_Button {
   width: 200px;
   height: 50px;
@@ -203,14 +214,15 @@ body {
 #newAssignment .bodyText {
   margin: 20px 50%;
 }
-.sidebar {
-  width: 15%;
-  font-size: 2em;
-  border: 1px solid black;
-  padding: 0 1%;
-  margin: 20px 0;
+.assignmentForm {
+  margin: 0 5%;
 }
-.sidebar .item {
-  display: block;
-  margin: 20px 0;
+.assignmentForm .subheader {
+  margin: 10px 15%;
+}
+.assignmentForm .bodyText {
+  margin: 10px 5%;
+}
+.assignmentForm .submit {
+  margin: 10px 40%;
 }

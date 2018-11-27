@@ -190,6 +190,14 @@ app.get('/students/:id/assignments', async (req, res, next) => {
 //   res.json(data);
 // })
 
+let qrOptions = {
+  errorCorrectionLevel: 'H',
+  type: 'image/jpeg',
+  rendererOpts: {
+    quality: 0.3
+  }
+}
+
 app.post('/teachers/add', async (req, res, next) => {
   try {
     const email = await req.body.email;
@@ -208,11 +216,8 @@ app.post('/teachers/add', async (req, res, next) => {
               'firstName': firstName,
               'lastName': lastName
             },
-            'qrcode': QRCode.toString(Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16), function(err, string) {
+            'qrcode': QRCode.toString(Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16), qrOptions, function(err, string) {
               console.log(string);
-            }),
-            'qrcode_raw': QRCode.toDataURL(Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16), function(err, url) {
-              console.log(url);
             })
         })
       res.status(200).send({ message: 'Teacher successfully added!' })

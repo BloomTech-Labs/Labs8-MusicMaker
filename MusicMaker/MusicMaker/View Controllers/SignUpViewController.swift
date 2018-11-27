@@ -35,19 +35,15 @@ class SignUpViewController: UIViewController {
         qrView.captureSession?.startRunning()
     }
     
-    //Adds an observer to listen for the keyboardWillShowNotification & keyboardWillHideNotifcation
+    //Used to lock this view controller to portrait only
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIWindow.keyboardWillShowNotification, object: nil)
-        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
+        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
     }
     
-    
-    //Removes the observer for the keyboardWillShowNotification & keyboardWillHideNotifcation
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        //        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
-        //        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
     }
     
     
@@ -84,7 +80,9 @@ class SignUpViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var qrView: QRView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var emailErrorLabel: UILabel!
+    @IBOutlet weak var confirmPasswordShowButton: UIButton!
+    @IBOutlet weak var passwordShowButton: UIButton!
     @IBOutlet weak var popupView: UIView! {
         didSet {
             popupView.addGestureRecognizer(panRecognizer)
@@ -113,11 +111,13 @@ class SignUpViewController: UIViewController {
     }
     @IBOutlet weak var passwordTextField: HoshiTextField! {
         didSet {
+            passwordTextField.isSecureTextEntry = true
             passwordTextField.delegate = self
         }
     }
     @IBOutlet weak var confirmPasswordTextField: HoshiTextField! {
         didSet {
+            confirmPasswordTextField.isSecureTextEntry = true
             confirmPasswordTextField.delegate = self
         }
     }
@@ -322,63 +322,6 @@ class SignUpViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    //Used to move the views frame up when the keyboard is about to be shown so the textfields can be seen
-    @objc private func keyboardWillShow(_ notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= (keyboardSize.height - 10)
-            }
-        }
-    }
-    
-    //Used to move the views frame back to the normal position when the keyboard goes away
-    @objc private func keyboardWillHide(_ notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += (keyboardSize.height - 10)
-            }
-        }
-    }
-    
-    //Adds a gesture recognizer that calls dismissKeyboard(_:)
-    private func addDismissKeyboardGestureRecognizer() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        self.view.addGestureRecognizer(tapGesture)
-    }
-    
-    
-    
-    
-    //Resigns the first responder for the textField when clicking away from the keyboard
-    @objc private func dismissKeyboard() {
-        resignFirstResponderForAllTextFields()
-        animateTransitionIfNeeded(to: .closed, duration: 1)
-    }
-    
-    private func resignFirstResponderForAllTextFields() {
-        firstNameTextField.resignFirstResponder()
-        lastNameTextField.resignFirstResponder()
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        confirmPasswordTextField.resignFirstResponder()
-    }
-    
-    // MARK: - IBActions
-    
-    //When the user clicks the teacher text field, present the QR Scanner in the popup menu
-    @IBAction func addTeacher(_ sender: UITextField) {
-        resignFirstResponderForAllTextFields()
-        animateTransitionIfNeeded(to: .open, duration: 1)
-    }
-    
-    @IBAction func selectLevel(_ sender: UITextField) {
-        presentLevelAlertController(on: sender)
-    }
-   
-    @IBAction func selectInstrument(_ sender: UITextField) {
-        presentInstrumentAlertController(on: sender)
-    }
-    
     private func presentLevelAlertController(on textField: UITextField) {
         let beginnerAction = UIAlertAction(title: "Beginner", style: .default) { (action) in
             textField.text = "Beginner"
@@ -433,22 +376,77 @@ class SignUpViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    //Used to move the views frame up when the keyboard is about to be shown so the textfields can be seen
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= (keyboardSize.height - 10)
+            }
+        }
+    }
+    
+    //Used to move the views frame back to the normal position when the keyboard goes away
+    @objc private func keyboardWillHide(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += (keyboardSize.height - 10)
+            }
+        }
+    }
+    
+    //Adds a gesture recognizer that calls dismissKeyboard(_:)
+    private func addDismissKeyboardGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    
+    
+    
+    //Resigns the first responder for the textField when clicking away from the keyboard
+    @objc private func dismissKeyboard() {
+        resignFirstResponderForAllTextFields()
+        animateTransitionIfNeeded(to: .closed, duration: 1)
+    }
+    
+    private func resignFirstResponderForAllTextFields() {
+        firstNameTextField.resignFirstResponder()
+        lastNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        confirmPasswordTextField.resignFirstResponder()
+    }
+    
+    // MARK: - IBActions
+    
+    //When the user clicks the teacher text field, present the QR Scanner in the popup menu
+    @IBAction func addTeacher(_ sender: UITextField) {
+        resignFirstResponderForAllTextFields()
+        animateTransitionIfNeeded(to: .open, duration: 1)
+    }
+    
+    @IBAction func selectLevel(_ sender: UITextField) {
+        resignFirstResponderForAllTextFields()
+        presentLevelAlertController(on: sender)
+    }
+   
+    @IBAction func selectInstrument(_ sender: UITextField) {
+        resignFirstResponderForAllTextFields()
+        presentInstrumentAlertController(on: sender)
+    }
+    
+
+    
     
     // Used to toggle the password textfields to show or hide entry
     @IBAction func toggleSecureEntryOnPasswordTextFields(_ sender: UIButton) {
         switch sender.tag {
         case 0:
-            if passwordTextField.isSecureTextEntry == false {
-                passwordTextField.isSecureTextEntry = true
-            } else {
-                passwordTextField.isSecureTextEntry = false
-            }
+            passwordTextField.isSecureTextEntry = passwordTextField.isSecureTextEntry ? false : true
+            passwordShowButton.setImage(passwordTextField.isSecureTextEntry ? UIImage(named: "eye") : UIImage(named: "invisible"), for: .normal)
         case 1:
-            if confirmPasswordTextField.isSecureTextEntry == false {
-                confirmPasswordTextField.isSecureTextEntry = true
-            } else {
-                confirmPasswordTextField.isSecureTextEntry = false
-            }
+            confirmPasswordTextField.isSecureTextEntry = confirmPasswordTextField.isSecureTextEntry ? false : true
+            confirmPasswordShowButton.setImage(confirmPasswordTextField.isSecureTextEntry ? UIImage(named: "eye") : UIImage(named: "invisible"), for: .normal)
         default:
             break
         }
@@ -479,11 +477,14 @@ class SignUpViewController: UIViewController {
                     case .accountExistsWithDifferentCredential:
                         print("Account already exisits")
                     case .emailAlreadyInUse:
-                        print("email in use")
+                        self.emailErrorLabel.text = "Email already in use"
+                        self.emailErrorLabel.isHidden = false
                     case .invalidEmail:
-                        print("invalid email")
+                        self.emailErrorLabel.text = "Invalid email"
+                        self.emailErrorLabel.isHidden = false
                     case .missingEmail:
-                        print("missing email")
+                        self.emailErrorLabel.text = "Missing email"
+                        self.emailErrorLabel.isHidden = false
                     default:
                         print("error")
                     }
@@ -496,8 +497,9 @@ class SignUpViewController: UIViewController {
             
             if let user = user {
                 let usersUniqueIdentifier = user.user.uid
-                database.collection("students").document(usersUniqueIdentifier).collection("assignments")
-                database.collection("students").document(usersUniqueIdentifier).setData(userDocumentInformation)
+                
+            database.collection("students").document(usersUniqueIdentifier).setData(userDocumentInformation)
+                self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
             }
         }
     }
@@ -518,6 +520,9 @@ extension SignUpViewController: UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         case 3:
             confirmPasswordTextField.becomeFirstResponder()
+        case 4:
+            confirmPasswordTextField.resignFirstResponder()
+            presentLevelAlertController(on: selectLevelTextField)
         default:
             textField.resignFirstResponder()
         }
@@ -527,10 +532,16 @@ extension SignUpViewController: UITextFieldDelegate {
     //Disables keyboard on select level textfield since their are three options to
     //choose from
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField.tag == 5 || textField.tag == 6 || textField.tag == 7 {
+        switch textField.tag {
+        case 2:
+            emailErrorLabel.isHidden = true
+            return true
+        case 5,6,7:
+            resignFirstResponderForAllTextFields()
             return false
+        default:
+            return true
         }
-        return true
     }
     
     //Checks for erros

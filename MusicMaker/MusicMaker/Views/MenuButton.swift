@@ -34,7 +34,6 @@ class MenuButton: UIButton {
     override func draw(_ rect: CGRect) {
         // Drawing code
         circleBounds = circularPath.bounds
-        print(circleBounds)
         firstLinePath.move(to: CGPoint(x: 15 - halfTheLineLength, y: 15 - halfTheLineLength))
         firstLinePath.addLine(to: CGPoint(x: 15 + halfTheLineLength, y: 15 - halfTheLineLength))
         firstLineShape.path = firstLinePath.cgPath

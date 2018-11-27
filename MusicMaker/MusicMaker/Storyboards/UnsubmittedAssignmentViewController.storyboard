@@ -461,7 +461,7 @@
                 <viewControllerPlaceholder storyboardName="RecordingViewController" id="NdW-Gj-ZSF" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCW-Iw-Oqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="688" y="183"/>
+            <point key="canvasLocation" x="721" y="79"/>
         </scene>
     </scenes>
     <resources>

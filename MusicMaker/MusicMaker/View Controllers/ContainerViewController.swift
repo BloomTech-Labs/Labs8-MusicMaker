@@ -74,8 +74,6 @@ extension ContainerViewController: SideMenuDelegate {
     func userProfileClicked() {
         self.performSegue(withIdentifier: "ShowUserProfile", sender: nil)
     }
-    
-
 }
 
 

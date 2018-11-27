@@ -192,7 +192,7 @@ Password</string>
                         <viewLayoutGuide key="safeArea" id="UJa-WW-jWy"/>
                     </view>
                     <navigationItem key="navigationItem" id="8ew-ww-yGq">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="cancel" id="L3b-35-LH7">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="L3b-35-LH7">
                             <connections>
                                 <action selector="dismiss:" destination="Wu3-fE-EIa" id="SZm-Qh-7b2"/>
                             </connections>
@@ -248,7 +248,6 @@ Password</string>
     </scenes>
     <resources>
         <image name="assignments" width="30" height="30"/>
-        <image name="cancel" width="30" height="30"/>
         <image name="logout" width="30" height="30"/>
         <image name="menu" width="30" height="30"/>
         <image name="password" width="30" height="30"/>

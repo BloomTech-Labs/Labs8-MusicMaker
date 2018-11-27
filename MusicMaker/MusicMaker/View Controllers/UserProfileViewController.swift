@@ -12,21 +12,38 @@ import Firebase
 
 class UserProfileViewController: UIViewController {
 
-    //Reference to firestore 
-    let database = Firestore.firestore()
     
+    
+    
+    // MARK: - Properties
+    let database = Firestore.firestore()
+    let currentUser = Auth.auth().currentUser
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var updateEmailButton: UIButton!
+    @IBOutlet weak var updatedEmailTextField: UITextField! {
+        didSet {
+            updatedEmailTextField.isHidden = true
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Sample for querying firestore for student information
         guard let currentUsersUniqueID = Auth.auth().currentUser?.uid else {return}
-        print(currentUsersUniqueID)
         let studentsCollectionReference = database.collection("students").document(currentUsersUniqueID)
         studentsCollectionReference.getDocument { (document, error) in
             if let document = document {
                 if let dataDescription = document.data() {
-                    print(dataDescription["level"])
+                    guard let firstName = dataDescription["firstName"] as? String,
+                        let lastName = dataDescription["lastName"] as? String else {return}
+                    print(firstName)
+                    self.profileImage.createInitialsImage(for: "\(firstName) \(lastName)", backgroundColor: .lightGray)
+                    self.title = "\(firstName) \(lastName)"
+                    self.emailLabel.text = dataDescription["email"] as? String
                 }
             } else {
                 print("Document does not exist in cache")
@@ -34,14 +51,35 @@ class UserProfileViewController: UIViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: - IBActions
+    
+    @IBAction func updateEmail(_ sender: Any) {
+        if updateEmailButton.titleLabel?.text == "Update Email" {
+            updatedEmailTextField.isHidden = false
+            updateEmailButton.setTitle("Update", for: .normal)
+        } else if updateEmailButton.titleLabel?.text == "Update" {
+            guard let newEmail = updatedEmailTextField.text,
+                let usersUniqueIdentifier = currentUser?.uid else {return}
+            currentUser?.updateEmail(to: newEmail, completion: { (error) in
+                if error != nil {
+                    self.updateEmailButton.setTitle("Error Updating Email", for: .normal)
+                } else {
+                    self.database.collection("students").document(usersUniqueIdentifier).setData(["email" : newEmail], merge: true)
+                    self.updatedEmailTextField.isHidden = true
+                    self.updateEmailButton.setTitle("Update Email", for: .normal)
+                    self.emailLabel.text = newEmail
+                }
+            })
+        }
     }
-    */
+    
+    
+    @IBAction func dismiss(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+   
 
 }

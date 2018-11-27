@@ -70,11 +70,10 @@ extension ContainerViewController: TeachersViewControllerDelegate {
     }
 }
 
+// MARK: - SideMenuDelegate
 extension ContainerViewController: SideMenuDelegate {
     func userProfileClicked() {
-        let storyboard = UIStoryboard(name: "Teachers", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "UserProfile")
-        teachersViewController.navigationController?.pushViewController(viewController, animated: true)
+        self.performSegue(withIdentifier: "ShowUserProfile", sender: nil)
         if teachersViewController.sideMenuIsShowing {
             hideSideMenu()
         }

@@ -44,7 +44,6 @@
 		BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5672192393B00D84FF2 /* LaunchScreen.storyboard */; };
 		BFD3EEF321ABC8160097D5AA /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEF221ABC8160097D5AA /* String+Extensions.swift */; };
 		BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEF421ABCB8A0097D5AA /* UIImage+Extensions.swift */; };
-		BFE771A8219E43F900DCE42A /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE771A7219E43F900DCE42A /* UserProfile.storyboard */; };
 		BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */; };
 		BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */; };
 		BFE771AE219E6B2600DCE42A /* SideMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */; };
@@ -118,7 +117,6 @@
 		BFD3E56A2192393B00D84FF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFD3EEF221ABC8160097D5AA /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		BFD3EEF421ABCB8A0097D5AA /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
-		BFE771A7219E43F900DCE42A /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+TransitionAnimations.swift"; path = "MusicMaker/Storyboards/UIViewController+TransitionAnimations.swift"; sourceTree = SOURCE_ROOT; };
 		BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDelegate.swift; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 				BFD381C22193525F0038F974 /* Authentication.storyboard */,
 				399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */,
 				BF5D520B219CC7F200DFF213 /* Teachers.storyboard */,
-				BFE771A7219E43F900DCE42A /* UserProfile.storyboard */,
 				39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */,
 				39CA2B522193607700C6018E /* SplitView.storyboard */,
 			);
@@ -458,7 +455,6 @@
 				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */,
-				BFE771A8219E43F900DCE42A /* UserProfile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

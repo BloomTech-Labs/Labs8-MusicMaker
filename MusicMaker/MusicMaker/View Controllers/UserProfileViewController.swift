@@ -65,7 +65,7 @@ class UserProfileViewController: UIViewController {
                 if error != nil {
                     self.updateEmailButton.setTitle("Error Updating Email", for: .normal)
                 } else {
-                    self.database.collection("students").document(usersUniqueIdentifier).setValue(newEmail, forKey: "email")
+                    self.database.collection("students").document(usersUniqueIdentifier).setData(["email" : newEmail], merge: true)
                     self.updateEmailButton.isHidden = true
                     self.emailLabel.text = newEmail
                 }

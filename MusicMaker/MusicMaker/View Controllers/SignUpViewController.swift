@@ -35,21 +35,6 @@ class SignUpViewController: UIViewController {
         qrView.captureSession?.startRunning()
     }
     
-    //Adds an observer to listen for the keyboardWillShowNotification & keyboardWillHideNotifcation
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIWindow.keyboardWillShowNotification, object: nil)
-        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
-    }
-    
-    
-    //Removes the observer for the keyboardWillShowNotification & keyboardWillHideNotifcation
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        //        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
-        //        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
-    }
-    
     
     
     // MARK: - Properties
@@ -85,6 +70,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var qrView: QRView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var confirmPasswordShowButton: UIButton!
+    @IBOutlet weak var passwordShowButton: UIButton!
     @IBOutlet weak var popupView: UIView! {
         didSet {
             popupView.addGestureRecognizer(panRecognizer)
@@ -438,17 +425,11 @@ class SignUpViewController: UIViewController {
     @IBAction func toggleSecureEntryOnPasswordTextFields(_ sender: UIButton) {
         switch sender.tag {
         case 0:
-            if passwordTextField.isSecureTextEntry == false {
-                passwordTextField.isSecureTextEntry = true
-            } else {
-                passwordTextField.isSecureTextEntry = false
-            }
+            passwordTextField.isSecureTextEntry = passwordTextField.isSecureTextEntry ? false : true
+            passwordShowButton.setImage(passwordTextField.isSecureTextEntry ? UIImage(named: "eye") : UIImage(named: "invisible"), for: .normal)
         case 1:
-            if confirmPasswordTextField.isSecureTextEntry == false {
-                confirmPasswordTextField.isSecureTextEntry = true
-            } else {
-                confirmPasswordTextField.isSecureTextEntry = false
-            }
+            confirmPasswordTextField.isSecureTextEntry = confirmPasswordTextField.isSecureTextEntry ? false : true
+            confirmPasswordShowButton.setImage(confirmPasswordTextField.isSecureTextEntry ? UIImage(named: "eye") : UIImage(named: "invisible"), for: .normal)
         default:
             break
         }

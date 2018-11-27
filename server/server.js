@@ -35,6 +35,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// TEST for sanity checks
+app.get('/', (req, res) => {
+  res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :)'});
+});
+
 // UNGRADED ASSIGNMENTS : POST - GET - PUT --------------------------------------------------------------------------------------------
 
 //POST should create and add a new ungraded assignment under a teacher
@@ -84,8 +89,19 @@ app.post('/teacher/:idTeacher/createAssignment', async (req, res, next) => {
 //details: assignmentName, instructions, instrument, level, piece
 //sheetMusic will be retrieved in another endpoint below
 app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) => {
+// app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) => {
   try{
+      const teacherId = req.params['idTeacher'];
+      const assignmentId = req.params['idAssignment'];
+      const assignment = {};  
 
+      const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+      const getDoc = await assignmentRef.get()
+      .then(doc => {
+        global = doc.data();
+        assignment[doc.id] = [global.assignmentName, global.instructions, global.instrument, global.level, global.piece]
+      });
+      res.json(assignment);
 
   } catch (err){
     next (err);

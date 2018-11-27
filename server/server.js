@@ -1,6 +1,8 @@
 const admin = require('firebase-admin');
 const express = require('express');
 const QRCode = require('qrcode');
+const fs = require('fs');
+const cors = require('cors');
 
 
 // Firebase-specific dependencies
@@ -200,18 +202,17 @@ app.post('/teachers/add', async (req, res, next) => {
     } else if(!firstName || !lastName) {
       res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
     } else {
-      const teachersRef = await db.collection('teachers').add({
-        'email': email,
-        'name': {
-          'firstName': firstName,
-          'lastName': lastName
-        }
-      });
+          const teachersRef = await db.collection('teachers').add({
+            'email': email,
+            'name': {
+              'firstName': firstName,
+              'lastName': lastName
+            },
+            'qrcode': QRCode.toString(Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16), function(err, string) {
+              console.log(string);
+            })
+        })
       res.status(200).send({ message: 'Teacher successfully added!' })
-      // res.json({
-      //   id: teachersRef.id,
-      //   data
-      // });
     }
   }
    catch(err) {

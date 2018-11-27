@@ -11,22 +11,26 @@ import PDFKit
 import AVFoundation
 
 class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusicPieceTableViewCellDelegate {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
     
     // This is our dummy assignment that is in core data
     var assignment: Assignment? = MusicMakerModelController.shared.teachers.first?.assignments?.anyObject() as? Assignment
     
     var pdfDocument = PDFDocument(url: Bundle.main.url(forResource: "SamplePDF", withExtension: "pdf")!)!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        if let _ = assignment?.localRecordingURL {
+            return 6
+        } else {
+            return 4
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,7 +71,7 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PlaybackCell", for: indexPath) as! AssignmentPlaybackTableViewCell
             
-            cell.playerViewController?.player = AVPlayer(url: URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_adv_example_hevc/master.m3u8")!)
+            cell.playerViewController?.player = AVPlayer(url: assignment!.localRecordingURL!)
             
             return cell
         case 5:
@@ -93,6 +97,7 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let recordVC = segue.destination as? RecordingViewController else { return }
         
+        recordVC.assignment = assignment
         recordVC.pdfDocument = pdfDocument
         
         if segue.identifier == "ShowPagePreview" {

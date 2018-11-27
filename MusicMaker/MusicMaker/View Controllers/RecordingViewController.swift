@@ -18,6 +18,8 @@ class RecordingViewController: UIViewController {
     
     // MARK: - Properties
     
+    var assignment: Assignment?
+    
     var pdfDocument: PDFDocument? {
         didSet {
             collectionView?.reloadData()
@@ -45,7 +47,6 @@ class RecordingViewController: UIViewController {
     
     private var captureSession: AVCaptureSession!
     private var recordOutput: AVCaptureMovieFileOutput!
-    private var lastRecordedURL: URL?
     
     private var panGesture = UIPanGestureRecognizer()
     private var pinchGesture = UIPinchGestureRecognizer()
@@ -85,7 +86,14 @@ class RecordingViewController: UIViewController {
                 //???
                 break
             }
-            recordOutput.startRecording(to: newRecordingURL(), recordingDelegate: self)
+            
+            // method returns optional url
+            guard let localRecordingURL = assignment?.createLocalRecordingURL() else {
+                // let user know that we can't record right now because core data is very confused
+                return
+            }
+            
+            recordOutput.startRecording(to: localRecordingURL, recordingDelegate: self)
         }
     }
     
@@ -252,17 +260,6 @@ class RecordingViewController: UIViewController {
             fatalError("Missing expected front camera device")
         }
     }
-
-    // Want to save record url directly to core data, for now this is for testing
-    // save the recording as a uuid in core data, but gives back url so we can store the recording
-    
-    // setup the directory to return a url so we can use it to store the recording
-    private func newRecordingURL() -> URL {
-        let fm = FileManager.default
-        let documentsDir = try! fm.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        
-        return documentsDir.appendingPathComponent(UUID().uuidString).appendingPathExtension("mov")
-    }
     
     private func updateViews() {
         guard isViewLoaded else { return }
@@ -354,8 +351,6 @@ extension RecordingViewController: AVCaptureFileOutputRecordingDelegate {
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         DispatchQueue.main.async {
             self.updateViews()
-            
-            self.lastRecordedURL = outputFileURL
         }
     }
 }

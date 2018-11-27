@@ -9,5 +9,5 @@
 import Foundation
 
 protocol TeachersViewControllerDelegate: class {
-    func showSideMenu()
+    func menuButtonTapped()
 }

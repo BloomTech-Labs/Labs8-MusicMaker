@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
-import DashboardNavigation from "../components/DashboardNavigation";
 import SideBar from "../components/SideBar";
 
 import "../css/index.css";
@@ -11,9 +11,9 @@ class DashboardView extends Component {
       <div className="container">
         <div className="flex-container">
           <SideBar />
-          <div className="block-container" id="newAssignment">
+          <div className="block-container">
             <div className="subheader">New Assignment</div>
-            <button className="bodyText"> + </button>
+            <NavLink to='/assignments/create' className="bodyText"> + </NavLink>
           </div>
         </div>
       </div>

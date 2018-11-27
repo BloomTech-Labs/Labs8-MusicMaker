@@ -35,6 +35,114 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// UNGRADED ASSIGNMENTS : POST - GET - PUT --------------------------------------------------------------------------------------------
+
+//POST should create and add a new ungraded assignment under a teacher
+//details: assignmentName, instructions, instrument, level, piece
+//sheetMusic is currently not included, need to figure out how it would be uploaded in the database storage, may need its own endpoint
+app.post('/teacher/:idTeacher/createAssignment', async (req, res, next) => {
+  try {
+    const teacherId = req.params['idTeacher'];
+    const { assignmentName, instructions, instrument, level, piece, sheetMusic } = req.body;
+  
+    const addTeacherAssign = db.collection('teachers').doc(teacherId).collection('assignments').add({
+      'assignmentName': assignmentName,
+      'instructions': instructions,
+      'instrument': instrument,
+      'level': level,
+      'piece': piece
+    });
+
+    res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW ASSIGNMENT'});
+
+  }
+   catch(err) {
+    next(err);
+  }
+});
+
+
+
+
+//SETTINGS : POST - GET - PUT ---------------------------------------------------------------------------------------------------------
+
+//POST should create and add a new teacher settings info.: email and name
+app.post('/teachers/add', async (req, res, next) => {
+  try {
+    const email = await req.body.email;
+    const firstName = await req.body.firstName;
+    const lastName = await req.body.lastName;
+    const data = await { email, firstName, lastName };
+
+    if(!email) {
+      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
+    } else if(!firstName || !lastName) {
+      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
+    } else {
+      const teachersRef = await db.collection('teachers').add({
+        'email': email,
+        'name': {
+          'firstName': firstName,
+          'lastName': lastName
+        }
+      });
+      res.status(200).send({ message: 'Teacher successfully added!' })
+      // res.json({
+      //   id: teachersRef.id,
+      //   data
+      // });
+    }
+  }
+   catch(err) {
+    next(err);
+  }
+});
+
+//GET should retrieve teachers settings info.: email and name
+app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
+  try{
+    const teacherId = req.params['idTeacher'];
+    const settings = {};
+
+    const settingsRef = await db.collection('teachers').doc(teacherId);
+    const getSettings = await settingsRef.get()
+    .then(doc => {
+      global = doc.data();
+      settings[doc.id] = [global.email, global.name.firstName, global.name.lastName]
+    })
+    res.status(200).json(settings);
+
+  } catch (err){
+    next (err);
+  }
+});
+
+//PUT should update teachers settings info.: email and name(firstName and lastName)
+app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
+  try{
+    const teacherId = req.params['idTeacher'];
+    const {email, firstName, lastName} = await req.body;
+
+    if (!email) {
+      res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
+    } else if (!firstName || !lastName) {
+      res.status(411).send({REQUIRED: `FIRST NAME AND LAST NAME CANNOT BE LEFT BLANK`});
+    } else{
+     const settingsRef = await db.collection('teachers').doc(teacherId).update({
+        'email': email,
+        'name' : {
+          'firstName': firstName,
+          'lastName': lastName
+        }
+      });
+      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  
+    }
+ 
+  } catch (err){
+    next (err);
+  }
+});
+
 // GET a QR code
 
 // app.get('/qrcode', async (req, res, next) => {
@@ -176,83 +284,6 @@ app.use(cors());
 //   }
 //   });
 
-// Settings
-
-app.post('/createTeacher', async (req, res, next) => {
-  try {
-    const email = await req.body.email;
-    const firstName = await req.body.firstName;
-    const lastName = await req.body.lastName;
-    const data = await { email, firstName, lastName };
-
-    if(!email) {
-      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
-    } else if(!firstName || !lastName) {
-      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
-    } else {
-      const teachersRef = await db.collection('teachers').add({
-        'email': email,
-        'name': {
-          'firstName': firstName,
-          'lastName': lastName
-        }
-      });
-      res.status(200).send({ message: 'Teacher successfully added!' })
-      // res.json({
-      //   id: teachersRef.id,
-      //   data
-      // });
-    }
-  }
-   catch(err) {
-    next(err);
-  }
-});
-
-//GET should retrieve teachers settings info.: email and name
-app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
-  try{
-    const teacherId = req.params['idTeacher'];
-    const settings = {};
-
-    const settingsRef = await db.collection('teachers').doc(teacherId);
-    const getSettings = await settingsRef.get()
-    .then(doc => {
-      global = doc.data();
-      settings[doc.id] = [global.email, global.name.firstName, global.name.lastName]
-    })
-    res.json(settings);
-
-  } catch (err){
-    next (err);
-  }
-});
-
-//PUT should update teachers settings info.: email and name(firstName and lastName)
-app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
-  try{
-    const teacherId = req.params['idTeacher'];
-    const {email, firstName, lastName} = await req.body;
-
-    if (!email) {
-      res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
-    } else if (!firstName || !lastName) {
-      res.status(411).send({REQUIRED: `FIRST NAME AND LAST NAME CANNOT BE LEFT BLANK`});
-    } else{
-     const settingsRef = await db.collection('teachers').doc(teacherId).update({
-        'email': email,
-        'name' : {
-          'firstName': firstName,
-          'lastName': lastName
-        }
-      });
-      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  
-    }
- 
-  } catch (err){
-    next (err);
-  }
-});
 
 // POST
 

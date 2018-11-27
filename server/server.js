@@ -85,6 +85,30 @@ app.post('/teacher/:idTeacher/createAssignment', async (req, res, next) => {
   }
 });
 
+//GET should retrieve teacher's all ungraded assignments
+//details: assignmentName, instructions, instrument, level, piece
+//sheetMusic will be retrieved in another endpoint below
+app.get('/teacher/:idTeacher/assignments', async (req, res, next) => {
+// app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) => {
+  try{
+      const teacherId = req.params['idTeacher'];
+      const assignments = {};  
+
+      const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments');
+      const allAssignments = await assignmentRef.get()
+      .then(snap => {
+        snap.forEach(doc => {
+          global = doc.data();
+          assignments[doc.id] = [global.assignmentName, global.instructions, global.instrument, global.level, global.piece]          
+        })
+      });
+      res.json(assignments);
+
+  } catch (err){
+    next (err);
+  }
+});
+
 //GET should retrieve teacher's ungraded assignment
 //details: assignmentName, instructions, instrument, level, piece
 //sheetMusic will be retrieved in another endpoint below

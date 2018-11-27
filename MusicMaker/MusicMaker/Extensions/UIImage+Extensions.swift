@@ -35,7 +35,7 @@ extension UIImageView {
         
         if let initials = name?.initials {
             let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 21.0)]
+                                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 42.0)]
             
             let textSize = initials.size(withAttributes: attributes)
             let bounds = self.bounds

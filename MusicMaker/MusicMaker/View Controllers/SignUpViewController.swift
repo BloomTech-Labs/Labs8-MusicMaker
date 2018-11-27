@@ -496,8 +496,9 @@ class SignUpViewController: UIViewController {
             
             if let user = user {
                 let usersUniqueIdentifier = user.user.uid
-                database.collection("students").document(usersUniqueIdentifier).collection("assignments")
-                database.collection("students").document(usersUniqueIdentifier).setData(userDocumentInformation)
+                
+            database.collection("students").document(usersUniqueIdentifier).setData(userDocumentInformation)
+                self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
             }
         }
     }

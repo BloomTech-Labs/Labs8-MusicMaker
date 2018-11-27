@@ -10,8 +10,8 @@ class DashboardAssignmentsView extends Component {
       <div className="container">
         <div className="flex-container">
           <Sidebar />
-          <div className="block-container">
-            <h1 className="bodyText">Assignments View</h1>
+          <div className="block-container" id="assignments">
+            <h1 className="subheader">Assignments View</h1>
           </div>
         </div>
       </div>

@@ -208,12 +208,6 @@ body {
   font-size: 2em;
   font-weight: bold;
 }
-#newAssignment {
-  margin: auto 20%;
-}
-#newAssignment .bodyText {
-  margin: 20px 50%;
-}
 .assignmentForm {
   margin: 0 5%;
 }
@@ -225,4 +219,17 @@ body {
 }
 .assignmentForm .submit {
   margin: 10px 40%;
+}
+#assignments {
+  margin-left: 10%;
+}
+#billing {
+  width: 75%;
+  margin-left: 10%;
+}
+#studentList {
+  margin-left: 10%;
+}
+#setting {
+  margin-left: 10%;
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import aws from '../constants/awsConfig';
 
 class Settings extends Component {
     constructor(props) {
@@ -17,16 +16,16 @@ class Settings extends Component {
 
     componentDidMount() {
         axios
-            .get('http://ec2-52-90-187-173.compute-1.amazonaws.com:8000/teacher/AHnU7PuWMohJWEWZJbvd/settings')
+            .get('https://firestore.googleapis.com/v1beta1/projects/musicmaker-4b2e8/databases/(default)/documents/teachers/AHnU7PuWMohJWEWZJbvd')
             .then(res => {
-                console.log('*******************', Object.values(res.data)[0])
+                console.log('*******************', Object.values(res.data), res.data)
                 this.setState({
                     email: Object.values(res.data)[0][0],
                     firstName: Object.values(res.data)[0][1],
                     lastName: Object.values(res.data)[0][2]
                 })
             })
-            .catch(err => console.error('Settings AXIOS ERROR:', err));
+            .catch(err => console.error('SETTINGS AXIOS ERROR:', err));
     }
 
     render() {

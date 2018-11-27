@@ -35,6 +35,17 @@ class SignUpViewController: UIViewController {
         qrView.captureSession?.startRunning()
     }
     
+    //Used to lock this view controller to portrait only
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+    }
+    
     
     
     // MARK: - Properties
@@ -69,7 +80,7 @@ class SignUpViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var qrView: QRView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var confirmPasswordShowButton: UIButton!
     @IBOutlet weak var passwordShowButton: UIButton!
     @IBOutlet weak var popupView: UIView! {
@@ -415,10 +426,12 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func selectLevel(_ sender: UITextField) {
+        resignFirstResponderForAllTextFields()
         presentLevelAlertController(on: sender)
     }
    
     @IBAction func selectInstrument(_ sender: UITextField) {
+        resignFirstResponderForAllTextFields()
         presentInstrumentAlertController(on: sender)
     }
     
@@ -464,11 +477,14 @@ class SignUpViewController: UIViewController {
                     case .accountExistsWithDifferentCredential:
                         print("Account already exisits")
                     case .emailAlreadyInUse:
-                        print("email in use")
+                        self.emailErrorLabel.text = "Email already in use"
+                        self.emailErrorLabel.isHidden = false
                     case .invalidEmail:
-                        print("invalid email")
+                        self.emailErrorLabel.text = "Invalid email"
+                        self.emailErrorLabel.isHidden = false
                     case .missingEmail:
-                        print("missing email")
+                        self.emailErrorLabel.text = "Missing email"
+                        self.emailErrorLabel.isHidden = false
                     default:
                         print("error")
                     }
@@ -505,6 +521,7 @@ extension SignUpViewController: UITextFieldDelegate {
         case 3:
             confirmPasswordTextField.becomeFirstResponder()
         case 4:
+            confirmPasswordTextField.resignFirstResponder()
             presentLevelAlertController(on: selectLevelTextField)
         default:
             textField.resignFirstResponder()
@@ -515,11 +532,16 @@ extension SignUpViewController: UITextFieldDelegate {
     //Disables keyboard on select level textfield since their are three options to
     //choose from
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField.tag == 5 || textField.tag == 6 || textField.tag == 7 {
+        switch textField.tag {
+        case 2:
+            emailErrorLabel.isHidden = true
+            return true
+        case 5,6,7:
             resignFirstResponderForAllTextFields()
             return false
+        default:
+            return true
         }
-        return true
     }
     
     //Checks for erros

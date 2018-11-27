@@ -100,11 +100,13 @@ class SignUpViewController: UIViewController {
     }
     @IBOutlet weak var passwordTextField: HoshiTextField! {
         didSet {
+            passwordTextField.isSecureTextEntry = true
             passwordTextField.delegate = self
         }
     }
     @IBOutlet weak var confirmPasswordTextField: HoshiTextField! {
         didSet {
+            confirmPasswordTextField.isSecureTextEntry = true
             confirmPasswordTextField.delegate = self
         }
     }
@@ -309,6 +311,60 @@ class SignUpViewController: UIViewController {
     
     // MARK: - Private Methods
     
+    private func presentLevelAlertController(on textField: UITextField) {
+        let beginnerAction = UIAlertAction(title: "Beginner", style: .default) { (action) in
+            textField.text = "Beginner"
+        }
+        
+        let intermediateAction = UIAlertAction(title: "Intermediate", style: .default) { (action) in
+            textField.text = "Intermediate"
+        }
+        
+        let expertAction = UIAlertAction(title: "Expert", style: .default) { (action) in
+            textField.text = "Expert"
+        }
+        
+        let alert = UIAlertController(title: "Select your level of experience", message: "", preferredStyle: .actionSheet)
+        alert.addAction(beginnerAction)
+        alert.addAction(intermediateAction)
+        alert.addAction(expertAction)
+        
+        //Used if its an ipad to present as a popover
+        let popover = alert.popoverPresentationController
+        popover?.permittedArrowDirections = .down
+        popover?.sourceView = textField
+        popover?.sourceRect = textField.bounds
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func presentInstrumentAlertController(on textField: UITextField) {
+        let trumpetAction = UIAlertAction(title: "Trumpet", style: .default) { (action) in
+            textField.text = "Trumpet"
+        }
+        
+        let fluteAction = UIAlertAction(title: "Flute", style: .default) { (action) in
+            textField.text = "Flute"
+        }
+        
+        let violinAction = UIAlertAction(title: "Violin", style: .default) { (action) in
+            textField.text = "Violin"
+        }
+        
+        let alert = UIAlertController(title: "Select Your Instrument", message: "", preferredStyle: .actionSheet)
+        alert.addAction(trumpetAction)
+        alert.addAction(fluteAction)
+        alert.addAction(violinAction)
+        
+        //Used if its an ipad to present as a popover
+        let popover = alert.popoverPresentationController
+        popover?.permittedArrowDirections = .down
+        popover?.sourceView = textField
+        popover?.sourceRect = textField.bounds
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     //Used to move the views frame up when the keyboard is about to be shown so the textfields can be seen
     @objc private func keyboardWillShow(_ notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -366,59 +422,7 @@ class SignUpViewController: UIViewController {
         presentInstrumentAlertController(on: sender)
     }
     
-    private func presentLevelAlertController(on textField: UITextField) {
-        let beginnerAction = UIAlertAction(title: "Beginner", style: .default) { (action) in
-            textField.text = "Beginner"
-        }
-        
-        let intermediateAction = UIAlertAction(title: "Intermediate", style: .default) { (action) in
-            textField.text = "Intermediate"
-        }
-        
-        let expertAction = UIAlertAction(title: "Expert", style: .default) { (action) in
-            textField.text = "Expert"
-        }
-        
-        let alert = UIAlertController(title: "Select your level of experience", message: "", preferredStyle: .actionSheet)
-        alert.addAction(beginnerAction)
-        alert.addAction(intermediateAction)
-        alert.addAction(expertAction)
-        
-        //Used if its an ipad to present as a popover
-        let popover = alert.popoverPresentationController
-        popover?.permittedArrowDirections = .down
-        popover?.sourceView = textField
-        popover?.sourceRect = textField.bounds
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func presentInstrumentAlertController(on textField: UITextField) {
-        let trumpetAction = UIAlertAction(title: "Trumpet", style: .default) { (action) in
-            textField.text = "Trumpet"
-        }
-        
-        let fluteAction = UIAlertAction(title: "Flute", style: .default) { (action) in
-            textField.text = "Flute"
-        }
-        
-        let violinAction = UIAlertAction(title: "Violin", style: .default) { (action) in
-            textField.text = "Violin"
-        }
-        
-        let alert = UIAlertController(title: "Select Your Instrument", message: "", preferredStyle: .actionSheet)
-        alert.addAction(trumpetAction)
-        alert.addAction(fluteAction)
-        alert.addAction(violinAction)
-        
-        //Used if its an ipad to present as a popover
-        let popover = alert.popoverPresentationController
-        popover?.permittedArrowDirections = .down
-        popover?.sourceView = textField
-        popover?.sourceRect = textField.bounds
-        
-        present(alert, animated: true, completion: nil)
-    }
+
     
     
     // Used to toggle the password textfields to show or hide entry
@@ -500,6 +504,8 @@ extension SignUpViewController: UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         case 3:
             confirmPasswordTextField.becomeFirstResponder()
+        case 4:
+            presentLevelAlertController(on: selectLevelTextField)
         default:
             textField.resignFirstResponder()
         }
@@ -510,6 +516,7 @@ extension SignUpViewController: UITextFieldDelegate {
     //choose from
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField.tag == 5 || textField.tag == 6 || textField.tag == 7 {
+            resignFirstResponderForAllTextFields()
             return false
         }
         return true

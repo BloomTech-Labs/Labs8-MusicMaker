@@ -35,7 +35,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// UNGRADED ASSIGNMENTS : POST - GET - PUT --------------------------------------------------------------------------------------------
+// TEST for sanity checks
+app.get('/', (req, res) => {
+  res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :)'});
+});
+
+// UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment)  --------------------------------------------------------------------------------------------
 
 //POST should create and add a new ungraded assignment under a teacher
 //details: assignmentName, instructions, instrument, level, piece
@@ -80,8 +85,49 @@ app.post('/teacher/:idTeacher/createAssignment', async (req, res, next) => {
   }
 });
 
+//GET should retrieve teacher's all ungraded assignments
+//details: assignmentName, instructions, instrument, level, piece
+app.get('/teacher/:idTeacher/assignments', async (req, res, next) => {
+  try{
+      const teacherId = req.params['idTeacher'];
+      const assignments = {};  
 
+      const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments');
+      const allAssignments = await assignmentRef.get()
+      .then(snap => {
+        snap.forEach(doc => {
+          global = doc.data();
+          assignments[doc.id] = [global.assignmentName, global.instructions, global.instrument, global.level, global.piece]          
+        })
+      });
+      res.json(assignments);
 
+  } catch (err){
+    next (err);
+  }
+});
+
+//GET should retrieve teacher's ungraded assignment
+//details: assignmentName, instructions, instrument, level, piece
+//sheetMusic will be retrieved in another endpoint below
+app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) => {
+  try{
+      const teacherId = req.params['idTeacher'];
+      const assignmentId = req.params['idAssignment'];
+      const assignment = {};  
+
+      const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+      const getDoc = await assignmentRef.get()
+      .then(doc => {
+        global = doc.data();
+        assignment[doc.id] = [global.assignmentName, global.instructions, global.instrument, global.level, global.piece]
+      });
+      res.json(assignment);
+
+  } catch (err){
+    next (err);
+  }
+});
 
 //SETTINGS : POST - GET - PUT ---------------------------------------------------------------------------------------------------------
 

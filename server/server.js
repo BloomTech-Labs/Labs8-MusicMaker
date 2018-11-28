@@ -109,7 +109,7 @@ app.get('/teacher/:idTeacher/assignments', async (req, res, next) => {
 
 //GET should retrieve teacher's ungraded assignment
 //details: assignmentName, instructions, instrument, level, piece
-//sheetMusic will be retrieved in another endpoint below
+//sheetMusic is retrieved in another endpoint below
 app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) => {
   try{
       const teacherId = req.params['idTeacher'];

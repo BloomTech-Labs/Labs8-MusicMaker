@@ -43,9 +43,22 @@ app.get('/', (req, res) => {
 //STUDENT LIST: GET --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //GET should retrieve a teacher's list of students
+//details: name, instrument, level
+// try nested where queries to search for the students that match the teacher's id ?????????????????????
 app.get('/teacher/:idTeacher/students', async (req, res, next) => {
   try{
-    
+    const teacherId = req.params['idTeacher'];
+    const assignments = {};  
+
+    const assignmentRef =  await db.collection('students');
+    const allAssignments = await assignmentRef.get()
+    .then(snap => {
+      snap.forEach(doc => {
+            
+      })
+    });
+    res.json(assignments);   
+
   }
   catch(err) {
    next(err);

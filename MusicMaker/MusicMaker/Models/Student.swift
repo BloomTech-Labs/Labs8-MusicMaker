@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Student.swift
 //  MusicMaker
 //
 //  Created by Vuk Radosavljevic on 11/27/18.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-struct Student {
+class Student {
     
     let firstName: String
     let lastName: String
-    let email: String
+    var email: String
     let level: String
     let instrument: String
     
@@ -22,7 +22,7 @@ struct Student {
             let lastName = dictionary["lastName"],
             let email = dictionary["email"],
             let level = dictionary["level"],
-        let instrument = dictionary["instrument"] else {return nil}
+            let instrument = dictionary["instrument"] else {return nil}
         
         self.firstName = firstName
         self.lastName = lastName

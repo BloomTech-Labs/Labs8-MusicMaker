@@ -20,13 +20,13 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yHF-vV-e5p">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
-                                    <segue destination="hNi-rp-Ni9" kind="embed" id="u2S-M5-axp"/>
+                                    <segue destination="hNi-rp-Ni9" kind="embed" identifier="ShowTeachers" id="u2S-M5-axp"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUY-lx-04l" userLabel="SideMenu">
                                 <rect key="frame" x="0.0" y="0.0" width="124" height="667"/>
                                 <connections>
-                                    <segue destination="Rks-YH-0aT" kind="embed" id="gc2-Mb-a9j"/>
+                                    <segue destination="Rks-YH-0aT" kind="embed" identifier="ShowSideMenu" id="gc2-Mb-a9j"/>
                                 </connections>
                             </containerView>
                         </subviews>

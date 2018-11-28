@@ -24,6 +24,8 @@ class SideMenuViewController: UIViewController {
     // MARK: - Delegate
     weak var delegate: SideMenuDelegate?
     
+    // MARK: - Properties
+    var student: Student?
     
     // MARK: - IBOutlets
     @IBOutlet weak var profileButton: UIButton! {

@@ -46,7 +46,7 @@
 		BFD3EEF321ABC8160097D5AA /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEF221ABC8160097D5AA /* String+Extensions.swift */; };
 		BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEF421ABCB8A0097D5AA /* UIImage+Extensions.swift */; };
 		BFD3EEF921AD1CB50097D5AA /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEF821AD1CB50097D5AA /* InitialViewController.swift */; };
-		BFD3EEFB21AE051F0097D5AA /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEFA21AE051F0097D5AA /* File.swift */; };
+		BFD3EEFD21AE45880097D5AA /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEFC21AE45870097D5AA /* Student.swift */; };
 		BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */; };
 		BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */; };
 		BFE771AE219E6B2600DCE42A /* SideMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */; };
@@ -122,7 +122,7 @@
 		BFD3EEF221ABC8160097D5AA /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		BFD3EEF421ABCB8A0097D5AA /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		BFD3EEF821AD1CB50097D5AA /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
-		BFD3EEFA21AE051F0097D5AA /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		BFD3EEFC21AE45870097D5AA /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+TransitionAnimations.swift"; path = "MusicMaker/Storyboards/UIViewController+TransitionAnimations.swift"; sourceTree = SOURCE_ROOT; };
 		BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDelegate.swift; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 				393E238321AB4C1E00620D94 /* CoreData.swift */,
 				393E238521AB564200620D94 /* Teacher+Convenience.swift */,
 				393E238721AB565800620D94 /* Assignment+Convenience.swift */,
-				BFD3EEFA21AE051F0097D5AA /* File.swift */,
+				BFD3EEFC21AE45870097D5AA /* Student.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -613,7 +613,7 @@
 				BF5D5219219D17F100DFF213 /* TeachersViewControllerDelegate.swift in Sources */,
 				BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */,
 				39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */,
-				BFD3EEFB21AE051F0097D5AA /* File.swift in Sources */,
+				BFD3EEFD21AE45880097D5AA /* Student.swift in Sources */,
 				BF5D5212219CC8F500DFF213 /* SideMenuViewController.swift in Sources */,
 				BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */,
 				39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */,

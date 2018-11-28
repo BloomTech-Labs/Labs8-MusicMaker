@@ -19,6 +19,9 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="myy-8J-8eI">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="myy-8J-8eI" secondAttribute="height" multiplier="1756:2082" priority="999" id="9ET-7d-6zY"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="musicmaker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CgE-AS-gAZ">
                                 <rect key="frame" x="136" y="70" width="496" height="93"/>
@@ -79,7 +82,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="myy-8J-8eI" firstAttribute="trailing" secondItem="Saw-Ca-gp5" secondAttribute="trailing" id="5dd-L2-au8"/>
-                            <constraint firstItem="myy-8J-8eI" firstAttribute="top" secondItem="Saw-Ca-gp5" secondAttribute="top" id="COT-Ae-xQb"/>
+                            <constraint firstItem="myy-8J-8eI" firstAttribute="top" relation="lessThanOrEqual" secondItem="Saw-Ca-gp5" secondAttribute="top" id="COT-Ae-xQb"/>
                             <constraint firstItem="CgE-AS-gAZ" firstAttribute="centerX" secondItem="Saw-Ca-gp5" secondAttribute="centerX" id="SWS-PH-Ida"/>
                             <constraint firstItem="myy-8J-8eI" firstAttribute="leading" secondItem="Saw-Ca-gp5" secondAttribute="leading" id="TRp-GI-v4v"/>
                             <constraint firstItem="CgE-AS-gAZ" firstAttribute="top" secondItem="Vwe-AN-Kzz" secondAttribute="top" id="Ud7-l6-BWK"/>

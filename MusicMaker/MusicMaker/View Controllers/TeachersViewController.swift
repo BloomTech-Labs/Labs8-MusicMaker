@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class TeachersViewController: UIViewController {
 
     // MARK: - View Life Cycle
@@ -17,21 +19,19 @@ class TeachersViewController: UIViewController {
         self.view.addGestureRecognizer(touchGesture)
     }
     
-    
     // MARK: - Properties
     var sideMenuIsShowing = false
+    weak var delegate: TeachersViewControllerDelegate?
+    var student: Student?
     
+    // MARK: - Private Methods
     @objc private func hideMenuFromUserTap() {
         if sideMenuIsShowing {
             showSideMenu(self)
         }
     }
     
-    
-    // MARK: - Properties
-    weak var delegate: TeachersViewControllerDelegate?
-    
-    
+
     // MARK: - IBActions
     @IBAction func showSideMenu(_ sender: Any) {
         delegate?.menuButtonTapped()

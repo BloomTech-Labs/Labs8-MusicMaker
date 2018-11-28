@@ -40,7 +40,19 @@ app.get('/', (req, res) => {
   res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :)'});
 });
 
-// UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment)  --------------------------------------------------------------------------------------------
+//STUDENT LIST: GET --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//GET should retrieve a teacher's list of students
+app.get('/teacher/:idTeacher/students', async (req, res, next) => {
+  try{
+    
+  }
+  catch(err) {
+   next(err);
+ }
+});
+
+// UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment & Music Sheet(PDF) from a Single Ungraded Assignment)  ----------------------------------------------------------
 
 //POST should create and add a new ungraded assignment under a teacher
 //details: assignmentName, instructions, instrument, level, piece

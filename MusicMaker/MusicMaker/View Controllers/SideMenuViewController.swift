@@ -13,6 +13,14 @@ import GoogleSignIn
 class SideMenuViewController: UIViewController {
 
     
+    
+    // MARK: - View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        self.view.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+    }
+    
+    
     // MARK: - Delegate
     weak var delegate: SideMenuDelegate?
     

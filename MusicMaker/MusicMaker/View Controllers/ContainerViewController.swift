@@ -24,12 +24,14 @@ class ContainerViewController: UIViewController {
         super.viewDidLoad()
         self.sideMenu.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
         self.sideMenu.layer.shadowOpacity = 0.8
-        self.sideMenu.alpha = 1
-        self.view.bringSubviewToFront(sideMenu)
-        sideMenuViewController = self.children[0] as? SideMenuViewController
-        teachersViewController =  self.children[1].children[0] as? TeachersViewController
+        sideMenuViewController = self.children[1] as? SideMenuViewController
+        teachersViewController = self.children[0].children[0] as? TeachersViewController
         teachersViewController.delegate = self
         sideMenuViewController.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     private func hideSideMenu() {
@@ -40,6 +42,8 @@ class ContainerViewController: UIViewController {
     }
     
     private func showSideMenu() {
+//        view.bringSubviewToFront(sideMenu)
+        sideMenu.alpha = 1
         UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
             self.sideMenu.transform = .identity
             self.teachersView.transform = CGAffineTransform(translationX: self.sideMenu.frame.width, y: 0)

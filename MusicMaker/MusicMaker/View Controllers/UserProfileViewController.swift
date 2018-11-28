@@ -11,14 +11,12 @@ import FirebaseFirestore
 import Firebase
 
 class UserProfileViewController: UIViewController {
-
-    
     
     
     // MARK: - Properties
     let database = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
-    
+    var student: Student?
     // MARK: - IBOutlets
     
     @IBOutlet weak var profileImage: UIImageView!

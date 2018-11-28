@@ -8,8 +8,32 @@
 
 import Foundation
 import CoreData
+import Firebase
 
 extension Assignment {
+    
+    @discardableResult
+    convenience init(teacher: Teacher, firestoreID: String, fields: [String: Any]) {
+        self.init(context: CoreDataStack.shared.mainContext)
+        
+        teacher.addToAssignments(self)
+        self.firestoreID = firestoreID
+        update(with: fields)
+    }
+    
+    func update(with fields: [String: Any]) {
+        self.dueDate = (fields["dueDate"] as? Timestamp)?.dateValue()
+        self.feedback = fields["feedback"] as? String
+        self.grade = fields["grade"] as? String
+        self.instructions = fields["instructions"] as? String
+        self.instrument = fields["instrument"] as? String
+        self.level = fields["level"] as? String
+        self.piece = fields["piece"] as? String
+//        self.scoreDocumentURL = fields["sheetMusic"] as? DocumentReference // need to turn FIRDocumentReference into a URL
+//        self.recordingURL = fields["video"] as? DocumentReference // need to turn FIRDocumentReference into a URL
+        self.status = fields["status"] as? String
+        self.title = fields["assignmentName"] as? String
+    }
     
     private var localRecordingFolderURL: URL {
         // create a folder in core data's folder for recordings

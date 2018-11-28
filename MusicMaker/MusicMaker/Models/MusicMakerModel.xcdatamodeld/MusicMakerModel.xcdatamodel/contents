@@ -3,6 +3,8 @@
     <entity name="Assignment" representedClassName="Assignment" syncable="YES" codeGenerationType="class">
         <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="feedback" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firestoreID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="grade" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instrument" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="String" syncable="YES"/>
@@ -21,7 +23,7 @@
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Assignment" inverseName="teacher" inverseEntity="Assignment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Assignment" positionX="286.58203125" positionY="27.39453125" width="128" height="240"/>
+        <element name="Assignment" positionX="286.58203125" positionY="27.39453125" width="128" height="270"/>
         <element name="Teacher" positionX="83.09375" positionY="43.85546875" width="128" height="90"/>
     </elements>
 </model>

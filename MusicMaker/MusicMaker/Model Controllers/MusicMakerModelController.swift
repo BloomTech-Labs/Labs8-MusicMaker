@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import Firebase
 import CoreData
 
 class MusicMakerModelController {
+    
+    static let ErrorDomain = "MusicMakerModelControllerErrorDomain"
     
     /*
     
@@ -59,7 +62,74 @@ class MusicMakerModelController {
 //    }
     
     func fetchTeachers(completion: @escaping ([Teacher]?, Error?) -> Void) {
-        // fetch all teachers from firebase
+        guard var currentStudentUID = Auth.auth().currentUser?.uid else {
+            completion(teachers, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authenticated"]))
+            return
+        }
+        
+        currentStudentUID = "NKMNNypkVXUj4BSSyTPb" // Temporarily set it to the user with actual assignments
+        
+        let database = Firestore.firestore()
+        
+        let teachersCollection = database.collection("students").document(currentStudentUID).collection("teachers")
+        
+        teachersCollection.getDocuments { (snapshot, error) in
+            // Seems like this is being called on the main queue, so no need for DispatchQueue.main.async { ... }
+            
+            // If firestore returned an error, bail early
+            if let error = error {
+                completion(self.teachers, error)
+                return
+            }
+            
+            // If firestore doesn't return any documents, bail early
+            guard let teacherDocuments = snapshot?.documents else {
+                completion(self.teachers, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "No teacher documents found"]))
+                return
+            }
+            
+            var firestoreDocumentLookup: [String: QueryDocumentSnapshot] = [:]
+            
+            for teacherDocument in teacherDocuments {
+                firestoreDocumentLookup[teacherDocument.documentID] = teacherDocument
+            }
+            
+            let moc = CoreDataStack.shared.mainContext
+            
+            for teacher in self.teachers {
+                // remove any core data entries without a firestoreID
+                guard let firestoreID = teacher.firestoreID else {
+                    moc.delete(teacher)
+                    continue
+                }
+                
+                if let teacherDocument = firestoreDocumentLookup[firestoreID] {
+                    // document exists, so we should update the teacher in core data
+                    teacher.update(with: teacherDocument.data())
+                    
+                    // remove the entry from the firestore lookup, so we don't end up creating new core data entries with it
+                    firestoreDocumentLookup[firestoreID] = nil
+                } else {
+                    // document does not exist anymore, so delete from core data
+                    moc.delete(teacher)
+                }
+            }
+            
+            // create new core data entries with whatever was left over in firestore
+            for (firestoreID, teacherDocument) in firestoreDocumentLookup {
+                Teacher(firestoreID: firestoreID, fields: teacherDocument.data())
+            }
+            
+            do {
+                try CoreDataStack.shared.save()
+                
+                completion(self.teachers, nil)
+            } catch {
+                NSLog("Error saving core data: \(error)")
+                
+                completion(self.teachers, error)
+            }
+        }
     }
     
     func fetchAssigments(for teacher: Teacher, completion: @escaping ([Assignment]?, Error?) -> Void) {

@@ -1,6 +1,7 @@
 const cors = require('cors');
 const fs = require('fs');
 const express = require('express');
+const pdfkit = require('pdfkit');
 const QRCode = require('qrcode');
 
 
@@ -125,6 +126,44 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) =
       res.json(assignment);
 
   } catch (err){
+    next (err);
+  }
+});
+
+// POST should upload a teacher's sheetMusic(pdf) into their ungraded assignment
+app.post('/teacher/:idTeacher/sheetMusic', (req, res, next) => {
+  try {
+    const teacherId = req.params['idTeacher'];
+
+
+     function generatePDF(teacherId) {
+      const doc = new pdfkit();
+      const bucket = storage.bucket('gs://musicmaker-4b2e8.appspot.com');
+      const filename =  `/${teacherId}/attachement.pdf`;
+      const file = bucket.file(filename);
+      const bucketFileStream = file.createWriteStream();
+      var buffers = [];
+      let p = new Promise((resolve, reject) => {
+        doc.on("end", function() {
+          resolve(buffers);
+        });
+        doc.on("error", function () {
+          reject();
+        });
+      });
+    
+      doc.pipe(bucketFileStream);
+      doc.on('data', buffers.push.bind(buffers));
+    
+    
+      doc.end();
+    }
+
+    res.json(generatePDF(teacherId))
+   console.log('***********************************************', generatePDF(teacherId) )
+
+
+  } catch (err) {
     next (err);
   }
 });

@@ -284,6 +284,10 @@
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
+                                            <connections>
+                                                <outlet property="dataSource" destination="oy2-gd-Ltd" id="rAw-UM-suw"/>
+                                                <outlet property="delegate" destination="oy2-gd-Ltd" id="L2L-Ay-5yC"/>
+                                            </connections>
                                         </collectionView>
                                     </subviews>
                                     <constraints>
@@ -296,6 +300,10 @@
                                         <constraint firstItem="oxe-BA-NJq" firstAttribute="trailing" secondItem="2xp-Cb-qml" secondAttribute="trailing" id="XwL-yt-7Oi"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="collectionView" destination="oxe-BA-NJq" id="rOZ-d1-0dJ"/>
+                                    <outlet property="musicPieceLabel" destination="qXl-W7-d9c" id="75K-pl-AoI"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InstructionCell" rowHeight="172" id="naA-Lp-TfL" customClass="AssignmentInstructionsTableViewCell" customModule="MusicMaker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="505" width="768" height="172"/>
@@ -380,7 +388,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaM-KB-y0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.5" y="-13.4765625"/>
+            <point key="canvasLocation" x="120" y="-122"/>
         </scene>
     </scenes>
     <resources>

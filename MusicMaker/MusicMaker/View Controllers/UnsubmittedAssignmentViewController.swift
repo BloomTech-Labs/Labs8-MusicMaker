@@ -8,19 +8,29 @@
 
 import UIKit
 import PDFKit
+import AVFoundation
 
-class UnsubmittedAssignmentViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusicPieceTableViewCellDelegate {
+    
+    // This is our dummy assignment that is in core data
+    var assignment: Assignment? = MusicMakerModelController.shared.teachers.first?.assignments?.anyObject() as? Assignment
+    
+    var pdfDocument = PDFDocument(url: Bundle.main.url(forResource: "SamplePDF", withExtension: "pdf")!)!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
     }
     
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if let _ = assignment?.localRecordingURL {
+            return 6
+        } else {
+            return 4
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -34,7 +44,7 @@ class UnsubmittedAssignmentViewController: UITableViewController {
 //            cell.dueTimeLabel.text = "8:00 PM"
 //            cell.instrumentLabel.text = "🎻"
             
-            cell.assignmentTitle = "this is a test assignment"
+            cell.assignmentTitle = assignment?.title
             cell.dueDate = Date()   // sets date and time in custom cell
             cell.instrument = "🎻"
             
@@ -43,7 +53,8 @@ class UnsubmittedAssignmentViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MusicPieceCell", for: indexPath) as! AssignmentMusicPieceTableViewCell
             
             cell.musicPiece = "this is a test music piece name that is really really long because i want to see"
-            cell.pdfDocument = PDFDocument(url: Bundle.main.url(forResource: "SamplePDF", withExtension: "pdf")!)
+            cell.pdfDocument = pdfDocument
+            cell.delegate = self
             
             return cell
         case 2:
@@ -53,20 +64,49 @@ class UnsubmittedAssignmentViewController: UITableViewController {
             cell.teacher = "Mrs. Mozart"
             
             return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecordButtonCell", for: indexPath) as! RecordButtonTableViewCell
+            
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaybackCell", for: indexPath) as! AssignmentPlaybackTableViewCell
+            
+            cell.playerViewController?.player = AVPlayer(url: assignment!.localRecordingURL!)
+            
+            return cell
+        case 5:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SaveSubmitCell", for: indexPath) as! AssignmentSaveSubmitTableViewCell
+            
+//            cell.delegate = self
+            return cell
         default:
             fatalError("We forgot a case: \(indexPath.row)")
         }
     }
     
+    // MARK: - AssignmentMusicPieceTableViewCellDelegate
     
-    /*
+    func musicPiecePageWasSelected(for cell: AssignmentMusicPieceTableViewCell, with page: PDFPage) {
+        // Use the sender to pass the pdfPage to prepareSegue
+        performSegue(withIdentifier: "ShowPagePreview", sender: page)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard let recordVC = segue.destination as? RecordingViewController else { return }
+        
+        recordVC.assignment = assignment
+        recordVC.pdfDocument = pdfDocument
+        
+        if segue.identifier == "ShowPagePreview" {
+            // Extract the pdfPage from the sender because we don't have direct access to the page
+            guard let pdfPage = sender as? PDFPage else { return }
+            recordVC.pdfPage = pdfPage
+        } else {
+            recordVC.pdfPage = pdfDocument.page(at: 0)
+        }
     }
-    */
 
 }

@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-// import { connect } from 'react-redux';
+import { NavLink } from "react-router-dom";
 
-import PasswordChangeForm from "../components/UpdatePW";
+import SideBar from "../components/SideBar";
+
+import "../css/index.css";
 
 class DashboardView extends Component {
   render() {
     return (
-      <div>
-        <p>Dashboard Page</p>
-        <div>
-          <PasswordChangeForm />
+      <div className="container">
+        <div className="flex-container">
+          <SideBar />
+          <div className="block-container">
+            <div className="subheader">New Assignment</div>
+            <NavLink to='/assignments/create' className="bodyText"> + </NavLink>
+          </div>
         </div>
       </div>
     );

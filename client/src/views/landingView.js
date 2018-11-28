@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-// import { connect } from 'react-redux';
+
+import jumbotron from '../less/imgs/landingView.png';
+import '../css/index.css';
 
 class LandingPageView extends Component {
   render() {
     return (
-      <div>
-        <h1>Landing Page</h1>
-        <p>
+      <div className="container">
+        <img className="jumbotron" src={jumbotron} />
+        <h1 className="subheader">Landing Page</h1>
+        <button className="buyNow_Button"> BUY NOW </button>
+        <p className="bodyText">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
           consequat nisl in ornare. Nulla quis fringilla ipsum, blandit luctus
           purus. Phasellus suscipit enim massa, id molestie magna consectetur
@@ -15,7 +19,7 @@ class LandingPageView extends Component {
           arcu. Mauris hendrerit nibh mi, non fermentum quam pharetra non. Etiam
           eu felis ac tortor accumsan finibus quis in odio. Suspendisse potenti.
         </p>
-        <p>
+        <p className="bodyText">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
           consequat nisl in ornare. Nulla quis fringilla ipsum, blandit luctus
           purus. Phasellus suscipit enim massa, id molestie magna consectetur
@@ -24,6 +28,7 @@ class LandingPageView extends Component {
           arcu. Mauris hendrerit nibh mi, non fermentum quam pharetra non. Etiam
           eu felis ac tortor accumsan finibus quis in odio. Suspendisse potenti.
         </p>
+        <button className="buyNow_Button"> BUY NOW </button>
       </div>
     );
   }

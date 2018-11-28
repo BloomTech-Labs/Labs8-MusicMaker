@@ -128,11 +128,11 @@
                                                                     <variation key="widthClass=compact" constant="70"/>
                                                                 </constraint>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="75"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="68"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="widthClass=compact">
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="46"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="44"/>
                                                             </variation>
                                                         </label>
                                                     </subviews>

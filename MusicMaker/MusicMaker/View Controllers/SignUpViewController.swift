@@ -18,6 +18,13 @@ class SignUpViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if isSigningUpWithGoogleAuth {
+            emailTextField.isHidden = true
+            passwordTextField.isHidden = true
+            confirmPasswordTextField.isHidden = true
+        }
+        
         addDismissKeyboardGestureRecognizer()
         qrView.setupCaptureSession()
         let captureMetadataOutput = AVCaptureMetadataOutput()
@@ -49,6 +56,8 @@ class SignUpViewController: UIViewController {
     
     
     // MARK: - Properties
+    
+    var isSigningUpWithGoogleAuth = false
     private lazy var panRecognizer: InstantPanGestureRecognizer = {
         let recognizer = InstantPanGestureRecognizer()
         recognizer.cancelsTouchesInView = false
@@ -499,7 +508,7 @@ class SignUpViewController: UIViewController {
                 let usersUniqueIdentifier = user.user.uid
                 
             database.collection("students").document(usersUniqueIdentifier).setData(userDocumentInformation)
-                self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
+            self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
             }
         }
     }

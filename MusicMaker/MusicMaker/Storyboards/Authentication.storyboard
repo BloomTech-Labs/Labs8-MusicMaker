@@ -75,6 +75,9 @@
                                         <variation key="heightClass=regular-widthClass=compact">
                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="24"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="signInWithGoogle:" destination="XI5-s7-70o" eventType="touchUpInside" id="fyX-X6-9xm"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -95,9 +98,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="Euy-h8-trc"/>
                     <connections>
+                        <outlet property="googleSigninButton" destination="JhT-tc-C9b" id="9fO-5a-CYc"/>
                         <outlet property="loginButton" destination="ftt-ap-eik" id="bg0-Gt-Ok5"/>
-                        <outlet property="signInWithGoogle" destination="JhT-tc-C9b" id="9fO-5a-CYc"/>
                         <outlet property="signupButton" destination="St2-S3-LHn" id="NmA-7U-rUs"/>
+                        <segue destination="dtM-Of-Z43" kind="show" identifier="SignUpWithGoogle" id="mf3-Dp-WTk"/>
+                        <segue destination="IEf-u0-XmX" kind="presentation" identifier="ShowTeachers" id="5mc-Cd-NMF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQV-4B-11T" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -542,6 +547,7 @@
         <image name="invisible" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Aag-bc-Au1"/>
+        <segue reference="5mc-Cd-NMF"/>
+        <segue reference="mf3-Dp-WTk"/>
     </inferredMetricsTieBreakers>
 </document>

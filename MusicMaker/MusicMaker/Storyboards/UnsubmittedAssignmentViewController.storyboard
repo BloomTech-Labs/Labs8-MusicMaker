@@ -164,30 +164,18 @@
                                                                 <fontDescription key="fontDescription" name="Georgia-BoldItalic" family="Georgia" pointSize="11"/>
                                                             </variation>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="221-Ai-afp">
-                                                            <rect key="frame" x="64" y="65" width="31" height="41"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMm-Sv-lJ7">
-                                                            <rect key="frame" x="45" y="36" width="31" height="41"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcC-W1-qzm">
-                                                            <rect key="frame" x="25" y="65" width="31" height="41"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HxW-vL-0vZ">
+                                                            <rect key="frame" x="15" y="25" width="90" height="90"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="90" id="X7C-c3-KMW"/>
+                                                                <constraint firstAttribute="height" constant="90" id="pgq-2M-BFC"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="HxW-vL-0vZ" firstAttribute="centerY" secondItem="YzZ-b5-Mif" secondAttribute="centerY" id="2r0-hz-BkN"/>
                                                         <constraint firstItem="SNL-hr-L3Q" firstAttribute="leading" secondItem="YzZ-b5-Mif" secondAttribute="leading" id="7de-06-8oU"/>
+                                                        <constraint firstItem="HxW-vL-0vZ" firstAttribute="centerX" secondItem="YzZ-b5-Mif" secondAttribute="centerX" id="Eo4-PD-aHA"/>
                                                         <constraint firstItem="SNL-hr-L3Q" firstAttribute="top" secondItem="YzZ-b5-Mif" secondAttribute="top" id="JuV-zn-1bv"/>
                                                         <constraint firstAttribute="width" constant="120" id="Q3b-pd-LF7">
                                                             <variation key="widthClass=compact" constant="70"/>
@@ -239,6 +227,7 @@
                                     <outlet property="dueDateLabel" destination="qs4-y6-e7X" id="Y3D-dC-O8E"/>
                                     <outlet property="dueTimeLabel" destination="ho8-fz-rE6" id="xb0-lK-QeE"/>
                                     <outlet property="instrumentLabel" destination="4NT-Tv-mq6" id="Y42-t4-X1U"/>
+                                    <outlet property="levelImageView" destination="HxW-vL-0vZ" id="b7M-xr-EXj"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MusicPieceCell" rowHeight="258" id="LL9-J6-nHu" customClass="AssignmentMusicPieceTableViewCell" customModule="MusicMaker" customModuleProvider="target">

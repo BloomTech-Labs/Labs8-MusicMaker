@@ -520,21 +520,36 @@ extension SignUpViewController: UITextFieldDelegate {
     
     //Makes the next textfield the first responder when filling out sign in
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField.tag {
-        case 0:
-            lastNameTextField.becomeFirstResponder()
-        case 1:
-            emailTextField.becomeFirstResponder()
-        case 2:
-            passwordTextField.becomeFirstResponder()
-        case 3:
-            confirmPasswordTextField.becomeFirstResponder()
-        case 4:
-            confirmPasswordTextField.resignFirstResponder()
-            presentLevelAlertController(on: selectLevelTextField)
-        default:
-            textField.resignFirstResponder()
+        if isSigningUpWithGoogleAuth {
+            
+            switch textField.tag {
+            case 0:
+                lastNameTextField.becomeFirstResponder()
+            case 1:
+                lastNameTextField.resignFirstResponder()
+                presentLevelAlertController(on: selectLevelTextField)
+            default:
+                textField.resignFirstResponder()
+            }
+            
+        } else {
+            switch textField.tag {
+            case 0:
+                lastNameTextField.becomeFirstResponder()
+            case 1:
+                emailTextField.becomeFirstResponder()
+            case 2:
+                passwordTextField.becomeFirstResponder()
+            case 3:
+                confirmPasswordTextField.becomeFirstResponder()
+            case 4:
+                confirmPasswordTextField.resignFirstResponder()
+                presentLevelAlertController(on: selectLevelTextField)
+            default:
+                textField.resignFirstResponder()
+            }
         }
+        
         return true
     }
     

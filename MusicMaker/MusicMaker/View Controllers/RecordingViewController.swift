@@ -238,12 +238,12 @@ class RecordingViewController: UIViewController {
         
         // Video capture
         let videoDevice = bestCamera()
-        guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice), captureSession.canAddInput(videoDeviceInput) else { fatalError() }
+        guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice), captureSession.canAddInput(videoDeviceInput) else { fatalError("We probably don't have camera access") }
         captureSession.addInput(videoDeviceInput)
         
         // Audio capture
-        guard let audioDevice = AVCaptureDevice.default(for: AVMediaType.audio) else { fatalError("Missing audio type") }
-        guard let audioDeviceInput = try? AVCaptureDeviceInput(device: audioDevice), captureSession.canAddInput(audioDeviceInput) else { fatalError() }
+        guard let audioDevice = AVCaptureDevice.default(for: AVMediaType.audio) else { fatalError("Missing audio device") }
+        guard let audioDeviceInput = try? AVCaptureDeviceInput(device: audioDevice), captureSession.canAddInput(audioDeviceInput) else { fatalError("We probably don't have microphone access") }
         captureSession.addInput(audioDeviceInput)
         
         let fileOutput = AVCaptureMovieFileOutput() // creates a movie file

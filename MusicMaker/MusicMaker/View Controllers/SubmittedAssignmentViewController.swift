@@ -8,6 +8,7 @@
 
 import UIKit
 import PDFKit
+import AVFoundation
 
 class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicPieceTableViewCellDelegate {
     
@@ -25,7 +26,7 @@ class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicP
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,6 +67,12 @@ class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicP
             
             cell.feedback = "This is the teacher's feedback for the student regarding their performance."
 //            cell.teacher = "Mrs. Mozart"
+            
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaybackCell", for: indexPath) as! AssignmentPlaybackTableViewCell
+            
+            cell.playerViewController?.player = AVPlayer(url: assignment!.localRecordingURL!)
             
             return cell
         default:

@@ -363,6 +363,14 @@
                                     <outlet property="bodyTextLabel" destination="Uog-sN-S5U" id="0oS-in-kl6"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaybackCell" rowHeight="358" id="CAZ-WZ-vWg" customClass="AssignmentPlaybackTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="849" width="768" height="358"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CAZ-WZ-vWg" id="Fbi-Ru-eFM">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="357.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="mDr-8X-V9M" id="iLp-5Z-WkC"/>

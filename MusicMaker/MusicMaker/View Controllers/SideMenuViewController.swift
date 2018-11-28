@@ -30,8 +30,7 @@ class SideMenuViewController: UIViewController {
     {
         didSet {
             if let student = student {
-                print(student.firstName)
-                print(student.lastName)
+                studentNameLabel.text = "\(student.firstName) \(student.lastName)"
                 profileImage.createInitialsImage(for: "\(student.firstName) \(student.lastName)", backgroundColor: .lightGray)
             }
         }
@@ -66,7 +65,14 @@ class SideMenuViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileImage: UIImageView! {
+        didSet {
+            print(profileImage.frame.height)
+            print(profileImage.frame.width)
+        }
+    }
+    @IBOutlet weak var studentNameLabel: UILabel!
+    
     
     // MARK: - IBActions
     

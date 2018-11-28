@@ -18,6 +18,14 @@ extension Teacher {
         update(with: fields)
     }
     
+    var sortedAssignments: [Assignment] {
+        let assignmentsSet: Set<Assignment> = self.assignments as? Set<Assignment> ?? []
+        return assignmentsSet.sorted {
+            guard let date0 = $0.dueDate, let date1 = $1.dueDate else { return true }
+            return date0 < date1
+        } // sort by something practical here
+    }
+    
     func update(with fields: [String: Any]) {
         var prefix = ""
         var lastName = ""

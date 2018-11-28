@@ -133,7 +133,79 @@ class MusicMakerModelController {
     }
     
     func fetchAssigments(for teacher: Teacher, completion: @escaping ([Assignment]?, Error?) -> Void) {
-        // fetch all student's assignments for a given teacher from firebase, then fetch the teacher's assignments for each student's assignment
+        guard var currentStudentUID = Auth.auth().currentUser?.uid else {
+            completion(teacher.sortedAssignments, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authenticated"]))
+            return
+        }
+        
+        currentStudentUID = "NKMNNypkVXUj4BSSyTPb" // Temporarily set it to the user with actual assignments
+        
+        guard let teacherFirestoreID = teacher.firestoreID else {
+            completion(teacher.sortedAssignments, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid Teacher"]))
+            return
+        }
+        
+        let database = Firestore.firestore()
+        
+        let assignmentsCollection = database.collection("students").document(currentStudentUID).collection("teachers").document(teacherFirestoreID).collection("assignments")
+        
+        assignmentsCollection.getDocuments { (snapshot, error) in
+            // Seems like this is being called on the main queue, so no need for DispatchQueue.main.async { ... }
+            
+            // If firestore returned an error, bail early
+            if let error = error {
+                completion(teacher.sortedAssignments, error)
+                return
+            }
+            
+            // If firestore doesn't return any documents, bail early
+            guard let assignmentDocuments = snapshot?.documents else {
+                completion(teacher.sortedAssignments, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "No assignment documents found"]))
+                return
+            }
+            
+            var firestoreDocumentLookup: [String: QueryDocumentSnapshot] = [:]
+            
+            for assignmentDocument in assignmentDocuments {
+                firestoreDocumentLookup[assignmentDocument.documentID] = assignmentDocument
+            }
+            
+            let moc = CoreDataStack.shared.mainContext
+
+            for assignment in teacher.sortedAssignments {
+                // remove any core data entries without a firestoreID
+                guard let firestoreID = assignment.firestoreID else {
+                    moc.delete(assignment)
+                    continue
+                }
+
+                if let assignmentDocument = firestoreDocumentLookup[firestoreID] {
+                    // document exists, so we should update the assignment in core data
+                    assignment.update(with: assignmentDocument.data())
+
+                    // remove the entry from the firestore lookup, so we don't end up creating new core data entries with it
+                    firestoreDocumentLookup[firestoreID] = nil
+                } else {
+                    // document does not exist anymore, so delete from core data
+                    moc.delete(assignment)
+                }
+            }
+
+            // create new core data entries with whatever was left over in firestore
+            for (firestoreID, assignmentDocument) in firestoreDocumentLookup {
+                Assignment(teacher: teacher, firestoreID: firestoreID, fields: assignmentDocument.data())
+            }
+
+            do {
+                try CoreDataStack.shared.save()
+
+                completion(teacher.sortedAssignments, nil)
+            } catch {
+                NSLog("Error saving core data: \(error)")
+
+                completion(teacher.sortedAssignments, error)
+            }
+        }
     }
     
     func submit(assignment: Assignment, completion: @escaping (Assignment?, Error?) -> Void) {

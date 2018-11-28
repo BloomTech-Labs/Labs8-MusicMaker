@@ -129,6 +129,16 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) =
   }
 });
 
+//GET should retrieve a teacher's ungraded assignment's sheetMusic(pdf)
+app.get('/teacher/:idTeacher/assignment/:idAssignment/sheetMusic', async (req, res, next) => {
+  try {
+
+  } catch (err) {
+  next (err);
+  }
+  });
+  
+
 //SETTINGS : POST - GET - PUT ---------------------------------------------------------------------------------------------------------
 
 //POST should create and add a new teacher settings info.: email and name

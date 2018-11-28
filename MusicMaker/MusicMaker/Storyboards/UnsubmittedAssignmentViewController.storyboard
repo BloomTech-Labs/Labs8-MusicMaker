@@ -167,8 +167,12 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HxW-vL-0vZ">
                                                             <rect key="frame" x="15" y="25" width="90" height="90"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="90" id="X7C-c3-KMW"/>
-                                                                <constraint firstAttribute="height" constant="90" id="pgq-2M-BFC"/>
+                                                                <constraint firstAttribute="width" constant="90" id="X7C-c3-KMW">
+                                                                    <variation key="widthClass=compact" constant="60"/>
+                                                                </constraint>
+                                                                <constraint firstAttribute="height" constant="90" id="pgq-2M-BFC">
+                                                                    <variation key="widthClass=compact" constant="60"/>
+                                                                </constraint>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>

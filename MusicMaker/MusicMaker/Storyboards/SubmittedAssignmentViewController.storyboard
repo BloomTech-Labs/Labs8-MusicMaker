@@ -323,11 +323,44 @@
                                         <constraint firstItem="a1B-o0-m0a" firstAttribute="top" secondItem="Mhp-LH-6wJ" secondAttribute="topMargin" id="92a-j5-RNa"/>
                                         <constraint firstItem="3Ij-oO-dcO" firstAttribute="trailing" secondItem="Mhp-LH-6wJ" secondAttribute="trailingMargin" id="MJf-AL-bU2"/>
                                         <constraint firstItem="3Ij-oO-dcO" firstAttribute="leading" secondItem="Mhp-LH-6wJ" secondAttribute="leadingMargin" id="e7I-ob-kPs"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="3Ij-oO-dcO" secondAttribute="bottom" constant="79" id="lhq-Pn-H1v"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="3Ij-oO-dcO" secondAttribute="bottom" id="lhq-Pn-H1v"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="bodyTextLabel" destination="a1B-o0-m0a" id="cpB-cQ-mv5"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedbackCell" rowHeight="172" id="kqS-FR-zPz" customClass="AssignmentInstructionsTableViewCell" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="677" width="768" height="172"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kqS-FR-zPz" id="PH9-MQ-v54">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="171.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feedback" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40P-mj-uOQ">
+                                            <rect key="frame" x="20" y="11" width="109.5" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bodyTextLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uog-sN-S5U">
+                                            <rect key="frame" x="20" y="60" width="728" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Uog-sN-S5U" firstAttribute="top" secondItem="40P-mj-uOQ" secondAttribute="bottom" constant="19" id="By8-6G-dyV"/>
+                                        <constraint firstItem="Uog-sN-S5U" firstAttribute="leading" secondItem="PH9-MQ-v54" secondAttribute="leadingMargin" id="Q8J-T0-PVP"/>
+                                        <constraint firstItem="Uog-sN-S5U" firstAttribute="trailing" secondItem="PH9-MQ-v54" secondAttribute="trailingMargin" id="R5T-HN-ChB"/>
+                                        <constraint firstItem="40P-mj-uOQ" firstAttribute="top" secondItem="PH9-MQ-v54" secondAttribute="topMargin" id="hbg-nh-TAj"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Uog-sN-S5U" secondAttribute="bottom" id="mZi-PW-h9T"/>
+                                        <constraint firstItem="40P-mj-uOQ" firstAttribute="leading" secondItem="PH9-MQ-v54" secondAttribute="leadingMargin" id="nEf-RB-UqQ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bodyTextLabel" destination="Uog-sN-S5U" id="0oS-in-kl6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

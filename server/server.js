@@ -6,6 +6,7 @@ const QRCode = require('qrcode');
 
 // Firebase-specific dependencies
 const firebase = require('firebase');
+const functions = require('firebase-functions');
 
 const config = {
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -36,7 +37,7 @@ app.use(express.json());
 app.use(cors());
 
 // TEST for sanity checks
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
   res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :)'});
 });
 
@@ -45,123 +46,123 @@ app.get('/', (req, res) => {
 //POST should create and add a new ungraded assignment under a teacher
 //details: assignmentName, instructions, instrument, level, piece
 //sheetMusic is currently not included, need to figure out how it would be uploaded in the database storage, may need its own endpoint
-app.post('/teacher/:idTeacher/createAssignment', async (req, res, next) => {
-  try {
-    const teacherId = req.params['idTeacher'];
-    const { assignmentName, instructions, instrument, level, piece, sheetMusic } = req.body;
-    // const assignments = {};
+// app.post('/teacher/:idTeacher/createAssignment', async (req, res, next) => {
+//   try {
+//     const teacherId = req.params['idTeacher'];
+//     const { assignmentName, instructions, instrument, level, piece, sheetMusic } = req.body;
+//     // const assignments = {};
 
-    if (!assignmentName || !instructions || !instrument || !level || !piece) {
-      res.status(411).send({REQUIRED: 'YOU MUST HAVE ALL FIELDS FILLED'});
-    } 
-    // else if (assignmentName > 0) {
-    //   const teacherAssingmentsRef = await db.collection('teachers').doc(teacherId).collection('assignments').get()
-    //   // console.log('0******************************************', teacherAssingmentsRef)
-    //   // console.log('1******************************************', Object.keys(teacherAssingmentsRef))
-    //   .then(snap => {
-    //     snap.forEach(doc => {
-    //       global = doc.data();
-    //       assignments[doc.id] = [global.assignmentName];
-    //     })
-    //   })
+//     if (!assignmentName || !instructions || !instrument || !level || !piece) {
+//       res.status(411).send({REQUIRED: 'YOU MUST HAVE ALL FIELDS FILLED'});
+//     } 
+//     // else if (assignmentName > 0) {
+//     //   const teacherAssingmentsRef = await db.collection('teachers').doc(teacherId).collection('assignments').get()
+//     //   // console.log('0******************************************', teacherAssingmentsRef)
+//     //   // console.log('1******************************************', Object.keys(teacherAssingmentsRef))
+//     //   .then(snap => {
+//     //     snap.forEach(doc => {
+//     //       global = doc.data();
+//     //       assignments[doc.id] = [global.assignmentName];
+//     //     })
+//     //   })
 
-    //   console.log('2**********************************', assignment) // This returns a list of an array of a teachers assignments within an array, 
-    //                                                                  //need to check if each of those assignment names matches the new name and if does throw an error
-    //   res.status(411).send({ERROR: 'YOU CANNOT HAVE AN ASSIGNMENT WITH THE SAME NAME'});
-    // } 
-    else {
-      const addTeacherAssign = await db.collection('teachers').doc(teacherId).collection('assignments').add({
-        'assignmentName': assignmentName,
-        'instructions': instructions,
-        'instrument': instrument,
-        'level': level,
-        'piece': piece
-      });
-      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW ASSIGNMENT'});
-    };
-  }
-   catch(err) {
-    next(err);
-  }
-});
+//     //   console.log('2**********************************', assignment) // This returns a list of an array of a teachers assignments within an array, 
+//     //                                                                  //need to check if each of those assignment names matches the new name and if does throw an error
+//     //   res.status(411).send({ERROR: 'YOU CANNOT HAVE AN ASSIGNMENT WITH THE SAME NAME'});
+//     // } 
+//     else {
+//       const addTeacherAssign = await db.collection('teachers').doc(teacherId).collection('assignments').add({
+//         'assignmentName': assignmentName,
+//         'instructions': instructions,
+//         'instrument': instrument,
+//         'level': level,
+//         'piece': piece
+//       });
+//       res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW ASSIGNMENT'});
+//     };
+//   }
+//    catch(err) {
+//     next(err);
+//   }
+// });
 
-//GET should retrieve teacher's all ungraded assignments
-//details: assignmentName, instructions, instrument, level, piece
-app.get('/teacher/:idTeacher/assignments', async (req, res, next) => {
-  try{
-      const teacherId = req.params['idTeacher'];
-      const assignments = {};  
+// //GET should retrieve teacher's all ungraded assignments
+// //details: assignmentName, instructions, instrument, level, piece
+// app.get('/teacher/:idTeacher/assignments', async (req, res, next) => {
+//   try{
+//       const teacherId = req.params['idTeacher'];
+//       const assignments = {};  
 
-      const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments');
-      const allAssignments = await assignmentRef.get()
-      .then(snap => {
-        snap.forEach(doc => {
-          global = doc.data();
-          assignments[doc.id] = [global.assignmentName, global.instructions, global.instrument, global.level, global.piece]          
-        })
-      });
-      res.json(assignments);
+//       const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments');
+//       const allAssignments = await assignmentRef.get()
+//       .then(snap => {
+//         snap.forEach(doc => {
+//           global = doc.data();
+//           assignments[doc.id] = [global.assignmentName, global.instructions, global.instrument, global.level, global.piece]          
+//         })
+//       });
+//       res.json(assignments);
 
-  } catch (err){
-    next (err);
-  }
-});
+//   } catch (err){
+//     next (err);
+//   }
+// });
 
-//GET should retrieve teacher's ungraded assignment
-//details: assignmentName, instructions, instrument, level, piece
-//sheetMusic will be retrieved in another endpoint below
-app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) => {
-  try{
-      const teacherId = req.params['idTeacher'];
-      const assignmentId = req.params['idAssignment'];
-      const assignment = {};  
+// //GET should retrieve teacher's ungraded assignment
+// //details: assignmentName, instructions, instrument, level, piece
+// //sheetMusic will be retrieved in another endpoint below
+// app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) => {
+//   try{
+//       const teacherId = req.params['idTeacher'];
+//       const assignmentId = req.params['idAssignment'];
+//       const assignment = {};  
 
-      const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
-      const getDoc = await assignmentRef.get()
-      .then(doc => {
-        global = doc.data();
-        assignment[doc.id] = [global.assignmentName, global.instructions, global.instrument, global.level, global.piece]
-      });
-      res.json(assignment);
+//       const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+//       const getDoc = await assignmentRef.get()
+//       .then(doc => {
+//         global = doc.data();
+//         assignment[doc.id] = [global.assignmentName, global.instructions, global.instrument, global.level, global.piece]
+//       });
+//       res.json(assignment);
 
-  } catch (err){
-    next (err);
-  }
-});
+//   } catch (err){
+//     next (err);
+//   }
+// });
 
-//SETTINGS : POST - GET - PUT ---------------------------------------------------------------------------------------------------------
+// //SETTINGS : POST - GET - PUT ---------------------------------------------------------------------------------------------------------
 
-//POST should create and add a new teacher settings info.: email and name
-app.post('/teachers/add', async (req, res, next) => {
-  try {
-    const email = await req.body.email;
-    const firstName = await req.body.firstName;
-    const lastName = await req.body.lastName;
-    const data = await { email, firstName, lastName };
+// //POST should create and add a new teacher settings info.: email and name
+// app.post('/teachers/add', async (req, res, next) => {
+//   try {
+//     const email = await req.body.email;
+//     const firstName = await req.body.firstName;
+//     const lastName = await req.body.lastName;
+//     const data = await { email, firstName, lastName };
 
-    if(!email) {
-      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
-    } else if(!firstName || !lastName) {
-      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
-    } else {
-      const teachersRef = await db.collection('teachers').add({
-        'email': email,
-        'name': {
-          'firstName': firstName,
-          'lastName': lastName
-        }
-      });
-      res.status(200).send({ message: 'Teacher successfully added!' })
-      // res.json({
-      //   id: teachersRef.id,
-      //   data
-      // });
-    }
-  }
-   catch(err) {
-    next(err);
-  }
-});
+//     if(!email) {
+//       res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
+//     } else if(!firstName || !lastName) {
+//       res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
+//     } else {
+//       const teachersRef = await db.collection('teachers').add({
+//         'email': email,
+//         'name': {
+//           'firstName': firstName,
+//           'lastName': lastName
+//         }
+//       });
+//       res.status(200).send({ message: 'Teacher successfully added!' })
+//       // res.json({
+//       //   id: teachersRef.id,
+//       //   data
+//       // });
+//     }
+//   }
+//    catch(err) {
+//     next(err);
+//   }
+// });
 
 //GET should retrieve teachers settings info.: email and name
 app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
@@ -182,31 +183,33 @@ app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
   }
 });
 
-//PUT should update teachers settings info.: email and name(firstName and lastName)
-app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
-  try{
-    const teacherId = req.params['idTeacher'];
-    const {email, firstName, lastName} = await req.body;
+// //PUT should update teachers settings info.: email and name(firstName and lastName)
+// app.put('/teacher/:idTeacher/settingsEdit', async (req, res, next) => {
+//   try{
+//     const teacherId = req.params['idTeacher'];
+//     const {email, firstName, lastName} = await req.body;
 
-    if (!email) {
-      res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
-    } else if (!firstName || !lastName) {
-      res.status(411).send({REQUIRED: `FIRST NAME AND LAST NAME CANNOT BE LEFT BLANK`});
-    } else{
-     const settingsRef = await db.collection('teachers').doc(teacherId).update({
-        'email': email,
-        'name' : {
-          'firstName': firstName,
-          'lastName': lastName
-        }
-      });
-      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  
-    }
+//     if (!email) {
+//       res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
+//     } else if (!firstName || !lastName) {
+//       res.status(411).send({REQUIRED: `FIRST NAME AND LAST NAME CANNOT BE LEFT BLANK`});
+//     } else{
+//      const settingsRef = await db.collection('teachers').doc(teacherId).update({
+//         'email': email,
+//         'name' : {
+//           'firstName': firstName,
+//           'lastName': lastName
+//         }
+//       });
+//       res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  
+//     }
  
-  } catch (err){
-    next (err);
-  }
-});
+//   } catch (err){
+//     next (err);
+//   }
+// });
+
+exports.app = functions.https.onRequest(app);
 
 // GET a QR code
 

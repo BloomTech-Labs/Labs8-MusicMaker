@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum Level: String {
+    case beginner = "Beginner"
+    case intermediate = "Intermediate"
+    case expert = "Expert"
+}
+
 class AssignmentHeaderTableViewCell: UITableViewCell {
     
     // MARK: - Properties
@@ -42,9 +48,10 @@ class AssignmentHeaderTableViewCell: UITableViewCell {
         }
     }
     
-    var level: String? { // maybe as an enum?
+    var level: Level? {
         didSet {
-            // pick image based on level
+            guard let levelImageName = level?.rawValue else { return }
+            levelImageView.image = UIImage(named: "Level\(levelImageName)")
         }
     }
     
@@ -54,7 +61,5 @@ class AssignmentHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var dueTimeLabel: UILabel!
     @IBOutlet weak var instrumentLabel: UILabel!
-    // replace star labels with an image view to indicate the level
-
-    
+    @IBOutlet weak var levelImageView: UIImageView!
 }

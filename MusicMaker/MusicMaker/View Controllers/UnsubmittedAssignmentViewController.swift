@@ -47,6 +47,8 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
             cell.assignmentTitle = assignment?.title
             cell.dueDate = Date()   // sets date and time in custom cell
             cell.instrument = "🎻"
+            cell.level = .intermediate
+//            Level(rawValue: assignment?.level)
             
             return cell
         case 1:

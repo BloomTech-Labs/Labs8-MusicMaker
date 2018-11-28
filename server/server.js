@@ -132,6 +132,28 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', async (req, res, next) =
 //GET should retrieve a teacher's ungraded assignment's sheetMusic(pdf)
 app.get('/teacher/:idTeacher/assignment/:idAssignment/sheetMusic', async (req, res, next) => {
   try {
+    const teacherId = req.params['idTeacher'];
+    const assignmentId = req.params['idAssignment'];
+
+    const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get();
+
+    const musicSheet = assignmentRef.get("sheetMusic");
+    const segments = musicSheet._key.path.segments
+    const dirName = segments[segments.length -2];
+    const filename = segments[segments.length -1];
+    const options = {
+        destination : 'temp/' + teacherId + '_' + filename,
+    };
+
+    const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
+    await storage.bucket('musicmaker-4b2e8.appspot.com')
+                .file(dirName + '/' + filename)
+                .download(options);
+
+    const displaysFile = await fs.readFile('temp/' + teacherId + '_' + filename, (err, data) => {
+      res.contentType("application/pdf");
+      res.send(data);
+    });
 
   } catch (err) {
   next (err);

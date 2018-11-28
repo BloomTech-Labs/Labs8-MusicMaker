@@ -67,8 +67,8 @@ class SideMenuViewController: UIViewController {
     
     @IBOutlet weak var profileImage: UIImageView! {
         didSet {
-            print(profileImage.frame.height)
-            print(profileImage.frame.width)
+            print(profileImage.bounds.height)
+            print(profileImage.bounds.width)
         }
     }
     @IBOutlet weak var studentNameLabel: UILabel!

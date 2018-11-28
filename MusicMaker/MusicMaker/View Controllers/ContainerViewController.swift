@@ -37,7 +37,6 @@ class ContainerViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(student?.email)
     }
     
     // MARK: - Private Methods
@@ -67,6 +66,7 @@ class ContainerViewController: UIViewController {
                         self.student = Student(dataDescription)
                         self.teachersViewController.student = self.student
                         self.sideMenuViewController.student = self.student
+                        
                     }
                 }
             }

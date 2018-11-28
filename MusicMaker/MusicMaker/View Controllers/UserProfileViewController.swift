@@ -12,7 +12,8 @@ import Firebase
 
 class UserProfileViewController: UIViewController {
     
-    
+    //currentUser?.providerData[0].providerID returns google.com for google auth or password for email/password auth
+
     // MARK: - Properties
     let database = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
@@ -30,7 +31,6 @@ class UserProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Auth.auth().currentUser?.providerID)
         if let student = student {
             profileImage.createInitialsImage(for: "\(student.firstName) \(student.lastName)", backgroundColor: .lightGray)
             title = "\(student.firstName) \(student.lastName)"

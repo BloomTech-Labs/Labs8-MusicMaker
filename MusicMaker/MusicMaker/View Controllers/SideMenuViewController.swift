@@ -17,6 +17,7 @@ class SideMenuViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(1)
 //        self.view.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
     }
     
@@ -26,6 +27,15 @@ class SideMenuViewController: UIViewController {
     
     // MARK: - Properties
     var student: Student?
+    {
+        didSet {
+            if let student = student {
+                print(student.firstName)
+                print(student.lastName)
+                profileImage.createInitialsImage(for: "\(student.firstName) \(student.lastName)", backgroundColor: .lightGray)
+            }
+        }
+    }
     
     // MARK: - IBOutlets
     @IBOutlet weak var profileButton: UIButton! {
@@ -56,6 +66,7 @@ class SideMenuViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var profileImage: UIImageView!
     
     // MARK: - IBActions
     

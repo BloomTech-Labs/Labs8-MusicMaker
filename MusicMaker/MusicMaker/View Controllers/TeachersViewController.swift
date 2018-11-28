@@ -19,7 +19,6 @@ class TeachersViewController: UIViewController {
         self.view.addGestureRecognizer(touchGesture)
     }
     
-    
     // MARK: - Properties
     var sideMenuIsShowing = false
     weak var delegate: TeachersViewControllerDelegate?
@@ -33,7 +32,6 @@ class TeachersViewController: UIViewController {
     }
     
 
-    
     // MARK: - IBActions
     @IBAction func showSideMenu(_ sender: Any) {
         delegate?.menuButtonTapped()

@@ -62,10 +62,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="HNe-tp-cDv">
-                                <rect key="frame" x="0.0" y="70" width="124" height="547"/>
+                                <rect key="frame" x="0.0" y="70" width="124" height="597"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Swl-PM-ckI">
+                                        <rect key="frame" x="19.5" y="0.0" width="85" height="85.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Swl-PM-ckI" secondAttribute="height" multiplier="1:1" id="MKp-Ax-8gp"/>
+                                        </constraints>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uf-SI-fsS">
-                                        <rect key="frame" x="30" y="0.0" width="64" height="96"/>
+                                        <rect key="frame" x="30" y="102.5" width="64" height="85"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Home" image="user">
                                             <color key="titleColor" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -75,21 +81,21 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oY-Hh-SHz">
-                                        <rect key="frame" x="10.5" y="113" width="103" height="95.5"/>
+                                        <rect key="frame" x="10.5" y="204.5" width="103" height="85.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Assignments" image="assignments">
                                             <color key="titleColor" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdo-L7-xLC">
-                                        <rect key="frame" x="23.5" y="225.5" width="77" height="96"/>
+                                        <rect key="frame" x="23.5" y="307" width="77" height="85.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Settings" image="settings">
                                             <color key="titleColor" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="auW-eN-YKf">
-                                        <rect key="frame" x="19.5" y="338.5" width="85" height="95.5"/>
+                                        <rect key="frame" x="19.5" y="409.5" width="85" height="85"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" image="password">
                                             <string key="title">Reset
@@ -98,7 +104,7 @@ Password</string>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azs-KA-MyD">
-                                        <rect key="frame" x="27" y="451" width="70" height="96"/>
+                                        <rect key="frame" x="27" y="511.5" width="70" height="85.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Logout" image="logout">
                                             <color key="titleColor" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -113,7 +119,7 @@ Password</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="HNe-tp-cDv" secondAttribute="trailing" id="Udk-ki-1IW"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="HNe-tp-cDv" secondAttribute="bottom" constant="50" id="hVi-gE-gm7"/>
+                            <constraint firstItem="us4-1a-mhq" firstAttribute="bottom" secondItem="HNe-tp-cDv" secondAttribute="bottom" id="hVi-gE-gm7"/>
                             <constraint firstItem="HNe-tp-cDv" firstAttribute="leading" secondItem="5MS-uC-tmN" secondAttribute="leading" id="m96-Tk-ZJa"/>
                             <constraint firstItem="HNe-tp-cDv" firstAttribute="top" secondItem="5MS-uC-tmN" secondAttribute="topMargin" constant="50" id="vKx-BY-Eee"/>
                         </constraints>
@@ -123,13 +129,14 @@ Password</string>
                         <outlet property="assignmentsButton" destination="3oY-Hh-SHz" id="mVe-Dr-6ZV"/>
                         <outlet property="logoutButton" destination="azs-KA-MyD" id="uL7-tm-GO6"/>
                         <outlet property="profileButton" destination="7uf-SI-fsS" id="d7q-g2-IcX"/>
+                        <outlet property="profileImage" destination="Swl-PM-ckI" id="ZAW-IE-UKo"/>
                         <outlet property="resetPasswordButton" destination="auW-eN-YKf" id="GGd-yG-nld"/>
                         <outlet property="settingsButton" destination="cdo-L7-xLC" id="eVX-E0-fcb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIs-a3-CIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="534" y="-315"/>
+            <point key="canvasLocation" x="532.79999999999995" y="-315.29235382308849"/>
         </scene>
         <!--Teachers-->
         <scene sceneID="eXn-P2-x0L">
@@ -161,7 +168,7 @@ Password</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3fp-iD-d6R">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3fp-iD-d6R">
                                 <rect key="frame" x="117" y="93" width="140" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>

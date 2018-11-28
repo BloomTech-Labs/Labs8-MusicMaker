@@ -138,22 +138,41 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment/sheetMusic', async (req, r
     const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get();
 
     const musicSheet = assignmentRef.get("sheetMusic");
-    const segments = musicSheet._key.path.segments
-    const dirName = segments[segments.length -2];
-    const filename = segments[segments.length -1];
-    const options = {
-        destination : 'temp/' + teacherId + '_' + filename,
-    };
 
-    const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
-    await storage.bucket('musicmaker-4b2e8.appspot.com')
-                .file(dirName + '/' + filename)
-                .download(options);
+    // var xhr = new XMLHttpRequest();
+    // xhr.responseType = 'blob';
+    // xhr.onload = function(event) {
+    //   var blob = xhr.response;
+    // };
+    // xhr.open('GET', url);
+    // xhr.send();
+  
+    // // Or inserted into an <img> element:
+    // var img = document.getElementById('myimg');
+    // img.src = url;
 
-    const displaysFile = await fs.readFile('temp/' + teacherId + '_' + filename, (err, data) => {
-      res.contentType("application/pdf");
-      res.send(data);
-    });
+
+
+    res.json(musicSheet);
+    console.log('************************************************', musicSheet)
+
+
+    // const segments = musicSheet._key.path.segments
+    // const dirName = segments[segments.length -2];
+    // const filename = segments[segments.length -1];
+    // const options = {
+    //     destination : 'temp/' + teacherId + '_' + filename,
+    // };
+
+    // const bucket = await storage.bucket('musicmaker-4b2e8.appspot.com');
+    // await storage.bucket('musicmaker-4b2e8.appspot.com')
+    //             .file(dirName + '/' + filename)
+    //             .download(options);
+
+    // const displaysFile = await fs.readFile('temp/' + teacherId + '_' + filename, (err, data) => {
+    //   res.contentType("application/pdf");
+    //   res.send(data);
+    // });
 
   } catch (err) {
   next (err);

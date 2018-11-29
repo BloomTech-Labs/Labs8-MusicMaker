@@ -38,7 +38,7 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
     
     var pdfDocument: PDFDocument? {
         didSet {
-            tableView.reloadData()
+            tableView?.reloadData()
         }
     }
     
@@ -65,7 +65,7 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
             let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! AssignmentHeaderTableViewCell
             
             cell.assignmentTitle = assignment?.title
-            cell.dueDate = assignment?.dueDate   // sets date and time in custom cell
+            cell.dueDate = assignment?.dueDate
             cell.instrument = assignment?.instrumentEmoji
             cell.level = assignment?.level
             

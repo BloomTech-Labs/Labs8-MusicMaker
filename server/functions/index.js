@@ -25,21 +25,43 @@ firestore.settings(settings);
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.post('/save-stripe-token', (req, res) => {
-  const charge = stripe.charges.create({
-    amount: 999,
-    currency: 'usd',
-    source: 'tok_visa',
-    receipt_email: 'keirankozlowski@gmail.com',
-  });
-
-  console.log(charge);
-});
+app.use(bodyParser.text());
 
 // STRIPE IMPLEMENTATION BY KEIRAN
+app.post('/charge', async (req, res) => {
+  try {
+    let { status } = await stripe.charges.create({
+      amount: 50,
+      currency: 'usd',
+      description: 'teacher subscription',
+      source: req.body
+    });
+    // console.log(status);
+    // console.log(source);
+
+    res.json({ status });
+  } catch(err) {
+    res.status(500).end();
+  }
+});
+
+// app.post('/charge', async (req, res) => {
+//   try {
+//     console.log(req.body);
+//     const chargeObj = {
+//       amount: 50,
+//       currency: 'usd',
+//       description: 'teacher subscription',
+//       source: req.body
+//     }
+
+//     const charge = await stripePromise(chargeObject);
+//     return res.status(201).json(charge);
+//   } 
+//   catch(error) {
+//     return res.status(500).json({ message: 'Subscription failed.', error: error.message });
+//   }
+// });
 
 
 //===============================================================================================================================================

@@ -1,27 +1,34 @@
 import React from 'react'
-import StripeCheckout from 'react-stripe-checkout';
+import { CardElement, injectStripe } from 'react-stripe-elements';
 
-export default class TakeMoney extends React.Component {
-  onToken = (token) => {
-    fetch('/save-stripe-token', {
-      method: 'POST',
-      body: JSON.stringify(token),
-    }).then(response => {
-      response.json().then(data => {
-        alert(`We are in business, ${data.email}`);
-      });
-    });
+class TakeMoney extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { complete: false };
+    this.submit = this.submit.bind(this);
   }
 
-  // ...
+  async submit(ev) {
+    let { token } = await this.props.stripe.createToken({ name: "Name" });
+    let response = await fetch('/charge', {
+      method: 'POST',
+      headers: {'Content-Type': 'text/plain'},
+      // body: token.id
+    });
+    console.log(token);
+
+    if(response.ok) console.log("Purchase completed.");
+  }
 
   render() {
-    return (
-      // ...
-      <StripeCheckout
-        token={this.onToken}
-        stripeKey="pk_test_YVKiLW0mvujdoxalKItXwyhj"
-      />
-    )
+    return(
+      <div className="checkout">
+        <p>Send payment?</p>
+        <CardElement />
+        <button onClick={this.submit}>Send</button>
+      </div>
+    );
   }
 }
+
+export default injectStripe(TakeMoney);

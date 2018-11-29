@@ -3,6 +3,8 @@ const functions = require('firebase-functions');
 const firebase = require('firebase-admin');
 const express = require('express');
 const cors = require('cors');
+const stripe = require('stripe')('sk_test_YwuqJTfx2ZxOo4hGqGQSnoP3');
+const bodyParser = require('body-parser');
 
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -23,6 +25,22 @@ firestore.settings(settings);
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.post('/save-stripe-token', (req, res) => {
+  const charge = stripe.charges.create({
+    amount: 999,
+    currency: 'usd',
+    source: 'tok_visa',
+    receipt_email: 'keirankozlowski@gmail.com',
+  });
+
+  console.log(charge);
+});
+
+// STRIPE IMPLEMENTATION BY KEIRAN
+
 
 //===============================================================================================================================================
 
@@ -195,6 +213,7 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
     next (err);
   }
 });
+
 
 // CODE THAT WE ARE NOT READY TO DELETE========================================================================================================
 // GET a QR code

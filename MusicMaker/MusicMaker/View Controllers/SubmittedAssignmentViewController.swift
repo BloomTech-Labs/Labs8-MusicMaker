@@ -13,9 +13,34 @@ import AVFoundation
 class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicPieceTableViewCellDelegate {
     
     // This is our dummy assignment that is in core data
-    var assignment: Assignment? = MusicMakerModelController.shared.teachers.first?.assignments?.anyObject() as? Assignment
+    var assignment: Assignment? = MusicMakerModelController.shared.teachers.first?.assignments?.anyObject() as? Assignment {
+        didSet {
+            guard let assignment = assignment else { return }
+            guard let pdfURL = assignment.localScoreDocumentURL else {
+                MusicMakerModelController.shared.downloadScoreDocument(for: assignment) { (returnedAssignment, error) in
+                    if let error = error {
+                        // Add an alert here to tell the user
+                        NSLog("Error loading PDF \(error)")
+                        return
+                    }
+                    
+                    // Make sure that the assignment did not change while it was beign loaded, and check to make sure the loaded assignment (assignment) is exactly the same as the one we had (self.assignment)
+                    if self.assignment === assignment, let pdfURL = assignment.localScoreDocumentURL {
+                        self.pdfDocument = PDFDocument(url: pdfURL)
+                    }
+                }
+                return
+            }
+            
+            pdfDocument = PDFDocument(url: pdfURL)
+        }
+    }
     
-    var pdfDocument = PDFDocument(url: Bundle.main.url(forResource: "SamplePDF", withExtension: "pdf")!)!
+    var pdfDocument: PDFDocument? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

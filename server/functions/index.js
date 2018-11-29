@@ -120,18 +120,18 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
 
 //POST should create and add a new teacher settings info.: email and name
 
-app.post('/teachers/add', (req, res) => {
-    const email = await req.body.email;
-    const firstName = await req.body.firstName;
-    const lastName = await req.body.lastName;
-    const data = await { email, firstName, lastName };
+app.post('/teachers/add', (req, res, next) => {
+    const email = req.body.email;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const data = { email, firstName, lastName };
 
     if(!email) {
       res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
     } else if(!firstName || !lastName) {
       res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
     } else {
-          const teachersRef = await db.collection('teachers').add({
+          const teachersRef = db.collection('teachers').add({
             'email': email,
             'name': {
               'firstName': firstName,
@@ -142,8 +142,7 @@ app.post('/teachers/add', (req, res) => {
             }),
           })
       res.status(200).send({ message: 'Teacher successfully added!' })
-    }
-  }
+    } 
 });
 
 //GET should retrieve teachers settings info.: email and name(first, last, and prefix)

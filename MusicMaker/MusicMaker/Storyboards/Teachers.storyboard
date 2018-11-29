@@ -47,11 +47,69 @@
                         <outlet property="sideMenu" destination="IUY-lx-04l" id="aCq-fI-ANV"/>
                         <outlet property="teachersView" destination="yHF-vV-e5p" id="c0J-8W-qmQ"/>
                         <segue destination="fZB-lb-6d4" kind="presentation" identifier="ShowUserProfile" id="1C5-81-IVg"/>
+                        <segue destination="Mjw-gy-Ke1" kind="presentation" identifier="ResetPassword" id="ESh-pg-K56"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFC-MN-eTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-102" y="162"/>
+        </scene>
+        <!--Reset Password View Controller-->
+        <scene sceneID="dem-WV-vrr">
+            <objects>
+                <viewController id="J6g-ys-iSa" customClass="ResetPasswordViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BkQ-I7-c94">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tI6-k7-bLk">
+                                <rect key="frame" x="20" y="104" width="335" height="106"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Old Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zx9-CM-iwu">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jZp-A9-m4w">
+                                        <rect key="frame" x="0.0" y="38" width="335" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzb-bQ-Fyk">
+                                        <rect key="frame" x="0.0" y="76" width="335" height="30"/>
+                                        <state key="normal" title="Change Password"/>
+                                        <connections>
+                                            <action selector="changePassword:" destination="J6g-ys-iSa" eventType="touchUpInside" id="VnB-3Q-6am"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rQ2-4v-RHY" firstAttribute="trailing" secondItem="tI6-k7-bLk" secondAttribute="trailing" constant="20" id="3j7-Yf-OCW"/>
+                            <constraint firstItem="tI6-k7-bLk" firstAttribute="leading" secondItem="rQ2-4v-RHY" secondAttribute="leading" constant="20" id="UoU-4w-jjB"/>
+                            <constraint firstItem="tI6-k7-bLk" firstAttribute="top" secondItem="rQ2-4v-RHY" secondAttribute="top" constant="40" id="e2c-C6-FMl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rQ2-4v-RHY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vyG-c5-6Gu">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="egP-Cg-irY">
+                            <connections>
+                                <action selector="dismiss:" destination="J6g-ys-iSa" id="Lvm-G3-3TV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="newPassword" destination="jZp-A9-m4w" id="S9c-RL-r1D"/>
+                        <outlet property="oldPassword" destination="Zx9-CM-iwu" id="shI-J4-zsZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ph-Bi-Vqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="824.79999999999995" y="-558.17091454272872"/>
         </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="5bE-Li-8mr">
@@ -118,10 +176,13 @@
                                                 <rect key="frame" x="9" y="247" width="85" height="65.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" image="password">
-                                                    <string key="title">Reset
+                                                    <string key="title">Change
 Password</string>
                                                     <color key="titleColor" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="resetPassword:" destination="Rks-YH-0aT" eventType="touchUpInside" id="BLX-rk-Crh"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azs-KA-MyD">
                                                 <rect key="frame" x="16.5" y="329.5" width="70" height="65.5"/>
@@ -159,7 +220,7 @@ Password</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIs-a3-CIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="532.79999999999995" y="-315.29235382308849"/>
+            <point key="canvasLocation" x="1472" y="-315.29235382308849"/>
         </scene>
         <!--Teachers-->
         <scene sceneID="eXn-P2-x0L">
@@ -252,6 +313,7 @@ Password</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H8p-0F-imj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -383,6 +445,24 @@ Password</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5PM-Hp-53V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-112.8" y="954.87256371814101"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="siE-Eo-pjn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mjw-gy-Ke1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GYY-2T-gDL">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="J6g-ys-iSa" kind="relationship" relationship="rootViewController" id="RlF-6c-vEL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U18-V0-tdF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-114.40000000000001" y="-557.27136431784118"/>
         </scene>
     </scenes>
     <resources>

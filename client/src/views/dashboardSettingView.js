@@ -9,21 +9,23 @@ class Settings extends Component {
     this.state = {
       email: "",
       name: {
+        prefix: "",
         firstName: "",
         lastName: ""
       }
     };
-  }
+  };
 
     componentDidMount() {
         axios
-            .get('https://firestore.googleapis.com/v1beta1/projects/musicmaker-4b2e8/databases/(default)/documents/teachers/AHnU7PuWMohJWEWZJbvd')
+            .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/AHnU7PuWMohJWEWZJbvd/settings')
             .then(res => {
-                console.log('*******************', Object.values(res.data), res.data)
+                console.log('*******************', res.data)
                 this.setState({
-                    email: Object.values(res.data)[0][0],
-                    firstName: Object.values(res.data)[0][1],
-                    lastName: Object.values(res.data)[0][2]
+                    email: res.data.email,
+                    prefix: res.data.name.prefix,
+                    firstName: res.data.name.firstName,
+                    lastName: res.data.name.lastName
                 })
             })
             .catch(err => console.error('SETTINGS AXIOS ERROR:', err));
@@ -43,6 +45,7 @@ class Settings extends Component {
               specific teacher
             </p>
             <p className="bodyText">Email: {this.state.email}</p>
+            <p className="bodyText">Prefix: {this.state.prefix}</p>
             <p className="bodyText">First Name: {this.state.firstName}</p>
             <p className="bodyText">Last Name: {this.state.lastName}</p>
           </div>

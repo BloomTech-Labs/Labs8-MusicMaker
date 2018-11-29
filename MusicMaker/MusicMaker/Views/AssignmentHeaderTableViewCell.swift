@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum Level: String {
-    case beginner = "Beginner"
-    case intermediate = "Intermediate"
-    case expert = "Expert"
-}
-
 class AssignmentHeaderTableViewCell: UITableViewCell {
     
     // MARK: - Properties
@@ -48,10 +42,27 @@ class AssignmentHeaderTableViewCell: UITableViewCell {
         }
     }
     
-    var level: Level? {
+    var level: Assignment.Level? {
         didSet {
             guard let levelImageName = level?.rawValue else { return }
             levelImageView.image = UIImage(named: "Level\(levelImageName)")
+        }
+    }
+    
+    var grade: String? {
+        didSet {
+            guard let grade = grade else {
+                gradeImageView?.image = nil
+                return
+            }
+            switch grade {
+            case "Passed":
+                gradeImageView?.image = UIImage(named: "PassStamp")
+            case "Failed":
+                gradeImageView?.image = UIImage(named: "FailStamp")
+            default:
+                gradeImageView?.image = nil
+            }
         }
     }
     
@@ -62,4 +73,5 @@ class AssignmentHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var dueTimeLabel: UILabel!
     @IBOutlet weak var instrumentLabel: UILabel!
     @IBOutlet weak var levelImageView: UIImageView!
+    @IBOutlet weak var gradeImageView: UIImageView?
 }

@@ -251,7 +251,13 @@ class RecordingViewController: UIViewController {
         captureSession.addOutput(fileOutput)
         recordOutput = fileOutput
         
-        captureSession.sessionPreset = .hd1920x1080 // easier to filter with core image and process
+        if captureSession.canSetSessionPreset(.hd1920x1080) {
+            captureSession.sessionPreset = .hd1920x1080
+        } else if captureSession.canSetSessionPreset(.hd1280x720) {
+            captureSession.sessionPreset = .hd1280x720
+        } else {
+            captureSession.sessionPreset = .high
+        }
         captureSession.commitConfiguration() // save all this stuff and actually set it up
         
         self.captureSession = captureSession    // starts off not running, so need to start it in viewWillAppear()

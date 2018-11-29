@@ -79,6 +79,9 @@ class SideMenuViewController: UIViewController {
     @IBAction func showUserProfile(_ sender: Any) {
         delegate?.userProfileClicked()
     }
+    @IBAction func resetPassword(_ sender: Any) {
+        delegate?.resetPasswordTapped()
+    }
     
     @IBAction func logoutUser(_ sender: Any) {
         do {

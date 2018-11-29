@@ -45,10 +45,11 @@ class AssignmentsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = tableView.indexPathForSelectedRow else {return}
         let assignment = assignments[indexPath.row]
-        if segue.identifier == "ShowAssignment" {
-            if let destinationVc = segue.destination as? UnsubmittedAssignmentViewController {
-                destinationVc.assignment = assignment
-            }
+        
+        if let destinationVC = segue.destination as? UnsubmittedAssignmentViewController {
+            destinationVC.assignment = assignment
+        } else if let destinationVC = segue.destination as? SubmittedAssignmentViewController {
+            destinationVC.assignment = assignment
         }
     }
 }
@@ -65,6 +66,17 @@ extension AssignmentsViewController: UITableViewDataSource {
         cell.textLabel?.text = assignment.title
         return cell
     }
-    
-    
+}
+
+extension AssignmentsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let assignment = assignments[indexPath.row]
+        
+        switch assignment.status {
+        case .unsubmitted(isLate: _, isInProgress: _):
+            performSegue(withIdentifier: "ShowUnsubmittedAssignment", sender: self)
+        case .submitted(grade: _):
+            performSegue(withIdentifier: "ShowSubmittedAssignment", sender: self)
+        }
+    }
 }

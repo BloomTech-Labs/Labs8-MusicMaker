@@ -23,17 +23,6 @@ class AssignmentInstructionsTableViewCell: UITableViewCell {
         }
     }
     
-    var feedback: String? {
-        didSet {
-            guard let feedback = feedback else {
-                bodyTextLabel.text = "There are no feedbacks!"
-                return
-            }
-            
-            bodyTextLabel.text = feedback
-        }
-    }
-    
     var teacher: String? {
         didSet {
             guard let teacher = teacher else {

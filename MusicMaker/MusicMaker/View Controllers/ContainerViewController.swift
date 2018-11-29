@@ -72,6 +72,20 @@ class ContainerViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ShowUserProfile":
+            let destinationVC = segue.destination.children[0] as? UserProfileViewController
+            destinationVC?.student = student
+        case "ResetPassword":
+            let destinationVC = segue.destination.children[0] as? ResetPasswordViewController
+            destinationVC?.student = student
+        default:
+            break
+        }
+    }
 }
 
 // MARK: - TeachersViewControllerDelegate
@@ -87,14 +101,9 @@ extension ContainerViewController: SideMenuDelegate {
         self.performSegue(withIdentifier: "ShowUserProfile", sender: nil)
     }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowUserProfile" {
-            let destinationVC = segue.destination.children[0] as? UserProfileViewController
-            destinationVC?.student = student
-        }
+    func resetPasswordTapped() {
+         self.performSegue(withIdentifier: "ResetPassword", sender: nil)
     }
-    
 }
 
 

@@ -79,7 +79,7 @@ extension TeachersViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeacherCell", for: indexPath)
         let teacher = teachers[indexPath.row]
         cell.textLabel?.text = teacher.name
-        cell.imageView?.createInitialsImage(for: teacher.name, backgroundColor: .lightGray)
+        cell.imageView?.image = cell.imageView?.returnImageForInitials(for: teacher.name, backgroundColor: .lightGray)
         return cell
     }
 }

@@ -10,4 +10,5 @@ import Foundation
 
 protocol SideMenuDelegate: class {
     func userProfileClicked()
+    func resetPasswordTapped()
 }

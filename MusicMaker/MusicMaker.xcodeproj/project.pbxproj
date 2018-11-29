@@ -54,6 +54,7 @@
 		BFE771D821A49BE700DCE42A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D721A49BE700DCE42A /* QRView.swift */; };
 		BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */; };
 		BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */; };
+		BFFB213D21AF6ECE0050E013 /* AssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */; };
 		CCA6E76E82020309C9BE8F98 /* Pods_MusicMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +131,7 @@
 		BFE771D721A49BE700DCE42A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scannedSound.mp3; sourceTree = "<group>"; };
+		BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsViewController.swift; sourceTree = "<group>"; };
 		F6FDA1FA291F03420ADB77C5 /* Pods-MusicMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,6 +209,7 @@
 				BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */,
 				BFD381CF219355510038F974 /* LogInViewController.swift */,
 				399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */,
+				BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */,
 				39C108FC2194E55900180F37 /* RecordingViewController.swift */,
 			);
 			path = "View Controllers";
@@ -592,6 +595,7 @@
 				393E238421AB4C1E00620D94 /* CoreData.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,
 				39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */,
+				BFFB213D21AF6ECE0050E013 /* AssignmentsViewController.swift in Sources */,
 				393E238C21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift in Sources */,
 				393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */,
 				BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */,

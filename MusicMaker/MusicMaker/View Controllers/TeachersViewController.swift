@@ -16,6 +16,7 @@ class TeachersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(hideMenuFromUserTap))
+        touchGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(touchGesture)
         MusicMakerModelController.shared.fetchTeachers { (teachers, error) in
             guard error == nil else {return}
@@ -51,6 +52,20 @@ class TeachersViewController: UIViewController {
         delegate?.menuButtonTapped()
         sideMenuIsShowing = sideMenuIsShowing ? false : true
     }
+    
+    
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow else {return}
+        let teacher = teachers[indexPath.row]
+        if segue.identifier == "ShowAssignments" {
+            let destinationVc = segue.destination as? AssignmentsViewController
+            if let assignmentsVc = destinationVc {
+                assignmentsVc.teacher = teacher
+            }
+        }
+    }
 }
 
 
@@ -67,6 +82,14 @@ extension TeachersViewController: UITableViewDataSource {
         cell.imageView?.createInitialsImage(for: teacher.name, backgroundColor: .lightGray)
         return cell
     }
+}
+
+// MARK: - UITableViewDelegate
+extension TeachersViewController: UITableViewDelegate {
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.performSegue(withIdentifier: "ShowAssignments", sender: nil)
+//    }
     
     
 }

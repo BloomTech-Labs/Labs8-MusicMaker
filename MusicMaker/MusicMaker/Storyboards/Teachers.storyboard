@@ -189,6 +189,9 @@ Password</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="UL7-KQ-E7u" kind="show" identifier="ShowAssignments" id="Yw2-Nt-zPr"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -222,20 +225,61 @@ Password</string>
             </objects>
             <point key="canvasLocation" x="2492" y="438.53073463268368"/>
         </scene>
-        <!--View Controller-->
+        <!--Assignments View Controller-->
         <scene sceneID="vML-QO-ryS">
             <objects>
-                <viewController id="UL7-KQ-E7u" sceneMemberID="viewController">
+                <viewController id="UL7-KQ-E7u" customClass="AssignmentsViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3ue-Hf-MkG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nut-ia-wiE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AssignmentCell" textLabel="w6C-X9-UxM" imageView="H8p-0F-imj" style="IBUITableViewCellStyleDefault" id="z00-Xs-W9c">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z00-Xs-W9c" id="ZMK-Wu-x11">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w6C-X9-UxM">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H8p-0F-imj">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="UL7-KQ-E7u" id="HWd-dI-lbv"/>
+                                    <outlet property="delegate" destination="UL7-KQ-E7u" id="GP7-vy-Y8g"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nut-ia-wiE" firstAttribute="top" secondItem="gEg-40-8qE" secondAttribute="top" id="Tn4-6A-AZF"/>
+                            <constraint firstItem="nut-ia-wiE" firstAttribute="trailing" secondItem="gEg-40-8qE" secondAttribute="trailing" id="cO3-M5-OK6"/>
+                            <constraint firstItem="nut-ia-wiE" firstAttribute="bottom" secondItem="gEg-40-8qE" secondAttribute="bottom" id="ftU-fj-V5k"/>
+                            <constraint firstItem="nut-ia-wiE" firstAttribute="leading" secondItem="gEg-40-8qE" secondAttribute="leading" id="of1-dX-6Zo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gEg-40-8qE"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="nut-ia-wiE" id="U0s-EI-ejj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHm-3b-18g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3247" y="423"/>
+            <point key="canvasLocation" x="3380" y="438.53073463268368"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="ufj-4e-0E2">

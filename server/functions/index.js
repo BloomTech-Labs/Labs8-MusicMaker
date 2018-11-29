@@ -4,7 +4,7 @@ const firebase = require('firebase-admin');
 const express = require('express');
 const cors = require('cors');
 const stripe = require('stripe')('sk_test_YwuqJTfx2ZxOo4hGqGQSnoP3');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -25,23 +25,25 @@ firestore.settings(settings);
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(bodyParser.text());
+// app.use(require('body-parser').text());
 
 // STRIPE IMPLEMENTATION BY KEIRAN
 app.post('/charge', async (req, res) => {
+  console.log(req.body.token.id); 
   try {
     let { status } = await stripe.charges.create({
       amount: 50,
       currency: 'usd',
       description: 'teacher subscription',
-      source: req.body
+      source: req.body.token.id
     });
-    // console.log(status);
-    // console.log(source);
 
-    res.json({ status });
+    // right here, mark the user as paid in the db
+    
+    res.status(201).json({ status });
+    // res.send({ status });
   } catch(err) {
-    res.status(500).end();
+    res.status(500).send(err);
   }
 });
 

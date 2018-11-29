@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
 import { CardElement, injectStripe } from 'react-stripe-elements';
 
 class TakeMoney extends React.Component {
@@ -9,15 +10,26 @@ class TakeMoney extends React.Component {
   }
 
   async submit(ev) {
-    let { token } = await this.props.stripe.createToken({ name: "Name" });
-    let response = await fetch('/charge', {
-      method: 'POST',
-      headers: {'Content-Type': 'text/plain'},
-      // body: token.id
-    });
+    let token = await this.props.stripe.createToken();
+    // let response = await fetch('/charge', {
+    //   method: 'POST',
+    //   headers: {'Content-Type': 'text/plain'},
+    //   body: token.id
+    // });
     console.log(token);
 
-    if(response.ok) console.log("Purchase completed.");
+    axios
+      .post("http://localhost:8000/charge", token )
+      .then(response => {
+        console.log(response);
+        alert("Payment Success");
+      })
+      .catch(error => {
+        console.log("Payment Error: ", error);
+        alert("Payment Error");
+      });
+
+    // if(response.ok) console.log("Purchase completed.");
   }
 
   render() {

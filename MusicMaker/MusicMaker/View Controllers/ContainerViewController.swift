@@ -104,10 +104,6 @@ extension ContainerViewController: SideMenuDelegate {
     func resetPasswordTapped() {
          self.performSegue(withIdentifier: "ResetPassword", sender: nil)
     }
-    
-    
-    
-    
 }
 
 

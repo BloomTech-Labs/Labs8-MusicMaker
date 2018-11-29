@@ -50,6 +50,30 @@ app.get('/teacher/:idTeacher/settings', async (req, res, next) => {
   }
 });
 
+//GET should retrieve teacher's all ungraded assignments
+//details: assignmentName, instructions, instrument, level, piece
+app.get('/teacher/:idTeacher/assignments', async (req, res, next) => {
+  try{
+      const teacherId = req.params['idTeacher'];
+      const assignments = {};  
+
+      const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments');
+      const allAssignments = await assignmentRef.get()
+      .then(snap => {
+        snap.forEach(doc => {
+          global = doc.data();
+          assignments[doc.id] = [global.assignmentName, global.instructions, global.instrument, global.level, global.piece]          
+        })
+      });
+      res.json(assignments);
+
+  } catch (err){
+    next (err);
+  }
+});
+
+
+
 app.listen(8000, function () {
     console.log(`========================= RUNNING ON PORT 8000 =========================`);
 });

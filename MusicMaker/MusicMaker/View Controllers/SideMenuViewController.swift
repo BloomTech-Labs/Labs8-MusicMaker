@@ -13,9 +13,28 @@ import GoogleSignIn
 class SideMenuViewController: UIViewController {
 
     
+    
+    // MARK: - View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(1)
+//        self.view.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+    }
+    
+    
     // MARK: - Delegate
     weak var delegate: SideMenuDelegate?
     
+    // MARK: - Properties
+    var student: Student?
+    {
+        didSet {
+            if let student = student {
+                studentNameLabel.text = "\(student.firstName) \(student.lastName)"
+                profileImage.createInitialsImage(for: "\(student.firstName) \(student.lastName)", backgroundColor: .lightGray)
+            }
+        }
+    }
     
     // MARK: - IBOutlets
     @IBOutlet weak var profileButton: UIButton! {
@@ -45,6 +64,14 @@ class SideMenuViewController: UIViewController {
             logoutButton.centerVertically()
         }
     }
+    
+    @IBOutlet weak var profileImage: UIImageView! {
+        didSet {
+            print(profileImage.bounds.height)
+            print(profileImage.bounds.width)
+        }
+    }
+    @IBOutlet weak var studentNameLabel: UILabel!
     
     
     // MARK: - IBActions

@@ -18,6 +18,13 @@ class SignUpViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if isSigningUpWithGoogleAuth {
+            emailTextField.isHidden = true
+            passwordTextField.isHidden = true
+            confirmPasswordTextField.isHidden = true
+        }
+        
         addDismissKeyboardGestureRecognizer()
         qrView.setupCaptureSession()
         let captureMetadataOutput = AVCaptureMetadataOutput()
@@ -49,6 +56,8 @@ class SignUpViewController: UIViewController {
     
     
     // MARK: - Properties
+    
+    var isSigningUpWithGoogleAuth = false
     private lazy var panRecognizer: InstantPanGestureRecognizer = {
         let recognizer = InstantPanGestureRecognizer()
         recognizer.cancelsTouchesInView = false
@@ -321,6 +330,78 @@ class SignUpViewController: UIViewController {
     
     
     // MARK: - Private Methods
+    private func signUpWithGoogle() {
+        guard let firstName = firstNameTextField.text,
+            let lastName = lastNameTextField.text,
+            let instrument = selectInstrumentTextField.text,
+            let level = selectLevelTextField.text,
+            let teacher = teacherTextField.text
+            else {return}
+        
+        let database = Firestore.firestore()
+        let currentUser = Auth.auth().currentUser
+        
+        if let email = currentUser?.email, let currentUserId = currentUser?.uid {
+            let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level, "teacher" : teacher]
+            database.collection("students").document(currentUserId).setData(userDocumentInformation)
+            self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
+        }
+    }
+    
+    
+    private func signUpWithEmailAndPassword() {
+        guard let email = emailTextField.text,
+            let password = passwordTextField.text,
+            let firstName = firstNameTextField.text,
+            let lastName = lastNameTextField.text,
+            let confirmedPassword = confirmPasswordTextField.text,
+            let instrument = selectInstrumentTextField.text,
+            let level = selectLevelTextField.text,
+            let teacher = teacherTextField.text
+            else {return}
+        
+        
+        
+        guard password == confirmedPassword else {return}
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            
+            //Error creating user checks different errors and updates UI to let user know why there was an error
+            if error != nil {
+                if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                    switch errorCode {
+                    case .weakPassword:
+                        print("weakPassword")
+                    case .accountExistsWithDifferentCredential:
+                        print("Account already exisits")
+                    case .emailAlreadyInUse:
+                        self.emailErrorLabel.text = "Email already in use"
+                        self.emailErrorLabel.isHidden = false
+                    case .invalidEmail:
+                        self.emailErrorLabel.text = "Invalid email"
+                        self.emailErrorLabel.isHidden = false
+                    case .missingEmail:
+                        self.emailErrorLabel.text = "Missing email"
+                        self.emailErrorLabel.isHidden = false
+                    default:
+                        print("error")
+                    }
+                }
+            }
+            
+            let database = Firestore.firestore()
+            
+            let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level, "teacher" : teacher]
+            
+            if let user = user {
+                let usersUniqueIdentifier = user.user.uid
+
+                database.collection("students").document(usersUniqueIdentifier).setData(userDocumentInformation)
+                self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
+            }
+        }
+    }
+    
     
     private func presentLevelAlertController(on textField: UITextField) {
         let beginnerAction = UIAlertAction(title: "Beginner", style: .default) { (action) in
@@ -454,55 +535,12 @@ class SignUpViewController: UIViewController {
     
     
     @IBAction func createAccount(_ sender: Any) {
-        guard let email = emailTextField.text,
-            let password = passwordTextField.text,
-            let firstName = firstNameTextField.text,
-            let lastName = lastNameTextField.text,
-            let confirmedPassword = confirmPasswordTextField.text,
-            let instrument = selectInstrumentTextField.text,
-            let level = selectLevelTextField.text,
-            let teacher = teacherTextField.text
-        else {return}
-        
-        guard password == confirmedPassword else {return}
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            
-            //Error creating user checks different errors and updates UI to let user know why there was an error
-            if error != nil {
-                if let errorCode = AuthErrorCode(rawValue: error!._code) {
-                    switch errorCode {
-                    case .weakPassword:
-                        print("weakPassword")
-                    case .accountExistsWithDifferentCredential:
-                        print("Account already exisits")
-                    case .emailAlreadyInUse:
-                        self.emailErrorLabel.text = "Email already in use"
-                        self.emailErrorLabel.isHidden = false
-                    case .invalidEmail:
-                        self.emailErrorLabel.text = "Invalid email"
-                        self.emailErrorLabel.isHidden = false
-                    case .missingEmail:
-                        self.emailErrorLabel.text = "Missing email"
-                        self.emailErrorLabel.isHidden = false
-                    default:
-                        print("error")
-                    }
-                }
-            }
-            
-            let database = Firestore.firestore()
-            
-            let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level, "teacher" : teacher]
-            
-            if let user = user {
-                let usersUniqueIdentifier = user.user.uid
-                
-            database.collection("students").document(usersUniqueIdentifier).setData(userDocumentInformation)
-                self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
-            }
-        }
+        isSigningUpWithGoogleAuth ? signUpWithGoogle() : signUpWithEmailAndPassword()
     }
+    
+    
+    
+    
 }
 
 
@@ -511,21 +549,36 @@ extension SignUpViewController: UITextFieldDelegate {
     
     //Makes the next textfield the first responder when filling out sign in
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField.tag {
-        case 0:
-            lastNameTextField.becomeFirstResponder()
-        case 1:
-            emailTextField.becomeFirstResponder()
-        case 2:
-            passwordTextField.becomeFirstResponder()
-        case 3:
-            confirmPasswordTextField.becomeFirstResponder()
-        case 4:
-            confirmPasswordTextField.resignFirstResponder()
-            presentLevelAlertController(on: selectLevelTextField)
-        default:
-            textField.resignFirstResponder()
+        if isSigningUpWithGoogleAuth {
+            
+            switch textField.tag {
+            case 0:
+                lastNameTextField.becomeFirstResponder()
+            case 1:
+                lastNameTextField.resignFirstResponder()
+                presentLevelAlertController(on: selectLevelTextField)
+            default:
+                textField.resignFirstResponder()
+            }
+            
+        } else {
+            switch textField.tag {
+            case 0:
+                lastNameTextField.becomeFirstResponder()
+            case 1:
+                emailTextField.becomeFirstResponder()
+            case 2:
+                passwordTextField.becomeFirstResponder()
+            case 3:
+                confirmPasswordTextField.becomeFirstResponder()
+            case 4:
+                confirmPasswordTextField.resignFirstResponder()
+                presentLevelAlertController(on: selectLevelTextField)
+            default:
+                textField.resignFirstResponder()
+            }
         }
+        
         return true
     }
     

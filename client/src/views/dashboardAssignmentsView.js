@@ -19,16 +19,16 @@ class DashboardAssignmentsView extends Component {
 
     componentDidMount() {
         axios
-            .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/AHnU7PuWMohJWEWZJbvd/assignments')
+            .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/AHnU7PuWMohJWEWZJbvd/assignment/xuKzpfxGQtaYqOYvoNZG')
             .then(res => {
-                console.log('*******************', Object.values(res.data), res.data)
+                console.log('*******************', res.data);
                 this.setState({
-                    assignmentName: Object.values(res.data)[0][0],
-                    instructions: Object.values(res.data)[0][1],
-                    instrument: Object.values(res.data)[0][2],
-                    level: Object.values(res.data),
-                    piece: Object.values(res.data),
-                    sheetMusic: Object.values(res.data)
+                    assignmentName: res.data.assignmentName,
+                    instructions: res.data.instructions,
+                    instrument: res.data.instrument,
+                    level: res.data.level,
+                    piece: res.data.piece,
+                    sheetMusic: res.data.sheetMusic
                 })
             })
             .catch(err => console.error('ASSIGNMENTS AXIOS ERROR:', err));
@@ -44,7 +44,8 @@ class DashboardAssignmentsView extends Component {
             <p className="bodyText">Piece: {this.state.piece}</p>
             <p className="bodyText">Instrument: {this.state.instrument}</p>
             <p className="bodyText">Level: {this.state.level}</p>
-            <p className="bodyText">Instructions: {this.state.instructions}</p>
+            <p className="bodyText">Sheet Music: <a href={this.state.sheetMusic}><img src={this.state.sheetMusic} alt="pdf image" height="42" width="42"/></a></p>
+            <p className="bodyText">Instructions:{this.state.instructions}</p>
           </div>
         </div>
       </div>

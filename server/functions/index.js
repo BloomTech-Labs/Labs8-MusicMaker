@@ -44,7 +44,7 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
 
     if (!assignmentName || !instructions || !instrument || !level || !piece) {
       res.status(411).send({REQUIRED: 'YOU MUST HAVE ALL FIELDS FILLED'});
-    } 
+    }
     // else if (assignmentName > 0) {
     //   const teacherAssingmentsRef = await db.collection('teachers').doc(teacherId).collection('assignments').get()
     //   // console.log('0******************************************', teacherAssingmentsRef)
@@ -56,10 +56,10 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
     //     })
     //   })
 
-    //   console.log('2**********************************', assignment) // This returns a list of an array of a teachers assignments within an array, 
+    //   console.log('2**********************************', assignment) // This returns a list of an array of a teachers assignments within an array,
     //                                                                  //need to check if each of those assignment names matches the new name and if does throw an error
     //   res.status(411).send({ERROR: 'YOU CANNOT HAVE AN ASSIGNMENT WITH THE SAME NAME'});
-    // } 
+    // }
     else {
       const addTeacherAssign = db.collection('teachers').doc(teacherId).collection('assignments').add({
         'assignmentName': assignmentName,
@@ -81,7 +81,7 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
 app.get('/teacher/:idTeacher/assignments', (req, res, next) => {
   try{
       const teacherId = req.params['idTeacher'];
-      const assignments = {};  
+      const assignments = {};
 
       const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments');
       const allAssignments = assignmentRef.get()
@@ -119,36 +119,32 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
 //SETTINGS : POST - GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 //POST should create and add a new teacher settings info.: email and name
-app.post('/teachers/add', (req, res, next) => {
-  try {
-    // const email = req.body.email;
-    // const firstName = req.body.firstName;
-    // const lastName = req.body.lastName;
-    const {email, firstName, lastName, prefix} = req.body;
-    const data = { email, firstName, lastName };
+
+app.post('/teachers/add', (req, res) => {
+    const email = await req.body.email;
+    const firstName = await req.body.firstName;
+    const lastName = await req.body.lastName;
+    const data = await { email, firstName, lastName };
 
     if(!email) {
       res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
     } else if(!firstName || !lastName) {
       res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
     } else {
-      const teachersRef = db.collection('teachers').add({
-        'email': email,
-        'name': {
-          'firstName': firstName,
-          'lastName': lastName,
-          'prefix': prefix
-        }
-      });
+          const teachersRef = await db.collection('teachers').add({
+            'email': email,
+            'name': {
+              'firstName': firstName,
+              'lastName': lastName
+            },
+            'qrcode': QRCode.toString(Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16), qrOptions, function(err, string) {
+              console.log(string);
+            }),
+          })
       res.status(200).send({ message: 'Teacher successfully added!' })
-      // res.json({
-      //   id: teachersRef.id,
-      //   data
-      // }); 
     }
   }
-   catch(err) {
-    next(err);
+
   }
 });
 
@@ -188,9 +184,9 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
           'prefix': prefix
         }
       });
-      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  
+      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})
     }
- 
+
   } catch (err){
     next (err);
   }
@@ -312,7 +308,7 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
 //   try {
 //       const teacherId = req.params['idTeacher'];
 //       const assignmentId = req.params['idAssignment'];
-  
+
 //       const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get();
 
 //       const musicSheet = assignmentRef.get("sheetMusic");
@@ -445,7 +441,7 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
 //   try {
 //       const studentId = req.params['idStudent'];
 //       const assignmentId = req.params['idAssignment'];
-//       const assignment = {};      
+//       const assignment = {};
 
 //       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId);
 //       const getDoc = await assignmentRef.get()
@@ -467,7 +463,7 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
 //   try {
 //       const studentId = req.params['idStudent'];
 //       const assignmentId = req.params['idAssignment'];
-  
+
 //       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
 
 //       const musicSheet = assignmentRef.get("sheetMusic");
@@ -498,14 +494,14 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
 //   try {
 //       const studentId = req.params['idStudent'];
 //       const assignmentId = req.params['idAssignment'];
-  
+
 //       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
 
 //       const video = assignmentRef.get("video");
 //       const segments = video['0']._key.path.segments;
 //       const dirName = segments[segments.length -2];
 //       const filename = segments[segments.length -1];
-//       const storagePath = dirName + '/' + filename; 
+//       const storagePath = dirName + '/' + filename;
 //       const localPath = 'temp/' + studentId + '_' + filename;
 //       const options = {
 //           destination : localPath,
@@ -533,4 +529,3 @@ app.listen(8000, function () {
 });
 
 exports.app = functions.https.onRequest(app);
-  

@@ -1,4 +1,4 @@
-// THE FOLLOWING CODE IS FOR THE MAIN SERVER.JS, ADDING IT
+// THE FOLLOWING CODE IS FOR THE MAIN SERVER.JS FILE, ADDING IT
 // TO A SEPARATE FILE HERE TO AVOID ISSUES
 
 const cors = require('cors'); // unnecessary as the main server file already has this
@@ -12,3 +12,10 @@ const corsOptions = {
       ? callback(null, true)
       : callback(new Error('Operation not allowed by CORS.'))
 };
+
+const configureServer = app => {
+  app.use(cors(corsOptions));
+  app.use(bodyParser.json());
+};
+
+module.exports = configureServer;

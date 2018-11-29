@@ -3,6 +3,15 @@ const functions = require('firebase-functions');
 const firebase = require('firebase-admin');
 const express = require('express');
 const cors = require('cors');
+const admin = require("firebase-admin");
+const pdfkit = require('pdfkit');
+
+// const serviceAccount = require("./serviceAccountKey.json");
+
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://musicmaker-4b2e8.firebaseio.com"
+// });
 
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -20,11 +29,9 @@ const firestore = new Firestore({projectId: "musicmaker-4b2e8"});
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
 
-// const gcs = require('@google-cloud/storage');
-// const storage = gcs.storage({
-//   projectId: 'musicmaker-4b2e8',
-// })
-
+const storage = require('@google-cloud/storage')({
+  projectId: 'musicmaker-4b2e8',
+});
 
 const app = express();
 app.use(express.json());
@@ -82,91 +89,36 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
   }
 });
 
-// POST should upload a teacher's sheetMusic(pdf) into their ungraded assignment
+// POST should upload a teacher's sheetMusic(pdf) into their ungraded assignment HERE
 app.post('/teacher/:idTeacher/sheetMusic', (req, res, next) => {
   try {
     const teacherId = req.params['idTeacher'];
 
-//     const storageRef = firebase.storage().ref();
-
-//     const pdfRef = storageRef.child('response.pdf');
-
-//     const pdfPathRef = storageRef.child('sheetMusic/response.pdf');
-
-//     const file = 'response.pdf';
-
-//     ref.put(file).then(snapshot => {
-//       console.log("Uploaded a file!");
-//     });
-
-//     const metadata = {
-//       contentType: 'application/pdf'
-//     };
-
-//     const uploadTask = storageRef.child('sheetMusic/response.pdf').put(file, metadata);
-
-//     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-//     function(snapshot) {
-//     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-//     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-//     console.log('Upload is ' + progress + '% done');
-//     switch (snapshot.state) {
-//       case firebase.storage.TaskState.PAUSED: // or 'paused'
-//         console.log('Upload is paused');
-//         break;
-//       case firebase.storage.TaskState.RUNNING: // or 'running'
-//         console.log('Upload is running');
-//         break;
-//     }
-//   }, function(error) {
-//     // A full list of error codes is available at
-//   // https://firebase.google.com/docs/storage/web/handle-errors
-//   switch (error.code) {
-//     case 'storage/unauthorized':
-//       // User doesn't have permission to access the object
-//       break;
-
-//     case 'storage/canceled':
-//       // User canceled the upload
-//       break;
-
-//     case 'storage/unknown':
-//       // Unknown error occurred, inspect error.serverResponse
-//       break;
-//   }
-// }, function() {
-//   // Upload completed successfully, now we can get the download URL
-//   uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-//     console.log('File available at', downloadURL);
-//   });
-// });
-
-
-  //    function generatePDF(teacherId) {
-  //     const doc = new pdfkit();
-  //     const bucket = storage.bucket('gs://musicmaker-4b2e8.appspot.com/sheetMusic');
-  //     const filename =  `/${teacherId}/attachement.pdf`;
-  //     const file = bucket.file(filename);
-  //     const bucketFileStream = file.createWriteStream();
-  //     var buffers = [];
-  //     let p = new Promise((resolve, reject) => {
-  //       doc.on("end", function() {
-  //         resolve(buffers);
-  //       });
-  //       doc.on("error", function () {
-  //         reject();
-  //       });
-  //     });
+     function generatePDF(teacherId) {
+      const doc = new pdfkit();
+      const bucket = storage.bucket('gs://musicmaker-4b2e8.appspot.com');
+      const filename =  `/${teacherId}/attachement.pdf`;
+      const file = bucket.file(filename);
+      const bucketFileStream = file.createWriteStream();
+      var buffers = [];
+      let p = new Promise((resolve, reject) => {
+        doc.on("end", function() {
+          resolve(buffers);
+        });
+        doc.on("error", function () {
+          reject();
+        });
+      });
     
-  //     doc.pipe(bucketFileStream);
-  //     doc.on('data', buffers.push.bind(buffers));
+      doc.pipe(bucketFileStream);
+      doc.on('data', buffers.push.bind(buffers));
     
     
-  //     doc.end();
-  //   }
+      doc.end();
+    }
 
-  //   res.json(generatePDF(teacherId))
-  //  console.log('***********************************************', generatePDF(teacherId) )
+    res.json(generatePDF(teacherId))
+   console.log('***********************************************', generatePDF(teacherId) )
 
 
   } catch (err) {
@@ -217,7 +169,7 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
 //SETTINGS : POST - GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 //POST should create and add a new teacher settings info.: email and name
-app.post('/teachers/add', (req, res, next) => {
+app.post('/teachers/add', async (req, res, next) => {
   try {
     // const email = req.body.email;
     // const firstName = req.body.firstName;
@@ -236,7 +188,7 @@ app.post('/teachers/add', (req, res, next) => {
           'firstName': firstName,
           'lastName': lastName,
           'prefix': prefix
-        }
+        }     
       });
       res.status(200).send({ message: 'Teacher successfully added!' })
       // res.json({

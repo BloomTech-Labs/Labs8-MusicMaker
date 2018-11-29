@@ -40,6 +40,17 @@ class AssignmentsViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow else {return}
+        let assignment = assignments[indexPath.row]
+        if segue.identifier == "ShowAssignment" {
+            if let destinationVc = segue.destination as? UnsubmittedAssignmentViewController {
+                destinationVc.assignment = assignment
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource

@@ -256,6 +256,9 @@ Password</string>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="UYE-8V-5i8" kind="show" identifier="ShowAssignment" id="oWg-FN-lmJ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -280,6 +283,14 @@ Password</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHm-3b-18g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3380" y="438.53073463268368"/>
+        </scene>
+        <!--UnsubmittedAssignmentViewController-->
+        <scene sceneID="Z2V-uX-oNa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UnsubmittedAssignmentViewController" id="UYE-8V-5i8" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jVr-zi-EMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4168" y="415"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="ufj-4e-0E2">

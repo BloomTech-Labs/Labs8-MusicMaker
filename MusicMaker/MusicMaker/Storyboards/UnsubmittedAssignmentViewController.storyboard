@@ -392,31 +392,16 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SaveSubmitCell" rowHeight="81" id="EY2-oo-8W9" customClass="AssignmentSaveSubmitTableViewCell" customModule="MusicMaker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="1113" width="768" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EY2-oo-8W9" id="CDR-dh-F3I">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EY2-oo-8W9" id="CDR-dh-F3I">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="80.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2k-yD-eYg">
-                                            <rect key="frame" x="120" y="18" width="192" height="50"/>
-                                            <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="192" id="sui-u0-odJ"/>
-                                                <constraint firstAttribute="height" constant="50" id="yex-8N-pjf"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <state key="normal" title="Save">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="saveButtonTapped:" destination="EY2-oo-8W9" eventType="touchUpInside" id="biS-1G-uDf"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgn-wz-yJI">
-                                            <rect key="frame" x="457" y="18" width="192" height="50"/>
+                                            <rect key="frame" x="251.5" y="18.5" width="265" height="50"/>
                                             <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="192" id="8dg-Ki-KgU"/>
                                                 <constraint firstAttribute="height" constant="50" id="dfe-rF-m5E"/>
+                                                <constraint firstAttribute="width" constant="265" id="zrx-Ph-d4B"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <state key="normal" title="Submit">
@@ -428,17 +413,12 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="G2k-yD-eYg" firstAttribute="top" secondItem="CDR-dh-F3I" secondAttribute="topMargin" constant="10" id="4Lb-dc-9PT"/>
-                                        <constraint firstAttribute="bottom" secondItem="cgn-wz-yJI" secondAttribute="bottom" constant="10" id="7rg-m8-lHq"/>
-                                        <constraint firstItem="G2k-yD-eYg" firstAttribute="leading" secondItem="CDR-dh-F3I" secondAttribute="leading" constant="120" id="R1e-Hy-i6u"/>
-                                        <constraint firstAttribute="bottom" secondItem="G2k-yD-eYg" secondAttribute="bottom" constant="10" id="SIx-ba-q6S"/>
-                                        <constraint firstAttribute="trailing" secondItem="cgn-wz-yJI" secondAttribute="trailing" constant="120" id="df6-ir-00L"/>
-                                        <constraint firstItem="cgn-wz-yJI" firstAttribute="leading" secondItem="G2k-yD-eYg" secondAttribute="trailing" constant="145" id="gei-SY-vpv"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="cgn-wz-yJI" secondAttribute="bottom" constant="10" id="K99-0c-zHZ"/>
+                                        <constraint firstItem="cgn-wz-yJI" firstAttribute="centerX" secondItem="CDR-dh-F3I" secondAttribute="centerX" id="nD0-OM-mdV"/>
                                         <constraint firstItem="cgn-wz-yJI" firstAttribute="top" secondItem="CDR-dh-F3I" secondAttribute="topMargin" constant="10" id="yXR-cq-nDg"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="saveButton" destination="G2k-yD-eYg" id="i2A-9j-qka"/>
                                     <outlet property="submitButton" destination="cgn-wz-yJI" id="iDY-pc-FHr"/>
                                 </connections>
                             </tableViewCell>

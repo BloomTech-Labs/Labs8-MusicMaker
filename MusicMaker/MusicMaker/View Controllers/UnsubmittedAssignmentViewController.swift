@@ -10,7 +10,7 @@ import UIKit
 import PDFKit
 import AVFoundation
 
-class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusicPieceTableViewCellDelegate {
+class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusicPieceTableViewCellDelegate, AssignmentSubmitTableViewCellDelegate {
     
     // This is our dummy assignment that is in core data
     var assignment: Assignment? {
@@ -104,7 +104,7 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SaveSubmitCell", for: indexPath) as! AssignmentSaveSubmitTableViewCell
             
-//            cell.delegate = self
+            cell.delegate = self
             return cell
         default:
             fatalError("We forgot a case: \(indexPath.row)")
@@ -116,6 +116,19 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
     func musicPiecePageWasSelected(for cell: AssignmentMusicPieceTableViewCell, with page: PDFPage) {
         // Use the sender to pass the pdfPage to prepareSegue
         performSegue(withIdentifier: "ShowPagePreview", sender: page)
+    }
+    
+    // MARK: - AssignmentSubmitTableViewCellDelegate
+    
+    func submitButtonWasPressed(for cell: AssignmentSaveSubmitTableViewCell) {
+        guard let assignment = assignment else { return }
+        MusicMakerModelController.shared.submit(assignment: assignment) { (assignment, error) in
+            if let error = error {
+                NSLog("Error submitting video: \(error)")
+            } else {
+                NSLog("Assignment submitted!")
+            }
+        }
     }
     
     // MARK: - Navigation

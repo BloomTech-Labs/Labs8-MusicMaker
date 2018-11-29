@@ -3,6 +3,7 @@ const functions = require('firebase-functions');
 const firebase = require('firebase-admin');
 const express = require('express');
 const cors = require('cors');
+const QRCode = require('qrcode');
 
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -142,7 +143,7 @@ app.post('/teachers/add', (req, res, next) => {
             }),
           })
       res.status(200).send({ message: 'Teacher successfully added!' })
-    } 
+    }
 });
 
 //GET should retrieve teachers settings info.: email and name(first, last, and prefix)

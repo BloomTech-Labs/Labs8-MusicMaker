@@ -69,6 +69,7 @@
         <!--Navigation Controller-->
         <scene sceneID="4Kb-XU-tg4">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gYn-uh-z1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="goE-Sv-fjn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vN2-W7-gVY">
@@ -80,14 +81,13 @@
                         <segue destination="xF7-BI-UNe" kind="relationship" relationship="rootViewController" id="iJ1-BN-0Ri"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gYn-uh-z1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-226.40000000000001" y="29.23538230884558"/>
         </scene>
-        <!--UnsubmittedAssignmentViewController-->
+        <!--SubmittedAssignmentViewController-->
         <scene sceneID="kDT-0y-gYO">
             <objects>
-                <viewControllerPlaceholder storyboardName="UnsubmittedAssignmentViewController" id="xF7-BI-UNe" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="SubmittedAssignmentViewController" id="xF7-BI-UNe" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="n2M-Qc-vAW"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ajm-ib-0iI" userLabel="First Responder" sceneMemberID="firstResponder"/>

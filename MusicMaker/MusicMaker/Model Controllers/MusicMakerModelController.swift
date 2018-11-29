@@ -209,7 +209,53 @@ class MusicMakerModelController {
     }
     
     func submit(assignment: Assignment, completion: @escaping (Assignment?, Error?) -> Void) {
-        // make sure a video has been recorded for a given assignment, and tell firebase to upload the file at the recordingURL, and update the assignment in firebase with that recordingURL
+        guard var currentStudentUID = Auth.auth().currentUser?.uid else {
+            completion(assignment, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authenticated"]))
+            return
+        }
+        
+        currentStudentUID = "NKMNNypkVXUj4BSSyTPb" // Temporarily set it to the user with actual assignments
+        
+        guard let localRecordingURL = assignment.localRecordingURL else {
+            completion(assignment, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "No local recording URL found."]))
+            return
+        }
+        
+        guard let teacherFirestoreID = assignment.teacher?.firestoreID else {
+            completion(assignment, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid Assignment Teacher"]))
+            return
+        }
+        
+        guard let assignmentFirestoreID = assignment.firestoreID else {
+            completion(assignment, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid Assignment"]))
+            return
+        }
+        
+        let serverFileName = UUID().uuidString + ".mov"
+        
+        let reference = Storage.storage().reference(withPath: "video").child(serverFileName)
+        
+        reference.putFile(from: localRecordingURL, metadata: nil) { (metadata, error) in
+            if let error = error {
+                completion(assignment, error)
+                return
+            }
+            
+            reference.downloadURL(completion: { (url, error) in
+                guard let downloadURL = url else {
+                    completion(assignment, error)
+                    return
+                }
+                
+                let database = Firestore.firestore()
+                
+                let assignmentDocument = database.collection("students").document(currentStudentUID).collection("teachers").document(teacherFirestoreID).collection("assignments").document(assignmentFirestoreID)
+                
+                assignmentDocument.setData(["video": downloadURL.absoluteString], merge: true, completion: { (error) in
+                    completion(assignment, error)
+                })
+            })
+        }
     }
     
     func downloadScoreDocument(for assignment: Assignment, completion: @escaping (Assignment?, Error?) -> Void) {

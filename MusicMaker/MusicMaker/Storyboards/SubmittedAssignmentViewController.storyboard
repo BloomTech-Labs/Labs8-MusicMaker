@@ -195,6 +195,13 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView alpha="0.94999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T8t-Hm-eXB">
+                                            <rect key="frame" x="623" y="0.0" width="145" height="115"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="145" id="3QO-th-Yx1"/>
+                                                <constraint firstAttribute="height" constant="115" id="GcW-BW-f8e"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Hjz-vk-VMB" firstAttribute="leading" secondItem="J1B-fK-t2u" secondAttribute="leading" id="05j-5F-EEG"/>
@@ -209,10 +216,12 @@
                                             <variation key="widthClass=compact" constant="25"/>
                                         </constraint>
                                         <constraint firstItem="J1B-fK-t2u" firstAttribute="top" secondItem="cAm-6h-MYX" secondAttribute="bottom" constant="20" id="iyd-Bz-MwO"/>
+                                        <constraint firstItem="T8t-Hm-eXB" firstAttribute="top" secondItem="4xp-8R-bQ5" secondAttribute="top" id="kU0-sb-23o"/>
                                         <constraint firstItem="upO-Wg-c4z" firstAttribute="width" secondItem="J1B-fK-t2u" secondAttribute="width" multiplier="0.81" id="mHL-w6-joH"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="J1B-fK-t2u" secondAttribute="bottom" id="oFu-nb-Fyq"/>
                                         <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="cAm-6h-MYX" secondAttribute="trailing" id="phZ-KG-Vi6"/>
                                         <constraint firstItem="Hjz-vk-VMB" firstAttribute="top" secondItem="J1B-fK-t2u" secondAttribute="top" id="ufN-Fn-55l"/>
+                                        <constraint firstAttribute="trailing" secondItem="T8t-Hm-eXB" secondAttribute="trailing" id="xeB-Xi-aKx"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -230,6 +239,7 @@
                                     <outlet property="assignmentTitleLabel" destination="cAm-6h-MYX" id="hGB-i4-kqb"/>
                                     <outlet property="dueDateLabel" destination="VtL-lb-Atu" id="t0q-nz-qoG"/>
                                     <outlet property="dueTimeLabel" destination="VFk-rl-hxa" id="oGa-ia-sY7"/>
+                                    <outlet property="gradeImageView" destination="T8t-Hm-eXB" id="wl6-7t-GVv"/>
                                     <outlet property="instrumentLabel" destination="sWm-3n-HPk" id="IVW-jo-i3z"/>
                                     <outlet property="levelImageView" destination="1w8-pg-TZu" id="Xkb-42-f23"/>
                                 </connections>

@@ -49,6 +49,23 @@ class AssignmentHeaderTableViewCell: UITableViewCell {
         }
     }
     
+    var grade: String? {
+        didSet {
+            guard let grade = grade else {
+                gradeImageView?.image = nil
+                return
+            }
+            switch grade {
+            case "Passed":
+                gradeImageView?.image = UIImage(named: "PassStamp")
+            case "Failed":
+                gradeImageView?.image = UIImage(named: "FailStamp")
+            default:
+                gradeImageView?.image = nil
+            }
+        }
+    }
+    
     // MARK: - Outlets
     
     @IBOutlet weak var assignmentTitleLabel: UILabel!
@@ -56,4 +73,5 @@ class AssignmentHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var dueTimeLabel: UILabel!
     @IBOutlet weak var instrumentLabel: UILabel!
     @IBOutlet weak var levelImageView: UIImageView!
+    @IBOutlet weak var gradeImageView: UIImageView?
 }

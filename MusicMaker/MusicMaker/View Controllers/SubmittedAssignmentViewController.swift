@@ -60,10 +60,19 @@ class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicP
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! AssignmentHeaderTableViewCell
             
-            cell.assignmentTitle = assignment?.title
-            cell.dueDate = assignment?.dueDate
-            cell.instrument = assignment?.instrumentEmoji
-            cell.level = assignment?.level
+            if let assignment = assignment {
+                cell.assignmentTitle = assignment.title
+                cell.dueDate = assignment.dueDate
+                cell.instrument = assignment.instrumentEmoji
+                cell.level = assignment.level
+                
+                switch assignment.status {
+                case .submitted(let grade):
+                    cell.grade = grade
+                default:
+                    cell.grade = nil
+                }
+            }
             
             return cell
         case 1:
@@ -93,7 +102,7 @@ class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicP
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "FeedbackCell", for: indexPath) as! AssignmentInstructionsTableViewCell
             
-            cell.instructions = assignment?.feedback ?? "There is no feedback!"
+            cell.instructions = assignment?.feedback ?? "Feedback is not yet available."
             cell.teacher = assignment?.teacher?.name
             
             return cell

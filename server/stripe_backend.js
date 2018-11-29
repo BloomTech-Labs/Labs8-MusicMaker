@@ -19,3 +19,14 @@ const configureServer = app => {
 };
 
 module.exports = configureServer;
+
+// THESE ARE STRIPE ROUTES, ALSO TO BE ADDED WITH OTHER SERVER CODE
+// ALSO (OBVIOUSLY) REQUIRES STRIPE IMPORT
+
+const postStripeCharge = res => (stripeErr, stripeRes) => {
+  if(stripeErr) {
+    res.status(500).send({ error: stripeErr });
+  } else {
+    res.status(200).send({ success: stripeRes });
+  }
+}

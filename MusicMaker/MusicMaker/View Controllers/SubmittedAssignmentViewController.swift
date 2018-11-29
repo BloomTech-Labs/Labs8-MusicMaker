@@ -38,7 +38,7 @@ class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicP
     
     var pdfDocument: PDFDocument? {
         didSet {
-            tableView.reloadData()
+            tableView?.reloadData()
         }
     }
     
@@ -60,22 +60,16 @@ class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicP
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! AssignmentHeaderTableViewCell
             
-            //            cell.assignmentTitleLabel.text = "this is a test assignment"
-            //            cell.dueDateLabel.text = "DEC 9"
-            //            cell.dueTimeLabel.text = "8:00 PM"
-            //            cell.instrumentLabel.text = "🎻"
-            
             cell.assignmentTitle = assignment?.title
-            cell.dueDate = Date()   // sets date and time in custom cell
-            cell.instrument = "🎻"
-            cell.level = .intermediate
-            //            Level(rawValue: assignment?.level)
+            cell.dueDate = assignment?.dueDate
+            cell.instrument = assignment?.instrumentEmoji
+            cell.level = assignment?.level
             
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MusicPieceCell", for: indexPath) as! AssignmentMusicPieceTableViewCell
             
-            cell.musicPiece = "this is a test music piece name that is really really long because i want to see"
+            cell.musicPiece = assignment?.piece
             cell.pdfDocument = pdfDocument
             cell.delegate = self
             
@@ -83,21 +77,24 @@ class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicP
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "InstructionCell", for: indexPath) as! AssignmentInstructionsTableViewCell
             
-            cell.instructions = "This instruction is just a test because I want to see how long this will go on for, but I really don't know until I start testing it. This could take some times as I think of something to type here. This is stil not long enough so I'm going to make up some more stuff. Maybe this should be good now?"
-//            cell.teacher = "Mrs. Mozart"
+            cell.instructions = assignment?.instructions
             
             return cell
         case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FeedbackCell", for: indexPath) as! AssignmentInstructionsTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaybackCell", for: indexPath) as! AssignmentPlaybackTableViewCell
             
-            cell.feedback = "This is the teacher's feedback for the student regarding their performance."
-//            cell.teacher = "Mrs. Mozart"
+            if let recordingURL = assignment?.recordingURL {
+                cell.playerViewController?.player = AVPlayer(url: recordingURL)
+            } else {
+                cell.playerViewController?.player = nil
+            }
             
             return cell
         case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaybackCell", for: indexPath) as! AssignmentPlaybackTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FeedbackCell", for: indexPath) as! AssignmentInstructionsTableViewCell
             
-            cell.playerViewController?.player = AVPlayer(url: assignment!.localRecordingURL!)
+            cell.instructions = assignment?.feedback ?? "There is no feedback!"
+            cell.teacher = assignment?.teacher?.name
             
             return cell
         default:
@@ -109,6 +106,6 @@ class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicP
     
     func musicPiecePageWasSelected(for cell: AssignmentMusicPieceTableViewCell, with page: PDFPage) {
         // Use the sender to pass the pdfPage to prepareSegue
-        performSegue(withIdentifier: "ShowPagePreview", sender: page)
+//        performSegue(withIdentifier: "ShowPagePreview", sender: page)
     }
 }

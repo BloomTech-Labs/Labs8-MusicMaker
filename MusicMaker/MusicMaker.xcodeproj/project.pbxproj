@@ -17,6 +17,8 @@
 		399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */; };
 		39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C108FC2194E55900180F37 /* RecordingViewController.swift */; };
 		39C108FF2194FD9800180F37 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C108FE2194FD9800180F37 /* CameraPreviewView.swift */; };
+		39C47DC621AF228900C1E115 /* SubmittedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39C47DC521AF228900C1E115 /* SubmittedAssignmentViewController.storyboard */; };
+		39C47DC821AF233000C1E115 /* SubmittedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C47DC721AF233000C1E115 /* SubmittedAssignmentViewController.swift */; };
 		39CA2B532193607700C6018E /* SplitView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B522193607700C6018E /* SplitView.storyboard */; };
 		39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */; };
 		39CA2B5721938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B5621938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift */; };
@@ -54,6 +56,7 @@
 		BFE771D821A49BE700DCE42A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D721A49BE700DCE42A /* QRView.swift */; };
 		BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */; };
 		BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */; };
+		BFFB213D21AF6ECE0050E013 /* AssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */; };
 		CCA6E76E82020309C9BE8F98 /* Pods_MusicMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +90,8 @@
 		399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsubmittedAssignmentViewController.swift; sourceTree = "<group>"; };
 		39C108FC2194E55900180F37 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
 		39C108FE2194FD9800180F37 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		39C47DC521AF228900C1E115 /* SubmittedAssignmentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmittedAssignmentViewController.storyboard; sourceTree = "<group>"; };
+		39C47DC721AF233000C1E115 /* SubmittedAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedAssignmentViewController.swift; sourceTree = "<group>"; };
 		39CA2B522193607700C6018E /* SplitView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplitView.storyboard; sourceTree = "<group>"; };
 		39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B5621938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentMusicPieceTableViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +135,7 @@
 		BFE771D721A49BE700DCE42A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scannedSound.mp3; sourceTree = "<group>"; };
+		BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsViewController.swift; sourceTree = "<group>"; };
 		F6FDA1FA291F03420ADB77C5 /* Pods-MusicMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,7 +213,9 @@
 				BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */,
 				BFD381CF219355510038F974 /* LogInViewController.swift */,
 				399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */,
+				BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */,
 				39C108FC2194E55900180F37 /* RecordingViewController.swift */,
+				39C47DC721AF233000C1E115 /* SubmittedAssignmentViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -221,6 +229,7 @@
 				BF5D520B219CC7F200DFF213 /* Teachers.storyboard */,
 				39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */,
 				39CA2B522193607700C6018E /* SplitView.storyboard */,
+				39C47DC521AF228900C1E115 /* SubmittedAssignmentViewController.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -463,6 +472,7 @@
 				BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */,
 				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
+				39C47DC621AF228900C1E115 /* SubmittedAssignmentViewController.storyboard in Resources */,
 				BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +602,8 @@
 				393E238421AB4C1E00620D94 /* CoreData.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,
 				39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */,
+				BFFB213D21AF6ECE0050E013 /* AssignmentsViewController.swift in Sources */,
+				39C47DC821AF233000C1E115 /* SubmittedAssignmentViewController.swift in Sources */,
 				393E238C21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift in Sources */,
 				393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */,
 				BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */,

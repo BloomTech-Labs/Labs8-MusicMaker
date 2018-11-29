@@ -12,12 +12,13 @@ firebase.initializeApp({
     messagingSenderId: "849993185408"
 });
 
+const db = firebase.firestore();
+
 const Firestore = require('@google-cloud/firestore');
 const firestore = new Firestore({projectId: "musicmaker-4b2e8"});
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
 
-const db = firebase.firestore();
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -26,7 +27,7 @@ app.use(cors());
 
 // TEST for sanity checks ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app.get('/test', (req, res) => {
-    res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :)'});
+    res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com/'});
 });
 
 // UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,7 +76,7 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
 });
 
 //GET should retrieve teacher's all ungraded assignments
-//details: assignmentName, instructions, instrument, level, piece
+//details: assignmentName, instructions, instrument, level, piece, sheetMusic
 app.get('/teacher/:idTeacher/assignments', (req, res, next) => {
   try{
       const teacherId = req.params['idTeacher'];
@@ -85,11 +86,10 @@ app.get('/teacher/:idTeacher/assignments', (req, res, next) => {
       const allAssignments = assignmentRef.get()
       .then(snap => {
         snap.forEach(doc => {
-          global = doc.data();
-          assignments[doc.id] = [global.assignmentName, global.instructions, global.instrument, global.level, global.piece]          
+          assignments[doc.id] = doc.data();
         })
+        res.status(200).json(assignments);
       });
-      res.json(assignments);
 
   } catch (err){
     next (err);
@@ -103,15 +103,12 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
   try{
       const teacherId = req.params['idTeacher'];
       const assignmentId = req.params['idAssignment'];
-      const assignment = {};  
 
       const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
       const getDoc = assignmentRef.get()
       .then(doc => {
-        global = doc.data();
-        assignment[doc.id] = [global.assignmentName, global.instructions, global.instrument, global.level, global.piece]
+        res.status(200).json(doc.data());
       });
-      res.json(assignment);
 
   } catch (err){
     next (err);
@@ -123,9 +120,10 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
 //POST should create and add a new teacher settings info.: email and name
 app.post('/teachers/add', (req, res, next) => {
   try {
-    const email = req.body.email;
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
+    // const email = req.body.email;
+    // const firstName = req.body.firstName;
+    // const lastName = req.body.lastName;
+    const {email, firstName, lastName, prefix} = req.body;
     const data = { email, firstName, lastName };
 
     if(!email) {
@@ -137,14 +135,15 @@ app.post('/teachers/add', (req, res, next) => {
         'email': email,
         'name': {
           'firstName': firstName,
-          'lastName': lastName
+          'lastName': lastName,
+          'prefix': prefix
         }
       });
       res.status(200).send({ message: 'Teacher successfully added!' })
       // res.json({
       //   id: teachersRef.id,
       //   data
-      // });
+      // }); 
     }
   }
    catch(err) {
@@ -152,7 +151,7 @@ app.post('/teachers/add', (req, res, next) => {
   }
 });
 
-//GET should retrieve teachers settings info.: email and name
+//GET should retrieve teachers settings info.: email and name(first, last, and prefix)
 app.get('/teacher/:idTeacher/settings', (req, res, next) => {
   try{
     const teacherId = req.params['idTeacher'];
@@ -161,21 +160,19 @@ app.get('/teacher/:idTeacher/settings', (req, res, next) => {
     const settingsRef = db.collection('teachers').doc(teacherId);
     const getSettings = settingsRef.get()
     .then(doc => {
-      global = doc.data();
-      settings[doc.id] = [global.email, global.name.firstName, global.name.lastName]
+      res.status(200).json(doc.data());
     })
-    res.status(200).json(settings);
 
   } catch (err){
     next (err);
   }
 });
 
-//PUT should update teachers settings info.: email and name(firstName and lastName)
+//PUT should update teachers settings info.: email and name(first, last, and prefix)
 app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
   try{
     const teacherId = req.params['idTeacher'];
-    const {email, firstName, lastName} = req.body;
+    const {email, firstName, lastName, prefix} = req.body;
 
     if (!email) {
       res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
@@ -186,7 +183,8 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
         'email': email,
         'name' : {
           'firstName': firstName,
-          'lastName': lastName
+          'lastName': lastName,
+          'prefix': prefix
         }
       });
       res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  

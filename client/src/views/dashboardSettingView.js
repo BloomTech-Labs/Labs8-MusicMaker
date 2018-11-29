@@ -13,7 +13,7 @@ class Settings extends Component {
         lastName: ""
       }
     };
-  }
+  };
 
     componentDidMount() {
         axios

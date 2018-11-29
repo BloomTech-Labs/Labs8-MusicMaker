@@ -17,7 +17,7 @@ class Settings extends Component {
 
     componentDidMount() {
         axios
-            .get('https://firestore.googleapis.com/v1beta1/projects/musicmaker-4b2e8/databases/(default)/documents/teachers/AHnU7PuWMohJWEWZJbvd')
+            .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/AHnU7PuWMohJWEWZJbvd/settings')
             .then(res => {
                 console.log('*******************', Object.values(res.data), res.data)
                 this.setState({

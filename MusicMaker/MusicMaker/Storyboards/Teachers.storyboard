@@ -318,9 +318,6 @@ Password</string>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="UYE-8V-5i8" kind="show" identifier="ShowAssignment" id="oWg-FN-lmJ"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -340,6 +337,8 @@ Password</string>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="nut-ia-wiE" id="U0s-EI-ejj"/>
+                        <segue destination="UYE-8V-5i8" kind="show" identifier="ShowUnsubmittedAssignment" id="MHs-iK-VQW"/>
+                        <segue destination="QCS-AC-uSk" kind="show" identifier="ShowSubmittedAssignment" id="GNJ-1X-mMN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHm-3b-18g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -353,6 +352,14 @@ Password</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jVr-zi-EMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4168" y="415"/>
+        </scene>
+        <!--SubmittedAssignmentViewController-->
+        <scene sceneID="07c-Tg-brY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SubmittedAssignmentViewController" id="QCS-AC-uSk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LMe-jd-d37" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4129" y="518"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="ufj-4e-0E2">

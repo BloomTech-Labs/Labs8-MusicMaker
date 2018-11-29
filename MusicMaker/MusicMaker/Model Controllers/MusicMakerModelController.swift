@@ -213,6 +213,19 @@ class MusicMakerModelController {
     }
     
     func downloadScoreDocument(for assignment: Assignment, completion: @escaping (Assignment?, Error?) -> Void) {
-        // download the score pdf from firebase and add a reference to it to core data so that we can show thumbnails for it when we are not online
+        guard let scoreDocumentURL = assignment.scoreDocumentURL else {
+            completion(nil, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "No score document found."]))
+            return
+        }
+        let reference = Storage.storage().reference(forURL: scoreDocumentURL.absoluteString)
+        
+        guard let localScoreDocumentURL = assignment.createLocalScoreDocumentURL() else {
+            completion(nil, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not create local URL for score document."]))
+            return
+        }
+        
+        reference.write(toFile: localScoreDocumentURL) { (localURL, error) in
+            completion(assignment, error)
+        }
     }
 }

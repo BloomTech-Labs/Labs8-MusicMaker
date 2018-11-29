@@ -64,22 +64,16 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! AssignmentHeaderTableViewCell
             
-//            cell.assignmentTitleLabel.text = "this is a test assignment"
-//            cell.dueDateLabel.text = "DEC 9"
-//            cell.dueTimeLabel.text = "8:00 PM"
-//            cell.instrumentLabel.text = "🎻"
-            
             cell.assignmentTitle = assignment?.title
-            cell.dueDate = Date()   // sets date and time in custom cell
-            cell.instrument = "🎻"
-            cell.level = .intermediate
-//            Level(rawValue: assignment?.level)
+            cell.dueDate = assignment?.dueDate   // sets date and time in custom cell
+            cell.instrument = assignment?.instrumentEmoji
+            cell.level = assignment?.level
             
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MusicPieceCell", for: indexPath) as! AssignmentMusicPieceTableViewCell
             
-            cell.musicPiece = "this is a test music piece name that is really really long because i want to see"
+            cell.musicPiece = assignment?.piece
             cell.pdfDocument = pdfDocument
             cell.delegate = self
             
@@ -87,8 +81,8 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "InstructionCell", for: indexPath) as! AssignmentInstructionsTableViewCell
             
-            cell.instructions = "This instruction is just a test because I want to see how long this will go on for, but I really don't know until I start testing it. This could take some times as I think of something to type here. This is stil not long enough so I'm going to make up some more stuff. Maybe this should be good now?"
-            cell.teacher = "Mrs. Mozart"
+            cell.instructions = assignment?.instructions
+            cell.teacher = assignment?.teacher?.name
             
             return cell
         case 3:

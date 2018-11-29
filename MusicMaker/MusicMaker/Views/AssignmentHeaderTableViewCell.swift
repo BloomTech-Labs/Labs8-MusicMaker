@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum Level: String {
-    case beginner = "Beginner"
-    case intermediate = "Intermediate"
-    case expert = "Expert"
-}
-
 class AssignmentHeaderTableViewCell: UITableViewCell {
     
     // MARK: - Properties
@@ -48,7 +42,7 @@ class AssignmentHeaderTableViewCell: UITableViewCell {
         }
     }
     
-    var level: Level? {
+    var level: Assignment.Level? {
         didSet {
             guard let levelImageName = level?.rawValue else { return }
             levelImageView.image = UIImage(named: "Level\(levelImageName)")

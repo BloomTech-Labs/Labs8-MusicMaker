@@ -12,6 +12,17 @@ import Firebase
 
 extension Assignment {
     
+    enum Level: String {
+        case beginner = "Beginner"
+        case intermediate = "Intermediate"
+        case expert = "Expert"
+    }
+    
+    enum Status {
+        case unsubmitted(isLate: Bool, isInProgress: Bool)
+        case submitted(grade: String?)
+    }
+    
     @discardableResult
     convenience init(teacher: Teacher, firestoreID: String, fields: [String: Any]) {
         self.init(context: CoreDataStack.shared.mainContext)
@@ -21,13 +32,62 @@ extension Assignment {
         update(with: fields)
     }
     
+    var level: Level? {
+        get {
+            guard let levelString = levelString else { return nil }
+            return Level(rawValue: levelString)
+        }
+        set {
+            levelString = newValue?.rawValue
+        }
+    }
+    
+    var instrumentEmoji: String {
+        switch instrumentString {
+        case "Guitar":
+            return "🎸"
+        case "Piano":
+            return "🎹"
+        case "Trumpet":
+            return "🎺"
+        case "Violin":
+            return "🎻"
+        case "Saxophone":
+            return "🎷"
+        case "Drums":
+            return "🥁"
+        case "Horn":
+            return "📯"
+        case "Vocals":
+            return "🎤"
+        default:
+            return "🎶"
+        }
+    }
+    
+    var status: Status {
+        if recordingURL == nil { // Unsubmitted, since there is no video yet
+            var isLate = false
+            if let dueDate = dueDate {
+                isLate = dueDate.timeIntervalSinceNow < 0
+            }
+            let isInProgress = localRecordingURL != nil
+            return .unsubmitted(isLate: isLate, isInProgress: isInProgress)
+        } else { // There is a video, so Submitted
+            if let grade = grade, grade.isEmpty { // if grade exists and is an empty string, treat it as nil
+                return .submitted(grade: nil)
+            }
+            return .submitted(grade: grade)
+        }
+    }
+    
     func update(with fields: [String: Any]) {
         self.dueDate = (fields["dueDate"] as? Timestamp)?.dateValue()
         self.feedback = fields["feedback"] as? String
         self.grade = fields["grade"] as? String
         self.instructions = fields["instructions"] as? String
-        self.instrument = fields["instrument"] as? String
-        self.level = fields["level"] as? String
+        self.instrumentString = fields["instrument"] as? String
+        self.levelString = fields["level"] as? String
         self.piece = fields["piece"] as? String
         
         let oldScoreDocumentURL = self.scoreDocumentURL
@@ -49,7 +109,6 @@ extension Assignment {
             self.recordingURL = nil
         }
         
-        self.status = fields["status"] as? String
         self.title = fields["assignmentName"] as? String
     }
     

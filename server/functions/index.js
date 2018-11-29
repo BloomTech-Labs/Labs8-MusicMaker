@@ -144,8 +144,6 @@ app.post('/teachers/add', (req, res) => {
       res.status(200).send({ message: 'Teacher successfully added!' })
     }
   }
-
-  }
 });
 
 //GET should retrieve teachers settings info.: email and name(first, last, and prefix)

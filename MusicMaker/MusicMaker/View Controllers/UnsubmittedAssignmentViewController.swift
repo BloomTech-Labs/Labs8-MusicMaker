@@ -122,11 +122,44 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
     
     func submitButtonWasPressed(for cell: AssignmentSaveSubmitTableViewCell) {
         guard let assignment = assignment else { return }
+        
+        class AlertLoadingIndicatorViewController: UIViewController {
+            override func loadView() {
+                let view = UIView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 200, height: 60)))
+                view.translatesAutoresizingMaskIntoConstraints = false
+                
+                let loadingIndicator = UIActivityIndicatorView(frame: view.bounds)
+                loadingIndicator.style = .whiteLarge
+                loadingIndicator.color = .gray
+                loadingIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                loadingIndicator.startAnimating()
+                
+                view.addSubview(loadingIndicator)
+                
+                self.view = view
+                
+                self.preferredContentSize = view.bounds.size
+            }
+        }
+        
+        let loadingAlert = UIAlertController(title: "Submitting Assignment…", message: nil, preferredStyle: .alert)
+        
+        loadingAlert.setValue(AlertLoadingIndicatorViewController(), forKey: "contentViewController")
+        
+        present(loadingAlert, animated: true, completion: nil)
+        
         MusicMakerModelController.shared.submit(assignment: assignment) { (assignment, error) in
+            loadingAlert.dismiss(animated: true, completion: nil)
+            
             if let error = error {
                 NSLog("Error submitting video: \(error)")
+                let errorAlert = UIAlertController(title: "Error Submitting Assignment", message: "Please try again later.", preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(errorAlert, animated: true, completion: nil)
             } else {
-                NSLog("Assignment submitted!")
+                let successAlert = UIAlertController(title: "Assignment Submitted!", message: "Your assignment has been successfully submitted! Good luck!", preferredStyle: .alert)
+                successAlert.addAction(UIAlertAction(title: "Yay!", style: .default, handler: nil))
+                self.present(successAlert, animated: true, completion: nil)
             }
         }
     }

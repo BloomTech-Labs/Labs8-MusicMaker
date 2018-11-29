@@ -138,7 +138,7 @@ app.post('/teacher/:idTeacher/sheetMusic', (req, res, next) => {
 
      function generatePDF(teacherId) {
       const doc = new pdfkit();
-      const bucket = storage.bucket('gs://musicmaker-4b2e8.appspot.com');
+      const bucket = storage.bucket('gs://musicmaker-4b2e8.appspot.com/sheetMusic');
       const filename =  `/${teacherId}/attachement.pdf`;
       const file = bucket.file(filename);
       const bucketFileStream = file.createWriteStream();

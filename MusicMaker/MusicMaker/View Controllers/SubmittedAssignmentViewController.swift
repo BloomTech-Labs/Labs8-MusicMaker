@@ -13,7 +13,7 @@ import AVFoundation
 class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicPieceTableViewCellDelegate {
     
     // This is our dummy assignment that is in core data
-    var assignment: Assignment? = MusicMakerModelController.shared.teachers.first?.assignments?.anyObject() as? Assignment {
+    var assignment: Assignment? {
         didSet {
             guard let assignment = assignment else { return }
             guard let pdfURL = assignment.localScoreDocumentURL else {

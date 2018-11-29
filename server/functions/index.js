@@ -121,7 +121,7 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
 
 //POST should create and add a new teacher settings info.: email and name
 
-app.post('/teachers/add', (req, res, next) => {
+app.post('/teachers/add', (req, res) => {
     const email = req.body.email;
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
@@ -138,7 +138,7 @@ app.post('/teachers/add', (req, res, next) => {
               'firstName': firstName,
               'lastName': lastName
             },
-            'qrcode': QRCode.toString(Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16), qrOptions, function(err, string) {
+            'qrcode': QRCode.toString(Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16), function(err, string) {
               console.log(string);
             }),
           })

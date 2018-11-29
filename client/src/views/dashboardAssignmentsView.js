@@ -40,6 +40,7 @@ class DashboardAssignmentsView extends Component {
           <Sidebar />
           <div className="block-container" id="assignments">
             <h1 className="subheader">Assignments View</h1>
+            <h5 className="subheader">Test: This is an ungraded assignment for a specific teacher</h5>
             <p className="bodyText">Assignment Name: {this.state.assignmentName}</p>
             <p className="bodyText">Piece: {this.state.piece}</p>
             <p className="bodyText">Instrument: {this.state.instrument}</p>

@@ -32,6 +32,32 @@ app.get('/test', (req, res) => {
     res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com/'});
 });
 
+//STUDENT LIST: GET %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+//GET should retrieve a teacher's list of students
+//details: name, instrument, level
+// try nested where queries to search for the students that match the teacher's id ?????????????????????
+app.get('/teacher/:idTeacher/students', async (req, res, next) => {
+  try{
+    const teacherId = req.params['idTeacher'];
+    const assignments = {};  
+
+    const assignmentRef =  await db.collection('students');
+    const allAssignments = await assignmentRef.get()
+    .then(snap => {
+      snap.forEach(doc => {
+            
+      })
+    });
+    res.json(assignments);   
+
+  }
+  catch(err) {
+   next(err);
+ }
+});
+
+
 // UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 // POST should create and add a new ungraded assignment under a teacher
@@ -197,7 +223,7 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
   }
 });
 
-// STRIPE IMPLEMENTATION
+// STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 app.post('/charge', async (req, res) => {
   console.log(req.body.token.id); 
   try {

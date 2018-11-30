@@ -4,7 +4,6 @@ const firebase = require('firebase-admin');
 const express = require('express');
 const cors = require('cors');
 const stripe = require('stripe')('sk_test_YwuqJTfx2ZxOo4hGqGQSnoP3');
-// const bodyParser = require('body-parser');
 
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -25,46 +24,6 @@ firestore.settings(settings);
 const app = express();
 app.use(express.json());
 app.use(cors());
-// app.use(require('body-parser').text());
-
-// STRIPE IMPLEMENTATION BY KEIRAN
-app.post('/charge', async (req, res) => {
-  console.log(req.body.token.id); 
-  try {
-    let { status } = await stripe.charges.create({
-      amount: 50,
-      currency: 'usd',
-      description: 'teacher subscription',
-      source: req.body.token.id
-    });
-
-    // right here, mark the user as paid in the db
-    
-    res.status(201).json({ status });
-    // res.send({ status });
-  } catch(err) {
-    res.status(500).send(err);
-  }
-});
-
-// app.post('/charge', async (req, res) => {
-//   try {
-//     console.log(req.body);
-//     const chargeObj = {
-//       amount: 50,
-//       currency: 'usd',
-//       description: 'teacher subscription',
-//       source: req.body
-//     }
-
-//     const charge = await stripePromise(chargeObject);
-//     return res.status(201).json(charge);
-//   } 
-//   catch(error) {
-//     return res.status(500).json({ message: 'Subscription failed.', error: error.message });
-//   }
-// });
-
 
 //===============================================================================================================================================
 
@@ -237,6 +196,26 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
     next (err);
   }
 });
+
+// STRIPE IMPLEMENTATION
+app.post('/charge', async (req, res) => {
+  console.log(req.body.token.id); 
+  try {
+    let { status } = await stripe.charges.create({
+      amount: 50,
+      currency: 'usd',
+      description: 'teacher subscription',
+      source: req.body.token.id
+    });
+
+    // right here, mark the user as paid in the db
+
+    res.status(201).json({ status });
+  } catch(err) {
+    res.status(500).send(err);
+  }
+});
+
 
 
 // CODE THAT WE ARE NOT READY TO DELETE========================================================================================================

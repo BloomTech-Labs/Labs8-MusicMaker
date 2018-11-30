@@ -11,15 +11,10 @@ class TakeMoney extends React.Component {
 
   async submit(ev) {
     let token = await this.props.stripe.createToken();
-    // let response = await fetch('/charge', {
-    //   method: 'POST',
-    //   headers: {'Content-Type': 'text/plain'},
-    //   body: token.id
-    // });
     console.log(token);
 
     axios
-      .post("http://localhost:8000/charge", token )
+      .post("https://musicmaker-4b2e8.firebaseapp.com/charge", token )
       .then(response => {
         console.log(response);
         alert("Payment Success");
@@ -28,8 +23,6 @@ class TakeMoney extends React.Component {
         console.log("Payment Error: ", error);
         alert("Payment Error");
       });
-
-    // if(response.ok) console.log("Purchase completed.");
   }
 
   render() {

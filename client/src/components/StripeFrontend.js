@@ -1,21 +1,39 @@
-// THIS FILE IS A TEST FOR NOW, JUST IMPLEMENTING SOME OF THE FRONT END FUNCTIONALITY FOR STRIPE
-// I WILL COME BACK TO THIS LATER TO GET BOTH ENDS WORKING PROPERLY, THIS IS A TEMPLATE/REFERENCE FOR FRONT-END STRIPE WORK
+import React from 'react';
+import axios from 'axios';
+import { CardElement, injectStripe } from 'react-stripe-elements';
 
-// import React, { Component } from 'react';
-// import Checkout from './Checkout'; will un-comment this when necessary
-// import './App.css';
-//
-// class StripeFrontend extends Component {
-//   render() {
-//     return (
-//       <div className = 'checkout-wrapper'>
-//         <Checkout name = {'Test Checkout'}
-//                   description = {'Stripe front end test.'}
-//                   amount = {1}
-//         />
-//       </div>
-//     );
-//   }
-// }
-//
-// export default StripeFrontend;
+class TakeMoney extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { complete: false };
+    this.submit = this.submit.bind(this);
+  }
+
+  async submit(ev) {
+    let token = await this.props.stripe.createToken();
+    console.log(token);
+
+    axios
+      .post("https://musicmaker-4b2e8.firebaseapp.com/charge", token )
+      .then(response => {
+        console.log(response);
+        alert("Payment Success");
+      })
+      .catch(error => {
+        console.log("Payment Error: ", error);
+        alert("Payment Error");
+      });
+  }
+
+  render() {
+    return(
+      <div className="checkout">
+        <p>Send payment?</p>
+        <CardElement />
+        <button onClick={this.submit}>Send</button>
+      </div>
+    );
+  }
+}
+
+export default injectStripe(TakeMoney);

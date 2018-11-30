@@ -8,29 +8,27 @@
 
 import UIKit
 
-// need delegate
+protocol AssignmentSubmitTableViewCellDelegate: class {
+    func submitButtonWasPressed(for cell: AssignmentSaveSubmitTableViewCell)
+}
 
 class AssignmentSaveSubmitTableViewCell: UITableViewCell {
     
+    // MARK: - Properties
+    
+    weak var delegate: AssignmentSubmitTableViewCellDelegate?
+    
     // MARK: - Outlets/Actions
     
-    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     
-    @IBAction func saveButtonTapped(_ sender: Any) {
-        // save locally
-    }
-    
     @IBAction func submitButtonTapped(_ sender: Any) {
-        // post to firebase
-        // get notification if submitting is successful
+        delegate?.submitButtonWasPressed(for: self)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        saveButton.layer.cornerRadius = 5
-        saveButton.clipsToBounds = true
         submitButton.layer.cornerRadius = 5
         submitButton.clipsToBounds = true
     }

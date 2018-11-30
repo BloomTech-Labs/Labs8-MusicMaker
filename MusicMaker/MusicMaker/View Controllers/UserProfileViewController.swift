@@ -11,14 +11,13 @@ import FirebaseFirestore
 import Firebase
 
 class UserProfileViewController: UIViewController {
+    
+    //currentUser?.providerData[0].providerID returns google.com for google auth or password for email/password auth
 
-    
-    
-    
     // MARK: - Properties
     let database = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
-    
+    var student: Student?
     // MARK: - IBOutlets
     
     @IBOutlet weak var profileImage: UIImageView!
@@ -32,28 +31,15 @@ class UserProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Sample for querying firestore for student information
-        guard let currentUsersUniqueID = Auth.auth().currentUser?.uid else {return}
-        let studentsCollectionReference = database.collection("students").document(currentUsersUniqueID)
-        studentsCollectionReference.getDocument { (document, error) in
-            if let document = document {
-                if let dataDescription = document.data() {
-                    guard let firstName = dataDescription["firstName"] as? String,
-                        let lastName = dataDescription["lastName"] as? String else {return}
-                    print(firstName)
-                    self.profileImage.createInitialsImage(for: "\(firstName) \(lastName)", backgroundColor: .lightGray)
-                    self.title = "\(firstName) \(lastName)"
-                    self.emailLabel.text = dataDescription["email"] as? String
-                }
-            } else {
-                print("Document does not exist in cache")
-            }
+        if let student = student {
+            profileImage.createInitialsImage(for: "\(student.firstName) \(student.lastName)", backgroundColor: .lightGray)
+            title = "\(student.firstName) \(student.lastName)"
+            emailLabel.text = student.email
         }
     }
     
     
     // MARK: - IBActions
-    
     @IBAction func updateEmail(_ sender: Any) {
         if updateEmailButton.titleLabel?.text == "Update Email" {
             updatedEmailTextField.isHidden = false
@@ -63,12 +49,14 @@ class UserProfileViewController: UIViewController {
                 let usersUniqueIdentifier = currentUser?.uid else {return}
             currentUser?.updateEmail(to: newEmail, completion: { (error) in
                 if error != nil {
+                    print(error)
                     self.updateEmailButton.setTitle("Error Updating Email", for: .normal)
                 } else {
                     self.database.collection("students").document(usersUniqueIdentifier).setData(["email" : newEmail], merge: true)
                     self.updatedEmailTextField.isHidden = true
                     self.updateEmailButton.setTitle("Update Email", for: .normal)
                     self.emailLabel.text = newEmail
+                    self.student?.email = newEmail
                 }
             })
         }

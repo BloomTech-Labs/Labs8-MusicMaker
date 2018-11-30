@@ -235,17 +235,29 @@ class RecordingViewController: UIViewController {
     
     private func setupCapture() {
         let captureSession = AVCaptureSession()
-        let device = bestCamera()
-        guard let videoDeviceInput = try? AVCaptureDeviceInput(device: device), captureSession.canAddInput(videoDeviceInput) else { fatalError() }
         
+        // Video capture
+        let videoDevice = bestCamera()
+        guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice), captureSession.canAddInput(videoDeviceInput) else { fatalError("We probably don't have camera access") }
         captureSession.addInput(videoDeviceInput)
+        
+        // Audio capture
+        guard let audioDevice = AVCaptureDevice.default(for: AVMediaType.audio) else { fatalError("Missing audio device") }
+        guard let audioDeviceInput = try? AVCaptureDeviceInput(device: audioDevice), captureSession.canAddInput(audioDeviceInput) else { fatalError("We probably don't have microphone access") }
+        captureSession.addInput(audioDeviceInput)
         
         let fileOutput = AVCaptureMovieFileOutput() // creates a movie file
         guard captureSession.canAddOutput(fileOutput) else { fatalError() } // make sure we can add it to captureSession
         captureSession.addOutput(fileOutput)
         recordOutput = fileOutput
         
-        captureSession.sessionPreset = .hd1920x1080 // easier to filter with core image and process
+        if captureSession.canSetSessionPreset(.hd1920x1080) {
+            captureSession.sessionPreset = .hd1920x1080
+        } else if captureSession.canSetSessionPreset(.hd1280x720) {
+            captureSession.sessionPreset = .hd1280x720
+        } else {
+            captureSession.sessionPreset = .high
+        }
         captureSession.commitConfiguration() // save all this stuff and actually set it up
         
         self.captureSession = captureSession    // starts off not running, so need to start it in viewWillAppear()

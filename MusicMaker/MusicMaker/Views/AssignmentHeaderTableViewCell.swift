@@ -42,9 +42,27 @@ class AssignmentHeaderTableViewCell: UITableViewCell {
         }
     }
     
-    var level: String? { // maybe as an enum?
+    var level: Assignment.Level? {
         didSet {
-            // pick image based on level
+            guard let levelImageName = level?.rawValue else { return }
+            levelImageView.image = UIImage(named: "Level\(levelImageName)")
+        }
+    }
+    
+    var grade: String? {
+        didSet {
+            guard let grade = grade else {
+                gradeImageView?.image = nil
+                return
+            }
+            switch grade {
+            case "Passed":
+                gradeImageView?.image = UIImage(named: "PassStamp")
+            case "Failed":
+                gradeImageView?.image = UIImage(named: "FailStamp")
+            default:
+                gradeImageView?.image = nil
+            }
         }
     }
     
@@ -54,7 +72,6 @@ class AssignmentHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var dueTimeLabel: UILabel!
     @IBOutlet weak var instrumentLabel: UILabel!
-    // replace star labels with an image view to indicate the level
-
-    
+    @IBOutlet weak var levelImageView: UIImageView!
+    @IBOutlet weak var gradeImageView: UIImageView?
 }

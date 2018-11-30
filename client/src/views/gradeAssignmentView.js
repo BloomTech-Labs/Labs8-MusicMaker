@@ -35,7 +35,8 @@ class GradeAssignmentView extends Component {
   render() {
     return (
       <div className = 'flex-container'>
-        <Sidebar />
+        <h1>Test</h1>
+      </div>
     );
   }
 }

@@ -22,13 +22,13 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Used for the blurred view
-        self.definesPresentationContext = true
-        self.providesPresentationContextTransitionStyle = true
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
+    
     
     // MARK: - IBOutlets
     @IBOutlet weak var loginButton: UIButton! {
@@ -43,45 +43,35 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
             signupButton.layer.cornerRadius = signupButton.frame.height / 2
         }
     }
-    
-    @IBOutlet weak var googleSigninButton: UIButton! {
-        didSet {
-            googleSigninButton.layer.cornerRadius = 5.0
-            googleSigninButton.layer.borderColor = UIColor.white.cgColor
-            googleSigninButton.layer.borderWidth = 1.0
-         }
-    }
+
     
     // MARK: - IBActions
-    @IBAction func signInWithGoogle(_ sender: Any) {
-        GIDSignIn.sharedInstance().delegate=self
-        GIDSignIn.sharedInstance().uiDelegate=self
-        GIDSignIn.sharedInstance()?.signIn()
-    }
-    
     @IBAction func showLoginOptions(_ sender: Any) {
-        overlayBlurredBackgroundView()
+        self.definesPresentationContext = true
+        self.providesPresentationContextTransitionStyle = true
+        animateAdditionOfABlurredBackground()
     }
     @IBAction func showSignupOptions(_ sender: Any) {
-        overlayBlurredBackgroundView()
+        self.definesPresentationContext = true
+        self.providesPresentationContextTransitionStyle = true
+        animateAdditionOfABlurredBackground()
     }
     
     
     
     
     // MARK: - Private Methods
-    private func overlayBlurredBackgroundView() {
+    private func animateAdditionOfABlurredBackground() {
         
         blurredBackgroundView.frame = view.frame
-
+        self.view.addSubview(self.blurredBackgroundView)
         UIView.animate(withDuration: 0.5, animations: {
-            self.view.addSubview(self.blurredBackgroundView)
             self.blurredBackgroundView.effect = UIBlurEffect(style: .dark)
         })
     }
     
-    private func removeBlurredBackgroundView() {
-        UIView.animate(withDuration: 0.5, animations: {
+    private func animateRemovalOfBlurredBackground(with duration: TimeInterval) {
+        UIView.animate(withDuration: duration, animations: {
             self.blurredBackgroundView.effect = nil
         }) { (_) in
             self.blurredBackgroundView.removeFromSuperview()
@@ -152,18 +142,21 @@ extension InitialViewController: GIDSignInDelegate {
 extension InitialViewController: AuthenticationOptionsViewControllerDelegate {
     
     func authenticateWithEmail(for newUser: Bool) {
-        removeBlurredBackgroundView()
+        animateRemovalOfBlurredBackground(with: 0.3)
         self.performSegue(withIdentifier: newUser ? "ShowSignupScreen" : "ShowLoginScreen", sender: nil)
     }
     
     
     
     func dismissOptions() {
-        removeBlurredBackgroundView()
+        animateRemovalOfBlurredBackground(with: 0.5)
     }
     
     func authenticateWithGoogle() {
-        removeBlurredBackgroundView()
+        animateRemovalOfBlurredBackground(with: 0.3)
+        GIDSignIn.sharedInstance().delegate=self
+        GIDSignIn.sharedInstance().uiDelegate=self
+        GIDSignIn.sharedInstance()?.signIn()
     }
     
     

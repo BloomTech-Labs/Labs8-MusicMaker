@@ -60,6 +60,7 @@
 		BFFB213F21AFA02E0050E013 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB213E21AFA02E0050E013 /* ResetPasswordViewController.swift */; };
 		BFFB214921B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB214821B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift */; };
 		BFFB214B21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB214A21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift */; };
+		BFFB214D21B112FA0050E013 /* TESTINGDELETEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB214C21B112FA0050E013 /* TESTINGDELETEViewController.swift */; };
 		CCA6E76E82020309C9BE8F98 /* Pods_MusicMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +143,7 @@
 		BFFB213E21AFA02E0050E013 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		BFFB214821B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationOptionsViewControllerDelegate.swift; sourceTree = "<group>"; };
 		BFFB214A21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationOptionsViewController.swift; sourceTree = "<group>"; };
+		BFFB214C21B112FA0050E013 /* TESTINGDELETEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TESTINGDELETEViewController.swift; sourceTree = "<group>"; };
 		F6FDA1FA291F03420ADB77C5 /* Pods-MusicMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,6 +217,7 @@
 				BFFB214A21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift */,
 				BFD381CD219355460038F974 /* SignUpViewController.swift */,
 				BFD381CF219355510038F974 /* LogInViewController.swift */,
+				BFFB214C21B112FA0050E013 /* TESTINGDELETEViewController.swift */,
 				BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */,
 				BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */,
 				BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */,
@@ -608,6 +611,7 @@
 				399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */,
 				39CA2B612194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift in Sources */,
 				393E238621AB564200620D94 /* Teacher+Convenience.swift in Sources */,
+				BFFB214D21B112FA0050E013 /* TESTINGDELETEViewController.swift in Sources */,
 				393E238421AB4C1E00620D94 /* CoreData.swift in Sources */,
 				BFFB214921B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,

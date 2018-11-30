@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Conforming types must be able to handle what to do when each authentication option is selected
 protocol AuthenticationOptionsViewControllerDelegate: class {
     func dismissOptions()
     func authenticateWithEmail(for newUser: Bool)

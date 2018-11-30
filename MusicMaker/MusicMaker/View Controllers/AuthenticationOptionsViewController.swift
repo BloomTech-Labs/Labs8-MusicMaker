@@ -16,7 +16,6 @@ class AuthenticationOptionsViewController: UIViewController {
         if newUser {
             emailButton.setTitle("SIGN UP WITH EMAIL", for: .normal)
         }
-        // Do any additional setup after loading the view.
     }
     
     // MARK: - Overrides
@@ -58,7 +57,6 @@ class AuthenticationOptionsViewController: UIViewController {
     
     @IBAction func emailButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        let isNewUser = emailButton.titleLabel?.text == "LOG IN WITH EMAIL" ? false : true
-        delegate?.authenticateWithEmail(for: isNewUser)
+        delegate?.authenticateWithEmail(for: newUser)
     }
 }

@@ -18,14 +18,8 @@ class SignUpViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let gradient = CAGradientLayer()
+        setupNavigationBar()
         
-        gradient.frame = view.bounds
-        
-        gradient.colors = [UIColor.white.cgColor, UIColor.lightGray.cgColor]
-        
-        
-        view.layer.insertSublayer(gradient, at: 0)
         if isSigningUpWithGoogleAuth {
             emailTextField.isHidden = true
             passwordTextField.isHidden = true
@@ -337,6 +331,12 @@ class SignUpViewController: UIViewController {
     
     
     // MARK: - Private Methods
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
     private func signUpWithGoogle() {
         guard let firstName = firstNameTextField.text,
             let lastName = lastNameTextField.text,

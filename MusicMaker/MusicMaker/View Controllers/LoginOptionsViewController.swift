@@ -35,9 +35,13 @@ class LoginOptionsViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true)
-        delegate?.removeBlurredBackgroundView()
+        delegate?.dismissLoginOptions()
     }
     
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        dismiss(animated: true)
+        delegate?.goToLoginScreen()
+    }
     
     // MARK: - Overrides
     override func viewDidLayoutSubviews() {

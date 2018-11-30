@@ -21,15 +21,14 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Used for the blurred view
+        self.definesPresentationContext = true
+        self.providesPresentationContextTransitionStyle = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        self.navigationController?.navigationBar.isHidden = false
-//    }
     
     // MARK: - IBOutlets
     @IBOutlet weak var loginButton: UIButton! {
@@ -59,10 +58,14 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance()?.signIn()
     }
     @IBAction func login(_ sender: Any) {
-        self.definesPresentationContext = true
-        self.providesPresentationContextTransitionStyle = true
         overlayBlurredBackgroundView()
     }
+    
+    
+    @IBAction func signupButtonTapped(_ sender: Any) {
+        overlayBlurredBackgroundView()
+    }
+    
     
     // MARK: - Private Methods
     private func overlayBlurredBackgroundView() {
@@ -73,6 +76,14 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
             self.view.addSubview(self.blurredBackgroundView)
             self.blurredBackgroundView.effect = UIBlurEffect(style: .dark)
         })
+    }
+    
+    private func removeBlurredBackgroundView() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurredBackgroundView.effect = nil
+        }) { (_) in
+            self.blurredBackgroundView.removeFromSuperview()
+        }
     }
     
     // MARK: - Navigation
@@ -87,6 +98,11 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
             if let loginOptionsVc = segue.destination as? LoginOptionsViewController {
                 loginOptionsVc.delegate = self
                 loginOptionsVc.modalPresentationStyle = .overFullScreen
+            }
+        case "ShowSignupOption":
+            if let signupOptionsVc = segue.destination as? SignupOptionsViewController {
+                signupOptionsVc.delegate = self
+                signupOptionsVc.modalPresentationStyle = .overFullScreen
             }
         default:
             break
@@ -128,12 +144,22 @@ extension InitialViewController: GIDSignInDelegate {
   
 }
 
+// MARK: - LoginOptionsViewControllerDelegate
 extension InitialViewController: LoginOptionsViewControllerDelegate {
-    func removeBlurredBackgroundView() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.blurredBackgroundView.effect = nil
-        }) { (_) in
-            self.blurredBackgroundView.removeFromSuperview()
-        }
+    func dismissLoginOptions() {
+        removeBlurredBackgroundView()
+    }
+    
+    func goToLoginScreen() {
+        removeBlurredBackgroundView()
+        self.performSegue(withIdentifier: "ShowLoginScreen", sender: nil)
+    }
+    
+}
+
+// MARK: - SignupOptionsViewControllerDelegate
+extension InitialViewController: SignupOptionsViewControllerDelegate {
+    func dismissSignupOptions() {
+        removeBlurredBackgroundView()
     }
 }

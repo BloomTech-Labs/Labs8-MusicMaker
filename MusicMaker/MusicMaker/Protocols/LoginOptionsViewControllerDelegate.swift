@@ -9,5 +9,6 @@
 import Foundation
 
 protocol LoginOptionsViewControllerDelegate: class {
-    func removeBlurredBackgroundView()
+    func dismissLoginOptions()
+    func goToLoginScreen()
 }

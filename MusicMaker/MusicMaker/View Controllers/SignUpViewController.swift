@@ -18,7 +18,14 @@ class SignUpViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        let gradient = CAGradientLayer()
         
+        gradient.frame = view.bounds
+        
+        gradient.colors = [UIColor.white.cgColor, UIColor.lightGray.cgColor]
+        
+        
+        view.layer.insertSublayer(gradient, at: 0)
         if isSigningUpWithGoogleAuth {
             emailTextField.isHidden = true
             passwordTextField.isHidden = true

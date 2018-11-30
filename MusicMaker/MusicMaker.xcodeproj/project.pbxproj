@@ -58,6 +58,8 @@
 		BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */; };
 		BFFB213D21AF6ECE0050E013 /* AssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */; };
 		BFFB213F21AFA02E0050E013 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB213E21AFA02E0050E013 /* ResetPasswordViewController.swift */; };
+		BFFB214121B0B3310050E013 /* LoginOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB214021B0B3310050E013 /* LoginOptionsViewController.swift */; };
+		BFFB214321B0B3FA0050E013 /* LoginOptionsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB214221B0B3FA0050E013 /* LoginOptionsViewControllerDelegate.swift */; };
 		CCA6E76E82020309C9BE8F98 /* Pods_MusicMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -138,6 +140,8 @@
 		BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scannedSound.mp3; sourceTree = "<group>"; };
 		BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsViewController.swift; sourceTree = "<group>"; };
 		BFFB213E21AFA02E0050E013 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		BFFB214021B0B3310050E013 /* LoginOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginOptionsViewController.swift; path = "MusicMaker/View Controllers/LoginOptionsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		BFFB214221B0B3FA0050E013 /* LoginOptionsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOptionsViewControllerDelegate.swift; sourceTree = "<group>"; };
 		F6FDA1FA291F03420ADB77C5 /* Pods-MusicMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,6 +183,7 @@
 		BF5D5215219CCAA100DFF213 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				BFFB214221B0B3FA0050E013 /* LoginOptionsViewControllerDelegate.swift */,
 				BF5D5218219D17F100DFF213 /* TeachersViewControllerDelegate.swift */,
 				BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */,
 			);
@@ -219,6 +224,7 @@
 				BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */,
 				39C108FC2194E55900180F37 /* RecordingViewController.swift */,
 				39C47DC721AF233000C1E115 /* SubmittedAssignmentViewController.swift */,
+				BFFB214021B0B3310050E013 /* LoginOptionsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -611,6 +617,7 @@
 				393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */,
 				BFFB213F21AFA02E0050E013 /* ResetPasswordViewController.swift in Sources */,
 				BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */,
+				BFFB214121B0B3310050E013 /* LoginOptionsViewController.swift in Sources */,
 				39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */,
 				BFD381D0219355510038F974 /* LogInViewController.swift in Sources */,
 				393E238821AB565800620D94 /* Assignment+Convenience.swift in Sources */,
@@ -629,6 +636,7 @@
 				BF5D5219219D17F100DFF213 /* TeachersViewControllerDelegate.swift in Sources */,
 				BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */,
 				39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */,
+				BFFB214321B0B3FA0050E013 /* LoginOptionsViewControllerDelegate.swift in Sources */,
 				BFD3EEFD21AE45880097D5AA /* Student.swift in Sources */,
 				BF5D5212219CC8F500DFF213 /* SideMenuViewController.swift in Sources */,
 				BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */,
@@ -868,7 +876,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NB32394B2A;
 				INFOPLIST_FILE = "$(SRCROOT)/MusicMaker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -887,7 +895,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NB32394B2A;
 				INFOPLIST_FILE = "$(SRCROOT)/MusicMaker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

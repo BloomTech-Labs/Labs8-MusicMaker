@@ -13,12 +13,11 @@ import FirebaseFirestore
 
 class InitialViewController: UIViewController, GIDSignInUIDelegate {
     
-    
+    // MARK: - Properties
     let database = Firestore.firestore()
-    
-  
-    
+    let blurredBackgroundView = UIVisualEffectView()
 
+  
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,26 +27,20 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        self.navigationController?.navigationBar.isHidden = false
+//    }
     
     // MARK: - IBOutlets
     @IBOutlet weak var loginButton: UIButton! {
         didSet {
-            loginButton.layer.cornerRadius = 5.0
-            loginButton.layer.borderColor = UIColor.white.cgColor
-            loginButton.layer.borderWidth = 1.0
-//            loginButton.layer.backgroundColor = UIColor.white.cgColor
+            loginButton.layer.cornerRadius = loginButton.frame.height / 2
         }
     }
     
     @IBOutlet weak var signupButton: UIButton! {
         didSet {
-            signupButton.layer.cornerRadius = 5.0
-            signupButton.layer.borderColor = UIColor.white.cgColor
-            signupButton.layer.borderWidth = 1.0
-//            signupButton.layer.backgroundColor = UIColor.white.cgColor
+            signupButton.layer.cornerRadius = signupButton.frame.height / 2
         }
     }
     
@@ -56,8 +49,7 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
             googleSigninButton.layer.cornerRadius = 5.0
             googleSigninButton.layer.borderColor = UIColor.white.cgColor
             googleSigninButton.layer.borderWidth = 1.0
-//            signInWithGoogle.layer.backgroundColor = UIColor.white.cgColor
-        }
+         }
     }
     
     // MARK: - IBActions
@@ -66,6 +58,42 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().uiDelegate=self
         GIDSignIn.sharedInstance()?.signIn()
     }
+    @IBAction func login(_ sender: Any) {
+        self.definesPresentationContext = true
+        self.providesPresentationContextTransitionStyle = true
+        overlayBlurredBackgroundView()
+    }
+    
+    // MARK: - Private Methods
+    private func overlayBlurredBackgroundView() {
+        
+        blurredBackgroundView.frame = view.frame
+
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.addSubview(self.blurredBackgroundView)
+            self.blurredBackgroundView.effect = UIBlurEffect(style: .dark)
+        })
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier {
+        case "SignUpWithGoogle":
+            if let signupVc = segue.destination as? SignUpViewController {
+                signupVc.isSigningUpWithGoogleAuth = true
+            }
+        case "ShowLoginOptions":
+            if let loginOptionsVc = segue.destination as? LoginOptionsViewController {
+                loginOptionsVc.delegate = self
+                loginOptionsVc.modalPresentationStyle = .overFullScreen
+            }
+        default:
+            break
+        }
+    }
+    
+    
 }
 
 // MARK: - GIDSignInDelegat
@@ -97,11 +125,15 @@ extension InitialViewController: GIDSignInDelegate {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SignUpWithGoogle" {
-            let signupVC = segue.destination as? SignUpViewController
-            signupVC?.isSigningUpWithGoogleAuth = true
+  
+}
+
+extension InitialViewController: LoginOptionsViewControllerDelegate {
+    func removeBlurredBackgroundView() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurredBackgroundView.effect = nil
+        }) { (_) in
+            self.blurredBackgroundView.removeFromSuperview()
         }
     }
-    
 }

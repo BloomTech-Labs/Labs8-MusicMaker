@@ -37,19 +37,19 @@ app.get('/test', (req, res) => {
 //GET should retrieve a teacher's list of students
 //details: name, instrument, level
 // try nested where queries to search for the students that match the teacher's id ?????????????????????
-app.get('/teacher/:idTeacher/students', async (req, res, next) => {
+app.get('/teacher/:idTeacher/students', (req, res, next) => {
   try{
     const teacherId = req.params['idTeacher'];
-    const assignments = {};  
+    const students = {};  
 
-    const assignmentRef =  await db.collection('students');
-    const allAssignments = await assignmentRef.get()
+    const studentstRef =  db.collection('teachers').doc(teacherId).collection('students');
+    const allStudents = studentstRef.get()
     .then(snap => {
       snap.forEach(doc => {
-            
+        students[doc.id] = doc.data();
       })
+      res.status(200).json(students);
     });
-    res.json(assignments);   
 
   }
   catch(err) {

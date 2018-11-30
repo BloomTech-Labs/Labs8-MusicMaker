@@ -14,7 +14,9 @@
     "express": "^4.16.4",
     "firebase-admin": "^6.3.0",
     "firebase-functions": "^2.1.0",
-    "pdfkit": "^0.8.3"
+    "multer": "^1.4.1",
+    "pdfkit": "^0.8.3",
+    "pug": "^2.0.3"
   },
   "private": true,
   "devDependencies": {

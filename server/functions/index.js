@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const admin = require("firebase-admin");
 const pdfkit = require('pdfkit');
+const Multer = require('multer');
 
 // const serviceAccount = require("./serviceAccountKey.json");
 
@@ -31,6 +32,14 @@ firestore.settings(settings);
 
 const storage = require('@google-cloud/storage')({
   projectId: 'musicmaker-4b2e8',
+});
+const bucket = storage.bucket('gs://musicmaker-4b2e8.appspot.com');
+
+const multer = Multer({
+  storage: Multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024 
+  }
 });
 
 const app = express();
@@ -89,42 +98,46 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
   }
 });
 
-// POST should upload a teacher's sheetMusic(pdf) into their ungraded assignment HERE
-app.post('/teacher/:idTeacher/sheetMusic', (req, res, next) => {
-  try {
-    const teacherId = req.params['idTeacher'];
+// app.set('view engine', 'pug');
+// app.get('/', (req, res) => {
+//   res.render('form.pug');
+// });
+// // // POST should upload a teacher's sheetMusic(pdf) into their ungraded assignment FUCK
+// app.post('/teacher/:idTeacher/sheetMusic', (req, res, next) => {
+//   try {
 
-     function generatePDF(teacherId) {
-      const doc = new pdfkit();
-      const bucket = storage.bucket('gs://musicmaker-4b2e8.appspot.com');
-      const filename =  `/${teacherId}/attachement.pdf`;
-      const file = bucket.file(filename);
-      const bucketFileStream = file.createWriteStream();
-      var buffers = [];
-      let p = new Promise((resolve, reject) => {
-        doc.on("end", function() {
-          resolve(buffers);
-        });
-        doc.on("error", function () {
-          reject();
-        });
-      });
+//     const teacherId = req.params['idTeacher'];
+
+//     function generatePDF(teacherId) {
+//       const doc = new pdfkit();
+//       const filename =  `/${teacherId}/attachement.pdf`;
+//       const file = bucket.file('sheetMusic' + filename);
+//       const bucketFileStream = file.createWriteStream();
+//       var buffers = [];
+//       let p = new Promise((resolve, reject) => {
+//         doc.on("end", function() {
+//           resolve(buffers);
+//         });
+//         doc.on("error", function () {
+//           reject();
+//         });
+//       });
     
-      doc.pipe(bucketFileStream);
-      doc.on('data', buffers.push.bind(buffers));
+//       doc.pipe(bucketFileStream);
+//       doc.on('data', buffers.push.bind(buffers));
     
     
-      doc.end();
-    }
+//       doc.end();
+//   }
 
-    res.json(generatePDF(teacherId))
-   console.log('***********************************************', generatePDF(teacherId) )
+//   res.json(generatePDF(teacherId))
+//   console.log('***********************************************', generatePDF(teacherId) )
 
 
-  } catch (err) {
-    next (err);
-  }
-});
+//   } catch (err) {
+//     next (err);
+//   }
+// });
 
 //GET should retrieve teacher's all ungraded assignments
 //details: assignmentName, instructions, instrument, level, piece, sheetMusic

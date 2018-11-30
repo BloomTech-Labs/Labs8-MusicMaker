@@ -9,57 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Signup Options View Controller-->
-        <scene sceneID="zUy-ci-tfZ">
-            <objects>
-                <viewController id="qZ3-JW-HU3" customClass="SignupOptionsViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bz0-83-BNe">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCN-Kx-jnI">
-                                <rect key="frame" x="20" y="936" width="728" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <state key="normal" title="CANCEL">
-                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelButtonTapped:" destination="qZ3-JW-HU3" eventType="touchUpInside" id="0uW-GB-kq5"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOz-lw-jxC">
-                                <rect key="frame" x="212" y="881" width="344" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <state key="normal" title="SIGN UP WITH EMAIL">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qe3-X2-RAs">
-                                <rect key="frame" x="212" y="805" width="344" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <state key="normal" title="GOOGLE">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="120-Ac-uFQ"/>
-                    </view>
-                    <connections>
-                        <outlet property="googleSignupButton" destination="Qe3-X2-RAs" id="rRr-26-LrI"/>
-                        <outlet property="signupWithEmailButton" destination="rOz-lw-jxC" id="YgO-ys-X1b"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8F7-Fw-Ll0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="545" y="-677"/>
-        </scene>
         <!--Initial View Controller-->
         <scene sceneID="s8g-2y-g6v">
             <objects>
@@ -83,22 +32,6 @@
                                     <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="45"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftt-ap-eik">
-                                <rect key="frame" x="212" y="301" width="344" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <state key="normal" title="LOG IN">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
-                                </variation>
-                                <connections>
-                                    <action selector="login:" destination="XI5-s7-70o" eventType="touchUpInside" id="DcG-mR-9f2"/>
-                                    <segue destination="BF0-jJ-iAR" kind="presentation" identifier="ShowLoginOptions" id="14P-ge-DU9"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JhT-tc-C9b">
                                 <rect key="frame" x="55" y="652" width="109" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -113,20 +46,28 @@
                                     <action selector="signInWithGoogle:" destination="XI5-s7-70o" eventType="touchUpInside" id="fyX-X6-9xm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="St2-S3-LHn">
-                                <rect key="frame" x="212" y="380" width="344" height="47"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCU-Vo-PI8">
+                                <rect key="frame" x="212" y="321" width="344" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="LOG IN">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="showLoginOptions:" destination="XI5-s7-70o" eventType="touchUpInside" id="9sD-PE-fDV"/>
+                                    <segue destination="BF0-jJ-iAR" kind="presentation" identifier="ShowLoginOptions" id="que-9r-UXH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsI-Ti-oTd">
+                                <rect key="frame" x="212" y="395" width="344" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="SIGN UP">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
-                                </variation>
                                 <connections>
-                                    <action selector="signupButtonTapped:" destination="XI5-s7-70o" eventType="touchUpInside" id="LQI-YV-fw5"/>
-                                    <segue destination="qZ3-JW-HU3" kind="presentation" identifier="ShowSignupOption" id="0iy-LS-jyk"/>
+                                    <action selector="showSignupOptions:" destination="XI5-s7-70o" eventType="touchUpInside" id="1kh-RO-usP"/>
+                                    <segue destination="BF0-jJ-iAR" kind="presentation" identifier="ShowSignupOptions" id="vzR-mT-veA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -146,8 +87,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="googleSigninButton" destination="JhT-tc-C9b" id="9fO-5a-CYc"/>
-                        <outlet property="loginButton" destination="ftt-ap-eik" id="bg0-Gt-Ok5"/>
-                        <outlet property="signupButton" destination="St2-S3-LHn" id="NmA-7U-rUs"/>
+                        <outlet property="loginButton" destination="RCU-Vo-PI8" id="kai-mK-sYk"/>
+                        <outlet property="signupButton" destination="MsI-Ti-oTd" id="oWA-gY-vOl"/>
                         <segue destination="dtM-Of-Z43" kind="show" identifier="SignUpWithGoogle" id="mf3-Dp-WTk"/>
                         <segue destination="IEf-u0-XmX" kind="presentation" identifier="ShowTeachers" id="5mc-Cd-NMF"/>
                         <segue destination="fJc-Zd-r9S" kind="show" identifier="ShowLoginScreen" id="Qah-C9-N4r"/>
@@ -463,12 +404,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zeh-6b-KVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1355.46875" y="-275.390625"/>
+            <point key="canvasLocation" x="1608" y="-429"/>
         </scene>
-        <!--Login Options View Controller-->
+        <!--Authentication Options View Controller-->
         <scene sceneID="9cU-nl-K2S">
             <objects>
-                <viewController id="BF0-jJ-iAR" customClass="LoginOptionsViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BF0-jJ-iAR" customClass="AuthenticationOptionsViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="imh-hN-6MH">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -481,7 +422,7 @@
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancelButtonTapped:" destination="BF0-jJ-iAR" eventType="touchUpInside" id="heT-yp-Wyi"/>
+                                    <action selector="cancelButtonTapped:" destination="BF0-jJ-iAR" eventType="touchUpInside" id="vCf-ju-JDV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlM-Wa-w8F">
@@ -494,7 +435,7 @@
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButtonTapped:" destination="BF0-jJ-iAR" eventType="touchUpInside" id="yjT-YM-YdB"/>
+                                    <action selector="emailButtonTapped:" destination="BF0-jJ-iAR" eventType="touchUpInside" id="FDG-NK-nUq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxH-6f-QEn">
@@ -505,18 +446,21 @@
                                 <state key="normal" title="GOOGLE">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="googleButtonTapped:" destination="BF0-jJ-iAR" eventType="touchUpInside" id="C4V-oW-uqM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1PV-of-Xmd"/>
                     </view>
                     <connections>
-                        <outlet property="googleSignInButton" destination="bxH-6f-QEn" id="yNq-RI-RXG"/>
-                        <outlet property="loginButton" destination="ZlM-Wa-w8F" id="wGS-a6-g8t"/>
+                        <outlet property="emailButton" destination="ZlM-Wa-w8F" id="51I-s7-C3b"/>
+                        <outlet property="googleButton" destination="bxH-6f-QEn" id="cOu-AN-vRt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CgS-pp-Z4Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="525.78125" y="791.6015625"/>
+            <point key="canvasLocation" x="545" y="800"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="0Fr-QA-sOy">
@@ -640,6 +584,7 @@
         <image name="invisible" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3eq-7O-mTy"/>
+        <segue reference="5mc-Cd-NMF"/>
+        <segue reference="vzR-mT-veA"/>
     </inferredMetricsTieBreakers>
 </document>

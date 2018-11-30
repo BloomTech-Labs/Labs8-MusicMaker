@@ -37,6 +37,7 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
+    
     @IBOutlet weak var signupButton: UIButton! {
         didSet {
             signupButton.layer.cornerRadius = signupButton.frame.height / 2
@@ -57,14 +58,15 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().uiDelegate=self
         GIDSignIn.sharedInstance()?.signIn()
     }
-    @IBAction func login(_ sender: Any) {
+    
+    @IBAction func showLoginOptions(_ sender: Any) {
+        overlayBlurredBackgroundView()
+    }
+    @IBAction func showSignupOptions(_ sender: Any) {
         overlayBlurredBackgroundView()
     }
     
     
-    @IBAction func signupButtonTapped(_ sender: Any) {
-        overlayBlurredBackgroundView()
-    }
     
     
     // MARK: - Private Methods
@@ -95,17 +97,19 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
                 signupVc.isSigningUpWithGoogleAuth = true
             }
         case "ShowLoginOptions":
-            if let loginOptionsVc = segue.destination as? LoginOptionsViewController {
-                loginOptionsVc.delegate = self
-                loginOptionsVc.modalPresentationStyle = .overFullScreen
+            if let authenticationOptionsVC = segue.destination as? AuthenticationOptionsViewController {
+                authenticationOptionsVC.delegate = self
+                authenticationOptionsVC.modalPresentationStyle = .overFullScreen
+                authenticationOptionsVC.newUser = false
             }
-        case "ShowSignupOption":
-            if let signupOptionsVc = segue.destination as? SignupOptionsViewController {
-                signupOptionsVc.delegate = self
-                signupOptionsVc.modalPresentationStyle = .overFullScreen
+        case "ShowSignupOptions":
+            if let authenticationOptionsVC = segue.destination as? AuthenticationOptionsViewController {
+                authenticationOptionsVC.delegate = self
+                authenticationOptionsVC.modalPresentationStyle = .overFullScreen
+                authenticationOptionsVC.newUser = true
             }
         default:
-            break
+            ()
         }
     }
     
@@ -144,22 +148,23 @@ extension InitialViewController: GIDSignInDelegate {
   
 }
 
-// MARK: - LoginOptionsViewControllerDelegate
-extension InitialViewController: LoginOptionsViewControllerDelegate {
-    func dismissLoginOptions() {
+// MARK: - AuthenticationOptionsViewControllerDelegate
+extension InitialViewController: AuthenticationOptionsViewControllerDelegate {
+    
+    func authenticateWithEmail(for newUser: Bool) {
+        removeBlurredBackgroundView()
+        self.performSegue(withIdentifier: newUser ? "ShowSignupScreen" : "ShowLoginScreen", sender: nil)
+    }
+    
+    
+    
+    func dismissOptions() {
         removeBlurredBackgroundView()
     }
     
-    func goToLoginScreen() {
+    func authenticateWithGoogle() {
         removeBlurredBackgroundView()
-        self.performSegue(withIdentifier: "ShowLoginScreen", sender: nil)
     }
     
-}
-
-// MARK: - SignupOptionsViewControllerDelegate
-extension InitialViewController: SignupOptionsViewControllerDelegate {
-    func dismissSignupOptions() {
-        removeBlurredBackgroundView()
-    }
+    
 }

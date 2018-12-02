@@ -4,6 +4,11 @@ const firebase = require('firebase-admin');
 const express = require('express');
 const cors = require('cors');
 const stripe = require('stripe')('sk_test_YwuqJTfx2ZxOo4hGqGQSnoP3');
+const fileUpload = require('express-fileupload');
+const UUID = require('uuid-v4');
+const QRCode = require('qrcode');
+
+const serviceAccount = "serviceAccountKey.json";
 
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -15,46 +20,34 @@ firebase.initializeApp({
 });
 
 const db = firebase.firestore();
-
+const projID = "musicmaker-4b2e8"
 const Firestore = require('@google-cloud/firestore');
-const firestore = new Firestore({projectId: "musicmaker-4b2e8"});
+const firestore = new Firestore({
+  projectId: projID
+});
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
+
+const {Storage} = require('@google-cloud/storage');
+const storage = new Storage({
+  projectId: projID,
+  keyFilename: serviceAccount
+});
+const bucket = storage.bucket('gs://musicmaker-4b2e8.appspot.com');
+
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(fileUpload({
+  createParentPath : true
+}));
 
 //===============================================================================================================================================
 
 // TEST for sanity checks ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app.get('/test', (req, res) => {
     res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com/'});
-});
-
-//STUDENT LIST: GET %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-//GET should retrieve a teacher's list of students
-//details: name, instrument, level
-// try nested where queries to search for the students that match the teacher's id ?????????????????????
-app.get('/teacher/:idTeacher/students', (req, res, next) => {
-  try{
-    const teacherId = req.params['idTeacher'];
-    const students = {};  
-
-    const studentstRef =  db.collection('teachers').doc(teacherId).collection('students');
-    const allStudents = studentstRef.get()
-    .then(snap => {
-      snap.forEach(doc => {
-        students[doc.id] = doc.data();
-      })
-      res.status(200).json(students);
-    });
-
-  }
-  catch(err) {
-   next(err);
- }
 });
 
 
@@ -103,6 +96,38 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
   }
 });
 
+app.post('/upload', function(req, res) {
+  if (Object.keys(req.files).length == 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  let uuid = UUID();
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  let uploadFile = req.files.uploadFile;
+  console.log('3***********************',uploadFile)
+  let name = uploadFile.name;
+  uploadFile.mv('/tmp/' + name)
+  bucket.upload('/tmp/' + name , {
+    destination : 'sheetMusic/' + name,
+    metadata : {
+      metadata:{
+        firebaseStorageDownloadTokens : uuid
+      }
+    }
+  }).then((data) =>{
+let file = data[0]
+Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
+.then(url => {
+  console.log(url)
+  res.status(200).send(url)
+
+})
+  }
+    
+  )
+  
+});
+
 //GET should retrieve teacher's all ungraded assignments
 //details: assignmentName, instructions, instrument, level, piece, sheetMusic
 app.get('/teacher/:idTeacher/assignments', (req, res, next) => {
@@ -145,39 +170,7 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
 
 //SETTINGS : POST - GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-//POST should create and add a new teacher settings info.: email and name
-app.post('/teachers/add', (req, res, next) => {
-  try {
-    // const email = req.body.email;
-    // const firstName = req.body.firstName;
-    // const lastName = req.body.lastName;
-    const {email, firstName, lastName, prefix} = req.body;
-    const data = { email, firstName, lastName };
 
-    if(!email) {
-      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
-    } else if(!firstName || !lastName) {
-      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
-    } else {
-      const teachersRef = db.collection('teachers').add({
-        'email': email,
-        'name': {
-          'firstName': firstName,
-          'lastName': lastName,
-          'prefix': prefix
-        }
-      });
-      res.status(200).send({ message: 'Teacher successfully added!' })
-      // res.json({
-      //   id: teachersRef.id,
-      //   data
-      // }); 
-    }
-  }
-   catch(err) {
-    next(err);
-  }
-});
 
 //GET should retrieve teachers settings info.: email and name(first, last, and prefix)
 app.get('/teacher/:idTeacher/settings', (req, res, next) => {
@@ -223,7 +216,79 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
   }
 });
 
-// STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// QR Code 
+let qrOptions = {
+  errorCorrectionLevel: 'H',
+  type: 'image/jpeg',
+  rendererOpts: {
+    quality: 0.3
+  }
+}
+
+app.post('/teacher/add', (req, res, next) => {
+  try {
+    const email = req.body.email;
+    const firstName =  req.body.firstName;
+    const lastName =  req.body.lastName;
+    let uuid = UUID();
+     if(!email) {
+      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
+    } else if(!firstName || !lastName) {
+      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
+    } else {
+      
+      const teachersRef = db.collection('teachers').add({
+        'email': email,
+        'name': {
+          'firstName': firstName,
+          'lastName': lastName
+        },
+        'qrcode': 'Not Assigned'
+      }).then(ref =>{
+
+      const qrPath = '/tmp/signup_' + lastName + '.jpg'
+      const qr = QRCode.toFile(qrPath,ref.id, qrOptions);
+      
+      bucket.upload(qrPath , {
+        destination : 'qrCodes/' + email,
+        metadata : {
+          metadata:{
+            firebaseStorageDownloadTokens : uuid
+          }
+        }
+      }).then((data) =>{
+    let file = data[0]
+    Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
+    .then(url => {
+      const teachersRef = db.collection('teachers').doc(ref.id).update({
+        'qrcode': url
+      })
+      res.status(200).send({ message: 'Teacher successfully added! : ' + url })
+
+        
+      })
+  
+    })
+      }
+    
+        
+      )
+      
+    }
+  }
+   catch(err) {
+    next(err);
+  }
+
+
+  
+
+  
+});
+
+
+
+// STRIPE IMPLEMENTATION
 app.post('/charge', async (req, res) => {
   console.log(req.body.token.id); 
   try {

@@ -37,7 +37,7 @@ app.get('/test', (req, res) => {
 //GET should retrieve a teacher's list of students
 //details: name, instrument, level
 // try nested where queries to search for the students that match the teacher's id ?????????????????????
-// CURRENTLY NOT FUNCTIONAL 12/2/18 3 AM EST
+// CURRENTLY FUNCTIONAL 12/2/18 3 PM EST
 app.get('/teacher/:idTeacher/students', (req, res, next) => {
   try{
     const teacherId = req.params['idTeacher'];
@@ -59,20 +59,16 @@ app.get('/teacher/:idTeacher/students', (req, res, next) => {
 });
 
 // Get an individual student assigned to the teacher
-// NOT TESTED YET
+// FUNCTIONAL AS OF 12/2/18 3 PM
 app.get('/teacher/:idTeacher/students/:idStudent', (req, res, next) => {
   try{
     const teacherId = req.params['idTeacher'];
     const studentId = req.params['idStudent'];
-    const students = {};  
 
-    const studentstRef =  db.collection('teachers').doc(teacherId).collection('students').doc(studentId);
-    const allStudents = studentstRef.get()
-    .then(snap => {
-      snap.forEach(doc => {
-        students[doc.id] = doc.data();
-      })
-      res.status(200).json(students);
+    const studentsRef =  db.collection('teachers').doc(teacherId).collection('students').doc(studentId);
+    const allStudents = studentsRef.get()
+    .then(doc => {
+      res.status(200).json(doc.data());
     });
 
   }
@@ -81,16 +77,16 @@ app.get('/teacher/:idTeacher/students/:idStudent', (req, res, next) => {
  }
 });
 
-// Get a completed assignment from a student
-// NOT TESTED YET
-app.get('/student/:idStudent/teachers/:idTeacher/assignments/:idAssignment', (req, res, next) => {
+// Get the list of completed assignments from a student, TO BE GRADED
+// FUNCTIONAL AS OF 12/2/18 3 PM
+app.get('/student/:idStudent/teachers/:idTeacher/assignments', (req, res, next) => {
   try{
       const studentId = req.params['idStudent'];
       const teacherId = req.params['idTeacher'];
       const assignmentId = req.params['idAssignment'];
       const assignments = {};  
 
-      const assignmentRef =  db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+      const assignmentRef =  db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments');
       const allAssignments = assignmentRef.get()
       .then(snap => {
         snap.forEach(doc => {
@@ -104,6 +100,46 @@ app.get('/student/:idStudent/teachers/:idTeacher/assignments/:idAssignment', (re
   }
 });
 
+// Get a list of students currently assigned to an assignment, ASSIGNED (COMPLETED AND NOT COMPLETED)
+// NEEDS TESTING
+app.get('/teacher/:idTeacher/assignments/:idAssignment/students', (req, res, next) => {
+  try{
+      const teacherId = req.params['idTeacher'];
+      const assignmentId = req.params['idAssignment'];
+      const assignments = {};  
+
+      const assignedStudentsRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students');
+      const allAssignments = assignedStudentsRef.get()
+      .then(snap => {
+        snap.forEach(doc => {
+          assignments[doc.id] = doc.data();
+        })
+        res.status(200).json(assignments);
+      });
+
+  } catch (err){
+    next (err);
+  }
+});
+
+// Get a completed assignment from a student, ASSIGNED
+// FUNCTIONAL AS OF 12/2/18 3 PM
+// app.get('/student/:idStudent/teachers/:idTeacher/assignments/:idAssignment', (req, res, next) => {
+//   try{
+//       const studentId = req.params['idStudent'];
+//       const teacherId = req.params['idTeacher'];
+//       const assignmentId = req.params['idAssignment'];
+
+//       const assignmentRef =  db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+//       const allAssignments = assignmentRef.get()
+//       .then(doc => {
+//         res.status(200).json(doc.data());
+//       });
+
+//   } catch (err){
+//     next (err);
+//   }
+// });
 
 // UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -275,10 +311,10 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
 
 // STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
-app.post('/charge', async (req, res) => {
+app.post('/charge', (req, res) => {
   console.log(req.body.token.id); 
   try {
-    let { status } = await stripe.charges.create({
+    let { status } = stripe.charges.create({
       amount: 50,
       currency: 'usd',
       description: 'teacher subscription',

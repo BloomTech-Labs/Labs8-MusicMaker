@@ -52,7 +52,7 @@ class AddTeacherOptionsViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     // MARK: - Properties
-    var isScrolling = true
+    private var isScrolling = true
     var isSigningUpWithGoogle = false
     var teacherUniqueId: String?
     // MARK: - Private Methods
@@ -125,13 +125,11 @@ extension AddTeacherOptionsViewController: UIScrollViewDelegate {
 extension AddTeacherOptionsViewController: QRScanning {
     
     func qrCodeScanned(_ qrCode: String) {
-        if teacherUniqueId == qrCode {
-            print("fasdfa")
-        } else {
+        
+        if teacherUniqueId != qrCode {
             teacherUniqueId = qrCode
             self.performSegue(withIdentifier: "ShowSignUp", sender: nil)
         }
-        
     }
     
     

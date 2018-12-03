@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -418,6 +419,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaM-KB-y0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="120" y="-122"/>
+        </scene>
+        <!--Music SheetPDF Single View Controller-->
+        <scene sceneID="ncF-rn-Wb6">
+            <objects>
+                <viewController id="v6L-Fn-I8a" customClass="MusicSheetPDFSingleViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XL0-O9-4Ow">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyc-94-dfS" customClass="PDFView">
+                                <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fyc-94-dfS" firstAttribute="top" secondItem="aEf-Qt-4Hd" secondAttribute="top" id="P5t-gp-pjP"/>
+                            <constraint firstItem="fyc-94-dfS" firstAttribute="leading" secondItem="aEf-Qt-4Hd" secondAttribute="leading" id="iwB-gu-DgX"/>
+                            <constraint firstItem="fyc-94-dfS" firstAttribute="bottom" secondItem="aEf-Qt-4Hd" secondAttribute="bottom" id="l2y-W1-WnY"/>
+                            <constraint firstItem="fyc-94-dfS" firstAttribute="trailing" secondItem="aEf-Qt-4Hd" secondAttribute="trailing" id="rKL-fR-xMp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aEf-Qt-4Hd"/>
+                    </view>
+                    <connections>
+                        <outlet property="pdfView" destination="fyc-94-dfS" id="fB3-DR-bwz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D39-sC-KUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="821.875" y="-121.28906249999999"/>
         </scene>
     </scenes>
     <resources>

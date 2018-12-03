@@ -50,6 +50,49 @@ app.get('/', (req, res) => {
     res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com/'});
 });
 
+// GRADED ASSIGNMENT: GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+// Get a completed assignment from a student
+// FUNCTIONAL AS OF 12/2/18 3 PM
+app.get('/student/:idStudent/teachers/:idTeacher/assignments/:idAssignment', (req, res, next) => {
+  try{
+      const studentId = req.params['idStudent'];
+      const teacherId = req.params['idTeacher'];
+      const assignmentId = req.params['idAssignment'];
+
+      const assignmentRef =  db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+      const allAssignments = assignmentRef.get()
+      .then(doc => {
+        res.status(200).json(doc.data());
+      });
+
+  } catch (err){
+    next (err);
+  }
+});
+
+// PUT should add feedback and grade to a student's assignment
+app.put('/student/:idStudent/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
+  try{
+    const teacherId = req.params['idTeacher'];
+    const assignmentId = req.params['idAssignment'];
+    const studentId = req.params['idStudent'];
+    const { feedback, grade } = req.body;
+    if (!feedback || !grade) {
+      res.status(411).send({REQUIRED: 'YOU MUST HAVE FEEDBACK AND GRADE FILLED'});
+    } else {
+      const addGradeRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
+        'feedback': feedback,
+        'grade': grade
+      })
+      res.status(201).send({MESSAGE: 'YOU HAVE SUCCESSFULLY GRADED THIS ASSIGNMENT'});
+    }
+  } catch(err){
+    next(err);
+  };
+});
+
+
 //STUDENT LIST: GET %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 //GET should retrieve a teacher's list of students
@@ -95,7 +138,7 @@ app.get('/teacher/:idTeacher/students/:idStudent', (req, res, next) => {
  }
 });
 
-// Get the list of completed assignments from a student, TO BE GRADED
+// Get the list of completed assignments from a student
 // FUNCTIONAL AS OF 12/2/18 3 PM
 app.get('/student/:idStudent/teachers/:idTeacher/assignments', (req, res, next) => {
   try{
@@ -118,8 +161,7 @@ app.get('/student/:idStudent/teachers/:idTeacher/assignments', (req, res, next) 
   }
 });
 
-// Get a list of students currently assigned to an assignment, ASSIGNED (COMPLETED AND NOT COMPLETED)
-// NEEDS TESTING
+// Get a list of students currently assigned to an assignment, ASSIGNED 
 app.get('/teacher/:idTeacher/assignment/:idAssignment/students', (req, res, next) => {
   try{
       const teacherId = req.params['idTeacher'];
@@ -138,25 +180,6 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment/students', (req, res, next
   } catch (err){
     next (err);
 
-  }
-});
-
-// Get a completed assignment from a student, ASSIGNED
-// FUNCTIONAL AS OF 12/2/18 3 PM
-app.get('/student/:idStudent/teachers/:idTeacher/assignments/:idAssignment', (req, res, next) => {
-  try{
-      const studentId = req.params['idStudent'];
-      const teacherId = req.params['idTeacher'];
-      const assignmentId = req.params['idAssignment'];
-
-      const assignmentRef =  db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
-      const allAssignments = assignmentRef.get()
-      .then(doc => {
-        res.status(200).json(doc.data());
-      });
-
-  } catch (err){
-    next (err);
   }
 });
 

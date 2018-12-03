@@ -98,13 +98,10 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
 
 app.post('/upload', function(req, res) {
   if (Object.keys(req.files).length == 0) {
-    return res.status(400).send('No files were uploaded.');
+    return res.status(400).send({MESSAGE: 'NO FILE WAS UPLOADED'});
   }
-
   let uuid = UUID();
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   let uploadFile = req.files.uploadFile;
-  console.log('3***********************',uploadFile)
   let name = uploadFile.name;
   uploadFile.mv('/tmp/' + name)
   bucket.upload('/tmp/' + name , {
@@ -114,13 +111,12 @@ app.post('/upload', function(req, res) {
         firebaseStorageDownloadTokens : uuid
       }
     }
-  }).then((data) =>{
+  }).then((data) => {
 let file = data[0]
 Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
 .then(url => {
   console.log(url)
-  res.status(200).send(url)
-
+  res.status(201).send(url)
 })
   }
     
@@ -170,6 +166,37 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
 
 //SETTINGS : POST - GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+//POST should create and add a new teacher settings info.: email and name
+app.post('/teachers/add', (req, res, next) => {
+  try {
+    const email = req.body.email;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const data = { email, firstName, lastName };
+
+    if(!email) {
+      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
+    } else if(!firstName || !lastName) {
+      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
+    } else {
+      const teachersRef = db.collection('teachers').add({
+        'email': email,
+        'name': {
+          'firstName': firstName,
+          'lastName': lastName
+        }
+      });
+      res.status(200).send({ message: 'Teacher successfully added!' })
+      // res.json({
+      //   id: teachersRef.id,
+      //   data
+      // });
+    }
+  }
+   catch(err) {
+    next(err);
+  }
+});
 
 
 //GET should retrieve teachers settings info.: email and name(first, last, and prefix)
@@ -216,83 +243,11 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
   }
 });
 
-// QR Code 
-let qrOptions = {
-  errorCorrectionLevel: 'H',
-  type: 'image/jpeg',
-  rendererOpts: {
-    quality: 0.3
-  }
-}
-
-app.post('/teacher/add', (req, res, next) => {
-  try {
-    const email = req.body.email;
-    const firstName =  req.body.firstName;
-    const lastName =  req.body.lastName;
-    let uuid = UUID();
-     if(!email) {
-      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
-    } else if(!firstName || !lastName) {
-      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
-    } else {
-      
-      const teachersRef = db.collection('teachers').add({
-        'email': email,
-        'name': {
-          'firstName': firstName,
-          'lastName': lastName
-        },
-        'qrcode': 'Not Assigned'
-      }).then(ref =>{
-
-      const qrPath = '/tmp/signup_' + lastName + '.jpg'
-      const qr = QRCode.toFile(qrPath,ref.id, qrOptions);
-      
-      bucket.upload(qrPath , {
-        destination : 'qrCodes/' + email,
-        metadata : {
-          metadata:{
-            firebaseStorageDownloadTokens : uuid
-          }
-        }
-      }).then((data) =>{
-    let file = data[0]
-    Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
-    .then(url => {
-      const teachersRef = db.collection('teachers').doc(ref.id).update({
-        'qrcode': url
-      })
-      res.status(200).send({ message: 'Teacher successfully added! : ' + url })
-
-        
-      })
-  
-    })
-      }
-    
-        
-      )
-      
-    }
-  }
-   catch(err) {
-    next(err);
-  }
-
-
-  
-
-  
-});
-
-
-
 // STRIPE IMPLEMENTATION
-app.post('/charge', async (req, res) => {
+app.post('/charge', (req, res) => {
   console.log(req.body.token.id); 
   try {
-    let { status } = await stripe.charges.create({
+    let { status } = stripe.charges.create({
       amount: 50,
       currency: 'usd',
       description: 'teacher subscription',
@@ -306,7 +261,6 @@ app.post('/charge', async (req, res) => {
     res.status(500).send(err);
   }
 });
-
 
 
 // CODE THAT WE ARE NOT READY TO DELETE========================================================================================================

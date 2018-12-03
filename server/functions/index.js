@@ -59,7 +59,7 @@ app.get('/test', (req, res) => {
 app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
   try {
     const teacherId = req.params['idTeacher'];
-    const { assignmentName, instructions, instrument, level, piece, sheetMusic } = req.body;
+    const { assignmentName, instructions, instrument, level, piece } = req.body;
     // const assignments = {};
 
     if (!assignmentName || !instructions || !instrument || !level || !piece) {
@@ -87,7 +87,39 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
         'instrument': instrument,
         'level': level,
         'piece': piece
-      });
+      }).then(snap => {
+        const assignmentId = snap._path.segments[3];
+        console.log('0**********************************************', assignmentId)
+        }).then(doc => {
+          if (Object.keys(req.files).length == 0) {
+            return res.status(400).send({MESSAGE: 'NO FILE WAS UPLOADED'});
+          }
+
+          let uuid = UUID();
+          let uploadFile = req.files.uploadFile;
+          console.log('**********************************', uploadFile)
+
+          let name = uploadFile.name;
+          uploadFile.mv('/tmp/' + name)
+          bucket.upload('/tmp/' + name , {
+            destination : 'sheetMusic/' + name,
+            metadata : {
+              metadata:{
+                firebaseStorageDownloadTokens : uuid
+              }
+            }
+        }).then(data => {
+            let file = data[0]
+            console.log('1******************************************************', file)
+            Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
+            .then(url => {
+              const teachersRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).add({
+              'sheetMusic' : url
+            });
+            res.status(201).send({MESSAGE: 'YOU FILE HAS BEEN SUCCESSFULLY UPLOADED'})
+            });
+          });
+      })
       res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW ASSIGNMENT'});
     };
   }
@@ -96,33 +128,32 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
   }
 });
 
-app.post('/upload', function(req, res) {
-  if (Object.keys(req.files).length == 0) {
-    return res.status(400).send({MESSAGE: 'NO FILE WAS UPLOADED'});
-  }
-  let uuid = UUID();
-  let uploadFile = req.files.uploadFile;
-  let name = uploadFile.name;
-  uploadFile.mv('/tmp/' + name)
-  bucket.upload('/tmp/' + name , {
-    destination : 'sheetMusic/' + name,
-    metadata : {
-      metadata:{
-        firebaseStorageDownloadTokens : uuid
-      }
-    }
-  }).then((data) => {
-let file = data[0]
-Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
-.then(url => {
-  console.log(url)
-  res.status(201).send(url)
-})
-  }
-    
-  )
-  
-});
+// //This is a functioning endpoint where it's able to upload a pdf into Firebase storage and return the url
+// //I tried to combine it with posting it with an assignment (above) but had no luck, will ask for help tomorrow
+// app.post('/uploadPDF', function(req, res) {
+//   if (Object.keys(req.files).length == 0) {
+//     return res.status(400).send({MESSAGE: 'NO FILE WAS UPLOADED'});
+//   }
+//   let uuid = UUID();
+//   let uploadFile = req.files.uploadFile;
+//   console.log('HERE**********************************************', uploadFile)
+//   let name = uploadFile.name;
+//   uploadFile.mv('/tmp/' + name)
+//   bucket.upload('/tmp/' + name , {
+//     destination : 'sheetMusic/' + name,
+//     metadata : {
+//       metadata:{
+//         firebaseStorageDownloadTokens : uuid
+//       }
+//     }
+//   }).then((data) => {
+//       let file = data[0]
+//       Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
+//         .then(url => {
+//            res.status(201).send(url)
+//         })
+//     })
+// });
 
 //GET should retrieve teacher's all ungraded assignments
 //details: assignmentName, instructions, instrument, level, piece, sheetMusic
@@ -243,7 +274,7 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
   }
 });
 
-// STRIPE IMPLEMENTATION
+// STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 app.post('/charge', (req, res) => {
   console.log(req.body.token.id); 
   try {

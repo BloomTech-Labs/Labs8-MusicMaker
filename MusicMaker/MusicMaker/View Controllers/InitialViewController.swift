@@ -13,59 +13,106 @@ import FirebaseFirestore
 
 class InitialViewController: UIViewController, GIDSignInUIDelegate {
     
-    
+    // MARK: - Properties
     let database = Firestore.firestore()
-    
+    let blurredBackgroundView = UIVisualEffectView()
+    var isSigningUpWithGoogle = false
   
-    
-
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Used for the blurred view
+        self.definesPresentationContext = true
+        self.providesPresentationContextTransitionStyle = true
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
-    }
     
     // MARK: - IBOutlets
     @IBOutlet weak var loginButton: UIButton! {
         didSet {
-            loginButton.layer.cornerRadius = 5.0
-            loginButton.layer.borderColor = UIColor.white.cgColor
-            loginButton.layer.borderWidth = 1.0
-//            loginButton.layer.backgroundColor = UIColor.white.cgColor
         }
     }
+    
     
     @IBOutlet weak var signupButton: UIButton! {
         didSet {
-            signupButton.layer.cornerRadius = 5.0
-            signupButton.layer.borderColor = UIColor.white.cgColor
-            signupButton.layer.borderWidth = 1.0
-//            signupButton.layer.backgroundColor = UIColor.white.cgColor
         }
     }
     
-    @IBOutlet weak var googleSigninButton: UIButton! {
-        didSet {
-            googleSigninButton.layer.cornerRadius = 5.0
-            googleSigninButton.layer.borderColor = UIColor.white.cgColor
-            googleSigninButton.layer.borderWidth = 1.0
-//            signInWithGoogle.layer.backgroundColor = UIColor.white.cgColor
-        }
+    // MARK: - Overrides
+    override func viewDidLayoutSubviews() {
+        signupButton.layer.cornerRadius = signupButton.frame.height / 2
+        loginButton.layer.cornerRadius = loginButton.frame.height / 2
+        blurredBackgroundView.frame = view.frame
     }
+
     
     // MARK: - IBActions
-    @IBAction func signInWithGoogle(_ sender: Any) {
-        GIDSignIn.sharedInstance().delegate=self
-        GIDSignIn.sharedInstance().uiDelegate=self
-        GIDSignIn.sharedInstance()?.signIn()
+    @IBAction func showLoginOptions(_ sender: Any) {
+        animateAdditionOfABlurredBackground()
     }
+    @IBAction func showSignupOptions(_ sender: Any) {
+        
+        animateAdditionOfABlurredBackground()
+    }
+    
+    
+    
+    
+    // MARK: - Private Methods
+    private func animateAdditionOfABlurredBackground() {
+        
+        blurredBackgroundView.frame = view.frame
+        self.view.addSubview(self.blurredBackgroundView)
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurredBackgroundView.effect = UIBlurEffect(style: .dark)
+        })
+    }
+    
+    private func animateRemovalOfBlurredBackground(with duration: TimeInterval) {
+        UIView.animate(withDuration: duration, animations: {
+            self.blurredBackgroundView.effect = nil
+        }) { (_) in
+            self.blurredBackgroundView.removeFromSuperview()
+        }
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier {
+        case "SignUpWithGoogle":
+            if let signupVc = segue.destination as? SignUpViewController {
+                signupVc.isSigningUpWithGoogleAuth = true
+            }
+        case "ShowLoginOptions":
+            if let authenticationOptionsVC = segue.destination as? AuthenticationOptionsViewController {
+                authenticationOptionsVC.delegate = self
+                authenticationOptionsVC.modalPresentationStyle = .overFullScreen
+                authenticationOptionsVC.newUser = false
+            }
+        case "ShowSignupOptions":
+            if let authenticationOptionsVC = segue.destination as? AuthenticationOptionsViewController {
+                authenticationOptionsVC.delegate = self
+                authenticationOptionsVC.modalPresentationStyle = .overFullScreen
+                authenticationOptionsVC.newUser = true
+            }
+        case "ShowSignupScreen":
+            if let destinationVC = segue.destination as? AddTeacherOptionsViewController {
+                destinationVC.isSigningUpWithGoogle = isSigningUpWithGoogle
+            }
+        default:
+            ()
+        }
+    }
+    
+    
 }
 
 // MARK: - GIDSignInDelegat
@@ -97,11 +144,30 @@ extension InitialViewController: GIDSignInDelegate {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SignUpWithGoogle" {
-            let signupVC = segue.destination as? SignUpViewController
-            signupVC?.isSigningUpWithGoogleAuth = true
-        }
+  
+}
+
+// MARK: - AuthenticationOptionsViewControllerDelegate
+extension InitialViewController: AuthenticationOptionsViewControllerDelegate {
+    
+    func authenticateWithEmail(for newUser: Bool) {
+        animateRemovalOfBlurredBackground(with: 0.3)
+        isSigningUpWithGoogle = newUser
+        self.performSegue(withIdentifier: newUser ? "ShowSignupScreen" : "ShowLoginScreen", sender: nil)
     }
+    
+    
+    
+    func dismissOptions() {
+        animateRemovalOfBlurredBackground(with: 0.5)
+    }
+    
+    func authenticateWithGoogle() {
+        animateRemovalOfBlurredBackground(with: 0.3)
+        GIDSignIn.sharedInstance().delegate=self
+        GIDSignIn.sharedInstance().uiDelegate=self
+        GIDSignIn.sharedInstance()?.signIn()
+    }
+    
     
 }

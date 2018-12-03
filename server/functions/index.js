@@ -52,15 +52,30 @@ app.get('/', (req, res) => {
 
 // ASSIGN STUDENT TO AN ASSIGNMENT & VISE VERSA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-app.post('/teachers/:idTeacher/assignment/:idAssignment', (req, res, next) => {
+app.post('/teacher/:idTeacher/assignment/:idAssignment/assignToStudent', (req, res, next) => {
   try {
     const teacherId = req.params['idTeacher'];
     const assignmentId = req.params['idAssignment'];
+    const { email, firstName, lastName, dueDate } = req.body;
 
-    const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
-      const getDoc = assignmentRef.get()
-      .then(doc => {
-        res.status(200).json(doc.data());
+    // const assignmentRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+    const studentRef = db.collection('students').where('email', '==', email);
+    const getDoc = studentRef.get()
+      .then(snap =>{
+        snap.forEach(doc => {
+          const studentId = doc.id
+
+          const assignmentRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students').doc(studentId).set({
+            name: {
+              'firstName': firstName,
+              'lastName': lastName
+            },
+            'dueDate': dueDate
+          })
+          console.log('DOC************************************************', studentId)
+        })
+        
+
       });
     
 

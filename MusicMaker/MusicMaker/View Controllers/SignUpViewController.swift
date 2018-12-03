@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         
         if isSigningUpWithGoogleAuth {
             emailTextField.isHidden = true
@@ -330,6 +331,12 @@ class SignUpViewController: UIViewController {
     
     
     // MARK: - Private Methods
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
     private func signUpWithGoogle() {
         guard let firstName = firstNameTextField.text,
             let lastName = lastNameTextField.text,
@@ -627,7 +634,6 @@ extension SignUpViewController: AVCaptureMetadataOutputObjectsDelegate {
         
         
         if metadataObjects.count == 0 {
-            print("No QR code is detected")
             return
         }
         

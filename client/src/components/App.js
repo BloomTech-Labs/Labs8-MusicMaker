@@ -13,6 +13,7 @@ import DashboardAssignmentsView from '../views/dashboardAssignmentsView';
 import CreateAssignmentView from '../views/createAssignmentView';
 import DashboardBillingView from "../views/dashboardBillingView";
 import DashboardSettingView from "../views/dashboardSettingView";
+import GradeAssignmentView from "../views/gradeAssignmentView";
 // import DummyPdfView from "../views/dummyPdfView";
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
         <Route exact path={routes.ASSIGNMENTS} component={DashboardAssignmentsView} />
         <Route exact path={routes.BILLING} component={DashboardBillingView} />
         <Route exact path={routes.SETTINGS} component={DashboardSettingView} />
+        <Route exact path={routes.GRADING} component={GradeAssignmentView} />
       </div>
     );
   }

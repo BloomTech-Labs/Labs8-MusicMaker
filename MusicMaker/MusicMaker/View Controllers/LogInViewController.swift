@@ -17,6 +17,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         addDismissKeyboardGestureRecognizer()
         GIDSignIn.sharedInstance().uiDelegate = self
 //        GIDSignIn.sharedInstance().signIn()
@@ -61,6 +62,11 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     // MARK: - Private
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
     
     //Adds a gesture recognizer that calls dismissKeyboard(_:)
     private func addDismissKeyboardGestureRecognizer() {

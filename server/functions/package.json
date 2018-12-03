@@ -19,6 +19,8 @@
     "firebase-functions": "^2.1.0",
     "stripe": "^6.17.0",
     "uuid-v4": "^0.1.0"
+    "stripe": "^6.17.0"
+
   },
   "private": true,
   "devDependencies": {

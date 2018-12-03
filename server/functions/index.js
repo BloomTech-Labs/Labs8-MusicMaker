@@ -4,6 +4,7 @@ const firebase = require('firebase-admin');
 const express = require('express');
 const cors = require('cors');
 const stripe = require('stripe')('sk_test_YwuqJTfx2ZxOo4hGqGQSnoP3');
+const QRCode = require('qrcode');
 
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",

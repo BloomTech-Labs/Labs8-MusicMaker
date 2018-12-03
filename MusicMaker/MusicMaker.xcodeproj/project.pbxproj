@@ -40,6 +40,7 @@
 		BF69F2C721A4F8A500EAB8CE /* MusicMakerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69F2C621A4F8A500EAB8CE /* MusicMakerUITests.swift */; };
 		BF98B13221B35007007B7C45 /* UISegmentedControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13121B35007007B7C45 /* UISegmentedControl+Extensions.swift */; };
 		BF98B13421B4A318007B7C45 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13321B4A318007B7C45 /* QRScannerViewController.swift */; };
+		BF98B13621B4E3A1007B7C45 /* scan_qr_code_success.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B13521B4E3A1007B7C45 /* scan_qr_code_success.json */; };
 		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
 		BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CD219355460038F974 /* SignUpViewController.swift */; };
@@ -123,6 +124,7 @@
 		BF69F2C821A4F8A500EAB8CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF98B13121B35007007B7C45 /* UISegmentedControl+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Extensions.swift"; sourceTree = "<group>"; };
 		BF98B13321B4A318007B7C45 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		BF98B13521B4E3A1007B7C45 /* scan_qr_code_success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scan_qr_code_success.json; sourceTree = "<group>"; };
 		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		BFD381CD219355460038F974 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 		BFD3E55D2192393A00D84FF2 /* MusicMaker */ = {
 			isa = PBXGroup;
 			children = (
+				BF98B13521B4E3A1007B7C45 /* scan_qr_code_success.json */,
 				BF5D5215219CCAA100DFF213 /* Protocols */,
 				BFD381CA219353F40038F974 /* Extensions */,
 				BFD381C8219353E60038F974 /* Models */,
@@ -487,6 +490,7 @@
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
 				39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */,
 				BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */,
+				BF98B13621B4E3A1007B7C45 /* scan_qr_code_success.json in Resources */,
 				BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */,
 				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,

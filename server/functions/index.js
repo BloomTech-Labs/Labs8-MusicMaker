@@ -198,7 +198,7 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
 //SETTINGS : POST - GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 //POST should create and add a new teacher settings info.: email and name
-app.post('/teachers/add', (req, res, next) => {
+app.post('/addNewTeacher', (req, res, next) => {
   try {
     const email = req.body.email;
     const firstName = req.body.firstName;

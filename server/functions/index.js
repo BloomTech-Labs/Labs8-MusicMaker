@@ -49,15 +49,44 @@ app.use(fileUpload({
 app.get('/test', (req, res) => {
     res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com/'});
 });
-// GRADED ASSIGNMENT: POST %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// GRADED ASSIGNMENT: PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-//Post should add feedback and grade to a student's assignment
-app.post('', (req, res, next) => {
+// PUT should add feedback and grade to a student's assignment
+app.put('/student/:idStudent/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
   try{
+    const teacherId = req.params['idTeacher'];
+    const assignmentId = req.params['idAssignment'];
+    const studentId = req.params['idStudent'];
+    const { feedback, grade } = req.body;
+
+    if (!feedback || !grade) {
+      res.status(411).send({REQUIRED: 'YOU MUST HAVE FEEDBACK AND GRADE FILLED'});
+    } else {
+      const addGradeRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
+        'feedback': feedback,
+        'grade': grade
+      })
+      res.status(201).send({MESSAGE: 'YOU HAVE SUCCESSFULLY GRADED THIS ASSIGNMENT'});
+    }
 
   } catch(err){
     next(err);
   };
+});
+
+app.get('/student/:idStudent/teachers/:idTeacher/assignments/:idAssignment', (req, res, next) => {
+  try{
+      const studentId = req.params['idStudent'];
+      const teacherId = req.params['idTeacher'];
+      const assignmentId = req.params['idAssignment'];
+       const assignmentRef =  db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+      const allAssignments = assignmentRef.get()
+      .then(doc => {
+        res.status(200).json(doc.data());
+      });
+   } catch (err){
+    next (err);
+  }
 });
 
 
@@ -69,7 +98,7 @@ app.post('', (req, res, next) => {
 app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
   try {
     const teacherId = req.params['idTeacher'];
-    const { assignmentName, instructions, instrument, level, piece } = req.body;
+    const { assignmentName, instructions, instrument, level, piece, sheetMusic } = req.body;
     // const assignments = {};
 
     if (!assignmentName || !instructions || !instrument || !level || !piece) {
@@ -96,7 +125,8 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
         'instructions': instructions,
         'instrument': instrument,
         'level': level,
-        'piece': piece
+        'piece': piece,
+        'sheetMusic': ''
       }).then(snap => {
         const assignmentId = snap._path.segments[3];
         console.log('0**********************************************', assignmentId)
@@ -123,14 +153,14 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
             console.log('1******************************************************', file)
             Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
             .then(url => {
-              const teachersRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).add({
+              const teachersRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
               'sheetMusic' : url
             });
             res.status(201).send({MESSAGE: 'YOU FILE HAS BEEN SUCCESSFULLY UPLOADED'})
             });
           });
       })
-      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW ASSIGNMENT'});
+      res.status(201).send({MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW ASSIGNMENT'});
     };
   }
    catch(err) {
@@ -252,7 +282,7 @@ app.post('/addNewTeacher', (req, res, next) => {
                 const teachersRef = db.collection('teachers').doc(ref.id).update({
                   'qrcode': url
                 })
-                res.status(200).send({ message: 'Teacher was successfully added!'});
+                res.status(201).send({ message: 'Teacher was successfully added!'});
               })
           })
       })
@@ -299,7 +329,7 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
           'prefix': prefix
         }
       });
-      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  
+      res.status(202).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  
     }
  
   } catch (err){

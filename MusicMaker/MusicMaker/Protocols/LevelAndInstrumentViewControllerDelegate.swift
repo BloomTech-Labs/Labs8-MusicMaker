@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol LevelAndInstrumentViewDelegate: class {
+protocol LevelAndInstrumentViewControllerDelegate: class {
     func signUpButtonTapped(with rating: String, instrument: String)
 }

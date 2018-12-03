@@ -19,7 +19,7 @@ class LevelAndInstrumentViewController: UIViewController {
     }
     
     // MARK: - Delegate
-    weak var delegate: LevelAndInstrumentViewDelegate?
+    weak var delegate: LevelAndInstrumentViewControllerDelegate?
     
    // MARK: - IBOutlets
     @IBOutlet weak var starRating: StarRating!

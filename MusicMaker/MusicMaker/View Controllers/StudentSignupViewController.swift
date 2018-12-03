@@ -16,34 +16,20 @@ class StudentSignupViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstNameCheckmark.animation = "checked_done_"
-        firstNameCheckmark.contentMode = .scaleAspectFit
-        lastNameCheckmark.animation = "checked_done_"
-        lastNameCheckmark.contentMode = .scaleAspectFit
+        
         addDismissKeyboardGestureRecognizer()
         emailAndPasswordViewController = self.children[0] as? EmailAndPasswordViewController
         emailAndPasswordViewController?.delegate = self
         levelAndInstrumentViewController = self.children[1] as? LevelAndInstrumentViewController
         levelAndInstrumentViewController?.delegate = self
-        emailAndPasswordView.isUserInteractionEnabled = true
+        
     }
     
     // MARK: - IBOutlets
     @IBOutlet weak var levelAndInstrumentView: UIView!
-    @IBOutlet weak var firstNameCheckmark: LOTAnimationView!
-    @IBOutlet weak var lastNameCheckmark: LOTAnimationView!
     @IBOutlet weak var emailAndPasswordView: UIView!
     @IBOutlet weak var firstAndLastNameView: UIView!
-    @IBOutlet weak var firstNameTextField: HoshiTextField! {
-        didSet {
-            firstNameTextField.delegate = self
-        }
-    }
-    @IBOutlet weak var lastNameTextField: HoshiTextField! {
-        didSet {
-            lastNameTextField.delegate = self
-        }
-    }
+   
     @IBOutlet weak var pageControl: UIPageControl!
     
     // MARK: - Properties
@@ -77,38 +63,8 @@ class StudentSignupViewController: UIViewController {
     }
 }
 
-// MARK: - UITextFieldDelegate
-extension StudentSignupViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField.tag {
-        case 0:
-            lastNameTextField.becomeFirstResponder()
-        case 1:
-            lastNameTextField.resignFirstResponder()
-        default:
-            ()
-        }
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        switch textField.tag {
-        case 0:
-            if firstNameTextField.text?.count ?? 0 > 0 {
-                firstNameCheckmark.isHidden = false
-                firstNameCheckmark.play()
-            }
-        case 1:
-            if lastNameTextField.text?.count ?? 0 > 0 {
-                lastNameCheckmark.isHidden = false
-                lastNameCheckmark.play()
-            }
-        default:
-            ()
-        }
-    }
-}
 
+// MARK: - EmailAndPasswordViewControllerDelegate
 extension StudentSignupViewController: EmailAndPasswordViewControllerDelegate {
     
     
@@ -125,7 +81,8 @@ extension StudentSignupViewController: EmailAndPasswordViewControllerDelegate {
     
 }
 
-extension StudentSignupViewController: LevelAndInstrumentViewDelegate {
+// MARK: - LevelAndInstrumentViewControllerDelegate
+extension StudentSignupViewController: LevelAndInstrumentViewControllerDelegate {
     func signUpButtonTapped(with rating: String, instrument: String) {
         guard let email = email, let password = password, let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let teacherUniqueId = teacherUniqueId else {return}
         

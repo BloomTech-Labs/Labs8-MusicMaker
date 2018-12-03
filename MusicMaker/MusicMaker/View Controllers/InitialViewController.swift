@@ -87,10 +87,7 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
-        case "SignUpWithGoogle":
-            if let signupVc = segue.destination as? SignUpViewController {
-                signupVc.isSigningUpWithGoogleAuth = true
-            }
+        
         case "ShowLoginOptions":
             if let authenticationOptionsVC = segue.destination as? AuthenticationOptionsViewController {
                 authenticationOptionsVC.delegate = self

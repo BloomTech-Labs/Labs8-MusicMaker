@@ -43,7 +43,7 @@
 		BF98B13621B4E3A1007B7C45 /* qr_code.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B13521B4E3A1007B7C45 /* qr_code.json */; };
 		BF98B13821B4E447007B7C45 /* AddQRPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13721B4E447007B7C45 /* AddQRPhotoViewController.swift */; };
 		BF98B13A21B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13921B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift */; };
-		BF98B13C21B50D9B007B7C45 /* checked_done_.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B13B21B50D9B007B7C45 /* checked_done_.json */; };
+		BF98B13C21B50D9B007B7C45 /* checkmark.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B13B21B50D9B007B7C45 /* checkmark.json */; };
 		BF98B13E21B50EAB007B7C45 /* StudentSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13D21B50EAB007B7C45 /* StudentSignupViewController.swift */; };
 		BF98B14021B5B66D007B7C45 /* EmailAndPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13F21B5B66D007B7C45 /* EmailAndPasswordViewController.swift */; };
 		BF98B14221B5B784007B7C45 /* eye01.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B14121B5B784007B7C45 /* eye01.json */; };
@@ -137,7 +137,7 @@
 		BF98B13521B4E3A1007B7C45 /* qr_code.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = qr_code.json; sourceTree = "<group>"; };
 		BF98B13721B4E447007B7C45 /* AddQRPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQRPhotoViewController.swift; sourceTree = "<group>"; };
 		BF98B13921B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+InformationalAlert.swift"; sourceTree = "<group>"; };
-		BF98B13B21B50D9B007B7C45 /* checked_done_.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checked_done_.json; sourceTree = "<group>"; };
+		BF98B13B21B50D9B007B7C45 /* checkmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark.json; sourceTree = "<group>"; };
 		BF98B13D21B50EAB007B7C45 /* StudentSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignupViewController.swift; sourceTree = "<group>"; };
 		BF98B13F21B5B66D007B7C45 /* EmailAndPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAndPasswordViewController.swift; sourceTree = "<group>"; };
 		BF98B14121B5B784007B7C45 /* eye01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = eye01.json; sourceTree = "<group>"; };
@@ -371,7 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				BF98B13521B4E3A1007B7C45 /* qr_code.json */,
-				BF98B13B21B50D9B007B7C45 /* checked_done_.json */,
+				BF98B13B21B50D9B007B7C45 /* checkmark.json */,
 				BF98B14121B5B784007B7C45 /* eye01.json */,
 				BF5D5215219CCAA100DFF213 /* Protocols */,
 				BFD381CA219353F40038F974 /* Extensions */,
@@ -523,7 +523,7 @@
 				BF98B14221B5B784007B7C45 /* eye01.json in Resources */,
 				BF98B13621B4E3A1007B7C45 /* qr_code.json in Resources */,
 				BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */,
-				BF98B13C21B50D9B007B7C45 /* checked_done_.json in Resources */,
+				BF98B13C21B50D9B007B7C45 /* checkmark.json in Resources */,
 				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				39C47DC621AF228900C1E115 /* SubmittedAssignmentViewController.storyboard in Resources */,

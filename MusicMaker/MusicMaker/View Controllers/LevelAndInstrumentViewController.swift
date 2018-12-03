@@ -23,7 +23,7 @@ class LevelAndInstrumentViewController: UIViewController {
     
    // MARK: - IBOutlets
     @IBOutlet weak var starRating: StarRating!
-    
+    @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var instrumentAnimation: LOTAnimationView! {
         didSet {
             instrumentAnimation.animation = "checked_done_"
@@ -39,16 +39,22 @@ class LevelAndInstrumentViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func signUp(_ sender: Any) {
-        switch starRating.value {
-        case 0:
-            delegate?.signUpButtonTapped(with: "Beginner", instrument: instrumentTextField.text!)
+    @IBAction func starRatingChanged(_ sender: StarRating) {
+        switch sender.value {
         case 1:
-            delegate?.signUpButtonTapped(with: "Intermediate", instrument: instrumentTextField.text!)
+            levelLabel.text = "Beginner"
         case 2:
-            delegate?.signUpButtonTapped(with: "Expert", instrument: instrumentTextField.text!)
+            levelLabel.text = "Intermediate"
+        case 3:
+            levelLabel.text = "Expert"
         default:
             break
+        }
+    }
+    
+    @IBAction func signUp(_ sender: Any) {
+        if let instrument = instrumentTextField.text {
+            delegate?.signUpButtonTapped(with: levelLabel.text!, instrument: instrument)
         }
     }
 }
@@ -57,7 +63,9 @@ class LevelAndInstrumentViewController: UIViewController {
 extension LevelAndInstrumentViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        instrumentAnimation.play()
+        if instrumentTextField.text?.count ?? 0 > 0 {
+            instrumentAnimation.play()
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

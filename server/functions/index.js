@@ -1,10 +1,9 @@
 //Hosting URL: https://musicmaker-4b2e8.firebaseapp.com
-const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 const firebase = require('firebase-admin');
 const express = require('express');
 const cors = require('cors');
-const QRCode = require('qrcode');
+const stripe = require('stripe')('sk_test_YwuqJTfx2ZxOo4hGqGQSnoP3');
 
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -32,6 +31,32 @@ app.use(cors());
 app.get('/test', (req, res) => {
     res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com/'});
 });
+
+//STUDENT LIST: GET %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+//GET should retrieve a teacher's list of students
+//details: name, instrument, level
+// try nested where queries to search for the students that match the teacher's id ?????????????????????
+app.get('/teacher/:idTeacher/students', (req, res, next) => {
+  try{
+    const teacherId = req.params['idTeacher'];
+    const students = {};
+
+    const studentstRef =  db.collection('teachers').doc(teacherId).collection('students');
+    const allStudents = studentstRef.get()
+    .then(snap => {
+      snap.forEach(doc => {
+        students[doc.id] = doc.data();
+      })
+      res.status(200).json(students);
+    });
+
+  }
+  catch(err) {
+   next(err);
+ }
+});
+
 
 // UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -121,11 +146,12 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
 //SETTINGS : POST - GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 //POST should create and add a new teacher settings info.: email and name
-
-app.post('/teachers/add', (req, res) => {
-    const email = req.body.email;
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
+app.post('/teachers/add', (req, res, next) => {
+  try {
+    // const email = req.body.email;
+    // const firstName = req.body.firstName;
+    // const lastName = req.body.lastName;
+    const {email, firstName, lastName, prefix} = req.body;
     const data = { email, firstName, lastName };
 
     if(!email) {
@@ -133,18 +159,24 @@ app.post('/teachers/add', (req, res) => {
     } else if(!firstName || !lastName) {
       res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
     } else {
-          const teachersRef = db.collection('teachers').add({
-            'email': email,
-            'name': {
-              'firstName': firstName,
-              'lastName': lastName
-            },
-            'qrcode': QRCode.toString(Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16), function(err, string) {
-              console.log(string);
-            }),
-          })
+      const teachersRef = db.collection('teachers').add({
+        'email': email,
+        'name': {
+          'firstName': firstName,
+          'lastName': lastName,
+          'prefix': prefix
+        }
+      });
       res.status(200).send({ message: 'Teacher successfully added!' })
+      // res.json({
+      //   id: teachersRef.id,
+      //   data
+      // });
     }
+  }
+   catch(err) {
+    next(err);
+  }
 });
 
 //GET should retrieve teachers settings info.: email and name(first, last, and prefix)
@@ -190,6 +222,27 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
     next (err);
   }
 });
+
+// STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+app.post('/charge', async (req, res) => {
+  console.log(req.body.token.id);
+  try {
+    let { status } = await stripe.charges.create({
+      amount: 50,
+      currency: 'usd',
+      description: 'teacher subscription',
+      source: req.body.token.id
+    });
+
+    // right here, mark the user as paid in the db
+
+    res.status(201).json({ status });
+  } catch(err) {
+    res.status(500).send(err);
+  }
+});
+
+
 
 // CODE THAT WE ARE NOT READY TO DELETE========================================================================================================
 // GET a QR code
@@ -528,3 +581,4 @@ app.listen(8000, function () {
 });
 
 exports.app = functions.https.onRequest(app);
+  

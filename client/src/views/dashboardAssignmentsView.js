@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { NavLink } from 'react-router-dom';
 
 import Sidebar from "../components/SideBar";
 import "../css/index.css";
@@ -48,6 +49,9 @@ class DashboardAssignmentsView extends Component {
             <p className="bodyText">Sheet Music: <a href={this.state.sheetMusic}><img src={this.state.sheetMusic} alt="pdf image" height="42" width="42"/></a></p>
             <p className="bodyText">Instructions:{this.state.instructions}</p>
           </div>
+            <div className="block-container" id="assignments">
+              <NavLink to='/assignments/create' className="bodyText"> + </NavLink>
+            </div>
         </div>
       </div>
     );

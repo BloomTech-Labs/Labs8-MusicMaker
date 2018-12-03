@@ -380,9 +380,9 @@ app.post('/addNewTeacher', (req, res, next) => {
   }	    
 }	catch(err) {	
   next(err);	   
-}	
-});
-  
+}	 
+}):
+
 
 //GET should retrieve teachers settings info.: email and name(first, last, and prefix)
 // CURRENTLY FUNCTIONAL 12/2/18 3 AM EST

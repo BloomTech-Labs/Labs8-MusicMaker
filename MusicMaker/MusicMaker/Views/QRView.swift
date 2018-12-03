@@ -41,7 +41,7 @@ class QRView: UIView {
         videoPreviewLayer.session = captureSession!
         videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = 20
+//        self.layer.cornerRadius = 20
     }
     
 }

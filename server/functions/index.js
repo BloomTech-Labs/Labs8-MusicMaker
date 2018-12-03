@@ -197,13 +197,19 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
 
 //SETTINGS : POST - GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+let qrOptions = {
+  errorCorrectionLevel: 'H',
+  type: 'image/jpeg',
+  rendererOpts: {
+    quality: 0.3
+  }
+}
+
 //POST should create and add a new teacher settings info.: email and name
 app.post('/addNewTeacher', (req, res, next) => {
   try {
-    const email = req.body.email;
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const data = { email, firstName, lastName };
+    const { email, firstName, lastName, prefix} = req.body;
+    let uuid = UUID();
 
     if(!email) {
       res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
@@ -214,19 +220,36 @@ app.post('/addNewTeacher', (req, res, next) => {
         'email': email,
         'name': {
           'firstName': firstName,
-          'lastName': lastName
-        }
-      });
-      res.status(200).send({ message: 'Teacher successfully added!' })
-      // res.json({
-      //   id: teachersRef.id,
-      //   data
-      // });
+          'lastName': lastName,
+          'prefix': prefix
+        },
+        'qrcode': ''
+      }).then(ref =>{
+          const qrPath = '/tmp/signup_' + lastName + '.jpg'
+          const qr = QRCode.toFile(qrPath,ref.id, qrOptions);
+      
+          bucket.upload(qrPath , {
+            destination : 'qrCodes/' + email,
+            metadata : {
+              metadata:{
+                firebaseStorageDownloadTokens : uuid
+              }
+            }
+          }).then((data) =>{
+              let file = data[0]
+              Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
+              .then(url => {
+                const teachersRef = db.collection('teachers').doc(ref.id).update({
+                  'qrcode': url
+                })
+                res.status(200).send({ message: 'Teacher was successfully added!'});
+              })
+          })
+      })
     }
-  }
-   catch(err) {
+  }catch(err) {
     next(err);
-  }
+  };
 });
 
 

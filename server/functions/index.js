@@ -86,7 +86,8 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
         'instructions': instructions,
         'instrument': instrument,
         'level': level,
-        'piece': piece
+        'piece': piece,
+        'sheetMusic': ''
       }).then(snap => {
         const assignmentId = snap._path.segments[3];
         console.log('0**********************************************', assignmentId)
@@ -113,7 +114,7 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
             console.log('1******************************************************', file)
             Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
             .then(url => {
-              const teachersRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).add({
+              const teachersRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
               'sheetMusic' : url
             });
             res.status(201).send({MESSAGE: 'YOU FILE HAS BEEN SUCCESSFULLY UPLOADED'})

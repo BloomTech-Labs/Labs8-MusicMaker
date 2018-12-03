@@ -10,7 +10,6 @@ const QRCode = require('qrcode');
 
 const serviceAccount = "serviceAccountKey.json";
 
-
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
     authDomain: "musicmaker-4b2e8.firebaseapp.com",

@@ -51,8 +51,14 @@ app.get('/test', (req, res) => {
 });
 // GRADED ASSIGNMENT: PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-// PUT should add feedback and grade to a student's assignment
-app.put('/student/:idStudent/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
+
+//STUDENT LIST: GET %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+//GET should retrieve a teacher's list of students
+//details: name, instrument, level
+// try nested where queries to search for the students that match the teacher's id ?????????????????????
+// CURRENTLY FUNCTIONAL 12/2/18 3 PM EST
+app.get('/teacher/:idTeacher/students', (req, res, next) => {
   try{
     const teacherId = req.params['idTeacher'];
     const assignmentId = req.params['idAssignment'];
@@ -89,6 +95,89 @@ app.get('/student/:idStudent/teachers/:idTeacher/assignments/:idAssignment', (re
   }
 });
 
+// Get an individual student assigned to the teacher
+// FUNCTIONAL AS OF 12/2/18 3 PM
+app.get('/teacher/:idTeacher/students/:idStudent', (req, res, next) => {
+  try{
+    const teacherId = req.params['idTeacher'];
+    const studentId = req.params['idStudent'];
+
+    const studentsRef =  db.collection('teachers').doc(teacherId).collection('students').doc(studentId);
+    const allStudents = studentsRef.get()
+    .then(doc => {
+      res.status(200).json(doc.data());
+    });
+
+  }
+  catch(err) {
+   next(err);
+ }
+});
+
+// Get the list of completed assignments from a student, TO BE GRADED
+// FUNCTIONAL AS OF 12/2/18 3 PM
+app.get('/student/:idStudent/teachers/:idTeacher/assignments', (req, res, next) => {
+  try{
+      const studentId = req.params['idStudent'];
+      const teacherId = req.params['idTeacher'];
+      const assignmentId = req.params['idAssignment'];
+      const assignments = {};  
+
+      const assignmentRef =  db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments');
+      const allAssignments = assignmentRef.get()
+      .then(snap => {
+        snap.forEach(doc => {
+          assignments[doc.id] = doc.data();
+        })
+        res.status(200).json(assignments);
+      });
+
+  } catch (err){
+    next (err);
+  }
+});
+
+// Get a list of students currently assigned to an assignment, ASSIGNED (COMPLETED AND NOT COMPLETED)
+// NEEDS TESTING
+app.get('/teacher/:idTeacher/assignment/:idAssignment/students', (req, res, next) => {
+  try{
+      const teacherId = req.params['idTeacher'];
+      const assignmentId = req.params['idAssignment'];
+      const students = {};  
+
+      const assignedStudentsRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students');
+      const allStudents = assignedStudentsRef.get()
+      .then(snap => {
+        snap.forEach(doc => {
+          students[doc.id] = doc.data();
+        })
+        res.status(200).json(students);
+      });
+
+  } catch (err){
+    next (err);
+
+  }
+});
+
+// Get a completed assignment from a student, ASSIGNED
+// FUNCTIONAL AS OF 12/2/18 3 PM
+app.get('/student/:idStudent/teachers/:idTeacher/assignments/:idAssignment', (req, res, next) => {
+  try{
+      const studentId = req.params['idStudent'];
+      const teacherId = req.params['idTeacher'];
+      const assignmentId = req.params['idAssignment'];
+
+      const assignmentRef =  db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+      const allAssignments = assignmentRef.get()
+      .then(doc => {
+        res.status(200).json(doc.data());
+      });
+
+  } catch (err){
+    next (err);
+  }
+});
 
 // UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -197,6 +286,7 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
 
 //GET should retrieve teacher's all ungraded assignments
 //details: assignmentName, instructions, instrument, level, piece, sheetMusic
+// CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
 app.get('/teacher/:idTeacher/assignments', (req, res, next) => {
   try{
       const teacherId = req.params['idTeacher'];
@@ -219,6 +309,7 @@ app.get('/teacher/:idTeacher/assignments', (req, res, next) => {
 //GET should retrieve teacher's ungraded assignment
 //details: assignmentName, instructions, instrument, level, piece
 //sheetMusic will be retrieved in another endpoint below
+// CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
 app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
   try{
       const teacherId = req.params['idTeacher'];
@@ -294,6 +385,7 @@ app.post('/addNewTeacher', (req, res, next) => {
 
 
 //GET should retrieve teachers settings info.: email and name(first, last, and prefix)
+// CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
 app.get('/teacher/:idTeacher/settings', (req, res, next) => {
   try{
     const teacherId = req.params['idTeacher'];
@@ -337,7 +429,8 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
   }
 });
 
-// STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
 app.post('/charge', (req, res) => {
   console.log(req.body.token.id); 
   try {
@@ -601,7 +694,7 @@ app.post('/charge', (req, res) => {
 //   }
 // });
 
-// //GET a single assignment from a student, details: assignmentName, dueDate, teacher, instrument, level, piece, instructions, feedback
+// //GET a single graded assignment from a student, details: assignmentName, dueDate, teacher, instrument, level, piece, instructions, feedback
 // app.get('/student/:idStudent/assigment/:idAssignment', async (req, res, next) => {
 //   try {
 //       const studentId = req.params['idStudent'];

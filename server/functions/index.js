@@ -4,6 +4,10 @@ const firebase = require('firebase-admin');
 const express = require('express');
 const cors = require('cors');
 const stripe = require('stripe')('sk_test_YwuqJTfx2ZxOo4hGqGQSnoP3');
+const fileUpload = require('express-fileupload');
+const UUID = require('uuid-v4');
+
+const serviceAccount = "serviceAccountKey.json";
 
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -15,20 +19,33 @@ firebase.initializeApp({
 });
 
 const db = firebase.firestore();
+const projID = "musicmaker-4b2e8"
 
 const Firestore = require('@google-cloud/firestore');
-const firestore = new Firestore({projectId: "musicmaker-4b2e8"});
+const firestore = new Firestore({
+  projectId: "musicmaker-4b2e8"
+});
 const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
+
+const {Storage} = require('@google-cloud/storage');
+const storage = new Storage({
+  projectId: projID,
+  keyFilename: serviceAccount
+});
+const bucket = storage.bucket('gs://musicmaker-4b2e8.appspot.com');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(fileUpload({
+  createParentPath : true
+}));
 
 //===============================================================================================================================================
 
 // TEST for sanity checks ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app.get('/test', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com/'});
 });
 
@@ -177,7 +194,38 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
         'instructions': instructions,
         'instrument': instrument,
         'level': level,
-        'piece': piece
+        'piece': piece,
+        'sheetMusic': ''
+      }).then(snap => {
+        const assignmentId = snap._path.segments[3];
+        console.log('0**********************************************', assignmentId)
+        }).then(doc => {
+          if (Object.keys(req.files).length == 0) {
+            return res.status(400).send({MESSAGE: 'NO FILE WAS UPLOADED'});
+          }
+           let uuid = UUID();
+          let uploadFile = req.files.uploadFile;
+          console.log('**********************************', uploadFile)
+           let name = uploadFile.name;
+          uploadFile.mv('/tmp/' + name)
+          bucket.upload('/tmp/' + name , {
+            destination : 'sheetMusic/' + name,
+            metadata : {
+              metadata:{
+                firebaseStorageDownloadTokens : uuid
+              }
+            }
+          }).then(data => {
+            let file = data[0]
+            console.log('1******************************************************', file)
+            Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
+            .then(url => {
+              const teachersRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
+              'sheetMusic' : url
+            });
+            res.status(201).send({MESSAGE: 'YOU FILE HAS BEEN SUCCESSFULLY UPLOADED'})
+            });
+          });
       });
       res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW ASSIGNMENT'});
     };
@@ -185,6 +233,33 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
    catch(err) {
     next(err);
   }
+});
+
+// //This is a functioning endpoint where it's able to upload a pdf into Firebase storage and return the url
+// //I tried to combine it with posting it with an assignment (above) but had no luck, will ask for help tomorrow
+app.post('/uploadPDF', function(req, res) {
+  if (Object.keys(req.files).length == 0) {
+    return res.status(400).send({MESSAGE: 'NO FILE WAS UPLOADED'});
+  }
+  let uuid = UUID();
+  let uploadFile = req.files.uploadFile;
+  console.log('HERE**********************************************', uploadFile)
+  let name = uploadFile.name;
+  uploadFile.mv('/tmp/' + name)
+  bucket.upload('/tmp/' + name , {
+    destination : 'sheetMusic/' + name,
+    metadata : {
+      metadata:{
+        firebaseStorageDownloadTokens : uuid
+      }
+    }
+  }).then((data) => {
+      let file = data[0]
+      Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
+        .then(url => {
+           res.status(201).send(url)
+        })
+    })
 });
 
 //GET should retrieve teacher's all ungraded assignments

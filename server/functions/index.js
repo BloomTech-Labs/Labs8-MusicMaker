@@ -56,7 +56,7 @@ app.post('/teacher/:idTeacher/assignment/:idAssignment/assignToStudent', (req, r
   try {
     const teacherId = req.params['idTeacher'];
     const assignmentId = req.params['idAssignment'];
-    const { email, firstName, lastName, dueDate } = req.body;
+    const { email, firstName, lastName, dueDate , dueTime} = req.body;
 
     // const assignmentRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
     const studentRef = db.collection('students').where('email', '==', email);
@@ -65,19 +65,31 @@ app.post('/teacher/:idTeacher/assignment/:idAssignment/assignToStudent', (req, r
         snap.forEach(doc => {
           const studentId = doc.id
 
-          const assignmentRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students').doc(studentId).set({
+          const assignmentTeacherRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students').doc(studentId).set({
             name: {
               'firstName': firstName,
               'lastName': lastName
             },
-            'dueDate': dueDate
+            'dueDate': `${dueDate} @ ${dueTime}` // need to figure out how to make this into a timestamp
           })
-          console.log('DOC************************************************', studentId)
-        })
-        
 
-      });
-    
+          const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+          const getDoc = assignmentRef.get()
+          .then(doc => {
+            const studentAssignmentRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).set(doc.data())
+          }).then(() => {
+            const studentAssignmentRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
+              'dueDate': new Date(dueDate) // need to figure out how to make this into a timestamp
+            })
+          })
+
+         
+      
+
+
+      })    
+
+  });
 
   }catch(err){
     next(err);

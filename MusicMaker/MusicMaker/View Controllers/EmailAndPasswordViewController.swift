@@ -24,11 +24,23 @@ class EmailAndPasswordViewController: UIViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet weak var emailTextField: HoshiTextField!
+    @IBOutlet weak var emailTextField: HoshiTextField! {
+        didSet {
+            emailTextField.delegate = self
+        }
+    }
     
-    @IBOutlet weak var passwordTextField: HoshiTextField!
+    @IBOutlet weak var passwordTextField: HoshiTextField! {
+        didSet {
+            passwordTextField.delegate = self
+        }
+    }
     
-    @IBOutlet weak var confirmPasswordTextField: HoshiTextField!
+    @IBOutlet weak var confirmPasswordTextField: HoshiTextField! {
+        didSet {
+            confirmPasswordTextField.delegate = self
+        }
+    }
     
     @IBOutlet weak var emailCheckmark: LOTAnimationView!
     @IBOutlet weak var confirmPasswordAnimation: LOTAnimationView!
@@ -36,7 +48,7 @@ class EmailAndPasswordViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func nextButtonTapped(_ sender: Any) {
-        delegate?.nextButtonTapped()
+        delegate?.nextButtonTapped(with: emailTextField.text!, password: passwordTextField.text!)
     }
     // MARK: - Private Methods
     private func setupAnimationViews() {
@@ -74,6 +86,41 @@ class EmailAndPasswordViewController: UIViewController {
     }
     
     @objc private func toggleConfirmPassword() {
-        
+        if confirmPasswordTextField.isSecureTextEntry {
+            confirmPasswordTextField.isSecureTextEntry = false
+            confirmPasswordAnimation.play(fromProgress: 0.5, toProgress: 1)
+        } else {
+            confirmPasswordTextField.isSecureTextEntry = true
+            confirmPasswordAnimation.play(fromProgress: 0, toProgress: 0.5)
+        }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension EmailAndPasswordViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField.tag {
+        case 0:
+            emailCheckmark.isHidden = false
+            emailCheckmark.play()
+        default:
+            break
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField.tag {
+        case 0:
+            passwordTextField.becomeFirstResponder()
+        case 1:
+            confirmPasswordTextField.becomeFirstResponder()
+        case 2:
+            confirmPasswordTextField.resignFirstResponder()
+            nextButtonTapped(textField)
+        default:
+            break
+        }
+        return true
     }
 }

@@ -48,6 +48,9 @@
 		BF98B14021B5B66D007B7C45 /* EmailAndPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13F21B5B66D007B7C45 /* EmailAndPasswordViewController.swift */; };
 		BF98B14221B5B784007B7C45 /* eye01.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B14121B5B784007B7C45 /* eye01.json */; };
 		BF98B14421B5C5B0007B7C45 /* EmailAndPasswordViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14321B5C5B0007B7C45 /* EmailAndPasswordViewControllerDelegate.swift */; };
+		BF98B14621B5CA9C007B7C45 /* StarRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14521B5CA9C007B7C45 /* StarRating.swift */; };
+		BF98B14821B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14721B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift */; };
+		BF98B14A21B5CD66007B7C45 /* LevelAndInstrumentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14921B5CD66007B7C45 /* LevelAndInstrumentViewDelegate.swift */; };
 		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
 		BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CD219355460038F974 /* SignUpViewController.swift */; };
@@ -139,6 +142,9 @@
 		BF98B13F21B5B66D007B7C45 /* EmailAndPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAndPasswordViewController.swift; sourceTree = "<group>"; };
 		BF98B14121B5B784007B7C45 /* eye01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = eye01.json; sourceTree = "<group>"; };
 		BF98B14321B5C5B0007B7C45 /* EmailAndPasswordViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAndPasswordViewControllerDelegate.swift; sourceTree = "<group>"; };
+		BF98B14521B5CA9C007B7C45 /* StarRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRating.swift; sourceTree = "<group>"; };
+		BF98B14721B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndInstrumentViewController.swift; sourceTree = "<group>"; };
+		BF98B14921B5CD66007B7C45 /* LevelAndInstrumentViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndInstrumentViewDelegate.swift; sourceTree = "<group>"; };
 		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		BFD381CD219355460038F974 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +214,7 @@
 				BF98B14321B5C5B0007B7C45 /* EmailAndPasswordViewControllerDelegate.swift */,
 				BFFB214821B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift */,
 				BF5D5218219D17F100DFF213 /* TeachersViewControllerDelegate.swift */,
+				BF98B14921B5CD66007B7C45 /* LevelAndInstrumentViewDelegate.swift */,
 				BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */,
 			);
 			path = Protocols;
@@ -234,6 +241,7 @@
 		BFD381C4219353A50038F974 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BF98B14721B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift */,
 				BF98B13F21B5B66D007B7C45 /* EmailAndPasswordViewController.swift */,
 				BFD3EEF821AD1CB50097D5AA /* InitialViewController.swift */,
 				BFFB214A21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift */,
@@ -287,6 +295,7 @@
 		BFD381C7219353DF0038F974 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF98B14521B5CA9C007B7C45 /* StarRating.swift */,
 				BFE771D721A49BE700DCE42A /* QRView.swift */,
 				BFE771D521A352E100DCE42A /* MenuButton.swift */,
 				BF5D5208219CB05900DFF213 /* HoshiTextField.swift */,
@@ -656,6 +665,7 @@
 				39C47DC821AF233000C1E115 /* SubmittedAssignmentViewController.swift in Sources */,
 				393E238C21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift in Sources */,
 				393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */,
+				BF98B14821B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift in Sources */,
 				BFFB213F21AFA02E0050E013 /* ResetPasswordViewController.swift in Sources */,
 				BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */,
 				39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */,
@@ -675,6 +685,8 @@
 				BF5D5210219CC8E800DFF213 /* TeachersViewController.swift in Sources */,
 				393E238A21AB9F7900620D94 /* MusicMakerModelController.swift in Sources */,
 				39C108FF2194FD9800180F37 /* CameraPreviewView.swift in Sources */,
+				BF98B14621B5CA9C007B7C45 /* StarRating.swift in Sources */,
+				BF98B14A21B5CD66007B7C45 /* LevelAndInstrumentViewDelegate.swift in Sources */,
 				BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */,
 				BF5D5219219D17F100DFF213 /* TeachersViewControllerDelegate.swift in Sources */,
 				BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */,

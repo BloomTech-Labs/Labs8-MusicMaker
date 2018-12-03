@@ -9,5 +9,5 @@
 import Foundation
 
 protocol EmailAndPasswordViewControllerDelegate: class {
-    func nextButtonTapped()
+    func nextButtonTapped(with email: String, password: String)
 }

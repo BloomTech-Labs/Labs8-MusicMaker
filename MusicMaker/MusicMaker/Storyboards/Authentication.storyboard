@@ -656,25 +656,34 @@
             </objects>
             <point key="canvasLocation" x="758.59375" y="-1191.2109375"/>
         </scene>
-        <!--View Controller-->
+        <!--AddQR Photo View Controller-->
         <scene sceneID="pYQ-Oe-FzV">
             <objects>
-                <viewController storyboardIdentifier="QRReader" id="6dX-S8-6CP" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QRReader" id="6dX-S8-6CP" customClass="AddQRPhotoViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6tb-YF-Mf8">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNV-es-W1q">
-                                <rect key="frame" x="363" y="502" width="8" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZfS-c9-MUX">
+                                <rect key="frame" x="20" y="953" width="728" height="51"/>
+                                <state key="normal" title="Select Photo"/>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="6dX-S8-6CP" eventType="touchUpInside" id="5Vp-sW-ZHG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZfS-c9-MUX" firstAttribute="leading" secondItem="u2i-EH-PC6" secondAttribute="leading" constant="20" id="AUw-v5-4uh"/>
+                            <constraint firstItem="ZfS-c9-MUX" firstAttribute="height" secondItem="6tb-YF-Mf8" secondAttribute="height" multiplier="0.05" id="YUX-aJ-tq4"/>
+                            <constraint firstItem="u2i-EH-PC6" firstAttribute="bottom" secondItem="ZfS-c9-MUX" secondAttribute="bottom" constant="20" id="Yym-4O-oLc"/>
+                            <constraint firstItem="u2i-EH-PC6" firstAttribute="trailing" secondItem="ZfS-c9-MUX" secondAttribute="trailing" constant="20" id="btk-q1-paq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="u2i-EH-PC6"/>
                     </view>
+                    <connections>
+                        <outlet property="addPhotosButton" destination="ZfS-c9-MUX" id="nxp-h7-2wr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DmT-iX-Grl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -742,7 +751,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="G7b-AQ-YPh"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Teacher" id="zqQ-uK-qik"/>
+                    <navigationItem key="navigationItem" title="Add Teacher" id="zqQ-uK-qik">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="D4O-gw-qy2"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="menuBar" destination="jxG-HU-Ffv" id="qHo-e9-ZJV"/>
                         <outlet property="menuBarLeadingConstraint" destination="Tv6-V2-lFf" id="rLE-R9-tgf"/>

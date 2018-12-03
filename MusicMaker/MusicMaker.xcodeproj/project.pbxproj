@@ -40,7 +40,9 @@
 		BF69F2C721A4F8A500EAB8CE /* MusicMakerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69F2C621A4F8A500EAB8CE /* MusicMakerUITests.swift */; };
 		BF98B13221B35007007B7C45 /* UISegmentedControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13121B35007007B7C45 /* UISegmentedControl+Extensions.swift */; };
 		BF98B13421B4A318007B7C45 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13321B4A318007B7C45 /* QRScannerViewController.swift */; };
-		BF98B13621B4E3A1007B7C45 /* scan_qr_code_success.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B13521B4E3A1007B7C45 /* scan_qr_code_success.json */; };
+		BF98B13621B4E3A1007B7C45 /* qr_code.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B13521B4E3A1007B7C45 /* qr_code.json */; };
+		BF98B13821B4E447007B7C45 /* AddQRPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13721B4E447007B7C45 /* AddQRPhotoViewController.swift */; };
+		BF98B13A21B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13921B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift */; };
 		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
 		BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CD219355460038F974 /* SignUpViewController.swift */; };
@@ -124,7 +126,9 @@
 		BF69F2C821A4F8A500EAB8CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF98B13121B35007007B7C45 /* UISegmentedControl+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Extensions.swift"; sourceTree = "<group>"; };
 		BF98B13321B4A318007B7C45 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
-		BF98B13521B4E3A1007B7C45 /* scan_qr_code_success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scan_qr_code_success.json; sourceTree = "<group>"; };
+		BF98B13521B4E3A1007B7C45 /* qr_code.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = qr_code.json; sourceTree = "<group>"; };
+		BF98B13721B4E447007B7C45 /* AddQRPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQRPhotoViewController.swift; sourceTree = "<group>"; };
+		BF98B13921B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+InformationalAlert.swift"; sourceTree = "<group>"; };
 		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		BFD381CD219355460038F974 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 				BFD3EEF821AD1CB50097D5AA /* InitialViewController.swift */,
 				BFFB214A21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift */,
 				BFFB214E21B1F9B90050E013 /* AddTeacherOptionsViewController.swift */,
+				BF98B13721B4E447007B7C45 /* AddQRPhotoViewController.swift */,
 				BF98B13321B4A318007B7C45 /* QRScannerViewController.swift */,
 				BFD381CD219355460038F974 /* SignUpViewController.swift */,
 				BFD381CF219355510038F974 /* LogInViewController.swift */,
@@ -308,6 +313,7 @@
 		BFD381CA219353F40038F974 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BF98B13921B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift */,
 				BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */,
 				BF5D5216219CD23100DFF213 /* UIButton+Extensions.swift */,
 				BFD3EEF221ABC8160097D5AA /* String+Extensions.swift */,
@@ -342,7 +348,7 @@
 		BFD3E55D2192393A00D84FF2 /* MusicMaker */ = {
 			isa = PBXGroup;
 			children = (
-				BF98B13521B4E3A1007B7C45 /* scan_qr_code_success.json */,
+				BF98B13521B4E3A1007B7C45 /* qr_code.json */,
 				BF5D5215219CCAA100DFF213 /* Protocols */,
 				BFD381CA219353F40038F974 /* Extensions */,
 				BFD381C8219353E60038F974 /* Models */,
@@ -490,7 +496,7 @@
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
 				39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */,
 				BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */,
-				BF98B13621B4E3A1007B7C45 /* scan_qr_code_success.json in Resources */,
+				BF98B13621B4E3A1007B7C45 /* qr_code.json in Resources */,
 				BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */,
 				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
@@ -639,6 +645,7 @@
 				393E238821AB565800620D94 /* Assignment+Convenience.swift in Sources */,
 				BFFB214F21B1F9B90050E013 /* AddTeacherOptionsViewController.swift in Sources */,
 				BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */,
+				BF98B13821B4E447007B7C45 /* AddQRPhotoViewController.swift in Sources */,
 				BF5D520E219CC8CA00DFF213 /* ContainerViewController.swift in Sources */,
 				39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */,
 				BFE771D821A49BE700DCE42A /* QRView.swift in Sources */,
@@ -657,6 +664,7 @@
 				BFD3EEFD21AE45880097D5AA /* Student.swift in Sources */,
 				BF5D5212219CC8F500DFF213 /* SideMenuViewController.swift in Sources */,
 				BF98B13221B35007007B7C45 /* UISegmentedControl+Extensions.swift in Sources */,
+				BF98B13A21B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift in Sources */,
 				BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */,
 				39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */,
 				BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */,

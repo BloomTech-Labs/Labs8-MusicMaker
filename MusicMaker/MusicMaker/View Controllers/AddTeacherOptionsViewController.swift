@@ -17,11 +17,7 @@ class AddTeacherOptionsViewController: UIViewController {
         
         setupScrollViewChildren()
         scrollView.isPagingEnabled = true
-//        if let features = detectQRCode(UIImage(named: "qrcode")), !features.isEmpty{
-//            for case let row as CIQRCodeFeature in features{
-//                print(row.messageString ?? "nope")
-//            }
-//        }
+
     }
     
     func setupScrollViewChildren() {
@@ -57,24 +53,7 @@ class AddTeacherOptionsViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    //Detects a QRCode from a UIImage
-    private func detectQRCode(_ image: UIImage?) -> [CIFeature]? {
-        if let image = image, let ciImage = CIImage.init(image: image){
-            var options: [String: Any]
-            let context = CIContext()
-            options = [CIDetectorAccuracy: CIDetectorAccuracyHigh]
-            let qrDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: context, options: options)
-            if ciImage.properties.keys.contains((kCGImagePropertyOrientation as String)){
-                options = [CIDetectorImageOrientation: ciImage.properties[(kCGImagePropertyOrientation as String)] ?? 1]
-            }else {
-                options = [CIDetectorImageOrientation: 1]
-            }
-            let features = qrDetector?.features(in: ciImage, options: options)
-            return features
-            
-        }
-        return nil
-    }
+    
     
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.isHidden = false

@@ -22,7 +22,10 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Used for the blurred view
-       
+        self.definesPresentationContext = true
+        self.providesPresentationContextTransitionStyle = true
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,27 +36,29 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
     // MARK: - IBOutlets
     @IBOutlet weak var loginButton: UIButton! {
         didSet {
-            loginButton.layer.cornerRadius = loginButton.frame.height / 2
         }
     }
     
     
     @IBOutlet weak var signupButton: UIButton! {
         didSet {
-            signupButton.layer.cornerRadius = signupButton.frame.height / 2
         }
+    }
+    
+    // MARK: - Overrides
+    override func viewDidLayoutSubviews() {
+        signupButton.layer.cornerRadius = signupButton.frame.height / 2
+        loginButton.layer.cornerRadius = loginButton.frame.height / 2
+        blurredBackgroundView.frame = view.frame
     }
 
     
     // MARK: - IBActions
     @IBAction func showLoginOptions(_ sender: Any) {
-        self.definesPresentationContext = true
-        self.providesPresentationContextTransitionStyle = true
         animateAdditionOfABlurredBackground()
     }
     @IBAction func showSignupOptions(_ sender: Any) {
-        self.definesPresentationContext = true
-        self.providesPresentationContextTransitionStyle = true
+        
         animateAdditionOfABlurredBackground()
     }
     

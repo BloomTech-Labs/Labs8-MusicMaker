@@ -634,7 +634,6 @@ extension SignUpViewController: AVCaptureMetadataOutputObjectsDelegate {
         
         
         if metadataObjects.count == 0 {
-            print("No QR code is detected")
             return
         }
         

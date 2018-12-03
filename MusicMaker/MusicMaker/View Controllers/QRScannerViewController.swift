@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import FirebaseFirestore
 
 class QRScannerViewController: UIViewController {
 
@@ -31,10 +32,19 @@ class QRScannerViewController: UIViewController {
     }
     @IBOutlet weak var qrView: QRView!
     
+    @IBOutlet weak var qrCodeFeedbackLabel: UILabel!
+    
     // MARK: - Properties
     private var player: AVAudioPlayer?
 
+    
+    // MARK: - Delegate
+    weak var delegate: QRScanning?
+    let database = Firestore.firestore()
+}
 
+protocol QRScanning: class {
+    func qrCodeScanned(_ qrCode: String)
 }
 
 extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
@@ -49,9 +59,30 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         
         if metadataObject.type == AVMetadataObject.ObjectType.qr {
             if let qrCodeString = metadataObject.stringValue {
-                print(qrCodeString)
-                qrView.captureSession?.stopRunning()
-                playSound()
+                if !qrCodeString.contains("//") {
+                    let teacherReference = database.collection("teachers").document(qrCodeString)
+                    teacherReference.getDocument { (document, erro) in
+                        if let document = document, document.exists {
+                            if let data = document.data(), let name = data["name"] as? [String: String], let firstName = name["firstName"], let lastName = name["lastName"]  {
+                                self.playSound()
+                                self.qrCodeFeedbackLabel.text = "\(firstName) \(lastName)"
+                                self.qrCodeFeedbackLabel.isHidden = false
+                                self.qrView.captureSession?.stopRunning()
+                            }
+                            
+                            
+                        } else {
+                            self.qrCodeFeedbackLabel.text = "Not a valid teacher"
+                            self.qrCodeFeedbackLabel.isHidden = false
+                        }
+                    }
+                } else {
+                    qrCodeFeedbackLabel.text = "Not a valid teacher"
+                    qrCodeFeedbackLabel.isHidden = false
+                }
+                
+                
+                
             }
         }
     }

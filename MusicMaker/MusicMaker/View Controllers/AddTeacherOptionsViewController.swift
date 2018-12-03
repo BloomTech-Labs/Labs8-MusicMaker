@@ -112,6 +112,7 @@ class AddTeacherOptionsViewController: UIViewController {
     }
 }
 
+// MARK: - UIScrollViewDelegate
 extension AddTeacherOptionsViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -124,7 +125,17 @@ extension AddTeacherOptionsViewController: UIScrollViewDelegate {
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         isScrolling = true
     }
+}
+
+// MARK: - QRScanningDelegate
+extension AddTeacherOptionsViewController: QRScanning {
     
+    func qrCodeScanned(_ qrCode: String) {
+        
+    }
+    
+    
+   
     
 }
 

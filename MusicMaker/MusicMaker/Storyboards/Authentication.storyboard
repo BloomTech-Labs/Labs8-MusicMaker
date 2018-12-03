@@ -592,7 +592,19 @@
                             </view>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bV1-fE-9hX">
                                 <rect key="frame" x="235.5" y="665.5" width="297" height="358.5"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmi-TL-OaF">
+                                        <rect key="frame" x="148.5" y="179.5" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Rmi-TL-OaF" firstAttribute="centerY" secondItem="bV1-fE-9hX" secondAttribute="centerY" id="9ji-Ml-g89"/>
+                                    <constraint firstItem="Rmi-TL-OaF" firstAttribute="centerX" secondItem="bV1-fE-9hX" secondAttribute="centerX" id="aaC-QQ-TFj"/>
+                                </constraints>
                             </view>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8J5-jK-48n">
                                 <rect key="frame" x="235.5" y="20" width="297" height="338.5"/>
@@ -636,6 +648,7 @@
                     </view>
                     <connections>
                         <outlet property="centerView" destination="81d-se-ihK" id="18r-qK-p9E"/>
+                        <outlet property="qrCodeFeedbackLabel" destination="Rmi-TL-OaF" id="IUM-uU-KL4"/>
                         <outlet property="qrView" destination="5FL-Qc-946" id="I9f-bm-V01"/>
                     </connections>
                 </viewController>

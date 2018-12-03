@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AVFoundation
 
 
 class TeachersViewController: UIViewController {
@@ -25,6 +25,16 @@ class TeachersViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+        qrView.setupCaptureSession()
+        let captureMetadataOutput = AVCaptureMetadataOutput()
+        qrView.captureSession?.addOutput(captureMetadataOutput)
+     
+        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+  
+        captureMetadataOutput.metadataObjectTypes = captureMetadataOutput.availableMetadataObjectTypes
+        
+        qrView.isHidden = true
+        qrView.captureSession?.startRunning()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +55,7 @@ class TeachersViewController: UIViewController {
             showSideMenu(self)
         }
     }
+    @IBOutlet weak var qrView: QRView!
     
 
     // MARK: - IBActions
@@ -53,6 +64,9 @@ class TeachersViewController: UIViewController {
         sideMenuIsShowing = sideMenuIsShowing ? false : true
     }
     
+    @IBAction func showQR(_ sender: Any) {
+        
+    }
     
     
     // MARK: - Navigation
@@ -91,5 +105,10 @@ extension TeachersViewController: UITableViewDelegate {
 //        self.performSegue(withIdentifier: "ShowAssignments", sender: nil)
 //    }
     
+    
+}
+
+// MARK: - AVCaptureMetadataOutputObjectsDelegate
+extension TeachersViewController: AVCaptureMetadataOutputObjectsDelegate {
     
 }

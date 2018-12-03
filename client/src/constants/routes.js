@@ -11,3 +11,4 @@ export const ASSIGNMENT = '/assignments/:id';
 export const STUDENTS = '/students';
 export const BILLING = '/billing';
 export const SETTINGS = '/settings';
+export const GRADING = '/grading';

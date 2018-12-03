@@ -230,6 +230,10 @@ Password</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GhB-n4-IYs" customClass="QRView" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="667" width="375" height="267"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gnV-Mz-9G7">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -264,9 +268,13 @@ Password</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gnV-Mz-9G7" firstAttribute="trailing" secondItem="TeA-Y6-gtb" secondAttribute="trailing" id="41k-uj-ao7"/>
+                            <constraint firstItem="GhB-n4-IYs" firstAttribute="leading" secondItem="uvy-aJ-JWT" secondAttribute="leading" id="4W5-Al-DG1"/>
                             <constraint firstItem="gnV-Mz-9G7" firstAttribute="bottom" secondItem="TeA-Y6-gtb" secondAttribute="bottom" id="BXQ-k1-SL6"/>
                             <constraint firstItem="gnV-Mz-9G7" firstAttribute="top" secondItem="TeA-Y6-gtb" secondAttribute="top" id="K0X-te-BYm"/>
+                            <constraint firstAttribute="trailing" secondItem="GhB-n4-IYs" secondAttribute="trailing" id="NrC-Q3-UH6"/>
+                            <constraint firstItem="GhB-n4-IYs" firstAttribute="height" secondItem="uvy-aJ-JWT" secondAttribute="height" multiplier="0.4" id="Q3i-ZU-HEe"/>
                             <constraint firstItem="gnV-Mz-9G7" firstAttribute="leading" secondItem="TeA-Y6-gtb" secondAttribute="leading" id="a05-HY-4kh"/>
+                            <constraint firstItem="GhB-n4-IYs" firstAttribute="top" secondItem="gnV-Mz-9G7" secondAttribute="bottom" id="bfv-Wl-ZT3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TeA-Y6-gtb"/>
                     </view>
@@ -276,9 +284,14 @@ Password</string>
                                 <action selector="showSideMenu:" destination="RAX-kR-dSc" id="v8R-WE-ZYS"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="qr_code" id="loR-qS-CDO"/>
+                        <barButtonItem key="rightBarButtonItem" image="qr_code" id="loR-qS-CDO">
+                            <connections>
+                                <action selector="showQR:" destination="RAX-kR-dSc" id="1vB-xm-pat"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="qrView" destination="GhB-n4-IYs" id="0fo-Cs-5Dd"/>
                         <outlet property="tableView" destination="gnV-Mz-9G7" id="bmR-2K-tfc"/>
                     </connections>
                 </viewController>

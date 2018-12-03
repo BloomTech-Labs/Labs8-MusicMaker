@@ -10,6 +10,7 @@ const QRCode = require('qrcode');
 
 const serviceAccount = "serviceAccountKey.json";
 
+
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
     authDomain: "musicmaker-4b2e8.firebaseapp.com",
@@ -59,7 +60,7 @@ app.get('/', (req, res) => {
 app.get('/teacher/:idTeacher/students', (req, res, next) => {
   try{
     const teacherId = req.params['idTeacher'];
-    const students = {};  
+    const students = {};
 
     const studentstRef =  db.collection('teachers').doc(teacherId).collection('students');
     const allStudents = studentstRef.get()
@@ -173,7 +174,7 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
 
     if (!assignmentName || !instructions || !instrument || !level || !piece) {
       res.status(411).send({REQUIRED: 'YOU MUST HAVE ALL FIELDS FILLED'});
-    } 
+    }
     // else if (assignmentName > 0) {
     //   const teacherAssingmentsRef = await db.collection('teachers').doc(teacherId).collection('assignments').get()
     //   // console.log('0******************************************', teacherAssingmentsRef)
@@ -185,10 +186,10 @@ app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
     //     })
     //   })
 
-    //   console.log('2**********************************', assignment) // This returns a list of an array of a teachers assignments within an array, 
+    //   console.log('2**********************************', assignment) // This returns a list of an array of a teachers assignments within an array,
     //                                                                  //need to check if each of those assignment names matches the new name and if does throw an error
     //   res.status(411).send({ERROR: 'YOU CANNOT HAVE AN ASSIGNMENT WITH THE SAME NAME'});
-    // } 
+    // }
     else {
       const addTeacherAssign = db.collection('teachers').doc(teacherId).collection('assignments').add({
         'assignmentName': assignmentName,
@@ -268,7 +269,7 @@ app.post('/uploadPDF', function(req, res) {
 app.get('/teacher/:idTeacher/assignments', (req, res, next) => {
   try{
       const teacherId = req.params['idTeacher'];
-      const assignments = {};  
+      const assignments = {};
 
       const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments');
       const allAssignments = assignmentRef.get()
@@ -357,9 +358,8 @@ app.post('/addNewTeacher', (req, res, next) => {
   }	    
 }	catch(err) {	
   next(err);	   
-}	  
-});
-  
+}	 
+}):
 
 //GET should retrieve teachers settings info.: email and name(first, last, and prefix)
 // CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
@@ -398,18 +398,23 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
           'prefix': prefix
         }
       });
-      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  
+      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})
     }
- 
+
   } catch (err){
     next (err);
   }
 });
 
 // STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+app.post('/charge', async (req, res) => {
+  console.log(req.body.token.id);
+
 // CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
 app.post('/charge', (req, res) => {
   console.log(req.body.token.id); 
+
   try {
     let { status } = stripe.charges.create({
       amount: 50,
@@ -544,7 +549,7 @@ app.post('/charge', (req, res) => {
 //   try {
 //       const teacherId = req.params['idTeacher'];
 //       const assignmentId = req.params['idAssignment'];
-  
+
 //       const assignmentRef =  await db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get();
 
 //       const musicSheet = assignmentRef.get("sheetMusic");
@@ -677,7 +682,7 @@ app.post('/charge', (req, res) => {
 //   try {
 //       const studentId = req.params['idStudent'];
 //       const assignmentId = req.params['idAssignment'];
-//       const assignment = {};      
+//       const assignment = {};
 
 //       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId);
 //       const getDoc = await assignmentRef.get()
@@ -699,7 +704,7 @@ app.post('/charge', (req, res) => {
 //   try {
 //       const studentId = req.params['idStudent'];
 //       const assignmentId = req.params['idAssignment'];
-  
+
 //       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
 
 //       const musicSheet = assignmentRef.get("sheetMusic");
@@ -730,14 +735,14 @@ app.post('/charge', (req, res) => {
 //   try {
 //       const studentId = req.params['idStudent'];
 //       const assignmentId = req.params['idAssignment'];
-  
+
 //       const assignmentRef =  await db.collection('students').doc(studentId).collection('assignments').doc(assignmentId).get();
 
 //       const video = assignmentRef.get("video");
 //       const segments = video['0']._key.path.segments;
 //       const dirName = segments[segments.length -2];
 //       const filename = segments[segments.length -1];
-//       const storagePath = dirName + '/' + filename; 
+//       const storagePath = dirName + '/' + filename;
 //       const localPath = 'temp/' + studentId + '_' + filename;
 //       const options = {
 //           destination : localPath,

@@ -20,13 +20,15 @@ class AddTeacherOptionsViewController: UIViewController {
 
     }
     
-    func setupScrollViewChildren() {
-        let qrScanner = storyboard!.instantiateViewController(withIdentifier: "QRScanner")
+    private func setupScrollViewChildren() {
+        let qrScanner = storyboard!.instantiateViewController(withIdentifier: "QRScanner") as! QRScannerViewController
+        qrScanner.delegate = self
         scrollView.addSubview(qrScanner.view)
         addChild(qrScanner)
         qrScanner.didMove(toParent: self)
         qrScanner.view.translatesAutoresizingMaskIntoConstraints = false
-        let qrReader = storyboard!.instantiateViewController(withIdentifier: "QRReader")
+        let qrReader = storyboard!.instantiateViewController(withIdentifier: "QRReader") as! AddQRPhotoViewController
+        qrReader.delegate = self
         
         scrollView.addSubview(qrReader.view)
         addChild(qrReader)
@@ -45,15 +47,15 @@ class AddTeacherOptionsViewController: UIViewController {
 
     // MARK: - IBOutlets
     
-    @IBOutlet weak var menuBarLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var menuBar: UIView!
+    @IBOutlet weak var underlineBarLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var underlineBar: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
+    
     // MARK: - Properties
-    
-    
+    var isScrolling = true
+    var isSigningUpWithGoogle = false
+    var teacherUniqueId: String?
     // MARK: - Private Methods
-    
-    
     
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.isHidden = false
@@ -64,7 +66,7 @@ class AddTeacherOptionsViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction func addQrCodeFromPhotos(_ sender: Any) {
-        menuBarLeadingConstraint.constant = view.frame.width / 2
+        underlineBarLeadingConstraint.constant = view.frame.width / 2
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
@@ -78,10 +80,9 @@ class AddTeacherOptionsViewController: UIViewController {
         
     }
     
-    var isScrolling = true
     
     @IBAction func scanQrCodeButtonTapped(_ sender: Any) {
-        menuBarLeadingConstraint.constant = 0
+        underlineBarLeadingConstraint.constant = 0
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
@@ -89,6 +90,20 @@ class AddTeacherOptionsViewController: UIViewController {
         scrollView.scrollRectToVisible(scrollView.frame, animated: true)
         
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ShowSignUp":
+            if let destinationVC = segue.destination as? StudentSignupViewController {
+                destinationVC.isSigningUpWithGoogle = isSigningUpWithGoogle
+                destinationVC.teacherUniqueId = teacherUniqueId
+            }
+        default:
+            break
+        }
+    }
+    
 }
 
 // MARK: - UIScrollViewDelegate
@@ -96,7 +111,7 @@ extension AddTeacherOptionsViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isScrolling {
-            menuBarLeadingConstraint.constant = scrollView.contentOffset.x / 2
+            underlineBarLeadingConstraint.constant = scrollView.contentOffset.x / 2
         }
         
     }
@@ -110,6 +125,12 @@ extension AddTeacherOptionsViewController: UIScrollViewDelegate {
 extension AddTeacherOptionsViewController: QRScanning {
     
     func qrCodeScanned(_ qrCode: String) {
+        if teacherUniqueId == qrCode {
+            print("fasdfa")
+        } else {
+            teacherUniqueId = qrCode
+            self.performSegue(withIdentifier: "ShowSignUp", sender: nil)
+        }
         
     }
     

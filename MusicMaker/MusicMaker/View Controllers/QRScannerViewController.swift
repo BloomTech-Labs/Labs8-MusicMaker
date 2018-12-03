@@ -56,18 +56,19 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         }
     
         guard let metadataObject = metadataObjects[0] as? AVMetadataMachineReadableCodeObject else {return}
-        
+   
         if metadataObject.type == AVMetadataObject.ObjectType.qr {
             if let qrCodeString = metadataObject.stringValue {
                 if !qrCodeString.contains("//") {
                     let teacherReference = database.collection("teachers").document(qrCodeString)
                     teacherReference.getDocument { (document, erro) in
                         if let document = document, document.exists {
+                            self.playSound()
                             if let data = document.data(), let name = data["name"] as? [String: String], let firstName = name["firstName"], let lastName = name["lastName"]  {
-                                self.playSound()
                                 self.qrCodeFeedbackLabel.text = "\(firstName) \(lastName)"
                                 self.qrCodeFeedbackLabel.isHidden = false
                                 self.qrView.captureSession?.stopRunning()
+                                self.delegate?.qrCodeScanned(qrCodeString)
                             }
                             
                             
@@ -80,11 +81,10 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
                     qrCodeFeedbackLabel.text = "Not a valid teacher"
                     qrCodeFeedbackLabel.isHidden = false
                 }
-                
-                
-                
             }
         }
+
+       
     }
     
     private func playSound() {

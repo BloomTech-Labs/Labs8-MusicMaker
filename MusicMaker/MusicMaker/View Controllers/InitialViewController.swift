@@ -16,7 +16,7 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
     // MARK: - Properties
     let database = Firestore.firestore()
     let blurredBackgroundView = UIVisualEffectView()
-
+    var isSigningUpWithGoogle = false
   
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -103,6 +103,10 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
                 authenticationOptionsVC.modalPresentationStyle = .overFullScreen
                 authenticationOptionsVC.newUser = true
             }
+        case "ShowSignupScreen":
+            if let destinationVC = segue.destination as? AddTeacherOptionsViewController {
+                destinationVC.isSigningUpWithGoogle = isSigningUpWithGoogle
+            }
         default:
             ()
         }
@@ -148,6 +152,7 @@ extension InitialViewController: AuthenticationOptionsViewControllerDelegate {
     
     func authenticateWithEmail(for newUser: Bool) {
         animateRemovalOfBlurredBackground(with: 0.3)
+        isSigningUpWithGoogle = newUser
         self.performSegue(withIdentifier: newUser ? "ShowSignupScreen" : "ShowLoginScreen", sender: nil)
     }
     

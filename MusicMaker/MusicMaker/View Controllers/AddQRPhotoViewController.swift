@@ -21,20 +21,22 @@ class AddQRPhotoViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // MARK: - Delegate
+    weak var delegate: QRScanning?
+    
     // MARK: - Properties
     let animationView = LOTAnimationView(name: "qr_code")
     let database = Firestore.firestore()
     let imagePicker = UIImagePickerController()
 
     // MARK: - IBOutlets
-    @IBOutlet weak var qrAnimationView: UIView!
     @IBOutlet weak var addPhotosButton: UIButton!
     
     // MARK: - Private Methods
     private func setupAnimationView() {
         animationView.frame = self.view.frame
-        animationView.center = CGPoint(x: self.view.center.x + self.view.frame.width / 4.5, y: self.view.center.y - self.view.frame.height / 4.5)
-        animationView.contentMode = .scaleAspectFill
+        animationView.center = CGPoint(x: self.view.center.x + self.view.frame.width / 5, y: self.view.center.y - self.view.frame.height / 4.5)
+        animationView.contentMode = .scaleAspectFit
         view.addSubview(animationView)
         view.bringSubviewToFront(addPhotosButton)
     }
@@ -45,8 +47,6 @@ class AddQRPhotoViewController: UIViewController {
             presentInformationalAlertController(title: "Error", message: "The photo library is unavailable")
             return
         }
-        
-        
         
         imagePicker.sourceType = .photoLibrary
         
@@ -98,7 +98,6 @@ class AddQRPhotoViewController: UIViewController {
             self.presentInformationalAlertController(title: "Error", message: "Unable to access the photo library. Your device's restrictions do not allow access.")
             
         }
-        presentImagePickerController()
     }
 }
 
@@ -117,9 +116,12 @@ extension AddQRPhotoViewController: UIImagePickerControllerDelegate, UINavigatio
                                     self.animationView.play(completion: { (animationCompleted) in
                                         if animationCompleted {
                                             self.addPhotosButton.setTitle("\(firstName) \(lastName)", for: .normal)
+                                            self.delegate?.qrCodeScanned(teacherId)
                                         }
                                     })
                                 }
+                            } else {
+                                self.addPhotosButton.setTitle("Not a valid QR Code", for: .normal)
                             }
                         }
                     } else {

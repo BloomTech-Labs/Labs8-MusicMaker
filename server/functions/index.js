@@ -52,8 +52,17 @@ app.get('/', (req, res) => {
 
 // ASSIGN STUDENT TO AN ASSIGNMENT & VISE VERSA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-app.post('', (req, res, next) => {
+app.post('/teachers/:idTeacher/assignment/:idAssignment', (req, res, next) => {
   try {
+    const teacherId = req.params['idTeacher'];
+    const assignmentId = req.params['idAssignment'];
+
+    const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+      const getDoc = assignmentRef.get()
+      .then(doc => {
+        res.status(200).json(doc.data());
+      });
+    
 
   }catch(err){
     next(err);

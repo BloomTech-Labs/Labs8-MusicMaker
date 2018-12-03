@@ -10,6 +10,7 @@ const SideBar = () => {
       <NavLink to="/assignments" className="item">Assignments</NavLink>
       <NavLink to="/billing" className="item">Billing</NavLink>
       <NavLink to="/settings" className="item">Settings</NavLink>
+      <NavLink to="/grading" className="item">Grading</NavLink>
     </div>
   );
 };

@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
     res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com/'});
 });
 
-// ASSIGN STUDENT TO AN ASSIGNMENT & VISE VERSA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// ASSIGN STUDENT TO AN ASSIGNMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 app.post('/teacher/:idTeacher/assignment/:idAssignment/assignToStudent', (req, res, next) => {
   try {
@@ -58,7 +58,6 @@ app.post('/teacher/:idTeacher/assignment/:idAssignment/assignToStudent', (req, r
     const assignmentId = req.params['idAssignment'];
     const { email, firstName, lastName, dueDate , dueTime} = req.body;
 
-    // const assignmentRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
     const studentRef = db.collection('students').where('email', '==', email);
     const getDoc = studentRef.get()
       .then(snap =>{
@@ -70,7 +69,7 @@ app.post('/teacher/:idTeacher/assignment/:idAssignment/assignToStudent', (req, r
               'firstName': firstName,
               'lastName': lastName
             },
-            'dueDate': `${dueDate} @ ${dueTime}` // need to figure out how to make this into a timestamp
+            'dueDate': new Date(dueDate) 
           })
 
           const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
@@ -79,16 +78,12 @@ app.post('/teacher/:idTeacher/assignment/:idAssignment/assignToStudent', (req, r
             const studentAssignmentRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).set(doc.data())
           }).then(() => {
             const studentAssignmentRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
-              'dueDate': new Date(dueDate) // need to figure out how to make this into a timestamp
+              'dueDate': new Date(dueDate) 
             })
           })
 
-         
-      
-
-
+          res.status(201).send({MESSAGE: 'STUDENT HAS SUCCESFULLY BEEN ADDED TO ASSIGNMENT'})
       })    
-
   });
 
   }catch(err){

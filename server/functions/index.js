@@ -8,7 +8,7 @@ const fileUpload = require('express-fileupload');
 const UUID = require('uuid-v4');
 const QRCode = require('qrcode');
 
-const serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = "serviceAccountKey.json";
 
 firebase.initializeApp({
     apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",

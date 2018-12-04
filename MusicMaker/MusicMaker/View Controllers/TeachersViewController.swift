@@ -37,8 +37,10 @@ class TeachersViewController: UIViewController {
         qrView.captureSession?.startRunning()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.teachers = MusicMakerModelController.shared.teachers
+        self.tableView.reloadData()
     }
     
     // MARK: - IBOutlets

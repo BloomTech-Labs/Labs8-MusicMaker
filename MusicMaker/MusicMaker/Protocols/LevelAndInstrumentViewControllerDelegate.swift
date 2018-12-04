@@ -9,5 +9,5 @@
 import Foundation
 
 protocol LevelAndInstrumentViewControllerDelegate: class {
-    func signUpButtonTapped(with rating: String, instrument: String)
+    func signUpButtonTapped(with level: String, instrument: String)
 }

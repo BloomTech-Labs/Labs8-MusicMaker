@@ -100,7 +100,7 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
                 authenticationOptionsVC.modalPresentationStyle = .overFullScreen
                 authenticationOptionsVC.newUser = true
             }
-        case "ShowSignupScreen":
+        case "ShowSignupScreen", "SignUpWithGoogle":
             if let destinationVC = segue.destination as? AddTeacherOptionsViewController {
                 destinationVC.isSigningUpWithGoogle = isSigningUpWithGoogle
             }
@@ -135,6 +135,7 @@ extension InitialViewController: GIDSignInDelegate {
                 if let document = document, document.exists {
                     self.performSegue(withIdentifier: "ShowTeachers", sender: nil)
                 } else {
+                    self.isSigningUpWithGoogle = true
                     self.performSegue(withIdentifier: "SignUpWithGoogle", sender: nil)
                 }
             })

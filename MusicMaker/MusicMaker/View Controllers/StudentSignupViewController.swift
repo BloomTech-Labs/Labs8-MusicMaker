@@ -43,9 +43,6 @@ class StudentSignupViewController: UIViewController {
     private func setupContainerViews() {
         emailAndPasswordView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
         levelAndInstrumentView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
-
-     
-        emailAndPasswordView.isUserInteractionEnabled = true
     }
     
     
@@ -61,11 +58,6 @@ class StudentSignupViewController: UIViewController {
     }
     
     // MARK: - IBActions
-    
-    @IBAction func showEmailAndPasswordTextFields(_ sender: Any) {
-        
-        pageControl.currentPage = 1
-    }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -109,7 +101,7 @@ extension StudentSignupViewController: EmailAndPasswordViewControllerDelegate {
 
 // MARK: - LevelAndInstrumentViewControllerDelegate
 extension StudentSignupViewController: LevelAndInstrumentViewControllerDelegate {
-    func signUpButtonTapped(with rating: String, instrument: String) {
+    func signUpButtonTapped(with level: String, instrument: String) {
 //        guard let email = email, let password = password, let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let teacherUniqueId = teacherUniqueId else {return}
 //
 //        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
@@ -156,9 +148,12 @@ extension StudentSignupViewController: LevelAndInstrumentViewControllerDelegate 
 // MARK: - FirstAndLastNameViewControllerDelegate
 extension StudentSignupViewController: FirstAndLastNameViewControllerDelegate {
     func nextButtonTapped() {
-        UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+        isSigningUpWithGoogle ? UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+        self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+        self.levelAndInstrumentView.transform = .identity
+        }) : UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
             self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
             self.emailAndPasswordView.transform = .identity
-        })
+            })
     }
 }

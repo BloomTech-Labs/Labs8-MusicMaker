@@ -19,7 +19,6 @@ class StudentSignupViewController: UIViewController {
         
         addDismissKeyboardGestureRecognizer()
         setupContainerViews()
-        pageControl.currentPage = isSigningUpWithGoogle ? 2 : 3
 
     }
     
@@ -32,7 +31,11 @@ class StudentSignupViewController: UIViewController {
     @IBOutlet weak var emailAndPasswordView: UIView!
     @IBOutlet weak var firstAndLastNameView: UIView!
    
-    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var pageControl: UIPageControl! {
+        didSet {
+            pageControl.numberOfPages = isSigningUpWithGoogle ? 2 : 3
+        }
+    }
     
     // MARK: - Properties
     var isSigningUpWithGoogle = false

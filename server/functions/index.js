@@ -46,7 +46,7 @@ app.use(fileUpload({
 //===============================================================================================================================================
 
 // TEST for sanity checks ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
     res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com'});
 });
 
@@ -379,15 +379,15 @@ let qrOptions = {
 }
 
 //POST should create and add a new teacher settings info.: email and name
-app.post('/addNewTeacher', (req, res, next) => {
+app.post('/addNewTeacher', (req, res) => {
   try {
     const {email, firstName, lastName, prefix} = req.body;
     let uuid = UUID();
 
     if(!email) {
-      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
-    } else if(!firstName || !lastName) {
-      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
+      res.status(411).send({ REQUIRED: 'PLEASE FILL OUT ALL REQUIRED FIELDS: EMAIL ADDRESS MISSING' });
+    } else if(!firstName || !lastName || !prefix) {
+      res.status(411).send({ REQUIRED: 'PLEASE FILL OUT ALL REQUIRED FIELDS: PREFIX, FIRST AND/OR LAST NAME IS MISSING' });
     } else {
       const teachersRef = db.collection('teachers').add({
         'email': email,
@@ -398,7 +398,7 @@ app.post('/addNewTeacher', (req, res, next) => {
         }
       }).then(ref => {
         const qrPath = '/tmp/signup_' + lastName + '.jpg'
-        const qr = QRCode.toFile(qrPath,ref.id, qrOptions);
+        const qr = QRCode.toFile(qrPath, ref.id, qrOptions);
 
         bucket.upload(qrPath , {
           destination : 'qrCodes/' + email,
@@ -414,20 +414,20 @@ app.post('/addNewTeacher', (req, res, next) => {
               const teachersRef = db.collection('teachers').doc(ref.id).update({
                 'qrcode': url
               })
-              res.status(200).send({ message: 'Teacher was successfully added!'});
+              res.status(201).send({ MESSAGE: `Teacher ${prefix} ${lastName} was successfully added.`});
             })
         })
     })
   }	    
 }	catch(err) {	
-  next(err);	   
+  res.status(500).send(err);
 }	  
 });
   
 
 //GET should retrieve teachers settings info.: email and name(first, last, and prefix)
 // CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
-app.get('/teacher/:idTeacher/settings', (req, res, next) => {
+app.get('/teacher/:idTeacher/settings', (req, res) => {
   try{
     const teacherId = req.params['idTeacher'];
     const settings = {};
@@ -439,34 +439,30 @@ app.get('/teacher/:idTeacher/settings', (req, res, next) => {
     })
 
   } catch (err){
-    next (err);
+    res.status(500).send(err);
   }
 });
 
 //PUT should update teachers settings info.: email and name(first, last, and prefix)
-app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
+app.put('/teacher/:idTeacher/settingsEdit', (req, res) => {
   try{
     const teacherId = req.params['idTeacher'];
-    const {email, firstName, lastName, prefix} = req.body;
+    const {firstName, lastName, prefix} = req.body;
 
-    if (!email) {
-      res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
-    } else if (!firstName || !lastName) {
-      res.status(411).send({REQUIRED: `FIRST NAME AND LAST NAME CANNOT BE LEFT BLANK`});
+    if (!prefix || !firstName || !lastName) {
+      res.status(411).send({REQUIRED: `Prefix, first and/or last name cannot be left blank.`});
     } else{
      const settingsRef = db.collection('teachers').doc(teacherId).update({
-        'email': email,
         'name' : {
           'firstName': firstName,
           'lastName': lastName,
           'prefix': prefix
         }
       });
-      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})  
+      res.status(202).send({MESSAGE: 'You have successfullly updated your information.'})  
     }
- 
   } catch (err){
-    next (err);
+    res.status(500).send(err);
   }
 });
 

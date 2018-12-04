@@ -477,7 +477,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1r-R8-RNj" userLabel="Level And Instrument View">
                                 <rect key="frame" x="0.0" y="65" width="768" height="429.5"/>
                                 <connections>
-                                    <segue destination="EPV-Tw-BNL" kind="embed" id="43E-OV-Jcb"/>
+                                    <segue destination="EPV-Tw-BNL" kind="embed" identifier="InstrumentAndLevel" id="43E-OV-Jcb"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yy0-bU-P3Q">
@@ -489,7 +489,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ED3-W1-87N">
                                 <rect key="frame" x="0.0" y="65" width="768" height="429.5"/>
                                 <connections>
-                                    <segue destination="Lxw-1J-6LL" kind="embed" id="Vii-vc-6gQ"/>
+                                    <segue destination="Lxw-1J-6LL" kind="embed" identifier="FirstAndLastName" id="Vii-vc-6gQ"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -816,6 +816,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VbN-ii-SX3"/>
                     </view>
                     <connections>
                         <outlet property="firstNameCheckmarkAnimation" destination="AQl-Oa-rOF" id="AD6-CK-hBY"/>

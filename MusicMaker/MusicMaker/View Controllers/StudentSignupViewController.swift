@@ -36,9 +36,6 @@ class StudentSignupViewController: UIViewController {
     // MARK: - Properties
     var isSigningUpWithGoogle = false
     var teacherUniqueId: String?
-    var emailAndPasswordViewController: EmailAndPasswordViewController?
-    var levelAndInstrumentViewController: LevelAndInstrumentViewController?
-    var firstAndLastNameViewController: FirstAndLastNameViewController?
     var email: String?
     var password: String?
     
@@ -47,12 +44,7 @@ class StudentSignupViewController: UIViewController {
         emailAndPasswordView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
         levelAndInstrumentView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
 
-        emailAndPasswordViewController = self.children[1] as? EmailAndPasswordViewController
-        emailAndPasswordViewController?.delegate = self
-        levelAndInstrumentViewController = self.children[0] as? LevelAndInstrumentViewController
-        levelAndInstrumentViewController?.delegate = self
-        firstAndLastNameViewController = self.children[2] as? FirstAndLastNameViewController
-        firstAndLastNameViewController?.delegate = self
+     
         emailAndPasswordView.isUserInteractionEnabled = true
     }
     
@@ -74,6 +66,27 @@ class StudentSignupViewController: UIViewController {
         
         pageControl.currentPage = 1
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "InstrumentAndLevel":
+            if let destinationVC = segue.destination as? LevelAndInstrumentViewController {
+                destinationVC.delegate = self
+            }
+        case "ShowEmailAndPassword":
+            if let destinationVC = segue.destination as? EmailAndPasswordViewController {
+                destinationVC.delegate = self
+            }
+        case "FirstAndLastName":
+            if let destinationVC = segue.destination as? FirstAndLastNameViewController {
+                destinationVC.delegate = self
+            }
+        default:
+            break
+        }
+    }
+    
 }
 
 

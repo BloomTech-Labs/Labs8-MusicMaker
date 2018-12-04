@@ -63,9 +63,13 @@ class MusicMakerModelController {
     
     deinit {
         teacherListener?.remove()
+        for (_, listener) in assignmentListeners {
+            listener.remove()
+        }
     }
     
     private var teacherListener: ListenerRegistration?
+    private var assignmentListeners: [String: ListenerRegistration] = [:]
     
     func fetchTeachers(completion: @escaping ([Teacher]?, Error?) -> Void) {
         guard var currentStudentUID = Auth.auth().currentUser?.uid else {
@@ -116,15 +120,22 @@ class MusicMakerModelController {
                     
                     // remove the entry from the firestore lookup, so we don't end up creating new core data entries with it
                     firestoreDocumentLookup[firestoreID] = nil
+                    
+                    // Automatically fetch assignments for the teacher that we just updated
+                    self.fetchAssigments(for: teacher, completion: { _,_ in })
                 } else {
                     // document does not exist anymore, so delete from core data
                     moc.delete(teacher)
+                    self.assignmentListeners[firestoreID]?.remove()
                 }
             }
             
             // create new core data entries with whatever was left over in firestore
             for (firestoreID, teacherDocument) in firestoreDocumentLookup {
-                Teacher(firestoreID: firestoreID, fields: teacherDocument.data())
+                let teacher = Teacher(firestoreID: firestoreID, fields: teacherDocument.data())
+                
+                // Automatically fetch assignments for the teacher that we just created
+                self.fetchAssigments(for: teacher, completion: { _,_ in })
             }
             
             do {
@@ -180,12 +191,16 @@ class MusicMakerModelController {
                     } else {
                         // document does not exist anymore, so delete from core data
                         moc.delete(teacher)
+                        self.assignmentListeners[firestoreID]?.remove()
                     }
                 }
                 
                 // create new core data entries with whatever was left over in firestore
                 for (firestoreID, teacherDocument) in firestoreDocumentLookup {
-                    Teacher(firestoreID: firestoreID, fields: teacherDocument.data())
+                    let teacher = Teacher(firestoreID: firestoreID, fields: teacherDocument.data())
+                    
+                    // Automatically fetch assignments for the teacher that we just created
+                    self.fetchAssigments(for: teacher, completion: { _,_ in })
                 }
                 
                 do {
@@ -270,6 +285,61 @@ class MusicMakerModelController {
 
                 completion(teacher.sortedAssignments, error)
             }
+        }
+        
+        if assignmentListeners[teacherFirestoreID] == nil {
+            assignmentListeners[teacherFirestoreID] = assignmentsCollection.addSnapshotListener({ (snapshot, error) in
+                
+                // If firestore returned an error, bail early
+                if let error = error {
+                    NSLog("Error adding listener for assignments for teacher [\(teacherFirestoreID)]: \(error)")
+                    return
+                }
+                
+                // If firestore doesn't return any documents, bail early
+                guard let assignmentDocuments = snapshot?.documents else {
+                    NSLog("No assignment documents found for teacher [\(teacherFirestoreID)]")
+                    return
+                }
+                
+                var firestoreDocumentLookup: [String: QueryDocumentSnapshot] = [:]
+                
+                for assignmentDocument in assignmentDocuments {
+                    firestoreDocumentLookup[assignmentDocument.documentID] = assignmentDocument
+                }
+                
+                let moc = CoreDataStack.shared.mainContext
+                
+                for assignment in teacher.sortedAssignments {
+                    // remove any core data entries without a firestoreID
+                    guard let firestoreID = assignment.firestoreID else {
+                        moc.delete(assignment)
+                        continue
+                    }
+                    
+                    if let assignmentDocument = firestoreDocumentLookup[firestoreID] {
+                        // document exists, so we should update the assignment in core data
+                        assignment.update(with: assignmentDocument.data())
+                        
+                        // remove the entry from the firestore lookup, so we don't end up creating new core data entries with it
+                        firestoreDocumentLookup[firestoreID] = nil
+                    } else {
+                        // document does not exist anymore, so delete from core data
+                        moc.delete(assignment)
+                    }
+                }
+                
+                // create new core data entries with whatever was left over in firestore
+                for (firestoreID, assignmentDocument) in firestoreDocumentLookup {
+                    Assignment(teacher: teacher, firestoreID: firestoreID, fields: assignmentDocument.data())
+                }
+                
+                do {
+                    try CoreDataStack.shared.save()
+                } catch {
+                    NSLog("Error saving core data: \(error)")
+                }
+            })
         }
     }
     

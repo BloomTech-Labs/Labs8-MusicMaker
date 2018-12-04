@@ -115,6 +115,22 @@ class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicP
     
     func musicPiecePageWasSelected(for cell: AssignmentMusicPieceTableViewCell, with page: PDFPage) {
         // Use the sender to pass the pdfPage to prepareSegue
-//        performSegue(withIdentifier: "ShowPagePreview", sender: page)
+        performSegue(withIdentifier: "ShowPagePreview", sender: page)
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailVC = segue.destination as? MusicSheetPDFSingleViewController else { return }
+        
+        detailVC.loadViewIfNeeded()
+        
+        detailVC.pdfView.document = pdfDocument
+        
+        if segue.identifier == "ShowPagePreview" {
+            // Extract the pdfPage from the sender because we don't have direct access to the page
+            guard let pdfPage = sender as? PDFPage else { return }
+            detailVC.pdfPage = pdfPage
+        }
     }
 }

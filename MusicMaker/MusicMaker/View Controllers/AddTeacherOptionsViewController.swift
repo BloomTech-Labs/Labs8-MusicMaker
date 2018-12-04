@@ -55,6 +55,7 @@ class AddTeacherOptionsViewController: UIViewController {
     private var isScrolling = true
     var isSigningUpWithGoogle = false
     var teacherUniqueId: String?
+    var email: String?
     // MARK: - Private Methods
     
     private func setupNavigationBar() {
@@ -98,6 +99,7 @@ class AddTeacherOptionsViewController: UIViewController {
             if let destinationVC = segue.destination as? StudentSignupViewController {
                 destinationVC.isSigningUpWithGoogle = isSigningUpWithGoogle
                 destinationVC.teacherUniqueId = teacherUniqueId
+                destinationVC.email = email
             }
         default:
             break

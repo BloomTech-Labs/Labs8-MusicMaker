@@ -9,9 +9,6 @@
 import UIKit
 import Lottie
 
-protocol FirstAndLastNameViewControllerDelegate: class {
-    func nextButtonTapped()
-}
 
 class FirstAndLastNameViewController: UIViewController {
 
@@ -53,7 +50,9 @@ class FirstAndLastNameViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func goToNextStep(_ sender: Any) {
-        delegate?.nextButtonTapped()
+        if let firstName = firstNameTextField.text, let lastName = lastNameTextField.text {
+            delegate?.nextButtonTapped(firstName: firstName, lastName: lastName)
+        }
     }
     
 }

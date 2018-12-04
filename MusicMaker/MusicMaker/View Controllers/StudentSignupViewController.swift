@@ -38,6 +38,8 @@ class StudentSignupViewController: UIViewController {
     var teacherUniqueId: String?
     var email: String?
     var password: String?
+    var firstName: String?
+    var lastName: String?
     
     // MARK: - Private Methods
     private func setupContainerViews() {
@@ -102,58 +104,62 @@ extension StudentSignupViewController: EmailAndPasswordViewControllerDelegate {
 // MARK: - LevelAndInstrumentViewControllerDelegate
 extension StudentSignupViewController: LevelAndInstrumentViewControllerDelegate {
     func signUpButtonTapped(with level: String, instrument: String) {
-//        guard let email = email, let password = password, let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let teacherUniqueId = teacherUniqueId else {return}
-//
-//        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-//
-//
-//            //Error creating user checks different errors and updates UI to let user know why there was an error
-//            if error != nil {
-//                if let errorCode = AuthErrorCode(rawValue: error!._code) {
-//                    switch errorCode {
-//                    case .weakPassword:
-//                        print("weakPassword")
-//                    case .accountExistsWithDifferentCredential:
-//                        print("Account already exisits")
-//                    case .emailAlreadyInUse:
-//                        print("Email already in use")
-//                    case .invalidEmail:
-//                        print("Invalid email")
-//                    case .missingEmail:
-//                        print("Missing email")
-//                    default:
-//                        print("error")
-//                    }
-//                }
-//            }
-//
-//            let database = Firestore.firestore()
-//
-//            let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": rating]
-//
-//
-//            if let user = user {
-//                let usersUniqueIdentifier = user.user.uid
-//
-//                database.collection("students").document(usersUniqueIdentifier).setData(userDocumentInformation)
-//                database.collection("students").document(usersUniqueIdentifier).collection("teachers").document(teacherUniqueId).setData(["test": "test"])
-//
-//                //DELETE TEST TEST ABOVE ^^^^
-//                self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
-//            }
-//        }
+        guard let email = email, let password = password, let firstName = firstName, let lastName = lastName, let teacherUniqueId = teacherUniqueId else {return}
+
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+
+            //Error creating user checks different errors and updates UI to let user know why there was an error
+            if error != nil {
+                if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                    switch errorCode {
+                    case .weakPassword:
+                        print("weakPassword")
+                    case .accountExistsWithDifferentCredential:
+                        print("Account already exisits")
+                    case .emailAlreadyInUse:
+                        print("Email already in use")
+                    case .invalidEmail:
+                        print("Invalid email")
+                    case .missingEmail:
+                        print("Missing email")
+                    default:
+                        print("error")
+                    }
+                }
+            }
+
+            let database = Firestore.firestore()
+
+            let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level]
+
+            if let user = user {
+                let usersUniqueIdentifier = user.user.uid
+
+                database.collection("students").document(usersUniqueIdentifier).setData(userDocumentInformation)
+                database.collection("students").document(usersUniqueIdentifier).collection("teachers").document(teacherUniqueId).setData(["exisits": true])
+                database.collection("teachers").document(teacherUniqueId).collection("students").document(usersUniqueIdentifier).setData(["exisits": true])
+
+                self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
+            }
+        }
     }
 }
 
 // MARK: - FirstAndLastNameViewControllerDelegate
 extension StudentSignupViewController: FirstAndLastNameViewControllerDelegate {
-    func nextButtonTapped() {
+    func nextButtonTapped(firstName: String, lastName: String) {
+        self.firstName = firstName
+        self.lastName = lastName
         isSigningUpWithGoogle ? UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
-        self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
-        self.levelAndInstrumentView.transform = .identity
+            self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+            self.levelAndInstrumentView.transform = .identity
         }) : UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
             self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
             self.emailAndPasswordView.transform = .identity
-            })
+        })
+    }
+    
+    func nextButtonTapped() {
+        
     }
 }

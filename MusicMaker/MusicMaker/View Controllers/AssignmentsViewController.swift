@@ -32,12 +32,8 @@ class AssignmentsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let teacher = teacher {
-            MusicMakerModelController.shared.fetchAssigments(for: teacher) { (assignments, error) in
-                if let assignments = assignments {
-                    self.assignments = assignments
-                    self.tableView.reloadData()
-                }
-            }
+            self.assignments = teacher.sortedAssignments
+            self.tableView.reloadData()
         }
     }
     

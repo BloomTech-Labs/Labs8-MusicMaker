@@ -23,7 +23,7 @@ class AddTeacherOptionsViewController: UIViewController {
     }
     
     private func setupScrollViewChildren() {
-        let qrScanner = storyboard!.instantiateViewController(withIdentifier: "QRScanner") as! QRScannerViewController
+        qrScanner = storyboard!.instantiateViewController(withIdentifier: "QRScanner") as? QRScannerViewController
         qrScanner.delegate = self
         scrollView.addSubview(qrScanner.view)
         addChild(qrScanner)
@@ -58,7 +58,8 @@ class AddTeacherOptionsViewController: UIViewController {
     var isSigningUpWithGoogle = false
     var teacherUniqueId: String?
     var email: String?
-    var currentUser = Auth.auth().currentUser
+    var qrScanner: QRScannerViewController!
+    
     // MARK: - Private Methods
     
     private func setupNavigationBar() {
@@ -99,10 +100,12 @@ class AddTeacherOptionsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ShowSignUp":
-            if let destinationVC = segue.destination as? StudentSignupViewController {
-                destinationVC.isSigningUpWithGoogle = isSigningUpWithGoogle
-                destinationVC.teacherUniqueId = teacherUniqueId
-                destinationVC.email = email
+            
+            if let navigationController = segue.destination as? UINavigationController,
+                let studentSignupVC = navigationController.topViewController as? StudentSignupViewController {
+                studentSignupVC.isSigningUpWithGoogle = isSigningUpWithGoogle
+                studentSignupVC.teacherUniqueId = teacherUniqueId
+                studentSignupVC.email = email
             }
         default:
             break
@@ -130,14 +133,15 @@ extension AddTeacherOptionsViewController: UIScrollViewDelegate {
 extension AddTeacherOptionsViewController: QRScanning {
     
     func qrCodeScanned(_ qrCode: String) {
+        let currentUser = Auth.auth().currentUser
         if let user = currentUser {
             let database = Firestore.firestore()
             database.collection("students").document(user.uid).collection("teachers").document(qrCode).setData(["exists": true])
+            NotificationCenter.default.post(name: .newTeacher, object: nil)
+//            qrScanner.qrView.captureSession?.startRunning()
         } else {
-            if teacherUniqueId != qrCode {
-                teacherUniqueId = qrCode
-                self.performSegue(withIdentifier: "ShowSignUp", sender: nil)
-            }
+            teacherUniqueId = qrCode
+            self.performSegue(withIdentifier: "ShowSignUp", sender: nil)
         }
     }
     
@@ -146,5 +150,10 @@ extension AddTeacherOptionsViewController: QRScanning {
     
 }
 
+extension Notification.Name {
+    static let newTeacher = Notification.Name("New Teacher")
+    static let qrHidden = Notification.Name("QR Hidden")
+    static let qrShown = Notification.Name("QR Shown")
+}
 
 

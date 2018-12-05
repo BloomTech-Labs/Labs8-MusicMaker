@@ -114,6 +114,7 @@ extension AddQRPhotoViewController: UIImagePickerControllerDelegate, UINavigatio
                                 if let data = document.data(), let name = data["name"] as? [String: String], let firstName = name["firstName"], let lastName = name["lastName"] {
                                     self.animationView.play(completion: { (animationCompleted) in
                                         if animationCompleted {
+                                            self.animationView.setProgressWithFrame(0)
                                             self.addPhotosButton.setTitle("\(firstName) \(lastName)", for: .normal)
                                             self.delegate?.qrCodeScanned(teacherId)
                                         }

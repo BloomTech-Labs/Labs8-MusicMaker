@@ -14,12 +14,33 @@ class QRScannerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(stopCaptureSession), name: .qrHidden, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(startCaptureSession), name: .qrShown, object: nil)
         qrView.setupCaptureSession()
-        qrView.captureSession?.startRunning()
         let captureMetadataOutput = AVCaptureMetadataOutput()
         qrView.captureSession?.addOutput(captureMetadataOutput)
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         captureMetadataOutput.metadataObjectTypes = captureMetadataOutput.availableMetadataObjectTypes
+    }
+    
+    @objc func stopCaptureSession() {
+        self.qrView.captureSession?.stopRunning()
+    }
+    
+    @objc func startCaptureSession() {
+        self.qrView.captureSession?.startRunning()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.qrView.captureSession?.startRunning()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: .qrHidden, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .qrShown, object: nil)
+        qrView.captureSession?.stopRunning()
     }
     
     // MARK: - IBOutlets
@@ -50,8 +71,7 @@ protocol QRScanning: class {
 extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         
-        
-        if metadataObjects.count == 0 {
+        if metadataObjects.count == 0 || metadataObjects.count > 1 {
             return
         }
     
@@ -70,8 +90,6 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
                                 self.qrView.captureSession?.stopRunning()
                                 self.delegate?.qrCodeScanned(qrCodeString)
                             }
-                            
-                            
                         } else {
                             self.qrCodeFeedbackLabel.text = "Not a valid teacher"
                             self.qrCodeFeedbackLabel.isHidden = false

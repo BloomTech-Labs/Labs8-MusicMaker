@@ -82,7 +82,7 @@
                         <outlet property="scrollView" destination="Smc-gz-bls" id="fJB-MU-fYj"/>
                         <outlet property="underlineBar" destination="jxG-HU-Ffv" id="qHo-e9-ZJV"/>
                         <outlet property="underlineBarLeadingConstraint" destination="Tv6-V2-lFf" id="rLE-R9-tgf"/>
-                        <segue destination="NXO-IU-0HP" kind="show" identifier="ShowSignUp" id="nu6-Wv-Apf"/>
+                        <segue destination="NXO-IU-0HP" kind="presentation" identifier="ShowSignUp" id="nu6-Wv-Apf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5h2-YW-GHY" userLabel="First Responder" sceneMemberID="firstResponder"/>

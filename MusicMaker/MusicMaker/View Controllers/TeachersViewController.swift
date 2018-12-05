@@ -15,6 +15,8 @@ class TeachersViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(hideQrView), name: .newTeacher, object: nil)
+        
         MusicMakerModelController.shared.fetchTeachers { (teachers, error) in
             guard error == nil else {return}
             if let teachers = teachers {
@@ -25,11 +27,18 @@ class TeachersViewController: UIViewController {
        
     }
     
+    @objc func hideQrView() {
+        showQrOptions(self)
+        NotificationCenter.default.post(name: .qrHidden, object: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.teachers = MusicMakerModelController.shared.teachers
         self.tableView.reloadData()
     }
+    
+    
     
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -56,10 +65,23 @@ class TeachersViewController: UIViewController {
     }
     
     @IBAction func showQrOptions(_ sender: Any) {
-        qrViewTopConstraint.constant = qrViewTopConstraint.constant == 0 ? -qrView.frame.height : 0
-        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        
+        if qrViewTopConstraint.constant == 0 {
+            NotificationCenter.default.post(name: .qrShown, object: nil)
+            qrViewTopConstraint.constant = -qrView.frame.height
+            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            qrViewTopConstraint.constant = 0
+            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }) { (_) in
+                
+            }
+        }
+        
+      
     }
     
     // MARK: - Navigation

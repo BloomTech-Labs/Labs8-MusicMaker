@@ -18,11 +18,18 @@ class StudentSignupViewController: UIViewController {
         super.viewDidLoad()
         
         addDismissKeyboardGestureRecognizer()
-        setupContainerViews()
-
+        setupNavigationBar()
     }
     
+    override func viewDidLayoutSubviews() {
+        setupContainerViews()
+    }
     
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
     
     
     
@@ -65,6 +72,9 @@ class StudentSignupViewController: UIViewController {
     }
     
     // MARK: - IBActions
+    @IBAction func dismiss(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

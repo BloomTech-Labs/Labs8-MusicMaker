@@ -50,47 +50,6 @@ app.get('/test', (req, res) => {
     res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com'});
 });
 
-// ASSIGN STUDENT TO AN ASSIGNMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-app.post('/teacher/:idTeacher/assignment/:idAssignment/assignToStudent', (req, res, next) => {
-  try {
-    const teacherId = req.params['idTeacher'];
-    const assignmentId = req.params['idAssignment'];
-    const { email, firstName, lastName, dueDate , dueTime} = req.body;
-
-    const studentRef = db.collection('students').where('email', '==', email);
-    const getDoc = studentRef.get()
-      .then(snap =>{
-        snap.forEach(doc => {
-          const studentId = doc.id
-
-          const assignmentTeacherRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students').doc(studentId).set({
-            name: {
-              'firstName': firstName,
-              'lastName': lastName
-            },
-            'dueDate': new Date(dueDate) 
-          })
-
-          const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
-          const getDoc = assignmentRef.get()
-          .then(doc => {
-            const studentAssignmentRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).set(doc.data())
-          }).then(() => {
-            const studentAssignmentRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
-              'dueDate': new Date(dueDate) 
-            })
-          })
-
-          res.status(201).send({MESSAGE: 'STUDENT HAS SUCCESFULLY BEEN ADDED TO ASSIGNMENT'})
-      })    
-  });
-
-  }catch(err){
-    next(err);
-  };
-});
-
 // GRADE ASSIGNMENT: GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 // Get a list of students currently assigned to an assignment, ASSIGNED 
@@ -223,91 +182,104 @@ app.get('/student/:idStudent/teachers/:idTeacher/assignments', (req, res, next) 
   }
 });
 
+// ASSIGN STUDENT TO AN ASSIGNMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+app.post('/teacher/:idTeacher/assignment/:idAssignment/assignToStudent', (req, res) => {
+  try {
+    const teacherId = req.params['idTeacher'];
+    const assignmentId = req.params['idAssignment'];
+    const { email, dueDate } = req.body;
+
+    const studentRef = db.collection('students').where('email', '==', email);
+    const getDoc = studentRef.get()
+      .then(snap =>{
+        snap.forEach(doc => {
+          const studentId = doc.id
+
+          const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
+          const getDoc = assignmentRef.get()
+          .then(doc => {
+            const studentAssignmentRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).set(doc.data())
+          }).then(() => {
+            const studentAssignmentRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
+              'dueDate': new Date(dueDate) 
+            })
+          })
+
+          res.status(201).send({MESSAGE: 'Student has successfully been added to assignment.'})
+      })    
+  });
+
+  }catch(err){
+    res.status(500).send(err);
+  };
+});
+
 
 // UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 // POST should create and add a new ungraded assignment under a teacher
 // details: assignmentName, instructions, instrument, level, piece
 // sheetMusic is currently not included, need to figure out how it would be uploaded in the database storage, may need its own endpoint
-app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
+app.post('/teacher/:idTeacher/createAssignment', async (req, res) => {
   try {
     const teacherId = req.params['idTeacher'];
     const { assignmentName, instructions, instrument, level, piece } = req.body;
-    // const assignments = {};
 
     if (!assignmentName || !instructions || !instrument || !level || !piece) {
-      res.status(411).send({REQUIRED: 'YOU MUST HAVE ALL FIELDS FILLED'});
-    } 
-    // else if (assignmentName > 0) {
-    //   const teacherAssingmentsRef = await db.collection('teachers').doc(teacherId).collection('assignments').get()
-    //   // console.log('0******************************************', teacherAssingmentsRef)
-    //   // console.log('1******************************************', Object.keys(teacherAssingmentsRef))
-    //   .then(snap => {
-    //     snap.forEach(doc => {
-    //       global = doc.data();
-    //       assignments[doc.id] = [global.assignmentName];
-    //     })
-    //   })
-
-    //   console.log('2**********************************', assignment) // This returns a list of an array of a teachers assignments within an array, 
-    //                                                                  //need to check if each of those assignment names matches the new name and if does throw an error
-    //   res.status(411).send({ERROR: 'YOU CANNOT HAVE AN ASSIGNMENT WITH THE SAME NAME'});
-    // } 
-    else {
+      res.status(411).send({REQUIRED: 'You must have all fields filled.'});
+    }else {
       const addTeacherAssign = db.collection('teachers').doc(teacherId).collection('assignments').add({
         'assignmentName': assignmentName,
         'instructions': instructions,
         'instrument': instrument,
         'level': level,
         'piece': piece
-      }).then(snap => {
-        const assignmentId = snap._path.segments[3];
-        console.log('0**********************************************', assignmentId)
-        }).then(doc => {
-          if (Object.keys(req.files).length == 0) {
-            return res.status(400).send({MESSAGE: 'NO FILE WAS UPLOADED'});
-          }
-           let uuid = UUID();
-          let uploadFile = req.files.uploadFile;
-          console.log('**********************************', uploadFile)
-           let name = uploadFile.name;
-          uploadFile.mv('/tmp/' + name)
-          bucket.upload('/tmp/' + name , {
-            destination : 'sheetMusic/' + name,
-            metadata : {
-              metadata:{
-                firebaseStorageDownloadTokens : uuid
-              }
-            }
-          }).then(data => {
-            let file = data[0]
-            console.log('1******************************************************', file)
-            Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
-            .then(url => {
-              const teachersRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
-              'sheetMusic' : url
-            });
-            res.status(201).send({MESSAGE: 'YOU FILE HAS BEEN SUCCESSFULLY UPLOADED'})
-            });
-          });
-      });
-      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW ASSIGNMENT'});
+      })
+      // .then(snap => {
+      //   const assignmentId = snap._path.segments[3];
+      //   }).then(doc => {
+      //     if (Object.keys(req.files).length == 0) {
+      //       return res.status(400).send({MESSAGE: 'NO FILE WAS UPLOADED'});
+      //     }
+      //     let uuid = UUID();
+      //     let uploadFile = req.files.uploadFile;
+      //     let name = uploadFile.name;
+      //     uploadFile.mv('/tmp/' + name)
+      //     bucket.upload('/tmp/' + name , {
+      //       destination : 'sheetMusic/' + name,
+      //       metadata : {
+      //         metadata:{
+      //           firebaseStorageDownloadTokens : uuid
+      //         }
+      //       }
+      //     }).then(data => {
+      //       let file = data[0]
+      //       Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
+      //       .then(url => {
+      //         const teachersRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
+      //         'sheetMusic' : url
+      //       });
+      //       res.status(201).send({MESSAGE: 'YOU FILE HAS BEEN SUCCESSFULLY UPLOADED'}) //will remove once i know it works properly from the frontend
+      //       });
+      //     });
+      // });
+      res.status(201).send({MESSAGE: `You have successfully created ${assignmentName}.`});
     };
-  }
-   catch(err) {
-    next(err);
-  }
+
+  } catch(err) {
+    res.status(500).send(err);
+  };
 });
 
 // //This is a functioning endpoint where it's able to upload a pdf into Firebase storage and return the url
 // //I tried to combine it with posting it with an assignment (above) but had no luck, will ask for help tomorrow
 app.post('/uploadPDF', function(req, res) {
   if (Object.keys(req.files).length == 0) {
-    return res.status(400).send({MESSAGE: 'NO FILE WAS UPLOADED'});
+    return res.status(400).send({MESSAGE: 'No file was uploaded.'});
   }
   let uuid = UUID();
   let uploadFile = req.files.uploadFile;
-  console.log('HERE**********************************************', uploadFile)
   let name = uploadFile.name;
   uploadFile.mv('/tmp/' + name)
   bucket.upload('/tmp/' + name , {
@@ -329,7 +301,7 @@ app.post('/uploadPDF', function(req, res) {
 //GET should retrieve teacher's all ungraded assignments
 //details: assignmentName, instructions, instrument, level, piece, sheetMusic
 // CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
-app.get('/teacher/:idTeacher/assignments', (req, res, next) => {
+app.get('/teacher/:idTeacher/assignments', (req, res) => {
   try{
       const teacherId = req.params['idTeacher'];
       const assignments = {};  
@@ -344,7 +316,7 @@ app.get('/teacher/:idTeacher/assignments', (req, res, next) => {
       });
 
   } catch (err){
-    next (err);
+    res.status(500).send(err);
   }
 });
 
@@ -352,7 +324,7 @@ app.get('/teacher/:idTeacher/assignments', (req, res, next) => {
 //details: assignmentName, instructions, instrument, level, piece
 //sheetMusic will be retrieved in another endpoint below
 // CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
-app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
+app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res) => {
   try{
       const teacherId = req.params['idTeacher'];
       const assignmentId = req.params['idAssignment'];
@@ -364,7 +336,7 @@ app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
       });
 
   } catch (err){
-    next (err);
+    res.status(500).send(err);
   }
 });
 
@@ -419,6 +391,7 @@ app.post('/addNewTeacher', (req, res) => {
         })
     })
   }	    
+
 }	catch(err) {	
   res.status(500).send(err);
 }	  
@@ -450,7 +423,7 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res) => {
     const {firstName, lastName, prefix} = req.body;
 
     if (!prefix || !firstName || !lastName) {
-      res.status(411).send({REQUIRED: `Prefix, first and/or last name cannot be left blank.`});
+      res.status(411).send({REQUIRED: `Prefix, first and/or last name cannot be left empty.`});
     } else{
      const settingsRef = db.collection('teachers').doc(teacherId).update({
         'name' : {
@@ -461,6 +434,7 @@ app.put('/teacher/:idTeacher/settingsEdit', (req, res) => {
       });
       res.status(202).send({MESSAGE: 'You have successfullly updated your information.'})  
     }
+
   } catch (err){
     res.status(500).send(err);
   }
@@ -481,6 +455,7 @@ app.post('/charge', (req, res) => {
     // right here, mark the user as paid in the db
 
     res.status(201).json({ status });
+
   } catch(err) {
     res.status(500).send(err);
   }

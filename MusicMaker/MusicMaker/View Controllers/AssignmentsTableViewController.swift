@@ -13,7 +13,11 @@ class AssignmentsTableViewController: UITableViewController {
     // MARK: - Properties
     
     var assignments: [Assignment] = []
-    var teacher: Teacher?
+    var teacher: Teacher? {
+        didSet {
+            title = teacher?.name
+        }
+    }
 
     // MARK: - View Lifecycle
     

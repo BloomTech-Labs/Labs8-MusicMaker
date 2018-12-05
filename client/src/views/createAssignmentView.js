@@ -2,8 +2,6 @@ import React, { Component } from "react";
 
 import Sidebar from "../components/SideBar";
 
-import "../css/index.css";
-
 class CreateAssignmentView extends Component {
   render() {
     return (

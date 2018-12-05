@@ -3,7 +3,6 @@ import axios from "axios";
 import { NavLink } from 'react-router-dom';
 
 import Sidebar from "../components/SideBar";
-import "../css/index.css";
 
 class DashboardAssignmentsView extends Component {
   constructor(props) {

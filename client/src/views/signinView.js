@@ -8,8 +8,6 @@ import * as routes from '../constants/routes';
 import { SignUpLink } from './signupView';
 import ForgotPW from '../components/ForgotPW';
 
-import "../css/index.css";
-
 const SignInPage = ({ history }) =>
     <div className="container">
         <h1 className="subheader">Sign In</h1>

@@ -18,7 +18,7 @@ import GradeAssignmentView from "../views/gradeAssignmentView";
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="container">
         <Navigation />
         <Route exact path={routes.LANDING} component={LandingPageView} />
         <Route exact path={routes.SIGN_UP} component={SignUpView} />

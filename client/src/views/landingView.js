@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import jumbotron from '../less/imgs/landingView.png';
-import '../css/index.css';
 
 class LandingPageView extends Component {
   render() {

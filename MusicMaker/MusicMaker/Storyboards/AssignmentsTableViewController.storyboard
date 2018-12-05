@@ -88,7 +88,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="mtV-IF-E8f" kind="showDetail" id="UPE-Bu-DKK"/>
+                        <segue destination="mtV-IF-E8f" kind="showDetail" identifier="ShowSubmittedAssignment" id="UPE-Bu-DKK"/>
                         <segue destination="ChC-PK-cgP" kind="showDetail" identifier="ShowUnsubmittedAssignment" id="wy6-3n-O2R"/>
                     </connections>
                 </tableViewController>

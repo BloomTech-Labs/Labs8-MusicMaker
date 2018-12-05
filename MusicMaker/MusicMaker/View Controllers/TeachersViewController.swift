@@ -15,9 +15,8 @@ class TeachersViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(hideMenuFromUserTap))
-        touchGesture.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(touchGesture)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideQrView), name: .newTeacher, object: nil)
+        
         MusicMakerModelController.shared.fetchTeachers { (teachers, error) in
             guard error == nil else {return}
             if let teachers = teachers {
@@ -25,16 +24,12 @@ class TeachersViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        qrView.setupCaptureSession()
-        let captureMetadataOutput = AVCaptureMetadataOutput()
-        qrView.captureSession?.addOutput(captureMetadataOutput)
-     
-        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-  
-        captureMetadataOutput.metadataObjectTypes = captureMetadataOutput.availableMetadataObjectTypes
-        
-        qrView.isHidden = true
-        qrView.captureSession?.startRunning()
+       
+    }
+    
+    @objc func hideQrView() {
+        showQrOptions(self)
+        NotificationCenter.default.post(name: .qrHidden, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,33 +38,51 @@ class TeachersViewController: UIViewController {
         self.tableView.reloadData()
     }
     
+    
+    
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var qrView: UIView!
+    @IBOutlet weak var qrViewTopConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
-    var sideMenuIsShowing = false
     weak var delegate: TeachersViewControllerDelegate?
     var student: Student?
     var teachers = [Teacher]()
+    var sideMenuShowing = false
+    
+    
+    
+    
     // MARK: - Private Methods
-    @objc private func hideMenuFromUserTap() {
-        if sideMenuIsShowing {
-            showSideMenu(self)
-        }
-    }
-    @IBOutlet weak var qrView: QRView!
+    
     
 
     // MARK: - IBActions
     @IBAction func showSideMenu(_ sender: Any) {
         delegate?.menuButtonTapped()
-        sideMenuIsShowing = sideMenuIsShowing ? false : true
+        sideMenuShowing = sideMenuShowing ? false : true
     }
     
-    @IBAction func showQR(_ sender: Any) {
+    @IBAction func showQrOptions(_ sender: Any) {
         
+        if qrViewTopConstraint.constant == 0 {
+            NotificationCenter.default.post(name: .qrShown, object: nil)
+            qrViewTopConstraint.constant = -qrView.frame.height
+            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            qrViewTopConstraint.constant = 0
+            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }) { (_) in
+                
+            }
+        }
+        
+      
     }
-    
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,22 +108,11 @@ extension TeachersViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeacherCell", for: indexPath)
         let teacher = teachers[indexPath.row]
         cell.textLabel?.text = teacher.name
-        cell.imageView?.image = cell.imageView?.returnImageForInitials(for: teacher.name, backgroundColor: .lightGray)
         return cell
     }
 }
 
 // MARK: - UITableViewDelegate
 extension TeachersViewController: UITableViewDelegate {
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.performSegue(withIdentifier: "ShowAssignments", sender: nil)
-//    }
-    
-    
-}
-
-// MARK: - AVCaptureMetadataOutputObjectsDelegate
-extension TeachersViewController: AVCaptureMetadataOutputObjectsDelegate {
     
 }

@@ -16,6 +16,7 @@ class QRView: UIView {
         return AVCaptureVideoPreviewLayer.self
     }
     
+   
     // MARK: - Properties
     var videoPreviewLayer: AVCaptureVideoPreviewLayer {
         return layer as! AVCaptureVideoPreviewLayer

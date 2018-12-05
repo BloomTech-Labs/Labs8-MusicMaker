@@ -36,8 +36,7 @@ extension UIImageView {
     
         
         if let initials = name?.initials {
-            print("TEST")
-            print(self.frame.height)
+        
             let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: self.frame.height / 1.7)]
             
@@ -77,8 +76,6 @@ extension UIImageView {
         
         
         if let initials = name?.initials {
-            print("TEST")
-            print(self.frame.height)
             let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                               NSAttributedString.Key.font: UIFont.systemFont(ofSize: self.frame.height / 1.7)]
             

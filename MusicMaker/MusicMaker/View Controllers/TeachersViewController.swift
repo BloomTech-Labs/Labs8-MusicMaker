@@ -89,7 +89,7 @@ class TeachersViewController: UIViewController {
         guard let indexPath = tableView.indexPathForSelectedRow else {return}
         let teacher = teachers[indexPath.row]
         if segue.identifier == "ShowAssignments" {
-            let destinationVc = segue.destination as? AssignmentsViewController
+            let destinationVc = segue.destination as? AssignmentsTableViewController
             if let assignmentsVc = destinationVc {
                 assignmentsVc.teacher = teacher
             }

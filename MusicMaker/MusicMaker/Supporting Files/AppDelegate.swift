@@ -37,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //If the user is already logged in, set the root view controller to the students' teachers view controller
     private func setRootViewController() {
         if Auth.auth().currentUser != nil {
-            let storyboard = UIStoryboard(name: "Teachers", bundle: nil)
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "ContainerViewController")
+            let storyboard = UIStoryboard(name: "SplitView", bundle: nil)
+            let initialViewController = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = initialViewController
         }
     }

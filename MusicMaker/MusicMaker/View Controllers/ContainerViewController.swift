@@ -35,6 +35,15 @@ class ContainerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
+    
+    @IBAction func showSideMenu(_ sender: Any) {
+        menuButtonTapped()
+        teachersViewController.sideMenuIsShowing = teachersViewController.sideMenuIsShowing ? false : true
+    }
+    
+    @IBAction func showQR(_ sender: Any) {
+        
+    }
 
     override func viewDidLayoutSubviews() {
         if self.sideMenu.alpha == 0 {

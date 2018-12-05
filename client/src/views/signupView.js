@@ -5,8 +5,6 @@ import { auth } from '../firebase';
 
 import * as routes from "../constants/routes";
 
-import "../css/index.css";
-
 const INITIAL_STATE = {
 //   firstName: "",
 //   lastName: "",

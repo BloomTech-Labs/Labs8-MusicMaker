@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicMaker/View Controllers/AddTeacherOptionsViewController.swift"
-            timestampString = "565672866.611595"
+            timestampString = "565722704.42026"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicMaker/View Controllers/LogInViewController.swift"
-            timestampString = "565661075.334481"
+            timestampString = "565722704.420311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
@@ -42,28 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicMaker/View Controllers/LogInViewController.swift"
-            timestampString = "565661075.334807"
+            timestampString = "565722704.420348"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
             endingLineNumber = "52"
             landmarkName = "login(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicMaker/View Controllers/AddTeacherOptionsViewController.swift"
-            timestampString = "565672866.611688"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "addQrCodeFromPhotos(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

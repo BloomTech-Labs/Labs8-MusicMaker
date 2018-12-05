@@ -89,14 +89,13 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     
     private func playSound() {
         guard let url = Bundle.main.url(forResource: "scannedSound", withExtension: "mp3") else {
-            print("url not found")
             return
         }
         do {
             player = try AVAudioPlayer(contentsOf: url)
             player?.play()
         } catch let error as NSError {
-            print("error: \(error.localizedDescription)")
+            NSLog("\(error)")
         }
     }
 }

@@ -107,7 +107,6 @@ extension AddQRPhotoViewController: UIImagePickerControllerDelegate, UINavigatio
         if let features = detectQRCode(image), !features.isEmpty{
             for case let row as CIQRCodeFeature in features{
                 if let teacherId = row.messageString {
-                    print(teacherId)
                     if !teacherId.contains("//") {
                         let teacherReference = database.collection("teachers").document(teacherId)
                         teacherReference.getDocument { (document, error) in

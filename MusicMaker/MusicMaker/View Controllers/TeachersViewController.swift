@@ -15,9 +15,6 @@ class TeachersViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(hideMenuFromUserTap))
-        touchGesture.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(touchGesture)
         MusicMakerModelController.shared.fetchTeachers { (teachers, error) in
             guard error == nil else {return}
             if let teachers = teachers {
@@ -40,22 +37,22 @@ class TeachersViewController: UIViewController {
     @IBOutlet weak var qrViewTopConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
-    var sideMenuIsShowing = false
     weak var delegate: TeachersViewControllerDelegate?
     var student: Student?
     var teachers = [Teacher]()
+    var sideMenuShowing = false
+    
+    
+    
+    
     // MARK: - Private Methods
-    @objc private func hideMenuFromUserTap() {
-        if sideMenuIsShowing {
-            showSideMenu(self)
-        }
-    }
+    
     
 
     // MARK: - IBActions
     @IBAction func showSideMenu(_ sender: Any) {
         delegate?.menuButtonTapped()
-        sideMenuIsShowing = sideMenuIsShowing ? false : true
+        sideMenuShowing = sideMenuShowing ? false : true
     }
     
     @IBAction func showQrOptions(_ sender: Any) {

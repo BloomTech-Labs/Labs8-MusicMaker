@@ -45,6 +45,7 @@
                     </view>
                     <connections>
                         <outlet property="sideMenu" destination="IUY-lx-04l" id="aCq-fI-ANV"/>
+                        <outlet property="sideMenuLeadingConstraint" destination="b8Q-eb-f4Q" id="GcJ-N4-dmp"/>
                         <outlet property="teachersView" destination="yHF-vV-e5p" id="c0J-8W-qmQ"/>
                         <segue destination="fZB-lb-6d4" kind="presentation" identifier="ShowUserProfile" id="1C5-81-IVg"/>
                         <segue destination="Mjw-gy-Ke1" kind="presentation" identifier="ResetPassword" id="ESh-pg-K56"/>

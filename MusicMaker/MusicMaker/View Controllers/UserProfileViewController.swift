@@ -49,7 +49,6 @@ class UserProfileViewController: UIViewController {
                 let usersUniqueIdentifier = currentUser?.uid else {return}
             currentUser?.updateEmail(to: newEmail, completion: { (error) in
                 if error != nil {
-                    print(error)
                     self.updateEmailButton.setTitle("Error Updating Email", for: .normal)
                 } else {
                     self.database.collection("students").document(usersUniqueIdentifier).setData(["email" : newEmail], merge: true)

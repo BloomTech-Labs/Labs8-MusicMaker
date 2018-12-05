@@ -27,7 +27,7 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchStudent()
-        self.sideMenu.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+        
         self.sideMenu.layer.shadowOpacity = 0.8
         sideMenuViewController = self.children[1] as? SideMenuViewController
         teachersViewController = self.children[0].children[0] as? TeachersViewController
@@ -39,18 +39,29 @@ class ContainerViewController: UIViewController {
         super.viewDidAppear(animated)
     }
     
+    override func viewDidLayoutSubviews() {
+        self.sideMenu.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+    }
+    
     // MARK: - Private Methods
     private func hideSideMenu() {
-        UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+//        UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+//            self.sideMenu.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+//            self.teachersView.transform = .identity
+//        })
+        UIView.animate(withDuration: 0.4, animations: {
             self.sideMenu.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.teachersView.transform = .identity
-        })
+        }) { (_) in
+            self.sideMenu.layer.shadowOpacity = 0
+        }
     }
     
     private func showSideMenu() {
 //        view.bringSubviewToFront(sideMenu)
         sideMenu.alpha = 1
         UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+            self.sideMenu.layer.shadowOpacity = 0.8
             self.sideMenu.transform = .identity
             self.teachersView.transform = CGAffineTransform(translationX: self.sideMenu.frame.width, y: 0)
         })

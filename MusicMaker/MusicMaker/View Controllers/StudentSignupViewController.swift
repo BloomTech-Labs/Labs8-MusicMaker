@@ -177,5 +177,4 @@ extension StudentSignupViewController: FirstAndLastNameViewControllerDelegate {
         })
         pageControl.currentPage += 1
     }
-
 }

@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="954"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="myy-8J-8eI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="myy-8J-8eI">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="954"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="myy-8J-8eI" secondAttribute="height" multiplier="1756:2082" priority="999" id="9ET-7d-6zY"/>
@@ -83,8 +83,8 @@
                         <outlet property="signupButton" destination="MsI-Ti-oTd" id="oWA-gY-vOl"/>
                         <segue destination="IEf-u0-XmX" kind="presentation" identifier="ShowTeachers" id="5mc-Cd-NMF"/>
                         <segue destination="fJc-Zd-r9S" kind="show" identifier="ShowLoginScreen" id="Qah-C9-N4r"/>
-                        <segue destination="qx3-Yu-8d3" kind="show" identifier="SignUpWithGoogle" id="tmR-Ep-L9G"/>
-                        <segue destination="qx3-Yu-8d3" kind="show" identifier="ShowSignupScreen" id="txV-j1-YDS"/>
+                        <segue destination="6aC-Rc-Di4" kind="show" identifier="SignUpWithGoogle" id="tmR-Ep-L9G"/>
+                        <segue destination="6aC-Rc-Di4" kind="show" identifier="ShowSignupScreen" id="txV-j1-YDS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQV-4B-11T" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -262,232 +262,33 @@
             </objects>
             <point key="canvasLocation" x="2813" y="811"/>
         </scene>
-        <!--Scanner View Controller-->
-        <scene sceneID="P4g-UV-aBa">
-            <objects>
-                <viewController storyboardIdentifier="QRScanner" id="ZPh-zh-U9L" customClass="QRScannerViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qt4-Xc-1xu">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5FL-Qc-946" customClass="QRView" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5At-53-Ccz">
-                                <rect key="frame" x="0.0" y="20" width="235.5" height="1004"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="58s-ew-VkV">
-                                <rect key="frame" x="532.5" y="20" width="235.5" height="1004"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bV1-fE-9hX">
-                                <rect key="frame" x="235.5" y="665.5" width="297" height="358.5"/>
-                                <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmi-TL-OaF">
-                                        <rect key="frame" x="148.5" y="179.5" width="0.0" height="0.0"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="Rmi-TL-OaF" firstAttribute="centerY" secondItem="bV1-fE-9hX" secondAttribute="centerY" id="9ji-Ml-g89"/>
-                                    <constraint firstItem="Rmi-TL-OaF" firstAttribute="centerX" secondItem="bV1-fE-9hX" secondAttribute="centerX" id="aaC-QQ-TFj"/>
-                                </constraints>
-                            </view>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8J5-jK-48n">
-                                <rect key="frame" x="235.5" y="20" width="297" height="338.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81d-se-ihK">
-                                <rect key="frame" x="230.5" y="358.5" width="307" height="307"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="81d-se-ihK" secondAttribute="height" multiplier="1:1" id="S6r-Rc-RjF"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="5FL-Qc-946" firstAttribute="leading" secondItem="uAT-zA-r5y" secondAttribute="leading" id="04w-j4-0w9"/>
-                            <constraint firstItem="8J5-jK-48n" firstAttribute="leading" secondItem="5At-53-Ccz" secondAttribute="trailing" id="1Bp-ta-3p8"/>
-                            <constraint firstItem="bV1-fE-9hX" firstAttribute="leading" secondItem="5At-53-Ccz" secondAttribute="trailing" id="2Lc-Bf-dCh"/>
-                            <constraint firstItem="58s-ew-VkV" firstAttribute="leading" secondItem="bV1-fE-9hX" secondAttribute="trailing" id="6tM-42-dEP"/>
-                            <constraint firstItem="58s-ew-VkV" firstAttribute="leading" secondItem="81d-se-ihK" secondAttribute="trailing" constant="-5" id="BJq-5a-vhM"/>
-                            <constraint firstItem="5FL-Qc-946" firstAttribute="bottom" secondItem="qt4-Xc-1xu" secondAttribute="bottom" id="CzJ-f8-6zG"/>
-                            <constraint firstItem="81d-se-ihK" firstAttribute="leading" secondItem="5At-53-Ccz" secondAttribute="trailing" constant="-5" id="IDD-63-rpW"/>
-                            <constraint firstItem="58s-ew-VkV" firstAttribute="leading" secondItem="8J5-jK-48n" secondAttribute="trailing" id="IrG-cU-nRm"/>
-                            <constraint firstItem="5At-53-Ccz" firstAttribute="top" secondItem="uAT-zA-r5y" secondAttribute="top" id="L47-Oa-1R9"/>
-                            <constraint firstItem="81d-se-ihK" firstAttribute="top" secondItem="8J5-jK-48n" secondAttribute="bottom" id="R0y-Fj-DW0"/>
-                            <constraint firstItem="81d-se-ihK" firstAttribute="centerY" secondItem="qt4-Xc-1xu" secondAttribute="centerY" id="SGc-uZ-6sP"/>
-                            <constraint firstAttribute="bottom" secondItem="5At-53-Ccz" secondAttribute="bottom" id="TkP-hi-TzP"/>
-                            <constraint firstItem="uAT-zA-r5y" firstAttribute="trailing" secondItem="58s-ew-VkV" secondAttribute="trailing" id="aZa-bH-hyn"/>
-                            <constraint firstItem="81d-se-ihK" firstAttribute="centerX" secondItem="qt4-Xc-1xu" secondAttribute="centerX" id="b6F-vf-7Xp"/>
-                            <constraint firstItem="bV1-fE-9hX" firstAttribute="top" secondItem="81d-se-ihK" secondAttribute="bottom" id="j5N-T2-7QZ"/>
-                            <constraint firstItem="8J5-jK-48n" firstAttribute="top" secondItem="uAT-zA-r5y" secondAttribute="top" id="myz-Gz-ilU"/>
-                            <constraint firstItem="5FL-Qc-946" firstAttribute="trailing" secondItem="uAT-zA-r5y" secondAttribute="trailing" id="p9O-WN-Qyu"/>
-                            <constraint firstItem="5At-53-Ccz" firstAttribute="leading" secondItem="uAT-zA-r5y" secondAttribute="leading" id="tSU-C3-ixe"/>
-                            <constraint firstItem="81d-se-ihK" firstAttribute="height" secondItem="qt4-Xc-1xu" secondAttribute="height" multiplier="0.3" id="tYA-P7-xbk"/>
-                            <constraint firstAttribute="bottom" secondItem="58s-ew-VkV" secondAttribute="bottom" id="vjM-4o-eTk"/>
-                            <constraint firstItem="5FL-Qc-946" firstAttribute="top" secondItem="uAT-zA-r5y" secondAttribute="top" id="y3y-y3-54z"/>
-                            <constraint firstAttribute="bottom" secondItem="bV1-fE-9hX" secondAttribute="bottom" id="yaQ-Vc-0zk"/>
-                            <constraint firstItem="58s-ew-VkV" firstAttribute="top" secondItem="uAT-zA-r5y" secondAttribute="top" id="yzi-5M-gBc"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="uAT-zA-r5y"/>
-                    </view>
-                    <connections>
-                        <outlet property="centerView" destination="81d-se-ihK" id="18r-qK-p9E"/>
-                        <outlet property="qrCodeFeedbackLabel" destination="Rmi-TL-OaF" id="IUM-uU-KL4"/>
-                        <outlet property="qrView" destination="5FL-Qc-946" id="I9f-bm-V01"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wfv-iT-CO5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="915" y="-649"/>
-        </scene>
-        <!--AddQR Photo View Controller-->
-        <scene sceneID="pYQ-Oe-FzV">
-            <objects>
-                <viewController storyboardIdentifier="QRReader" id="6dX-S8-6CP" customClass="AddQRPhotoViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6tb-YF-Mf8">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZfS-c9-MUX">
-                                <rect key="frame" x="20" y="953" width="728" height="51"/>
-                                <state key="normal" title="Select Photo"/>
-                                <connections>
-                                    <action selector="selectPhoto:" destination="6dX-S8-6CP" eventType="touchUpInside" id="5Vp-sW-ZHG"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="ZfS-c9-MUX" firstAttribute="leading" secondItem="u2i-EH-PC6" secondAttribute="leading" constant="20" id="AUw-v5-4uh"/>
-                            <constraint firstItem="ZfS-c9-MUX" firstAttribute="height" secondItem="6tb-YF-Mf8" secondAttribute="height" multiplier="0.05" id="YUX-aJ-tq4"/>
-                            <constraint firstItem="u2i-EH-PC6" firstAttribute="bottom" secondItem="ZfS-c9-MUX" secondAttribute="bottom" constant="20" id="Yym-4O-oLc"/>
-                            <constraint firstItem="u2i-EH-PC6" firstAttribute="trailing" secondItem="ZfS-c9-MUX" secondAttribute="trailing" constant="20" id="btk-q1-paq"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="u2i-EH-PC6"/>
-                    </view>
-                    <connections>
-                        <outlet property="addPhotosButton" destination="ZfS-c9-MUX" id="nxp-h7-2wr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DmT-iX-Grl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1666" y="-649"/>
-        </scene>
-        <!--Add Teacher-->
-        <scene sceneID="Jqs-Ew-Lev">
-            <objects>
-                <viewController id="qx3-Yu-8d3" customClass="AddTeacherOptionsViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3ok-fM-G6K">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="954"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smc-gz-bls">
-                                <rect key="frame" x="0.0" y="67" width="768" height="887"/>
-                                <connections>
-                                    <outlet property="delegate" destination="qx3-Yu-8d3" id="Rzo-sP-2LG"/>
-                                </connections>
-                            </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="by2-oC-0DD">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="67"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sAZ-Qo-PQW">
-                                        <rect key="frame" x="0.0" y="10" width="768" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYw-Bn-NqW">
-                                                <rect key="frame" x="0.0" y="0.0" width="384" height="30"/>
-                                                <state key="normal" title="Scan QR Code"/>
-                                                <connections>
-                                                    <action selector="scanQrCodeButtonTapped:" destination="qx3-Yu-8d3" eventType="touchUpInside" id="EZB-ag-VsC"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7t-Hz-kSv">
-                                                <rect key="frame" x="384" y="0.0" width="384" height="30"/>
-                                                <state key="normal" title="Add From Photos"/>
-                                                <connections>
-                                                    <action selector="addQrCodeFromPhotos:" destination="qx3-Yu-8d3" eventType="touchUpInside" id="yt0-nA-As2"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jxG-HU-Ffv">
-                                        <rect key="frame" x="0.0" y="62" width="384" height="5"/>
-                                        <color key="backgroundColor" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="5" id="g6W-i7-KEv"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="sAZ-Qo-PQW" firstAttribute="leading" secondItem="by2-oC-0DD" secondAttribute="leading" id="IrP-ZA-vM1"/>
-                                    <constraint firstAttribute="trailing" secondItem="sAZ-Qo-PQW" secondAttribute="trailing" id="ORn-a0-xrK"/>
-                                    <constraint firstItem="sAZ-Qo-PQW" firstAttribute="top" secondItem="by2-oC-0DD" secondAttribute="top" constant="10" id="Qg4-2Z-NU9"/>
-                                    <constraint firstItem="jxG-HU-Ffv" firstAttribute="leading" secondItem="by2-oC-0DD" secondAttribute="leading" id="Tv6-V2-lFf"/>
-                                    <constraint firstAttribute="bottom" secondItem="jxG-HU-Ffv" secondAttribute="bottom" id="qPW-1x-TUn"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="jxG-HU-Ffv" firstAttribute="width" secondItem="3ok-fM-G6K" secondAttribute="width" multiplier="0.5" id="LHg-mm-Uge"/>
-                            <constraint firstItem="Smc-gz-bls" firstAttribute="trailing" secondItem="G7b-AQ-YPh" secondAttribute="trailing" id="QLY-Hx-Jdw"/>
-                            <constraint firstItem="by2-oC-0DD" firstAttribute="height" secondItem="3ok-fM-G6K" secondAttribute="height" multiplier="0.07" id="Syc-nI-d8S"/>
-                            <constraint firstItem="Smc-gz-bls" firstAttribute="bottom" secondItem="G7b-AQ-YPh" secondAttribute="bottom" id="Yfs-HA-Mkv"/>
-                            <constraint firstItem="Smc-gz-bls" firstAttribute="leading" secondItem="G7b-AQ-YPh" secondAttribute="leading" id="bmD-eB-Tlz"/>
-                            <constraint firstItem="by2-oC-0DD" firstAttribute="top" secondItem="G7b-AQ-YPh" secondAttribute="top" id="hxd-NZ-1xZ"/>
-                            <constraint firstItem="by2-oC-0DD" firstAttribute="trailing" secondItem="G7b-AQ-YPh" secondAttribute="trailing" id="kIK-fI-U0i"/>
-                            <constraint firstItem="Smc-gz-bls" firstAttribute="top" secondItem="by2-oC-0DD" secondAttribute="bottom" id="qUC-Ip-jsw"/>
-                            <constraint firstItem="by2-oC-0DD" firstAttribute="leading" secondItem="G7b-AQ-YPh" secondAttribute="leading" id="wzG-0Z-i5p"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="G7b-AQ-YPh"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Add Teacher" id="zqQ-uK-qik"/>
-                    <connections>
-                        <outlet property="scrollView" destination="Smc-gz-bls" id="fJB-MU-fYj"/>
-                        <outlet property="underlineBar" destination="jxG-HU-Ffv" id="qHo-e9-ZJV"/>
-                        <outlet property="underlineBarLeadingConstraint" destination="Tv6-V2-lFf" id="rLE-R9-tgf"/>
-                        <segue destination="2dT-6n-GHt" kind="show" identifier="ShowSignUp" id="nu6-Wv-Apf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5h2-YW-GHY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1323" y="28"/>
-        </scene>
         <!--Student Signup View Controller-->
         <scene sceneID="vIQ-OY-8ff">
             <objects>
-                <viewController id="2dT-6n-GHt" customClass="StudentSignupViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UIViewController-2dT-6n-GHt" id="2dT-6n-GHt" customClass="StudentSignupViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5p4-Ty-zTx">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="954"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="uaJ-3U-Z1O">
-                                <rect key="frame" x="25" y="20" width="39" height="37"/>
+                                <rect key="frame" x="25" y="40" width="39" height="37"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="currentPageIndicatorTintColor" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </pageControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1r-R8-RNj" userLabel="Level And Instrument View">
-                                <rect key="frame" x="0.0" y="65" width="768" height="429.5"/>
+                                <rect key="frame" x="0.0" y="85" width="768" height="461"/>
                                 <connections>
                                     <segue destination="EPV-Tw-BNL" kind="embed" identifier="InstrumentAndLevel" id="43E-OV-Jcb"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yy0-bU-P3Q">
-                                <rect key="frame" x="0.0" y="65" width="768" height="429.5"/>
+                                <rect key="frame" x="0.0" y="85" width="768" height="461"/>
                                 <connections>
                                     <segue destination="2BU-8C-1PD" kind="embed" identifier="ShowEmailAndPassword" id="tsr-oP-1Eb"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ED3-W1-87N">
-                                <rect key="frame" x="0.0" y="65" width="768" height="429.5"/>
+                                <rect key="frame" x="0.0" y="85" width="768" height="461"/>
                                 <connections>
                                     <segue destination="Lxw-1J-6LL" kind="embed" identifier="FirstAndLastName" id="Vii-vc-6gQ"/>
                                 </connections>
@@ -547,104 +348,138 @@
             <objects>
                 <viewController id="2BU-8C-1PD" customClass="EmailAndPasswordViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p2E-eU-r34">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="429.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="461"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WkW-7J-hI0" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="20" y="76" width="672" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="0.69999999999999996"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J8g-vk-2O1" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="20" y="146" width="672" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="0.69999999999999996"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbO-rP-5Kv" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="20" y="216" width="672" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="0.69999999999999996"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFy-qW-a51">
-                                <rect key="frame" x="340" y="286" width="32" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <action selector="nextButtonTapped:" destination="2BU-8C-1PD" eventType="touchUpInside" id="DK4-Gd-IRO"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1D-IP-cvr" customClass="LOTAnimationView">
-                                <rect key="frame" x="632" y="150" width="58" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select an email address and a password of at least 6 characters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgN-4d-qO4">
-                                <rect key="frame" x="20" y="20" width="487" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an email address and a password of at least 6 characters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgN-4d-qO4">
+                                <rect key="frame" x="20" y="20" width="728" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LOj-oa-YyT" customClass="LOTAnimationView">
-                                <rect key="frame" x="632" y="78" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Tb-cz-rfI" customClass="LOTAnimationView">
-                                <rect key="frame" x="632" y="216" width="58" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-47-vkT">
+                                <rect key="frame" x="20" y="60.5" width="728" height="322.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="aYW-fX-FB6">
+                                        <rect key="frame" x="0.0" y="0.0" width="728" height="236.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="76" translatesAutoresizingMaskIntoConstraints="NO" id="NlV-wA-TM6">
+                                                <rect key="frame" x="0.0" y="0.0" width="728" height="71.5"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WkW-7J-hI0" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="614.5" height="71.5"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                                <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                                <real key="value" value="0.69999999999999996"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOj-oa-YyT" customClass="LOTAnimationView">
+                                                        <rect key="frame" x="690.5" y="0.0" width="37.5" height="71.5"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="ykk-Rb-46z">
+                                                <rect key="frame" x="0.0" y="82.5" width="728" height="71.5"/>
+                                                <subviews>
+                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J8g-vk-2O1" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="614.5" height="71.5"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                                <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                                <real key="value" value="0.69999999999999996"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1D-IP-cvr" customClass="LOTAnimationView">
+                                                        <rect key="frame" x="657.5" y="0.0" width="70.5" height="71.5"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="56" translatesAutoresizingMaskIntoConstraints="NO" id="dlR-sO-OiK">
+                                                <rect key="frame" x="0.0" y="165" width="728" height="71.5"/>
+                                                <subviews>
+                                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbO-rP-5Kv" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="614.5" height="71.5"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                                <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                                <real key="value" value="0.69999999999999996"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Tb-cz-rfI" customClass="LOTAnimationView">
+                                                        <rect key="frame" x="670.5" y="0.0" width="57.5" height="71.5"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="J8g-vk-2O1" firstAttribute="width" secondItem="WkW-7J-hI0" secondAttribute="width" id="M9k-J1-kYg"/>
+                                            <constraint firstItem="gbO-rP-5Kv" firstAttribute="width" secondItem="WkW-7J-hI0" secondAttribute="width" id="cWe-AB-w6U"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFy-qW-a51">
+                                        <rect key="frame" x="0.0" y="275.5" width="728" height="47"/>
+                                        <state key="normal" title="Next"/>
+                                        <connections>
+                                            <action selector="nextButtonTapped:" destination="2BU-8C-1PD" eventType="touchUpInside" id="DK4-Gd-IRO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qFy-qW-a51" firstAttribute="height" secondItem="aYW-fX-FB6" secondAttribute="height" multiplier="0.2" id="SBS-fN-et3"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ff5-q6-3a3" firstAttribute="trailing" secondItem="ZJJ-47-vkT" secondAttribute="trailing" constant="20" id="1cg-Vz-chv"/>
+                            <constraint firstItem="Ff5-q6-3a3" firstAttribute="trailing" secondItem="BgN-4d-qO4" secondAttribute="trailing" constant="20" id="KPB-bx-6rK"/>
+                            <constraint firstItem="ZJJ-47-vkT" firstAttribute="leading" secondItem="Ff5-q6-3a3" secondAttribute="leading" constant="20" id="LWI-lf-0Pn"/>
+                            <constraint firstItem="ZJJ-47-vkT" firstAttribute="height" secondItem="p2E-eU-r34" secondAttribute="height" multiplier="0.7" id="NF5-nQ-bEk"/>
+                            <constraint firstItem="BgN-4d-qO4" firstAttribute="leading" secondItem="Ff5-q6-3a3" secondAttribute="leading" constant="20" id="Wx4-CF-Jjb"/>
+                            <constraint firstItem="BgN-4d-qO4" firstAttribute="top" secondItem="Ff5-q6-3a3" secondAttribute="top" id="htu-wO-mXU"/>
+                            <constraint firstItem="ZJJ-47-vkT" firstAttribute="top" secondItem="BgN-4d-qO4" secondAttribute="bottom" constant="20" id="icJ-IO-74j"/>
+                            <constraint firstItem="WkW-7J-hI0" firstAttribute="width" secondItem="p2E-eU-r34" secondAttribute="width" multiplier="0.8" id="lHy-LV-ixj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Ff5-q6-3a3"/>
                     </view>
                     <connections>
@@ -658,14 +493,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w7z-qe-C8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2788" y="51"/>
+            <point key="canvasLocation" x="2787.5" y="50.68359375"/>
         </scene>
         <!--Level And Instrument View Controller-->
         <scene sceneID="rXe-zo-228">
             <objects>
                 <viewController id="EPV-Tw-BNL" customClass="LevelAndInstrumentViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4DG-8k-1ak">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="429.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="461"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select your level and instrument to complete your sign up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2c-c5-pwQ">
@@ -744,78 +579,103 @@
             <objects>
                 <viewController id="Lxw-1J-6LL" customClass="FirstAndLastNameViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ALL-d4-ReD">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="429.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="461"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hi there, lets get started with your name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3A-lw-C5s">
-                                <rect key="frame" x="20" y="20" width="307" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi there, lets get started with your name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3A-lw-C5s">
+                                <rect key="frame" x="20" y="20" width="728" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X5e-QU-wTQ" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="20" y="89" width="620" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="0.69999999999999996"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VJQ-Co-Ddc" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="20" y="196" width="620" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="0.69999999999999996"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQl-Oa-rOF" customClass="LOTAnimationView">
-                                <rect key="frame" x="648" y="74" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ngO-R0-moO" customClass="LOTAnimationView">
-                                <rect key="frame" x="648" y="182" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSq-Gd-v8H">
-                                <rect key="frame" x="368" y="275" width="32" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <action selector="goToNextStep:" destination="Lxw-1J-6LL" eventType="touchUpInside" id="AXc-Ye-ZjR"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="84" translatesAutoresizingMaskIntoConstraints="NO" id="dn8-L1-LOf">
+                                <rect key="frame" x="20" y="60.5" width="728" height="321"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="tGn-1r-Xiy">
+                                        <rect key="frame" x="0.0" y="0.0" width="728" height="207"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="teI-Kv-fJB">
+                                                <rect key="frame" x="0.0" y="0.0" width="728" height="100"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X5e-QU-wTQ" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="614.5" height="100"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                                <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                                <real key="value" value="0.69999999999999996"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQl-Oa-rOF" customClass="LOTAnimationView">
+                                                        <rect key="frame" x="622.5" y="0.0" width="105.5" height="100"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2Sc-ZM-j6m">
+                                                <rect key="frame" x="0.0" y="107" width="728" height="100"/>
+                                                <subviews>
+                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VJQ-Co-Ddc" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="614.5" height="100"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                                <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                                <real key="value" value="0.69999999999999996"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngO-R0-moO" customClass="LOTAnimationView">
+                                                        <rect key="frame" x="622.5" y="0.0" width="105.5" height="100"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="VJQ-Co-Ddc" firstAttribute="width" secondItem="X5e-QU-wTQ" secondAttribute="width" id="TzL-o3-KxD"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSq-Gd-v8H">
+                                        <rect key="frame" x="0.0" y="291" width="728" height="30"/>
+                                        <state key="normal" title="Next"/>
+                                        <connections>
+                                            <action selector="goToNextStep:" destination="Lxw-1J-6LL" eventType="touchUpInside" id="AXc-Ye-ZjR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VbN-ii-SX3" firstAttribute="trailing" secondItem="z3A-lw-C5s" secondAttribute="trailing" constant="20" id="8aH-FE-J24"/>
+                            <constraint firstItem="z3A-lw-C5s" firstAttribute="leading" secondItem="VbN-ii-SX3" secondAttribute="leading" constant="20" id="DwP-Q6-UH0"/>
+                            <constraint firstItem="dn8-L1-LOf" firstAttribute="leading" secondItem="VbN-ii-SX3" secondAttribute="leading" constant="20" id="QtR-rx-4kU"/>
+                            <constraint firstItem="dn8-L1-LOf" firstAttribute="top" secondItem="z3A-lw-C5s" secondAttribute="bottom" constant="20" id="gEH-dU-Yu4"/>
+                            <constraint firstItem="VbN-ii-SX3" firstAttribute="trailing" secondItem="dn8-L1-LOf" secondAttribute="trailing" constant="20" id="pxk-vl-067"/>
+                            <constraint firstItem="z3A-lw-C5s" firstAttribute="top" secondItem="VbN-ii-SX3" secondAttribute="top" id="qDh-P3-AX5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="VbN-ii-SX3"/>
                     </view>
                     <connections>
@@ -827,15 +687,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTX-cK-pIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2788.28125" y="-253.12499999999997"/>
+            <point key="canvasLocation" x="2788.28125" y="-253.41796874999997"/>
+        </scene>
+        <!--QRScanner-->
+        <scene sceneID="eK9-9I-Ol5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="QRScanner" id="6aC-Rc-Di4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tRn-lf-LwE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1323" y="28"/>
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="1756" height="2082"/>
+        <image name="background1" width="1756" height="2082"/>
         <image name="invisible" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="txV-j1-YDS"/>
+        <segue reference="tmR-Ep-L9G"/>
         <segue reference="igX-eq-H4s"/>
         <segue reference="que-9r-UXH"/>
     </inferredMetricsTieBreakers>

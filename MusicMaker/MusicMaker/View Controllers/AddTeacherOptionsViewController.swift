@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class AddTeacherOptionsViewController: UIViewController {
 
@@ -56,6 +58,7 @@ class AddTeacherOptionsViewController: UIViewController {
     var isSigningUpWithGoogle = false
     var teacherUniqueId: String?
     var email: String?
+    var currentUser = Auth.auth().currentUser
     // MARK: - Private Methods
     
     private func setupNavigationBar() {
@@ -127,10 +130,14 @@ extension AddTeacherOptionsViewController: UIScrollViewDelegate {
 extension AddTeacherOptionsViewController: QRScanning {
     
     func qrCodeScanned(_ qrCode: String) {
-        
-        if teacherUniqueId != qrCode {
-            teacherUniqueId = qrCode
-            self.performSegue(withIdentifier: "ShowSignUp", sender: nil)
+        if let user = currentUser {
+            let database = Firestore.firestore()
+            database.collection("students").document(user.uid).collection("teachers").document(qrCode).setData(["exists": true])
+        } else {
+            if teacherUniqueId != qrCode {
+                teacherUniqueId = qrCode
+                self.performSegue(withIdentifier: "ShowSignUp", sender: nil)
+            }
         }
     }
     

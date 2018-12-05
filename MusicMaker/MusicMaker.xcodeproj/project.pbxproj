@@ -44,17 +44,18 @@
 		BF98B13621B4E3A1007B7C45 /* qr_code.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B13521B4E3A1007B7C45 /* qr_code.json */; };
 		BF98B13821B4E447007B7C45 /* AddQRPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13721B4E447007B7C45 /* AddQRPhotoViewController.swift */; };
 		BF98B13A21B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13921B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift */; };
-		BF98B13C21B50D9B007B7C45 /* checked_done_.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B13B21B50D9B007B7C45 /* checked_done_.json */; };
+		BF98B13C21B50D9B007B7C45 /* checkmark.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B13B21B50D9B007B7C45 /* checkmark.json */; };
 		BF98B13E21B50EAB007B7C45 /* StudentSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13D21B50EAB007B7C45 /* StudentSignupViewController.swift */; };
 		BF98B14021B5B66D007B7C45 /* EmailAndPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13F21B5B66D007B7C45 /* EmailAndPasswordViewController.swift */; };
 		BF98B14221B5B784007B7C45 /* eye01.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B14121B5B784007B7C45 /* eye01.json */; };
 		BF98B14421B5C5B0007B7C45 /* EmailAndPasswordViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14321B5C5B0007B7C45 /* EmailAndPasswordViewControllerDelegate.swift */; };
 		BF98B14621B5CA9C007B7C45 /* StarRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14521B5CA9C007B7C45 /* StarRating.swift */; };
 		BF98B14821B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14721B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift */; };
-		BF98B14A21B5CD66007B7C45 /* LevelAndInstrumentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14921B5CD66007B7C45 /* LevelAndInstrumentViewDelegate.swift */; };
+		BF98B14A21B5CD66007B7C45 /* LevelAndInstrumentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14921B5CD66007B7C45 /* LevelAndInstrumentViewControllerDelegate.swift */; };
+		BF98B14C21B5E8A5007B7C45 /* FirstAndLastNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14B21B5E8A5007B7C45 /* FirstAndLastNameViewController.swift */; };
+		BF98B14E21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14D21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift */; };
 		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
-		BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CD219355460038F974 /* SignUpViewController.swift */; };
 		BFD381D0219355510038F974 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CF219355510038F974 /* LogInViewController.swift */; };
 		BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */; };
 		BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD3E5652192393B00D84FF2 /* Assets.xcassets */; };
@@ -139,17 +140,18 @@
 		BF98B13521B4E3A1007B7C45 /* qr_code.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = qr_code.json; sourceTree = "<group>"; };
 		BF98B13721B4E447007B7C45 /* AddQRPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQRPhotoViewController.swift; sourceTree = "<group>"; };
 		BF98B13921B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+InformationalAlert.swift"; sourceTree = "<group>"; };
-		BF98B13B21B50D9B007B7C45 /* checked_done_.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checked_done_.json; sourceTree = "<group>"; };
+		BF98B13B21B50D9B007B7C45 /* checkmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark.json; sourceTree = "<group>"; };
 		BF98B13D21B50EAB007B7C45 /* StudentSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignupViewController.swift; sourceTree = "<group>"; };
 		BF98B13F21B5B66D007B7C45 /* EmailAndPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAndPasswordViewController.swift; sourceTree = "<group>"; };
 		BF98B14121B5B784007B7C45 /* eye01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = eye01.json; sourceTree = "<group>"; };
 		BF98B14321B5C5B0007B7C45 /* EmailAndPasswordViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAndPasswordViewControllerDelegate.swift; sourceTree = "<group>"; };
 		BF98B14521B5CA9C007B7C45 /* StarRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRating.swift; sourceTree = "<group>"; };
 		BF98B14721B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndInstrumentViewController.swift; sourceTree = "<group>"; };
-		BF98B14921B5CD66007B7C45 /* LevelAndInstrumentViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndInstrumentViewDelegate.swift; sourceTree = "<group>"; };
+		BF98B14921B5CD66007B7C45 /* LevelAndInstrumentViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndInstrumentViewControllerDelegate.swift; sourceTree = "<group>"; };
+		BF98B14B21B5E8A5007B7C45 /* FirstAndLastNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAndLastNameViewController.swift; sourceTree = "<group>"; };
+		BF98B14D21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAndLastNameViewControllerDelegate.swift; sourceTree = "<group>"; };
 		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
-		BFD381CD219355460038F974 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BFD381CF219355510038F974 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BFD3E55B2192393A00D84FF2 /* MusicMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -213,10 +215,11 @@
 		BF5D5215219CCAA100DFF213 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				BF98B14D21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift */,
 				BF98B14321B5C5B0007B7C45 /* EmailAndPasswordViewControllerDelegate.swift */,
 				BFFB214821B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift */,
 				BF5D5218219D17F100DFF213 /* TeachersViewControllerDelegate.swift */,
-				BF98B14921B5CD66007B7C45 /* LevelAndInstrumentViewDelegate.swift */,
+				BF98B14921B5CD66007B7C45 /* LevelAndInstrumentViewControllerDelegate.swift */,
 				BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */,
 			);
 			path = Protocols;
@@ -243,15 +246,15 @@
 		BFD381C4219353A50038F974 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BF98B14721B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift */,
-				BF98B13F21B5B66D007B7C45 /* EmailAndPasswordViewController.swift */,
 				BFD3EEF821AD1CB50097D5AA /* InitialViewController.swift */,
 				BFFB214A21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift */,
 				BFFB214E21B1F9B90050E013 /* AddTeacherOptionsViewController.swift */,
+				BF98B13321B4A318007B7C45 /* QRScannerViewController.swift */,
 				BF98B13721B4E447007B7C45 /* AddQRPhotoViewController.swift */,
 				BF98B13D21B50EAB007B7C45 /* StudentSignupViewController.swift */,
-				BF98B13321B4A318007B7C45 /* QRScannerViewController.swift */,
-				BFD381CD219355460038F974 /* SignUpViewController.swift */,
+				BF98B14B21B5E8A5007B7C45 /* FirstAndLastNameViewController.swift */,
+				BF98B13F21B5B66D007B7C45 /* EmailAndPasswordViewController.swift */,
+				BF98B14721B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift */,
 				BFD381CF219355510038F974 /* LogInViewController.swift */,
 				BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */,
 				BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */,
@@ -374,7 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				BF98B13521B4E3A1007B7C45 /* qr_code.json */,
-				BF98B13B21B50D9B007B7C45 /* checked_done_.json */,
+				BF98B13B21B50D9B007B7C45 /* checkmark.json */,
 				BF98B14121B5B784007B7C45 /* eye01.json */,
 				BF5D5215219CCAA100DFF213 /* Protocols */,
 				BFD381CA219353F40038F974 /* Extensions */,
@@ -526,7 +529,7 @@
 				BF98B14221B5B784007B7C45 /* eye01.json in Resources */,
 				BF98B13621B4E3A1007B7C45 /* qr_code.json in Resources */,
 				BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */,
-				BF98B13C21B50D9B007B7C45 /* checked_done_.json in Resources */,
+				BF98B13C21B50D9B007B7C45 /* checkmark.json in Resources */,
 				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				39C47DC621AF228900C1E115 /* SubmittedAssignmentViewController.storyboard in Resources */,
@@ -671,7 +674,6 @@
 				393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */,
 				BF98B14821B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift in Sources */,
 				BFFB213F21AFA02E0050E013 /* ResetPasswordViewController.swift in Sources */,
-				BFD381CE219355460038F974 /* SignUpViewController.swift in Sources */,
 				39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */,
 				BFD381D0219355510038F974 /* LogInViewController.swift in Sources */,
 				393E238821AB565800620D94 /* Assignment+Convenience.swift in Sources */,
@@ -690,7 +692,7 @@
 				393E238A21AB9F7900620D94 /* MusicMakerModelController.swift in Sources */,
 				39C108FF2194FD9800180F37 /* CameraPreviewView.swift in Sources */,
 				BF98B14621B5CA9C007B7C45 /* StarRating.swift in Sources */,
-				BF98B14A21B5CD66007B7C45 /* LevelAndInstrumentViewDelegate.swift in Sources */,
+				BF98B14A21B5CD66007B7C45 /* LevelAndInstrumentViewControllerDelegate.swift in Sources */,
 				BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */,
 				BF5D5219219D17F100DFF213 /* TeachersViewControllerDelegate.swift in Sources */,
 				BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */,
@@ -703,6 +705,8 @@
 				BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */,
 				39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */,
 				BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */,
+				BF98B14E21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift in Sources */,
+				BF98B14C21B5E8A5007B7C45 /* FirstAndLastNameViewController.swift in Sources */,
 				BF98B14421B5C5B0007B7C45 /* EmailAndPasswordViewControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -48,11 +48,14 @@ class EmailAndPasswordViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func nextButtonTapped(_ sender: Any) {
-        delegate?.nextButtonTapped(with: emailTextField.text!, password: passwordTextField.text!)
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            delegate?.nextButtonTapped(with: email, password: password)
+            //Tell user to enter an email or password
+        }
     }
     // MARK: - Private Methods
     private func setupAnimationViews() {
-        emailCheckmark.animation = "checked_done_"
+        emailCheckmark.animation = "checkmark"
         confirmPasswordAnimation.animation = "eye01"
         passwordAnimation.animation = "eye01"
         
@@ -102,8 +105,10 @@ extension EmailAndPasswordViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
         case 0:
-            emailCheckmark.isHidden = false
-            emailCheckmark.play()
+            if textField.text?.count ?? 0 > 0 {
+                emailCheckmark.isHidden = false
+                emailCheckmark.play()
+            }
         default:
             break
         }

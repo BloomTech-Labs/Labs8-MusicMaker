@@ -16,45 +16,43 @@ class StudentSignupViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstNameCheckmark.animation = "checked_done_"
-        firstNameCheckmark.contentMode = .scaleAspectFit
-        lastNameCheckmark.animation = "checked_done_"
-        lastNameCheckmark.contentMode = .scaleAspectFit
+        
         addDismissKeyboardGestureRecognizer()
-        emailAndPasswordViewController = self.children[0] as? EmailAndPasswordViewController
-        emailAndPasswordViewController?.delegate = self
-        levelAndInstrumentViewController = self.children[1] as? LevelAndInstrumentViewController
-        levelAndInstrumentViewController?.delegate = self
-        emailAndPasswordView.isUserInteractionEnabled = true
+        setupContainerViews()
+
     }
+    
+    
+    
+    
     
     // MARK: - IBOutlets
     @IBOutlet weak var levelAndInstrumentView: UIView!
-    @IBOutlet weak var firstNameCheckmark: LOTAnimationView!
-    @IBOutlet weak var lastNameCheckmark: LOTAnimationView!
     @IBOutlet weak var emailAndPasswordView: UIView!
     @IBOutlet weak var firstAndLastNameView: UIView!
-    @IBOutlet weak var firstNameTextField: HoshiTextField! {
+   
+    @IBOutlet weak var pageControl: UIPageControl! {
         didSet {
-            firstNameTextField.delegate = self
+            pageControl.numberOfPages = isSigningUpWithGoogle ? 2 : 3
         }
     }
-    @IBOutlet weak var lastNameTextField: HoshiTextField! {
-        didSet {
-            lastNameTextField.delegate = self
-        }
-    }
-    @IBOutlet weak var pageControl: UIPageControl!
     
     // MARK: - Properties
     var isSigningUpWithGoogle = false
+    
     var teacherUniqueId: String?
-    var emailAndPasswordViewController: EmailAndPasswordViewController?
-    var levelAndInstrumentViewController: LevelAndInstrumentViewController?
     var email: String?
     var password: String?
+    var firstName: String?
+    var lastName: String?
     
     // MARK: - Private Methods
+    private func setupContainerViews() {
+        emailAndPasswordView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
+        levelAndInstrumentView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
+    }
+    
+    
     //Adds a gesture recognizer that calls dismissKeyboard(_:)
     private func addDismissKeyboardGestureRecognizer() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
@@ -68,47 +66,30 @@ class StudentSignupViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func showEmailAndPasswordTextFields(_ sender: Any) {
-        UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
-            self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
-            self.emailAndPasswordView.transform = CGAffineTransform(translationX: -self.view.frame.width + 51, y: 0)
-        })
-        pageControl.currentPage = 1
-    }
-}
-
-// MARK: - UITextFieldDelegate
-extension StudentSignupViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField.tag {
-        case 0:
-            lastNameTextField.becomeFirstResponder()
-        case 1:
-            lastNameTextField.resignFirstResponder()
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "InstrumentAndLevel":
+            if let destinationVC = segue.destination as? LevelAndInstrumentViewController {
+                destinationVC.delegate = self
+            }
+        case "ShowEmailAndPassword":
+            if let destinationVC = segue.destination as? EmailAndPasswordViewController {
+                destinationVC.delegate = self
+            }
+        case "FirstAndLastName":
+            if let destinationVC = segue.destination as? FirstAndLastNameViewController {
+                destinationVC.delegate = self
+            }
         default:
-            ()
+            break
         }
-        return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        switch textField.tag {
-        case 0:
-            if firstNameTextField.text?.count ?? 0 > 0 {
-                firstNameCheckmark.isHidden = false
-                firstNameCheckmark.play()
-            }
-        case 1:
-            if lastNameTextField.text?.count ?? 0 > 0 {
-                lastNameCheckmark.isHidden = false
-                lastNameCheckmark.play()
-            }
-        default:
-            ()
-        }
-    }
 }
 
+
+// MARK: - EmailAndPasswordViewControllerDelegate
 extension StudentSignupViewController: EmailAndPasswordViewControllerDelegate {
     
     
@@ -116,58 +97,85 @@ extension StudentSignupViewController: EmailAndPasswordViewControllerDelegate {
         self.email = email
         self.password = password
         UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
-            self.emailAndPasswordView.transform = CGAffineTransform(translationX: (-2 * self.view.frame.width), y: 0)
-            self.levelAndInstrumentView.transform = CGAffineTransform(translationX: -self.view.frame.width + 51, y: 0)
+            self.emailAndPasswordView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+            self.levelAndInstrumentView.transform = .identity
             
         })
-        pageControl.currentPage = 3
+        pageControl.currentPage += 1
     }
+    
+    func writeStudentToFirestore(userId: String, level: String, instrument: String) {
+        guard let email = email, let firstName = firstName, let lastName = lastName, let teacherUniqueId = teacherUniqueId else {return}
+   
+        let database = Firestore.firestore()
+        let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level]
+        database.collection("students").document(userId).setData(userDocumentInformation)
+        database.collection("students").document(userId).collection("teachers").document(teacherUniqueId).setData(["exisits": true])
+        database.collection("teachers").document(teacherUniqueId).collection("students").document(userId).setData(userDocumentInformation)
+        
+        self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
+        
+    }
+    
     
 }
 
-extension StudentSignupViewController: LevelAndInstrumentViewDelegate {
-    func signUpButtonTapped(with rating: String, instrument: String) {
-        guard let email = email, let password = password, let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let teacherUniqueId = teacherUniqueId else {return}
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            
 
-            //Error creating user checks different errors and updates UI to let user know why there was an error
-            if error != nil {
-                if let errorCode = AuthErrorCode(rawValue: error!._code) {
-                    switch errorCode {
-                    case .weakPassword:
-                        print("weakPassword")
-                    case .accountExistsWithDifferentCredential:
-                        print("Account already exisits")
-                    case .emailAlreadyInUse:
-                        print("Email already in use")
-                    case .invalidEmail:
-                        print("Invalid email")
-                    case .missingEmail:
-                        print("Missing email")
-                    default:
-                        print("error")
+
+
+// MARK: - LevelAndInstrumentViewControllerDelegate
+extension StudentSignupViewController: LevelAndInstrumentViewControllerDelegate {
+    func signUpButtonTapped(with level: String, instrument: String) {
+        
+        if isSigningUpWithGoogle {
+            if let userId = Auth.auth().currentUser?.uid {
+                self.writeStudentToFirestore(userId: userId, level: level, instrument: instrument)
+            }
+        } else {
+            guard let email = email, let password = password else {return}
+            
+            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                //Error creating user checks different errors and updates UI to let user know why there was an error
+                if error != nil {
+                    if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                        switch errorCode {
+                        case .weakPassword:
+                            print("weakPassword")
+                        case .accountExistsWithDifferentCredential:
+                            print("Account already exisits")
+                        case .emailAlreadyInUse:
+                            print("Email already in use")
+                        case .invalidEmail:
+                            print("Invalid email")
+                        case .missingEmail:
+                            print("Missing email")
+                        default:
+                            print("error")
+                        }
                     }
                 }
-            }
-            
-            let database = Firestore.firestore()
-            
-            let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": rating]
-    
-            
-            if let user = user {
-                let usersUniqueIdentifier = user.user.uid
-                
-                database.collection("students").document(usersUniqueIdentifier).setData(userDocumentInformation)
-                database.collection("students").document(usersUniqueIdentifier).collection("teachers").document(teacherUniqueId).setData(["test": "test"])
-                
-                //DELETE TEST TEST ABOVE ^^^^
-                self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
+                if let user = user {
+                    self.writeStudentToFirestore(userId: user.user.uid, level: level, instrument: instrument)
+                }
             }
         }
     }
-    
-    
+}
+
+// MARK: - FirstAndLastNameViewControllerDelegate
+extension StudentSignupViewController: FirstAndLastNameViewControllerDelegate {
+    func nextButtonTapped(firstName: String, lastName: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+        
+        isSigningUpWithGoogle ? UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+            self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+            self.levelAndInstrumentView.transform = .identity
+        }) : UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+            self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+            self.emailAndPasswordView.transform = .identity
+        })
+        pageControl.currentPage += 1
+    }
+
 }

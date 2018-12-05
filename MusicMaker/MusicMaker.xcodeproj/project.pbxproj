@@ -15,7 +15,9 @@
 		393E238C21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238B21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift */; };
 		399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399010C221925474004670BF /* UnsubmittedAssignmentViewController.storyboard */; };
 		399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */; };
+		399B8B8221B8542700E73156 /* AssignmentsTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399F0B5621B7377B00261477 /* AssignmentsTableViewController.storyboard */; };
 		399F0B5921B83E8400261477 /* AssignmentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399F0B5821B83E8400261477 /* AssignmentsTableViewController.swift */; };
+		399F0B5B21B8436400261477 /* AssignmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399F0B5A21B8436400261477 /* AssignmentTableViewCell.swift */; };
 		39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C108FC2194E55900180F37 /* RecordingViewController.swift */; };
 		39C108FF2194FD9800180F37 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C108FE2194FD9800180F37 /* CameraPreviewView.swift */; };
 		39C47DC621AF228900C1E115 /* SubmittedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39C47DC521AF228900C1E115 /* SubmittedAssignmentViewController.storyboard */; };
@@ -111,6 +113,7 @@
 		399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsubmittedAssignmentViewController.swift; sourceTree = "<group>"; };
 		399F0B5621B7377B00261477 /* AssignmentsTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AssignmentsTableViewController.storyboard; sourceTree = "<group>"; };
 		399F0B5821B83E8400261477 /* AssignmentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsTableViewController.swift; sourceTree = "<group>"; };
+		399F0B5A21B8436400261477 /* AssignmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTableViewCell.swift; sourceTree = "<group>"; };
 		39C108FC2194E55900180F37 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
 		39C108FE2194FD9800180F37 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		39C47DC521AF228900C1E115 /* SubmittedAssignmentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmittedAssignmentViewController.storyboard; sourceTree = "<group>"; };
@@ -322,6 +325,7 @@
 				39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */,
 				39C108FE2194FD9800180F37 /* CameraPreviewView.swift */,
 				393E238B21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift */,
+				399F0B5A21B8436400261477 /* AssignmentTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -536,6 +540,7 @@
 				39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */,
 				BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */,
 				BF98B14221B5B784007B7C45 /* eye01.json in Resources */,
+				399B8B8221B8542700E73156 /* AssignmentsTableViewController.storyboard in Resources */,
 				BF98B13621B4E3A1007B7C45 /* qr_code.json in Resources */,
 				BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */,
 				BF98B13C21B50D9B007B7C45 /* checkmark.json in Resources */,
@@ -709,6 +714,7 @@
 				BF98B14021B5B66D007B7C45 /* EmailAndPasswordViewController.swift in Sources */,
 				39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */,
 				BFD3EEFD21AE45880097D5AA /* Student.swift in Sources */,
+				399F0B5B21B8436400261477 /* AssignmentTableViewCell.swift in Sources */,
 				BF5D5212219CC8F500DFF213 /* SideMenuViewController.swift in Sources */,
 				BF98B13221B35007007B7C45 /* UISegmentedControl+Extensions.swift in Sources */,
 				BF98B13A21B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift in Sources */,

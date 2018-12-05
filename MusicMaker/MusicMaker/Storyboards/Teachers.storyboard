@@ -45,6 +45,7 @@
                     </view>
                     <connections>
                         <outlet property="sideMenu" destination="IUY-lx-04l" id="aCq-fI-ANV"/>
+                        <outlet property="sideMenuLeadingConstraint" destination="b8Q-eb-f4Q" id="GcJ-N4-dmp"/>
                         <outlet property="teachersView" destination="yHF-vV-e5p" id="c0J-8W-qmQ"/>
                         <segue destination="fZB-lb-6d4" kind="presentation" identifier="ShowUserProfile" id="1C5-81-IVg"/>
                         <segue destination="Mjw-gy-Ke1" kind="presentation" identifier="ResetPassword" id="ESh-pg-K56"/>
@@ -260,13 +261,23 @@ Password</string>
                                     <outlet property="delegate" destination="RAX-kR-dSc" id="axg-bo-86m"/>
                                 </connections>
                             </tableView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k0l-B1-hDh">
+                                <rect key="frame" x="0.0" y="667" width="375" height="533.5"/>
+                                <connections>
+                                    <segue destination="7Du-EH-Lbv" kind="embed" id="eke-Zf-E5d"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gnV-Mz-9G7" firstAttribute="trailing" secondItem="TeA-Y6-gtb" secondAttribute="trailing" id="41k-uj-ao7"/>
+                            <constraint firstItem="k0l-B1-hDh" firstAttribute="height" secondItem="uvy-aJ-JWT" secondAttribute="height" multiplier="0.8" id="7i7-up-R1c"/>
                             <constraint firstItem="gnV-Mz-9G7" firstAttribute="bottom" secondItem="TeA-Y6-gtb" secondAttribute="bottom" id="BXQ-k1-SL6"/>
                             <constraint firstItem="gnV-Mz-9G7" firstAttribute="top" secondItem="TeA-Y6-gtb" secondAttribute="top" id="K0X-te-BYm"/>
+                            <constraint firstItem="k0l-B1-hDh" firstAttribute="top" secondItem="gnV-Mz-9G7" secondAttribute="bottom" id="PV2-gh-xLW"/>
+                            <constraint firstItem="k0l-B1-hDh" firstAttribute="leading" secondItem="TeA-Y6-gtb" secondAttribute="leading" id="ZTf-Wz-laR"/>
                             <constraint firstItem="gnV-Mz-9G7" firstAttribute="leading" secondItem="TeA-Y6-gtb" secondAttribute="leading" id="a05-HY-4kh"/>
+                            <constraint firstItem="k0l-B1-hDh" firstAttribute="trailing" secondItem="TeA-Y6-gtb" secondAttribute="trailing" id="oyg-qj-Nmh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TeA-Y6-gtb"/>
                     </view>
@@ -276,15 +287,29 @@ Password</string>
                                 <action selector="showSideMenu:" destination="RAX-kR-dSc" id="v8R-WE-ZYS"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="qr_code" id="loR-qS-CDO"/>
+                        <barButtonItem key="rightBarButtonItem" image="qr_code" id="loR-qS-CDO">
+                            <connections>
+                                <action selector="showQrOptions:" destination="RAX-kR-dSc" id="p0x-1S-VQt"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="qrView" destination="k0l-B1-hDh" id="ZqL-NZ-TPx"/>
+                        <outlet property="qrViewTopConstraint" destination="PV2-gh-xLW" id="mU8-hl-VHn"/>
                         <outlet property="tableView" destination="gnV-Mz-9G7" id="bmR-2K-tfc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jhg-Kt-wfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2492" y="438.53073463268368"/>
+        </scene>
+        <!--QRScanner-->
+        <scene sceneID="MTh-Ko-Dhc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="QRScanner" id="7Du-EH-Lbv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rRD-cF-p30" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2492" y="934"/>
         </scene>
         <!--Assignments View Controller-->
         <scene sceneID="vML-QO-ryS">

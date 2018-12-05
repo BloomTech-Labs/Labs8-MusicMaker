@@ -14,12 +14,11 @@ import CreateAssignmentView from '../views/createAssignmentView';
 import DashboardBillingView from "../views/dashboardBillingView";
 import DashboardSettingView from "../views/dashboardSettingView";
 import GradeAssignmentView from "../views/gradeAssignmentView";
-// import DummyPdfView from "../views/dummyPdfView";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="container">
         <Navigation />
         <Route exact path={routes.LANDING} component={LandingPageView} />
         <Route exact path={routes.SIGN_UP} component={SignUpView} />

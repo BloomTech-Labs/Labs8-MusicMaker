@@ -6,7 +6,6 @@ import * as routes from "../constants/routes";
 import AuthUserContext from "./AuthUserContext";
 import SignOutButton from "../components/SignOutButton";
 
-import "../css/index.css";
 import homeIcon from "../less/imgs/homeIcon.png";
 
 const Navigation = () => (
@@ -16,30 +15,30 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-  <div className="nav">
-    <div className="left">
+  <div className="navbar">
+    <div>
       <Link to={routes.DASHBOARD}>
-        <img className="item" src={homeIcon} />
+        <img src={homeIcon} />
       </Link>
     </div>
-    <div className="right">
-      <SignOutButton className="item" />
+    <div>
+      <SignOutButton />
     </div>
   </div>
 );
 
 const NavigationNonAuth = () => (
-  <div className="nav">
-    <div className="left">
+  <div className="navbar">
+    <div>
       <Link to={routes.LANDING}>
-        <img className="item" src={homeIcon} />
+        <img src={homeIcon} />
       </Link>
     </div>
-    <div className="right">
-      <Link to={routes.SIGN_UP} className="item">
+    <div>
+      <Link to={routes.SIGN_UP}>
         Sign Up
       </Link>
-      <Link to={routes.SIGN_IN} className="item">
+      <Link to={routes.SIGN_IN}>
         Sign In
       </Link>
     </div>

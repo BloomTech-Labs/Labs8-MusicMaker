@@ -10,6 +10,8 @@ import UIKit
 
 extension UIImageView {
     
+    
+    
     //Sets the imageview's image to a circle with the name's initials in it
     func createInitialsImage(for name: String?, backgroundColor: UIColor) {
         
@@ -34,8 +36,7 @@ extension UIImageView {
     
         
         if let initials = name?.initials {
-            print("TEST")
-            print(self.frame.height)
+        
             let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: self.frame.height / 1.7)]
             
@@ -75,8 +76,6 @@ extension UIImageView {
         
         
         if let initials = name?.initials {
-            print("TEST")
-            print(self.frame.height)
             let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                               NSAttributedString.Key.font: UIFont.systemFont(ofSize: self.frame.height / 1.7)]
             
@@ -91,5 +90,19 @@ extension UIImageView {
         UIGraphicsEndImageContext()
         
         return image
+    }
+}
+
+extension UIImage {
+    
+    class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        let graphicsContext = UIGraphicsGetCurrentContext()
+        graphicsContext?.setFillColor(color)
+        let rectangle = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+        graphicsContext?.fill(rectangle)
+        let rectangleImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return rectangleImage!
     }
 }

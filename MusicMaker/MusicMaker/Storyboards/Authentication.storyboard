@@ -14,17 +14,17 @@
             <objects>
                 <viewController id="XI5-s7-70o" customClass="InitialViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Saw-Ca-gp5">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="954"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="myy-8J-8eI">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="myy-8J-8eI">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="954"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="myy-8J-8eI" secondAttribute="height" multiplier="1756:2082" priority="999" id="9ET-7d-6zY"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="musicmaker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CgE-AS-gAZ">
-                                <rect key="frame" x="136" y="70" width="496" height="93"/>
+                                <rect key="frame" x="136" y="0.0" width="496" height="93"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="80"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -32,51 +32,29 @@
                                     <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="45"/>
                                 </variation>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="X5R-H7-0sb">
-                                <rect key="frame" x="136" y="263" width="496" height="134"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="Zze-rv-5Ci">
+                                <rect key="frame" x="185.5" y="218" width="397" height="121"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="gFR-08-8JN">
-                                        <rect key="frame" x="0.0" y="0.0" width="496" height="47"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftt-ap-eik">
-                                                <rect key="frame" x="0.0" y="0.0" width="228" height="47"/>
-                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
-                                                <state key="normal" title="Log In">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <variation key="heightClass=regular-widthClass=compact">
-                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="24"/>
-                                                </variation>
-                                                <connections>
-                                                    <segue destination="fJc-Zd-r9S" kind="show" id="Ucy-tT-VyJ"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="St2-S3-LHn">
-                                                <rect key="frame" x="268" y="0.0" width="228" height="47"/>
-                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
-                                                <state key="normal" title="Sign Up">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <variation key="heightClass=regular-widthClass=compact">
-                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="24"/>
-                                                </variation>
-                                                <connections>
-                                                    <segue destination="dtM-Of-Z43" kind="show" id="1yD-s6-ZGH"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JhT-tc-C9b">
-                                        <rect key="frame" x="0.0" y="87" width="496" height="47"/>
-                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
-                                        <state key="normal" title="Sign In With Google">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCU-Vo-PI8">
+                                        <rect key="frame" x="0.0" y="0.0" width="397" height="47"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="LOG IN">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showLoginOptions:" destination="XI5-s7-70o" eventType="touchUpInside" id="9sD-PE-fDV"/>
+                                            <segue destination="BF0-jJ-iAR" kind="presentation" identifier="ShowLoginOptions" id="que-9r-UXH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsI-Ti-oTd">
+                                        <rect key="frame" x="0.0" y="74" width="397" height="47"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="SIGN UP">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="24"/>
-                                        </variation>
                                         <connections>
-                                            <action selector="signInWithGoogle:" destination="XI5-s7-70o" eventType="touchUpInside" id="fyX-X6-9xm"/>
+                                            <action selector="showSignupOptions:" destination="XI5-s7-70o" eventType="touchUpInside" id="1kh-RO-usP"/>
+                                            <segue destination="BF0-jJ-iAR" kind="presentation" identifier="ShowSignupOptions" id="vzR-mT-veA"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -84,345 +62,115 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Zze-rv-5Ci" firstAttribute="width" secondItem="CgE-AS-gAZ" secondAttribute="width" multiplier="0.8" id="2FU-68-Ws2"/>
                             <constraint firstItem="myy-8J-8eI" firstAttribute="trailing" secondItem="Saw-Ca-gp5" secondAttribute="trailing" id="5dd-L2-au8"/>
+                            <constraint firstItem="Zze-rv-5Ci" firstAttribute="top" secondItem="CgE-AS-gAZ" secondAttribute="bottom" constant="125" id="7CL-Z6-FQm"/>
+                            <constraint firstItem="Zze-rv-5Ci" firstAttribute="height" secondItem="CgE-AS-gAZ" secondAttribute="height" multiplier="1.3" id="9fb-zs-3eo"/>
                             <constraint firstItem="myy-8J-8eI" firstAttribute="top" relation="lessThanOrEqual" secondItem="Saw-Ca-gp5" secondAttribute="top" id="COT-Ae-xQb"/>
                             <constraint firstItem="CgE-AS-gAZ" firstAttribute="centerX" secondItem="Saw-Ca-gp5" secondAttribute="centerX" id="SWS-PH-Ida"/>
                             <constraint firstItem="myy-8J-8eI" firstAttribute="leading" secondItem="Saw-Ca-gp5" secondAttribute="leading" id="TRp-GI-v4v"/>
                             <constraint firstItem="CgE-AS-gAZ" firstAttribute="top" secondItem="Vwe-AN-Kzz" secondAttribute="top" id="Ud7-l6-BWK"/>
-                            <constraint firstItem="X5R-H7-0sb" firstAttribute="width" secondItem="CgE-AS-gAZ" secondAttribute="width" id="VNs-jH-Emv"/>
-                            <constraint firstItem="X5R-H7-0sb" firstAttribute="centerX" secondItem="Saw-Ca-gp5" secondAttribute="centerX" id="VzE-Um-SPb"/>
-                            <constraint firstItem="X5R-H7-0sb" firstAttribute="top" secondItem="CgE-AS-gAZ" secondAttribute="bottom" constant="100" id="n88-wK-FUP"/>
                             <constraint firstItem="myy-8J-8eI" firstAttribute="bottom" secondItem="Saw-Ca-gp5" secondAttribute="bottom" id="ooq-wg-DKx"/>
+                            <constraint firstItem="Zze-rv-5Ci" firstAttribute="centerX" secondItem="Saw-Ca-gp5" secondAttribute="centerX" id="rAU-cZ-WR1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vwe-AN-Kzz"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Euy-h8-trc"/>
+                    <navigationItem key="navigationItem" id="Euy-h8-trc">
+                        <barButtonItem key="backBarButtonItem" title=" " id="XQY-rt-js2"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="googleSigninButton" destination="JhT-tc-C9b" id="9fO-5a-CYc"/>
-                        <outlet property="loginButton" destination="ftt-ap-eik" id="bg0-Gt-Ok5"/>
-                        <outlet property="signupButton" destination="St2-S3-LHn" id="NmA-7U-rUs"/>
-                        <segue destination="dtM-Of-Z43" kind="show" identifier="SignUpWithGoogle" id="mf3-Dp-WTk"/>
+                        <outlet property="loginButton" destination="RCU-Vo-PI8" id="kai-mK-sYk"/>
+                        <outlet property="signupButton" destination="MsI-Ti-oTd" id="oWA-gY-vOl"/>
                         <segue destination="IEf-u0-XmX" kind="presentation" identifier="ShowTeachers" id="5mc-Cd-NMF"/>
+                        <segue destination="fJc-Zd-r9S" kind="show" identifier="ShowLoginScreen" id="Qah-C9-N4r"/>
+                        <segue destination="6aC-Rc-Di4" kind="show" identifier="SignUpWithGoogle" id="tmR-Ep-L9G"/>
+                        <segue destination="6aC-Rc-Di4" kind="show" identifier="ShowSignupScreen" id="txV-j1-YDS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQV-4B-11T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="544.53125" y="27.5390625"/>
         </scene>
-        <!--Sign Up View Controller-->
-        <scene sceneID="f9q-uu-XwT">
+        <!--Authentication Options View Controller-->
+        <scene sceneID="9cU-nl-K2S">
             <objects>
-                <viewController id="dtM-Of-Z43" customClass="SignUpViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="d9n-gc-MBu">
+                <viewController id="BF0-jJ-iAR" customClass="AuthenticationOptionsViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="imh-hN-6MH">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QT3-cY-C0X">
-                                <rect key="frame" x="60" y="90" width="648" height="614.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="kr3-3g-rMC">
+                                <rect key="frame" x="50" y="811" width="668" height="205"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jju-C2-cbs" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="648" height="59.5"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="0.69999999999999996"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        </variation>
-                                    </textField>
-                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPf-Lo-Jf9" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="79.5" width="648" height="59"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="0.69999999999999996"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        </variation>
-                                    </textField>
-                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jmg-78-7Ah" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="158.5" width="648" height="59.5"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="0.69999999999999996"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        </variation>
-                                    </textField>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnW-se-2VL">
-                                        <rect key="frame" x="0.0" y="228" width="648" height="0.0"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VZu-dV-HwI" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="238" width="648" height="59"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="0.69999999999999996"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        </variation>
-                                    </textField>
-                                    <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wpR-IA-Rm2" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="317" width="648" height="59.5"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="0.69999999999999996"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        </variation>
-                                    </textField>
-                                    <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Level" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ksc-fK-T0u" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="396.5" width="648" height="59.5"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="0.69999999999999996"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        </variation>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="uF9-5A-y9h">
+                                        <rect key="frame" x="0.0" y="0.0" width="668" height="93.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxH-6f-QEn">
+                                                <rect key="frame" x="167" y="0.0" width="334" height="38"/>
+                                                <color key="backgroundColor" red="0.28235294117647058" green="0.52156862745098043" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                                <state key="normal" title="GOOGLE">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="googleButtonTapped:" destination="BF0-jJ-iAR" eventType="touchUpInside" id="C4V-oW-uqM"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlM-Wa-w8F">
+                                                <rect key="frame" x="167" y="56" width="334" height="37.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                                <state key="normal" title="LOG IN WITH EMAIL">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="emailButtonTapped:" destination="BF0-jJ-iAR" eventType="touchUpInside" id="FDG-NK-nUq"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="ZlM-Wa-w8F" firstAttribute="width" secondItem="bxH-6f-QEn" secondAttribute="width" id="Rzv-gH-K3g"/>
+                                            <constraint firstItem="bxH-6f-QEn" firstAttribute="width" secondItem="uF9-5A-y9h" secondAttribute="width" multiplier="0.5" id="bG7-Px-yxM"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89o-eT-lv0">
+                                        <rect key="frame" x="0.0" y="111.5" width="668" height="93.5"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                        <state key="normal" title="CANCEL">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
-                                            <action selector="selectLevel:" destination="dtM-Of-Z43" eventType="touchDown" id="Vbv-mq-3Wf"/>
+                                            <action selector="cancelButtonTapped:" destination="BF0-jJ-iAR" eventType="touchUpInside" id="vCf-ju-JDV"/>
                                         </connections>
-                                    </textField>
-                                    <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Instrument" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nBu-i8-lgC" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="476" width="648" height="59"/>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="0.69999999999999996"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="selectInstrument:" destination="dtM-Of-Z43" eventType="touchDown" id="pZS-10-UPk"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Teacher" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Eg-an-L7C" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="555" width="648" height="59.5"/>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="0.69999999999999996"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.10980392160000001" green="0.57254901960000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="addTeacher:" destination="dtM-Of-Z43" eventType="touchDown" id="cPn-bh-Wil"/>
-                                        </connections>
-                                    </textField>
+                                    </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udY-XD-sDy">
-                                <rect key="frame" x="60" y="744" width="648" height="30"/>
-                                <state key="normal" title="Sign Up"/>
-                                <connections>
-                                    <action selector="createAccount:" destination="dtM-Of-Z43" eventType="touchUpInside" id="nO8-OE-BnU"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRo-AP-n0H">
-                                <rect key="frame" x="672.5" y="344" width="35.5" height="35.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="ZRo-AP-n0H" secondAttribute="height" multiplier="1:1" id="5NE-Wr-eEw"/>
-                                </constraints>
-                                <state key="normal" image="eye"/>
-                                <connections>
-                                    <action selector="toggleSecureEntryOnPasswordTextFields:" destination="dtM-Of-Z43" eventType="touchUpInside" id="e6T-OJ-yZD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyS-PR-dHh">
-                                <rect key="frame" x="672.5" y="423" width="35.5" height="35.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="vyS-PR-dHh" secondAttribute="height" multiplier="1:1" id="ctW-bw-jmh"/>
-                                </constraints>
-                                <state key="normal" image="eye"/>
-                                <connections>
-                                    <action selector="toggleSecureEntryOnPasswordTextFields:" destination="dtM-Of-Z43" eventType="touchUpInside" id="r34-sV-XlK"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dp-Gp-NpJ" userLabel="PopupView">
-                                <rect key="frame" x="0.0" y="964" width="768" height="500"/>
-                                <subviews>
-                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ami-Ov-3NM">
-                                        <rect key="frame" x="0.0" y="8" width="768" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="QR Scanner"/>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oq9-aS-rW2" userLabel="QRView" customClass="QRView" customModule="MusicMaker" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="57" width="752" height="435"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="Oq9-aS-rW2" firstAttribute="top" secondItem="ami-Ov-3NM" secondAttribute="bottom" constant="8" id="07Y-HT-7r5"/>
-                                    <constraint firstAttribute="trailing" secondItem="Oq9-aS-rW2" secondAttribute="trailing" constant="8" id="HyV-bo-I56"/>
-                                    <constraint firstAttribute="height" constant="500" id="YWu-hY-SqK"/>
-                                    <constraint firstAttribute="trailing" secondItem="ami-Ov-3NM" secondAttribute="trailing" id="c2K-KV-cgQ"/>
-                                    <constraint firstItem="Oq9-aS-rW2" firstAttribute="leading" secondItem="3dp-Gp-NpJ" secondAttribute="leading" constant="8" id="etC-B1-Kc8"/>
-                                    <constraint firstItem="ami-Ov-3NM" firstAttribute="leading" secondItem="3dp-Gp-NpJ" secondAttribute="leading" id="jrk-eV-svu"/>
-                                    <constraint firstItem="ami-Ov-3NM" firstAttribute="top" secondItem="3dp-Gp-NpJ" secondAttribute="top" constant="8" id="k3q-xf-TdK"/>
-                                    <constraint firstAttribute="bottom" secondItem="Oq9-aS-rW2" secondAttribute="bottom" constant="8" id="yA6-7J-L6x"/>
-                                </constraints>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2pN-Oe-N4y" firstAttribute="trailing" secondItem="ZRo-AP-n0H" secondAttribute="trailing" constant="60" id="367-cS-lgz"/>
-                            <constraint firstItem="udY-XD-sDy" firstAttribute="leading" secondItem="2pN-Oe-N4y" secondAttribute="leading" constant="60" id="36g-1U-l2I"/>
-                            <constraint firstItem="QT3-cY-C0X" firstAttribute="height" secondItem="d9n-gc-MBu" secondAttribute="height" multiplier="0.6" id="5Wr-Ek-aFz"/>
-                            <constraint firstAttribute="bottom" secondItem="3dp-Gp-NpJ" secondAttribute="bottom" constant="-440" id="8cg-qN-A3D"/>
-                            <constraint firstItem="udY-XD-sDy" firstAttribute="top" secondItem="QT3-cY-C0X" secondAttribute="bottom" constant="39.5" id="AtR-w6-6jJ"/>
-                            <constraint firstItem="QT3-cY-C0X" firstAttribute="top" secondItem="2pN-Oe-N4y" secondAttribute="top" constant="20" id="DXZ-bq-obk"/>
-                            <constraint firstItem="3dp-Gp-NpJ" firstAttribute="leading" secondItem="2pN-Oe-N4y" secondAttribute="leading" id="MYs-sb-P8l"/>
-                            <constraint firstItem="VZu-dV-HwI" firstAttribute="centerY" secondItem="ZRo-AP-n0H" secondAttribute="centerY" constant="-4" id="MzA-Ss-QMm"/>
-                            <constraint firstItem="ZRo-AP-n0H" firstAttribute="height" secondItem="VZu-dV-HwI" secondAttribute="height" multiplier="0.6" id="Qxw-tZ-2Wf"/>
-                            <constraint firstItem="2pN-Oe-N4y" firstAttribute="trailing" secondItem="QT3-cY-C0X" secondAttribute="trailing" constant="60" id="YO1-Od-NFH"/>
-                            <constraint firstItem="2pN-Oe-N4y" firstAttribute="trailing" secondItem="udY-XD-sDy" secondAttribute="trailing" constant="60" id="cAd-tz-Wqn"/>
-                            <constraint firstItem="wpR-IA-Rm2" firstAttribute="centerY" secondItem="vyS-PR-dHh" secondAttribute="centerY" constant="-4" id="dI2-gs-q6b"/>
-                            <constraint firstItem="vyS-PR-dHh" firstAttribute="height" secondItem="wpR-IA-Rm2" secondAttribute="height" multiplier="0.6" id="fJb-dC-NBV"/>
-                            <constraint firstItem="QT3-cY-C0X" firstAttribute="leading" secondItem="2pN-Oe-N4y" secondAttribute="leading" constant="60" id="qPw-xZ-zFx"/>
-                            <constraint firstItem="2pN-Oe-N4y" firstAttribute="trailing" secondItem="vyS-PR-dHh" secondAttribute="trailing" constant="60" id="tQt-Ud-kgR"/>
-                            <constraint firstItem="3dp-Gp-NpJ" firstAttribute="trailing" secondItem="2pN-Oe-N4y" secondAttribute="trailing" id="uWe-ZY-sVY"/>
+                            <constraint firstItem="1PV-of-Xmd" firstAttribute="trailing" secondItem="kr3-3g-rMC" secondAttribute="trailing" constant="50" id="O07-UV-fxK"/>
+                            <constraint firstAttribute="bottom" secondItem="kr3-3g-rMC" secondAttribute="bottom" constant="8" id="Vit-tL-0lJ"/>
+                            <constraint firstItem="kr3-3g-rMC" firstAttribute="centerX" secondItem="imh-hN-6MH" secondAttribute="centerX" id="afc-0U-mNW"/>
+                            <constraint firstItem="kr3-3g-rMC" firstAttribute="leading" secondItem="1PV-of-Xmd" secondAttribute="leading" constant="50" id="xX0-Eb-LZP"/>
+                            <constraint firstItem="kr3-3g-rMC" firstAttribute="height" secondItem="imh-hN-6MH" secondAttribute="height" multiplier="0.2" id="ydk-DJ-FD2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="2pN-Oe-N4y"/>
+                        <viewLayoutGuide key="safeArea" id="1PV-of-Xmd"/>
                     </view>
                     <connections>
-                        <outlet property="bottomConstraint" destination="8cg-qN-A3D" id="hL6-hQ-FAS"/>
-                        <outlet property="confirmPasswordShowButton" destination="ZRo-AP-n0H" id="SUn-T3-AHJ"/>
-                        <outlet property="confirmPasswordTextField" destination="wpR-IA-Rm2" id="b9Z-L4-WOu"/>
-                        <outlet property="emailErrorLabel" destination="vnW-se-2VL" id="FpN-hC-9C5"/>
-                        <outlet property="emailTextField" destination="jmg-78-7Ah" id="DsC-Zg-zKL"/>
-                        <outlet property="firstNameTextField" destination="Jju-C2-cbs" id="WdF-fT-trp"/>
-                        <outlet property="lastNameTextField" destination="xPf-Lo-Jf9" id="j7v-xh-tBE"/>
-                        <outlet property="passwordShowButton" destination="vyS-PR-dHh" id="E6w-D1-rTs"/>
-                        <outlet property="passwordTextField" destination="VZu-dV-HwI" id="VEU-3r-A70"/>
-                        <outlet property="popupView" destination="3dp-Gp-NpJ" id="HZA-Vc-44F"/>
-                        <outlet property="qrView" destination="Oq9-aS-rW2" id="w7u-ki-KRn"/>
-                        <outlet property="selectInstrumentTextField" destination="nBu-i8-lgC" id="i0d-si-3Bk"/>
-                        <outlet property="selectLevelTextField" destination="ksc-fK-T0u" id="img-mB-E3s"/>
-                        <outlet property="teacherTextField" destination="2Eg-an-L7C" id="VdU-kW-bdm"/>
-                        <segue destination="IEf-u0-XmX" kind="presentation" identifier="ShowStudentHome" id="Aag-bc-Au1"/>
+                        <outlet property="emailButton" destination="ZlM-Wa-w8F" id="51I-s7-C3b"/>
+                        <outlet property="googleButton" destination="bxH-6f-QEn" id="cOu-AN-vRt"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zeh-6b-KVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CgS-pp-Z4Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1355.46875" y="-275.390625"/>
+            <point key="canvasLocation" x="545" y="811"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="0Fr-QA-sOy">
             <objects>
                 <viewController id="fJc-Zd-r9S" customClass="LogInViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t8O-8i-USS">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="954"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WPl-y3-4mB" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
@@ -492,14 +240,6 @@
                                     <action selector="showOrHidePasswordEntry:" destination="fJc-Zd-r9S" eventType="touchUpInside" id="r8A-V4-a45"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MD7-Kp-b2Q" customClass="GIDSignInButton">
-                                <rect key="frame" x="266" y="488" width="240" height="96"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="loginWithGoogle:" destination="fJc-Zd-r9S" eventType="valueChanged" id="COk-bl-5RV"/>
-                                </connections>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Bvt-zl-7UO"/>
@@ -512,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eYg-Ah-ls7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1334" y="767"/>
+            <point key="canvasLocation" x="1323" y="811"/>
         </scene>
         <!--Teachers-->
         <scene sceneID="IUA-EV-6Gb">
@@ -520,14 +260,85 @@
                 <viewControllerPlaceholder storyboardName="Teachers" id="IEf-u0-XmX" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gkh-FN-72Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2031" y="407"/>
+            <point key="canvasLocation" x="2813" y="811"/>
+        </scene>
+        <!--Student Signup View Controller-->
+        <scene sceneID="vIQ-OY-8ff">
+            <objects>
+                <viewController id="2dT-6n-GHt" customClass="StudentSignupViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5p4-Ty-zTx">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ED3-W1-87N">
+                                <rect key="frame" x="0.0" y="70" width="768" height="461"/>
+                                <connections>
+                                    <segue destination="Lxw-1J-6LL" kind="embed" identifier="FirstAndLastName" id="Vii-vc-6gQ"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yy0-bU-P3Q">
+                                <rect key="frame" x="0.0" y="70" width="768" height="461"/>
+                                <connections>
+                                    <segue destination="2BU-8C-1PD" kind="embed" identifier="ShowEmailAndPassword" id="tsr-oP-1Eb"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1r-R8-RNj" userLabel="Level And Instrument View">
+                                <rect key="frame" x="0.0" y="70" width="768" height="461"/>
+                                <connections>
+                                    <segue destination="EPV-Tw-BNL" kind="embed" identifier="InstrumentAndLevel" id="43E-OV-Jcb"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Yy0-bU-P3Q" firstAttribute="trailing" secondItem="MCx-Gr-0jp" secondAttribute="trailing" id="5fb-GA-05w"/>
+                            <constraint firstItem="p1r-R8-RNj" firstAttribute="leading" secondItem="MCx-Gr-0jp" secondAttribute="leading" id="I3i-qQ-g3I"/>
+                            <constraint firstItem="Yy0-bU-P3Q" firstAttribute="height" secondItem="5p4-Ty-zTx" secondAttribute="height" multiplier="0.45" id="PSz-H4-3ZB"/>
+                            <constraint firstItem="ED3-W1-87N" firstAttribute="trailing" secondItem="MCx-Gr-0jp" secondAttribute="trailing" id="b0S-3w-ebr"/>
+                            <constraint firstItem="ED3-W1-87N" firstAttribute="height" secondItem="5p4-Ty-zTx" secondAttribute="height" multiplier="0.45" id="cCr-Dz-Ivn"/>
+                            <constraint firstItem="p1r-R8-RNj" firstAttribute="trailing" secondItem="MCx-Gr-0jp" secondAttribute="trailing" id="e1a-zM-rjr"/>
+                            <constraint firstItem="ED3-W1-87N" firstAttribute="top" secondItem="MCx-Gr-0jp" secondAttribute="top" id="hzo-FE-f4j"/>
+                            <constraint firstItem="Yy0-bU-P3Q" firstAttribute="leading" secondItem="MCx-Gr-0jp" secondAttribute="leading" id="lds-8a-TTy"/>
+                            <constraint firstItem="p1r-R8-RNj" firstAttribute="height" secondItem="5p4-Ty-zTx" secondAttribute="height" multiplier="0.45" id="sRO-YL-eun"/>
+                            <constraint firstItem="p1r-R8-RNj" firstAttribute="top" secondItem="MCx-Gr-0jp" secondAttribute="top" id="uw6-eu-w1h"/>
+                            <constraint firstItem="Yy0-bU-P3Q" firstAttribute="top" secondItem="MCx-Gr-0jp" secondAttribute="top" id="viD-W9-Q3B"/>
+                            <constraint firstItem="ED3-W1-87N" firstAttribute="leading" secondItem="MCx-Gr-0jp" secondAttribute="leading" id="yig-pf-LEe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MCx-Gr-0jp"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zga-1V-DMV">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="9X1-xN-6DQ">
+                            <pageControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="uaJ-3U-Z1O">
+                                <rect key="frame" x="20" y="6.5" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </pageControl>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="IAk-lH-JN7">
+                            <connections>
+                                <action selector="dismiss:" destination="2dT-6n-GHt" id="v4t-wZ-1Vy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emailAndPasswordView" destination="Yy0-bU-P3Q" id="JEa-Gb-ca1"/>
+                        <outlet property="firstAndLastNameView" destination="ED3-W1-87N" id="Yri-g8-vYl"/>
+                        <outlet property="levelAndInstrumentView" destination="p1r-R8-RNj" id="6Xb-9t-fTZ"/>
+                        <outlet property="pageControl" destination="uaJ-3U-Z1O" id="xGu-4T-ZnL"/>
+                        <segue destination="IEf-u0-XmX" kind="presentation" identifier="ShowStudentHome" id="igX-eq-H4s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uvb-cK-4yR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2838.28125" y="27.5390625"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dqI-pE-sMh">
             <objects>
                 <navigationController storyboardIdentifier="FirstNavController" automaticallyAdjustsScrollViewInsets="NO" id="hXq-Sd-QM9" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d0S-6S-4qZ">
+                    <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="d0S-6S-4qZ">
                         <rect key="frame" x="0.0" y="20" width="768" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -540,14 +351,361 @@
             </objects>
             <point key="canvasLocation" x="-221.09375" y="27.5390625"/>
         </scene>
+        <!--Email And Password View Controller-->
+        <scene sceneID="B7C-nF-oU2">
+            <objects>
+                <viewController id="2BU-8C-1PD" customClass="EmailAndPasswordViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p2E-eU-r34">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="461"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an email address and a password of at least 6 characters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgN-4d-qO4">
+                                <rect key="frame" x="20" y="20" width="728" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-47-vkT">
+                                <rect key="frame" x="20" y="60.5" width="728" height="322.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="aYW-fX-FB6">
+                                        <rect key="frame" x="0.0" y="0.0" width="728" height="236.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="76" translatesAutoresizingMaskIntoConstraints="NO" id="NlV-wA-TM6">
+                                                <rect key="frame" x="0.0" y="0.0" width="728" height="71.5"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WkW-7J-hI0" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="614.5" height="71.5"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                                <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                                <real key="value" value="0.69999999999999996"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOj-oa-YyT" customClass="LOTAnimationView">
+                                                        <rect key="frame" x="690.5" y="0.0" width="37.5" height="71.5"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="ykk-Rb-46z">
+                                                <rect key="frame" x="0.0" y="82.5" width="728" height="71.5"/>
+                                                <subviews>
+                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J8g-vk-2O1" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="614.5" height="71.5"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                                <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                                <real key="value" value="0.69999999999999996"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1D-IP-cvr" customClass="LOTAnimationView">
+                                                        <rect key="frame" x="657.5" y="0.0" width="70.5" height="71.5"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="56" translatesAutoresizingMaskIntoConstraints="NO" id="dlR-sO-OiK">
+                                                <rect key="frame" x="0.0" y="165" width="728" height="71.5"/>
+                                                <subviews>
+                                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbO-rP-5Kv" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="614.5" height="71.5"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                                <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                                <real key="value" value="0.69999999999999996"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Tb-cz-rfI" customClass="LOTAnimationView">
+                                                        <rect key="frame" x="670.5" y="0.0" width="57.5" height="71.5"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="J8g-vk-2O1" firstAttribute="width" secondItem="WkW-7J-hI0" secondAttribute="width" id="M9k-J1-kYg"/>
+                                            <constraint firstItem="gbO-rP-5Kv" firstAttribute="width" secondItem="WkW-7J-hI0" secondAttribute="width" id="cWe-AB-w6U"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFy-qW-a51">
+                                        <rect key="frame" x="0.0" y="275.5" width="728" height="47"/>
+                                        <state key="normal" title="Next"/>
+                                        <connections>
+                                            <action selector="nextButtonTapped:" destination="2BU-8C-1PD" eventType="touchUpInside" id="DK4-Gd-IRO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qFy-qW-a51" firstAttribute="height" secondItem="aYW-fX-FB6" secondAttribute="height" multiplier="0.2" id="SBS-fN-et3"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ff5-q6-3a3" firstAttribute="trailing" secondItem="ZJJ-47-vkT" secondAttribute="trailing" constant="20" id="1cg-Vz-chv"/>
+                            <constraint firstItem="Ff5-q6-3a3" firstAttribute="trailing" secondItem="BgN-4d-qO4" secondAttribute="trailing" constant="20" id="KPB-bx-6rK"/>
+                            <constraint firstItem="ZJJ-47-vkT" firstAttribute="leading" secondItem="Ff5-q6-3a3" secondAttribute="leading" constant="20" id="LWI-lf-0Pn"/>
+                            <constraint firstItem="ZJJ-47-vkT" firstAttribute="height" secondItem="p2E-eU-r34" secondAttribute="height" multiplier="0.7" id="NF5-nQ-bEk"/>
+                            <constraint firstItem="BgN-4d-qO4" firstAttribute="leading" secondItem="Ff5-q6-3a3" secondAttribute="leading" constant="20" id="Wx4-CF-Jjb"/>
+                            <constraint firstItem="BgN-4d-qO4" firstAttribute="top" secondItem="Ff5-q6-3a3" secondAttribute="top" id="htu-wO-mXU"/>
+                            <constraint firstItem="ZJJ-47-vkT" firstAttribute="top" secondItem="BgN-4d-qO4" secondAttribute="bottom" constant="20" id="icJ-IO-74j"/>
+                            <constraint firstItem="WkW-7J-hI0" firstAttribute="width" secondItem="p2E-eU-r34" secondAttribute="width" multiplier="0.8" id="lHy-LV-ixj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ff5-q6-3a3"/>
+                    </view>
+                    <connections>
+                        <outlet property="confirmPasswordAnimation" destination="2Tb-cz-rfI" id="wNJ-pO-gBT"/>
+                        <outlet property="confirmPasswordTextField" destination="gbO-rP-5Kv" id="q6T-5X-Gvx"/>
+                        <outlet property="emailCheckmark" destination="LOj-oa-YyT" id="HzA-qe-pCN"/>
+                        <outlet property="emailTextField" destination="WkW-7J-hI0" id="cYz-di-gWb"/>
+                        <outlet property="passwordAnimation" destination="i1D-IP-cvr" id="yl1-iC-3Zo"/>
+                        <outlet property="passwordTextField" destination="J8g-vk-2O1" id="azM-P0-ZWp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w7z-qe-C8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3553.125" y="50.68359375"/>
+        </scene>
+        <!--Level And Instrument View Controller-->
+        <scene sceneID="rXe-zo-228">
+            <objects>
+                <viewController id="EPV-Tw-BNL" customClass="LevelAndInstrumentViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4DG-8k-1ak">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="461"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select your level and instrument to complete your sign up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2c-c5-pwQ">
+                                <rect key="frame" x="20" y="20" width="439" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PD5-Ks-eJw" customClass="StarRating" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="20" y="181" width="439" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="starRatingChanged:" destination="EPV-Tw-BNL" eventType="valueChanged" id="Mi1-im-KSd"/>
+                                </connections>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Instrument" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1yT-qU-Qu9" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="20" y="89" width="672" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="0.69999999999999996"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="al5-6m-DE7" customClass="LOTAnimationView">
+                                <rect key="frame" x="640" y="94" width="52" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beginner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ck-4A-uG2">
+                                <rect key="frame" x="20" y="268" width="439" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvj-Oc-x7s">
+                                <rect key="frame" x="357" y="345" width="54" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUp:" destination="EPV-Tw-BNL" eventType="touchUpInside" id="Lde-jR-b4e"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="gHu-cr-2ej"/>
+                    </view>
+                    <connections>
+                        <outlet property="instrumentAnimation" destination="al5-6m-DE7" id="cdB-m2-QMJ"/>
+                        <outlet property="instrumentTextField" destination="1yT-qU-Qu9" id="bO2-Jg-C0E"/>
+                        <outlet property="levelLabel" destination="9ck-4A-uG2" id="iXm-u7-bvT"/>
+                        <outlet property="starRating" destination="PD5-Ks-eJw" id="Awa-SS-K4A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bjD-hh-BU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3553.125" y="338.37890625"/>
+        </scene>
+        <!--First And Last Name View Controller-->
+        <scene sceneID="w2q-A8-8YQ">
+            <objects>
+                <viewController id="Lxw-1J-6LL" customClass="FirstAndLastNameViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ALL-d4-ReD">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="461"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hi there, lets get started with your name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3A-lw-C5s">
+                                <rect key="frame" x="20" y="20" width="728" height="20.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X5e-QU-wTQ" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="20" y="48" width="614" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="0.69999999999999996"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQl-Oa-rOF" customClass="LOTAnimationView">
+                                <rect key="frame" x="668" y="48" width="80" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VJQ-Co-Ddc" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="20" y="155" width="614" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.28235294119999998" green="0.52156862749999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="0.69999999999999996"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ngO-R0-moO" customClass="LOTAnimationView">
+                                <rect key="frame" x="668" y="155" width="80" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSq-Gd-v8H">
+                                <rect key="frame" x="291" y="263" width="187.5" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="goToNextStep:" destination="Lxw-1J-6LL" eventType="touchUpInside" id="AXc-Ye-ZjR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VbN-ii-SX3"/>
+                    </view>
+                    <connections>
+                        <outlet property="firstNameCheckmarkAnimation" destination="AQl-Oa-rOF" id="AD6-CK-hBY"/>
+                        <outlet property="firstNameTextField" destination="X5e-QU-wTQ" id="tCY-k7-0Fz"/>
+                        <outlet property="lastNameCheckmarkAnimation" destination="ngO-R0-moO" id="3bP-3p-7ks"/>
+                        <outlet property="lastNameTextField" destination="VJQ-Co-Ddc" id="6q9-wj-61o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rTX-cK-pIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3553.90625" y="-253.41796874999997"/>
+        </scene>
+        <!--QRScanner-->
+        <scene sceneID="eK9-9I-Ol5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="QRScanner" id="6aC-Rc-Di4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tRn-lf-LwE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1323" y="28"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YlF-wv-6SF">
+            <objects>
+                <navigationController storyboardIdentifier="UIViewController-2dT-6n-GHt" automaticallyAdjustsScrollViewInsets="NO" id="Ed7-kk-6fM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bAf-x4-5dW">
+                        <rect key="frame" x="0.0" y="20" width="768" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2dT-6n-GHt" kind="relationship" relationship="rootViewController" id="S7e-qK-xL3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z3I-Me-WOO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2072.65625" y="27.5390625"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="background" width="1756" height="2082"/>
-        <image name="eye" width="37.5" height="37.5"/>
+        <image name="background1" width="1756" height="2082"/>
         <image name="invisible" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5mc-Cd-NMF"/>
-        <segue reference="mf3-Dp-WTk"/>
+        <segue reference="tmR-Ep-L9G"/>
+        <segue reference="igX-eq-H4s"/>
+        <segue reference="que-9r-UXH"/>
     </inferredMetricsTieBreakers>
 </document>

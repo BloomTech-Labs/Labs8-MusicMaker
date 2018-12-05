@@ -1,6 +1,8 @@
-import React from 'react';
-import axios from 'axios';
-import { CardElement, injectStripe } from 'react-stripe-elements';
+import React from "react";
+import axios from "axios";
+import { CardElement, injectStripe } from "react-stripe-elements";
+
+import { Button, Row, Col } from "reactstrap";
 
 class TakeMoney extends React.Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class TakeMoney extends React.Component {
     console.log(token);
 
     axios
-      .post("https://musicmaker-4b2e8.firebaseapp.com/charge", token )
+      .post("https://musicmaker-4b2e8.firebaseapp.com/charge", token)
       .then(response => {
         console.log(response);
         alert("Payment Success");
@@ -26,11 +28,22 @@ class TakeMoney extends React.Component {
   }
 
   render() {
-    return(
-      <div className="checkout">
-        <p>Send payment?</p>
-        <CardElement />
-        <button onClick={this.submit}>Send</button>
+    return (
+      <div>
+        <Row>
+          <Col>
+            <h3>Send payment?</h3>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <CardElement />
+          </Col>
+          <Col>
+            <Button onClick={this.submit}>Send</Button>
+          </Col>
+        </Row>
       </div>
     );
   }

@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import { Row, Col } from "reactstrap";
-
-
 class DashboardAssignmentsView extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +21,6 @@ class DashboardAssignmentsView extends Component {
         "https://musicmaker-4b2e8.firebaseapp.com/teacher/AHnU7PuWMohJWEWZJbvd/assignment/xuKzpfxGQtaYqOYvoNZG"
       )
       .then(res => {
-        console.log("*******************", res.data);
         this.setState({
           assignmentName: res.data.assignmentName,
           instructions: res.data.instructions,
@@ -38,40 +34,33 @@ class DashboardAssignmentsView extends Component {
   }
   render() {
     return (
-      <div>
-        <Row>
-          <Col>
-            <h1>Assignments View</h1>
-          </Col>
-          <Col>
-            <Link to="/assignments/create">
-              <h1> + </h1>
-            </Link>
-          </Col>
-        </Row>
+      <div className="container">
+        <h1>Assignments View</h1>
+        <Link to="/assignments/create">
+          <h1> + </h1>
+        </Link>
+        <div className="d-block">
+          <h5>Test: This is an ungraded assignment for a specific teacher</h5>
+          <p>Assignment Name: {this.state.assignmentName}</p>
+          <p>Piece: {this.state.piece}</p>
+          <p>Instrument: {this.state.instrument}</p>
+          <p>Level: {this.state.level}</p>
+          <p>
+            Sheet Music:{" "}
+            <a href={this.state.sheetMusic}>
+              <img
+                src={this.state.sheetMusic}
+                alt="pdf image"
+                height="42"
+                width="42"
+              />
+            </a>
+          </p>
+          <p>Instructions:{this.state.instructions}</p>
+        </div>
       </div>
     );
   }
 }
 
 export default DashboardAssignmentsView;
-
-
-
-{/* <h5>Test: This is an ungraded assignment for a specific teacher</h5>
-<p>Assignment Name: {this.state.assignmentName}</p>
-<p>Piece: {this.state.piece}</p>
-<p>Instrument: {this.state.instrument}</p>
-<p>Level: {this.state.level}</p>
-<p>
-  Sheet Music:{" "}
-  <a href={this.state.sheetMusic}>
-    <img
-      src={this.state.sheetMusic}
-      alt="pdf image"
-      height="42"
-      width="42"
-    />
-  </a>
-</p>
-<p>Instructions:{this.state.instructions}</p> */}

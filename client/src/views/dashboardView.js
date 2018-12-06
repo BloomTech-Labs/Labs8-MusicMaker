@@ -14,7 +14,6 @@ class DashboardView extends Component {
     axios
         .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/TrYgvfzQJplN9khJhiJg/settings')
         .then(res => {
-            console.log('*******************', res.data);
             this.setState({
                 qrcode: res.data.qrcode,
             })

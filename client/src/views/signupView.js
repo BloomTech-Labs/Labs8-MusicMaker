@@ -57,16 +57,16 @@ class SignUpView extends Component {
   };
 
   render() {
-    const { 
-        // firstName, 
-        // lastName, 
-        email, 
-        passwordOne, 
-        passwordTwo, 
-        error 
+    const {
+        // firstName,
+        // lastName,
+        email,
+        passwordOne,
+        passwordTwo,
+        error
     } = this.state;
-    
-    const isInvalid = 
+
+    const isInvalid =
     passwordOne !== passwordTwo ||
     passwordOne === '' ||
     passwordTwo === '' ||
@@ -76,31 +76,31 @@ class SignUpView extends Component {
 
     return (
         <form className="bodyText" onSubmit={this.onSubmit}>
-            {/* <input 
+            {/* <input
                 value={ firstName }
                 onChange={ event => this.setState(byPropKey('firstName', event.target.value)) }
                 type ="text"
                 placeholder="First Name"
             />
-            <input 
+            <input
                 value={ lastName }
                 onChange={ event => this.setState(byPropKey('lastName', event.target.value)) }
                 type ="text"
                 placeholder="Last Name"
             /> */}
-            <input 
+            <input
                 value={ email }
                 onChange={ event => this.setState(byPropKey('email', event.target.value)) }
                 type ="text"
                 placeholder="Email"
             />
-            <input 
+            <input
                 value={ passwordOne }
                 onChange={ event => this.setState(byPropKey('passwordOne', event.target.value)) }
                 type ="password"
                 placeholder="Password"
             />
-            <input 
+            <input
                 value={ passwordTwo }
                 onChange={ event => this.setState(byPropKey('passwordTwo', event.target.value)) }
                 type ="password"

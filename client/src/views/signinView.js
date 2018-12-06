@@ -8,9 +8,13 @@ import * as routes from '../constants/routes';
 import { SignUpLink } from './signupView';
 import ForgotPW from '../components/ForgotPW';
 
+// Reactstrap styling
+
+import { Button, ButtonToolbar, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
+
 const SignInPage = ({ history }) =>
-    <div className="container">
-        <h1 className="subheader">Sign In</h1>
+    <div className="container" style={formContainer}>
+        <h1 className="subheader" style={{ margin: "20px" }}>Sign In</h1>
         <SignInView history = { history } />
         <SignUpLink />
         <ForgotPW />
@@ -25,6 +29,8 @@ const INITIAL_STATE = {
     password: '',
     error: null
 };
+
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
 class SignInView extends Component {
     constructor(props) {
@@ -75,29 +81,37 @@ class SignInView extends Component {
             error
         } = this.state;
 
-        const isInvalid = 
+        const isInvalid =
         password === '' ||
         email === '';
 
         return(
-           <form className="bodyText">
-               <input 
-                    value={ email }
-                    onChange={ event => this.setState(byPropKey('email', event.target.value))}
-                    type='text'
-                    placeholder="Email"
-               />
-               <input 
-                    value={ password }
-                    onChange={ event => this.setState(byPropKey('password', event.target.value))}
-                    type='password'
-                    placeholder="Password"
-               />
-               <button onClick={this.doSignInWithGoogle}>Google Sign In</button>
-               <button disabled={ isInvalid } onClick={this.onSubmit}>Sign In</button>
-               { error && <p>{error.message}</p> }
-           </form> 
-        ) 
+          <div className = 'signin-form' style={{ margin: "20px" }}>
+            <Form>
+              <FormGroup>
+                <Label>Email</Label>
+                 <Input
+                      value={ email }
+                      onChange={ event => this.setState(byPropKey('email', event.target.value))}
+                      type='text'
+                 />
+              </FormGroup>
+              <FormGroup>
+                <Label>Password</Label>
+                  <Input
+                  value={ password }
+                  onChange={ event => this.setState(byPropKey('password', event.target.value))}
+                  type='password'
+                  />
+              <ButtonToolbar style={{ paddingTop: "25px", paddingBottom: "20px" }}>
+               <Button color="primary" bsSize="small" style={{ marginRight: "25px" }} onClick={this.doSignInWithGoogle}>Google Sign In</Button>
+               <Button outline color="primary" bsSize="small" disabled={ isInvalid } onClick={this.onSubmit}>Sign In</Button>
+              </ButtonToolbar>
+             { error && <p>{error.message}</p> }
+             </FormGroup>
+            </Form>
+          </div>
+        )
     };
 };
 

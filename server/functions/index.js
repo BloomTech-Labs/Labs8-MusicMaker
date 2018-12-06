@@ -177,54 +177,40 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
   try {
     const teacherId = req.params["idTeacher"];
     const assignmentId = req.params["idAssignment"];
-    let promises = [];
+  
+    //Teacher's db list of students
+    const teacherStudentsRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students');
+    const studentRef = db.collection('students'); //Student db
 
-    const assignmentStudentsRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId).collection("students");
-    const studentRef = db.collection("students"); //students' db
-
-    assignmentStudentsRef
+    teacherStudentsRef
       .get()
       .then(students => {
+        const promises = [];
         students.forEach(student => {
           const studentId = student.id;
-          
-          const studentPromise = studentRef.doc(studentId).get();
 
-          const assignmentPromise = studentRef.doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get();
-          
-          // promises.push(studentPromise, assignmentPromise)
-          promises.push(Object.assign((assignmentPromise, studentPromise)))
-          // console.log('**************************', Object.assign((studentPromise, assignmentPromise)))
+          const studentPromise = studentRef.doc(studentId).get().then(student => {
+            return studentRef.doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get().then(assignment => {
+              const studentInfo = student.data();
+              const assignmentInfo = assignment.data();
 
-          // promises.push(studentPromise)
+              return { ...assignmentInfo, ...studentInfo };
+              
+            });
+          });
 
+          promises.push(studentPromise);
         });
 
-        Promise
-          .all(promises)
-          .then(results => {
-            const students = results.map(student => {
-              // const assignmentRef = studentRef.doc(student.id).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get()
-              // .then(doc => {
-              //   console.log('********************************', Object.assign(doc.data(), student.data()))
-              //   return Object.assign(doc.data(), student.data())
-              //   // return doc.data()
-              // });
-
-              return student.data()
-            
-            });
-            res.status(200).json(students);
-          })
-          .catch(err => res.status(500).json(err));
+        Promise.all(promises).then(results => {
+          res.status(200).json(results);
+        });
       });
-
+      
   } catch (err) {
     res.status(500).send(err);
   }
 });
-
-
 
 // GRADE ASSIGNMENT: GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -303,7 +289,8 @@ app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, r
       const { email, dueDate } = req.body;
 
       const studentRef = db.collection("students"); //student db
-      const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); //Teacher's assignment db reference
+      //Teacher's assignment db reference:
+      const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
 
       studentRef
         .where("email", "==", email)
@@ -594,9 +581,7 @@ app.put("/teacher/:idTeacher/settingsEdit", (req, res) => {
 // STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
 app.post("/charge", (req, res) => {
-  console.log(req.body.token.id);
-  try {
-    let { status } = stripe.charges.create({
+  try {   let { status } = stripe.charges.create({
       amount: 50,
       currency: "usd",
       description: "teacher subscription",
@@ -618,8 +603,7 @@ app.post("/charge", (req, res) => {
 //   try {
 //     let stringGen = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16);
 //     let code = QRCode.toString(stringGen, function (err, string) {
-//       console.log(string);
-//       res.json(string);
+//       s.json(string);
 //     })
 //   } catch(err) {
 //     next(err);
@@ -779,8 +763,7 @@ app.post("/charge", (req, res) => {
 //     };
 //     return db.collection('teachers').doc(id)
 //       .add(teacherData).then(() => {
-//         console.log('New teacher added to database!');
-//         res.json(teacherData);
+//         s.json(teacherData);
 //       })
 //   });
 // });
@@ -800,8 +783,7 @@ app.post("/charge", (req, res) => {
 // PUT
 
 // app.put('/', (req, res) => {
-//   console.log('PUT test');
-//   res.send('hello!');
+//   r.send('hello!');
 // });
 
 ///////////////////////
@@ -809,8 +791,7 @@ app.post("/charge", (req, res) => {
 // DELETE
 
 // app.delete('/', (req, res) => {
-//   console.log('DELETE test');
-//   res.send('hello!');
+//   r.send('hello!');
 // });
 
 ///////////////////////
@@ -938,9 +919,8 @@ app.post("/charge", (req, res) => {
 
 //=============================================================================================================================================
 app.listen(8000, function() {
-  console.log(
-    `========================= RUNNING ON PORT 8000 =========================`
-  );
+ console.log('======================== RUNNING ON PORT 8000 =========================')   
+
 });
 
 exports.app = functions.https.onRequest(app);

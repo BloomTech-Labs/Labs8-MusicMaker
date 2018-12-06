@@ -10,10 +10,10 @@ import ForgotPW from '../components/ForgotPW';
 
 // Reactstrap styling
 
-import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
+import { Button, ButtonToolbar, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 
 const SignInPage = ({ history }) =>
-    <div className="container">
+    <div className="container" style={formContainer}>
         <h1 className="subheader">Sign In</h1>
         <SignInView history = { history } />
         <SignUpLink />
@@ -29,6 +29,8 @@ const INITIAL_STATE = {
     password: '',
     error: null
 };
+
+const formContainer = { maxWidth: 800, margin: '0 auto 10px' };
 
 class SignInView extends Component {
     constructor(props) {
@@ -84,9 +86,9 @@ class SignInView extends Component {
         email === '';
 
         return(
-          <div className = 'signin-form'>
+          <div className = 'signin-form' style={formContainer}>
             <Form inline>
-              <FormGroup bsSize="large">
+              <FormGroup>
                 <Label>Email</Label>
                  <Input
                       value={ email }
@@ -94,15 +96,17 @@ class SignInView extends Component {
                       type='text'
                  />
               </FormGroup>
-              <FormGroup bsSize="large">
+              <FormGroup>
                 <Label>Password</Label>
                   <Input
                   value={ password }
                   onChange={ event => this.setState(byPropKey('password', event.target.value))}
                   type='password'
-             />
-             <Button color="primary" onClick={this.doSignInWithGoogle}>Google Sign In</Button>
-             <Button outline color="primary" disabled={ isInvalid } onClick={this.onSubmit}>Sign In</Button>
+                  />
+              <ButtonToolbar>
+               <Button color="primary" bsSize="small" onClick={this.doSignInWithGoogle}>Google Sign In</Button>
+               <Button outline color="primary" bsSize="small" disabled={ isInvalid } onClick={this.onSubmit}>Sign In</Button>
+              </ButtonToolbar>
              { error && <p>{error.message}</p> }
              </FormGroup>
             </Form>

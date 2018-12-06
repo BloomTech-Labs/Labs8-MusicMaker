@@ -10,7 +10,7 @@ import ForgotPW from '../components/ForgotPW';
 
 // Reactstrap styling
 
-import { Button, Col, Form, FormGroup, Row } from 'reactstrap';
+import { Button, Col, Form, FormGroup, Label, Row } from 'reactstrap';
 
 const SignInPage = ({ history }) =>
     <div className="container">
@@ -85,31 +85,27 @@ class SignInView extends Component {
 
         return(
           <div className = 'signin-form'>
-           <Form className = 'form'>
-            <Col>
-              <FormGroup className = 'mb-2 mr-sm-2 mb-sm-0'>
+            <Form inline>
+              <FormGroup bsSize="large">
+                <Label>Email</Label>
                  <input
                       value={ email }
                       onChange={ event => this.setState(byPropKey('email', event.target.value))}
                       type='text'
-                      placeholder="Email"
                  />
               </FormGroup>
-            </Col>
-            <Col>
-              <FormGroup>
-               <input
-                    value={ password }
-                    onChange={ event => this.setState(byPropKey('password', event.target.value))}
-                    type='password'
-                    placeholder="Password"
-               />
-               <button onClick={this.doSignInWithGoogle}>Google Sign In</button>
-               <button disabled={ isInvalid } onClick={this.onSubmit}>Sign In</button>
-               { error && <p>{error.message}</p> }
-               </FormGroup>
-              </Col>
-           </Form>
+              <FormGroup bsSize="large">
+                <Label>Password</Label>
+                  <input
+                  value={ password }
+                  onChange={ event => this.setState(byPropKey('password', event.target.value))}
+                  type='password'
+             />
+             <button onClick={this.doSignInWithGoogle}>Google Sign In</button>
+             <button disabled={ isInvalid } onClick={this.onSubmit}>Sign In</button>
+             { error && <p>{error.message}</p> }
+             </FormGroup>
+            </Form>
           </div>
         )
     };

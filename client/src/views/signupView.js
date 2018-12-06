@@ -110,7 +110,6 @@ class SignUpView extends Component {
                       value={ passwordOne }
                       onChange={ event => this.setState(byPropKey('passwordOne', event.target.value)) }
                       type ="password"
-                      placeholder="Password"
                       style={{ marginTop: "10px", marginBottom: "15px" }}
                   />
               </FormGroup>
@@ -120,7 +119,6 @@ class SignUpView extends Component {
                       value={ passwordTwo }
                       onChange={ event => this.setState(byPropKey('passwordTwo', event.target.value)) }
                       type ="password"
-                      placeholder="Confirm Password"
                       style={{ marginTop: "10px", marginBottom: "15px" }}
                   />
               </FormGroup>

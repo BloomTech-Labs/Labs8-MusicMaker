@@ -72,12 +72,10 @@ class MusicMakerModelController {
     private var assignmentListeners: [String: ListenerRegistration] = [:]
     
     func fetchTeachers(completion: @escaping ([Teacher]?, Error?) -> Void) {
-        guard var currentStudentUID = Auth.auth().currentUser?.uid else {
+        guard let currentStudentUID = Auth.auth().currentUser?.uid else {
             completion(teachers, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authenticated"]))
             return
         }
-        
-        currentStudentUID = "NKMNNypkVXUj4BSSyTPb" // Temporarily set it to the user with actual assignments
         
         let database = Firestore.firestore()
         
@@ -213,12 +211,10 @@ class MusicMakerModelController {
     }
     
     func fetchAssigments(for teacher: Teacher, completion: @escaping ([Assignment]?, Error?) -> Void) {
-        guard var currentStudentUID = Auth.auth().currentUser?.uid else {
+        guard let currentStudentUID = Auth.auth().currentUser?.uid else {
             completion(teacher.sortedAssignments, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authenticated"]))
             return
         }
-        
-        currentStudentUID = "NKMNNypkVXUj4BSSyTPb" // Temporarily set it to the user with actual assignments
         
         guard let teacherFirestoreID = teacher.firestoreID else {
             completion(teacher.sortedAssignments, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid Teacher"]))
@@ -344,12 +340,10 @@ class MusicMakerModelController {
     }
     
     func submit(assignment: Assignment, completion: @escaping (Assignment?, Error?) -> Void) {
-        guard var currentStudentUID = Auth.auth().currentUser?.uid else {
+        guard let currentStudentUID = Auth.auth().currentUser?.uid else {
             completion(assignment, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authenticated"]))
             return
         }
-        
-        currentStudentUID = "NKMNNypkVXUj4BSSyTPb" // Temporarily set it to the user with actual assignments
         
         guard let localRecordingURL = assignment.localRecordingURL else {
             completion(assignment, NSError(domain: MusicMakerModelController.ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "No local recording URL found."]))

@@ -254,10 +254,10 @@
             </objects>
             <point key="canvasLocation" x="1323" y="811"/>
         </scene>
-        <!--Teachers-->
+        <!--SplitView-->
         <scene sceneID="IUA-EV-6Gb">
             <objects>
-                <viewControllerPlaceholder storyboardName="Teachers" id="IEf-u0-XmX" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="SplitView" id="IEf-u0-XmX" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gkh-FN-72Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2813" y="811"/>

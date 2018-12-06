@@ -136,8 +136,21 @@ extension AddTeacherOptionsViewController: QRScanning {
         let currentUser = Auth.auth().currentUser
         if let user = currentUser {
             let database = Firestore.firestore()
-            database.collection("students").document(user.uid).collection("teachers").document(qrCode).setData(["exists": true])
-            NotificationCenter.default.post(name: .newTeacher, object: nil)
+            
+            
+            let teacherDocument = database.collection("teachers").document(qrCode)
+            
+            teacherDocument.getDocument { (documentSnapshot, error) in
+                if let error = error {
+                    NSLog("Error loading teacher \(error)")
+                    return
+                }
+                if let name = documentSnapshot?.data()?["name"] as? [String : String] {
+                    database.collection("students").document(user.uid).collection("teachers").document(qrCode).setData(["exists": true, "name": name])
+                    NotificationCenter.default.post(name: .newTeacher, object: nil)
+                }
+            }
+            
 //            qrScanner.qrView.captureSession?.startRunning()
         } else {
             teacherUniqueId = qrCode

@@ -102,7 +102,7 @@ class SignInView extends Component {
                   type='password'
              />
              <Button color="primary" onClick={this.doSignInWithGoogle}>Google Sign In</Button>
-             <Button color="primary" disabled={ isInvalid } onClick={this.onSubmit}>Sign In</Button>
+             <Button outline color="primary" disabled={ isInvalid } onClick={this.onSubmit}>Sign In</Button>
              { error && <p>{error.message}</p> }
              </FormGroup>
             </Form>

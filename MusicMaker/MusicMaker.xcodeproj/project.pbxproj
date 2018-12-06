@@ -42,6 +42,14 @@
 		BF5D5219219D17F100DFF213 /* TeachersViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5218219D17F100DFF213 /* TeachersViewControllerDelegate.swift */; };
 		BF69F2B921A4F68100EAB8CE /* MusicMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69F2B821A4F68100EAB8CE /* MusicMakerTests.swift */; };
 		BF69F2C721A4F8A500EAB8CE /* MusicMakerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69F2C621A4F8A500EAB8CE /* MusicMakerUITests.swift */; };
+		BF9047AB21B9C754009F859D /* Merriweather-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF9047A321B9C753009F859D /* Merriweather-BoldItalic.ttf */; };
+		BF9047AC21B9C754009F859D /* Merriweather-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF9047A421B9C753009F859D /* Merriweather-Black.ttf */; };
+		BF9047AD21B9C754009F859D /* Merriweather-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF9047A521B9C753009F859D /* Merriweather-Bold.ttf */; };
+		BF9047AE21B9C754009F859D /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF9047A621B9C754009F859D /* Merriweather-Regular.ttf */; };
+		BF9047AF21B9C754009F859D /* Merriweather-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF9047A721B9C754009F859D /* Merriweather-BlackItalic.ttf */; };
+		BF9047B021B9C754009F859D /* Merriweather-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF9047A821B9C754009F859D /* Merriweather-Light.ttf */; };
+		BF9047B121B9C754009F859D /* Merriweather-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF9047A921B9C754009F859D /* Merriweather-LightItalic.ttf */; };
+		BF9047B221B9C754009F859D /* Merriweather-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF9047AA21B9C754009F859D /* Merriweather-Italic.ttf */; };
 		BF98B13221B35007007B7C45 /* UISegmentedControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13121B35007007B7C45 /* UISegmentedControl+Extensions.swift */; };
 		BF98B13421B4A318007B7C45 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B13321B4A318007B7C45 /* QRScannerViewController.swift */; };
 		BF98B13621B4E3A1007B7C45 /* qr_code.json in Resources */ = {isa = PBXBuildFile; fileRef = BF98B13521B4E3A1007B7C45 /* qr_code.json */; };
@@ -141,6 +149,14 @@
 		BF69F2C421A4F8A400EAB8CE /* MusicMakerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicMakerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF69F2C621A4F8A500EAB8CE /* MusicMakerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicMakerUITests.swift; sourceTree = "<group>"; };
 		BF69F2C821A4F8A500EAB8CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF9047A321B9C753009F859D /* Merriweather-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-BoldItalic.ttf"; sourceTree = "<group>"; };
+		BF9047A421B9C753009F859D /* Merriweather-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Black.ttf"; sourceTree = "<group>"; };
+		BF9047A521B9C753009F859D /* Merriweather-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Bold.ttf"; sourceTree = "<group>"; };
+		BF9047A621B9C754009F859D /* Merriweather-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Regular.ttf"; sourceTree = "<group>"; };
+		BF9047A721B9C754009F859D /* Merriweather-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-BlackItalic.ttf"; sourceTree = "<group>"; };
+		BF9047A821B9C754009F859D /* Merriweather-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Light.ttf"; sourceTree = "<group>"; };
+		BF9047A921B9C754009F859D /* Merriweather-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-LightItalic.ttf"; sourceTree = "<group>"; };
+		BF9047AA21B9C754009F859D /* Merriweather-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Italic.ttf"; sourceTree = "<group>"; };
 		BF98B13121B35007007B7C45 /* UISegmentedControl+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Extensions.swift"; sourceTree = "<group>"; };
 		BF98B13321B4A318007B7C45 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		BF98B13521B4E3A1007B7C45 /* qr_code.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = qr_code.json; sourceTree = "<group>"; };
@@ -247,6 +263,21 @@
 				BF69F2C821A4F8A500EAB8CE /* Info.plist */,
 			);
 			path = MusicMakerUITests;
+			sourceTree = "<group>";
+		};
+		BF9047A221B9C740009F859D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BF9047A421B9C753009F859D /* Merriweather-Black.ttf */,
+				BF9047A721B9C754009F859D /* Merriweather-BlackItalic.ttf */,
+				BF9047A521B9C753009F859D /* Merriweather-Bold.ttf */,
+				BF9047A321B9C753009F859D /* Merriweather-BoldItalic.ttf */,
+				BF9047AA21B9C754009F859D /* Merriweather-Italic.ttf */,
+				BF9047A821B9C754009F859D /* Merriweather-Light.ttf */,
+				BF9047A921B9C754009F859D /* Merriweather-LightItalic.ttf */,
+				BF9047A621B9C754009F859D /* Merriweather-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		BFD381C4219353A50038F974 /* View Controllers */ = {
@@ -385,6 +416,7 @@
 		BFD3E55D2192393A00D84FF2 /* MusicMaker */ = {
 			isa = PBXGroup;
 			children = (
+				BF9047A221B9C740009F859D /* Fonts */,
 				BF98B13521B4E3A1007B7C45 /* qr_code.json */,
 				BF98B13B21B50D9B007B7C45 /* checkmark.json */,
 				BF98B14121B5B784007B7C45 /* eye01.json */,
@@ -531,16 +563,24 @@
 			files = (
 				39CA2B532193607700C6018E /* SplitView.storyboard in Resources */,
 				39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */,
+				BF9047B121B9C754009F859D /* Merriweather-LightItalic.ttf in Resources */,
 				BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */,
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
 				BF98B15021B74B07007B7C45 /* QRScanner.storyboard in Resources */,
+				BF9047AC21B9C754009F859D /* Merriweather-Black.ttf in Resources */,
 				39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */,
 				BFD3E5662192393B00D84FF2 /* Assets.xcassets in Resources */,
 				BF98B14221B5B784007B7C45 /* eye01.json in Resources */,
+				BF9047AD21B9C754009F859D /* Merriweather-Bold.ttf in Resources */,
+				BF9047B021B9C754009F859D /* Merriweather-Light.ttf in Resources */,
 				399B8B8221B8542700E73156 /* AssignmentsTableViewController.storyboard in Resources */,
+				BF9047B221B9C754009F859D /* Merriweather-Italic.ttf in Resources */,
 				BF98B13621B4E3A1007B7C45 /* qr_code.json in Resources */,
 				BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */,
 				BF98B13C21B50D9B007B7C45 /* checkmark.json in Resources */,
+				BF9047AE21B9C754009F859D /* Merriweather-Regular.ttf in Resources */,
+				BF9047AB21B9C754009F859D /* Merriweather-BoldItalic.ttf in Resources */,
+				BF9047AF21B9C754009F859D /* Merriweather-BlackItalic.ttf in Resources */,
 				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				39C47DC621AF228900C1E115 /* SubmittedAssignmentViewController.storyboard in Resources */,

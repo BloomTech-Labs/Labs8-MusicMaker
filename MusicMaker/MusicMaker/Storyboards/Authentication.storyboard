@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Merriweather-Regular.ttf">
+            <string>Merriweather-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Initial View Controller-->
         <scene sceneID="s8g-2y-g6v">
@@ -49,6 +54,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsI-Ti-oTd">
                                         <rect key="frame" x="0.0" y="74" width="397" height="47"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="17"/>
                                         <state key="normal" title="SIGN UP">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -254,10 +260,10 @@
             </objects>
             <point key="canvasLocation" x="1323" y="811"/>
         </scene>
-        <!--SplitView-->
+        <!--Teachers-->
         <scene sceneID="IUA-EV-6Gb">
             <objects>
-                <viewControllerPlaceholder storyboardName="SplitView" id="IEf-u0-XmX" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Teachers" id="IEf-u0-XmX" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gkh-FN-72Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2813" y="811"/>
@@ -705,7 +711,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tmR-Ep-L9G"/>
-        <segue reference="igX-eq-H4s"/>
+        <segue reference="5mc-Cd-NMF"/>
         <segue reference="que-9r-UXH"/>
     </inferredMetricsTieBreakers>
 </document>

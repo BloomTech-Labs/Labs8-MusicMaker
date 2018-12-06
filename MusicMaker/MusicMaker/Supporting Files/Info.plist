@@ -58,5 +58,16 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>MusicMaker needs access to your photos to allow you to select a QR code.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Merriweather-Black.ttf</string>
+		<string>Merriweather-BlackItalic.ttf</string>
+		<string>Merriweather-Bold.ttf</string>
+		<string>Merriweather-BoldItalic.ttf</string>
+		<string>Merriweather-Italic.ttf</string>
+		<string>Merriweather-Light.ttf</string>
+		<string>Merriweather-LightItalic.ttf</string>
+		<string>Merriweather-Regular.ttf</string>
+	</array>
 </dict>
 </plist>

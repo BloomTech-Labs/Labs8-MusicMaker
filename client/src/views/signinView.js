@@ -10,7 +10,7 @@ import ForgotPW from '../components/ForgotPW';
 
 // Reactstrap styling
 
-import { Button, Col, Form, FormGroup, Label, Row } from 'reactstrap';
+import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 
 const SignInPage = ({ history }) =>
     <div className="container">
@@ -88,7 +88,7 @@ class SignInView extends Component {
             <Form inline>
               <FormGroup bsSize="large">
                 <Label>Email</Label>
-                 <input
+                 <Input
                       value={ email }
                       onChange={ event => this.setState(byPropKey('email', event.target.value))}
                       type='text'
@@ -96,13 +96,13 @@ class SignInView extends Component {
               </FormGroup>
               <FormGroup bsSize="large">
                 <Label>Password</Label>
-                  <input
+                  <Input
                   value={ password }
                   onChange={ event => this.setState(byPropKey('password', event.target.value))}
                   type='password'
              />
-             <button onClick={this.doSignInWithGoogle}>Google Sign In</button>
-             <button disabled={ isInvalid } onClick={this.onSubmit}>Sign In</button>
+             <Button color="primary" onClick={this.doSignInWithGoogle}>Google Sign In</Button>
+             <Button color="primary" disabled={ isInvalid } onClick={this.onSubmit}>Sign In</Button>
              { error && <p>{error.message}</p> }
              </FormGroup>
             </Form>

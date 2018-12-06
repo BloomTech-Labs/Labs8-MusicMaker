@@ -81,41 +81,51 @@ class SignUpView extends Component {
     // lastName === ''
 
     return (
-        <form className="bodyText" onSubmit={this.onSubmit}>
-            {/* <input
-                value={ firstName }
-                onChange={ event => this.setState(byPropKey('firstName', event.target.value)) }
-                type ="text"
-                placeholder="First Name"
-            />
-            <input
-                value={ lastName }
-                onChange={ event => this.setState(byPropKey('lastName', event.target.value)) }
-                type ="text"
-                placeholder="Last Name"
-            /> */}
-            <input
-                value={ email }
-                onChange={ event => this.setState(byPropKey('email', event.target.value)) }
-                type ="text"
-                placeholder="Email"
-            />
-            <input
-                value={ passwordOne }
-                onChange={ event => this.setState(byPropKey('passwordOne', event.target.value)) }
-                type ="password"
-                placeholder="Password"
-            />
-            <input
-                value={ passwordTwo }
-                onChange={ event => this.setState(byPropKey('passwordTwo', event.target.value)) }
-                type ="password"
-                placeholder="Confirm Password"
-            />
-            <button disabled={ isInvalid } type="submit">Sign Up</button>
+        <div className = 'signup-form' style={{ margin: "20px" }}>
+          <Form onSubmit={this.onSubmit}>
+              {/* <input
+                  value={ firstName }
+                  onChange={ event => this.setState(byPropKey('firstName', event.target.value)) }
+                  type ="text"
+                  placeholder="First Name"
+              />
+              <input
+                  value={ lastName }
+                  onChange={ event => this.setState(byPropKey('lastName', event.target.value)) }
+                  type ="text"
+                  placeholder="Last Name"
+              /> */}
+              <FormGroup>
+                <Label>Email</Label>
+                  <Input
+                      value={ email }
+                      onChange={ event => this.setState(byPropKey('email', event.target.value)) }
+                      type ="text"
+                  />
+              </FormGroup>
+              <FormGroup>
+                <Label>Password</Label>
+                  <Input
+                      value={ passwordOne }
+                      onChange={ event => this.setState(byPropKey('passwordOne', event.target.value)) }
+                      type ="password"
+                      placeholder="Password"
+                  />
+              </FormGroup>
+              <FormGroup>
+                <Label>Confirm Password</Label>
+                  <Input
+                      value={ passwordTwo }
+                      onChange={ event => this.setState(byPropKey('passwordTwo', event.target.value)) }
+                      type ="password"
+                      placeholder="Confirm Password"
+                  />
+              </FormGroup>
+              <Button color="primary" disabled={ isInvalid } type="submit">Sign Up</Button>
 
-            { error && <p>{ error.message }</p>}
-        </form>
+              { error && <p>{ error.message }</p>}
+          </Form>
+        </div>
     )
   }
 }

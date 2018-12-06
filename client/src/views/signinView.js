@@ -8,6 +8,10 @@ import * as routes from '../constants/routes';
 import { SignUpLink } from './signupView';
 import ForgotPW from '../components/ForgotPW';
 
+// Reactstrap styling
+
+import { Button, Form } from 'reactstrap';
+
 const SignInPage = ({ history }) =>
     <div className="container">
         <h1 className="subheader">Sign In</h1>
@@ -75,19 +79,19 @@ class SignInView extends Component {
             error
         } = this.state;
 
-        const isInvalid = 
+        const isInvalid =
         password === '' ||
         email === '';
 
         return(
            <form className="bodyText">
-               <input 
+               <input
                     value={ email }
                     onChange={ event => this.setState(byPropKey('email', event.target.value))}
                     type='text'
                     placeholder="Email"
                />
-               <input 
+               <input
                     value={ password }
                     onChange={ event => this.setState(byPropKey('password', event.target.value))}
                     type='password'
@@ -96,8 +100,8 @@ class SignInView extends Component {
                <button onClick={this.doSignInWithGoogle}>Google Sign In</button>
                <button disabled={ isInvalid } onClick={this.onSubmit}>Sign In</button>
                { error && <p>{error.message}</p> }
-           </form> 
-        ) 
+           </form>
+        )
     };
 };
 

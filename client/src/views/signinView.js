@@ -14,7 +14,7 @@ import { Button, ButtonToolbar, Col, Form, FormGroup, Input, Label, Row } from '
 
 const SignInPage = ({ history }) =>
     <div className="container" style={formContainer}>
-        <h1 className="subheader" font-family="Merriweather">Sign In</h1>
+        <h1 className="subheader" style={{ margin: "20px" }}>Sign In</h1>
         <SignInView history = { history } />
         <SignUpLink />
         <ForgotPW />
@@ -30,7 +30,7 @@ const INITIAL_STATE = {
     error: null
 };
 
-const formContainer = { maxWidth: 800, margin: '0 auto 10px' };
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
 class SignInView extends Component {
     constructor(props) {
@@ -86,7 +86,7 @@ class SignInView extends Component {
         email === '';
 
         return(
-          <div className = 'signin-form' style={formContainer}>
+          <div className = 'signin-form' style={{ margin: "20px" }}>
             <Form>
               <FormGroup>
                 <Label>Email</Label>
@@ -104,7 +104,7 @@ class SignInView extends Component {
                   type='password'
                   />
               <ButtonToolbar style={{ paddingTop: "25px", paddingBottom: "20px" }}>
-               <Button color="primary" bsSize="small" style={{ marginRight: "15px" }} onClick={this.doSignInWithGoogle}>Google Sign In</Button>
+               <Button color="primary" bsSize="small" style={{ marginRight: "25px" }} onClick={this.doSignInWithGoogle}>Google Sign In</Button>
                <Button outline color="primary" bsSize="small" disabled={ isInvalid } onClick={this.onSubmit}>Sign In</Button>
               </ButtonToolbar>
              { error && <p>{error.message}</p> }

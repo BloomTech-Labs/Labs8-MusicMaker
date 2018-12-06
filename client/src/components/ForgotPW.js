@@ -8,7 +8,7 @@ import { Button, ButtonToolbar, Col, Form, FormGroup, Input, Label, Row } from '
 
 const PasswordForgetPage = () =>
   <div className="container" style={{ marginLeft: "-17px" }}>
-    <h1 className="bodyText">Reset Password?</h1>
+    <h1 className="bodyText" style={{ margin: "20px" }}>Reset Password?</h1>
     <PasswordForgetForm />
   </div>
 
@@ -53,7 +53,7 @@ class PasswordForgetForm extends Component {
     const isInvalid = email === '';
 
     return (
-      <div className = 'signin-form'>
+      <div className = 'signin-form' style={{ margin: "20px" }}>
         <Form>
           <FormGroup onSubmit={this.onSubmit}>
             <Label>Email</Label>
@@ -63,7 +63,7 @@ class PasswordForgetForm extends Component {
                 type="text"
                 style={{ marginBottom: "30px" }}
               />
-            <Button color="info" disabled={isInvalid} type="submit">
+            <Button color="info" style = {{ marginBottom: "30px" }} disabled={isInvalid} type="submit">
               Reset My Password
             </Button>
 

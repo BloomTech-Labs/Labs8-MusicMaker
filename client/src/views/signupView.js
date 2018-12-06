@@ -115,8 +115,8 @@ class SignUpView extends Component {
 }
 
 const SignUpLink = () => (
-  <p className="bodyText">
-    Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
+  <p className="bodyText" style={{ margin: "20px" }}>
+    Don't have an account? <Link to={routes.SIGN_UP}>Sign Up!</Link>
   </p>
 );
 

@@ -54,7 +54,7 @@ class PasswordForgetForm extends Component {
 
     return (
       <div className = 'signin-form'>
-        <Form style={formContainer}>
+        <Form>
           <FormGroup onSubmit={this.onSubmit}>
             <Label>Email</Label>
               <Input

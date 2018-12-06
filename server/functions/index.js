@@ -186,13 +186,15 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
       .get()
       .then(students => {
         students.forEach(student => {
-          const studentPromise = studentRef.doc(student.id).get();
+          const studentId = student.id;
+          
+          const studentPromise = studentRef.doc(studentId).get();
 
-          const assignmentPromise = studentRef.doc(student.id).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get();
+          const assignmentPromise = studentRef.doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get();
           
           // promises.push(studentPromise, assignmentPromise)
           promises.push(Object.assign((assignmentPromise, studentPromise)))
-          console.log('**************************', Object.assign((studentPromise, assignmentPromise)))
+          // console.log('**************************', Object.assign((studentPromise, assignmentPromise)))
 
           // promises.push(studentPromise)
 

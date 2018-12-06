@@ -75,7 +75,6 @@
 		BFE771D821A49BE700DCE42A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D721A49BE700DCE42A /* QRView.swift */; };
 		BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */; };
 		BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */; };
-		BFFB213D21AF6ECE0050E013 /* AssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */; };
 		BFFB213F21AFA02E0050E013 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB213E21AFA02E0050E013 /* ResetPasswordViewController.swift */; };
 		BFFB214921B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB214821B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift */; };
 		BFFB214B21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB214A21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift */; };
@@ -177,7 +176,6 @@
 		BFE771D721A49BE700DCE42A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scannedSound.mp3; sourceTree = "<group>"; };
-		BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsViewController.swift; sourceTree = "<group>"; };
 		BFFB213E21AFA02E0050E013 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		BFFB214821B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationOptionsViewControllerDelegate.swift; sourceTree = "<group>"; };
 		BFFB214A21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationOptionsViewController.swift; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 				BFFB213E21AFA02E0050E013 /* ResetPasswordViewController.swift */,
 				BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */,
 				399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */,
-				BFFB213C21AF6ECE0050E013 /* AssignmentsViewController.swift */,
 				39C108FC2194E55900180F37 /* RecordingViewController.swift */,
 				39C47DC721AF233000C1E115 /* SubmittedAssignmentViewController.swift */,
 				39C47DC921B5E47500C1E115 /* MusicSheetPDFSingleViewController.swift */,
@@ -682,7 +679,6 @@
 				BFFB214921B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,
 				39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */,
-				BFFB213D21AF6ECE0050E013 /* AssignmentsViewController.swift in Sources */,
 				39C47DC821AF233000C1E115 /* SubmittedAssignmentViewController.swift in Sources */,
 				393E238C21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift in Sources */,
 				393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */,
@@ -958,7 +954,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NB32394B2A;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/MusicMaker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -977,7 +973,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NB32394B2A;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/MusicMaker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

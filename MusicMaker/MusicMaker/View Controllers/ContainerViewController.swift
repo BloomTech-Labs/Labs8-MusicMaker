@@ -22,7 +22,7 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet weak var teachersView: UIView!
     @IBOutlet weak var sideMenuLeadingConstraint: NSLayoutConstraint!
-    weak var teachersViewController: TeachersViewController?
+    
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -34,14 +34,6 @@ class ContainerViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    }
-    
-    @IBAction func showSideMenu(_ sender: Any) {
-        teachersViewController?.showSideMenu(sender)
-    }
-    
-    @IBAction func showQR(_ sender: Any) {
-        teachersViewController?.showQrOptions(sender)
     }
 
     override func viewDidLayoutSubviews() {
@@ -101,9 +93,10 @@ class ContainerViewController: UIViewController {
                 destinationVC.delegate = self
             }
         case "ShowTeachers":
-            if let teachersVC = segue.destination as? TeachersViewController {
-                teachersViewController = teachersVC
-                teachersVC.delegate = self
+            if let navController = segue.destination as? UINavigationController {
+                if let teachersVC = navController.children[0] as? TeachersViewController {
+                    teachersVC.delegate = self
+                }
             }
         default:
             break

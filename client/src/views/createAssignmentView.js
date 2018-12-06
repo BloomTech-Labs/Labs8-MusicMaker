@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { Input, Form, FormGroup, Label, Button } from 'reactstrap';
 
-import Sidebar from "../components/SideBar";
-
 class CreateAssignmentView extends Component {
   render() {
     return (
       <div>
-        <Sidebar />
         <div>
           <Form>
             <FormGroup>

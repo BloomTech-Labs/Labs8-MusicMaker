@@ -1,7 +1,20 @@
 import React from "react";
 import { NavItem, NavLink, Nav } from "reactstrap";
+import AuthUserContext from "./AuthUserContext";
 
-const SideBar = () => {
+const SideBar = () => (
+  <AuthUserContext.Consumer>
+    {authUser => (authUser ? <SideBarAuth /> : <SidebarNonAuth />)}
+  </AuthUserContext.Consumer>
+);
+
+const SidebarNonAuth = () => {
+  return(
+    <div></div>
+  );
+}
+
+const SideBarAuth = () => {
   return (
     <Nav navbar className="border border-dark">
       <NavItem>

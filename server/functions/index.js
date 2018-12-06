@@ -89,65 +89,48 @@ function parseDate(date){
 //  }
 // });
 
-// Get a list of students currently assigned to an assignment - Come Back
-app.get('/teacher/:idTeacher/assignment/:idAssignment/students', (req, res) => {
+// Get an individual student assigned to the teacher
+// FUNCTIONAL AS OF 12/2/18 3 PM
+app.get('/teacher/:idTeacher/student/:idStudent', (req, res, next) => {
   try{
-      const teacherId = req.params['idTeacher'];
-      const assignmentId = req.params['idAssignment'];
-      const students = {};  
+    const teacherId = req.params['idTeacher'];
+    const studentId = req.params['idStudent'];
 
-      const assignedStudentsRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students');
-      const allStudents = assignedStudentsRef.get()
-      .then(snap => {
-        snap.forEach(doc => {
-          students[doc.id] = doc.data();
-        })
-        res.status(200).json(students);
-      });
+    const studentsRef =  db.collection('teachers').doc(teacherId).collection('students').doc(studentId);
+    const allStudents = studentsRef.get()
+    .then(doc => {
+      res.status(200).json(doc.data());
+    });
 
-  } catch (err){
-  res.status(500).send(err);
   }
+  catch(err) {
+   next(err);
+ }
 });
-
-// // Get an individual student assigned to the teacher
-// // FUNCTIONAL AS OF 12/2/18 3 PM
-// app.get('/teacher/:idTeacher/student/:idStudent', (req, res, next) => {
-//   try{
-//     const teacherId = req.params['idTeacher'];
-//     const studentId = req.params['idStudent'];
-
-//     const studentsRef =  db.collection('teachers').doc(teacherId).collection('students').doc(studentId);
-//     const allStudents = studentsRef.get()
-//     .then(doc => {
-//       res.status(200).json(doc.data());
-//     });
-
-//   }
-//   catch(err) {
-//    next(err);
-//  }
-// });
 
 //GET should retrieve a teacher's list of students
 //details: name, instrument, level
 app.get('/teacher/:idTeacher/students', (req, res, next) => {
   try{
     const teacherId = req.params['idTeacher'];
-    const Students = {};  
+    const Students = [];  
 
-    const studentstRef =  db.collection('teachers').doc(teacherId).collection('students');
-    const allStudents = studentstRef.get()
+    const studentsRef =  db.collection('teachers').doc(teacherId).collection('students');
+    studentsRef.get()
     .then(students => {
       students.forEach(student => {
-        const studentRef = db.collection('students').doc(student.id).get()
-        // console.log('*********************************************', student.id)
+        console.log('Studnets**********', student.id, student.data())
+
+        
+        db.collection('students').doc(student.id).get()
+        // Students[student.id] = student.data();
         .then(settings => {
           Students[student.id] = settings.data();
           
-          console.log('students*****************************************************', Students)
-          res.status(200).json(Students);
-        })
+          res.status(200).json(Students)
+          // console.log('********************', Students)
+
+        })  
       })
     });
 
@@ -156,6 +139,8 @@ app.get('/teacher/:idTeacher/students', (req, res, next) => {
    next(err);
  }
 });
+
+
 
 // Get the list of assignments from a student
 // On the front end, will have to write code that when "null", return " " for those assignments not completed.
@@ -179,6 +164,27 @@ app.get('/teacher/:idTeacher/student/:idStudent/assignments', (req, res, next) =
 
   } catch (err){
     next (err);
+  }
+});
+
+// Get a list of students currently assigned to an assignment - Come Back
+app.get('/teacher/:idTeacher/assignment/:idAssignment/students', (req, res) => {
+  try{
+      const teacherId = req.params['idTeacher'];
+      const assignmentId = req.params['idAssignment'];
+      const students = {};  
+
+      const assignedStudentsRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students');
+      const allStudents = assignedStudentsRef.get()
+      .then(snap => {
+        snap.forEach(doc => {
+          students[doc.id] = doc.data();
+        })
+        res.status(200).json(students);
+      });
+
+  } catch (err){
+  res.status(500).send(err);
   }
 });
 
@@ -358,6 +364,7 @@ app.get('/teacher/:idTeacher/assignments', (req, res) => {
         snap.forEach(doc => {
           assignments[doc.id] = doc.data();
         })
+        console.log('Ungraded******************************************', assignments)
         res.status(200).json(assignments);
       });
 

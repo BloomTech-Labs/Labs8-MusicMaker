@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
-import SideBar from "../components/SideBar";
-
 class DashboardView extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +26,6 @@ class DashboardView extends Component {
     return (
       <div className="container">
         <div className="flex-container">
-          <SideBar />
           <div className="block-container">
             <div className="subheader">New Assignment</div>
             <NavLink to='/assignments/create' className="bodyText"> + </NavLink>

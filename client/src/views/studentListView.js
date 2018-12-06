@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-import SideBar from "../components/SideBar";
-
 class StudentListView extends Component {
   state = {
     students: []
@@ -12,7 +10,6 @@ class StudentListView extends Component {
     return (
       <div className="container">
         <div className="flex-container">
-          <SideBar />
           <div className="block-container" id="studentList">
             <h1 className="subheader">Students</h1>
             {this.state.students.map(student => (

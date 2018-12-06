@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import SideBar from '../components/SideBar';
 
 // we can figure out exactly how to navigate to this
 
@@ -35,7 +34,6 @@ class GradeAssignmentView extends Component {
     return (
       <div className="container">
         <div className="flex-container">
-          <SideBar />
           <div className="block-container" id="setting">
             <h1 className="subheader">
               Assignment Name

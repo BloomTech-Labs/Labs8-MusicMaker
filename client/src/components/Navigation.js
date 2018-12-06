@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Navbar, NavbarBrand, NavLink, Nav } from "reactstrap";
 
 import * as routes from "../constants/routes";
 
@@ -15,34 +15,24 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-  <div className="navbar">
-    <div>
-      <Link to={routes.DASHBOARD}>
-        <img src={homeIcon} />
-      </Link>
-    </div>
-    <div>
-      <SignOutButton />
-    </div>
-  </div>
+  <Navbar>
+    <NavbarBrand href={routes.DASHBOARD}>
+      <img src={homeIcon} />
+    </NavbarBrand>
+    <SignOutButton />
+  </Navbar>
 );
 
 const NavigationNonAuth = () => (
-  <div className="navbar">
-    <div>
-      <Link to={routes.LANDING}>
-        <img src={homeIcon} />
-      </Link>
-    </div>
-    <div>
-      <Link to={routes.SIGN_UP}>
-        Sign Up
-      </Link>
-      <Link to={routes.SIGN_IN}>
-        Sign In
-      </Link>
-    </div>
-  </div>
+  <Navbar>
+    <NavbarBrand href={routes.LANDING}>
+      <img src={homeIcon} />
+    </NavbarBrand>
+    <Nav>
+      <NavLink href={routes.SIGN_UP}>Sign Up</NavLink>
+      <NavLink href={routes.SIGN_IN}>Sign In</NavLink>
+    </Nav>
+  </Navbar>
 );
 
 export default Navigation;

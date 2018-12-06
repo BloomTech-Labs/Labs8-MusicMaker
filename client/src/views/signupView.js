@@ -101,6 +101,7 @@ class SignUpView extends Component {
                       value={ email }
                       onChange={ event => this.setState(byPropKey('email', event.target.value)) }
                       type ="text"
+                      style={{ marginTop: "5px", marginBottom: "15px" }}
                   />
               </FormGroup>
               <FormGroup>
@@ -110,6 +111,7 @@ class SignUpView extends Component {
                       onChange={ event => this.setState(byPropKey('passwordOne', event.target.value)) }
                       type ="password"
                       placeholder="Password"
+                      style={{ marginTop: "10px", marginBottom: "15px" }}
                   />
               </FormGroup>
               <FormGroup>
@@ -119,9 +121,10 @@ class SignUpView extends Component {
                       onChange={ event => this.setState(byPropKey('passwordTwo', event.target.value)) }
                       type ="password"
                       placeholder="Confirm Password"
+                      style={{ marginTop: "10px", marginBottom: "15px" }}
                   />
               </FormGroup>
-              <Button color="primary" disabled={ isInvalid } type="submit">Sign Up</Button>
+              <Button color="primary" bsSize="large" style={{ marginTop: "15px", marginBottom: "15px" }} disabled={ isInvalid } type="submit">Sign Up</Button>
 
               { error && <p>{ error.message }</p>}
           </Form>

@@ -292,61 +292,54 @@ app.put(
 
 // ASSIGN STUDENT TO AN ASSIGNMENT - Come Back %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-app.post(
-  "/teacher/:idTeacher/assignment/:idAssignment/assignToStudent",
-  (req, res) => {
+app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, res) => {
     try {
       const teacherId = req.params["idTeacher"];
       const assignmentId = req.params["idAssignment"];
       const { email, dueDate } = req.body;
 
-      const studentRef = db.collection("students").where("email", "==", email);
-      const getDoc = studentRef.get().then(snap => {
-        snap.forEach(doc => {
-          const studentId = doc.id;
+      const studentRef = db.collection("students"); //student db
+      const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); //Teacher's assignment db reference
 
-          const assignmentRef = db
-            .collection("teachers")
-            .doc(teacherId)
-            .collection("assignments")
-            .doc(assignmentId);
-          const getDoc = assignmentRef
-            .get()
-            .then(doc => {
-              const studentAssignmentRef = db
-                .collection("students")
-                .doc(studentId)
-                .collection("teachers")
-                .doc(teacherId)
-                .collection("assignments")
-                .doc(assignmentId)
-                .set(doc.data());
-            })
-            .then(() => {
-              const studentAssignmentRef = db
-                .collection("students")
-                .doc(studentId)
-                .collection("teachers")
-                .doc(teacherId)
-                .collection("assignments")
-                .doc(assignmentId)
-                .update({
-                  dueDate: new Date(dueDate)
-                });
-            });
+      studentRef
+        .where("email", "==", email)
+        .get()
+        .then(students => {
+          students.forEach(student => {
+            const studentId = student.id;
+            //Student's teacher assignment db reference:
+            const studentTeacherAssignmentRef = studentRef.doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
+            
+            // Lets teacher store that the student has been given the assignment
+            teacherAssignmentRef
+              .collection('students')
+              .doc(studentId)
+              .set({
+                'assigned': true
+              })
 
-          res
-            .status(201)
-            .send({
-              MESSAGE: "Student has successfully been added to assignment."
-            });
+            // Gives assigment information to student with their due date
+            teacherAssignmentRef
+              .get()
+              .then(assignment => {
+                studentTeacherAssignmentRef
+                  .set(assignment.data());
+              })
+              .then(() => {
+                studentTeacherAssignmentRef
+                  .update({
+                    dueDate: new Date(dueDate)
+                  });
+              });
+
+            res.status(201).send({MESSAGE: "Student has successfully been added to assignment." });
+          });
         });
-      });
+
     } catch (err) {
       res.status(500).send(err);
     }
-  }
-);
+  });
 
 // UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

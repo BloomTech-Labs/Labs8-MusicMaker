@@ -26,8 +26,8 @@ class DashboardView extends Component {
   render() {
     return (
       <div className="container">
-        <div className="d-flex">
-          <h1>New Assignment</h1>
+        <div className="d-flex ">
+          <h1>Dashboard</h1>
           <Link to="/assignments/create">
             <h1> + </h1>
           </Link>

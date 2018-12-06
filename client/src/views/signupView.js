@@ -19,8 +19,8 @@ const INITIAL_STATE = {
 };
 
 const SignUpPage = ({ history }) => (
-  <div className="container">
-    <h1 className="subheader">Sign Up</h1>
+  <div className="container" style={formContainer}>
+    <h1 className="subheader" style={{margin: "20px" }}>Sign Up</h1>
     <SignUpView history={ history }/>
   </div>
 );
@@ -28,6 +28,8 @@ const SignUpPage = ({ history }) => (
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value
 });
+
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
 class SignUpView extends Component {
   constructor(props) {

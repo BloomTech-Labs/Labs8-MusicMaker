@@ -358,67 +358,53 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
     const teacherId = req.params["idTeacher"];
     const { assignmentName, instructions, instrument, level, piece } = req.body;
 
+    const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments"); //Teacher's assignments db reference
+
     if (!assignmentName || !instructions || !instrument || !level || !piece) {
       res.status(411).send({ REQUIRED: "You must have all fields filled." });
     } else {
-      const addTeacherAssign = db
-        .collection("teachers")
-        .doc(teacherId)
-        .collection("assignments")
+      teacherAssignmentRef
         .add({
-          assignmentName: assignmentName,
-          instructions: instructions,
-          instrument: instrument,
-          level: level,
-          piece: piece
+          'assignmentName': assignmentName,
+          'instructions': instructions,
+          'instrument': instrument,
+          'level': level,
+          'piece': piece
         })
-        .then(snap => {
-          const assignmentId = snap._path.segments[3];
-        })
-        .then(doc => {
+        .then(assignment => {
+          const assignmentId = assignment._path.segments[3];
+         
           if (Object.keys(req.files).length == 0) {
-            return res.status(400).send({ MESSAGE: "NO FILE WAS UPLOADED" });
+            return res.status(400).send({ MESSAGE: "No file was uploaded." });
           }
           let uuid = UUID();
           let uploadFile = req.files.uploadFile;
           let name = uploadFile.name;
+
           uploadFile.mv("/tmp/" + name);
+
           bucket
             .upload("/tmp/" + name, {
               destination: "sheetMusic/" + name,
               metadata: {
-                metadata: {
-                  firebaseStorageDownloadTokens: uuid
-                }
+                metadata: {firebaseStorageDownloadTokens: uuid}
               }
             })
             .then(data => {
               let file = data[0];
-              Promise.resolve(
-                "https://firebasestorage.googleapis.com/v0/b/" +
-                  bucket.name +
-                  "/o/" +
-                  encodeURIComponent(file.name) +
-                  "?alt=media&token" +
-                  uuid
+              Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid
               ).then(url => {
-                const teachersRef = db
-                  .collection("teachers")
-                  .doc(teacherId)
-                  .collection("assignments")
+                teacherAssignmentRef
                   .doc(assignmentId)
                   .update({
-                    sheetMusic: url
+                    'sheetMusic': url
                   });
-                res
-                  .status(201)
-                  .send({ MESSAGE: "YOU FILE HAS BEEN SUCCESSFULLY UPLOADED" }); //will remove once i know it works properly from the frontend
+                res.status(201).send({ MESSAGE: "You have successfully uploaded file." }); //will remove once i know it works properly from the frontend
               });
             });
         });
-      res
-        .status(201)
-        .send({ MESSAGE: `You have successfully created ${assignmentName}.` });
+   
+      res.status(201).send({ MESSAGE: `You have successfully created ${assignmentName}.` });
     }
   } catch (err) {
     res.status(500).send(err);
@@ -434,25 +420,20 @@ app.post("/uploadPDF", function(req, res) {
   let uuid = UUID();
   let uploadFile = req.files.uploadFile;
   let name = uploadFile.name;
+
   uploadFile.mv("/tmp/" + name);
+
   bucket
     .upload("/tmp/" + name, {
       destination: "sheetMusic/" + name,
       metadata: {
-        metadata: {
-          firebaseStorageDownloadTokens: uuid
-        }
+        metadata: {firebaseStorageDownloadTokens: UUID}
       }
     })
     .then(data => {
       let file = data[0];
       Promise.resolve(
-        "https://firebasestorage.googleapis.com/v0/b/" +
-          bucket.name +
-          "/o/" +
-          encodeURIComponent(file.name) +
-          "?alt=media&token" +
-          uuid
+        "https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid
       ).then(url => {
         res.status(201).send(url);
       });
@@ -477,6 +458,7 @@ app.get("/teacher/:idTeacher/assignments", (req, res) => {
       });
       res.status(200).json(allAssignments);
     });
+
   } catch (err) {
     res.status(500).send(err);
   }

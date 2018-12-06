@@ -110,7 +110,7 @@ class SignUpView extends Component {
                       value={ passwordOne }
                       onChange={ event => this.setState(byPropKey('passwordOne', event.target.value)) }
                       type ="password"
-                      style={{ marginTop: "10px", marginBottom: "15px" }}
+                      style={{ marginTop: "5px", marginBottom: "15px" }}
                   />
               </FormGroup>
               <FormGroup>
@@ -119,11 +119,10 @@ class SignUpView extends Component {
                       value={ passwordTwo }
                       onChange={ event => this.setState(byPropKey('passwordTwo', event.target.value)) }
                       type ="password"
-                      style={{ marginTop: "10px", marginBottom: "15px" }}
+                      style={{ marginTop: "5px", marginBottom: "15px" }}
                   />
               </FormGroup>
               <Button color="primary" bsSize="large" style={{ marginTop: "15px", marginBottom: "15px" }} disabled={ isInvalid } type="submit">Sign Up</Button>
-
               { error && <p>{ error.message }</p>}
           </Form>
         </div>

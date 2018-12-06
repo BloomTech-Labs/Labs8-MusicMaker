@@ -3,7 +3,7 @@ import { NavItem, NavLink, Nav } from "reactstrap";
 
 const SideBar = () => {
   return (
-    <Nav navbar>
+    <Nav navbar className="border border-dark">
       <NavItem>
         <NavLink href="/students">Students</NavLink>
       </NavItem>

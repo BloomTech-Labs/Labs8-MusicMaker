@@ -14,7 +14,7 @@ import { Button, ButtonToolbar, Col, Form, FormGroup, Input, Label, Row } from '
 
 const SignInPage = ({ history }) =>
     <div className="container" style={formContainer}>
-        <h1 className="subheader">Sign In</h1>
+        <h1 className="subheader" font-family="Merriweather">Sign In</h1>
         <SignInView history = { history } />
         <SignUpLink />
         <ForgotPW />
@@ -87,7 +87,7 @@ class SignInView extends Component {
 
         return(
           <div className = 'signin-form' style={formContainer}>
-            <Form inline>
+            <Form>
               <FormGroup>
                 <Label>Email</Label>
                  <Input
@@ -103,7 +103,7 @@ class SignInView extends Component {
                   onChange={ event => this.setState(byPropKey('password', event.target.value))}
                   type='password'
                   />
-              <ButtonToolbar>
+              <ButtonToolbar style={{ paddingTop: "25px", paddingBottom: "20px" }}>
                <Button color="primary" bsSize="small" onClick={this.doSignInWithGoogle}>Google Sign In</Button>
                <Button outline color="primary" bsSize="small" disabled={ isInvalid } onClick={this.onSubmit}>Sign In</Button>
               </ButtonToolbar>

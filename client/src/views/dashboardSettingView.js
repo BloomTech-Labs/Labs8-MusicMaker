@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import SideBar from "../components/SideBar";
-
 class Settings extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +33,6 @@ class Settings extends Component {
     return (
       <div className="container">
         <div className="flex-container">
-          <SideBar />
           <div className="block-container" id="setting">
             <h1 className="subheader">
               Testing that the Front End is Connecting to the Back End

@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 import { Row, Col } from "reactstrap";
 
-import Sidebar from "../components/SideBar";
-
 
 class DashboardAssignmentsView extends Component {
   constructor(props) {
@@ -41,7 +39,6 @@ class DashboardAssignmentsView extends Component {
   render() {
     return (
       <div>
-        <Sidebar />
         <Row>
           <Col>
             <h1>Assignments View</h1>

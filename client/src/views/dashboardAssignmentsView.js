@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 import { Row, Col } from "reactstrap";
 
-
 class DashboardAssignmentsView extends Component {
   constructor(props) {
     super(props);
@@ -38,11 +37,9 @@ class DashboardAssignmentsView extends Component {
   }
   render() {
     return (
-      <div>
-        <Row>
-          <Col>
-            <h1>Assignments View</h1>
-          </Col>
+      <div className="container">
+        <Row className="d-flex container">
+          <h1>Assignments</h1>
           <Col>
             <Link to="/assignments/create">
               <h1> + </h1>
@@ -56,9 +53,8 @@ class DashboardAssignmentsView extends Component {
 
 export default DashboardAssignmentsView;
 
-
-
-{/* <h5>Test: This is an ungraded assignment for a specific teacher</h5>
+{
+  /* <h5>Test: This is an ungraded assignment for a specific teacher</h5>
 <p>Assignment Name: {this.state.assignmentName}</p>
 <p>Piece: {this.state.piece}</p>
 <p>Instrument: {this.state.instrument}</p>
@@ -74,4 +70,5 @@ export default DashboardAssignmentsView;
     />
   </a>
 </p>
-<p>Instructions:{this.state.instructions}</p> */}
+<p>Instructions:{this.state.instructions}</p> */
+}

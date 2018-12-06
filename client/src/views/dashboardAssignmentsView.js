@@ -21,7 +21,6 @@ class DashboardAssignmentsView extends Component {
         "https://musicmaker-4b2e8.firebaseapp.com/teacher/AHnU7PuWMohJWEWZJbvd/assignment/xuKzpfxGQtaYqOYvoNZG"
       )
       .then(res => {
-        console.log("*******************", res.data);
         this.setState({
           assignmentName: res.data.assignmentName,
           instructions: res.data.instructions,

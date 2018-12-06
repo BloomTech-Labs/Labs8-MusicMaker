@@ -124,8 +124,8 @@ app.get("/teacher/:idTeacher/students", (req, res) => {
   try {
     const teacherId = req.params["idTeacher"];
     let promises = [];
-    
-    const teacherStudentsRef = db.collection("teachers").doc(teacherId).collection("students"); //teacher's db referencing the students they have
+    //teacher's db referencing their students:
+    const teacherStudentsRef = db.collection("teachers").doc(teacherId).collection("students"); 
     const studentRef = db.collection("students"); //students' db
 
     teacherStudentsRef
@@ -190,24 +190,49 @@ app.get(
 );
 
 // Get a list of students currently assigned to an assignment - Come Back
+//details: student name and due date
 app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
   try {
     const teacherId = req.params["idTeacher"];
     const assignmentId = req.params["idAssignment"];
-    const students = {};
+    let promises = [];
 
-    const assignedStudentsRef = db
-      .collection("teachers")
-      .doc(teacherId)
-      .collection("assignments")
-      .doc(assignmentId)
-      .collection("students");
-    const allStudents = assignedStudentsRef.get().then(snap => {
-      snap.forEach(doc => {
-        students[doc.id] = doc.data();
+    const assignmentStudentsRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId).collection("students");
+    const studentRef = db.collection("students"); //students' db
+
+    assignmentStudentsRef
+      .get()
+      .then(students => {
+        students.forEach(student => {
+          const studentPromise = studentRef.doc(student.id).get();
+          
+          const assignmentPromise = studentRef.doc(student.id).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get();
+          
+          
+          promises.push(studentPromise, assignmentPromise)
+
+
+
+
+
+        });
+
+        Promise
+          .all(promises)
+          .then(results => {
+            const students = results.map(student => {
+              console.log('results**********************', student.data())
+
+              const global = student.data()
+              return global ;
+            });
+            res.status(200).json(students);
+          })
+          .catch(err => res.status(500).json(err));
+
+        
       });
-      res.status(200).json(students);
-    });
+
   } catch (err) {
     res.status(500).send(err);
   }
@@ -216,81 +241,70 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
 // GRADE ASSIGNMENT: GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 // Get a completed assignment from a student
-// FUNCTIONAL AS OF 12/2/18 3 PM
-app.get(
-  "/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent",
-  (req, res) => {
+app.get("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent",(req, res) => {
     try {
       const teacherId = req.params["idTeacher"];
       const assignmentId = req.params["idAssignment"];
       const studentId = req.params["idStudent"];
+      //Student's assignment db reference:
+      const studentAssignmentRef = db.collection("students").doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId);
+      
+      studentAssignmentRef
+        .get()
+        .then(assignment => {
+          global = assignment.data();
+          reformattedDueDate = parseDate(global.dueDate);
+          studentAssignment = [
+            global.assignmentName,
+            reformattedDueDate,
+            global.instrument,
+            global.level,
+            global.piece,
+            global.instructions,
+            global.sheetMusic,
+            global.video,
+            global.feedback,
+            global.status
+          ];
 
-      const assignmentRef = db
-        .collection("students")
-        .doc(studentId)
-        .collection("teachers")
-        .doc(teacherId)
-        .collection("assignments")
-        .doc(assignmentId);
-      const allAssignments = assignmentRef.get().then(doc => {
-        global = doc.data();
-        reformattedDueDate = parseDate(global.dueDate);
-        studentAssignment = [
-          global.assignmentName,
-          reformattedDueDate,
-          global.instrument,
-          global.level,
-          global.piece,
-          global.instructions,
-          global.sheetMusic,
-          global.video
-        ];
-        res.status(200).json(studentAssignment);
-      });
+          res.status(200).json(studentAssignment);
+        });
+
     } catch (err) {
       res.status(500).send(err);
     }
   }
 );
 
-// PUT should add feedback and grade(pass/fail) to a student's assignment
-app.put(
-  "/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent",
-  (req, res) => {
+// PUT should add feedback and status(assigned/passed/failed) to a student's assignment
+app.put("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent",(req, res) => {
     try {
       const teacherId = req.params["idTeacher"];
       const assignmentId = req.params["idAssignment"];
       const studentId = req.params["idStudent"];
-      const { feedback, grade } = req.body;
-      if (!feedback || !grade) {
-        res
-          .status(411)
-          .send({
-            REQUIRED: "You must have all fields filled: grade and feedback."
-          });
+      const { feedback, status } = req.body;
+      //Student's assignment db reference:
+      const studentAssignmentRef = db.collection("students").doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId)
+
+      if (!feedback || !status || status==="Assigned") {
+        res.status(411).send({REQUIRED: "You must have all fields filled: status and feedback."});
       } else {
-        const addGradeRef = db
-          .collection("students")
-          .doc(studentId)
-          .collection("teachers")
-          .doc(teacherId)
-          .collection("assignments")
-          .doc(assignmentId)
+        studentAssignmentRef
           .update({
-            feedback: feedback,
-            grade: grade
+            'feedback': feedback,
+            'status': status
           });
-        res
-          .status(202)
-          .send({ MESSAGE: "You have successfully graded this assignment." });
+
+        res.status(202).send({ MESSAGE: "You have successfully graded this assignment." });
       }
+
     } catch (err) {
       res.status(500).send(err);
     }
   }
 );
 
-// ASSIGN STUDENT TO AN ASSIGNMENT - Come Back %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// ASSIGN STUDENT TO AN ASSIGNMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, res) => {
     try {
@@ -328,7 +342,8 @@ app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, r
               .then(() => {
                 studentTeacherAssignmentRef
                   .update({
-                    dueDate: new Date(dueDate)
+                    'dueDate': new Date(dueDate),
+                    'status': "Assigned"
                   });
               });
 

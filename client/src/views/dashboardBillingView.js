@@ -9,12 +9,9 @@ class DashboardBillingView extends Component {
   render() {
     return (
       <StripeProvider apiKey="pk_test_YVKiLW0mvujdoxalKItXwyhj">
-        <Row className="flex">
-
-          <Col sm="12" md={{ size: 12, order: 2, offset: 3 }}>
-            <Row>
-              <h1 className="display-1">Billing</h1>
-            </Row>
+        <Row className="container">
+          <Col>
+            <h1>Billing</h1>
             <Elements>
               <TakeMoney />
             </Elements>
@@ -22,8 +19,6 @@ class DashboardBillingView extends Component {
         </Row>
       </StripeProvider>
     );
-
-    //hello'fsd'd'fsf'
   }
 }
 

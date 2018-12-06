@@ -17,8 +17,6 @@ class SideMenuViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(1)
-//        self.view.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
     }
     
     
@@ -65,12 +63,7 @@ class SideMenuViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var profileImage: UIImageView! {
-        didSet {
-            print(profileImage.bounds.height)
-            print(profileImage.bounds.width)
-        }
-    }
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var studentNameLabel: UILabel!
     
     
@@ -92,7 +85,6 @@ class SideMenuViewController: UIViewController {
             self.present(initialVC, animated: true, completion: nil)
         } catch {
             //Update UI to let them know it couldn't sign them out
-            print(error)
         }
     }
 }

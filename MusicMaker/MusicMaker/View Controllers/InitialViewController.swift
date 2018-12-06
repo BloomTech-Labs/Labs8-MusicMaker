@@ -71,7 +71,7 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
         blurredBackgroundView.frame = view.frame
         self.view.addSubview(self.blurredBackgroundView)
         UIView.animate(withDuration: 0.5, animations: {
-            self.blurredBackgroundView.effect = UIBlurEffect(style: .dark)
+            self.blurredBackgroundView.effect = UIBlurEffect(style: .light)
         })
     }
     

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SideBar from '../components/SideBar';
-import '../css/index.css';
 
 // we can figure out exactly how to navigate to this
 

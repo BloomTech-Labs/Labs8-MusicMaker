@@ -35,10 +35,13 @@ class DashboardAssignmentsView extends Component {
   render() {
     return (
       <div className="container">
-        <h1>Assignments View</h1>
-        <Link to="/assignments/create">
-          <h1> + </h1>
-        </Link>
+        <div className="d-flex">
+          <h1>Assignments View</h1>
+          <Link to="/assignments/create">
+            <h1> + </h1>
+          </Link>
+        </div>
+
         <div className="d-block">
           <h5>Test: This is an ungraded assignment for a specific teacher</h5>
           <p>Assignment Name: {this.state.assignmentName}</p>

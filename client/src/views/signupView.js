@@ -5,6 +5,10 @@ import { auth } from '../firebase';
 
 import * as routes from "../constants/routes";
 
+// Reactstrap styling
+
+import { Button, ButtonToolbar, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
+
 const INITIAL_STATE = {
 //   firstName: "",
 //   lastName: "",

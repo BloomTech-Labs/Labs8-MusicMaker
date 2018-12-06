@@ -104,7 +104,7 @@ class SignInView extends Component {
                   type='password'
                   />
               <ButtonToolbar style={{ paddingTop: "25px", paddingBottom: "20px" }}>
-               <Button color="primary" bsSize="small" onClick={this.doSignInWithGoogle}>Google Sign In</Button>
+               <Button color="primary" bsSize="small" style={{ marginRight: "15px" }} onClick={this.doSignInWithGoogle}>Google Sign In</Button>
                <Button outline color="primary" bsSize="small" disabled={ isInvalid } onClick={this.onSubmit}>Sign In</Button>
               </ButtonToolbar>
              { error && <p>{error.message}</p> }

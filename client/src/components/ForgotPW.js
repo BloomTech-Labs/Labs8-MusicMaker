@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
 import * as routes from '../constants/routes';
 
+import { Button, ButtonToolbar, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
+
 const PasswordForgetPage = () =>
-  <div className="container">
+  <div className="container" style={{ marginLeft: "-17px" }}>
     <h1 className="bodyText">Reset Password?</h1>
     <PasswordForgetForm />
   </div>
@@ -18,6 +20,8 @@ const INITIAL_STATE = {
   email: '',
   error: null,
 };
+
+const formContainer = { maxWidth: 800, margin: '0 auto 10px' };
 
 class PasswordForgetForm extends Component {
   constructor(props) {
@@ -49,19 +53,24 @@ class PasswordForgetForm extends Component {
     const isInvalid = email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={this.state.email}
-          onChange={event => this.setState(byPropKey('email', event.target.value))}
-          type="text"
-          placeholder="Email Address"
-        />
-        <button disabled={isInvalid} type="submit">
-          Reset My Password
-        </button>
+      <div className = 'signin-form'>
+        <Form style={formContainer}>
+          <FormGroup onSubmit={this.onSubmit}>
+            <Label>Email</Label>
+              <Input
+                value={this.state.email}
+                onChange={event => this.setState(byPropKey('email', event.target.value))}
+                type="text"
+                style={{ marginBottom: "30px" }}
+              />
+            <Button color="info" disabled={isInvalid} type="submit">
+              Reset My Password
+            </Button>
 
-        { error && <p>{error.message}</p> }
-      </form>
+            { error && <p>{error.message}</p> }
+          </FormGroup>
+        </Form>
+      </div>
     );
   }
 }

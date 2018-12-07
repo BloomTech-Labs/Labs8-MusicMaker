@@ -108,6 +108,7 @@ app.get("/teacher/:idTeacher/students", (req, res) => {
 });
 
 // Get an individual student assigned to the teacher
+//details: name, instrument, level, email
 app.get("/teacher/:idTeacher/student/:idStudent", (req, res) => {
   try {
     const teacherId = req.params["idTeacher"];
@@ -132,7 +133,7 @@ app.get("/teacher/:idTeacher/student/:idStudent", (req, res) => {
 });
 
 // Get the list of assignments from a student
-// On the front end, will have to write code that when "null", return " " for those assignments not completed.
+// Frontend: will have to write code that when "null", return " " for those assignments not completed.
 app.get("/teacher/:idTeacher/student/:idStudent/assignments",(req, res) => {
     try {
       const studentId = req.params["idStudent"];
@@ -171,8 +172,9 @@ app.get("/teacher/:idTeacher/student/:idStudent/assignments",(req, res) => {
   }
 );
 
-// Get a list of students currently assigned to an assignment - Come Back
-//details: student name and due date
+// Get a list of students currently assigned to an assignment
+//details: student settings info. and student's assignment info.
+//Frontend: Need to reformat date so that it's properly visible and have it listed newest to oldest assignment
 app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
   try {
     const teacherId = req.params["idTeacher"];
@@ -213,7 +215,8 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
 
 // GRADE ASSIGNMENT: GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-// Get a completed assignment from a student
+// Get a completed/uncompleted assignment from a student
+//details: all assignment information
 app.get("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent",(req, res) => {
     try {
       const teacherId = req.params["idTeacher"];
@@ -250,24 +253,24 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent",(req, 
   }
 );
 
-// PUT should add feedback and status(assigned/passed/failed) to a student's assignment
-app.put("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent",(req, res) => {
+// PUT should add feedback and grade (pass/fail) to a student's assignment
+app.put("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent", (req, res) => {
     try {
       const teacherId = req.params["idTeacher"];
       const assignmentId = req.params["idAssignment"];
       const studentId = req.params["idStudent"];
-      const { feedback, status } = req.body;
+      const { feedback, grade } = req.body;
 
       //Student's assignment db reference:
       const studentAssignmentRef = db.collection("students").doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId)
 
-      if (!feedback || !status || status==="Assigned") {
-        res.status(411).send({REQUIRED: "You must have all fields filled: status and feedback."});
+      if (!feedback || !grade) {
+        res.status(411).send({REQUIRED: "You must have all fields filled: grade and feedback."});
       } else {
         studentAssignmentRef
           .update({
             'feedback': feedback,
-            'status': status
+            'grade': grade
           });
 
         res.status(202).send({ MESSAGE: "You have successfully graded this assignment." });
@@ -318,8 +321,7 @@ app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, r
               .then(() => {
                 studentTeacherAssignmentRef
                   .update({
-                    'dueDate': new Date(dueDate),
-                    'status': "Assigned"
+                    'dueDate': new Date(dueDate)
                   });
               });
 
@@ -332,7 +334,7 @@ app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, r
     }
   });
 
-// UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) - DELETE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 // POST should create and add a new ungraded assignment under a teacher
 // details: assignmentName, instructions, instrument, level, piece
@@ -466,6 +468,28 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
     });
   } catch (err) {
     res.status(500).send(err);
+  }
+});
+
+app.delete("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
+  try {
+    const teacherId = req.params["idTeacher"];
+    const assignmentId = req.params["idAssignment"];
+
+    // Teacher's assignment db reference
+    const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
+
+    if (!assignmentId){
+      res.status(404).send({MESSAGE: 'This assignment has already been deleted.'})
+    }else {
+      teacherAssignmentRef
+      .delete()
+      .then(() => {
+        res.status(204).send({MESSAGE: 'Your assignment has successfully deleted.'})
+      });
+    }
+  } catch (err) {
+    res.status(500).send(err); 
   }
 });
 

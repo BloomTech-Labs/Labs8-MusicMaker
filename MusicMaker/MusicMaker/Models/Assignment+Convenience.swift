@@ -110,6 +110,17 @@ extension Assignment {
         }
         
         self.title = fields["assignmentName"] as? String
+        
+        refreshSubmissionStatus()
+    }
+    
+    func refreshSubmissionStatus() {
+        switch status {
+        case .unsubmitted(isLate: _, isInProgress: _):
+            submissionStatus = "Unsubmitted Assignments"
+        case .submitted(grade: _):
+            submissionStatus = "Submitted Assignments"
+        }
     }
     
     private var localRecordingFolderURL: URL {

@@ -12,6 +12,12 @@ class AssignmentTableViewCell: UITableViewCell {
     
     // MARK: - Property
     
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d 'at' h:mma"
+        return dateFormatter
+    }()
+    
     var assignment: Assignment? {
         didSet {
             guard let assignment = assignment else { return }
@@ -19,7 +25,11 @@ class AssignmentTableViewCell: UITableViewCell {
             assignmentNameLabel.text = assignment.title
             musicPieceLabel.text = assignment.piece
             
-//            dueDateLabel.text = assignment.dueDate
+            if let dueDate = assignment.dueDate {
+                dueDateLabel.text = "Due on " + AssignmentTableViewCell.dateFormatter.string(from: dueDate)
+            } else {
+                dueDateLabel.text = ""
+            }
             
             newAssignmentImage.alpha = 0 // make it transparent
             

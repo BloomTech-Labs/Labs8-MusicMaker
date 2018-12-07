@@ -8,7 +8,7 @@ const fileUpload = require("express-fileupload");
 const UUID = require("uuid-v4");
 const QRCode = require("qrcode");
 
-const serviceAccount = "serviceAccountKey.json";
+const serviceAccount = require("./serviceAccountKey.json");
 
 firebase.initializeApp({
   apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -194,8 +194,7 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
               const studentInfo = student.data();
               const assignmentInfo = assignment.data();
 
-              return { ...assignmentInfo, ...studentInfo };
-              
+              return Object.assign({}, assignmentInfo, studentInfo ) 
             });
           });
 

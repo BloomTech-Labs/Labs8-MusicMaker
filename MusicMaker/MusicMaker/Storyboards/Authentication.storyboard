@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hXq-Sd-QM9">
-    <device id="ipad9_7" orientation="portrait">
+    <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -25,17 +25,17 @@
             <objects>
                 <viewController id="XI5-s7-70o" customClass="InitialViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Saw-Ca-gp5">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="954"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="698"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="myy-8J-8eI">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="954"/>
+                                <rect key="frame" x="0.0" y="-516" width="1024" height="1214"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="myy-8J-8eI" secondAttribute="height" multiplier="1756:2082" priority="999" id="9ET-7d-6zY"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="musicmaker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="CgE-AS-gAZ">
-                                <rect key="frame" x="133.5" y="0.0" width="501.5" height="102"/>
+                                <rect key="frame" x="261.5" y="0.0" width="501" height="102"/>
                                 <fontDescription key="fontDescription" name="Merriweather-Bold" family="Merriweather" pointSize="80"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCU-Vo-PI8">
-                                <rect key="frame" x="183.5" y="202" width="401" height="51"/>
+                                <rect key="frame" x="311.5" y="202" width="401" height="51"/>
                                 <color key="backgroundColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="17"/>
                                 <state key="normal" title="LOG IN">
@@ -60,7 +60,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsI-Ti-oTd">
-                                <rect key="frame" x="183.5" y="293" width="401" height="51"/>
+                                <rect key="frame" x="311.5" y="293" width="401" height="51"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.98039215690000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="17"/>
                                 <state key="normal" title="SIGN UP">
@@ -118,11 +118,11 @@
             <objects>
                 <viewController id="BF0-jJ-iAR" customClass="AuthenticationOptionsViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="imh-hN-6MH">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlM-Wa-w8F">
-                                <rect key="frame" x="83" y="873" width="602" height="60"/>
+                                <rect key="frame" x="109" y="617" width="806" height="60"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.98039215690000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="17"/>
                                 <state key="normal" title="LOG IN WITH EMAIL">
@@ -133,7 +133,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89o-eT-lv0">
-                                <rect key="frame" x="8" y="941" width="752" height="75"/>
+                                <rect key="frame" x="8" y="685" width="1008" height="75"/>
                                 <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="50"/>
                                 <state key="normal" title="CANCEL">
                                     <color key="titleColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
@@ -149,7 +149,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxH-6f-QEn">
-                                <rect key="frame" x="83" y="805" width="602" height="60"/>
+                                <rect key="frame" x="109" y="549" width="806" height="60"/>
                                 <color key="backgroundColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="17"/>
                                 <state key="normal" title="GOOGLE">
@@ -190,7 +190,7 @@
             <objects>
                 <viewController id="fJc-Zd-r9S" customClass="LogInViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t8O-8i-USS">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="954"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="698"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WPl-y3-4mB" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
@@ -287,23 +287,23 @@
             <objects>
                 <viewController id="2dT-6n-GHt" customClass="StudentSignupViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5p4-Ty-zTx">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ED3-W1-87N">
-                                <rect key="frame" x="0.0" y="70" width="768" height="477"/>
+                                <rect key="frame" x="0.0" y="70" width="1024" height="349"/>
                                 <connections>
                                     <segue destination="Lxw-1J-6LL" kind="embed" identifier="FirstAndLastName" id="Vii-vc-6gQ"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yy0-bU-P3Q">
-                                <rect key="frame" x="0.0" y="70" width="768" height="477"/>
+                                <rect key="frame" x="0.0" y="70" width="1024" height="349"/>
                                 <connections>
                                     <segue destination="2BU-8C-1PD" kind="embed" identifier="ShowEmailAndPassword" id="tsr-oP-1Eb"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1r-R8-RNj" userLabel="Level And Instrument View">
-                                <rect key="frame" x="0.0" y="70" width="768" height="477"/>
+                                <rect key="frame" x="0.0" y="70" width="1024" height="349"/>
                                 <connections>
                                     <segue destination="EPV-Tw-BNL" kind="embed" identifier="InstrumentAndLevel" id="43E-OV-Jcb"/>
                                 </connections>
@@ -376,7 +376,7 @@
                 <navigationController storyboardIdentifier="FirstNavController" automaticallyAdjustsScrollViewInsets="NO" id="hXq-Sd-QM9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="d0S-6S-4qZ">
-                        <rect key="frame" x="0.0" y="20" width="768" height="50"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.66274509800000003" green="0.90980392160000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -400,7 +400,7 @@
             <objects>
                 <viewController id="2BU-8C-1PD" customClass="EmailAndPasswordViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p2E-eU-r34">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="477"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="349"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WkW-7J-hI0" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
@@ -490,15 +490,25 @@
                                 <rect key="frame" x="642" y="89" width="80" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select an email address and a password of at least 6 characters" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgN-4d-qO4">
-                                <rect key="frame" x="20" y="20" width="728" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an email address and a password of at least 6 characters" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="BgN-4d-qO4">
+                                <rect key="frame" x="20" y="28" width="984" height="38"/>
+                                <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="30"/>
                                 <color key="textColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=compact">
+                                    <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="24"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="16"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.98039215690000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="BgN-4d-qO4" firstAttribute="leading" secondItem="Ff5-q6-3a3" secondAttribute="leading" constant="20" id="8fd-fa-HhU"/>
+                            <constraint firstItem="Ff5-q6-3a3" firstAttribute="trailing" secondItem="BgN-4d-qO4" secondAttribute="trailing" constant="20" id="FH2-B3-uMz"/>
+                            <constraint firstItem="BgN-4d-qO4" firstAttribute="top" secondItem="Ff5-q6-3a3" secondAttribute="top" constant="8" id="Je0-E5-UK9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Ff5-q6-3a3"/>
                     </view>
                     <connections>
@@ -520,7 +530,7 @@
             <objects>
                 <viewController id="EPV-Tw-BNL" customClass="LevelAndInstrumentViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4DG-8k-1ak">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="477"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="349"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select your level and instrument to complete your sign up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2c-c5-pwQ">
@@ -596,19 +606,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bjD-hh-BU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3553.90625" y="359.47265625"/>
+            <point key="canvasLocation" x="3554" y="393"/>
         </scene>
         <!--First And Last Name View Controller-->
         <scene sceneID="w2q-A8-8YQ">
             <objects>
                 <viewController id="Lxw-1J-6LL" customClass="FirstAndLastNameViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ALL-d4-ReD">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="477"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="349"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X5e-QU-wTQ" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="20" y="89" width="614" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X5e-QU-wTQ" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="20" y="89" width="906.5" height="69.5"/>
                                 <color key="textColor" red="0.0078431372550000003" green="0.3294117647" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -627,13 +636,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQl-Oa-rOF" customClass="LOTAnimationView">
-                                <rect key="frame" x="642" y="89" width="80" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQl-Oa-rOF" customClass="LOTAnimationView">
+                                <rect key="frame" x="934.5" y="89" width="69.5" height="69.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="AQl-Oa-rOF" secondAttribute="height" multiplier="1:1" id="Rec-rr-6sI"/>
+                                </constraints>
                             </view>
-                            <textField opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VJQ-Co-Ddc" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="20" y="180" width="614" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VJQ-Co-Ddc" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
+                                <rect key="frame" x="20" y="178.5" width="906.5" height="70"/>
                                 <color key="textColor" red="0.0078431372550000003" green="0.3294117647" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -652,9 +662,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSq-Gd-v8H">
-                                <rect key="frame" x="281" y="358" width="207" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSq-Gd-v8H">
+                                <rect key="frame" x="389" y="308" width="246" height="41"/>
                                 <color key="backgroundColor" red="0.66274509800000003" green="0.90980392160000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="23"/>
                                 <state key="normal" title="Next">
@@ -664,27 +673,66 @@
                                     <action selector="goToNextStep:" destination="Lxw-1J-6LL" eventType="touchUpInside" id="AXc-Ye-ZjR"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ngO-R0-moO" customClass="LOTAnimationView">
-                                <rect key="frame" x="642" y="180" width="80" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngO-R0-moO" customClass="LOTAnimationView">
+                                <rect key="frame" x="934.5" y="178.5" width="69.5" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ngO-R0-moO" secondAttribute="height" multiplier="1:1" id="JnD-Jf-Ybi"/>
+                                </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi there, lets get started with your name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3A-lw-C5s">
-                                <rect key="frame" x="20" y="20" width="728" height="38"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi there, lets get started with your name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="z3A-lw-C5s">
+                                <rect key="frame" x="20" y="28" width="984" height="41"/>
                                 <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="30"/>
                                 <color key="textColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=compact">
+                                    <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="24"/>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
-                                    <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="20"/>
+                                    <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="16"/>
                                 </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.98039215690000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="X5e-QU-wTQ" firstAttribute="width" secondItem="z3A-lw-C5s" secondAttribute="width" id="6DG-p5-jvJ"/>
                             <constraint firstItem="z3A-lw-C5s" firstAttribute="leading" secondItem="VbN-ii-SX3" secondAttribute="leading" constant="20" id="7OV-mq-Mjk"/>
-                            <constraint firstItem="z3A-lw-C5s" firstAttribute="top" secondItem="VbN-ii-SX3" secondAttribute="top" id="NME-hc-Mhy"/>
+                            <constraint firstItem="AQl-Oa-rOF" firstAttribute="top" secondItem="z3A-lw-C5s" secondAttribute="bottom" constant="20" id="AlG-hC-Eb9"/>
+                            <constraint firstItem="VJQ-Co-Ddc" firstAttribute="top" secondItem="X5e-QU-wTQ" secondAttribute="bottom" constant="20" id="BqZ-gy-2f9"/>
+                            <constraint firstItem="X5e-QU-wTQ" firstAttribute="height" secondItem="z3A-lw-C5s" secondAttribute="height" multiplier="1.2" id="GUu-PA-iC7"/>
+                            <constraint firstItem="HSq-Gd-v8H" firstAttribute="width" secondItem="z3A-lw-C5s" secondAttribute="width" multiplier="0.25" id="MgN-JY-3rm"/>
+                            <constraint firstItem="z3A-lw-C5s" firstAttribute="top" secondItem="VbN-ii-SX3" secondAttribute="top" constant="8" id="NME-hc-Mhy"/>
+                            <constraint firstItem="VbN-ii-SX3" firstAttribute="trailing" secondItem="AQl-Oa-rOF" secondAttribute="trailing" constant="20" id="OQY-Px-8ia"/>
+                            <constraint firstItem="AQl-Oa-rOF" firstAttribute="leading" secondItem="X5e-QU-wTQ" secondAttribute="trailing" constant="8" id="Poh-J7-8S7"/>
+                            <constraint firstItem="HSq-Gd-v8H" firstAttribute="height" secondItem="z3A-lw-C5s" secondAttribute="height" id="U1d-WT-xgc"/>
+                            <constraint firstItem="ngO-R0-moO" firstAttribute="top" secondItem="AQl-Oa-rOF" secondAttribute="bottom" constant="20" id="UBP-40-TS8"/>
+                            <constraint firstItem="X5e-QU-wTQ" firstAttribute="top" secondItem="z3A-lw-C5s" secondAttribute="bottom" constant="20" id="Y59-rc-vJy"/>
+                            <constraint firstItem="AQl-Oa-rOF" firstAttribute="height" secondItem="X5e-QU-wTQ" secondAttribute="height" id="b8Y-3f-INZ"/>
+                            <constraint firstItem="AQl-Oa-rOF" firstAttribute="centerY" secondItem="X5e-QU-wTQ" secondAttribute="centerY" id="fmH-TU-lgZ"/>
+                            <constraint firstItem="VbN-ii-SX3" firstAttribute="bottom" secondItem="HSq-Gd-v8H" secondAttribute="bottom" id="gYX-vi-vdS"/>
+                            <constraint firstItem="ngO-R0-moO" firstAttribute="height" secondItem="VJQ-Co-Ddc" secondAttribute="height" id="gkF-j4-Lw3"/>
+                            <constraint firstItem="VbN-ii-SX3" firstAttribute="trailing" secondItem="ngO-R0-moO" secondAttribute="trailing" constant="20" id="hJt-zF-mcH"/>
                             <constraint firstItem="VbN-ii-SX3" firstAttribute="trailing" secondItem="z3A-lw-C5s" secondAttribute="trailing" constant="20" id="mqG-KE-Odj"/>
+                            <constraint firstItem="HSq-Gd-v8H" firstAttribute="centerX" secondItem="ALL-d4-ReD" secondAttribute="centerX" id="p4p-jH-7Le"/>
+                            <constraint firstItem="VJQ-Co-Ddc" firstAttribute="height" secondItem="X5e-QU-wTQ" secondAttribute="height" id="sIE-Tf-NNX"/>
+                            <constraint firstItem="X5e-QU-wTQ" firstAttribute="height" secondItem="z3A-lw-C5s" secondAttribute="height" multiplier="1.7" id="tqB-pq-gIj"/>
+                            <constraint firstItem="VJQ-Co-Ddc" firstAttribute="leading" secondItem="VbN-ii-SX3" secondAttribute="leading" constant="20" id="u76-Rt-slV"/>
+                            <constraint firstItem="VJQ-Co-Ddc" firstAttribute="width" secondItem="X5e-QU-wTQ" secondAttribute="width" id="uDW-cu-K0l"/>
+                            <constraint firstItem="X5e-QU-wTQ" firstAttribute="leading" secondItem="VbN-ii-SX3" secondAttribute="leading" constant="20" id="zD5-w1-ylb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VbN-ii-SX3"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6DG-p5-jvJ"/>
+                                <exclude reference="GUu-PA-iC7"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="6DG-p5-jvJ"/>
+                                <include reference="GUu-PA-iC7"/>
+                                <exclude reference="tqB-pq-gIj"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="firstNameCheckmarkAnimation" destination="AQl-Oa-rOF" id="AD6-CK-hBY"/>
@@ -696,7 +744,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTX-cK-pIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3553.90625" y="-253.41796874999997"/>
+            <point key="canvasLocation" x="3553" y="-656"/>
         </scene>
         <!--QRScanner-->
         <scene sceneID="eK9-9I-Ol5">
@@ -712,7 +760,7 @@
                 <navigationController storyboardIdentifier="UIViewController-2dT-6n-GHt" automaticallyAdjustsScrollViewInsets="NO" id="Ed7-kk-6fM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bAf-x4-5dW">
-                        <rect key="frame" x="0.0" y="20" width="768" height="50"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

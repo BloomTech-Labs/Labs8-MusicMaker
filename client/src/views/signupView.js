@@ -5,6 +5,10 @@ import { auth } from '../firebase';
 
 import * as routes from "../constants/routes";
 
+// Reactstrap styling
+
+import { Button, ButtonToolbar, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
+
 const INITIAL_STATE = {
 //   firstName: "",
 //   lastName: "",
@@ -15,8 +19,8 @@ const INITIAL_STATE = {
 };
 
 const SignUpPage = ({ history }) => (
-  <div className="container">
-    <h1 className="subheader">Sign Up</h1>
+  <div className="container" style={formContainer}>
+    <h1 className="subheader" style={{margin: "20px" }}>Sign Up</h1>
     <SignUpView history={ history }/>
   </div>
 );
@@ -24,6 +28,8 @@ const SignUpPage = ({ history }) => (
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value
 });
+
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
 class SignUpView extends Component {
   constructor(props) {
@@ -57,16 +63,16 @@ class SignUpView extends Component {
   };
 
   render() {
-    const { 
-        // firstName, 
-        // lastName, 
-        email, 
-        passwordOne, 
-        passwordTwo, 
-        error 
+    const {
+        // firstName,
+        // lastName,
+        email,
+        passwordOne,
+        passwordTwo,
+        error
     } = this.state;
-    
-    const isInvalid = 
+
+    const isInvalid =
     passwordOne !== passwordTwo ||
     passwordOne === '' ||
     passwordTwo === '' ||
@@ -75,48 +81,58 @@ class SignUpView extends Component {
     // lastName === ''
 
     return (
-        <form className="bodyText" onSubmit={this.onSubmit}>
-            {/* <input 
-                value={ firstName }
-                onChange={ event => this.setState(byPropKey('firstName', event.target.value)) }
-                type ="text"
-                placeholder="First Name"
-            />
-            <input 
-                value={ lastName }
-                onChange={ event => this.setState(byPropKey('lastName', event.target.value)) }
-                type ="text"
-                placeholder="Last Name"
-            /> */}
-            <input 
-                value={ email }
-                onChange={ event => this.setState(byPropKey('email', event.target.value)) }
-                type ="text"
-                placeholder="Email"
-            />
-            <input 
-                value={ passwordOne }
-                onChange={ event => this.setState(byPropKey('passwordOne', event.target.value)) }
-                type ="password"
-                placeholder="Password"
-            />
-            <input 
-                value={ passwordTwo }
-                onChange={ event => this.setState(byPropKey('passwordTwo', event.target.value)) }
-                type ="password"
-                placeholder="Confirm Password"
-            />
-            <button disabled={ isInvalid } type="submit">Sign Up</button>
-
-            { error && <p>{ error.message }</p>}
-        </form>
+        <div className = 'signup-form' style={{ margin: "20px" }}>
+          <Form onSubmit={this.onSubmit}>
+              {/* <input
+                  value={ firstName }
+                  onChange={ event => this.setState(byPropKey('firstName', event.target.value)) }
+                  type ="text"
+                  placeholder="First Name"
+              />
+              <input
+                  value={ lastName }
+                  onChange={ event => this.setState(byPropKey('lastName', event.target.value)) }
+                  type ="text"
+                  placeholder="Last Name"
+              /> */}
+              <FormGroup>
+                <Label>Email</Label>
+                  <Input
+                      value={ email }
+                      onChange={ event => this.setState(byPropKey('email', event.target.value)) }
+                      type ="text"
+                      style={{ marginTop: "5px", marginBottom: "15px" }}
+                  />
+              </FormGroup>
+              <FormGroup>
+                <Label>Password</Label>
+                  <Input
+                      value={ passwordOne }
+                      onChange={ event => this.setState(byPropKey('passwordOne', event.target.value)) }
+                      type ="password"
+                      style={{ marginTop: "5px", marginBottom: "15px" }}
+                  />
+              </FormGroup>
+              <FormGroup>
+                <Label>Confirm Password</Label>
+                  <Input
+                      value={ passwordTwo }
+                      onChange={ event => this.setState(byPropKey('passwordTwo', event.target.value)) }
+                      type ="password"
+                      style={{ marginTop: "5px", marginBottom: "15px" }}
+                  />
+              </FormGroup>
+              <Button color="primary" bsSize="large" style={{ marginTop: "15px", marginBottom: "15px" }} disabled={ isInvalid } type="submit">Sign Up</Button>
+              { error && <p>{ error.message }</p>}
+          </Form>
+        </div>
     )
   }
 }
 
 const SignUpLink = () => (
-  <p className="bodyText">
-    Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
+  <p className="bodyText" style={{ margin: "20px" }}>
+    Don't have an account? <Link to={routes.SIGN_UP}>Sign Up!</Link>
   </p>
 );
 

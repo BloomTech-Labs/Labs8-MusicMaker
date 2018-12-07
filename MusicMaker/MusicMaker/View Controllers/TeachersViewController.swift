@@ -17,6 +17,21 @@ class TeachersViewController: UIViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(hideQrView), name: .newTeacher, object: nil)
         
+        refreshTeachers()
+    }
+    
+    @objc func hideQrView() {
+        showQrOptions(self)
+        NotificationCenter.default.post(name: .qrHidden, object: nil)
+        refreshTeachers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshTeachers()
+    }
+    
+    func refreshTeachers() {
         MusicMakerModelController.shared.fetchTeachers { (teachers, error) in
             guard error == nil else {return}
             if let teachers = teachers {
@@ -24,20 +39,7 @@ class TeachersViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-       
     }
-    
-    @objc func hideQrView() {
-        showQrOptions(self)
-        NotificationCenter.default.post(name: .qrHidden, object: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.teachers = MusicMakerModelController.shared.teachers
-        self.tableView.reloadData()
-    }
-    
     
     
     // MARK: - IBOutlets
@@ -89,7 +91,7 @@ class TeachersViewController: UIViewController {
         guard let indexPath = tableView.indexPathForSelectedRow else {return}
         let teacher = teachers[indexPath.row]
         if segue.identifier == "ShowAssignments" {
-            let destinationVc = segue.destination as? AssignmentsViewController
+            let destinationVc = segue.destination as? AssignmentsTableViewController
             if let assignmentsVc = destinationVc {
                 assignmentsVc.teacher = teacher
             }

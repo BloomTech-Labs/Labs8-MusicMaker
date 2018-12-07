@@ -17,7 +17,7 @@ class AddQRPhotoViewController: UIViewController {
         super.viewDidLoad()
         setupAnimationView()
         imagePicker.delegate = self
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -30,7 +30,12 @@ class AddQRPhotoViewController: UIViewController {
     let imagePicker = UIImagePickerController()
 
     // MARK: - IBOutlets
-    @IBOutlet weak var addPhotosButton: UIButton!
+    @IBOutlet weak var addPhotosButton: UIButton! {
+        didSet {
+            addPhotosButton.layer.cornerRadius = 5.0
+            
+        }
+    }
     
     // MARK: - Private Methods
     private func setupAnimationView() {
@@ -111,21 +116,21 @@ extension AddQRPhotoViewController: UIImagePickerControllerDelegate, UINavigatio
                         let teacherReference = database.collection("teachers").document(teacherId)
                         teacherReference.getDocument { (document, error) in
                             if let document = document, document.exists {
-                                if let data = document.data(), let name = data["name"] as? [String: String], let firstName = name["firstName"], let lastName = name["lastName"] {
+//                                if let data = document.data(), let name = data["name"] as? [String: String], let firstName = name["firstName"], let lastName = name["lastName"] {
                                     self.animationView.play(completion: { (animationCompleted) in
                                         if animationCompleted {
                                             self.animationView.setProgressWithFrame(0)
-                                            self.addPhotosButton.setTitle("\(firstName) \(lastName)", for: .normal)
+//                                            self.addPhotosButton.setTitle("\(firstName) \(lastName)", for: .normal)
                                             self.delegate?.qrCodeScanned(teacherId)
                                         }
                                     })
-                                }
+//                                }
                             } else {
-                                self.addPhotosButton.setTitle("Not a valid QR Code", for: .normal)
+                                self.addPhotosButton.setTitle("Try A New QR Code", for: .normal)
                             }
                         }
                     } else {
-                        self.addPhotosButton.setTitle("Not a valid QR Code", for: .normal)
+                        self.addPhotosButton.setTitle("Try A New QR Code", for: .normal)
                     }
                 }
             }

@@ -109,9 +109,8 @@ import UIKit
 			self.placeholderLabel.alpha = 1.0
             
             //Sets it back to normal colors
-            self.placeholderLabel.textColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
+            self.placeholderLabel.textColor = UIColor.blue1
             self.activeBorderLayer.backgroundColor = self.borderActiveColor?.cgColor
-//            UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
             
 		})
 
@@ -123,7 +122,8 @@ import UIKit
             UIView.animate(withDuration: 0.35, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2.0, options: .beginFromCurrentState, animations: ({
                 self.layoutPlaceholderInTextRect()
                 self.placeholderLabel.alpha = 1
-                self.placeholderLabel.textColor = UIColor.lightGray
+                //Sets placeholder color back
+                self.placeholderLabel.textColor = UIColor.blue3
             }), completion: { _ in
                 self.animationCompletionHandler?(.textDisplay)
             })

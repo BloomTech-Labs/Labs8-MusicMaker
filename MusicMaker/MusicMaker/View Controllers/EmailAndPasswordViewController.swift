@@ -24,6 +24,11 @@ class EmailAndPasswordViewController: UIViewController {
     
     // MARK: - IBOutlets
     
+    @IBOutlet weak var nextButton: UIButton! {
+        didSet {
+            nextButton.layer.cornerRadius = 5.0
+        }
+    }
     @IBOutlet weak var emailTextField: HoshiTextField! {
         didSet {
             emailTextField.delegate = self
@@ -111,6 +116,10 @@ extension EmailAndPasswordViewController: UITextFieldDelegate {
             }
         default:
             break
+        }
+        if !emailCheckmark.isHidden && passwordTextField.text?.count ?? 0 > 0 && confirmPasswordTextField.text?.count ?? 0 > 0 {
+            nextButton.alpha = 1
+            nextButton.isEnabled = true
         }
     }
     

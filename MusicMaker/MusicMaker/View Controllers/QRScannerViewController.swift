@@ -34,6 +34,7 @@ class QRScannerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.qrView.captureSession?.startRunning()
+        qrCodeFeedbackLabel.isHidden = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {

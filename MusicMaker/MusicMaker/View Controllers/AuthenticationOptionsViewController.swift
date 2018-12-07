@@ -21,6 +21,8 @@ class AuthenticationOptionsViewController: UIViewController {
     // MARK: - Overrides
     override func viewDidLayoutSubviews() {
         self.view.backgroundColor = UIColor.clear
+        emailButton.layer.cornerRadius = emailButton.frame.height / 2
+        googleButton.layer.cornerRadius = googleButton.frame.height / 2
     }
     
     
@@ -33,12 +35,10 @@ class AuthenticationOptionsViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var emailButton: UIButton! {
         didSet {
-            emailButton.layer.cornerRadius = emailButton.frame.height / 2
         }
     }
     @IBOutlet weak var googleButton: UIButton! {
         didSet {
-            googleButton.layer.cornerRadius = googleButton.frame.height / 2
         }
     }
     

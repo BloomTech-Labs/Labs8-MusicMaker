@@ -22,11 +22,17 @@ class LevelAndInstrumentViewController: UIViewController {
     weak var delegate: LevelAndInstrumentViewControllerDelegate?
     
    // MARK: - IBOutlets
+    @IBOutlet weak var signupButton: UIButton! {
+        didSet {
+            signupButton.layer.cornerRadius = 5.0
+        }
+    }
+    
     @IBOutlet weak var starRating: StarRating!
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var instrumentAnimation: LOTAnimationView! {
         didSet {
-            instrumentAnimation.animation = "checked_done_"
+            instrumentAnimation.animation = "checkmark"
             instrumentAnimation.contentMode = .scaleAspectFit
             instrumentAnimation.isHidden = true
         }
@@ -65,6 +71,8 @@ extension LevelAndInstrumentViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if instrumentTextField.text?.count ?? 0 > 0 {
             instrumentAnimation.play()
+            signupButton.alpha = 1
+            signupButton.isEnabled = true
         }
     }
     

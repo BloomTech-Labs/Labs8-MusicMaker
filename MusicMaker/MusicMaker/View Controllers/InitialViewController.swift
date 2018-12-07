@@ -16,42 +16,58 @@ class InitialViewController: UIViewController, GIDSignInUIDelegate {
     // MARK: - Properties
     let database = Firestore.firestore()
     let blurredBackgroundView = UIVisualEffectView()
+    
+    //Used for google authentication to pass email so it can post it to firestore
     var isSigningUpWithGoogle = false
     var email: String?
+    
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("VIEW DID LOAD - \(loginButton.frame.height)")
         //Used for the blurred view
         self.definesPresentationContext = true
         self.providesPresentationContextTransitionStyle = true
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        print("VIEW WILL APPEAR - \(loginButton.frame.height)")
     }
+    
+    
     
     
     // MARK: - IBOutlets
     @IBOutlet weak var loginButton: UIButton! {
         didSet {
+            print("DID SET - \(loginButton.frame.height)")
         }
     }
     
     
-    @IBOutlet weak var signupButton: UIButton! {
-        didSet {
-        }
-    }
+    @IBOutlet weak var signupButton: UIButton!
     
     // MARK: - Overrides
+ 
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("VIEW DID LAYOUT - \(loginButton.frame.height)")
+
         signupButton.layer.cornerRadius = signupButton.frame.height / 2
         loginButton.layer.cornerRadius = loginButton.frame.height / 2
         blurredBackgroundView.frame = view.frame
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        print("VIEW WILL LAYOUT - \(loginButton.frame.height)")
 
+        signupButton.layer.cornerRadius = signupButton.frame.height / 2
+        loginButton.layer.cornerRadius = loginButton.frame.height / 2
+        blurredBackgroundView.frame = view.frame
+    }
     
     // MARK: - IBActions
     @IBAction func showLoginOptions(_ sender: Any) {

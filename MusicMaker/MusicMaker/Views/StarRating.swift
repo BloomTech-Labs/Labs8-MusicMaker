@@ -15,8 +15,8 @@ class StarRating: UIControl {
     var value = 1
     private var componentDimension: CGFloat = 40.0
     private var componentCount = 3
-    private var componentActiveColor = UIColor.black
-    private var componentInactiveColor = UIColor.gray
+    private var componentActiveColor = UIColor.blue2
+    private var componentInactiveColor = UIColor.blue4
     
     var stars = [UILabel]()
     
@@ -33,14 +33,14 @@ class StarRating: UIControl {
         star1.textColor = componentActiveColor
         star1.textAlignment = .center
         stars.append(star1)
-        let star2 = UILabel(frame: CGRect(x: componentDimension, y: 0, width: componentDimension, height: componentDimension))
+        let star2 = UILabel(frame: CGRect(x: componentDimension * 2, y: 0, width: componentDimension, height: componentDimension))
         star2.text = "★"
         star2.tag = 2
         star2.font = star2.font.withSize(32)
         star2.textColor = componentInactiveColor
         star2.textAlignment = .center
         stars.append(star2)
-        let star3 = UILabel(frame: CGRect(x: componentDimension * 2, y: 0, width: componentDimension, height: componentDimension))
+        let star3 = UILabel(frame: CGRect(x: componentDimension * 4, y: 0, width: componentDimension, height: componentDimension))
         star3.text = "★"
         star3.tag = 3
         star3.font = star3.font.withSize(32)

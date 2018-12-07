@@ -14,7 +14,7 @@ class FirstAndLastNameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     // MARK: - Delegate
@@ -22,6 +22,11 @@ class FirstAndLastNameViewController: UIViewController {
 
     
     // MARK: - IBOutlets
+    @IBOutlet weak var nextButton: UIButton! {
+        didSet {
+            nextButton.layer.cornerRadius = 5.0
+        }
+    }
     @IBOutlet weak var firstNameTextField: HoshiTextField! {
         didSet {
             firstNameTextField.delegate = self
@@ -35,6 +40,7 @@ class FirstAndLastNameViewController: UIViewController {
     
     @IBOutlet weak var firstNameCheckmarkAnimation: LOTAnimationView! {
         didSet {
+            firstNameCheckmarkAnimation.isHidden = true
             firstNameCheckmarkAnimation.animation = "checkmark"
             firstNameCheckmarkAnimation.contentMode = .scaleAspectFit
         }
@@ -42,6 +48,7 @@ class FirstAndLastNameViewController: UIViewController {
     
     @IBOutlet weak var lastNameCheckmarkAnimation: LOTAnimationView! {
         didSet {
+            lastNameCheckmarkAnimation.isHidden = true
             lastNameCheckmarkAnimation.animation = "checkmark"
             lastNameCheckmarkAnimation.contentMode = .scaleAspectFit
         }
@@ -63,14 +70,20 @@ extension FirstAndLastNameViewController: UITextFieldDelegate {
         switch textField.tag {
         case 0:
             if textField.text?.count ?? 0 > 0 {
+                firstNameCheckmarkAnimation.isHidden = false
                 firstNameCheckmarkAnimation.play()
             }
         case 1:
             if textField.text?.count ?? 0 > 0 {
+                lastNameCheckmarkAnimation.isHidden = false
                 lastNameCheckmarkAnimation.play()
             }
         default:
             break
+        }
+        if !firstNameCheckmarkAnimation.isHidden && !lastNameCheckmarkAnimation.isHidden {
+            nextButton.alpha = 1
+            nextButton.isEnabled = true
         }
     }
     

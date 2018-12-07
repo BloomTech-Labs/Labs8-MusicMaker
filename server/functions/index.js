@@ -1,501 +1,599 @@
 //Hosting URL: https://musicmaker-4b2e8.firebaseapp.com
-const functions = require('firebase-functions');
-const firebase = require('firebase-admin');
-const express = require('express');
-const cors = require('cors');
-const stripe = require('stripe')('sk_test_YwuqJTfx2ZxOo4hGqGQSnoP3');
-const fileUpload = require('express-fileupload');
-const UUID = require('uuid-v4');
-const QRCode = require('qrcode');
+const functions = require("firebase-functions");
+const firebase = require("firebase-admin");
+const express = require("express");
+const cors = require("cors");
+const stripe = require("stripe")("sk_test_YwuqJTfx2ZxOo4hGqGQSnoP3");
+const fileUpload = require("express-fileupload");
+const UUID = require("uuid-v4");
+const QRCode = require("qrcode");
 
-const serviceAccount = "serviceAccountKey.json";
+const serviceAccount = require("./serviceAccountKey.json");
 
 firebase.initializeApp({
-    apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
-    authDomain: "musicmaker-4b2e8.firebaseapp.com",
-    databaseURL: "https://musicmaker-4b2e8.firebaseio.com",
-    projectId: "musicmaker-4b2e8",
-    storageBucket: "musicmaker-4b2e8.appspot.com",
-    messagingSenderId: "849993185408"
+  apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
+  authDomain: "musicmaker-4b2e8.firebaseapp.com",
+  databaseURL: "https://musicmaker-4b2e8.firebaseio.com",
+  projectId: "musicmaker-4b2e8",
+  storageBucket: "musicmaker-4b2e8.appspot.com",
+  messagingSenderId: "849993185408"
 });
 
 const db = firebase.firestore();
-const projID = "musicmaker-4b2e8"
+const projID = "musicmaker-4b2e8";
 
-const Firestore = require('@google-cloud/firestore');
+const Firestore = require("@google-cloud/firestore");
 const firestore = new Firestore({
   projectId: projID
 });
-const settings = {timestampsInSnapshots: true};
+const settings = { timestampsInSnapshots: true };
 firestore.settings(settings);
 
-const {Storage} = require('@google-cloud/storage');
+const { Storage } = require("@google-cloud/storage");
 const storage = new Storage({
   projectId: projID,
   keyFilename: serviceAccount
 });
-const bucket = storage.bucket('gs://musicmaker-4b2e8.appspot.com');
+const bucket = storage.bucket("gs://musicmaker-4b2e8.appspot.com");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(fileUpload({
-  createParentPath : true
-}));
+app.use(
+  fileUpload({
+    createParentPath: true
+  })
+);
 
 //===============================================================================================================================================
 
 // TEST for sanity checks ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app.get('/', (req, res) => {
-    res.status(200).send({MESSAGE: 'HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com/'});
+app.get("/test", (req, res) => {
+  res
+    .status(200)
+    .send({
+      MESSAGE:
+        "HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com"
+    });
 });
 
-// ASSIGN STUDENT TO AN ASSIGNMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-app.post('/teacher/:idTeacher/assignment/:idAssignment/assignToStudent', (req, res, next) => {
-  try {
-    const teacherId = req.params['idTeacher'];
-    const assignmentId = req.params['idAssignment'];
-    const { email, firstName, lastName, dueDate , dueTime} = req.body;
-
-    const studentRef = db.collection('students').where('email', '==', email);
-    const getDoc = studentRef.get()
-      .then(snap =>{
-        snap.forEach(doc => {
-          const studentId = doc.id
-
-          const assignmentTeacherRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students').doc(studentId).set({
-            name: {
-              'firstName': firstName,
-              'lastName': lastName
-            },
-            'dueDate': new Date(dueDate)
-          })
-
-          const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
-          const getDoc = assignmentRef.get()
-          .then(doc => {
-            const studentAssignmentRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).set(doc.data())
-          }).then(() => {
-            const studentAssignmentRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
-              'dueDate': new Date(dueDate)
-            })
-          })
-
-          res.status(201).send({MESSAGE: 'STUDENT HAS SUCCESFULLY BEEN ADDED TO ASSIGNMENT'})
-      })
-  });
-
-  }catch(err){
-    next(err);
-  };
-});
-
-// GRADE ASSIGNMENT: GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-// Get a list of students currently assigned to an assignment, ASSIGNED
-app.get('/teacher/:idTeacher/assignment/:idAssignment/students', (req, res, next) => {
-  try{
-      const teacherId = req.params['idTeacher'];
-      const assignmentId = req.params['idAssignment'];
-      const students = {};
-
-      const assignedStudentsRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students');
-      const allStudents = assignedStudentsRef.get()
-      .then(snap => {
-        snap.forEach(doc => {
-          students[doc.id] = doc.data();
-        })
-        res.status(200).json(students);
-      });
-
-  } catch (err){
-    next (err);
-  }
-});
-
-// Get an assignment from a student
-// FUNCTIONAL AS OF 12/2/18 3 PM
-app.get('/student/:idStudent/teachers/:idTeacher/assignments/:idAssignment', (req, res, next) => {
-  try{
-      const studentId = req.params['idStudent'];
-      const teacherId = req.params['idTeacher'];
-      const assignmentId = req.params['idAssignment'];
-
-      const assignmentRef =  db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
-      const allAssignments = assignmentRef.get()
-      .then(doc => {
-        res.status(200).json(doc.data());
-      });
-
-  } catch (err){
-    next (err);
-  }
-});
-
-// PUT should add feedback and grade to a student's assignment
-app.put('/student/:idStudent/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
-  try{
-    const teacherId = req.params['idTeacher'];
-    const assignmentId = req.params['idAssignment'];
-    const studentId = req.params['idStudent'];
-    const { feedback, grade } = req.body;
-    if (!feedback || !grade) {
-      res.status(411).send({REQUIRED: 'YOU MUST HAVE FEEDBACK AND GRADE FILLED'});
-    } else {
-      const addGradeRef = db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
-        'feedback': feedback,
-        'grade': grade
-      })
-      res.status(201).send({MESSAGE: 'YOU HAVE SUCCESSFULLY GRADED THIS ASSIGNMENT'});
-    }
-  } catch(err){
-    next(err);
-  };
-});
-
+// Functions ####################################################################################################################################
+function parseDate(date) {
+  const month = date.getMonth() + 1;
+  const day = date.getDate() + 1;
+  const year = date.getFullYear();
+  const hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+  const minute = date.getMinutes() == "0" ? "00" : date.getMinutes();
+  const amPm = date.getHours() >= 12 ? "PM" : "AM";
+  const reformattedDueDate =
+    month + "/" + day + "/" + year + " at " + hour + ":" + minute + " " + amPm;
+  return reformattedDueDate;
+}
 
 //STUDENT LIST: GET %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 //GET should retrieve a teacher's list of students
-//details: name, instrument, level
-// try nested where queries to search for the students that match the teacher's id ?????????????????????
-// CURRENTLY FUNCTIONAL 12/2/18 3 PM EST
-app.get('/teacher/:idTeacher/students', (req, res, next) => {
-  try{
-    const teacherId = req.params['idTeacher'];
-    const students = {};
+//details: name, instrument, level, email
+app.get("/teacher/:idTeacher/students", (req, res) => {
+  try {
+    const teacherId = req.params["idTeacher"];
+    let promises = [];
 
-    const studentstRef =  db.collection('teachers').doc(teacherId).collection('students');
-    const allStudents = studentstRef.get()
-    .then(snap => {
-      snap.forEach(doc => {
-        students[doc.id] = doc.data();
-      })
-      res.status(200).json(students);
+    //teacher's db referencing their students:
+    const teacherStudentsRef = db.collection("teachers").doc(teacherId).collection("students"); 
+    const studentRef = db.collection("students"); //students' db
+
+    teacherStudentsRef
+    .get()
+    .then(students => {
+      students.forEach(student => {
+        const promise = studentRef.doc(student.id).get();
+        promises.push(promise);
+      });
+
+      Promise
+        .all(promises)
+        .then(results => {
+          const students = results.map(student => {
+            return student.data();
+          });
+          res.status(200).json(students);
+        })
+        .catch(err => res.status(500).json(err));
     });
 
+  } catch (err) {
+    res.status(500).send(err);
   }
-  catch(err) {
-   next(err);
- }
 });
 
 // Get an individual student assigned to the teacher
-// FUNCTIONAL AS OF 12/2/18 3 PM
-app.get('/teacher/:idTeacher/students/:idStudent', (req, res, next) => {
-  try{
-    const teacherId = req.params['idTeacher'];
-    const studentId = req.params['idStudent'];
+app.get("/teacher/:idTeacher/student/:idStudent", (req, res) => {
+  try {
+    const teacherId = req.params["idTeacher"];
+    const studentId = req.params["idStudent"];
 
-    const studentsRef =  db.collection('teachers').doc(teacherId).collection('students').doc(studentId);
-    const allStudents = studentsRef.get()
-    .then(doc => {
-      res.status(200).json(doc.data());
+    //teacher's db referencing their student:
+    const teacherStudentRef = db.collection("teachers").doc(teacherId).collection("students").doc(studentId);
+    const studentRef = db.collection("students"); //students' db
+
+    teacherStudentRef
+    .get()
+    .then(student => {
+      studentRef.doc(student.id).get()
+      .then(settings => {
+        res.status(200).json(settings.data())
+      });
     });
 
+  } catch (err) {
+    res.status(500).send(err);
   }
-  catch(err) {
-   next(err);
- }
 });
 
 // Get the list of assignments from a student
-// FUNCTIONAL AS OF 12/2/18 3 PM
-app.get('/student/:idStudent/teachers/:idTeacher/assignments', (req, res, next) => {
-  try{
-      const studentId = req.params['idStudent'];
-      const teacherId = req.params['idTeacher'];
-      const assignmentId = req.params['idAssignment'];
+// On the front end, will have to write code that when "null", return " " for those assignments not completed.
+app.get("/teacher/:idTeacher/student/:idStudent/assignments",(req, res) => {
+    try {
+      const studentId = req.params["idStudent"];
+      const teacherId = req.params["idTeacher"];
       const assignments = {};
 
-      const assignmentRef =  db.collection('students').doc(studentId).collection('teachers').doc(teacherId).collection('assignments');
-      const allAssignments = assignmentRef.get()
-      .then(snap => {
-        snap.forEach(doc => {
-          assignments[doc.id] = doc.data();
-        })
-        res.status(200).json(assignments);
-      });
+      //Student's assignments db reference
+      const studentAssignmentsRef = db.collection("students").doc(studentId).collection("teachers").doc(teacherId).collection("assignments");
+      
+      studentAssignmentsRef
+        .orderBy('dueDate', 'asc')
+        .get()
+        .then(snap => {
+          snap.forEach(doc => {
+            global = doc.data();
+            reformattedDueDate = parseDate(global.dueDate);
+            assignments[doc.id] = [
+              global.assignmentName,
+              reformattedDueDate,
+              global.instrument,
+              global.level,
+              global.piece,
+              global.instructions,
+              global.sheetMusic,
+              global.video,
+              global.feedback,
+              global.grade
+            ];
+          });
+          res.status(200).json(assignments);
+        });
 
-  } catch (err){
-    next (err);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  }
+);
+
+// Get a list of students currently assigned to an assignment - Come Back
+//details: student name and due date
+app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
+  try {
+    const teacherId = req.params["idTeacher"];
+    const assignmentId = req.params["idAssignment"];
+  
+    //Teacher's db list of students
+    const teacherStudentsRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students');
+    const studentRef = db.collection('students'); //Student db
+
+    teacherStudentsRef
+      .get()
+      .then(students => {
+        const promises = [];
+        students.forEach(student => {
+          const studentId = student.id;
+
+          const studentPromise = studentRef.doc(studentId).get().then(student => {
+            return studentRef.doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get().then(assignment => {
+              const studentInfo = student.data();
+              const assignmentInfo = assignment.data();
+
+              return Object.assign({}, assignmentInfo, studentInfo ) 
+            });
+          });
+
+          promises.push(studentPromise);
+        });
+
+        Promise.all(promises).then(results => {
+          res.status(200).json(results);
+        });
+      });
+      
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
 
+// GRADE ASSIGNMENT: GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+// Get a completed assignment from a student
+app.get("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent",(req, res) => {
+    try {
+      const teacherId = req.params["idTeacher"];
+      const assignmentId = req.params["idAssignment"];
+      const studentId = req.params["idStudent"];
+
+      //Student's assignment db reference:
+      const studentAssignmentRef = db.collection("students").doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId);
+      
+      studentAssignmentRef
+        .get()
+        .then(assignment => {
+          global = assignment.data();
+          reformattedDueDate = parseDate(global.dueDate);
+          studentAssignment = [
+            global.assignmentName,
+            reformattedDueDate,
+            global.instrument,
+            global.level,
+            global.piece,
+            global.instructions,
+            global.sheetMusic,
+            global.video,
+            global.feedback,
+            global.status
+          ];
+
+          res.status(200).json(studentAssignment);
+        });
+
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  }
+);
+
+// PUT should add feedback and status(assigned/passed/failed) to a student's assignment
+app.put("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent",(req, res) => {
+    try {
+      const teacherId = req.params["idTeacher"];
+      const assignmentId = req.params["idAssignment"];
+      const studentId = req.params["idStudent"];
+      const { feedback, status } = req.body;
+
+      //Student's assignment db reference:
+      const studentAssignmentRef = db.collection("students").doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId)
+
+      if (!feedback || !status || status==="Assigned") {
+        res.status(411).send({REQUIRED: "You must have all fields filled: status and feedback."});
+      } else {
+        studentAssignmentRef
+          .update({
+            'feedback': feedback,
+            'status': status
+          });
+
+        res.status(202).send({ MESSAGE: "You have successfully graded this assignment." });
+      }
+
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  }
+);
+
+// ASSIGN STUDENT TO AN ASSIGNMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, res) => {
+    try {
+      const teacherId = req.params["idTeacher"];
+      const assignmentId = req.params["idAssignment"];
+      const { email, dueDate } = req.body;
+
+      const studentRef = db.collection("students"); //student db
+      //Teacher's assignment db reference:
+      const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
+
+      studentRef
+        .where("email", "==", email)
+        .get()
+        .then(students => {
+          students.forEach(student => {
+            const studentId = student.id;
+            //Student's teacher assignment db reference:
+            const studentTeacherAssignmentRef = studentRef.doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
+            
+            // Lets teacher store that the student has been given the assignment
+            teacherAssignmentRef
+              .collection('students')
+              .doc(studentId)
+              .set({
+                'assigned': true
+              })
+
+            // Gives assigment information to student with their due date
+            teacherAssignmentRef
+              .get()
+              .then(assignment => {
+                studentTeacherAssignmentRef
+                  .set(assignment.data());
+              })
+              .then(() => {
+                studentTeacherAssignmentRef
+                  .update({
+                    'dueDate': new Date(dueDate),
+                    'status': "Assigned"
+                  });
+              });
+
+            res.status(201).send({MESSAGE: "Student has successfully been added to assignment." });
+          });
+        });
+
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
 
 // UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 // POST should create and add a new ungraded assignment under a teacher
 // details: assignmentName, instructions, instrument, level, piece
 // sheetMusic is currently not included, need to figure out how it would be uploaded in the database storage, may need its own endpoint
-app.post('/teacher/:idTeacher/createAssignment', (req, res, next) => {
+app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
   try {
-    const teacherId = req.params['idTeacher'];
+    const teacherId = req.params["idTeacher"];
     const { assignmentName, instructions, instrument, level, piece } = req.body;
-    // const assignments = {};
+
+    //Teacher's assignments db reference
+    const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments"); 
 
     if (!assignmentName || !instructions || !instrument || !level || !piece) {
-      res.status(411).send({REQUIRED: 'YOU MUST HAVE ALL FIELDS FILLED'});
-    }
-    // else if (assignmentName > 0) {
-    //   const teacherAssingmentsRef = await db.collection('teachers').doc(teacherId).collection('assignments').get()
-    //   // console.log('0******************************************', teacherAssingmentsRef)
-    //   // console.log('1******************************************', Object.keys(teacherAssingmentsRef))
-    //   .then(snap => {
-    //     snap.forEach(doc => {
-    //       global = doc.data();
-    //       assignments[doc.id] = [global.assignmentName];
-    //     })
-    //   })
-
-    //   console.log('2**********************************', assignment) // This returns a list of an array of a teachers assignments within an array,
-    //                                                                  //need to check if each of those assignment names matches the new name and if does throw an error
-    //   res.status(411).send({ERROR: 'YOU CANNOT HAVE AN ASSIGNMENT WITH THE SAME NAME'});
-    // }
-    else {
-      const addTeacherAssign = db.collection('teachers').doc(teacherId).collection('assignments').add({
-        'assignmentName': assignmentName,
-        'instructions': instructions,
-        'instrument': instrument,
-        'level': level,
-        'piece': piece
-      }).then(snap => {
-        const assignmentId = snap._path.segments[3];
-        console.log('0**********************************************', assignmentId)
-        }).then(doc => {
+      res.status(411).send({ REQUIRED: "You must have all fields filled." });
+    } else {
+      teacherAssignmentRef
+        .add({
+          'assignmentName': assignmentName,
+          'instructions': instructions,
+          'instrument': instrument,
+          'level': level,
+          'piece': piece
+        })
+        .then(assignment => {
+          const assignmentId = assignment._path.segments[3];
+         
           if (Object.keys(req.files).length == 0) {
-            return res.status(400).send({MESSAGE: 'NO FILE WAS UPLOADED'});
+            return res.status(400).send({ MESSAGE: "No file was uploaded." });
           }
-           let uuid = UUID();
+          let uuid = UUID();
           let uploadFile = req.files.uploadFile;
-          console.log('**********************************', uploadFile)
-           let name = uploadFile.name;
-          uploadFile.mv('/tmp/' + name)
-          bucket.upload('/tmp/' + name , {
-            destination : 'sheetMusic/' + name,
-            metadata : {
-              metadata:{
-                firebaseStorageDownloadTokens : uuid
+          let name = uploadFile.name;
+
+          uploadFile.mv("/tmp/" + name);
+
+          bucket
+            .upload("/tmp/" + name, {
+              destination: "sheetMusic/" + name,
+              metadata: {
+                metadata: {firebaseStorageDownloadTokens: uuid}
               }
-            }
-          }).then(data => {
-            let file = data[0]
-            console.log('1******************************************************', file)
-            Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
-            .then(url => {
-              const teachersRef = db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).update({
-              'sheetMusic' : url
+            })
+            .then(data => {
+              let file = data[0];
+              Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid
+              ).then(url => {
+                teacherAssignmentRef
+                  .doc(assignmentId)
+                  .update({
+                    'sheetMusic': url
+                  });
+                res.status(201).send({ MESSAGE: "You have successfully uploaded file." }); //will remove once i know it works properly from the frontend
+              });
             });
-            res.status(201).send({MESSAGE: 'YOU FILE HAS BEEN SUCCESSFULLY UPLOADED'})
-            });
-          });
-      });
-      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY CREATED A NEW ASSIGNMENT'});
-    };
-  }
-   catch(err) {
-    next(err);
+        });
+   
+      res.status(201).send({ MESSAGE: `You have successfully created ${assignmentName}.` });
+    }
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
 
 // //This is a functioning endpoint where it's able to upload a pdf into Firebase storage and return the url
 // //I tried to combine it with posting it with an assignment (above) but had no luck, will ask for help tomorrow
-app.post('/uploadPDF', function(req, res) {
+app.post("/uploadPDF", function(req, res) {
   if (Object.keys(req.files).length == 0) {
-    return res.status(400).send({MESSAGE: 'NO FILE WAS UPLOADED'});
+    return res.status(400).send({ MESSAGE: "No file was uploaded." });
   }
   let uuid = UUID();
   let uploadFile = req.files.uploadFile;
-  console.log('HERE**********************************************', uploadFile)
   let name = uploadFile.name;
-  uploadFile.mv('/tmp/' + name)
-  bucket.upload('/tmp/' + name , {
-    destination : 'sheetMusic/' + name,
-    metadata : {
-      metadata:{
-        firebaseStorageDownloadTokens : uuid
+
+  uploadFile.mv("/tmp/" + name);
+
+  bucket
+    .upload("/tmp/" + name, {
+      destination: "sheetMusic/" + name,
+      metadata: {
+        metadata: {firebaseStorageDownloadTokens: UUID}
       }
-    }
-  }).then((data) => {
-      let file = data[0]
-      Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
-        .then(url => {
-           res.status(201).send(url)
-        })
     })
+    .then(data => {
+      let file = data[0];
+      Promise.resolve(
+        "https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid
+      ).then(url => {
+        res.status(201).send(url);
+      });
+    });
 });
 
 //GET should retrieve teacher's all ungraded assignments
 //details: assignmentName, instructions, instrument, level, piece, sheetMusic
-// CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
-app.get('/teacher/:idTeacher/assignments', (req, res, next) => {
-  try{
-      const teacherId = req.params['idTeacher'];
-      const assignments = {};
+app.get("/teacher/:idTeacher/assignments", (req, res) => {
+  try {
+    const teacherId = req.params["idTeacher"];
+    const allAssignments = {};
 
-      const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments');
-      const allAssignments = assignmentRef.get()
-      .then(snap => {
-        snap.forEach(doc => {
-          assignments[doc.id] = doc.data();
-        })
-        res.status(200).json(assignments);
+    // Teacher's assignments db reference
+    const teacherAssignmentsRef = db.collection("teachers").doc(teacherId).collection("assignments");
+
+    teacherAssignmentsRef
+    .get()
+    .then(assignments => {
+      assignments.forEach(assignment => {
+        allAssignments[assignment.id] = assignment.data();
       });
+      res.status(200).json(allAssignments);
+    });
 
-  } catch (err){
-    next (err);
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
 
-//GET should retrieve teacher's ungraded assignment
+//GET should retrieve teacher's single ungraded assignment
 //details: assignmentName, instructions, instrument, level, piece
-//sheetMusic will be retrieved in another endpoint below
-// CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
-app.get('/teacher/:idTeacher/assignment/:idAssignment', (req, res, next) => {
-  try{
-      const teacherId = req.params['idTeacher'];
-      const assignmentId = req.params['idAssignment'];
+app.get("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
+  try {
+    const teacherId = req.params["idTeacher"];
+    const assignmentId = req.params["idAssignment"];
 
-      const assignmentRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId);
-      const getDoc = assignmentRef.get()
-      .then(doc => {
-        res.status(200).json(doc.data());
-      });
+    // Teacher's assignment db reference
+    const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
 
-  } catch (err){
-    next (err);
+    teacherAssignmentRef
+    .get()
+    .then(doc => {
+      res.status(200).json(doc.data());
+    });
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
 
 //SETTINGS : POST - GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 let qrOptions = {
-  errorCorrectionLevel: 'H',
-  type: 'image/jpeg',
+  errorCorrectionLevel: "H",
+  type: "image/jpeg",
   rendererOpts: {
     quality: 0.3
   }
-}
+};
 
-//POST should create and add a new teacher settings info.: email and name
-app.post('/addNewTeacher', (req, res, next) => {
+//POST should create and add a new teacher's settings info.
+//details: email, name (first, last, and prefix), and generate a new qr code
+app.post("/addNewTeacher", (req, res) => {
   try {
-    const {email, firstName, lastName, prefix} = req.body;
+    const { email, firstName, lastName, prefix } = req.body;
     let uuid = UUID();
 
-    if(!email) {
-      res.status(411).send({ error: 'Please fill out all required fields. Email address is missing.' });
-    } else if(!firstName || !lastName) {
-      res.status(411).send({ error: 'Please fill out all required fields. First and/or last name is missing.' });
-    } else {
-      const teachersRef = db.collection('teachers').add({
-        'email': email,
-        'name': {
-          'firstName': firstName,
-          'lastName': lastName,
-          'prefix': prefix
-        }
-      }).then(ref => {
-        const qrPath = '/tmp/signup_' + lastName + '.jpg'
-        const qr = QRCode.toFile(qrPath,ref.id, qrOptions);
-
-        bucket.upload(qrPath , {
-          destination : 'qrCodes/' + email,
-          metadata : {
-            metadata:{
-              firebaseStorageDownloadTokens : uuid
-            }
-          }
-        }).then((data) =>{
-            let file = data[0]
-            Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid)
-            .then(url => {
-              const teachersRef = db.collection('teachers').doc(ref.id).update({
-                'qrcode': url
-              })
-              res.status(200).send({ message: 'Teacher was successfully added!'});
-            })
-        })
-    })
-  }
-}	catch(err) {
-  next(err);
-}
-});
-
-
-//GET should retrieve teachers settings info.: email and name(first, last, and prefix)
-// CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
-app.get('/teacher/:idTeacher/settings', (req, res, next) => {
-  try{
-    const teacherId = req.params['idTeacher'];
-    const settings = {};
-
-    const settingsRef = db.collection('teachers').doc(teacherId);
-    const getSettings = settingsRef.get()
-    .then(doc => {
-      res.status(200).json(doc.data());
-    })
-
-  } catch (err){
-    next (err);
-  }
-});
-
-//PUT should update teachers settings info.: email and name(first, last, and prefix)
-app.put('/teacher/:idTeacher/settingsEdit', (req, res, next) => {
-  try{
-    const teacherId = req.params['idTeacher'];
-    const {email, firstName, lastName, prefix} = req.body;
+    const teachersRef = db.collection("teachers") //Teachers' db
 
     if (!email) {
-      res.status(411).send({REQUIRED: `EMAIL CANNOT BE LEFT BLANK, ENTER A VALID EMAIL`});
-    } else if (!firstName || !lastName) {
-      res.status(411).send({REQUIRED: `FIRST NAME AND LAST NAME CANNOT BE LEFT BLANK`});
-    } else{
-     const settingsRef = db.collection('teachers').doc(teacherId).update({
-        'email': email,
-        'name' : {
-          'firstName': firstName,
-          'lastName': lastName,
-          'prefix': prefix
-        }
-      });
-      res.status(200).send({MESSAGE: 'YOU HAVE SUCCESSFULLY UPDATED YOUR SETTINGS INFORMATION'})
-    }
+      res.status(411).send({REQUIRED: "Please fill all required fields: email missing."});
+    } else if (!firstName || !lastName || !prefix) {
+      res.status(411).send({REQUIRED:"Please fill all required fields: prefix, first and last name."});
+    } else {
+      teachersRef
+        .add({
+          email: email,
+          name: {
+            firstName: firstName,
+            lastName: lastName,
+            prefix: prefix
+          }
+        })
+        .then(ref => {
+          const qrPath = "/tmp/signup_" + lastName + ".jpg";
+          const qr = QRCode.toFile(qrPath, ref.id, qrOptions);
 
-  } catch (err){
-    next (err);
+          bucket
+            .upload(qrPath, {
+              destination: "qrCodes/" + email,
+              metadata: {
+                metadata: {firebaseStorageDownloadTokens: uuid}
+              }
+            })
+            .then(data => {
+              let file = data[0];
+              Promise.resolve(
+                "https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid
+              ).then(url => {
+                teachersRef
+                  .doc(ref.id)
+                  .update({qrcode: url});
+                  
+                res.status(201).send({MESSAGE: `Teacher ${prefix} ${lastName} was successfully added.`});
+              });
+            });
+        });
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+//GET should retrieve teachers settings info.
+//details: email, name (first, last, and prefix), and qr code
+app.get("/teacher/:idTeacher/settings", (req, res) => {
+  try {
+    const teacherId = req.params["idTeacher"];
+
+    const teacherRef = db.collection("teachers").doc(teacherId); //A teacher's db
+
+    teacherRef
+      .get()
+      .then(settings => {
+        res.status(200).json(settings.data());
+      });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+//PUT should update teachers settings info.
+//details: name (first, last, and prefix)
+app.put("/teacher/:idTeacher/settingsEdit", (req, res) => {
+  try {
+    const teacherId = req.params["idTeacher"];
+    const { firstName, lastName, prefix } = req.body;
+
+    const teacherRef = db.collection("teachers").doc(teacherId); // A teacher's db
+
+    if (!prefix || !firstName || !lastName) {
+      res.status(411).send({REQUIRED: `Prefix, first and/or last name cannot be left empty.`});
+    } else {
+      teacherRef
+        .update({
+          name: {
+            firstName: firstName,
+            lastName: lastName,
+            prefix: prefix
+          }
+        });
+      res.status(202).send({ MESSAGE: "You have successfullly updated your information." });
+    }
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
 
 // STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
-app.post('/charge', (req, res) => {
-  console.log(req.body.token.id); 
-=======
-// CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
-app.post('/charge', (req, res) => {
-  console.log(req.body.token.id);
->>>>>>> 48cf0b918d40f016c70f7cb26ca0442a8d3a9042
-  try {
-    let { status } = stripe.charges.create({
+app.post("/charge", (req, res) => {
+  try {   let { status } = stripe.charges.create({
       amount: 50,
-      currency: 'usd',
-      description: 'teacher subscription',
+      currency: "usd",
+      description: "teacher subscription",
       source: req.body.token.id
     });
 
     // right here, mark the user as paid in the db
 
     res.status(201).json({ status });
-  } catch(err) {
+  } catch (err) {
     res.status(500).send(err);
   }
 });
-
-
 
 // CODE THAT WE ARE NOT READY TO DELETE========================================================================================================
 // GET a QR code
@@ -504,8 +602,7 @@ app.post('/charge', (req, res) => {
 //   try {
 //     let stringGen = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16);
 //     let code = QRCode.toString(stringGen, function (err, string) {
-//       console.log(string);
-//       res.json(string);
+//       s.json(string);
 //     })
 //   } catch(err) {
 //     next(err);
@@ -529,7 +626,6 @@ app.post('/charge', (req, res) => {
 //     next(err);
 //   }
 // });
-
 
 // app.get('/teachers', (req, res) => {
 //   rootRef
@@ -564,7 +660,6 @@ app.post('/charge', (req, res) => {
 //     next (err);
 //   }
 // });
-
 
 // // GET a list of all assignments listed under a specific teacher
 // // can consider changing this to a more high-level 'assignments' endpoint
@@ -639,7 +734,6 @@ app.post('/charge', (req, res) => {
 //   }
 //   });
 
-
 // POST
 
 // add individual teacher with just an ID
@@ -668,8 +762,7 @@ app.post('/charge', (req, res) => {
 //     };
 //     return db.collection('teachers').doc(id)
 //       .add(teacherData).then(() => {
-//         console.log('New teacher added to database!');
-//         res.json(teacherData);
+//         s.json(teacherData);
 //       })
 //   });
 // });
@@ -684,15 +777,12 @@ app.post('/charge', (req, res) => {
 //   res.json(data);
 // })
 
-
-
 ///////////////////////
 
 // PUT
 
 // app.put('/', (req, res) => {
-//   console.log('PUT test');
-//   res.send('hello!');
+//   r.send('hello!');
 // });
 
 ///////////////////////
@@ -700,8 +790,7 @@ app.post('/charge', (req, res) => {
 // DELETE
 
 // app.delete('/', (req, res) => {
-//   console.log('DELETE test');
-//   res.send('hello!');
+//   r.send('hello!');
 // });
 
 ///////////////////////
@@ -827,10 +916,10 @@ app.post('/charge', (req, res) => {
 //   }
 //   });
 
-
 //=============================================================================================================================================
-app.listen(8000, function () {
-    console.log(`========================= RUNNING ON PORT 8000 =========================`);
+app.listen(8000, function() {
+ console.log('======================== RUNNING ON PORT 8000 =========================')   
+
 });
 
 exports.app = functions.https.onRequest(app);

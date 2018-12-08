@@ -40,7 +40,6 @@ class FirstAndLastNameViewController: UIViewController {
     
     @IBOutlet weak var firstNameCheckmarkAnimation: LOTAnimationView! {
         didSet {
-            firstNameCheckmarkAnimation.isHidden = true
             firstNameCheckmarkAnimation.animation = "checkmark"
             firstNameCheckmarkAnimation.contentMode = .scaleAspectFit
         }
@@ -48,7 +47,6 @@ class FirstAndLastNameViewController: UIViewController {
     
     @IBOutlet weak var lastNameCheckmarkAnimation: LOTAnimationView! {
         didSet {
-            lastNameCheckmarkAnimation.isHidden = true
             lastNameCheckmarkAnimation.animation = "checkmark"
             lastNameCheckmarkAnimation.contentMode = .scaleAspectFit
         }
@@ -65,17 +63,19 @@ class FirstAndLastNameViewController: UIViewController {
 }
 
 // MARK: - UITextFieldDelegate
+
+//FIX IS HIDDEN VS ALPHA STUFF
 extension FirstAndLastNameViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
         case 0:
             if textField.text?.count ?? 0 > 0 {
-                firstNameCheckmarkAnimation.isHidden = false
+                firstNameCheckmarkAnimation.alpha = 1
                 firstNameCheckmarkAnimation.play()
             }
         case 1:
             if textField.text?.count ?? 0 > 0 {
-                lastNameCheckmarkAnimation.isHidden = false
+                lastNameCheckmarkAnimation.alpha = 1
                 lastNameCheckmarkAnimation.play()
             }
         default:

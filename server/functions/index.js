@@ -45,19 +45,14 @@ app.use(
   })
 );
 
-//===============================================================================================================================================
+//=======================================================================================================================================================================
 
-// TEST for sanity checks ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// TEST for sanity checks ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app.get("/test", (req, res) => {
-  res
-    .status(200)
-    .send({
-      MESSAGE:
-        "HELLO FROM THE BACKEND! :) Visit our Website: https://musicmaker-4b2e8.firebaseapp.com"
-    });
+  res.status(200).send({MESSAGE:"Hello from the backend! Visit our Website: https://musicmaker-4b2e8.firebaseapp.com" });
 });
 
-// Functions ####################################################################################################################################
+// FUNCTION(S) ###########################################################################################################################################################
 function parseDate(date) {
   const month = date.getMonth() + 1;
   const day = date.getDate() + 1;
@@ -70,7 +65,7 @@ function parseDate(date) {
   return reformattedDueDate;
 }
 
-//STUDENT LIST: GET %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//STUDENT LIST: GET %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 //GET should retrieve a teacher's list of students
 //details: name, instrument, level, email
@@ -81,7 +76,8 @@ app.get("/teacher/:idTeacher/students", (req, res) => {
 
     //teacher's db referencing their students:
     const teacherStudentsRef = db.collection("teachers").doc(teacherId).collection("students"); 
-    const studentRef = db.collection("students"); //students' db
+    //students' db:
+    const studentRef = db.collection("students"); 
 
     teacherStudentsRef
     .get()
@@ -116,7 +112,8 @@ app.get("/teacher/:idTeacher/student/:idStudent", (req, res) => {
 
     //teacher's db referencing their student:
     const teacherStudentRef = db.collection("teachers").doc(teacherId).collection("students").doc(studentId);
-    const studentRef = db.collection("students"); //students' db
+    //students' db:
+    const studentRef = db.collection("students"); 
 
     teacherStudentRef
     .get()
@@ -140,7 +137,7 @@ app.get("/teacher/:idTeacher/student/:idStudent/assignments",(req, res) => {
       const teacherId = req.params["idTeacher"];
       const assignments = {};
 
-      //Student's assignments db reference
+      //Student's assignments db reference:
       const studentAssignmentsRef = db.collection("students").doc(studentId).collection("teachers").doc(teacherId).collection("assignments");
       
       studentAssignmentsRef
@@ -180,9 +177,10 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
     const teacherId = req.params["idTeacher"];
     const assignmentId = req.params["idAssignment"];
   
-    //Teacher's db list of students
+    //Teacher's db list of students:
     const teacherStudentsRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students');
-    const studentRef = db.collection('students'); //Student db
+    //Student db:
+    const studentRef = db.collection('students'); 
 
     teacherStudentsRef
       .get()
@@ -282,7 +280,7 @@ app.put("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent", (req,
   }
 );
 
-// ASSIGN STUDENT TO AN ASSIGNMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// ASSIGN STUDENT TO AN ASSIGNMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, res) => {
     try {
@@ -290,7 +288,8 @@ app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, r
       const assignmentId = req.params["idAssignment"];
       const { email, dueDate } = req.body;
 
-      const studentRef = db.collection("students"); //student db
+      //student db:
+      const studentRef = db.collection("students"); 
       //Teacher's assignment db reference:
       const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
 
@@ -334,7 +333,7 @@ app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, r
     }
   });
 
-// UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) - DELETE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) - DELETE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 // POST should create and add a new ungraded assignment under a teacher
 // details: assignmentName, instructions, instrument, level, piece
@@ -344,7 +343,7 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
     const teacherId = req.params["idTeacher"];
     const { assignmentName, instructions, instrument, level, piece } = req.body;
 
-    //Teacher's assignments db reference
+    //Teacher's assignments db reference:
     const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments"); 
 
     if (!assignmentName || !instructions || !instrument || !level || !piece) {
@@ -393,6 +392,7 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
    
       res.status(201).send({ MESSAGE: `You have successfully created ${assignmentName}.` });
     }
+
   } catch (err) {
     res.status(500).send(err);
   }
@@ -434,7 +434,7 @@ app.get("/teacher/:idTeacher/assignments", (req, res) => {
     const teacherId = req.params["idTeacher"];
     const allAssignments = {};
 
-    // Teacher's assignments db reference
+    // Teacher's assignments db reference:
     const teacherAssignmentsRef = db.collection("teachers").doc(teacherId).collection("assignments");
 
     teacherAssignmentsRef
@@ -443,6 +443,7 @@ app.get("/teacher/:idTeacher/assignments", (req, res) => {
       assignments.forEach(assignment => {
         allAssignments[assignment.id] = assignment.data();
       });
+
       res.status(200).json(allAssignments);
     });
 
@@ -458,7 +459,7 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
     const teacherId = req.params["idTeacher"];
     const assignmentId = req.params["idAssignment"];
 
-    // Teacher's assignment db reference
+    // Teacher's assignment db reference:
     const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
 
     teacherAssignmentRef
@@ -466,6 +467,7 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
     .then(doc => {
       res.status(200).json(doc.data());
     });
+
   } catch (err) {
     res.status(500).send(err);
   }
@@ -476,7 +478,7 @@ app.delete("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
     const teacherId = req.params["idTeacher"];
     const assignmentId = req.params["idAssignment"];
 
-    // Teacher's assignment db reference
+    // Teacher's assignment db reference:
     const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
 
     if (!assignmentId){
@@ -487,13 +489,14 @@ app.delete("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
       .then(() => {
         res.status(204).send({MESSAGE: 'Your assignment has successfully deleted.'})
       });
-    }
+    };
+
   } catch (err) {
     res.status(500).send(err); 
   }
 });
 
-//SETTINGS : POST - GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//SETTINGS : POST - GET - PUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 let qrOptions = {
   errorCorrectionLevel: "H",
@@ -510,7 +513,8 @@ app.post("/addNewTeacher", (req, res) => {
     const { email, firstName, lastName, prefix } = req.body;
     let uuid = UUID();
 
-    const teachersRef = db.collection("teachers") //Teachers' db
+    //Teachers' db reference:
+    const teachersRef = db.collection("teachers") 
 
     if (!email) {
       res.status(411).send({REQUIRED: "Please fill all required fields: email missing."});
@@ -551,6 +555,7 @@ app.post("/addNewTeacher", (req, res) => {
             });
         });
     }
+
   } catch (err) {
     res.status(500).send(err);
   }
@@ -562,13 +567,15 @@ app.get("/teacher/:idTeacher/settings", (req, res) => {
   try {
     const teacherId = req.params["idTeacher"];
 
-    const teacherRef = db.collection("teachers").doc(teacherId); //A teacher's db
+    //Teacher's db reference:
+    const teacherRef = db.collection("teachers").doc(teacherId); 
 
     teacherRef
       .get()
       .then(settings => {
         res.status(200).json(settings.data());
       });
+
   } catch (err) {
     res.status(500).send(err);
   }
@@ -581,7 +588,8 @@ app.put("/teacher/:idTeacher/settingsEdit", (req, res) => {
     const teacherId = req.params["idTeacher"];
     const { firstName, lastName, prefix } = req.body;
 
-    const teacherRef = db.collection("teachers").doc(teacherId); // A teacher's db
+    //Teacher's db reference:
+    const teacherRef = db.collection("teachers").doc(teacherId); 
 
     if (!prefix || !firstName || !lastName) {
       res.status(411).send({REQUIRED: `Prefix, first and/or last name cannot be left empty.`});
@@ -594,22 +602,36 @@ app.put("/teacher/:idTeacher/settingsEdit", (req, res) => {
             prefix: prefix
           }
         });
+        
       res.status(202).send({ MESSAGE: "You have successfullly updated your information." });
     }
+
   } catch (err) {
     res.status(500).send(err);
   }
 });
 
-// STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-// CURRENTLY FUNCTIONAL 12/2/18 3 AM EST
+// STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+// app.post("/teacher/:idTeacher/charge", (req, res) => {
 app.post("/charge", (req, res) => {
-  try {   let { status } = stripe.charges.create({
+  try {   
+    const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //req.params["idTeacher"];
+
+    //Teacher's db reference:
+    const teacherRef = db.collection("teachers").doc(teacherId); 
+
+    let { status } = stripe.charges.create({
       amount: 50,
       currency: "usd",
       description: "teacher subscription",
       source: req.body.token.id
-    });
+    }).then(() => {
+      teacherRef
+        .update({
+          'subscribed': true
+        })
+    }) 
 
     // right here, mark the user as paid in the db
 
@@ -943,7 +965,6 @@ app.post("/charge", (req, res) => {
 //=============================================================================================================================================
 app.listen(8000, function() {
  console.log('======================== RUNNING ON PORT 8000 =========================')   
-
 });
 
 exports.app = functions.https.onRequest(app);

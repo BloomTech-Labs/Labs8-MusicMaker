@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import jumbotron from '../less/imgs/landingView.png';
 
+import { Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Button } from 'reactstrap';
 class LandingPageView extends Component {
   render() {
     return (

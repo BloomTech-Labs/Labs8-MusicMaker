@@ -39,8 +39,7 @@ const bucket = storage.bucket("gs://musicmaker-4b2e8.appspot.com");
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(
-  fileUpload({
+app.use(fileUpload({
     createParentPath: true
   })
 );
@@ -487,7 +486,7 @@ app.delete("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
       teacherAssignmentRef
       .delete()
       .then(() => {
-        res.status(204).send({MESSAGE: 'Your assignment has successfully deleted.'})
+        res.status(204).send({MESSAGE: 'Your assignment has been successfully deleted.'})
       });
     };
 
@@ -616,7 +615,7 @@ app.put("/teacher/:idTeacher/settingsEdit", (req, res) => {
 // app.post("/teacher/:idTeacher/charge", (req, res) => {
 app.post("/charge", (req, res) => {
   try {   
-    const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //req.params["idTeacher"];
+    const teacherId = 'TrYgvfzQJplN9khJhiJg' //req.params["idTeacher"];
 
     //Teacher's db reference:
     const teacherRef = db.collection("teachers").doc(teacherId); 
@@ -626,7 +625,8 @@ app.post("/charge", (req, res) => {
       currency: "usd",
       description: "teacher subscription",
       source: req.body.token.id
-    }).then(() => {
+    })
+    .then(doc => {
       teacherRef
         .update({
           'subscribed': true

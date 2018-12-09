@@ -8,7 +8,7 @@ const fileUpload = require("express-fileupload");
 const UUID = require("uuid-v4");
 const QRCode = require("qrcode");
 
-const serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = "serviceAccountKey.json";
 
 firebase.initializeApp({
   apiKey: "AIzaSyCls0XUsqzG0RneHcQfwtmfvoOqHWojHVM",
@@ -522,12 +522,13 @@ app.post("/addNewTeacher", (req, res) => {
     } else {
       teachersRef
         .add({
-          email: email,
-          name: {
-            firstName: firstName,
-            lastName: lastName,
-            prefix: prefix
-          }
+          'email': email,
+          'name': {
+            'firstName': firstName,
+            'lastName': lastName,
+            'prefix': prefix
+          },
+          'subscribed': false
         })
         .then(ref => {
           const qrPath = "/tmp/signup_" + lastName + ".jpg";
@@ -612,10 +613,9 @@ app.put("/teacher/:idTeacher/settingsEdit", (req, res) => {
 
 // STRIPE IMPLEMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-// app.post("/teacher/:idTeacher/charge", (req, res) => {
-app.post("/charge", (req, res) => {
+app.post("/teacher/:idTeacher/charge", (req, res) => {
   try {   
-    const teacherId = 'TrYgvfzQJplN9khJhiJg' //req.params["idTeacher"];
+    const teacherId = req.params["idTeacher"];
 
     //Teacher's db reference:
     const teacherRef = db.collection("teachers").doc(teacherId); 
@@ -626,14 +626,12 @@ app.post("/charge", (req, res) => {
       description: "teacher subscription",
       source: req.body.token.id
     })
-    .then(doc => {
+    .then(() => {
       teacherRef
         .update({
           'subscribed': true
         })
     }) 
-
-    // right here, mark the user as paid in the db
 
     res.status(201).json({ status });
   } catch (err) {

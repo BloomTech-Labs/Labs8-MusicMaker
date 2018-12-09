@@ -33,7 +33,7 @@ class LandingPageView extends Component {
                   arcu. Mauris hendrerit nibh mi, non fermentum quam pharetra non. Etiam
                   eu felis ac tortor accumsan finibus quis in odio. Suspendisse potenti.
                 </CardText>
-              <Button className="buyNow_Button"> BUY NOW </Button>
+              <Button outline color="info" size="lg" className="buyNow_Button"> Buy Now </Button>
           </CardBody>
         </Card>
       </div>

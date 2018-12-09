@@ -3,11 +3,14 @@ import React, { Component } from "react";
 import jumbotron from '../less/imgs/landingView.png';
 
 import { Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Button } from 'reactstrap';
+
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC"}
+
 class LandingPageView extends Component {
   render() {
     return (
-      <div className="container">
-        <img className="jumbotron" src={jumbotron} />
+      <div className="landing" style={formContainer}>
+        <img src={jumbotron} width="100%" />
         <h1 className="subheader">Landing Page</h1>
         <button className="buyNow_Button"> BUY NOW </button>
         <p className="bodyText">

@@ -19,16 +19,18 @@ class CreateAssignmentView extends Component {
 
               <Label>Instrument</Label>
               <Input type="select" name="instrument">
+                <option value="none">--None--</option>
+                <option value="drum">Drum</option>
                 <option value="guitar">Guitar</option>
                 <option value="piano">Piano</option>
+                <option value="saxophone">Saxophone</option>
                 <option value="trumpet">Trumpet</option>
                 <option value="violin">Violin</option>
-                <option value="saxophone">Saxophone</option>
-                <option value="drum">Drum</option>
               </Input>
 
               <Label>Experience Level</Label>
               <Input type="select"  name="level">
+                <option value="none">--None--</option>
                 <option value="beginner">Beginner</option>
                 <option value="intermediate">Intermediate</option>
                 <option value="advanced">Advanced</option>

@@ -13,10 +13,10 @@ class LandingPageView extends Component {
         <CardImg src={jumbotron} width="100%" style={{ padding: "30px" }} />
         <Card>
           <CardBody>
-            <CardTitle>Landing Page</CardTitle>
-              <CardSubtitle>Placeholder</CardSubtitle>
+            <CardTitle style={{ marginBottom: "15px" }}>Music Master Maker</CardTitle>
+              <CardSubtitle style={{ marginBottom: "15px" }}>Your one-stop portal for music educators and students.</CardSubtitle>
                 <CardText className="bodyText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
+                  Changing fonts soon. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
                   consequat nisl in ornare. Nulla quis fringilla ipsum, blandit luctus
                   purus. Phasellus suscipit enim massa, id molestie magna consectetur
                   ac. Praesent ut posuere tortor. Phasellus aliquam risus elit, commodo

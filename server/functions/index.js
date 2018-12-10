@@ -360,6 +360,7 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
         })
         .then(assignment => {
           const assignmentId = assignment._path.segments[3];
+          console.log('\nassignmentId******************************\n', assignmentId)
          
           if (Object.keys(req.files).length == 0) {
             return res.status(400).send({ MESSAGE: "No file was uploaded." });

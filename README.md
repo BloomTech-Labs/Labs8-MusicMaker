@@ -11,7 +11,7 @@ The app is free for students and has a monthly fee for teachers.
 ## Table of Contents
 1. [Live Versions](#live_versions)
 2. [Feature List](#feature_list)
-3. [Instructions](#instructions)
+3. [Local Setup](#local_setup)
 
 ## Live Versions
 1. See the deployed FSW Front-end: https://musicmaker-teacher.netlify.com
@@ -32,3 +32,10 @@ The app is free for students and has a monthly fee for teachers.
 10. Settings View - see and edit user account info.
 
 #### Students
+
+## Local setup
+1. Clone repo.
+2. Install environment and packages by typing `yarn install` within both the `/server/functions/` and `/client/` directories.
+3. Type `yarn start` in each directory to spin up the servers.
+4. Edit code as needed.
+

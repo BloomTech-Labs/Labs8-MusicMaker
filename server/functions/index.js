@@ -365,7 +365,7 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
             return res.status(400).send({ MESSAGE: "No file was uploaded." });
           }
           let uuid = UUID();
-          let uploadFile = req.files.uploadFile;
+          let uploadFile = req.files.file;
           let name = uploadFile.name;
 
           uploadFile.mv("/tmp/" + name);
@@ -401,12 +401,12 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
 
 // //This is a functioning endpoint where it's able to upload a pdf into Firebase storage and return the url
 // //I tried to combine it with posting it with an assignment (above) but had no luck, will ask for help tomorrow
-app.post("/uploadPDF", function(req, res) {
+app.post("/upload", function(req, res) {
   if (Object.keys(req.files).length == 0) {
     return res.status(400).send({ MESSAGE: "No file was uploaded." });
   }
   let uuid = UUID();
-  let uploadFile = req.files.uploadFile;
+  let uploadFile = req.files.file;
   let name = uploadFile.name;
 
   uploadFile.mv("/tmp/" + name);

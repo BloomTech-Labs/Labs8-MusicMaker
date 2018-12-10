@@ -9,7 +9,6 @@ import { SignUpLink } from './signupView';
 import ForgotPW from '../components/ForgotPW';
 
 // Reactstrap styling
-
 import { Button, ButtonToolbar, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 
 const SignInPage = ({ history }) =>

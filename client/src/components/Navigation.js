@@ -39,7 +39,7 @@ const NavigationNonAuth = () => (
       >
       <NavLink href={routes.SIGN_UP}>Sign Up</NavLink>
       </Button>
-      <Button color="primary" size="sm"><NavLink href={routes.SIGN_IN}>Sign In</NavLink></Button>
+      <Button color="primary" size="sm"><NavLink style={{ color: "#FFFFFF" }} href={routes.SIGN_IN}>Sign In</NavLink></Button>
     </Nav>
   </Navbar>
 );

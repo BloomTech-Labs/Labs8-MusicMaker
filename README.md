@@ -15,7 +15,7 @@ The app is free for students and has a monthly fee for teachers.
 
 ## Live Version
 See the live version here:
-<link>
+<link>https://musicmaker-teacher.netlify.com/</link>
 
 ## Instructions
 

@@ -8,6 +8,7 @@ import SignOutButton from "../components/SignOutButton";
 
 // import homeIcon from "../less/imgs/homeIcon.png";
 import mmLogo from "../less/imgs/logo2.png";
+import { Button } from 'reactstrap';
 
 const formContainer = { maxWidth: 800, margin: '0 auto 10px' };
 
@@ -32,8 +33,13 @@ const NavigationNonAuth = () => (
       <img src={mmLogo} />
     </NavbarBrand>
     <Nav>
+      <Button outline color="primary"
+                      size="sm"
+                      style={{ marginRight: "25px" }}
+      >
       <NavLink href={routes.SIGN_UP}>Sign Up</NavLink>
-      <NavLink href={routes.SIGN_IN}>Sign In</NavLink>
+      </Button>
+      <Button color="primary" size="sm"><NavLink href={routes.SIGN_IN}>Sign In</NavLink></Button>
     </Nav>
   </Navbar>
 );

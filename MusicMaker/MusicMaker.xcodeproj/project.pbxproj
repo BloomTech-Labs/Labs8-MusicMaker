@@ -22,7 +22,6 @@
 		39C108FF2194FD9800180F37 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C108FE2194FD9800180F37 /* CameraPreviewView.swift */; };
 		39C47DC621AF228900C1E115 /* SubmittedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39C47DC521AF228900C1E115 /* SubmittedAssignmentViewController.storyboard */; };
 		39C47DC821AF233000C1E115 /* SubmittedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C47DC721AF233000C1E115 /* SubmittedAssignmentViewController.swift */; };
-		39C47DCA21B5E47500C1E115 /* MusicSheetPDFSingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C47DC921B5E47500C1E115 /* MusicSheetPDFSingleViewController.swift */; };
 		39CA2B532193607700C6018E /* SplitView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B522193607700C6018E /* SplitView.storyboard */; };
 		39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */; };
 		39CA2B5721938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B5621938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift */; };
@@ -135,7 +134,6 @@
 		39C108FE2194FD9800180F37 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		39C47DC521AF228900C1E115 /* SubmittedAssignmentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmittedAssignmentViewController.storyboard; sourceTree = "<group>"; };
 		39C47DC721AF233000C1E115 /* SubmittedAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedAssignmentViewController.swift; sourceTree = "<group>"; };
-		39C47DC921B5E47500C1E115 /* MusicSheetPDFSingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSheetPDFSingleViewController.swift; sourceTree = "<group>"; };
 		39CA2B522193607700C6018E /* SplitView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplitView.storyboard; sourceTree = "<group>"; };
 		39CA2B54219367D500C6018E /* AssignmentHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B5621938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentMusicPieceTableViewCell.swift; sourceTree = "<group>"; };
@@ -331,7 +329,6 @@
 				399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */,
 				39C108FC2194E55900180F37 /* RecordingViewController.swift */,
 				39C47DC721AF233000C1E115 /* SubmittedAssignmentViewController.swift */,
-				39C47DC921B5E47500C1E115 /* MusicSheetPDFSingleViewController.swift */,
 				399F0B5821B83E8400261477 /* AssignmentsTableViewController.swift */,
 			);
 			path = "View Controllers";
@@ -750,7 +747,6 @@
 			files = (
 				BF5D5217219CD23100DFF213 /* UIButton+Extensions.swift in Sources */,
 				BF5D5209219CB05900DFF213 /* TextFieldEffects.swift in Sources */,
-				39C47DCA21B5E47500C1E115 /* MusicSheetPDFSingleViewController.swift in Sources */,
 				39CA2B5721938AA900C6018E /* AssignmentMusicPieceTableViewCell.swift in Sources */,
 				399010C521925FC7004670BF /* UnsubmittedAssignmentViewController.swift in Sources */,
 				39CA2B612194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift in Sources */,

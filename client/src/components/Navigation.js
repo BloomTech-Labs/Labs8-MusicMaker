@@ -9,6 +9,8 @@ import SignOutButton from "../components/SignOutButton";
 // import homeIcon from "../less/imgs/homeIcon.png";
 import mmLogo from "../less/imgs/logo2.png";
 
+const formContainer = { maxWidth: 800, margin: '0 auto 10px' };
+
 const Navigation = () => (
   <AuthUserContext.Consumer>
     {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
@@ -16,7 +18,7 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-  <Navbar>
+  <Navbar style={formContainer}>
     <NavbarBrand href={routes.DASHBOARD}>
       <img src={mmLogo} />
     </NavbarBrand>
@@ -25,7 +27,7 @@ const NavigationAuth = () => (
 );
 
 const NavigationNonAuth = () => (
-  <Navbar>
+  <Navbar style={formContainer}>
     <NavbarBrand href={routes.LANDING}>
       <img src={mmLogo} />
     </NavbarBrand>

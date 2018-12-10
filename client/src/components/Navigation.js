@@ -10,7 +10,7 @@ import SignOutButton from "../components/SignOutButton";
 import mmLogo from "../less/imgs/logo2.png";
 import { Button } from 'reactstrap';
 
-const formContainer = { maxWidth: 800, margin: '0 auto 10px' };
+const formContainer = { maxWidth: 800, height: 90, margin: '0 auto 10px' };
 
 const Navigation = () => (
   <AuthUserContext.Consumer>

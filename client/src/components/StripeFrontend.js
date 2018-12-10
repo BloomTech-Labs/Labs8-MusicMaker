@@ -16,7 +16,7 @@ class TakeMoney extends React.Component {
     console.log(token);
 
     axios
-      .post("https://musicmaker-4b2e8.firebaseapp.com/charge", token)
+      .post("https://musicmaker-4b2e8.firebaseapp.com/teacher/:idTeacher/charge", token)
       .then(response => {
         console.log(response);
         alert("Payment Success");

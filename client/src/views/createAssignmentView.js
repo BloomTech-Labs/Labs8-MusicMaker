@@ -11,39 +11,90 @@ import axios from 'axios';
       instrument: "",
       level: "",
       piece: "",
-      // sheetMusic: null, loaded: 0
+      sheetMusic: '', loaded: 0
     };
   };
 
   onChange = event => {
     this.setState({
       [event.target.name]: event.target.value,
-      // sheetMusic: event.target.files[0],loaded: 0,
     })
   }
+
+  uploadChange = event => {
+    this.setState({
+      sheetMusic: event.target.files[0], loaded: 0,
+    })
+  }
+
+  // onSubmit = event => {
+  //   event.preventDefault();
+
+  //   const { assignmentName, piece, instrument, level, instructions } = this.state;
+
+  //   const data = new FormData()
+  //   data.append('file', this.state.sheetMusic, this.state.sheetMusic.name)
+  //   console.log('\n**************uploadFile****************\n', this.state.sheetMusic)
+  //   console.log('\n**************Name****************\n', this.state.sheetMusic.name)
+
+  //   axios
+  //     .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment', 
+  //     // .post('http://localhost:8000/upload',  
+      
+  //     // { assignmentName, piece, instrument, level, instructions },
+  //      data, 
+  //     {
+  //       onUploadProgress: ProgressEvent => {
+  //         this.setState({
+  //           loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
+  //         })
+  //       },
+  //     }
+  //     )
+  //     .then(res => {
+  //       console.log(res)
+  //     })
+
+  // }
+  // onChange = (event) => {
+  //   // switch (event.target.name) {
+  //   //   case 'file':
+  //       this.setState({ sheetMusic: event.target.files[0], loaded: 0 });
+  //   //     break;
+  //   //   default:
+  //   //     this.setState({ [event.target.name]: event.target.value });
+  //   // }
+  // }
 
   onSubmit = event => {
     event.preventDefault();
 
-    const { assignmentName, piece, instrument, level, instructions } = this.state;
+    const { assignmentName, piece, instrument, level, instructions, sheetMusic } = this.state;
 
-    // const data = new FormData()
-    // data.append('file', this.state.sheetMusic, this.state.sheetMusic.name)
+    let formData = new FormData();
+
+    formData.append('assignmentName', assignmentName);
+    formData.append('piece', piece);
+    formData.append('instrument', instrument);
+    formData.append('level', level);
+    formData.append('instructions', instructions);
+    formData.append('file', sheetMusic);
 
     axios
-      .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment',  { assignmentName, piece, instrument, level, instructions }, 
-      // {
-      //   onUploadProgress: ProgressEvent => {
-      //     this.setState({
-      //       loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
-      //     })
-      //   },
-      // }
-      )
-      .then(res => {
-        console.log(res)
-      })
-
+        .post('http://localhost:8000/teacher/6Dc7MKYskX27LiYdTy9Z/createAssignment', formData,
+        // .post('http://localhost:8000/upload', formData, 
+ 
+        {
+          onUploadProgress: ProgressEvent => {
+            this.setState({
+              loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
+            })
+          },
+        }
+        )
+        .then(res => {
+          console.log(res.statusText, res)
+        })
   }
   
   render() {
@@ -51,7 +102,7 @@ import axios from 'axios';
  
     return (
       <div className="container">
-        <Form>
+        <Form onSubmit={this.onSubmit}>
           <h2>Create a new assignment: </h2>
           <FormGroup>
             <Input type="text" name="assignmentName" placeholder="Assignment Name" value={assignmentName} onChange={this.onChange} />
@@ -81,10 +132,10 @@ import axios from 'axios';
               <Input type="textarea" name="instructions" placeholder="Instructions..." value={instructions} onChange={this.onChange} />
           </FormGroup>
           <FormGroup style={{display:'flex', alignItems:'center'}}>
-            <Input type ='file' name='name' onChange={this.onChange} />
+            <Input type ='file' name='sheetMusic' onChange={this.uploadChange} />
             <div style={{paddingRight:'64.5%'}}> {Math.round(this.state.loaded,2) }%</div>
           </FormGroup>
-          <Button onClick={this.onSubmit}>Submit</Button>
+          <Button type="submit">Submit</Button>
         </Form>
       </div>
     );

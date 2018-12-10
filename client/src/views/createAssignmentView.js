@@ -27,45 +27,6 @@ import axios from 'axios';
     })
   }
 
-  // onSubmit = event => {
-  //   event.preventDefault();
-
-  //   const { assignmentName, piece, instrument, level, instructions } = this.state;
-
-  //   const data = new FormData()
-  //   data.append('file', this.state.sheetMusic, this.state.sheetMusic.name)
-  //   console.log('\n**************uploadFile****************\n', this.state.sheetMusic)
-  //   console.log('\n**************Name****************\n', this.state.sheetMusic.name)
-
-  //   axios
-  //     .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment', 
-  //     // .post('http://localhost:8000/upload',  
-      
-  //     // { assignmentName, piece, instrument, level, instructions },
-  //      data, 
-  //     {
-  //       onUploadProgress: ProgressEvent => {
-  //         this.setState({
-  //           loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
-  //         })
-  //       },
-  //     }
-  //     )
-  //     .then(res => {
-  //       console.log(res)
-  //     })
-
-  // }
-  // onChange = (event) => {
-  //   // switch (event.target.name) {
-  //   //   case 'file':
-  //       this.setState({ sheetMusic: event.target.files[0], loaded: 0 });
-  //   //     break;
-  //   //   default:
-  //   //     this.setState({ [event.target.name]: event.target.value });
-  //   // }
-  // }
-
   onSubmit = event => {
     event.preventDefault();
 
@@ -81,16 +42,13 @@ import axios from 'axios';
     formData.append('file', sheetMusic);
 
     axios
-        .post('http://localhost:8000/teacher/6Dc7MKYskX27LiYdTy9Z/createAssignment', formData,
-        // .post('http://localhost:8000/upload', formData, 
- 
-        {
-          onUploadProgress: ProgressEvent => {
+        .post('https://musicmaker-4b2e8.firebaseapp.com/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment', 
+          formData,
+          {onUploadProgress: ProgressEvent => {
             this.setState({
               loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
             })
-          },
-        }
+          }}
         )
         .then(res => {
           console.log(res.statusText, res)

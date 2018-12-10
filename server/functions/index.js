@@ -46,11 +46,6 @@ app.use(fileUpload({
 
 //=======================================================================================================================================================================
 
-// TEST for sanity checks ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app.get("/test", (req, res) => {
-  res.status(200).send({MESSAGE:"Hello from the backend! Visit our Website: https://musicmaker-4b2e8.firebaseapp.com" });
-});
-
 // FUNCTION(S) ###########################################################################################################################################################
 function parseDate(date) {
   const month = date.getMonth() + 1;
@@ -346,9 +341,9 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
     //Teacher's assignments db reference:
     const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments"); 
 
-    if (!assignmentName || !instructions || !instrument || !level || !piece) {
-      res.status(411).send({ REQUIRED: "You must have all fields filled." });
-    } else {
+    // if (!assignmentName || !instructions || !instrument || !level || !piece) {
+    //   res.status(411).send({ REQUIRED: "You must have all fields filled." });
+    // } else {
       teacherAssignmentRef
         .add({
           'assignmentName': assignmentName,
@@ -388,7 +383,7 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
               });
             });
         });
-    }
+    // }
 
   } catch (err) {
     res.status(500).send(err);

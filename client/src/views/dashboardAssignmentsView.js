@@ -18,7 +18,7 @@ class DashboardAssignmentsView extends Component {
   componentDidMount() {
     axios
       .get(
-        "https://musicmaker-4b2e8.firebaseapp.com/teacher/AHnU7PuWMohJWEWZJbvd/assignment/xuKzpfxGQtaYqOYvoNZG"
+        "https://musicmaker-4b2e8.firebaseapp.com/teacher/pwUGQC7SHBiPKPdnOq2c/assignment/UsvQvEgdUzhpN3iWlcDg"
       )
       .then(res => {
         this.setState({

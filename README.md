@@ -9,9 +9,9 @@ Students sign up by using their iPhone to scan a QR code provided by the teacher
 The app is free for students and has a monthly fee for teachers.
 
 ## Table of Contents
-1. [Live Versions](#live_versions)
-2. [Feature List](#feature_list)
-3. [Local Setup](#local_setup)
+1. [Live Versions](#live versions)
+2. [Feature List](#feature list)
+3. [Local Setup](#local setup)
 4. [Endpoints](#endpoints)
 
 ## Live Versions

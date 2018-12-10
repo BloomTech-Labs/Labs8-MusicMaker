@@ -164,6 +164,8 @@ class UnsubmittedAssignmentViewController: UITableViewController, AssignmentMusi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let recordVC = segue.destination as? RecordingViewController else { return }
         
+        recordVC.shouldShowCamera = true
+        
         recordVC.assignment = assignment
         recordVC.pdfDocument = pdfDocument
         

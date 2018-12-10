@@ -66,7 +66,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJu-Jn-966" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="818" y="-122"/>
+            <point key="canvasLocation" x="1216" y="-122"/>
+        </scene>
+        <!--RecordingViewController-->
+        <scene sceneID="CCT-3k-bMy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RecordingViewController" id="weB-fq-yzR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LCP-RL-TY1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="710" y="-122"/>
         </scene>
         <!--Submitted Assignment View Controller-->
         <scene sceneID="7xP-U5-UsF">
@@ -475,7 +483,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="wrs-HN-lOk" kind="presentation" identifier="ShowPagePreview" modalPresentationStyle="fullScreen" id="Awd-aY-xeR"/>
+                        <segue destination="weB-fq-yzR" kind="presentation" identifier="ShowPagePreview" id="8Px-Q6-wmt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaM-KB-y0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>

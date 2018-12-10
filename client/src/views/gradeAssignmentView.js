@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-// we can figure out exactly how to navigate to this
-
 class GradeAssignmentView extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      instrument: '',
-      difficulty: ''
-
-      // add pdf and video when we have these endpoints finalized
+      assignmentName: "",
+      instructions: "",
+      instrument: "",
+      level: "",
+      piece: "",
+      sheetMusic: "",
+      video:"",
+      grade:"",
+      feedback:""
     }
   };
 

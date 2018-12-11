@@ -331,12 +331,16 @@ app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, r
 
 // UNGRADED ASSIGNMENTS : POST - GET (All & Single Ungraded Assignment) - DELETE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-// POST should create and add a new ungraded assignment under a teacher
-// details: assignmentName, instructions, instrument, level, piece, sheetMusic
+// // // POST should create and add a new ungraded assignment under a teacher
+// // // details: assignmentName, instructions, instrument, level, piece, sheetMusic
 app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
   try {
     const teacherId = req.params["idTeacher"];
+    console.log("**********teacherId**********", teacherId)
+
     const { assignmentName, instructions, instrument, level, piece } = req.body;
+    console.log("**********req.body**********", req.rawBody)
+    console.log("**********assignmentInfo**********", assignmentName, instructions, instrument, level, piece )
 
     //Teacher's assignments db reference:
     const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments"); 
@@ -358,6 +362,7 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
           }
           let uuid = UUID();
           let uploadFile = req.files.file;
+          console.log("**********uploadFile**********", uploadFile)
           let name = uploadFile.name;
 
           uploadFile.mv("/tmp/" + name);
@@ -383,7 +388,7 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
               });
             });
         });
-    // }
+    
 
   } catch (err) {
     res.status(500).send(err);

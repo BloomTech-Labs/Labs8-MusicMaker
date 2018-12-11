@@ -30,18 +30,8 @@ class LevelAndInstrumentViewController: UIViewController {
     
     @IBOutlet weak var starRating: StarRating!
     @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var instrumentAnimation: LOTAnimationView! {
-        didSet {
-            instrumentAnimation.animation = "checkmark"
-            instrumentAnimation.contentMode = .scaleAspectFit
-            instrumentAnimation.isHidden = true
-        }
-    }
-    @IBOutlet weak var instrumentTextField: HoshiTextField! {
-        didSet {
-            instrumentTextField.delegate = self
-        }
-    }
+
+
     
     // MARK: - IBActions
     
@@ -65,19 +55,4 @@ class LevelAndInstrumentViewController: UIViewController {
     }
 }
 
-// MARK: - UITextFieldDelegate
-extension LevelAndInstrumentViewController: UITextFieldDelegate {
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if instrumentTextField.text?.count ?? 0 > 0 {
-            instrumentAnimation.play()
-            signupButton.alpha = 1
-            signupButton.isEnabled = true
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        instrumentTextField.resignFirstResponder()
-        return true
-    }
-}
+

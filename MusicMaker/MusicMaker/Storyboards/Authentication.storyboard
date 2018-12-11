@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hXq-Sd-QM9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ed7-kk-6fM">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -296,13 +296,13 @@
                                     <segue destination="Lxw-1J-6LL" kind="embed" identifier="FirstAndLastName" id="Vii-vc-6gQ"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yy0-bU-P3Q">
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yy0-bU-P3Q">
                                 <rect key="frame" x="0.0" y="70" width="768" height="461"/>
                                 <connections>
                                     <segue destination="2BU-8C-1PD" kind="embed" identifier="ShowEmailAndPassword" id="tsr-oP-1Eb"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1r-R8-RNj" userLabel="Level And Instrument View">
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1r-R8-RNj" userLabel="Level And Instrument View">
                                 <rect key="frame" x="0.0" y="70" width="768" height="461"/>
                                 <connections>
                                     <segue destination="EPV-Tw-BNL" kind="embed" identifier="InstrumentAndLevel" id="43E-OV-Jcb"/>
@@ -388,13 +388,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zBO-Nb-ZU9">
-                                <rect key="frame" x="20" y="91.5" width="728" height="304.5"/>
+                                <rect key="frame" x="20" y="91.5" width="728" height="276.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mmE-Zr-0Jt">
-                                        <rect key="frame" x="0.0" y="0.0" width="728" height="96"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="728" height="87"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WkW-7J-hI0" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="87"/>
                                                 <color key="textColor" red="0.0078431372550000003" green="0.3294117647" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -414,7 +414,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOj-oa-YyT" customClass="LOTAnimationView">
-                                                <rect key="frame" x="608" y="0.0" width="120" height="96"/>
+                                                <rect key="frame" x="608" y="0.0" width="120" height="87"/>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -422,10 +422,10 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JXr-kV-SaH">
-                                        <rect key="frame" x="0.0" y="104" width="728" height="96"/>
+                                        <rect key="frame" x="0.0" y="95" width="728" height="86.5"/>
                                         <subviews>
                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J8g-vk-2O1" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="86.5"/>
                                                 <color key="textColor" red="0.0078431372550000003" green="0.3294117647" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -445,7 +445,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1D-IP-cvr" customClass="LOTAnimationView">
-                                                <rect key="frame" x="608" y="0.0" width="120" height="96"/>
+                                                <rect key="frame" x="608" y="0.0" width="120" height="86.5"/>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -453,10 +453,10 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="K2I-BB-UXN">
-                                        <rect key="frame" x="0.0" y="208" width="728" height="96.5"/>
+                                        <rect key="frame" x="0.0" y="189.5" width="728" height="87"/>
                                         <subviews>
                                             <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbO-rP-5Kv" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="96.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="87"/>
                                                 <color key="textColor" red="0.0078431372550000003" green="0.3294117647" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -476,7 +476,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Tb-cz-rfI" customClass="LOTAnimationView">
-                                                <rect key="frame" x="608" y="0.0" width="120" height="96.5"/>
+                                                <rect key="frame" x="608" y="0.0" width="120" height="87"/>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -518,7 +518,7 @@
                             <constraint firstItem="Ff5-q6-3a3" firstAttribute="trailing" secondItem="BgN-4d-qO4" secondAttribute="trailing" constant="20" id="FH2-B3-uMz"/>
                             <constraint firstItem="BgN-4d-qO4" firstAttribute="top" secondItem="p2E-eU-r34" secondAttribute="top" constant="8" id="Je0-E5-UK9"/>
                             <constraint firstItem="zBO-Nb-ZU9" firstAttribute="leading" secondItem="Ff5-q6-3a3" secondAttribute="leading" constant="20" id="NUK-ys-Imt"/>
-                            <constraint firstItem="zBO-Nb-ZU9" firstAttribute="height" secondItem="p2E-eU-r34" secondAttribute="height" multiplier="0.66" id="Zod-uf-GYJ"/>
+                            <constraint firstItem="zBO-Nb-ZU9" firstAttribute="height" secondItem="p2E-eU-r34" secondAttribute="height" multiplier="0.6" id="Zod-uf-GYJ"/>
                             <constraint firstAttribute="trailing" secondItem="zBO-Nb-ZU9" secondAttribute="trailing" constant="20" id="at9-il-iDN"/>
                             <constraint firstItem="qFy-qW-a51" firstAttribute="centerX" secondItem="p2E-eU-r34" secondAttribute="centerX" id="lqC-Nw-12W"/>
                             <constraint firstItem="qFy-qW-a51" firstAttribute="width" secondItem="BgN-4d-qO4" secondAttribute="width" multiplier="0.25" id="q1y-NP-uCz"/>
@@ -549,46 +549,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="461"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select your level and instrument to complete your sign up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2c-c5-pwQ">
-                                <rect key="frame" x="20" y="20" width="728" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your level and instrument to complete your sign up" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2c-c5-pwQ">
+                                <rect key="frame" x="20" y="20" width="728" height="75.5"/>
+                                <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="30"/>
                                 <color key="textColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=compact">
+                                    <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="26"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="26"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="16"/>
+                                </variation>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PD5-Ks-eJw" customClass="StarRating" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="219" y="191" width="330" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="starRatingChanged:" destination="EPV-Tw-BNL" eventType="valueChanged" id="Mi1-im-KSd"/>
-                                </connections>
-                            </view>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Instrument" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1yT-qU-Qu9" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                <rect key="frame" x="20" y="89" width="614" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" red="0.0078431372550000003" green="0.3294117647" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="0.69999999999999996"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="al5-6m-DE7" customClass="LOTAnimationView">
-                                <rect key="frame" x="642" y="89" width="80" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvj-Oc-x7s">
                                 <rect key="frame" x="281" y="358" width="207" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -608,21 +583,67 @@
                                 <color key="textColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OqO-h8-ZCn">
+                                <rect key="frame" x="20" y="115.5" width="728" height="73"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btt-av-Pam">
+                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="73"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="51"/>
+                                        <state key="normal" title="🎸"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoU-W2-cH2">
+                                        <rect key="frame" x="122.5" y="0.0" width="115" height="73"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="51"/>
+                                        <state key="normal" title="🎹"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s89-BC-cF5">
+                                        <rect key="frame" x="245.5" y="0.0" width="114.5" height="73"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="51"/>
+                                        <state key="normal" title="🥁"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKe-jD-FvB">
+                                        <rect key="frame" x="368" y="0.0" width="114.5" height="73"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="51"/>
+                                        <state key="normal" title="🎷"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trX-Uf-Z03">
+                                        <rect key="frame" x="490.5" y="0.0" width="115" height="73"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="51"/>
+                                        <state key="normal" title="🎺"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Boe-VF-L0o">
+                                        <rect key="frame" x="613.5" y="0.0" width="114.5" height="73"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="51"/>
+                                        <state key="normal" title="🎻"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuF-J5-Wpk">
+                                <rect key="frame" x="75" y="313" width="46" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="51"/>
+                                <state key="normal" title="★"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.98039215690000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="OqO-h8-ZCn" firstAttribute="leading" secondItem="gHu-cr-2ej" secondAttribute="leading" constant="20" id="7my-6T-5mp"/>
+                            <constraint firstItem="x2c-c5-pwQ" firstAttribute="top" secondItem="gHu-cr-2ej" secondAttribute="top" id="Nvg-Nf-uEv"/>
+                            <constraint firstItem="x2c-c5-pwQ" firstAttribute="leading" secondItem="gHu-cr-2ej" secondAttribute="leading" constant="20" id="erX-Zp-7SH"/>
+                            <constraint firstItem="OqO-h8-ZCn" firstAttribute="top" secondItem="x2c-c5-pwQ" secondAttribute="bottom" constant="20" id="gOF-9f-v6N"/>
+                            <constraint firstItem="gHu-cr-2ej" firstAttribute="trailing" secondItem="x2c-c5-pwQ" secondAttribute="trailing" constant="20" id="lPv-N3-fjA"/>
+                            <constraint firstItem="gHu-cr-2ej" firstAttribute="trailing" secondItem="OqO-h8-ZCn" secondAttribute="trailing" constant="20" id="z5U-2A-kfw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gHu-cr-2ej"/>
                     </view>
                     <connections>
-                        <outlet property="instrumentAnimation" destination="al5-6m-DE7" id="cdB-m2-QMJ"/>
-                        <outlet property="instrumentTextField" destination="1yT-qU-Qu9" id="bO2-Jg-C0E"/>
                         <outlet property="levelLabel" destination="9ck-4A-uG2" id="iXm-u7-bvT"/>
                         <outlet property="signupButton" destination="bvj-Oc-x7s" id="QQm-UY-kZC"/>
-                        <outlet property="starRating" destination="PD5-Ks-eJw" id="Awa-SS-K4A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bjD-hh-BU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3554" y="578"/>
+            <point key="canvasLocation" x="3553.90625" y="577.44140625"/>
         </scene>
         <!--First And Last Name View Controller-->
         <scene sceneID="w2q-A8-8YQ">
@@ -659,16 +680,16 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ClR-p3-dYW">
-                                <rect key="frame" x="20" y="86" width="728" height="203"/>
+                                <rect key="frame" x="20" y="86" width="728" height="184.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="A2L-f4-mCx">
-                                        <rect key="frame" x="0.0" y="0.0" width="728" height="97.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="728" height="88"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X5e-QU-wTQ" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="637" height="97.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="637" height="88"/>
                                                 <color key="textColor" red="0.0078431372550000003" green="0.3294117647" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="23"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
                                                         <color key="value" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
@@ -680,12 +701,12 @@
                                                         <color key="value" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                        <real key="value" value="0.69999999999999996"/>
+                                                        <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQl-Oa-rOF" customClass="LOTAnimationView">
-                                                <rect key="frame" x="645" y="0.0" width="83" height="97.5"/>
+                                                <rect key="frame" x="645" y="0.0" width="83" height="88"/>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -693,13 +714,13 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="X2m-Sc-Wlw">
-                                        <rect key="frame" x="0.0" y="105.5" width="728" height="97.5"/>
+                                        <rect key="frame" x="0.0" y="96" width="728" height="88.5"/>
                                         <subviews>
                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VJQ-Co-Ddc" customClass="HoshiTextField" customModule="MusicMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="637" height="97.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="637" height="88.5"/>
                                                 <color key="textColor" red="0.0078431372550000003" green="0.3294117647" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="23"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
                                                         <color key="value" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
@@ -711,12 +732,12 @@
                                                         <color key="value" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                        <real key="value" value="0.69999999999999996"/>
+                                                        <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngO-R0-moO" customClass="LOTAnimationView">
-                                                <rect key="frame" x="645" y="0.0" width="83" height="97.5"/>
+                                                <rect key="frame" x="645" y="0.0" width="83" height="88.5"/>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -737,7 +758,7 @@
                             <constraint firstItem="z3A-lw-C5s" firstAttribute="leading" secondItem="VbN-ii-SX3" secondAttribute="leading" constant="20" id="eVl-je-6em"/>
                             <constraint firstItem="ClR-p3-dYW" firstAttribute="top" secondItem="z3A-lw-C5s" secondAttribute="bottom" constant="40" id="ioA-U3-JEd"/>
                             <constraint firstItem="VbN-ii-SX3" firstAttribute="bottom" secondItem="HSq-Gd-v8H" secondAttribute="bottom" constant="8" id="lUu-2z-Gw5"/>
-                            <constraint firstItem="ClR-p3-dYW" firstAttribute="height" secondItem="ALL-d4-ReD" secondAttribute="height" multiplier="0.44" id="yUW-c8-K7s"/>
+                            <constraint firstItem="ClR-p3-dYW" firstAttribute="height" secondItem="ALL-d4-ReD" secondAttribute="height" multiplier="0.4" id="yUW-c8-K7s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VbN-ii-SX3"/>
                     </view>

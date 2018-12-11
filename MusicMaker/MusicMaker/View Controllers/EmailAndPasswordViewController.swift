@@ -63,6 +63,7 @@ class EmailAndPasswordViewController: UIViewController {
         emailCheckmark.animation = "checkmark"
         confirmPasswordAnimation.animation = "eye01"
         passwordAnimation.animation = "eye01"
+        passwordAnimation.logHierarchyKeypaths()
         
         emailCheckmark.contentMode = .scaleAspectFit
         confirmPasswordAnimation.contentMode = .scaleAspectFit

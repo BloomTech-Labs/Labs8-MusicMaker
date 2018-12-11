@@ -1,3 +1,5 @@
+//Student List View: This page will allow teacher's to view a list of all of their students.
+
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';

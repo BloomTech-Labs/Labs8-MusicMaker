@@ -1,3 +1,6 @@
+//Dashboard View: This page is the teacher's home page with "+" to create a new ungraded assignment,
+//the teacher's qr code will be visible so students can scan it and be sent a sign up page to be added to the teacher.
+
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";

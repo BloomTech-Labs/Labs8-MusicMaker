@@ -48,10 +48,7 @@ class DashboardAssignmentsView extends Component {
           <p>Piece: {this.state.piece}</p>
           <p>Instrument: {this.state.instrument}</p>
           <p>Level: {this.state.level}</p>
-          <p>
-            Sheet Music:{" "}
-            <a href={this.state.sheetMusic}>
-              <img
+          <p>Sheet Music:<a href={this.state.sheetMusic}><img
                 src={this.state.sheetMusic}
                 alt="pdf image"
                 height="42"

@@ -54,6 +54,9 @@ import axios from 'axios';
       .then(res => {
         console.log(res.statusText, res)
       })
+      .catch(err => {
+        console.err('CREATE ASSIGNMENT VIEW ERROR', err)
+      })
 }
   
   render() {
@@ -70,20 +73,20 @@ import axios from 'axios';
              <Input type="text" name="piece" placeholder="Piece Name" value={piece} onChange={this.onChange} />
  
              <Input type="select" name="instrument" onChange={this.onChange}>
-               <option value="instrument">Choose Instrument</option>
-               <option value="drum">Drum</option>
-               <option value="guitar">Guitar</option>
-               <option value="piano">Piano</option>
-               <option value="saxophone">Saxophone</option>
-               <option value="trumpet">Trumpet</option>
-               <option value="violin">Violin</option>
+               <option value="None">Choose Instrument</option>
+               <option value="Drum">Drum</option>
+               <option value="Guitar">Guitar</option>
+               <option value="Piano">Piano</option>
+               <option value="Saxophone">Saxophone</option>
+               <option value="Trumpet">Trumpet</option>
+               <option value="Violin">Violin</option>
              </Input>
  
             <Input type="select" name="level" onChange={this.onChange}>
-              <option value="level">Choose Experience</option>
-              <option value="beginner">Beginner</option>
-              <option value="intermediate">Intermediate</option>
-              <option value="expert">Expert</option>
+              <option value="None">Choose Experience</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Expert">Expert</option>
             </Input>
           </FormGroup>
           <FormGroup>

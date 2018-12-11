@@ -374,6 +374,7 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
               Promise.resolve(
                 "https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid
               ).then(url => {
+                console.
                 teacherAssignmentRef
                   .doc(assignment.id)
                   .update({

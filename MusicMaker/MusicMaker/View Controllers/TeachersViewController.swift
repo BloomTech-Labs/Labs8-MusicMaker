@@ -8,13 +8,15 @@
 
 import UIKit
 import AVFoundation
-
+import FirebaseAuth
+import FirebaseFirestore
 
 class TeachersViewController: UIViewController {
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchStudent()
         NotificationCenter.default.addObserver(self, selector: #selector(hideQrView), name: .newTeacher, object: nil)
         
         refreshTeachers()
@@ -48,23 +50,31 @@ class TeachersViewController: UIViewController {
     @IBOutlet weak var qrViewTopConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
-    weak var delegate: TeachersViewControllerDelegate?
     var student: Student?
     var teachers = [Teacher]()
-    var sideMenuShowing = false
     
     
     
     
     // MARK: - Private Methods
-    
+    private func fetchStudent() {
+        if student == nil {
+            guard let currentUsersUid = Auth.auth().currentUser?.uid else {return}
+            let database = Firestore.firestore()
+            let studentsCollectionReference = database.collection("students").document(currentUsersUid)
+            studentsCollectionReference.getDocument { (document, error) in
+                if let document = document {
+                    if let dataDescription = document.data() as? [String : String] {
+                        self.student = Student(dataDescription)
+                    }
+                }
+            }
+        }
+    }
     
 
     // MARK: - IBActions
-    @IBAction func showSideMenu(_ sender: Any) {
-        delegate?.menuButtonTapped()
-        sideMenuShowing = sideMenuShowing ? false : true
-    }
+   
     
     @IBAction func showQrOptions(_ sender: Any) {
         
@@ -88,12 +98,20 @@ class TeachersViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indexPath = tableView.indexPathForSelectedRow else {return}
-        let teacher = teachers[indexPath.row]
-        if segue.identifier == "ShowAssignments" {
+        
+        switch segue.identifier {
+        case "ShowAssignments":
+            guard let indexPath = tableView.indexPathForSelectedRow else {return}
+            let teacher = teachers[indexPath.row]
             if let destinationVc = segue.destination as? AssignmentsTableViewController {
                 destinationVc.teacher = teacher
             }
+        case "ShowUserProfile":
+            if let destinationVc = segue.destination as? UserProfileViewController {
+                destinationVc.student = student
+            }
+        default:
+            break
         }
     }
 }

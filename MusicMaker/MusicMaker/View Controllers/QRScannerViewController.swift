@@ -44,6 +44,21 @@ class QRScannerViewController: UIViewController {
         qrView.captureSession?.stopRunning()
     }
     
+    override func viewWillLayoutSubviews() {
+        switch UIApplication.shared.statusBarOrientation {
+        case .portrait:
+            qrView.videoPreviewLayer.connection?.videoOrientation = .portrait
+        case .portraitUpsideDown:
+            qrView.videoPreviewLayer.connection?.videoOrientation = .portraitUpsideDown
+        case .landscapeLeft:
+            qrView.videoPreviewLayer.connection?.videoOrientation = .landscapeLeft
+        case .landscapeRight:
+            qrView.videoPreviewLayer.connection?.videoOrientation = .landscapeRight
+        default:
+            break
+        }
+    }
+    
     // MARK: - IBOutlets
     @IBOutlet weak var centerView: UIView! {
         didSet {

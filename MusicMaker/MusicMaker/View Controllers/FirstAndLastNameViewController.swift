@@ -81,7 +81,7 @@ extension FirstAndLastNameViewController: UITextFieldDelegate {
         default:
             break
         }
-        if !firstNameCheckmarkAnimation.isHidden && !lastNameCheckmarkAnimation.isHidden {
+        if firstNameCheckmarkAnimation.alpha == 1 && lastNameCheckmarkAnimation.alpha == 1 {
             nextButton.alpha = 1
             nextButton.isEnabled = true
         }

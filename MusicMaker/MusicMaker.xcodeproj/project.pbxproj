@@ -35,11 +35,8 @@
 		BF5D5209219CB05900DFF213 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */; };
 		BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5208219CB05900DFF213 /* HoshiTextField.swift */; };
 		BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5D520B219CC7F200DFF213 /* Teachers.storyboard */; };
-		BF5D520E219CC8CA00DFF213 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D520D219CC8CA00DFF213 /* ContainerViewController.swift */; };
 		BF5D5210219CC8E800DFF213 /* TeachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */; };
-		BF5D5212219CC8F500DFF213 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */; };
 		BF5D5217219CD23100DFF213 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5216219CD23100DFF213 /* UIButton+Extensions.swift */; };
-		BF5D5219219D17F100DFF213 /* TeachersViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5218219D17F100DFF213 /* TeachersViewControllerDelegate.swift */; };
 		BF69F2B921A4F68100EAB8CE /* MusicMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69F2B821A4F68100EAB8CE /* MusicMakerTests.swift */; };
 		BF69F2C721A4F8A500EAB8CE /* MusicMakerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69F2C621A4F8A500EAB8CE /* MusicMakerUITests.swift */; };
 		BF9047AB21B9C754009F859D /* Merriweather-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF9047A321B9C753009F859D /* Merriweather-BoldItalic.ttf */; };
@@ -78,6 +75,7 @@
 		BF98B14C21B5E8A5007B7C45 /* FirstAndLastNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14B21B5E8A5007B7C45 /* FirstAndLastNameViewController.swift */; };
 		BF98B14E21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14D21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift */; };
 		BF98B15021B74B07007B7C45 /* QRScanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF98B14F21B74B07007B7C45 /* QRScanner.storyboard */; };
+		BFB8A0E921BF30170035FF20 /* SignUpNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8A0E821BF30170035FF20 /* SignUpNavigationController.swift */; };
 		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
 		BFD381D0219355510038F974 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CF219355510038F974 /* LogInViewController.swift */; };
@@ -91,7 +89,6 @@
 		BFD9032421B9D49500EEB3B1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD9032321B9D49500EEB3B1 /* UIColor+Extensions.swift */; };
 		BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */; };
 		BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */; };
-		BFE771AE219E6B2600DCE42A /* SideMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */; };
 		BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D521A352E100DCE42A /* MenuButton.swift */; };
 		BFE771D821A49BE700DCE42A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D721A49BE700DCE42A /* QRView.swift */; };
 		BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */; };
@@ -151,11 +148,8 @@
 		BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
 		BF5D5208219CB05900DFF213 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
 		BF5D520B219CC7F200DFF213 /* Teachers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Teachers.storyboard; sourceTree = "<group>"; };
-		BF5D520D219CC8CA00DFF213 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersViewController.swift; sourceTree = "<group>"; };
-		BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		BF5D5216219CD23100DFF213 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIButton+Extensions.swift"; path = "MusicMaker/Storyboards/UIButton+Extensions.swift"; sourceTree = SOURCE_ROOT; };
-		BF5D5218219D17F100DFF213 /* TeachersViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersViewControllerDelegate.swift; sourceTree = "<group>"; };
 		BF69F2B621A4F68100EAB8CE /* MusicMakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicMakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF69F2B821A4F68100EAB8CE /* MusicMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicMakerTests.swift; sourceTree = "<group>"; };
 		BF69F2BA21A4F68100EAB8CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -198,6 +192,7 @@
 		BF98B14B21B5E8A5007B7C45 /* FirstAndLastNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAndLastNameViewController.swift; sourceTree = "<group>"; };
 		BF98B14D21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAndLastNameViewControllerDelegate.swift; sourceTree = "<group>"; };
 		BF98B14F21B74B07007B7C45 /* QRScanner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRScanner.storyboard; sourceTree = "<group>"; };
+		BFB8A0E821BF30170035FF20 /* SignUpNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNavigationController.swift; sourceTree = "<group>"; };
 		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		BFD381CF219355510038F974 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -213,7 +208,6 @@
 		BFD9032321B9D49500EEB3B1 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+TransitionAnimations.swift"; path = "MusicMaker/Storyboards/UIViewController+TransitionAnimations.swift"; sourceTree = SOURCE_ROOT; };
-		BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDelegate.swift; sourceTree = "<group>"; };
 		BFE771D521A352E100DCE42A /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		BFE771D721A49BE700DCE42A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantPanGestureRecognizer.swift; sourceTree = "<group>"; };
@@ -266,9 +260,7 @@
 				BF98B14D21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift */,
 				BF98B14321B5C5B0007B7C45 /* EmailAndPasswordViewControllerDelegate.swift */,
 				BFFB214821B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift */,
-				BF5D5218219D17F100DFF213 /* TeachersViewControllerDelegate.swift */,
 				BF98B14921B5CD66007B7C45 /* LevelAndInstrumentViewControllerDelegate.swift */,
-				BFE771AD219E6B2600DCE42A /* SideMenuDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -326,14 +318,13 @@
 				BFFB214E21B1F9B90050E013 /* AddTeacherOptionsViewController.swift */,
 				BF98B13321B4A318007B7C45 /* QRScannerViewController.swift */,
 				BF98B13721B4E447007B7C45 /* AddQRPhotoViewController.swift */,
+				BFB8A0E821BF30170035FF20 /* SignUpNavigationController.swift */,
 				BF98B13D21B50EAB007B7C45 /* StudentSignupViewController.swift */,
 				BF98B14B21B5E8A5007B7C45 /* FirstAndLastNameViewController.swift */,
 				BF98B13F21B5B66D007B7C45 /* EmailAndPasswordViewController.swift */,
 				BF98B14721B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift */,
 				BFD381CF219355510038F974 /* LogInViewController.swift */,
-				BF5D520D219CC8CA00DFF213 /* ContainerViewController.swift */,
 				BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */,
-				BF5D5211219CC8F500DFF213 /* SideMenuViewController.swift */,
 				BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */,
 				BFFB213E21AFA02E0050E013 /* ResetPasswordViewController.swift */,
 				BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */,
@@ -767,6 +758,7 @@
 				BF98B13E21B50EAB007B7C45 /* StudentSignupViewController.swift in Sources */,
 				393E238421AB4C1E00620D94 /* CoreData.swift in Sources */,
 				BF98B13421B4A318007B7C45 /* QRScannerViewController.swift in Sources */,
+				BFB8A0E921BF30170035FF20 /* SignUpNavigationController.swift in Sources */,
 				BFFB214921B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift in Sources */,
 				BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */,
 				39C108FD2194E55900180F37 /* RecordingViewController.swift in Sources */,
@@ -781,14 +773,12 @@
 				BFFB214F21B1F9B90050E013 /* AddTeacherOptionsViewController.swift in Sources */,
 				BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */,
 				BF98B13821B4E447007B7C45 /* AddQRPhotoViewController.swift in Sources */,
-				BF5D520E219CC8CA00DFF213 /* ContainerViewController.swift in Sources */,
 				399F0B5921B83E8400261477 /* AssignmentsTableViewController.swift in Sources */,
 				39CA2B5D21948D8C00C6018E /* AssignmentInstructionsTableViewCell.swift in Sources */,
 				BFE771D821A49BE700DCE42A /* QRView.swift in Sources */,
 				BFD3EEF321ABC8160097D5AA /* String+Extensions.swift in Sources */,
 				BFFB214B21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift in Sources */,
 				BFD3EEF921AD1CB50097D5AA /* InitialViewController.swift in Sources */,
-				BFE771AE219E6B2600DCE42A /* SideMenuDelegate.swift in Sources */,
 				BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */,
 				BF5D5210219CC8E800DFF213 /* TeachersViewController.swift in Sources */,
 				393E238A21AB9F7900620D94 /* MusicMakerModelController.swift in Sources */,
@@ -796,14 +786,12 @@
 				BF98B14621B5CA9C007B7C45 /* StarRating.swift in Sources */,
 				BF98B14A21B5CD66007B7C45 /* LevelAndInstrumentViewControllerDelegate.swift in Sources */,
 				BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */,
-				BF5D5219219D17F100DFF213 /* TeachersViewControllerDelegate.swift in Sources */,
 				BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */,
 				BFD9032421B9D49500EEB3B1 /* UIColor+Extensions.swift in Sources */,
 				BF98B14021B5B66D007B7C45 /* EmailAndPasswordViewController.swift in Sources */,
 				39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */,
 				BFD3EEFD21AE45880097D5AA /* Student.swift in Sources */,
 				399F0B5B21B8436400261477 /* AssignmentTableViewCell.swift in Sources */,
-				BF5D5212219CC8F500DFF213 /* SideMenuViewController.swift in Sources */,
 				BF98B13221B35007007B7C45 /* UISegmentedControl+Extensions.swift in Sources */,
 				BF98B13A21B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift in Sources */,
 				BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */,
@@ -1052,7 +1040,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vuk.MusicMaker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vuk.MusicMaker1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1071,7 +1059,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vuk.MusicMaker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vuk.MusicMaker1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

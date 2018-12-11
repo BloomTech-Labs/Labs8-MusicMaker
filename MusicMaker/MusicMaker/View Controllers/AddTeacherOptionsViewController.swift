@@ -47,6 +47,8 @@ class AddTeacherOptionsViewController: UIViewController {
         NSLayoutConstraint.activate(verticalConstraints + horizontalConstraints)
         
     }
+    
+    
     override func viewDidLayoutSubviews() {
         
         preferredContentSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)

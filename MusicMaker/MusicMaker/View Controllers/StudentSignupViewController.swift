@@ -20,6 +20,7 @@ class StudentSignupViewController: UIViewController {
         addDismissKeyboardGestureRecognizer()
         setupNavigationBar()
     }
+        
     
     override func viewDidLayoutSubviews() {
         setupContainerViews()
@@ -37,7 +38,6 @@ class StudentSignupViewController: UIViewController {
     @IBOutlet weak var levelAndInstrumentView: UIView!
     @IBOutlet weak var emailAndPasswordView: UIView!
     @IBOutlet weak var firstAndLastNameView: UIView!
-   
     @IBOutlet weak var pageControl: UIPageControl! {
         didSet {
             pageControl.numberOfPages = isSigningUpWithGoogle ? 2 : 3
@@ -46,19 +46,32 @@ class StudentSignupViewController: UIViewController {
     
     // MARK: - Properties
     var isSigningUpWithGoogle = false
-    
+
     var teacherUniqueId: String?
     var email: String?
     var password: String?
     var firstName: String?
     var lastName: String?
     
+
     // MARK: - Private Methods
     private func setupContainerViews() {
         emailAndPasswordView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
         levelAndInstrumentView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
     }
     
+    private func writeStudentToFirestore(userId: String, level: String, instrument: String) {
+        guard let email = email, let firstName = firstName, let lastName = lastName, let teacherUniqueId = teacherUniqueId else {return}
+        
+        let database = Firestore.firestore()
+        let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level]
+        database.collection("students").document(userId).setData(userDocumentInformation)
+        database.collection("students").document(userId).collection("teachers").document(teacherUniqueId).setData(["exisits": true])
+        database.collection("teachers").document(teacherUniqueId).collection("students").document(userId).setData(userDocumentInformation)
+        
+        self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
+        
+    }
     
     //Adds a gesture recognizer that calls dismissKeyboard(_:)
     private func addDismissKeyboardGestureRecognizer() {
@@ -114,18 +127,7 @@ extension StudentSignupViewController: EmailAndPasswordViewControllerDelegate {
         pageControl.currentPage += 1
     }
     
-    func writeStudentToFirestore(userId: String, level: String, instrument: String) {
-        guard let email = email, let firstName = firstName, let lastName = lastName, let teacherUniqueId = teacherUniqueId else {return}
-   
-        let database = Firestore.firestore()
-        let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level]
-        database.collection("students").document(userId).setData(userDocumentInformation)
-        database.collection("students").document(userId).collection("teachers").document(teacherUniqueId).setData(["exisits": true])
-        database.collection("teachers").document(teacherUniqueId).collection("students").document(userId).setData(userDocumentInformation)
-        
-        self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
-        
-    }
+    
     
     
 }

@@ -67,9 +67,6 @@ class EmailAndPasswordViewController: UIViewController {
         emailCheckmark.contentMode = .scaleAspectFit
         confirmPasswordAnimation.contentMode = .scaleAspectFit
         passwordAnimation.contentMode = .scaleAspectFit
-        
-        emailCheckmark.isHidden = true
-        
     }
     
     private func setupGestureRecognizers() {
@@ -111,13 +108,13 @@ extension EmailAndPasswordViewController: UITextFieldDelegate {
         switch textField.tag {
         case 0:
             if textField.text?.count ?? 0 > 0 {
-                emailCheckmark.isHidden = false
+                emailCheckmark.alpha = 1
                 emailCheckmark.play()
             }
         default:
             break
         }
-        if !emailCheckmark.isHidden && passwordTextField.text?.count ?? 0 > 0 && confirmPasswordTextField.text?.count ?? 0 > 0 {
+        if emailCheckmark.alpha == 1 && passwordTextField.text?.count ?? 0 > 0 && confirmPasswordTextField.text?.count ?? 0 > 0 {
             nextButton.alpha = 1
             nextButton.isEnabled = true
         }

@@ -42,14 +42,15 @@ import axios from 'axios';
     formData.append('file', sheetMusic);
 
     axios
-      // .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment', 
-      .post('https://musicmaker-4b2e8.firebaseapp.com/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment', 
-        formData,
-        {onUploadProgress: ProgressEvent => {
-          this.setState({
-            loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
-          })
-        }}
+      .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment', 
+      // .post('https://musicmaker-4b2e8.firebaseapp.com/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment', 
+      // { assignmentName, piece, instrument, level, instructions, sheetMusic },
+      formData,
+      {onUploadProgress: ProgressEvent => {
+        this.setState({
+          loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
+        })
+      }}
       )
       .then(res => {
         console.log(res.statusText, res)

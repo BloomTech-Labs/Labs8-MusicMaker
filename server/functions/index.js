@@ -339,7 +339,6 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
     console.log("**********teacherId**********", teacherId)
 
     const { assignmentName, instructions, instrument, level, piece } = req.body;
-    console.log("**********req.body**********", req.rawBody)
     console.log("**********assignmentInfo**********", assignmentName, instructions, instrument, level, piece )
 
     //Teacher's assignments db reference:

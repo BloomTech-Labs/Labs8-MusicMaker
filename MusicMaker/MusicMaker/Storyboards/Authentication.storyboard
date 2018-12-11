@@ -564,9 +564,8 @@
                                     <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="16"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvj-Oc-x7s">
-                                <rect key="frame" x="281" y="358" width="207" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvj-Oc-x7s">
+                                <rect key="frame" x="293" y="412" width="182" height="41"/>
                                 <color key="backgroundColor" red="0.66274509800000003" green="0.90980392160000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="23"/>
                                 <state key="normal" title="Sign Up">
@@ -576,10 +575,9 @@
                                     <action selector="signUp:" destination="EPV-Tw-BNL" eventType="touchUpInside" id="Lde-jR-b4e"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beginner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ck-4A-uG2">
-                                <rect key="frame" x="219" y="278" width="330" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beginner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ck-4A-uG2">
+                                <rect key="frame" x="263" y="291.5" width="242" height="73"/>
+                                <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="25"/>
                                 <color key="textColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -590,55 +588,120 @@
                                         <rect key="frame" x="0.0" y="0.0" width="114.5" height="73"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="51"/>
                                         <state key="normal" title="🎸"/>
+                                        <connections>
+                                            <action selector="instrumentSelected:" destination="EPV-Tw-BNL" eventType="touchUpInside" id="Tmq-Wg-7PN"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoU-W2-cH2">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoU-W2-cH2">
                                         <rect key="frame" x="122.5" y="0.0" width="115" height="73"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="51"/>
                                         <state key="normal" title="🎹"/>
+                                        <connections>
+                                            <action selector="instrumentSelected:" destination="EPV-Tw-BNL" eventType="touchUpInside" id="4AA-eP-wSZ"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s89-BC-cF5">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s89-BC-cF5">
                                         <rect key="frame" x="245.5" y="0.0" width="114.5" height="73"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="51"/>
                                         <state key="normal" title="🥁"/>
+                                        <connections>
+                                            <action selector="instrumentSelected:" destination="EPV-Tw-BNL" eventType="touchUpInside" id="W9x-LB-ZSP"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKe-jD-FvB">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKe-jD-FvB">
                                         <rect key="frame" x="368" y="0.0" width="114.5" height="73"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="51"/>
                                         <state key="normal" title="🎷"/>
+                                        <connections>
+                                            <action selector="instrumentSelected:" destination="EPV-Tw-BNL" eventType="touchUpInside" id="e6X-DV-UoX"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trX-Uf-Z03">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trX-Uf-Z03">
                                         <rect key="frame" x="490.5" y="0.0" width="115" height="73"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="51"/>
                                         <state key="normal" title="🎺"/>
+                                        <connections>
+                                            <action selector="instrumentSelected:" destination="EPV-Tw-BNL" eventType="touchUpInside" id="3MC-cC-oKn"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Boe-VF-L0o">
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Boe-VF-L0o">
                                         <rect key="frame" x="613.5" y="0.0" width="114.5" height="73"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="51"/>
                                         <state key="normal" title="🎻"/>
+                                        <connections>
+                                            <action selector="instrumentSelected:" destination="EPV-Tw-BNL" eventType="touchUpInside" id="K0d-WO-iwx"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuF-J5-Wpk">
-                                <rect key="frame" x="75" y="313" width="46" height="73"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="51"/>
-                                <state key="normal" title="★"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="52" translatesAutoresizingMaskIntoConstraints="NO" id="Nha-bx-iJN">
+                                <rect key="frame" x="263" y="208.5" width="242" height="73"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuF-J5-Wpk">
+                                        <rect key="frame" x="0.0" y="0.0" width="46" height="73"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="51"/>
+                                        <state key="normal" title="★">
+                                            <color key="titleColor" red="0.0078431372550000003" green="0.51764705879999995" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="levelChanged:" destination="EPV-Tw-BNL" eventType="touchUpInside" id="5gN-gs-hM3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zyj-jI-nx6">
+                                        <rect key="frame" x="98" y="0.0" width="46" height="73"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="51"/>
+                                        <state key="normal" title="★">
+                                            <color key="titleColor" red="0.66274509800000003" green="0.90980392160000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="levelChanged:" destination="EPV-Tw-BNL" eventType="touchUpInside" id="LyN-id-ljW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDi-PH-Ni7">
+                                        <rect key="frame" x="196" y="0.0" width="46" height="73"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="51"/>
+                                        <state key="normal" title="★">
+                                            <color key="titleColor" red="0.66274509800000003" green="0.90980392160000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="levelChanged:" destination="EPV-Tw-BNL" eventType="touchUpInside" id="3zW-9f-wUh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.98039215690000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="9ck-4A-uG2" firstAttribute="top" secondItem="Nha-bx-iJN" secondAttribute="bottom" constant="10" id="7VQ-xM-Hu8"/>
                             <constraint firstItem="OqO-h8-ZCn" firstAttribute="leading" secondItem="gHu-cr-2ej" secondAttribute="leading" constant="20" id="7my-6T-5mp"/>
+                            <constraint firstItem="gHu-cr-2ej" firstAttribute="bottom" secondItem="bvj-Oc-x7s" secondAttribute="bottom" constant="8" id="9X0-lR-Swn"/>
+                            <constraint firstItem="bvj-Oc-x7s" firstAttribute="centerX" secondItem="4DG-8k-1ak" secondAttribute="centerX" id="NfR-9c-24O"/>
                             <constraint firstItem="x2c-c5-pwQ" firstAttribute="top" secondItem="gHu-cr-2ej" secondAttribute="top" id="Nvg-Nf-uEv"/>
+                            <constraint firstItem="9ck-4A-uG2" firstAttribute="centerX" secondItem="4DG-8k-1ak" secondAttribute="centerX" id="OZC-z7-qZm"/>
+                            <constraint firstItem="9ck-4A-uG2" firstAttribute="height" secondItem="Nha-bx-iJN" secondAttribute="height" id="YJX-Hs-GGD"/>
+                            <constraint firstItem="bvj-Oc-x7s" firstAttribute="width" secondItem="x2c-c5-pwQ" secondAttribute="width" multiplier="0.25" id="ciL-zK-VjK"/>
                             <constraint firstItem="x2c-c5-pwQ" firstAttribute="leading" secondItem="gHu-cr-2ej" secondAttribute="leading" constant="20" id="erX-Zp-7SH"/>
                             <constraint firstItem="OqO-h8-ZCn" firstAttribute="top" secondItem="x2c-c5-pwQ" secondAttribute="bottom" constant="20" id="gOF-9f-v6N"/>
                             <constraint firstItem="gHu-cr-2ej" firstAttribute="trailing" secondItem="x2c-c5-pwQ" secondAttribute="trailing" constant="20" id="lPv-N3-fjA"/>
+                            <constraint firstItem="9ck-4A-uG2" firstAttribute="width" secondItem="Nha-bx-iJN" secondAttribute="width" id="o2C-yt-XPu"/>
+                            <constraint firstItem="Nha-bx-iJN" firstAttribute="top" secondItem="OqO-h8-ZCn" secondAttribute="bottom" constant="20" id="pXI-dx-TPQ"/>
+                            <constraint firstItem="Nha-bx-iJN" firstAttribute="centerX" secondItem="4DG-8k-1ak" secondAttribute="centerX" id="vJY-W9-F3h"/>
                             <constraint firstItem="gHu-cr-2ej" firstAttribute="trailing" secondItem="OqO-h8-ZCn" secondAttribute="trailing" constant="20" id="z5U-2A-kfw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gHu-cr-2ej"/>
                     </view>
                     <connections>
+                        <outlet property="beginnerStar" destination="SuF-J5-Wpk" id="Q6q-jO-hlL"/>
+                        <outlet property="expertStar" destination="gDi-PH-Ni7" id="sH2-BV-M59"/>
+                        <outlet property="intermediateStar" destination="Zyj-jI-nx6" id="NYm-ZO-JDE"/>
                         <outlet property="levelLabel" destination="9ck-4A-uG2" id="iXm-u7-bvT"/>
                         <outlet property="signupButton" destination="bvj-Oc-x7s" id="QQm-UY-kZC"/>
+                        <outletCollection property="instrumentButtons" destination="Btt-av-Pam" collectionClass="NSMutableArray" id="omP-M9-nGJ"/>
+                        <outletCollection property="instrumentButtons" destination="MoU-W2-cH2" collectionClass="NSMutableArray" id="503-AO-94V"/>
+                        <outletCollection property="instrumentButtons" destination="s89-BC-cF5" collectionClass="NSMutableArray" id="GFX-4f-21O"/>
+                        <outletCollection property="instrumentButtons" destination="fKe-jD-FvB" collectionClass="NSMutableArray" id="koa-Bb-Uah"/>
+                        <outletCollection property="instrumentButtons" destination="trX-Uf-Z03" collectionClass="NSMutableArray" id="hNm-MU-RGa"/>
+                        <outletCollection property="instrumentButtons" destination="Boe-VF-L0o" collectionClass="NSMutableArray" id="ZW1-9Q-CCK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bjD-hh-BU0" userLabel="First Responder" sceneMemberID="firstResponder"/>

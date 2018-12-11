@@ -11,10 +11,10 @@ class DashboardView extends Component {
   }
 
   componentDidMount() {
+    const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
+
     axios
-      .get(
-        "https://musicmaker-4b2e8.firebaseapp.com/teacher/TrYgvfzQJplN9khJhiJg/settings"
-      )
+      .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settings`)
       .then(res => {
         this.setState({
           qrcode: res.data.qrcode

@@ -1,3 +1,7 @@
+//Create Assignment View: This page will allow teacher's to create a new ungraded assignment.
+//After the new assignment is created, it should direct you to the Assignments' Students List
+//so that the teacher can add students to that assignment.
+
 import React, { Component } from "react";
 import { Input, Form, FormGroup, Label, Button } from 'reactstrap';
 import axios from 'axios';

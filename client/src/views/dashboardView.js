@@ -1,3 +1,6 @@
+//Dashboard View: This page is the teacher's home page with "+" to create a new ungraded assignment,
+//the teacher's qr code will be visible so students can scan it and be sent a sign up page to be added to the teacher.
+
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -11,10 +14,10 @@ class DashboardView extends Component {
   }
 
   componentDidMount() {
+    const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
+
     axios
-      .get(
-        "https://musicmaker-4b2e8.firebaseapp.com/teacher/TrYgvfzQJplN9khJhiJg/settings"
-      )
+      .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settings`)
       .then(res => {
         this.setState({
           qrcode: res.data.qrcode

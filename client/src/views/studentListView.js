@@ -1,29 +1,44 @@
+//Student List View: This page will allow teacher's to view a list of all of their students.
+
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import axios from 'axios';
 
 class StudentListView extends Component {
-  state = {
-    students: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      students: []
+    };
+};
+
+componentDidMount() {
+  const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
+
+  axios
+      .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/students`)
+      .then(res => {
+          this.setState({students: res.data})
+      })
+      .catch(err => console.error('STUDENT LIST VIEW AXIOS:', err));
+}
 
   render() {
     return (
-      <div className="container">
-        <div className="flex-container">
-          <div className="block-container" id="studentList">
-            <h1 className="subheader">Students</h1>
-            {this.state.students.map(student => (
-              <div key={student.id} className="bodyText">
-                <NavLink to={`/studentView/${student.id}`}>
-                  <h3>
-                    {student.firstName} {student.lastName}:
-                  </h3>
-                  <h3>{student.instrument}</h3>
-                  <h3>{student.level}</h3>
-                </NavLink>
-              </div>
-            ))}
-          </div>
+      <div>
+        <h1><Label>Students</Label></h1>
+        <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
+          {this.state.students.map(student => (
+            <Card key={student.id} style={{ width:"40%", margin:"1%"}}>
+              <NavLink to={`/studentAssignments/${student.id}`} style={{textDecoration:"none", color:"black"}}>
+                <CardTitle>{student.firstName} {student.lastName}</CardTitle>
+                <CardText>{student.instrument}</CardText>
+                <CardText>{student.level}</CardText>
+                <CardText>{student.email}</CardText>
+              </NavLink> 
+            </Card>
+          ))}
         </div>
       </div>
     );

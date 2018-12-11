@@ -13,6 +13,8 @@ class MusicSheetPageCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Outlet
     
+    @IBOutlet weak var highlightView: UIView!
+    
     @IBOutlet weak var pdfView: PDFView! {
         didSet {
             pdfView.displayMode = .singlePage
@@ -29,5 +31,18 @@ class MusicSheetPageCollectionViewCell: UICollectionViewCell {
         
         pdfView.minScaleFactor = 0.01
         pdfView.scaleFactor = pdfView.scaleFactorForSizeToFit
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            // check isSelected and set the view isHidden
+            if isSelected {
+                highlightView?.isHidden = false
+                highlightView?.layer.borderWidth = 2.0
+                highlightView?.layer.borderColor = UIColor.blue.cgColor
+            } else {
+                highlightView?.isHidden = true
+            }
+        }
     }
 }

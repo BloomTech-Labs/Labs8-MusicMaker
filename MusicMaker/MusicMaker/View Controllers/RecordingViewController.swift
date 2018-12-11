@@ -101,10 +101,20 @@ class RecordingViewController: UIViewController {
     
     @IBAction func previousPage(_ sender: Any) {
         pdfView.goToPreviousPage(sender)
+        
+        if let pdfDocument = pdfDocument, let pdfPage = pdfView.currentPage {
+            // Manually select the page to highlight
+            collectionView.selectItem(at: IndexPath(item: pdfDocument.index(for: pdfPage), section: 0), animated: true, scrollPosition: .top)
+        }
     }
     
     @IBAction func nextPage(_ sender: Any) {
         pdfView.goToNextPage(sender)
+        
+        if let pdfDocument = pdfDocument, let pdfPage = pdfView.currentPage {
+            // Manually select the page to highlight
+            collectionView.selectItem(at: IndexPath(item: pdfDocument.index(for: pdfPage), section: 0), animated: true, scrollPosition: .top)
+        }
     }
     
     @IBAction func close(_ sender: Any) {
@@ -127,8 +137,11 @@ class RecordingViewController: UIViewController {
         
         pdfView.document = pdfDocument
         
-        if let pdfPage = pdfPage {
+        if let pdfPage = pdfPage, let pdfDocument = pdfDocument {
             pdfView.go(to: pdfPage)
+            
+            // Manually select the page to highlight
+            collectionView.selectItem(at: IndexPath(item: pdfDocument.index(for: pdfPage), section: 0), animated: false, scrollPosition: .top)
         }
         
         setupCapture()

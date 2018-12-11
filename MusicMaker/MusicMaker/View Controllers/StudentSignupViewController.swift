@@ -119,13 +119,14 @@ extension StudentSignupViewController: EmailAndPasswordViewControllerDelegate {
     func nextButtonTapped(with email: String, password: String) {
         self.email = email
         self.password = password
-        UIView.animate(withDuration: 0.4, delay: 0, options: [.transitionCurlDown], animations: {
-//            self.emailAndPasswordView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
-//            self.levelAndInstrumentView.transform = .identity
-            self.emailAndPasswordView.isHidden = true
-            self.levelAndInstrumentView.isHidden = false
-            
-        })
+        UIView.transition(from: emailAndPasswordView, to: levelAndInstrumentView, duration: 0.7, options: [.showHideTransitionViews, .transitionFlipFromRight], completion: nil)
+//        UIView.animate(withDuration: 0.4, delay: 0, options: [.transitionCurlDown], animations: {
+////            self.emailAndPasswordView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+////            self.levelAndInstrumentView.transform = .identity
+//            self.emailAndPasswordView.isHidden = true
+//            self.levelAndInstrumentView.isHidden = false
+//
+//        })
         pageControl.currentPage += 1
     }
     
@@ -185,12 +186,9 @@ extension StudentSignupViewController: FirstAndLastNameViewControllerDelegate {
         
         
         if isSigningUpWithGoogle {
-            UIView.animate(withDuration: 0.4, delay: 0, options: [.transitionCurlUp], animations: {
-                self.firstAndLastNameView.isHidden = true
-                self.levelAndInstrumentView.isHidden = false
-            })
+            UIView.transition(from: firstAndLastNameView, to: levelAndInstrumentView, duration: 0.7, options: [.showHideTransitionViews, .transitionFlipFromRight], completion: nil)
         } else {
-            UIView.transition(from: firstAndLastNameView, to: emailAndPasswordView, duration: 1, options: [.showHideTransitionViews, .transitionFlipFromRight], completion: nil)
+            UIView.transition(from: firstAndLastNameView, to: emailAndPasswordView, duration: 0.7, options: [.showHideTransitionViews, .transitionFlipFromRight], completion: nil)
         }
         
 //        if isSigningUpWithGoogle {

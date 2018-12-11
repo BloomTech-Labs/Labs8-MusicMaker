@@ -125,8 +125,6 @@ class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicP
         
         recordVC.shouldShowCamera = false
         
-        recordVC.loadViewIfNeeded()
-        
         recordVC.pdfDocument = pdfDocument
         
         if segue.identifier == "ShowPagePreview" {

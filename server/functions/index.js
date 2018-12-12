@@ -409,7 +409,7 @@ app.get("/teacher/:idTeacher/assignments", (req, res) => {
     .get()
     .then(assignments => {
       assignments.forEach(assignment => {
-        allAssignments.push([assignment.data()]);
+        allAssignments.push([assignment.id, assignment.data()]);
       });
 
       res.status(200).json(allAssignments);

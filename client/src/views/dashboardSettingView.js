@@ -7,7 +7,12 @@ class Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      settings: []
+      email: "",
+      name: {
+        prefix: "",
+        firstName: "",
+        lastName: ""
+      }
     };
   };
 
@@ -28,7 +33,7 @@ class Settings extends Component {
         <Label>Your Settings</Label>
           {this.state.settings.map(teacher => (
             <Card key = {teacher.id}>
-              <CardTitle>{teacher.Name}</CardTitle>
+              <CardTitle>{teacher.email}</CardTitle>
             </Card>
           ))}
       </div>

@@ -1,9 +1,14 @@
-// Assignment List: This page wil allow teacher's to see a list of all their ungraded assignments
+// Assignments List: This page will allow teachers to see a list of all their ungraded assignments
  
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import axios from 'axios';
+import { Route } from "react-router-dom";
+
+import * as routes from "../constants/routes";
+import StudentAssignmentsView from "./studentAssignmentsView";
+
 
 class DashboardAssignmentsView extends Component {
   constructor(props) {
@@ -43,6 +48,7 @@ componentDidMount() {
             </Card>
           ))}
         </div>
+        <Route path={'/assignmentStudents/:assignmentId'} component={StudentAssignmentsView} />
       </div>
     );
   }

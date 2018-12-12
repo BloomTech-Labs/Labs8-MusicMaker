@@ -45,7 +45,7 @@ componentDidMount() {
             </Card>
           ))}
         </div>
-        <Route path={'/studentAssignments/:studentId'} component={StudentAssignmentsView} />
+        <Route path={routes.STUDENTSASSIGNMETS} component={StudentAssignmentsView} />
       </div>
     );
   }

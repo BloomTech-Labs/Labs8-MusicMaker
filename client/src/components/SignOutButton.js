@@ -1,9 +1,26 @@
 import React from 'react';
 import { Button } from 'reactstrap';
+import { withRouter } from 'react-router-dom';
 
 import { auth } from '../firebase';
+import withAuthentication from './withAuthentication';
+import * as routes from '../constants/routes';
 
-const SignOutButton = () =>
-    <Button color="primary" onClick={ auth.doSignOut }>Sign Out</Button>
+class SignOutButton extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-export default SignOutButton;
+    redirect = () => {
+        auth.doSignOut();
+        if (!withAuthentication.authUser || withAuthentication.authUser === null) this.props.history.push(routes.SIGN_IN);
+    }
+    
+    render() {
+        return (
+            <Button color="primary" onClick={ this.redirect }>Sign Out</Button>
+        ); 
+    }
+}
+
+export default withRouter(SignOutButton);

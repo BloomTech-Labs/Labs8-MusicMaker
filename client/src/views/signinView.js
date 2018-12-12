@@ -54,6 +54,7 @@ class SignInView extends Component {
                 history.push(routes.DASHBOARD);
             })
             .catch(error => {
+                this.setState({ ...INITIAL_STATE });
                 this.setState(byPropKey('error', error));
             });
 
@@ -61,13 +62,21 @@ class SignInView extends Component {
     }
 
     doSignInWithGoogle = (event) => {
+        console.log(this.props);
+        const {
+            history,
+        } = this.props;
+        console.log(this.props);
+
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(googleProvider)
-            .then((result) => {
-                console.log(result);
+            .then(() => {
+                this.setState({ ...INITIAL_STATE });
+                history.push(routes.DASHBOARD);
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                this.setState({ ...INITIAL_STATE });
+                this.setState(byPropKey('error', error));
             });
 
             event.preventDefault();

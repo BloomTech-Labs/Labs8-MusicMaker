@@ -29,29 +29,29 @@ class App extends Component {
           <Route exact path={routes.LANDING} component={LandingPageView} />
           <Route exact path={routes.SIGN_UP} component={SignUpView} />
           <Route exact path={routes.SIGN_IN} component={SignInView} />
-          <Route exact path={routes.DASHBOARD} component={DashboardView} />
-          <Route exact path={routes.STUDENTS} component={StudentListView} />
+          <Route exact path={routes.DASHBOARD} component={withAuthentication(DashboardView)} />
+          <Route exact path={routes.STUDENTS} component={withAuthentication(StudentListView)} />
           <Route
             exact
             path={routes.CREATE_ASSIGNMENT}
-            component={CreateAssignmentView}
+            component={withAuthentication(CreateAssignmentView)}
           />
           <Route
             exact
             path={routes.ASSIGNMENTS}
-            component={DashboardAssignmentsView}
+            component={withAuthentication(DashboardAssignmentsView)}
           />
-          <Route exact path={routes.BILLING} component={DashboardBillingView} />
+          <Route exact path={routes.BILLING} component={withAuthentication(DashboardBillingView)} />
           <Route
             exact
             path={routes.SETTINGS}
-            component={DashboardSettingView}
+            component={withAuthentication(DashboardSettingView)}
           />
-          <Route exact path={routes.GRADING} component={GradeAssignmentView} />
+          <Route exact path={routes.GRADING} component={withAuthentication(GradeAssignmentView)} />
         </div>
       </div>
     );
   }
 }
 
-export default withAuthentication(App);
+export default (App);

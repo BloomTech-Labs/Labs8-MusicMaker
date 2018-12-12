@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import { Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Form, FormGroup, FormTitle, Input, Label } from 'reactstrap';
 
 const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
@@ -36,15 +36,13 @@ class Settings extends Component {
   render() {
     return (
       <div className="container" style = {formContainer}>
-        <Form>
-            <h1 className="subheader">
-              Your Information
-            </h1>
-            <p className="bodyText">Email: {this.state.email}</p>
-            <p className="bodyText">Title: {this.state.prefix}</p>
-            <p className="bodyText">First Name: {this.state.firstName}</p>
-            <p className="bodyText">Last Name: {this.state.lastName}</p>
-        </Form>
+        <Card>
+            <CardTitle>Your Information</CardTitle>
+            <CardSubtitle>Email: {this.state.email}</CardSubtitle>
+            <CardText>Title: {this.state.prefix}</CardText>
+            <CardText>First Name: {this.state.firstName}</CardText>
+            <CardText>Last Name: {this.state.lastName}</CardText>
+        </Card>
       </div>
     );
   }

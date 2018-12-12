@@ -28,7 +28,7 @@ class Settings extends Component {
                   lastName: res.data.name.lastName
               })
           })
-          .catch(err => console.error('SETTINGS AXIOS ERROR:', err));
+          .catch(err => console.error('Sorry, an error was encountered.', err));
   }
 
   render() {

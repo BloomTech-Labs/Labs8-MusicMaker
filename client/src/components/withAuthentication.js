@@ -20,11 +20,10 @@ const withAuthentication = (Component) => {
                 authUser
                     ? this.setState({ authUser })
                     : this.setState({ authUser: null });
-
-                    if (authUser === null) {
-                        // this needs to route to a page saying they don't have access here, set to LANDING for now
-                        this.props.history.push(routes.LANDING);
-                    } else return;
+                    // if (authUser === null) {
+                    //     // this needs to route to a page saying they don't have access here, set to LANDING for now
+                    //     this.props.history.push(routes.LANDING);
+                    // } else return;
             });
         }
 
@@ -33,6 +32,7 @@ const withAuthentication = (Component) => {
 
             return(
                 <AuthUserContext.Provider value={authUser}>
+                    {console.log('withAuth', authUser)}
                     <Component { ...this.props } />
                 </AuthUserContext.Provider>
             );

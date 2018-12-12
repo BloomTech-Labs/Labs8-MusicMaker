@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
+
 import withAuthentication from "./withAuthentication";
 import withPayment from './withPayment';
 
@@ -30,29 +31,29 @@ class App extends Component {
           <Route exact path={routes.LANDING} component={LandingPageView} />
           <Route exact path={routes.SIGN_UP} component={SignUpView} />
           <Route exact path={routes.SIGN_IN} component={SignInView} />
-          <Route exact path={routes.DASHBOARD} component={withAuthentication(DashboardView)} />
-          <Route exact path={routes.STUDENTS} component={withAuthentication(StudentListView)} />
+          <Route exact path={routes.DASHBOARD} component={DashboardView} />
+          <Route exact path={routes.STUDENTS} component={StudentListView} />
           <Route
             exact
             path={routes.CREATE_ASSIGNMENT}
-            component={withAuthentication(CreateAssignmentView)}
+            component={CreateAssignmentView}
           />
           <Route
             exact
             path={routes.ASSIGNMENTS}
-            component={withAuthentication(DashboardAssignmentsView)}
+            component={DashboardAssignmentsView}
           />
-          <Route exact path={routes.BILLING} component={withAuthentication(DashboardBillingView)} />
+          <Route exact path={routes.BILLING} component={DashboardBillingView} />
           <Route
             exact
             path={routes.SETTINGS}
-            component={withAuthentication(DashboardSettingView)}
+            component={DashboardSettingView}
           />
-          <Route exact path={routes.GRADING} component={withAuthentication(withPayment(GradeAssignmentView))} />
+          <Route exact path={routes.GRADING} component={withPayment(GradeAssignmentView)} />
         </div>
       </div>
     );
   }
 }
 
-export default (App);
+export default withAuthentication(App);

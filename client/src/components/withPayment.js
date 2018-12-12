@@ -23,7 +23,7 @@ const withPayment = Component => {
         .then(res => {
             if (res.data.subscribed != true) {
                 // this needs to route to a page saying they need to subscribe, set to DASHBOARD for now
-                this.props.history.push(routes.DASHBOARD)
+                this.props.history.push(routes.BILLING)
             } else return;
         })
         .catch(err => console.error(err));

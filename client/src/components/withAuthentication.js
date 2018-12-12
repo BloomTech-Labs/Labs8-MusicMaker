@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import AuthUserContext from './AuthUserContext';
 import { firebase } from '../firebase';
+import * as routes from '../constants/routes';
 
 const withAuthentication = (Component) => {
     class WithAuthentication extends React.Component {
@@ -19,6 +20,11 @@ const withAuthentication = (Component) => {
                 authUser
                     ? this.setState({ authUser })
                     : this.setState({ authUser: null });
+
+                    if (authUser === null) {
+                        // this needs to route to a page saying they don't have access here, set to LANDING for now
+                        this.props.history.push(routes.LANDING);
+                    } else return;
             });
         }
 

@@ -36,7 +36,7 @@ class Settings extends Component {
   render() {
     return (
       <div className="container" style = {formContainer}>
-        <Card>
+        <Card style = {{padding: "20px"}}>
             <CardTitle>Your Information</CardTitle>
             <CardSubtitle>Email: {this.state.email}</CardSubtitle>
             <CardText>Title: {this.state.prefix}</CardText>

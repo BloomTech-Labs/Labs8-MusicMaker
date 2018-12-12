@@ -141,7 +141,8 @@ app.get("/teacher/:idTeacher/student/:idStudent/assignments",(req, res) => {
           snap.forEach(doc => {
             global = doc.data();
             reformattedDueDate = parseDate(global.dueDate);
-            assignments.push([
+            assignments.push([ 
+              doc.id,
               global.assignmentName,
               reformattedDueDate,
               global.instrument,

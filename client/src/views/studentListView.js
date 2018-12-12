@@ -33,7 +33,7 @@ componentDidMount() {
     return (
       <div>
         <h1><Label>Students</Label></h1>
-        {/* <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
+        <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
           {this.state.students.map(student => (
             <Card key={student[0]} style={{ width:"40%", margin:"1%"}}>
               <NavLink to={`/studentAssignments/${student[0]}`} style={{textDecoration:"none", color:"black"}}>
@@ -44,7 +44,7 @@ componentDidMount() {
               </NavLink> 
             </Card>
           ))}
-        </div> */}
+        </div>
         {/* <Route path={'/studentAssignments/:studentId'} component={StudentAssignmentsView} /> */}
       </div>
     );

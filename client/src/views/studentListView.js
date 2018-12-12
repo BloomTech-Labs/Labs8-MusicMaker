@@ -4,6 +4,11 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import axios from 'axios';
+// import { Route } from "react-router-dom";
+
+// import * as routes from "../constants/routes";
+// import StudentAssignmentsView from "./studentAssignmentsView";
+
 
 class StudentListView extends Component {
   constructor(props) {
@@ -19,19 +24,16 @@ componentDidMount() {
   axios
       .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/students`)
       .then(res => {
-          // console.log('****************', res.data[0][0], res.data[0][1])
           this.setState({students: res.data})
       })
       .catch(err => console.error('STUDENT LIST VIEW AXIOS:', err));
 }
 
   render() {
-    // const studentId = '7HTc3cy6GGPWtjqfpgMB3ij3wY92' //this.props.match.params.id;
-
     return (
       <div>
         <h1><Label>Students</Label></h1>
-        <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
+        {/* <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
           {this.state.students.map(student => (
             <Card key={student[0]} style={{ width:"40%", margin:"1%"}}>
               <NavLink to={`/studentAssignments/${student[0]}`} style={{textDecoration:"none", color:"black"}}>
@@ -42,8 +44,8 @@ componentDidMount() {
               </NavLink> 
             </Card>
           ))}
-        </div>
-        {/* <Route path="/" /> */}
+        </div> */}
+        {/* <Route path={'/studentAssignments/:studentId'} component={StudentAssignmentsView} /> */}
       </div>
     );
   }

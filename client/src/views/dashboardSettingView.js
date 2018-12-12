@@ -18,16 +18,16 @@ class Settings extends Component {
     };
   };
 
-  updateName() {
+  updateName = event => {
     const teacherId = 'pwUGQC7SHBiPKPdnOq2c';
 
     axios
-      .put('/teacher/${teacherId}/settingsEdit')
+      .put('https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settingsEdit')
       .then(res => {
         console.log(res.data)
         this.setState({
-          firstName: res.data.name.firstName,
-          lastName: res.data.name.lastName
+          firstName: res.data.firstName,
+          lastName: res.data.lastName
         })
       })
       .catch(err => console.error('Sorry, an error was encountered while updating your settings.', err));

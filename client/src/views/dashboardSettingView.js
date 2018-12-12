@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import { Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+
 class Settings extends Component {
   constructor(props) {
     super(props);

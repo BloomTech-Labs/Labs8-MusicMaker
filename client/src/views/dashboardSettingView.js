@@ -26,11 +26,15 @@ class Settings extends Component {
       .then(res => {
         console.log(res.data)
         this.setState({
-          firstName: res.data.name.firstName,
-          lastName: res.data.name.lastName
+          firstName: res.data.firstName,
+          lastName: res.data.lastName
         })
       })
       .catch(err => console.error('Sorry, an error was encountered while updating your settings.', err));
+  }
+
+  handleChange = (e) => {
+    this.setState({inputValue: e.target.value});
   }
 
   handleSubmit(event) {
@@ -70,9 +74,9 @@ class Settings extends Component {
           <FormGroup>
             <h2>Update Your Information</h2>
               <Label>First Name</Label>
-                <Input value = {this.firstName} type = 'text' />
+                <Input value = {this.firstName} onChange = {this.handleChange} type = 'text' />
               <Label>Last Name</Label>
-                <Input value = {this.lastName} type = 'text' />
+                <Input value = {this.lastName} onChange = {this.handleChange} type = 'text' />
           </FormGroup>
           <Button type = 'submit' onClick = {this.updateName}>Submit Changes</Button>
         </Form>

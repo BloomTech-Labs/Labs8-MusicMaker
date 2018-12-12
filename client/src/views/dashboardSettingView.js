@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import { Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+import { Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Label } from 'reactstrap';
 
 class Settings extends Component {
   constructor(props) {
@@ -17,35 +17,20 @@ class Settings extends Component {
         axios
             .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settings')
             .then(res => {
-                console.log('*******************', res.data)
-                this.setState({
-                    email: res.data.email,
-                    prefix: res.data.name.prefix,
-                    firstName: res.data.name.firstName,
-                    lastName: res.data.name.lastName
-                })
+                this.setState({settings: res.data})
             })
             .catch(err => console.error('SETTINGS AXIOS ERROR:', err));
     }
 
   render() {
     return (
-      <div className="container">
-        <div className="flex-container">
-          <div className="block-container" id="setting">
-            <h1 className="subheader">
-              Your Settings
-            </h1>
-            <p className="bodyText">
-              This is immutable, for now it only directs to the settings of a
-              specific teacher
-            </p>
-            <p className="bodyText">Email: {this.state.email}</p>
-            <p className="bodyText">Prefix: {this.state.prefix}</p>
-            <p className="bodyText">First Name: {this.state.firstName}</p>
-            <p className="bodyText">Last Name: {this.state.lastName}</p>
-          </div>
-        </div>
+      <div>
+        <Label>Your Settings</Label>
+          {this.state.settings.map(teacher => (
+            <Card key = {teacher.id}>
+              <CardTitle>{teacher.Name}</CardTitle>
+            </Card>
+          ))}
       </div>
     );
   }

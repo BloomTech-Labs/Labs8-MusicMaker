@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Label } from 'reactstrap';
 
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
+
 class Settings extends Component {
   constructor(props) {
     super(props);
@@ -33,9 +35,7 @@ class Settings extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="flex-container">
-          <div className="block-container" id="setting">
+      <div className="container" style = {formContainer}>
             <h1 className="subheader">
               Your Information
             </h1>
@@ -43,8 +43,6 @@ class Settings extends Component {
             <p className="bodyText">Title: {this.state.prefix}</p>
             <p className="bodyText">First Name: {this.state.firstName}</p>
             <p className="bodyText">Last Name: {this.state.lastName}</p>
-          </div>
-        </div>
       </div>
     );
   }

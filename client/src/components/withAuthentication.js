@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import AuthUserContext from './AuthUserContext';
 import { firebase } from '../firebase';
@@ -32,7 +33,7 @@ const withAuthentication = (Component) => {
         }
     }
 
-    return WithAuthentication;
+    return withRouter(WithAuthentication);
 }
 
 export default withAuthentication;

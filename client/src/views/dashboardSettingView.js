@@ -16,16 +16,20 @@ class Settings extends Component {
     };
   };
 
-    componentDidMount() {
-      const teacherId = 'pwUGQC7SHBiPKPdnOq2c'; // change this (with params matching) to make this more dynamic, currently one teacher for testing
-
-        axios
-            .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settings')
-            .then(res => {
-                this.setState({settings: res.data})
-            })
-            .catch(err => console.error('Sorry, an error was encountered.', err));
-    }
+  componentDidMount() {
+      axios
+          .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/pwUGQC7SHBiPKPdnOq2c/settings') //match params.id when this becomes fully dynamic
+          .then(res => {
+              console.log(res.data)
+              this.setState({
+                  email: res.data.email,
+                  prefix: res.data.name.prefix,
+                  firstName: res.data.name.firstName,
+                  lastName: res.data.name.lastName
+              })
+          })
+          .catch(err => console.error('SETTINGS AXIOS ERROR:', err));
+  }
 
   render() {
     return (

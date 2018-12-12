@@ -38,24 +38,27 @@ class Settings extends Component {
 
   updateName = event => {
     const teacherId = 'pwUGQC7SHBiPKPdnOq2c';
-    const {firstName, lastName} = this.state;
+    const {prefix, firstName, lastName} = this.state;
 
     axios
-      .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settingsEdit`, {firstName, lastName})
+      .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settingsEdit`, {prefix, firstName, lastName})
       .then(res => {
-        console.log(res.data)
+        console.log(res)
         this.setState({
           prefix: res.data.prefix,
           firstName: res.data.firstName,
           lastName: res.data.lastName
         })
+        this.props.history.push(`teacher/${teacherId}/settings`); // not sure where exactly this has to be pushed
       })
       .catch(err => console.error('Sorry, an error was encountered while updating your settings.', err));
   }
 
-  handleChange = (e) => {
-    this.setState({inputValue: e.target.value});
-  }
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
+  };
 
   handleSubmit(event) {
     event.preventDefault();

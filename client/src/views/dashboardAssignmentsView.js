@@ -27,7 +27,7 @@ componentDidMount() {
           this.setState({assignments: res.data})
       })
       .catch(err => console.error('ASSIGNMENTS LIST VIEW AXIOS:', err));
-}
+};
 
   render() {
     return (
@@ -41,9 +41,8 @@ componentDidMount() {
                 <CardText>Experience: {assignment[1].level}</CardText>
                 <CardText>Instrument: {assignment[1].instrument}</CardText>
                 <CardText>Piece: {assignment[1].piece}</CardText>
-                <CardText>Music Sheet: <a href={assignment[1].sheetMusic}><img src={assignment[1].sheetMusic} alt="pdf image" /></a></CardText>
+                {/* <CardText>Music Sheet: <a href={assignment[1].sheetMusic}>pdf image</a></CardText>  //weird error appears, will fix later*/} 
                 <CardText>Instructions: {assignment[1].instructions.substring(0,35)}...</CardText>
-
               </NavLink> 
             </Card>
           ))}

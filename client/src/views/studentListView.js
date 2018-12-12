@@ -4,6 +4,11 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import axios from 'axios';
+import { Route } from "react-router-dom";
+
+import * as routes from "../constants/routes";
+import StudentAssignmentsView from "./studentAssignmentsView";
+
 
 class StudentListView extends Component {
   constructor(props) {
@@ -30,16 +35,17 @@ componentDidMount() {
         <h1><Label>Students</Label></h1>
         <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
           {this.state.students.map(student => (
-            <Card key={student.id} style={{ width:"40%", margin:"1%"}}>
-              <NavLink to={`/studentAssignments/${student.id}`} style={{textDecoration:"none", color:"black"}}>
-                <CardTitle>{student.firstName} {student.lastName}</CardTitle>
-                <CardText>{student.instrument}</CardText>
-                <CardText>{student.level}</CardText>
-                <CardText>{student.email}</CardText>
+            <Card key={student[0]} style={{ width:"40%", margin:"1%"}}>
+              <NavLink to={`/studentAssignments/${student[0]}`} style={{textDecoration:"none", color:"black"}}>
+                <CardTitle>{student[1].firstName} {student[1].lastName}</CardTitle>
+                <CardText>{student[1].instrument}</CardText>
+                <CardText>{student[1].level}</CardText>
+                <CardText>{student[1].email}</CardText>
               </NavLink> 
             </Card>
           ))}
         </div>
+        <Route path={'/studentAssignments/:studentId'} component={StudentAssignmentsView} />
       </div>
     );
   }

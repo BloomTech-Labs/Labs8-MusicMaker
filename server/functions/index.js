@@ -85,7 +85,7 @@ app.get("/teacher/:idTeacher/students", (req, res) => {
         .all(promises)
         .then(results => {
           const students = results.map(student => {
-            return student.data();
+            return [student.id, student.data()];
           });
           res.status(200).json(students);
         })
@@ -129,7 +129,7 @@ app.get("/teacher/:idTeacher/student/:idStudent/assignments",(req, res) => {
     try {
       const studentId = req.params["idStudent"];
       const teacherId = req.params["idTeacher"];
-      const assignments = {};
+      const assignments = [];
 
       //Student's assignments db reference:
       const studentAssignmentsRef = db.collection("students").doc(studentId).collection("teachers").doc(teacherId).collection("assignments");
@@ -141,7 +141,8 @@ app.get("/teacher/:idTeacher/student/:idStudent/assignments",(req, res) => {
           snap.forEach(doc => {
             global = doc.data();
             reformattedDueDate = parseDate(global.dueDate);
-            assignments[doc.id] = [
+            assignments.push([ 
+              doc.id,
               global.assignmentName,
               reformattedDueDate,
               global.instrument,
@@ -152,7 +153,9 @@ app.get("/teacher/:idTeacher/student/:idStudent/assignments",(req, res) => {
               global.video,
               global.feedback,
               global.grade
-            ];
+            ])
+            
+
           });
           res.status(200).json(assignments);
         });
@@ -188,7 +191,8 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
               const studentInfo = student.data();
               const assignmentInfo = assignment.data();
 
-              return Object.assign({}, assignmentInfo, studentInfo ) 
+              return Object.assign([assignmentInfo, studentInfo] )
+              // return Object.assign({}, assignmentInfo, studentInfo )  
             });
           });
 
@@ -396,7 +400,7 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
 app.get("/teacher/:idTeacher/assignments", (req, res) => {
   try {
     const teacherId = req.params["idTeacher"];
-    const allAssignments = {};
+    const allAssignments = [];
 
     // Teacher's assignments db reference:
     const teacherAssignmentsRef = db.collection("teachers").doc(teacherId).collection("assignments");
@@ -405,7 +409,7 @@ app.get("/teacher/:idTeacher/assignments", (req, res) => {
     .get()
     .then(assignments => {
       assignments.forEach(assignment => {
-        allAssignments[assignment.id] = assignment.data();
+        allAssignments.push([assignment.data()]);
       });
 
       res.status(200).json(allAssignments);

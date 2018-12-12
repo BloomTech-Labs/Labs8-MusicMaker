@@ -17,6 +17,7 @@ import CreateAssignmentView from "../views/createAssignmentView";
 import DashboardBillingView from "../views/dashboardBillingView";
 import DashboardSettingView from "../views/dashboardSettingView";
 import GradeAssignmentView from "../views/gradeAssignmentView";
+import StudentAssignmentsView from "../views/studentAssignmentsView"
 
 class App extends Component {
   render() {
@@ -33,6 +34,8 @@ class App extends Component {
           <Route exact path={routes.SIGN_IN} component={SignInView} />
           <Route exact path={routes.DASHBOARD} component={DashboardView} />
           <Route exact path={routes.STUDENTS} component={StudentListView} />
+          <Route exact path={routes.STUDENTSASSIGNMETS} component={StudentAssignmentsView} />
+
           <Route
             exact
             path={routes.CREATE_ASSIGNMENT}

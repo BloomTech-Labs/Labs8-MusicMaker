@@ -18,6 +18,21 @@ class Settings extends Component {
     };
   };
 
+  updateName() {
+    const teacherId = 'pwUGQC7SHBiPKPdnOq2c';
+
+    axios
+      .put('/teacher/${teacherId}/settingsEdit')
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          firstName: res.data.name.firstName,
+          lastName: res.data.name.lastName
+        })
+      })
+      .catch(err => console.error('Sorry, an error was encountered while updating your settings.', err));
+  }
+
   componentDidMount() {
       axios
           .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/pwUGQC7SHBiPKPdnOq2c/settings') //match params.id when this becomes fully dynamic
@@ -43,6 +58,16 @@ class Settings extends Component {
             <CardText>First Name: {this.state.firstName}</CardText>
             <CardText>Last Name: {this.state.lastName}</CardText>
         </Card>
+        <Form>
+          <FormGroup>
+            <h2>Update Your Information</h2>
+              <Label>First Name</Label>
+                <Input value = {this.firstName} type = 'text' />
+              <Label>Last Name</Label>
+                <Input value = {this.lastName} type = 'text' />
+          </FormGroup>
+          <Button onClick = {this.updateName}>Submit Changes</Button>
+        </Form>
       </div>
     );
   }

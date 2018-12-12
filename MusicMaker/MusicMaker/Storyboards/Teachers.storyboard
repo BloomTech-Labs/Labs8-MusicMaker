@@ -119,7 +119,7 @@
                         <constraints>
                             <constraint firstItem="gnV-Mz-9G7" firstAttribute="trailing" secondItem="TeA-Y6-gtb" secondAttribute="trailing" id="41k-uj-ao7"/>
                             <constraint firstItem="k0l-B1-hDh" firstAttribute="height" secondItem="uvy-aJ-JWT" secondAttribute="height" multiplier="0.8" id="7i7-up-R1c"/>
-                            <constraint firstItem="gnV-Mz-9G7" firstAttribute="bottom" secondItem="TeA-Y6-gtb" secondAttribute="bottom" id="BXQ-k1-SL6"/>
+                            <constraint firstItem="gnV-Mz-9G7" firstAttribute="bottom" secondItem="uvy-aJ-JWT" secondAttribute="bottom" id="BXQ-k1-SL6"/>
                             <constraint firstItem="gnV-Mz-9G7" firstAttribute="top" secondItem="TeA-Y6-gtb" secondAttribute="top" id="K0X-te-BYm"/>
                             <constraint firstItem="k0l-B1-hDh" firstAttribute="top" secondItem="gnV-Mz-9G7" secondAttribute="bottom" id="PV2-gh-xLW"/>
                             <constraint firstItem="k0l-B1-hDh" firstAttribute="leading" secondItem="TeA-Y6-gtb" secondAttribute="leading" id="ZTf-Wz-laR"/>

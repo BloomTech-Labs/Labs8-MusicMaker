@@ -19,7 +19,7 @@ class TeachersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         splitViewController?.delegate = self
-        tableView.rowHeight = 300
+        tableView.rowHeight = 375
         fetchStudent()
         NotificationCenter.default.addObserver(self, selector: #selector(hideQrView), name: .newTeacher, object: nil)
         
@@ -130,21 +130,19 @@ extension TeachersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeacherCell", for: indexPath) as! TeacherTableViewCell
         let teacher = teachers[indexPath.row]
-        let pieChartDataEntry = sortTeacherAssignments(for: teacher)
-        let chartDataSet = PieChartDataSet(values: pieChartDataEntry, label: nil)
-        chartDataSet.colors = [UIColor.blue1, UIColor.blue2, UIColor.blue3, UIColor.blue4, UIColor.blue5]
-        let chartData = PieChartData(dataSet: chartDataSet)
-        cell.assignmentsPieChart.data = chartData
-        cell.assignmentsPieChart.centerText = teacher.name
+        cell.teacher = teacher
+        cell.pieChartDataEntry = sortTeacherAssignments(for: teacher)
+       
         return cell
     }
     
     private func sortTeacherAssignments(for teacher: Teacher) -> [PieChartDataEntry] {
-        let numberOfUnsubmittedAssignments = PieChartDataEntry(value: 0)
-        let numberOfPassedAssignments = PieChartDataEntry(value: 0)
-        let numberOfFailedAssignments = PieChartDataEntry(value: 0)
-        let numberOfPendingAssignments = PieChartDataEntry(value: 0)
-        let other = PieChartDataEntry(value: 0)
+        let numberOfUnsubmittedAssignments = PieChartDataEntry(value: 0, label: "Unsubmitted")
+        let numberOfPassedAssignments = PieChartDataEntry(value: 0, label: "Passed")
+        let numberOfFailedAssignments = PieChartDataEntry(value: 0, label: "Failed")
+        let numberOfPendingAssignments = PieChartDataEntry(value: 0, label: "Pending")
+        let other = PieChartDataEntry(value: 0, label: "Other")
+        let allAssigments = [numberOfUnsubmittedAssignments, numberOfPassedAssignments, numberOfFailedAssignments, numberOfPendingAssignments, other]
         if let assignments = teacher.assignments as? Set<Assignment> {
             for assignment in assignments {
                 switch assignment.status {
@@ -162,7 +160,14 @@ extension TeachersViewController: UITableViewDataSource {
                 }
             }
         }
-        return [numberOfUnsubmittedAssignments, numberOfPassedAssignments, numberOfFailedAssignments, numberOfPendingAssignments, other]
+        var pieChartDataEntries = [PieChartDataEntry]()
+        for assignment in allAssigments {
+            if assignment.value > 0 {
+                pieChartDataEntries.append(assignment)
+                
+            }
+        }
+        return pieChartDataEntries
     }
 }
 

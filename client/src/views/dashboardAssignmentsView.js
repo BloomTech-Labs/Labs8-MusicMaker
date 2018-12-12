@@ -4,11 +4,6 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import axios from 'axios';
-// import { Route } from "react-router-dom";
-
-// import * as routes from "../constants/routes";
-// import StudentAssignmentsView from "./studentAssignmentsView";
-
 
 class DashboardAssignmentsView extends Component {
   constructor(props) {
@@ -24,10 +19,9 @@ componentDidMount() {
   axios
       .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignments`)
       .then(res => {
-          console.log('Axios*******************', res.data[0], res.data[1].assignmentName)
           this.setState({assignments: res.data})
       })
-      .catch(err => console.error('STUDENT LIST VIEW AXIOS:', err));
+      .catch(err => console.error('ASSIGNMENTS LIST VIEW AXIOS:', err));
 }
 
   render() {
@@ -39,13 +33,16 @@ componentDidMount() {
             <Card key={assignment[0]} style={{ width:"40%", margin:"1%"}}>
               <NavLink to={`/assignmentStudents/${assignment[0]}`} style={{textDecoration:"none", color:"black"}}>
                 <CardTitle>{assignment[1].assignmentName}</CardTitle>
-                <CardText>Instrument: {assignment[1].instrument}</CardText>
                 <CardText>Experience: {assignment[1].level}</CardText>
+                <CardText>Instrument: {assignment[1].instrument}</CardText>
+                <CardText>Piece: {assignment[1].piece}</CardText>
+                <CardText>Music Sheet: <a href={assignment[1].sheetMusic}><img src={assignment[1].sheetMusic} alt="pdf image" /></a></CardText>
+                <CardText>Instructions: {assignment[1].instructions.substring(0,35)}...</CardText>
+
               </NavLink> 
             </Card>
           ))}
         </div>
-        {/* <Route path={'/assignmentStudents/:assignmentId'} component={StudentAssignmentsView} /> */}
       </div>
     );
   }

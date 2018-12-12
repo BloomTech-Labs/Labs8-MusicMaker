@@ -11,7 +11,12 @@ import Charts
 
 class TeacherTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var assignmentsPieChart: PieChartView!
+    @IBOutlet weak var assignmentsPieChart: PieChartView! {
+        didSet {
+            assignmentsPieChart.isUserInteractionEnabled = false
+        }
+    }
+    
     
     
 

@@ -18,6 +18,7 @@ class TeachersViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        splitViewController?.delegate = self
         tableView.rowHeight = 300
         fetchStudent()
         NotificationCenter.default.addObserver(self, selector: #selector(hideQrView), name: .newTeacher, object: nil)
@@ -168,4 +169,15 @@ extension TeachersViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension TeachersViewController: UITableViewDelegate {
     
+}
+
+// MARK: - UISplitViewControllerDelegate
+extension TeachersViewController: UISplitViewControllerDelegate {
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        if let _ = splitViewController.viewControllers.last as? UnsubmittedAssignmentViewController, let _ = splitViewController.viewControllers.last as? SubmittedAssignmentViewController {
+            return false
+        }
+        
+        return true
+    }
 }

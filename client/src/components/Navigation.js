@@ -13,7 +13,15 @@ const formContainer = { maxWidth: 800, height: 90, margin: "0 auto 10px" };
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
-    {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
+    {authUser => 
+    // {
+    //   console.log('nav', authUser)
+    // }
+      
+      (authUser 
+        ? <NavigationAuth /> 
+        : <NavigationNonAuth />)
+    }
   </AuthUserContext.Consumer>
 );
 

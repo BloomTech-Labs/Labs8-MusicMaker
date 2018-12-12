@@ -36,6 +36,7 @@ class TeacherTableViewCell: UITableViewCell {
                     let myAttribute = [NSAttributedString.Key.font: UIFont(name: "Merriweather", size: 20.0)!, NSMutableAttributedString.Key.foregroundColor: UIColor.blue1]
                     let myAttrString = NSAttributedString(string: teacher.name ?? "N/A", attributes: myAttribute)
                     assignmentsPieChart.centerAttributedText = myAttrString
+                    assignmentsPieChart.animate(yAxisDuration: 1.0)
                 }
             }
         }

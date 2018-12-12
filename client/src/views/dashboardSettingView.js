@@ -74,9 +74,9 @@ class Settings extends Component {
           <FormGroup>
             <h2>Update Your Information</h2>
               <Label>First Name</Label>
-                <Input value = {this.firstName} onChange = {this.handleChange} type = 'text' />
+                <Input value = {this.firstName} onChange = {(e) => this.handleChange(e)} type = 'text' />
               <Label>Last Name</Label>
-                <Input value = {this.lastName} onChange = {this.handleChange} type = 'text' />
+                <Input value = {this.lastName} onChange = {(e) => this.handleChange(e)} type = 'text' />
           </FormGroup>
           <Button type = 'submit' onClick = {this.updateName}>Submit Changes</Button>
         </Form>

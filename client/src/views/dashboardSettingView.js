@@ -17,8 +17,10 @@ class Settings extends Component {
   };
 
     componentDidMount() {
+      const teacherId = 'pwUGQC7SHBiPKPdnOq2c' // change this (with params matching) to make this more dynamic, currently one teacher for testing
+      
         axios
-            .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/AHnU7PuWMohJWEWZJbvd/settings')
+            .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settings')
             .then(res => {
                 console.log('*******************', res.data)
                 this.setState({

@@ -24,7 +24,7 @@ componentDidMount() {
   axios
       .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignments`)
       .then(res => {
-          console.log('Axios*******************', res.data)
+          console.log('Axios*******************', res.data[0], res.data[1].assignmentName)
           this.setState({assignments: res.data})
       })
       .catch(err => console.error('STUDENT LIST VIEW AXIOS:', err));
@@ -34,7 +34,18 @@ componentDidMount() {
     return (
       <div>
         <h1><Label>Assignments</Label></h1>
-       
+        <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
+          {this.state.assignments.map(assignment => (
+            <Card key={assignment[0]} style={{ width:"40%", margin:"1%"}}>
+              <NavLink to={`/assignmentStudents/${assignment[0]}`} style={{textDecoration:"none", color:"black"}}>
+                <CardTitle>{assignment[1].assignmentName}</CardTitle>
+                <CardText>Instrument: {assignment[1].instrument}</CardText>
+                <CardText>Experience: {assignment[1].level}</CardText>
+              </NavLink> 
+            </Card>
+          ))}
+        </div>
+        {/* <Route path={'/assignmentStudents/:assignmentId'} component={StudentAssignmentsView} /> */}
       </div>
     );
   }

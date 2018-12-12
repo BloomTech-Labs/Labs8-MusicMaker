@@ -10,12 +10,15 @@ import UIKit
 import AVFoundation
 import FirebaseAuth
 import FirebaseFirestore
+import Charts
+
 
 class TeachersViewController: UIViewController {
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 300
         fetchStudent()
         NotificationCenter.default.addObserver(self, selector: #selector(hideQrView), name: .newTeacher, object: nil)
         
@@ -124,10 +127,41 @@ extension TeachersViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TeacherCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TeacherCell", for: indexPath) as! TeacherTableViewCell
         let teacher = teachers[indexPath.row]
-        cell.textLabel?.text = teacher.name
+        let pieChartDataEntry = sortTeacherAssignments(for: teacher)
+        let chartDataSet = PieChartDataSet(values: pieChartDataEntry, label: nil)
+        chartDataSet.colors = [UIColor.blue1, UIColor.blue2, UIColor.blue3, UIColor.blue4, UIColor.blue5]
+        let chartData = PieChartData(dataSet: chartDataSet)
+        cell.assignmentsPieChart.data = chartData
+        cell.assignmentsPieChart.centerText = teacher.name
         return cell
+    }
+    
+    private func sortTeacherAssignments(for teacher: Teacher) -> [PieChartDataEntry] {
+        let numberOfUnsubmittedAssignments = PieChartDataEntry(value: 0)
+        let numberOfPassedAssignments = PieChartDataEntry(value: 0)
+        let numberOfFailedAssignments = PieChartDataEntry(value: 0)
+        let numberOfPendingAssignments = PieChartDataEntry(value: 0)
+        let other = PieChartDataEntry(value: 0)
+        if let assignments = teacher.assignments as? Set<Assignment> {
+            for assignment in assignments {
+                switch assignment.status {
+                case .unsubmitted(_, _):
+                    numberOfUnsubmittedAssignments.value += 1
+                    print(numberOfUnsubmittedAssignments.value)
+                case .submitted(grade: "Passed"):
+                    numberOfPassedAssignments.value += 1
+                case .submitted(grade: "Failed"):
+                    numberOfFailedAssignments.value += 1
+                case .submitted(grade: nil):
+                    numberOfPendingAssignments.value += 1
+                case .submitted:
+                    other.value += 1
+                }
+            }
+        }
+        return [numberOfUnsubmittedAssignments, numberOfPassedAssignments, numberOfFailedAssignments, numberOfPendingAssignments, other]
     }
 }
 

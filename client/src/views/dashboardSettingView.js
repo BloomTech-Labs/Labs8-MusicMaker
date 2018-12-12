@@ -44,7 +44,8 @@ class Settings extends Component {
                   email: res.data.email,
                   prefix: res.data.name.prefix,
                   firstName: res.data.name.firstName,
-                  lastName: res.data.name.lastName
+                  lastName: res.data.name.lastName,
+                  subscribed: true
               })
           })
           .catch(err => console.error('Sorry, an error was encountered.', err));
@@ -60,7 +61,7 @@ class Settings extends Component {
             <CardText>First Name: {this.state.firstName}</CardText>
             <CardText>Last Name: {this.state.lastName}</CardText>
         </Card>
-        <Form>
+        <Form onSubmit = {this.updateName}>
           <FormGroup>
             <h2>Update Your Information</h2>
               <Label>First Name</Label>
@@ -68,7 +69,7 @@ class Settings extends Component {
               <Label>Last Name</Label>
                 <Input value = {this.lastName} type = 'text' />
           </FormGroup>
-          <Button onClick = {this.updateName}>Submit Changes</Button>
+          <Button type = 'submit'>Submit Changes</Button>
         </Form>
       </div>
     );

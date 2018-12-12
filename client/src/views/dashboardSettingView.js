@@ -18,30 +18,6 @@ class Settings extends Component {
     };
   };
 
-  updateName = event => {
-    const teacherId = 'pwUGQC7SHBiPKPdnOq2c';
-
-    axios
-      .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settingsEdit`)
-      .then(res => {
-        console.log(res.data)
-        this.setState({
-          firstName: res.data.name.firstName,
-          lastName: res.data.name.lastName
-        })
-      })
-      .catch(err => console.error('Sorry, an error was encountered while updating your settings.', err));
-  }
-
-  handleChange = (e) => {
-    this.setState({inputValue: e.target.value});
-  }
-
-  handleSubmit(event) {
-    alert(`Settings updated successfully! Your name is now ${this.state.firstName} ${this.state.lastName}.`);
-    event.preventDefault();
-  }
-
   componentDidMount() {
     const teacherId = 'pwUGQC7SHBiPKPdnOq2c';
 
@@ -60,6 +36,32 @@ class Settings extends Component {
           .catch(err => console.error('Sorry, an error was encountered.', err));
   }
 
+  updateName = event => {
+    const teacherId = 'pwUGQC7SHBiPKPdnOq2c';
+    const {firstName, lastName} = this.state;
+
+    axios
+      .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settingsEdit`, {firstName, lastName})
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          prefix: res.data.prefix,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName
+        })
+      })
+      .catch(err => console.error('Sorry, an error was encountered while updating your settings.', err));
+  }
+
+  handleChange = (e) => {
+    this.setState({inputValue: e.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    alert(`Settings updated successfully! Your name is now ${this.state.prefix} ${this.state.firstName} ${this.state.lastName}.`);
+  }
+
   render() {
     return (
       <div className="container" style = {formContainer}>
@@ -73,6 +75,8 @@ class Settings extends Component {
         <Form onSubmit = {(e) => this.handleSubmit(e)}>
           <FormGroup>
             <h2>Update Your Information</h2>
+              <Label>Title</Label>
+                <Input value = {this.prefix} onChange = {(e) => this.handleChange(e)} type = 'text' />
               <Label>First Name</Label>
                 <Input value = {this.firstName} onChange = {(e) => this.handleChange(e)} type = 'text' />
               <Label>Last Name</Label>

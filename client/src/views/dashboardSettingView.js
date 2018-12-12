@@ -26,8 +26,8 @@ class Settings extends Component {
       .then(res => {
         console.log(res.data)
         this.setState({
-          firstName: res.data.firstName,
-          lastName: res.data.lastName
+          firstName: res.data.name.firstName,
+          lastName: res.data.name.lastName
         })
       })
       .catch(err => console.error('Sorry, an error was encountered while updating your settings.', err));
@@ -38,7 +38,7 @@ class Settings extends Component {
   }
 
   handleSubmit(event) {
-    alert('Settings updated: ' + this.state.name);
+    alert('Settings updated: ' + this.state.firstName);
     event.preventDefault();
   }
 
@@ -70,7 +70,7 @@ class Settings extends Component {
             <CardText>First Name: {this.state.firstName}</CardText>
             <CardText>Last Name: {this.state.lastName}</CardText>
         </Card>
-        <Form onSubmit = {this.handleSubmit}>
+        <Form onSubmit = {(e) => this.handleSubmit(e)}>
           <FormGroup>
             <h2>Update Your Information</h2>
               <Label>First Name</Label>

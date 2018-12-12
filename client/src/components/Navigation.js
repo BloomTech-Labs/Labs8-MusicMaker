@@ -6,11 +6,10 @@ import * as routes from "../constants/routes";
 import AuthUserContext from "./AuthUserContext";
 import SignOutButton from "../components/SignOutButton";
 
-// import homeIcon from "../less/imgs/homeIcon.png";
 import mmLogo from "../less/imgs/logo2.png";
-import { Button } from 'reactstrap';
+import { Button } from "reactstrap";
 
-const formContainer = { maxWidth: 800, height: 90, margin: '0 auto 10px' };
+const formContainer = { maxWidth: 800, height: 90, margin: "0 auto 10px" };
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
@@ -33,13 +32,14 @@ const NavigationNonAuth = () => (
       <img src={mmLogo} />
     </NavbarBrand>
     <Nav>
-      <Button outline color="primary"
-                      size="sm"
-                      style={{ marginRight: "25px" }}
-      >
-      <NavLink href={routes.SIGN_UP}>Sign Up</NavLink>
+      <Button outline color="primary" size="sm" style={{ marginRight: "25px" }}>
+        <NavLink href={routes.SIGN_UP}>Sign Up</NavLink>
       </Button>
-      <Button color="primary" size="sm"><NavLink style={{ color: "#FFFFFF" }} href={routes.SIGN_IN}>Sign In</NavLink></Button>
+      <Button color="primary" size="sm">
+        <NavLink style={{ color: "#FFFFFF" }} href={routes.SIGN_IN}>
+          Sign In
+        </NavLink>
+      </Button>
     </Nav>
   </Navbar>
 );

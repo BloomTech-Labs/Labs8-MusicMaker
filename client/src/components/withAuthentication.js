@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 
 import AuthUserContext from './AuthUserContext';
 import { firebase } from '../firebase';
-import * as routes from '../constants/routes';
 
 const withAuthentication = (Component) => {
     class WithAuthentication extends React.Component {
@@ -20,8 +19,6 @@ const withAuthentication = (Component) => {
                 authUser
                     ? this.setState({ authUser })
                     : this.setState({ authUser: null });
-
-                // if(!this.state.authUser || this.state.authUser === null) this.props.history.push(routes.SIGN_IN);
             });
         }
 

@@ -34,6 +34,7 @@ class QRScannerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.qrView.captureSession?.startRunning()
+        qrCodeFeedbackLabel.isHidden = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -41,6 +42,21 @@ class QRScannerViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .qrHidden, object: nil)
         NotificationCenter.default.removeObserver(self, name: .qrShown, object: nil)
         qrView.captureSession?.stopRunning()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        switch UIApplication.shared.statusBarOrientation {
+        case .portrait:
+            qrView.videoPreviewLayer.connection?.videoOrientation = .portrait
+        case .portraitUpsideDown:
+            qrView.videoPreviewLayer.connection?.videoOrientation = .portraitUpsideDown
+        case .landscapeLeft:
+            qrView.videoPreviewLayer.connection?.videoOrientation = .landscapeLeft
+        case .landscapeRight:
+            qrView.videoPreviewLayer.connection?.videoOrientation = .landscapeRight
+        default:
+            break
+        }
     }
     
     // MARK: - IBOutlets

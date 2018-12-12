@@ -14,7 +14,7 @@ class FirstAndLastNameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     // MARK: - Delegate
@@ -22,6 +22,11 @@ class FirstAndLastNameViewController: UIViewController {
 
     
     // MARK: - IBOutlets
+    @IBOutlet weak var nextButton: UIButton! {
+        didSet {
+            nextButton.layer.cornerRadius = 5.0
+        }
+    }
     @IBOutlet weak var firstNameTextField: HoshiTextField! {
         didSet {
             firstNameTextField.delegate = self
@@ -58,19 +63,27 @@ class FirstAndLastNameViewController: UIViewController {
 }
 
 // MARK: - UITextFieldDelegate
+
+//FIX IS HIDDEN VS ALPHA STUFF
 extension FirstAndLastNameViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
         case 0:
             if textField.text?.count ?? 0 > 0 {
+                firstNameCheckmarkAnimation.alpha = 1
                 firstNameCheckmarkAnimation.play()
             }
         case 1:
             if textField.text?.count ?? 0 > 0 {
+                lastNameCheckmarkAnimation.alpha = 1
                 lastNameCheckmarkAnimation.play()
             }
         default:
             break
+        }
+        if firstNameCheckmarkAnimation.alpha == 1 && lastNameCheckmarkAnimation.alpha == 1 {
+            nextButton.alpha = 1
+            nextButton.isEnabled = true
         }
     }
     

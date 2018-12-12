@@ -24,6 +24,11 @@ class EmailAndPasswordViewController: UIViewController {
     
     // MARK: - IBOutlets
     
+    @IBOutlet weak var nextButton: UIButton! {
+        didSet {
+            nextButton.layer.cornerRadius = 5.0
+        }
+    }
     @IBOutlet weak var emailTextField: HoshiTextField! {
         didSet {
             emailTextField.delegate = self
@@ -58,13 +63,11 @@ class EmailAndPasswordViewController: UIViewController {
         emailCheckmark.animation = "checkmark"
         confirmPasswordAnimation.animation = "eye01"
         passwordAnimation.animation = "eye01"
+        passwordAnimation.logHierarchyKeypaths()
         
         emailCheckmark.contentMode = .scaleAspectFit
         confirmPasswordAnimation.contentMode = .scaleAspectFit
         passwordAnimation.contentMode = .scaleAspectFit
-        
-        emailCheckmark.isHidden = true
-        
     }
     
     private func setupGestureRecognizers() {
@@ -106,11 +109,15 @@ extension EmailAndPasswordViewController: UITextFieldDelegate {
         switch textField.tag {
         case 0:
             if textField.text?.count ?? 0 > 0 {
-                emailCheckmark.isHidden = false
+                emailCheckmark.alpha = 1
                 emailCheckmark.play()
             }
         default:
             break
+        }
+        if emailCheckmark.alpha == 1 && passwordTextField.text?.count ?? 0 > 0 && confirmPasswordTextField.text?.count ?? 0 > 0 {
+            nextButton.alpha = 1
+            nextButton.isEnabled = true
         }
     }
     

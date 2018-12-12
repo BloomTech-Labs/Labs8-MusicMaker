@@ -19,6 +19,7 @@ class AddTeacherOptionsViewController: UIViewController {
         
         setupScrollViewChildren()
         scrollView.isPagingEnabled = true
+        
 
     }
     
@@ -39,18 +40,29 @@ class AddTeacherOptionsViewController: UIViewController {
         
         let views: [String: UIView] = ["view": scrollView, "qrScanner": qrScanner.view, "qrReader": qrReader.view]
         
-        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[qrScanner(==view)]|", options: [], metrics: nil, views: views)
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[qrScanner(==view)]|", options: [.alignAllLeft, .alignAllRight], metrics: nil, views: views)
         
         let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[qrScanner(==view)][qrReader(==view)]|", options: [.alignAllTop, .alignAllBottom], metrics: nil, views: views)
         
         NSLayoutConstraint.activate(verticalConstraints + horizontalConstraints)
         
     }
+    
+    
+    override func viewDidLayoutSubviews() {
+        
+        preferredContentSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+    }
 
     // MARK: - IBOutlets
     
     @IBOutlet weak var underlineBarLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var underlineBar: UIView!
+    @IBOutlet weak var underlineBar: UIView! {
+        didSet {
+//            underlineBar.layer.borderColor = UIColor.blue3.cgColor
+//            underlineBar.layer.borderWidth = 1
+        }
+    }
     @IBOutlet weak var scrollView: UIScrollView!
     
     // MARK: - Properties
@@ -64,6 +76,7 @@ class AddTeacherOptionsViewController: UIViewController {
     
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.isHidden = false
+        title = nil
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }

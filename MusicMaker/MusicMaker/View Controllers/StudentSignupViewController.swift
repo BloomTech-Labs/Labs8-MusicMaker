@@ -20,9 +20,10 @@ class StudentSignupViewController: UIViewController {
         addDismissKeyboardGestureRecognizer()
         setupNavigationBar()
     }
+        
     
     override func viewDidLayoutSubviews() {
-        setupContainerViews()
+//        setupContainerViews()
     }
     
     private func setupNavigationBar() {
@@ -37,7 +38,6 @@ class StudentSignupViewController: UIViewController {
     @IBOutlet weak var levelAndInstrumentView: UIView!
     @IBOutlet weak var emailAndPasswordView: UIView!
     @IBOutlet weak var firstAndLastNameView: UIView!
-   
     @IBOutlet weak var pageControl: UIPageControl! {
         didSet {
             pageControl.numberOfPages = isSigningUpWithGoogle ? 2 : 3
@@ -46,19 +46,32 @@ class StudentSignupViewController: UIViewController {
     
     // MARK: - Properties
     var isSigningUpWithGoogle = false
-    
+
     var teacherUniqueId: String?
     var email: String?
     var password: String?
     var firstName: String?
     var lastName: String?
     
+
     // MARK: - Private Methods
-    private func setupContainerViews() {
-        emailAndPasswordView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
-        levelAndInstrumentView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
-    }
+//    private func setupContainerViews() {
+//        emailAndPasswordView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
+//        levelAndInstrumentView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
+//    }
     
+    private func writeStudentToFirestore(userId: String, level: String, instrument: String) {
+        guard let email = email, let firstName = firstName, let lastName = lastName, let teacherUniqueId = teacherUniqueId else {return}
+        
+        let database = Firestore.firestore()
+        let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level]
+        database.collection("students").document(userId).setData(userDocumentInformation)
+        database.collection("students").document(userId).collection("teachers").document(teacherUniqueId).setData(["exisits": true])
+        database.collection("teachers").document(teacherUniqueId).collection("students").document(userId).setData(userDocumentInformation)
+        
+        self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
+        
+    }
     
     //Adds a gesture recognizer that calls dismissKeyboard(_:)
     private func addDismissKeyboardGestureRecognizer() {
@@ -106,26 +119,18 @@ extension StudentSignupViewController: EmailAndPasswordViewControllerDelegate {
     func nextButtonTapped(with email: String, password: String) {
         self.email = email
         self.password = password
-        UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
-            self.emailAndPasswordView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
-            self.levelAndInstrumentView.transform = .identity
-            
-        })
+        UIView.transition(from: emailAndPasswordView, to: levelAndInstrumentView, duration: 0.7, options: [.showHideTransitionViews, .transitionFlipFromRight], completion: nil)
+//        UIView.animate(withDuration: 0.4, delay: 0, options: [.transitionCurlDown], animations: {
+////            self.emailAndPasswordView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+////            self.levelAndInstrumentView.transform = .identity
+//            self.emailAndPasswordView.isHidden = true
+//            self.levelAndInstrumentView.isHidden = false
+//
+//        })
         pageControl.currentPage += 1
     }
     
-    func writeStudentToFirestore(userId: String, level: String, instrument: String) {
-        guard let email = email, let firstName = firstName, let lastName = lastName, let teacherUniqueId = teacherUniqueId else {return}
-   
-        let database = Firestore.firestore()
-        let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level]
-        database.collection("students").document(userId).setData(userDocumentInformation)
-        database.collection("students").document(userId).collection("teachers").document(teacherUniqueId).setData(["exisits": true])
-        database.collection("teachers").document(teacherUniqueId).collection("students").document(userId).setData(userDocumentInformation)
-        
-        self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
-        
-    }
+    
     
     
 }
@@ -177,14 +182,35 @@ extension StudentSignupViewController: FirstAndLastNameViewControllerDelegate {
     func nextButtonTapped(firstName: String, lastName: String) {
         self.firstName = firstName
         self.lastName = lastName
+       
         
-        isSigningUpWithGoogle ? UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
-            self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
-            self.levelAndInstrumentView.transform = .identity
-        }) : UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
-            self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
-            self.emailAndPasswordView.transform = .identity
-        })
+        
+        if isSigningUpWithGoogle {
+            UIView.transition(from: firstAndLastNameView, to: levelAndInstrumentView, duration: 0.7, options: [.showHideTransitionViews, .transitionFlipFromRight], completion: nil)
+        } else {
+            UIView.transition(from: firstAndLastNameView, to: emailAndPasswordView, duration: 0.7, options: [.showHideTransitionViews, .transitionFlipFromRight], completion: nil)
+        }
+        
+//        if isSigningUpWithGoogle {
+//            UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+//                self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+//                self.levelAndInstrumentView.transform = .identity
+//            })
+//        } else {
+//            UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+//                self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+//                self.emailAndPasswordView.transform = .identity
+//            })
+//        }
+        
+        
+//        isSigningUpWithGoogle ? UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+//            self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+//            self.levelAndInstrumentView.transform = .identity
+//        }) : UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+//            self.firstAndLastNameView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+//            self.emailAndPasswordView.transform = .identity
+//        })
         pageControl.currentPage += 1
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseFirestore
 import Firebase
+import GoogleSignIn
 
 class UserProfileViewController: UIViewController {
     
@@ -18,8 +19,8 @@ class UserProfileViewController: UIViewController {
     let database = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
     var student: Student?
-    // MARK: - IBOutlets
     
+    // MARK: - IBOutlets
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var updateEmailButton: UIButton!
@@ -66,7 +67,30 @@ class UserProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func logOut(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            GIDSignIn.sharedInstance().signOut()
+            let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
+            let initialVC = storyboard.instantiateViewController(withIdentifier: "FirstNavController")
+            self.present(initialVC, animated: true, completion: nil)
+        } catch {
+            //Update UI to let them know it couldn't sign them out
+        }
+    }
     
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ResetPassword":
+            if let resetPasswordVC = segue.destination as? ResetPasswordViewController {
+                resetPasswordVC.student = student
+            }
+        default:
+            break
+        }
+    }
    
 
 }

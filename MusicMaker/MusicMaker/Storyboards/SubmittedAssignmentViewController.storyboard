@@ -5,68 +5,16 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Music SheetPDF Single View Controller-->
-        <scene sceneID="4pM-HB-NBd">
+        <!--RecordingViewController-->
+        <scene sceneID="CCT-3k-bMy">
             <objects>
-                <viewController id="wrs-HN-lOk" customClass="MusicSheetPDFSingleViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="KtH-k6-ohG">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MMl-th-gUF" customClass="PDFView">
-                                <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
-                                <color key="backgroundColor" red="0.87239747560000003" green="0.87861778810000002" blue="0.89727872549999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vN-YM-wn6">
-                                <rect key="frame" x="384" y="0.0" width="384" height="1024"/>
-                                <connections>
-                                    <action selector="nextPage:" destination="wrs-HN-lOk" eventType="touchUpInside" id="gmj-8s-drt"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCy-fv-qMg">
-                                <rect key="frame" x="0.0" y="20" width="384" height="1004"/>
-                                <connections>
-                                    <action selector="previousPage:" destination="wrs-HN-lOk" eventType="touchUpInside" id="zPT-Tp-Vbg"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyT-pC-MsX">
-                                <rect key="frame" x="13" y="28" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.302140411" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="CloseButton"/>
-                                <connections>
-                                    <action selector="close:" destination="wrs-HN-lOk" eventType="touchUpInside" id="T0U-SD-kKQ"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="5vN-YM-wn6" firstAttribute="leading" secondItem="zCy-fv-qMg" secondAttribute="trailing" id="2MS-ec-dbx"/>
-                            <constraint firstItem="MMl-th-gUF" firstAttribute="top" secondItem="Jh5-LG-pgx" secondAttribute="top" id="Jx8-4M-8c5"/>
-                            <constraint firstItem="5vN-YM-wn6" firstAttribute="top" secondItem="KtH-k6-ohG" secondAttribute="top" id="W43-Iz-Pzd"/>
-                            <constraint firstItem="zCy-fv-qMg" firstAttribute="width" secondItem="KtH-k6-ohG" secondAttribute="width" multiplier="0.5" id="ZVb-Pi-D21"/>
-                            <constraint firstItem="zCy-fv-qMg" firstAttribute="bottom" secondItem="Jh5-LG-pgx" secondAttribute="bottom" id="aRU-pr-57k"/>
-                            <constraint firstItem="MMl-th-gUF" firstAttribute="leading" secondItem="Jh5-LG-pgx" secondAttribute="leading" id="b6y-D3-5p0"/>
-                            <constraint firstItem="zCy-fv-qMg" firstAttribute="leading" secondItem="Jh5-LG-pgx" secondAttribute="leading" id="b9Y-ab-P21"/>
-                            <constraint firstItem="MMl-th-gUF" firstAttribute="bottom" secondItem="Jh5-LG-pgx" secondAttribute="bottom" id="bbL-9B-XRM"/>
-                            <constraint firstItem="Jh5-LG-pgx" firstAttribute="bottom" secondItem="5vN-YM-wn6" secondAttribute="bottom" id="lHA-XQ-PQ8"/>
-                            <constraint firstItem="MMl-th-gUF" firstAttribute="trailing" secondItem="Jh5-LG-pgx" secondAttribute="trailing" id="rVc-I8-6Si"/>
-                            <constraint firstItem="Jh5-LG-pgx" firstAttribute="trailing" secondItem="5vN-YM-wn6" secondAttribute="trailing" id="vLl-QM-FVX"/>
-                            <constraint firstItem="zCy-fv-qMg" firstAttribute="top" secondItem="Jh5-LG-pgx" secondAttribute="top" id="w6E-vt-E1e"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Jh5-LG-pgx"/>
-                    </view>
-                    <connections>
-                        <outlet property="pdfView" destination="MMl-th-gUF" id="ohA-rH-7kJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dJu-Jn-966" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="RecordingViewController" id="weB-fq-yzR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LCP-RL-TY1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="818" y="-122"/>
+            <point key="canvasLocation" x="710" y="-122"/>
         </scene>
         <!--Submitted Assignment View Controller-->
         <scene sceneID="7xP-U5-UsF">
@@ -475,7 +423,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="wrs-HN-lOk" kind="presentation" identifier="ShowPagePreview" modalPresentationStyle="fullScreen" id="Awd-aY-xeR"/>
+                        <segue destination="weB-fq-yzR" kind="presentation" identifier="ShowPagePreview" id="8Px-Q6-wmt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaM-KB-y0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -484,7 +432,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CloseButton" width="60" height="60"/>
         <image name="MusicLines" width="18" height="140"/>
         <image name="TrebleSymbol" width="70" height="140"/>
     </resources>

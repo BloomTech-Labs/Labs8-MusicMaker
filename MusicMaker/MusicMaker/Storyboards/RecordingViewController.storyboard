@@ -39,6 +39,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="112" height="148"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLH-J3-zUw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="112" height="148"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -48,6 +52,7 @@
                                             <constraint firstItem="1Vo-It-lGN" firstAttribute="leading" secondItem="VHb-BZ-R5L" secondAttribute="leading" id="sQJ-Sk-fg7"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="highlightView" destination="aLH-J3-zUw" id="5b0-Eg-XKC"/>
                                             <outlet property="pdfView" destination="1Vo-It-lGN" id="63T-4Y-1hV"/>
                                         </connections>
                                     </collectionViewCell>
@@ -116,7 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zv7-YP-ehZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-234.375" y="-90.234375"/>
+            <point key="canvasLocation" x="-220" y="-176"/>
         </scene>
     </scenes>
     <resources>

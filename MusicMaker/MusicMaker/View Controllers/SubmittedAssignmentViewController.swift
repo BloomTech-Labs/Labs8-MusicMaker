@@ -121,16 +121,16 @@ class SubmittedAssignmentViewController: UITableViewController, AssignmentMusicP
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detailVC = segue.destination as? MusicSheetPDFSingleViewController else { return }
+        guard let recordVC = segue.destination as? RecordingViewController else { return }
         
-        detailVC.loadViewIfNeeded()
+        recordVC.shouldShowCamera = false
         
-        detailVC.pdfView.document = pdfDocument
+        recordVC.pdfDocument = pdfDocument
         
         if segue.identifier == "ShowPagePreview" {
             // Extract the pdfPage from the sender because we don't have direct access to the page
             guard let pdfPage = sender as? PDFPage else { return }
-            detailVC.pdfPage = pdfPage
+            recordVC.pdfPage = pdfPage
         }
     }
 }

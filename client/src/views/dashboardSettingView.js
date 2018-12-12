@@ -33,13 +33,18 @@ class Settings extends Component {
 
   render() {
     return (
-      <div>
-        <Label>Your Settings</Label>
-          {this.state.settings.map(teacher => (
-            <Card key = {teacher.id}>
-              <CardTitle>{teacher.email}</CardTitle>
-            </Card>
-          ))}
+      <div className="container">
+        <div className="flex-container">
+          <div className="block-container" id="setting">
+            <h1 className="subheader">
+              Your Information
+            </h1>
+            <p className="bodyText">Email: {this.state.email}</p>
+            <p className="bodyText">Title: {this.state.prefix}</p>
+            <p className="bodyText">First Name: {this.state.firstName}</p>
+            <p className="bodyText">Last Name: {this.state.lastName}</p>
+          </div>
+        </div>
       </div>
     );
   }

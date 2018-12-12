@@ -4,10 +4,10 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import axios from 'axios';
-// import { Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
-// import * as routes from "../constants/routes";
-// import StudentAssignmentsView from "./studentAssignmentsView";
+import * as routes from "../constants/routes";
+import StudentAssignmentsView from "./studentAssignmentsView";
 
 
 class StudentListView extends Component {
@@ -45,7 +45,7 @@ componentDidMount() {
             </Card>
           ))}
         </div>
-        {/* <Route path={'/studentAssignments/:studentId'} component={StudentAssignmentsView} /> */}
+        <Route path={'/studentAssignments/:studentId'} component={StudentAssignmentsView} />
       </div>
     );
   }

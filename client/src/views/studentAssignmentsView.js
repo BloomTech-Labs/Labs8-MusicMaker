@@ -16,11 +16,11 @@ class StudentAssignmentsView extends Component {
     componentDidMount() {
         const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
         const studentId = '7HTc3cy6GGPWtjqfpgMB3ij3wY92' //this.props.match.params.id;
-        
+        console.log()
+
         axios
             .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/student/${studentId}/assignments`)
             .then(res => {
-                console.log('here**************************', res.data);
                 this.setState({assignments:res.data})
             })
             .catch(err => console.error('STUDENTS ASSIGNMENTS VIEW AXIOS ERROR:', err));
@@ -32,7 +32,7 @@ class StudentAssignmentsView extends Component {
             <h1><Label>Student's Assigments</Label></h1>
             <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
               {this.state.assignments.map(assignment => (
-                <Card key={assignment[0]} style={{ width:"30%", margin:"1%"}}>
+                <Card key={assignment[0]} style={{ width:"35%", margin:"1%"}}>
                     <CardTitle>{assignment[1]}</CardTitle> {/* Assignment Name*/}
                     <CardText>Due Date: {assignment[2]}</CardText>
                     <CardText>Instrument: {assignment[3]}</CardText>

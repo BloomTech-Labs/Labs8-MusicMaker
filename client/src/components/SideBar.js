@@ -32,9 +32,6 @@ const SideBarAuth = () => {
       <NavItem>
         <NavLink href="/grading">Grading</NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink href="/studentAssignments">studentAssignments</NavLink>
-      </NavItem>
     </Nav>
   );
 };

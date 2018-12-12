@@ -85,7 +85,7 @@ app.get("/teacher/:idTeacher/students", (req, res) => {
         .all(promises)
         .then(results => {
           const students = results.map(student => {
-            return student.data();
+            return [student.id, student.data()];
           });
           res.status(200).json(students);
         })

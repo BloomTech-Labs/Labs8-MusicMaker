@@ -9,12 +9,49 @@ class StudentAssignmentsView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            studentId: '',
-            title: '',
-            content: ''
-        }
+            assignmentName: '',
+            dueDate: '',
+            instrument: '',
+            level: '',
+            piece: '',
+            instructions: '',
+            sheetMusic: '',
+            video: '',
+            feedback:'',
+            grade:''
+        };
+    };
+
+    componentDidMount() {
+        const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
+        const studentId = '7HTc3cy6GGPWtjqfpgMB3ij3wY92' //this.props.match.params.id;
+        
+        axios
+            .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/student/${studentId}/assignments`)
+            .then(res => {
+                console.log('here**************************', res.data())
+                this.setState({
+                    assignmentName: res.data.assignmentName,
+                    dueDate: res.data.dueDate,
+                    instrument: res.data.instrument,
+                    level: res.data.level,
+                    piece: res.data.piece,
+                    instructions: res.data.instructions,
+                    sheetMusic: res.data.sheetMusic,
+                    video: res.data.video,
+                    feedback:res.data.feedback,
+                    grade:res.data.grade
+                })
+            })
+            .catch(err => console.error('STUDENTS ASSIGNMENTS VIEW AXIOS ERROR:', err));
     }
 
-}
+    render() {
+        return(
+            
+        )
+    }
+
+};
 
 export default StudentAssignmentsView;

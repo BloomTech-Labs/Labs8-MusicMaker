@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import withAuthentication from "./withAuthentication";
+import withPayment from './withPayment';
 
 import * as routes from "../constants/routes";
 import Sidebar from "../components/SideBar";
@@ -47,7 +48,7 @@ class App extends Component {
             path={routes.SETTINGS}
             component={withAuthentication(DashboardSettingView)}
           />
-          <Route exact path={routes.GRADING} component={withAuthentication(GradeAssignmentView)} />
+          <Route exact path={routes.GRADING} component={withAuthentication(withPayment(GradeAssignmentView))} />
         </div>
       </div>
     );

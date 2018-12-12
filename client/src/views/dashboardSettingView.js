@@ -38,7 +38,7 @@ class Settings extends Component {
   }
 
   handleSubmit(event) {
-    alert('Settings updated: ' + this.state.firstName);
+    alert(`Settings updated successfully! Your name is now ${this.state.firstName} ${this.state.lastName}.`);
     event.preventDefault();
   }
 

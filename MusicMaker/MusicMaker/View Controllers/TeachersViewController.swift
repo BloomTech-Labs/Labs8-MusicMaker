@@ -11,7 +11,7 @@ import AVFoundation
 import FirebaseAuth
 import FirebaseFirestore
 import Charts
-
+import FirebaseMessaging
 
 class TeachersViewController: UIViewController {
 
@@ -22,7 +22,7 @@ class TeachersViewController: UIViewController {
         tableView.rowHeight = 375
         fetchStudent()
         NotificationCenter.default.addObserver(self, selector: #selector(hideQrView), name: .newTeacher, object: nil)
-        
+        addTokenIdToStudent()
         refreshTeachers()
     }
     
@@ -38,7 +38,12 @@ class TeachersViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(addTokenIdToStudent), name: NSNotification.Name("FCMToken"), object: nil)
         refreshTeachers()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("FCMToken"), object: nil)
     }
     
     func refreshTeachers() {
@@ -81,10 +86,16 @@ class TeachersViewController: UIViewController {
         }
     }
     
+    @objc private func addTokenIdToStudent() {
+        guard let currentUsersUid = Auth.auth().currentUser?.uid else {return}
+        let database = Firestore.firestore()
+        let studentsCollectionReference = database.collection("students").document(currentUsersUid)
+        if let fcmToken = Messaging.messaging().fcmToken {
+            studentsCollectionReference.setData(["token": fcmToken], merge: true)
+        }
+    }
 
     // MARK: - IBActions
-   
-    
     @IBAction func showQrOptions(_ sender: Any) {
         
         if qrViewTopConstraint.constant == 0 {

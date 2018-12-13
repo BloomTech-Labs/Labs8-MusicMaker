@@ -19,7 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
     
-    
+    //Resets the badge number to zero when the user opens the app
+    private func resetBadgeToZero() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
     
     // [START receive_message]
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
@@ -87,6 +90,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         return GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
     }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        resetBadgeToZero()
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        resetBadgeToZero()
+    }
 
   
     //If the user is already logged in, set the root view controller to the SplitViewStoryboard
@@ -98,12 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = initialViewController
         }
     }
-
-//    override init() {
-//        super.init()
-//        Messaging.messaging().delegate = self
-//        FirebaseApp.configure()
-//    }
 }
 
 
@@ -125,7 +130,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print(userInfo)
         
         // Change this to your preferred presentation option
-        completionHandler([])
+        completionHandler([.alert, .badge, .sound])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,

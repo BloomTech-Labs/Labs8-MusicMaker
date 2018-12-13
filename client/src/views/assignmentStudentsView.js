@@ -4,7 +4,7 @@
 //click on student to see student's assignment submission for grading.
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Col, Row, Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import { Col, Row, Label, FormGroup, Input, DateTimeField } from 'reactstrap';
 import axios from 'axios';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import { Route } from "react-router-dom";
@@ -20,10 +20,11 @@ class StudentAssignmentsView extends Component {
         this.state = {
             // assignments: [],
             students: [],
-            modal:false
+            modal:false,            
         };
 
         this.toggle = this.toggle.bind(this);
+
     };
 
     toggle() {
@@ -31,6 +32,8 @@ class StudentAssignmentsView extends Component {
           modal: !this.state.modal
         });
       }
+    
+     
 
     // componentDidMount() {
     //     const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
@@ -71,6 +74,7 @@ class StudentAssignmentsView extends Component {
     }
 
     render() {
+        const {date, format, mode, inputFormat} = this.state;
         return(
             <div>
                 <h1><Label>Student's Assigned to the Assignment</Label></h1>
@@ -78,10 +82,15 @@ class StudentAssignmentsView extends Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                 <ModalHeader toggle={this.toggle}>Assign Assignment to Student</ModalHeader>
                 <ModalBody>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <Label for="exampleEmail">Email</Label>
+                    <Input type="email" name="email" id="exampleEmail" placeholder="Student Email" />
+                    <Label for="exampleDate">Due Date</Label>
+                    <Input type="date" name="date" id="exampleDate" placeholder="mm/dd/yyyy" />
+                    <Label for="exampleTime">Due Time</Label>
+                    <Input type="time" name="time" id="exampleTime" placeholder="hh:ss" />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+                    <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
                 </Modal>

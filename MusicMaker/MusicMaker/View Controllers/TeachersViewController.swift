@@ -26,6 +26,10 @@ class TeachersViewController: UIViewController {
         refreshTeachers()
     }
     
+    override func viewDidLayoutSubviews() {
+        qrViewTopConstraint.constant = qrViewIsShowing ? -self.view.frame.height : 0
+    }
+    
     @objc func hideQrView() {
         showQrOptions(self)
         NotificationCenter.default.post(name: .qrHidden, object: nil)
@@ -52,6 +56,7 @@ class TeachersViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var qrView: UIView!
     @IBOutlet weak var qrViewTopConstraint: NSLayoutConstraint!
+    var qrViewIsShowing = false
     
     // MARK: - Properties
     var student: Student?
@@ -84,12 +89,14 @@ class TeachersViewController: UIViewController {
         
         if qrViewTopConstraint.constant == 0 {
             NotificationCenter.default.post(name: .qrShown, object: nil)
-            qrViewTopConstraint.constant = -qrView.frame.height
+            qrViewTopConstraint.constant = -self.view.frame.height
+            qrViewIsShowing = true
             UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.view.layoutIfNeeded()
             })
         } else {
             qrViewTopConstraint.constant = 0
+            qrViewIsShowing = false
             UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.view.layoutIfNeeded()
             }) { (_) in

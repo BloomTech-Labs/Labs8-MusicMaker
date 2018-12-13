@@ -43,7 +43,6 @@ class TeacherTableViewCell: UITableViewCell {
                     assignmentsPieChart.legend.form = .circle
                     assignmentsPieChart.legend.formSize = 12
                     assignmentsPieChart.legend.textColor = UIColor.blue1
-                    
                 }
             }
         }

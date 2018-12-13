@@ -20,7 +20,9 @@ class DashboardAssignmentsView extends Component {
 };
 
 componentDidMount() {
-  const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
+  // const teacherId = 'pwUGQC7SHBiPKPdnOq2c' 
+  const teacherId =  this.props.match.params.id;
+
 
   axios
       .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignments`)

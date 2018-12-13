@@ -16,8 +16,8 @@ class StudentAssignmentsView extends Component {
     };
 
     componentDidMount() {
-        const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
-        const studentId = '7HTc3cy6GGPWtjqfpgMB3ij3wY92' //this.props.match.params.id;
+        const teacherId = this.props.match.params.id;
+        const studentId = this.props.match.params.id;
         console.log()
 
         axios

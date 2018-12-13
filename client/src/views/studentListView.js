@@ -20,7 +20,7 @@ class StudentListView extends Component {
 };
 
 componentDidMount() {
-  const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
+  const teacherId = this.props.match.params.id;
 
   axios
       .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/students`)
@@ -36,7 +36,7 @@ componentDidMount() {
         <h1><Label style={{margin: "15px"}}>Students</Label></h1>
         <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
           {this.state.students.map(student => (
-            <Card key={student[0]} style={{ width:"40%", margin:"2.5%", marginBottom: "4%", padding: "1.5%", border: "1px solid #A9E8DC"}}>
+            <Card key={student[0]} style={{ width:"40%", margin:"2.5%", marginBottom: "4%", padding: "2%", border: "1px solid #A9E8DC"}}>
               <NavLink to={`/studentAssignments/${student[0]}`} style={{textDecoration:"none", color:"black"}}>
                 <CardTitle>{student[1].firstName} {student[1].lastName}</CardTitle>
                 <CardText>{student[1].instrument}</CardText>

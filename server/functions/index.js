@@ -190,16 +190,17 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
             return studentRef.doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get().then(assignment => {
               const studentInfo = student.data();
               const assignmentInfo = assignment.data();
+              const reformattedDueDate = parseDate(assignmentInfo.dueDate);
 
-              //  combo.push([assignmentInfo, studentInfo ])
-              const obj = Object.assign(assignmentInfo, studentInfo)
-              // return Object.assign({}, assignmentInfo, studentInfo )  
-              // return [...studentInfo]
-              const results = Object.keys(obj).map(function(key) {
-                return [obj[key]]
-              })
-
-              return [assignment.id, results]
+              // //  combo.push([assignmentInfo, studentInfo ])
+              // const obj = Object.assign(assignmentInfo, studentInfo)
+              // // return Object.assign({}, assignmentInfo, studentInfo )  
+              // // return [...studentInfo]
+              // const results = Object.keys(obj).map(function(key) {
+              //   return [obj[key]]
+              // })
+              // console.log('******************here', )
+              return [assignment.id, assignmentInfo.assignmentName, student.id, studentInfo.firstName, studentInfo.lastName, reformattedDueDate, assignmentInfo.video]
             });
           });
 
@@ -484,8 +485,6 @@ app.post("/addNewTeacher", (req, res) => {
 
     if (!email) {
       res.status(411).send({REQUIRED: "Please fill all required fields: email missing."});
-    } else if (!firstName || !lastName || !prefix) {
-      res.status(411).send({REQUIRED:"Please fill all required fields: prefix, first and last name."});
     } else {
       teachersRef
         .add({

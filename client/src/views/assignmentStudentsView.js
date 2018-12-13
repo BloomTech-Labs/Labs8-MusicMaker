@@ -12,10 +12,23 @@ class StudentAssignmentsView extends Component {
         super(props);
         this.state = {
             // assignmentId: '',
-            assignmentName: '',
+            assignments: [],
             students: [],
         };
     };
+
+    // componentDidMount() {
+    //     const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
+    //     const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
+      
+    //     axios
+    //         .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}`)
+    //         .then(res => {
+    //             console.log('here*******************', res)
+    //             this.setState({assignments: res.data})
+    //         })
+    //         .catch(err => console.error('ASSIGNMENTS LIST VIEW AXIOS:', err));
+    //   };
 
     componentDidMount() {
         const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
@@ -26,11 +39,7 @@ class StudentAssignmentsView extends Component {
             .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/students`)
             .then(res => {
                 console.log("Students************************", res.data)
-                this.setState({
-                    // assignmentId: res.data[0][0],
-                    assignmentName: res.data[0].assignmentName,
-                    students:res.data
-                })
+                this.setState({students:res.data})
             })
             .catch(err => console.error('ASSIGNMENT STUDENTS VIEW AXIOS ERROR:', err));
     }
@@ -38,16 +47,14 @@ class StudentAssignmentsView extends Component {
     render() {
         return(
             <div>
-                <NavLink to={`/assignmentInfo/${this.state.assignmentId}`} >
-                    <h1><Label>{this.state.assignmentName}</Label></h1>
-                </NavLink> 
-                <div>
-                    {this.state.students.map(student => (
-                        <Row key={student}>
-                            <Col>{student}</Col>
-                        </Row>
-                    ))}
-                </div>
+                <h1><Label>{this.state.assignments.assignmentName}</Label></h1>
+            <div>
+                {this.state.students.map(student => (
+                    <Row key={student}>
+                        <Col>{student[2]}</Col>
+                    </Row>
+                ))}
+            </div>
           </div>
         )
     }

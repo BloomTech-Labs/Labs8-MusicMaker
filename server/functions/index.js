@@ -478,10 +478,11 @@ app.delete("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
 //details: email, name (first, last, and prefix), and generate a new qr code
 app.post("/addNewTeacher", (req, res) => {
   try {
-    const { email, firstName, lastName, prefix } = req.body;
-
+    const { email,  } = req.body;
+    // firstName, lastName, prefix
     //Teachers' db reference:
     const teachersRef = db.collection("teachers") 
+    console.log(req.body);
 
     if (!email) {
       res.status(411).send({REQUIRED: "Please fill all required fields: email missing."});
@@ -489,21 +490,17 @@ app.post("/addNewTeacher", (req, res) => {
       teachersRef
         .add({
           'email': email,
-          'name': {
-            'firstName': firstName,
-            'lastName': lastName,
-            'prefix': prefix
-          },
           'subscribed': false
         })
         .then(ref => {
+          console.log(ref);
           let uuid = UUID();
           let qrOptions = {
             errorCorrectionLevel: "H",
             type: "image/jpeg",
             rendererOpts: {quality: 0.3}
           };
-          const qrPath = "/tmp/signup_" + lastName + ".jpg";
+          const qrPath = "/tmp/signup_" + email + ".jpg";
           QRCode.toFile(qrPath, ref.id, qrOptions);
 
           bucket
@@ -517,14 +514,14 @@ app.post("/addNewTeacher", (req, res) => {
               let file = data[0];
               Promise.resolve(
                 "https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid
-              ).then(url => {
+              ).then(url => { 
                 teachersRef
                   .doc(ref.id)
                   .update({
                     'qrcode': url
                   });
                   
-                res.status(201).send({MESSAGE: `Teacher ${prefix} ${lastName} was successfully added.`});
+                res.status(201).send({MESSAGE: `Teacher ${email} was successfully added.`});
               });
             });
         });

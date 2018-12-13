@@ -1,7 +1,7 @@
 //Assignment's Students List: After clicking on an assignment from dashboardAssigmentsView.js,
 //it'll take you to another page with "+" to add student's to an assignment, 
 //click assignment's name to see the full ungraded assignment,
-//click on student to see student's assignment submissiong.
+//click on student to see student's assignment submission for grading.
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Col, Row, Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';

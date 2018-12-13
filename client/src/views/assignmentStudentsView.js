@@ -6,6 +6,12 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Col, Row, Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import axios from 'axios';
+// import { Route } from "react-router-dom";
+
+// import * as routes from "../constants/routes";
+// import withPayment from '../components/withPayment';
+// import GradeAssignmentView from "../views/gradeAssignmentView";
+
 
 class StudentAssignmentsView extends Component {
     constructor(props) {
@@ -48,6 +54,7 @@ class StudentAssignmentsView extends Component {
         axios
             .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/students`)
             .then(res => {
+                console.log('student******************', res.data)
                 this.setState({students:res.data})
             })
             .catch(err => console.error('ASSIGNMENT STUDENTS VIEW AXIOS ERROR:', err));
@@ -60,13 +67,16 @@ class StudentAssignmentsView extends Component {
                 <h1>+</h1>
             <div>
                 {this.state.students.map(student => (
-                    <Row key={student} style={{border:"1px solid black"}}>
-                        <Col>{student[3]} {student[4]}</Col> {/*student name*/}
-                        <Col>{student[5]}</Col> {/*student assignment name*/}
-                        <Col>{student[6]===null ? "" : "Student Completed"}</Col>
+                    <Row key={student[2]} style={{border:"1px solid black"}}>
+                        <NavLink to={`grading/${student[2]}`} style={{textDecoration:"none"}} >
+                            <Col>{student[3]} {student[4]}</Col> {/*student's name*/}
+                        </NavLink>
+                            <Col>{student[5]}</Col> {/*student's assignment due date*/}
+                            <Col>{student[6]===null ? "" : "Student Completed"}</Col> {/*student's assignment completion status */}
                     </Row>
                 ))}
             </div>
+            {/* <Route exact path={routes.GRADING} component={withPayment(GradeAssignmentView)} /> */}
           </div>
         )
     }

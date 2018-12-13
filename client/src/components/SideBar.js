@@ -29,9 +29,6 @@ const SideBarAuth = () => {
       <NavItem>
         <NavLink href="/settings">Settings</NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink href="/grading">Grading</NavLink>
-      </NavItem>
     </Nav>
   );
 };

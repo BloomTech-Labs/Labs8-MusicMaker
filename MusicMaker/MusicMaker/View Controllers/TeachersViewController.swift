@@ -10,16 +10,24 @@ import UIKit
 import AVFoundation
 import FirebaseAuth
 import FirebaseFirestore
+import Charts
+
 
 class TeachersViewController: UIViewController {
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        splitViewController?.delegate = self
+        tableView.rowHeight = 375
         fetchStudent()
         NotificationCenter.default.addObserver(self, selector: #selector(hideQrView), name: .newTeacher, object: nil)
         
         refreshTeachers()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        qrViewTopConstraint.constant = qrViewIsShowing ? -self.view.frame.height : 0
     }
     
     @objc func hideQrView() {
@@ -48,6 +56,7 @@ class TeachersViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var qrView: UIView!
     @IBOutlet weak var qrViewTopConstraint: NSLayoutConstraint!
+    var qrViewIsShowing = false
     
     // MARK: - Properties
     var student: Student?
@@ -80,12 +89,14 @@ class TeachersViewController: UIViewController {
         
         if qrViewTopConstraint.constant == 0 {
             NotificationCenter.default.post(name: .qrShown, object: nil)
-            qrViewTopConstraint.constant = -qrView.frame.height
+            qrViewTopConstraint.constant = -self.view.frame.height
+            qrViewIsShowing = true
             UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.view.layoutIfNeeded()
             })
         } else {
             qrViewTopConstraint.constant = 0
+            qrViewIsShowing = false
             UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.view.layoutIfNeeded()
             }) { (_) in
@@ -124,14 +135,61 @@ extension TeachersViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TeacherCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TeacherCell", for: indexPath) as! TeacherTableViewCell
         let teacher = teachers[indexPath.row]
-        cell.textLabel?.text = teacher.name
+        cell.teacher = teacher
+        cell.pieChartDataEntry = sortTeacherAssignments(for: teacher)
+       
         return cell
+    }
+    
+    private func sortTeacherAssignments(for teacher: Teacher) -> [PieChartDataEntry] {
+        let numberOfUnsubmittedAssignments = PieChartDataEntry(value: 0, label: "Unsubmitted")
+        let numberOfPassedAssignments = PieChartDataEntry(value: 0, label: "Passed")
+        let numberOfFailedAssignments = PieChartDataEntry(value: 0, label: "Failed")
+        let numberOfPendingAssignments = PieChartDataEntry(value: 0, label: "Pending")
+        let other = PieChartDataEntry(value: 0, label: "Other")
+        let allAssigments = [numberOfUnsubmittedAssignments, numberOfPassedAssignments, numberOfFailedAssignments, numberOfPendingAssignments, other]
+        if let assignments = teacher.assignments as? Set<Assignment> {
+            for assignment in assignments {
+                switch assignment.status {
+                case .unsubmitted(_, _):
+                    numberOfUnsubmittedAssignments.value += 1
+                    print(numberOfUnsubmittedAssignments.value)
+                case .submitted(grade: "Passed"):
+                    numberOfPassedAssignments.value += 1
+                case .submitted(grade: "Failed"):
+                    numberOfFailedAssignments.value += 1
+                case .submitted(grade: nil):
+                    numberOfPendingAssignments.value += 1
+                case .submitted:
+                    other.value += 1
+                }
+            }
+        }
+        var pieChartDataEntries = [PieChartDataEntry]()
+        for assignment in allAssigments {
+            if assignment.value > 0 {
+                pieChartDataEntries.append(assignment)
+                
+            }
+        }
+        return pieChartDataEntries
     }
 }
 
 // MARK: - UITableViewDelegate
 extension TeachersViewController: UITableViewDelegate {
     
+}
+
+// MARK: - UISplitViewControllerDelegate
+extension TeachersViewController: UISplitViewControllerDelegate {
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        if let _ = splitViewController.viewControllers.last as? UnsubmittedAssignmentViewController, let _ = splitViewController.viewControllers.last as? SubmittedAssignmentViewController {
+            return false
+        }
+        
+        return true
+    }
 }

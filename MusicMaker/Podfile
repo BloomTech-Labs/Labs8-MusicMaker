@@ -12,4 +12,6 @@ pod 'Firebase/Storage'
 pod 'Firebase/Firestore'
 pod 'GoogleSignIn'
 pod 'lottie-ios' 
+pod 'Charts'
+
 end

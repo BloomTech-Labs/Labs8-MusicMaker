@@ -86,6 +86,7 @@
 		BFD3EEF921AD1CB50097D5AA /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEF821AD1CB50097D5AA /* InitialViewController.swift */; };
 		BFD3EEFD21AE45880097D5AA /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3EEFC21AE45870097D5AA /* Student.swift */; };
 		BFD9032421B9D49500EEB3B1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD9032321B9D49500EEB3B1 /* UIColor+Extensions.swift */; };
+		BFE05CFF21C1A5FD00F46343 /* TeacherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE05CFE21C1A5FD00F46343 /* TeacherTableViewCell.swift */; };
 		BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */; };
 		BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */; };
 		BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D521A352E100DCE42A /* MenuButton.swift */; };
@@ -204,6 +205,7 @@
 		BFD3EEF821AD1CB50097D5AA /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		BFD3EEFC21AE45870097D5AA /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		BFD9032321B9D49500EEB3B1 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		BFE05CFE21C1A5FD00F46343 /* TeacherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTableViewCell.swift; sourceTree = "<group>"; };
 		BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+TransitionAnimations.swift"; path = "MusicMaker/Storyboards/UIViewController+TransitionAnimations.swift"; sourceTree = SOURCE_ROOT; };
 		BFE771D521A352E100DCE42A /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 		BFD381C7219353DF0038F974 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BFE05CFE21C1A5FD00F46343 /* TeacherTableViewCell.swift */,
 				BF98B14521B5CA9C007B7C45 /* StarRating.swift */,
 				BFE771D721A49BE700DCE42A /* QRView.swift */,
 				BFE771D521A352E100DCE42A /* MenuButton.swift */,
@@ -684,6 +687,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -703,6 +707,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -785,6 +790,7 @@
 				BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */,
 				BFD9032421B9D49500EEB3B1 /* UIColor+Extensions.swift in Sources */,
 				BF98B14021B5B66D007B7C45 /* EmailAndPasswordViewController.swift in Sources */,
+				BFE05CFF21C1A5FD00F46343 /* TeacherTableViewCell.swift in Sources */,
 				39CA2B55219367D500C6018E /* AssignmentHeaderTableViewCell.swift in Sources */,
 				BFD3EEFD21AE45880097D5AA /* Student.swift in Sources */,
 				399F0B5B21B8436400261477 /* AssignmentTableViewCell.swift in Sources */,

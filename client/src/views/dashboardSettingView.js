@@ -64,23 +64,23 @@ class Settings extends Component {
     return (
       <div className="container" style = {formContainer}>
         <Card style = {{padding: "20px"}}>
-            <CardTitle>Your Information</CardTitle>
-            <CardSubtitle>Email: {this.state.email}</CardSubtitle>
-            <CardText>Title: {this.state.prefix}</CardText>
-            <CardText>First Name: {this.state.firstName}</CardText>
-            <CardText>Last Name: {this.state.lastName}</CardText>
+            <CardTitle style={{margin: "10px"}}>Your Information</CardTitle>
+            <CardSubtitle style={{margin: "10px"}}>Email: {this.state.email}</CardSubtitle>
+            <CardText style={{margin: "10px"}}>Title: {this.state.prefix}</CardText>
+            <CardText style={{margin: "10px"}}>First Name: {this.state.firstName}</CardText>
+            <CardText style={{margin: "10px"}}>Last Name: {this.state.lastName}</CardText>
         </Card>
         <Form onSubmit = {(e) => this.handleSubmit(e)}>
           <FormGroup>
-            <h2>Update Your Information</h2>
-              <Label>Title</Label>
-                <Input name="prefix" value={prefix} onChange={this.handleChange} type='text' />
-              <Label>First Name</Label>
-                <Input name="firstName" value={firstName} onChange={this.handleChange} type='text' />
-              <Label>Last Name</Label>
-                <Input name="lastName" value={lastName} onChange={this.handleChange} type='text' />
+            <h2 style={{padding: "20px"}}>Update Your Information</h2>
+              <Label style={{marginLeft: "5px"}}>Title</Label>
+                <Input name="prefix" value={prefix} onChange={this.handleChange} type='text' style={{margin: "10px"}} />
+              <Label style={{margin: "5px"}}>First Name</Label>
+                <Input name="firstName" value={firstName} onChange={this.handleChange} type='text' style={{margin: "10px"}} />
+              <Label style={{margin: "5px"}}>Last Name</Label>
+                <Input name="lastName" value={lastName} onChange={this.handleChange} type='text' style={{margin: "10px"}} />
           </FormGroup>
-          <Button type = 'submit' onClick = {this.updateName}>Submit Changes</Button>
+          <Button type = 'submit' onClick = {this.updateName} style={{margin: "20px"}}>Submit Changes</Button>
         </Form>
       </div>
     );

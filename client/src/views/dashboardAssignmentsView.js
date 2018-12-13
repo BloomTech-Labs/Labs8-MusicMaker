@@ -1,5 +1,5 @@
 // Assignments List: This page will allow teachers to see a list of all their ungraded assignments
- 
+
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
@@ -9,6 +9,7 @@ import axios from 'axios';
 // import * as routes from "../constants/routes";
 // import StudentAssignmentsView from "./studentAssignmentsView";
 
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
 class DashboardAssignmentsView extends Component {
   constructor(props) {
@@ -31,19 +32,19 @@ componentDidMount() {
 
   render() {
     return (
-      <div>
-        <h1><Label>Assignments</Label></h1>
+      <div style={formContainer}>
+        <h1><Label style={{margin: "20px"}}>Assignments</Label></h1>
         <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
           {this.state.assignments.map(assignment => (
-            <Card key={assignment[0]} style={{ width:"40%", margin:"1%"}}>
+            <Card key={assignment[0]} style={{ width:"40%", margin:"2.5%", marginBottom: "4%", padding: "1.5%", border: "1px solid #A9E8DC"}}>
               <NavLink to={`/assignmentStudents/${assignment[0]}`} style={{textDecoration:"none", color:"black"}}>
                 <CardTitle>{assignment[1].assignmentName}</CardTitle>
                 <CardText>Experience: {assignment[1].level}</CardText>
                 <CardText>Instrument: {assignment[1].instrument}</CardText>
                 <CardText>Piece: {assignment[1].piece}</CardText>
-                {/* <CardText>Music Sheet: <a href={assignment[1].sheetMusic}>pdf image</a></CardText>  //weird error appears, will fix later*/} 
+                {/* <CardText>Music Sheet: <a href={assignment[1].sheetMusic}>pdf image</a></CardText>  //weird error appears, will fix later*/}
                 <CardText>Instructions: {assignment[1].instructions.substring(0,35)}...</CardText>
-              </NavLink> 
+              </NavLink>
             </Card>
           ))}
         </div>

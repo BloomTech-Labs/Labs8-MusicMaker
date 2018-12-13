@@ -6,6 +6,8 @@ import React, { Component } from "react";
 import { Input, Form, FormGroup, Label, Button } from 'reactstrap';
 import axios from 'axios';
 
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
+
  class CreateAssignmentView extends Component {
   constructor(props) {
     super(props);
@@ -46,8 +48,8 @@ import axios from 'axios';
     formData.append('file', sheetMusic);
 
     axios
-      // .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment', 
-      .post('https://musicmaker-4b2e8.firebaseapp.com/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment', 
+      // .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment',
+      .post('https://musicmaker-4b2e8.firebaseapp.com/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment',
         formData,
         {onUploadProgress: ProgressEvent => {
           this.setState({
@@ -62,12 +64,12 @@ import axios from 'axios';
         console.err('CREATE ASSIGNMENT VIEW ERROR', err)
       })
 }
-  
+
   render() {
     const { assignmentName, piece, instructions } = this.state;
- 
+
     return (
-      <div className="container">
+      <div className="container" style={formContainer}>
         <Form onSubmit={this.onSubmit}>
           <h2>Create a new assignment: </h2>
           <FormGroup>
@@ -75,7 +77,7 @@ import axios from 'axios';
            </FormGroup>
            <FormGroup inline style={{display: 'flex', justifyContent: 'space-around'}}>
              <Input type="text" name="piece" placeholder="Piece Name" value={piece} onChange={this.onChange} />
- 
+
              <Input type="select" name="instrument" onChange={this.onChange}>
                <option value="None">Choose Instrument</option>
                <option value="Drum">Drum</option>
@@ -85,7 +87,7 @@ import axios from 'axios';
                <option value="Trumpet">Trumpet</option>
                <option value="Violin">Violin</option>
              </Input>
- 
+
             <Input type="select" name="level" onChange={this.onChange}>
               <option value="None">Choose Experience</option>
               <option value="Beginner">Beginner</option>

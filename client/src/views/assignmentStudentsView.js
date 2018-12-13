@@ -1,5 +1,5 @@
 //Assignment's Students List: After clicking on an assignment from dashboardAssigmentsView.js,
-//it'll take you to another page with "+" to add student's to an assignment, 
+//it'll take you to another page with "+" to add student's to an assignment,
 //click assignment's name to see the full ungraded assignment,
 //click on student to see student's assignment submissiong.
 import React, { Component } from "react";
@@ -12,6 +12,7 @@ import axios from 'axios';
 // import withPayment from '../components/withPayment';
 // import GradeAssignmentView from "../views/gradeAssignmentView";
 
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
 class StudentAssignmentsView extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class StudentAssignmentsView extends Component {
     // componentDidMount() {
     //     const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
     //     const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
-        
+
     //     axios.all([
     //         axios.get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/students`),
     //         axios.get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}`)
@@ -49,7 +50,7 @@ class StudentAssignmentsView extends Component {
     componentDidMount() {
         const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
         const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
-        
+
 
         axios
             .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/students`)
@@ -62,8 +63,8 @@ class StudentAssignmentsView extends Component {
 
     render() {
         return(
-            <div>
-                <h1><Label>Student's Assigned to the Assignment</Label></h1>
+            <div style={formContainer}>
+                <h1><Label>Students Assigned to the Assignment</Label></h1>
                 <h1>+</h1>
             <div>
                 {this.state.students.map(student => (

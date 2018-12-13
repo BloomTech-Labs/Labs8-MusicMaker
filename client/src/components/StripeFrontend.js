@@ -29,7 +29,7 @@ class TakeMoney extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{paddingTop: "15px", paddingBottom: "20px"}}>
         <Row>
           <Col>
             <h3>Send payment?</h3>

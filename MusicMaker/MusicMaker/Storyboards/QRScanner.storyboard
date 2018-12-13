@@ -40,6 +40,9 @@
                                                 <state key="normal" title="Scan QR Code">
                                                     <color key="titleColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <fontDescription key="fontDescription" name="Merriweather-Bold" family="Merriweather" pointSize="14"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="scanQrCodeButtonTapped:" destination="qx3-Yu-8d3" eventType="touchUpInside" id="EZB-ag-VsC"/>
                                                 </connections>
@@ -51,6 +54,9 @@
                                                     <color key="titleColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <fontDescription key="fontDescription" name="Merriweather-Bold" family="Merriweather" pointSize="14"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="addQrCodeFromPhotos:" destination="qx3-Yu-8d3" eventType="touchUpInside" id="yt0-nA-As2"/>
                                                 </connections>

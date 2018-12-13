@@ -18,6 +18,7 @@ class TeachersViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        splitViewController?.preferredDisplayMode = .allVisible
         splitViewController?.delegate = self
         tableView.rowHeight = 375
         fetchStudent()
@@ -129,8 +130,10 @@ class TeachersViewController: UIViewController {
                 destinationVc.teacher = teacher
             }
         case "ShowUserProfile":
-            if let destinationVc = segue.destination as? UserProfileViewController {
-                destinationVc.student = student
+            if let navController = segue.destination as? UINavigationController {
+                if let userProfileVC = navController.topViewController as? UserProfileViewController {
+                    userProfileVC.student = student
+                }
             }
         default:
             break

@@ -54,6 +54,16 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
             
             if error != nil {
                 NSLog("Error signing in")
+                if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                    switch errorCode {
+                    case .invalidEmail:
+                        self.presentInformationalAlertController(title: "Invalid Email", message: "Please use a valid email address")
+                    case .wrongPassword:
+                        self.presentInformationalAlertController(title: "Wrong Password", message: "Please try again")
+                    default:
+                        self.presentInformationalAlertController(title: "Error Logging In", message: "Please try again")
+                    }
+                }
             }
         }
     }

@@ -54,25 +54,25 @@ class SignUpView extends Component {
 
         // const nameArr = authUser.user.displayName.split(' ');
 
-        let authUserInfo = new FormData();
+        // let authUserInfo = new FormData();
 
-        authUserInfo.append('email', authUser.user.email);
-        authUserInfo.append('subscribed', false);
-        console.log(authUserInfo);
-        console.log(authUser);
+        // authUserInfo.append('email', authUser.user.email);
+        // authUserInfo.append('subscribed', false);
+        // console.log(authUserInfo);
+        // console.log(authUser);
 
-        // const authUserInfo = {
-        //   email: authUser.user.email,
+        const authUserInfo = {
+          email: authUser.user.email,
           // name: {
           //   firstName: nameArr[0],
           //   lastName: nameArr[1]
           // },
-        //   subscribed: false
-        // }
+          subscribed: false
+        }
 
         axios
-          // .post('https://musicmaker-4b2e8.firebaseapp.com/addNewTeacher', authUserInfo)
-          .post('http://localhost:8000/addNewTeacher', authUserInfo)
+          .post('https://musicmaker-4b2e8.firebaseapp.com/addNewTeacher', authUserInfo)
+          // .post('http://localhost:8000/addNewTeacher', authUserInfo)
           .then(res => {
             console.log(res);
           })
@@ -80,7 +80,7 @@ class SignUpView extends Component {
             console.log(err);
           })
 
-        history.push(routes.DASHBOARD);
+        history.push(routes.SETTINGS);
       })
       .catch(error => {
         this.setState(byPropKey("error", error));

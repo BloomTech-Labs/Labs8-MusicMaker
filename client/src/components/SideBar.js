@@ -2,6 +2,8 @@ import React from "react";
 import { NavItem, NavLink, Nav } from "reactstrap";
 import AuthUserContext from "./AuthUserContext";
 
+const sidebarContainer = { maxWidth: 800, height: 200, margin: '0 auto 10px', padding: "10px", border: "3px solid #A9E8DC" };
+
 const SideBar = () => (
   <AuthUserContext.Consumer>
     {authUser => (authUser ? <SideBarAuth /> : <SidebarNonAuth />)}
@@ -16,7 +18,7 @@ const SidebarNonAuth = () => {
 
 const SideBarAuth = () => {
   return (
-    <Nav navbar className="border border-dark">
+    <Nav navbar className="border border-dark" style={sidebarContainer}>
       <NavItem>
         <NavLink href="/students">Students</NavLink>
       </NavItem>

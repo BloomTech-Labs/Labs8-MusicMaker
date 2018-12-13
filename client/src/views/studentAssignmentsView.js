@@ -34,7 +34,7 @@ class StudentAssignmentsView extends Component {
             <h1><Label>Student's Assigments</Label></h1>
             <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
               {this.state.assignments.map(assignment => (
-                <Card key={assignment[0]} style={{ width:"35%", margin:"1%"}}>
+                <Card key={assignment[0]} style={{ width:"35%", margin:"1%", border: "1px solid #A9E8DC"}}>
                     <CardTitle>{assignment[1]}</CardTitle> {/* Assignment Name*/}
                     <CardText>Due Date: {assignment[2]}</CardText>
                     <CardText>Instrument: {assignment[3]}</CardText>

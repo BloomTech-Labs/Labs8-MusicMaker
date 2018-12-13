@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		391A1F8821C2F21A004AE75D /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391A1F8721C2F21A004AE75D /* SplitViewController.swift */; };
+		391A1F8A21C2F9DA004AE75D /* NoAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 391A1F8921C2F9DA004AE75D /* NoAssignmentViewController.storyboard */; };
 		393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 393E237E21AB422700620D94 /* MusicMakerModel.xcdatamodeld */; };
 		393E238421AB4C1E00620D94 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238321AB4C1E00620D94 /* CoreData.swift */; };
 		393E238621AB564200620D94 /* Teacher+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E238521AB564200620D94 /* Teacher+Convenience.swift */; };
@@ -120,6 +122,8 @@
 /* Begin PBXFileReference section */
 		14164028D61F9D9FA287E67B /* Pods_MusicMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30673F6A357782EEB3E98417 /* Pods-MusicMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicMaker/Pods-MusicMaker.debug.xcconfig"; sourceTree = "<group>"; };
+		391A1F8721C2F21A004AE75D /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		391A1F8921C2F9DA004AE75D /* NoAssignmentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoAssignmentViewController.storyboard; sourceTree = "<group>"; };
 		393E237F21AB422700620D94 /* MusicMakerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MusicMakerModel.xcdatamodel; sourceTree = "<group>"; };
 		393E238321AB4C1E00620D94 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		393E238521AB564200620D94 /* Teacher+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+Convenience.swift"; sourceTree = "<group>"; };
@@ -346,6 +350,7 @@
 				BF5D520B219CC7F200DFF213 /* Teachers.storyboard */,
 				39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */,
 				39CA2B522193607700C6018E /* SplitView.storyboard */,
+				391A1F8921C2F9DA004AE75D /* NoAssignmentViewController.storyboard */,
 				39C47DC521AF228900C1E115 /* SubmittedAssignmentViewController.storyboard */,
 				399F0B5621B7377B00261477 /* AssignmentsTableViewController.storyboard */,
 			);
@@ -633,6 +638,7 @@
 				BF9047AB21B9C754009F859D /* Merriweather-BoldItalic.ttf in Resources */,
 				BF9047AF21B9C754009F859D /* Merriweather-BlackItalic.ttf in Resources */,
 				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
+				391A1F8A21C2F9DA004AE75D /* NoAssignmentViewController.storyboard in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				39C47DC621AF228900C1E115 /* SubmittedAssignmentViewController.storyboard in Resources */,
 				BF2192A121C3523B004F50FE /* qr.json in Resources */,

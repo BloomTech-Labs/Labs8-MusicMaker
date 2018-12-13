@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import jumbotron from '../less/imgs/landingView.png';
 // import jumboLogo from "../less/imgs/jumboLogo.png"; <- working on resizing and/or editing this
 import { Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import * as routes from '../constants/routes';
 
 const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC"}
 
@@ -16,24 +18,19 @@ class LandingPageView extends Component {
             <CardTitle style={{ marginBottom: "15px" }}>Music Master Maker</CardTitle>
               <CardSubtitle style={{ marginBottom: "15px" }}>Your one-stop portal for music educators and students.</CardSubtitle>
                 <CardText className="bodyText">
-                  Changing fonts soon. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
-                  consequat nisl in ornare. Nulla quis fringilla ipsum, blandit luctus
-                  purus. Phasellus suscipit enim massa, id molestie magna consectetur
-                  ac. Praesent ut posuere tortor. Phasellus aliquam risus elit, commodo
-                  accumsan arcu cursus et. Pellentesque ac pharetra eros, ut facilisis
-                  arcu. Mauris hendrerit nibh mi, non fermentum quam pharetra non. Etiam
-                  eu felis ac tortor accumsan finibus quis in odio. Suspendisse potenti.
+                  Music Master Maker is an application for music teachers to manage remote student practice sessions. Students sign 
+                  up via a QR code unique to their teacher, then use their iOS device to record practice sessions and submit 
+                  them to the teacher for feedback. 
                 </CardText>
                 <CardText className="bodyText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
-                  consequat nisl in ornare. Nulla quis fringilla ipsum, blandit luctus
-                  purus. Phasellus suscipit enim massa, id molestie magna consectetur
-                  ac. Praesent ut posuere tortor. Phasellus aliquam risus elit, commodo
-                  accumsan arcu cursus et. Pellentesque ac pharetra eros, ut facilisis
-                  arcu. Mauris hendrerit nibh mi, non fermentum quam pharetra non. Etiam
-                  eu felis ac tortor accumsan finibus quis in odio. Suspendisse potenti.
+                  The student app has push notifications and emails a student when an assignment has been given and graded, and to 
+                  teachers when an assignment has been submitted for grading.
                 </CardText>
-              <Button outline color="info" size="lg" className="buyNow_Button"> Buy Now </Button>
+                <CardText className="bodyText">
+                  The app is free for students and has a monthly fee for teachers.
+                </CardText>
+                <Link to={routes.SIGN_UP}><Button outline color="info" size="lg">Sign Up For a Teacher Account Now!</Button></Link>
+              {/* <Button outline color="info" size="lg">Sign Up For a Student Account Now!</Button> */}
           </CardBody>
         </Card>
       </div>

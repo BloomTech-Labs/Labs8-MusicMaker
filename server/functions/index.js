@@ -480,11 +480,10 @@ app.delete("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
 //details: email, name (first, last, and prefix), and generate a new qr code
 app.post("/addNewTeacher", (req, res) => {
   try {
-    const { email,  } = req.body;
-    // firstName, lastName, prefix
+    const { email, firstName, lastName, prefix } = req.body;
+
     //Teachers' db reference:
     const teachersRef = db.collection("teachers") 
-    console.log(req.body);
 
     if (!email) {
       res.status(411).send({REQUIRED: "Please fill all required fields: email missing."});
@@ -495,7 +494,6 @@ app.post("/addNewTeacher", (req, res) => {
           'subscribed': false
         })
         .then(ref => {
-          console.log(ref);
           let uuid = UUID();
           let qrOptions = {
             errorCorrectionLevel: "H",
@@ -516,19 +514,15 @@ app.post("/addNewTeacher", (req, res) => {
               let file = data[0];
               Promise.resolve(
                 "https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid
-              ).then(url => { 
+              ).then(url => {
                 teachersRef
                   .doc(ref.id)
                   .update({
                     'qrcode': url
                   });
                   
-<<<<<<< HEAD
-                res.status(201).send({MESSAGE: `Teacher was successfully added.`});
-=======
-                res.status(201).send({MESSAGE: `Teacher ${email} was successfully added.`});
->>>>>>> 8465eb8ef4b5cfca9d0e59cae1ba9d0f2e649f17
-              });
+                  res.status(201).send({MESSAGE: `Teacher ${email} was successfully added.`});
+                });
             });
         });
     }

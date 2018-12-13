@@ -31,7 +31,7 @@
 		39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B5E2194AED500C6018E /* RecordButtonTableViewCell.swift */; };
 		39CA2B612194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */; };
 		39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */; };
-		BF37286F21C1EA0D003102BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF37286E21C1EA0D003102BF /* GoogleService-Info.plist */; };
+		BF21929D21C2D19B004F50FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */; };
 		BF5D5209219CB05900DFF213 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */; };
 		BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5208219CB05900DFF213 /* HoshiTextField.swift */; };
 		BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5D520B219CC7F200DFF213 /* Teachers.storyboard */; };
@@ -144,8 +144,8 @@
 		39CA2B5E2194AED500C6018E /* RecordButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSaveSubmitTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordingViewController.storyboard; sourceTree = "<group>"; };
+		BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF37286D21C1E766003102BF /* MusicMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicMaker.entitlements; sourceTree = "<group>"; };
-		BF37286E21C1EA0D003102BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
 		BF5D5208219CB05900DFF213 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
 		BF5D520B219CC7F200DFF213 /* Teachers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Teachers.storyboard; sourceTree = "<group>"; };
@@ -357,10 +357,10 @@
 			isa = PBXGroup;
 			children = (
 				BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */,
+				BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */,
 				BFD3E5652192393B00D84FF2 /* Assets.xcassets */,
 				39CA2B5A219397DA00C6018E /* SamplePDF.pdf */,
 				BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */,
-				BF37286E21C1EA0D003102BF /* GoogleService-Info.plist */,
 				BFD3E56A2192393B00D84FF2 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -604,13 +604,13 @@
 				39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */,
 				BF9047C021B9C839009F859D /* Roboto-MediumItalic.ttf in Resources */,
 				BF9047B121B9C754009F859D /* Merriweather-LightItalic.ttf in Resources */,
-				BF37286F21C1EA0D003102BF /* GoogleService-Info.plist in Resources */,
 				BF9047C821B9C839009F859D /* Roboto-Bold.ttf in Resources */,
 				BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */,
 				BF9047C321B9C839009F859D /* Roboto-ThinItalic.ttf in Resources */,
 				BF9047C721B9C839009F859D /* Roboto-Medium.ttf in Resources */,
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
 				BF98B15021B74B07007B7C45 /* QRScanner.storyboard in Resources */,
+				BF21929D21C2D19B004F50FE /* GoogleService-Info.plist in Resources */,
 				BF9047AC21B9C754009F859D /* Merriweather-Black.ttf in Resources */,
 				BF9047C621B9C839009F859D /* Roboto-Black.ttf in Resources */,
 				39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */,

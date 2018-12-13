@@ -31,6 +31,7 @@
 		39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B5E2194AED500C6018E /* RecordButtonTableViewCell.swift */; };
 		39CA2B612194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */; };
 		39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */; };
+		BF21929D21C2D19B004F50FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */; };
 		BF5D5209219CB05900DFF213 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */; };
 		BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5208219CB05900DFF213 /* HoshiTextField.swift */; };
 		BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5D520B219CC7F200DFF213 /* Teachers.storyboard */; };
@@ -75,7 +76,6 @@
 		BF98B14E21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98B14D21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift */; };
 		BF98B15021B74B07007B7C45 /* QRScanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF98B14F21B74B07007B7C45 /* QRScanner.storyboard */; };
 		BFB8A0E921BF30170035FF20 /* SignUpNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8A0E821BF30170035FF20 /* SignUpNavigationController.swift */; };
-		BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD381BA219255540038F974 /* GoogleService-Info.plist */; };
 		BFD381C32193525F0038F974 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD381C22193525F0038F974 /* Authentication.storyboard */; };
 		BFD381D0219355510038F974 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD381CF219355510038F974 /* LogInViewController.swift */; };
 		BFD3E55F2192393A00D84FF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */; };
@@ -144,6 +144,8 @@
 		39CA2B5E2194AED500C6018E /* RecordButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSaveSubmitTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordingViewController.storyboard; sourceTree = "<group>"; };
+		BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BF37286D21C1E766003102BF /* MusicMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicMaker.entitlements; sourceTree = "<group>"; };
 		BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
 		BF5D5208219CB05900DFF213 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
 		BF5D520B219CC7F200DFF213 /* Teachers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Teachers.storyboard; sourceTree = "<group>"; };
@@ -192,7 +194,6 @@
 		BF98B14D21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAndLastNameViewControllerDelegate.swift; sourceTree = "<group>"; };
 		BF98B14F21B74B07007B7C45 /* QRScanner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRScanner.storyboard; sourceTree = "<group>"; };
 		BFB8A0E821BF30170035FF20 /* SignUpNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNavigationController.swift; sourceTree = "<group>"; };
-		BFD381BA219255540038F974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD381C22193525F0038F974 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		BFD381CF219355510038F974 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BFD3E55B2192393A00D84FF2 /* MusicMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -356,10 +357,10 @@
 			isa = PBXGroup;
 			children = (
 				BFD3E55E2192393A00D84FF2 /* AppDelegate.swift */,
+				BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */,
 				BFD3E5652192393B00D84FF2 /* Assets.xcassets */,
 				39CA2B5A219397DA00C6018E /* SamplePDF.pdf */,
 				BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */,
-				BFD381BA219255540038F974 /* GoogleService-Info.plist */,
 				BFD3E56A2192393B00D84FF2 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -446,6 +447,7 @@
 		BFD3E55D2192393A00D84FF2 /* MusicMaker */ = {
 			isa = PBXGroup;
 			children = (
+				BF37286D21C1E766003102BF /* MusicMaker.entitlements */,
 				BF9047A221B9C740009F859D /* Fonts */,
 				BF98B13521B4E3A1007B7C45 /* qr_code.json */,
 				BF98B13B21B50D9B007B7C45 /* checkmark.json */,
@@ -549,6 +551,11 @@
 					};
 					BFD3E55A2192393A00D84FF2 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -603,6 +610,7 @@
 				BF9047C721B9C839009F859D /* Roboto-Medium.ttf in Resources */,
 				BFD3E5692192393B00D84FF2 /* LaunchScreen.storyboard in Resources */,
 				BF98B15021B74B07007B7C45 /* QRScanner.storyboard in Resources */,
+				BF21929D21C2D19B004F50FE /* GoogleService-Info.plist in Resources */,
 				BF9047AC21B9C754009F859D /* Merriweather-Black.ttf in Resources */,
 				BF9047C621B9C839009F859D /* Roboto-Black.ttf in Resources */,
 				39CA2B5B219397DA00C6018E /* SamplePDF.pdf in Resources */,
@@ -626,7 +634,6 @@
 				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				39C47DC621AF228900C1E115 /* SubmittedAssignmentViewController.storyboard in Resources */,
-				BFD381BB219255540038F974 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1035,6 +1042,7 @@
 			baseConfigurationReference = 30673F6A357782EEB3E98417 /* Pods-MusicMaker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MusicMaker/MusicMaker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
 				INFOPLIST_FILE = "$(SRCROOT)/MusicMaker/Supporting Files/Info.plist";
@@ -1054,6 +1062,7 @@
 			baseConfigurationReference = F6FDA1FA291F03420ADB77C5 /* Pods-MusicMaker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MusicMaker/MusicMaker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
 				INFOPLIST_FILE = "$(SRCROOT)/MusicMaker/Supporting Files/Info.plist";

@@ -1,5 +1,5 @@
 //Assignment's Students List: After clicking on an assignment from dashboardAssigmentsView.js,
-//it'll take you to another page with "+" to add student's to an assignment, 
+//it'll take you to another page with "+" to add student's to an assignment,
 //click assignment's name to see the full ungraded assignment,
 //click on student to see student's assignment submission for grading.
 import React, { Component } from "react";
@@ -13,6 +13,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import withPayment from '../components/withPayment';
 // import GradeAssignmentView from "../views/gradeAssignmentView";
 
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
 class StudentAssignmentsView extends Component {
     constructor(props) {
@@ -66,7 +67,7 @@ class StudentAssignmentsView extends Component {
     // componentDidMount() {
     //     const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
     //     const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
-        
+
     //     axios.all([
     //         axios.get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/students`),
     //         axios.get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}`)
@@ -90,7 +91,12 @@ class StudentAssignmentsView extends Component {
     componentDidMount() {
         const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
         const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
+<<<<<<< HEAD
         
+=======
+
+
+>>>>>>> 8465eb8ef4b5cfca9d0e59cae1ba9d0f2e649f17
         axios
             .get(`https://musicmaker-4b2e8.firebaseapp.com/${teacherId}/assignment/${assignmentId}/students`)
             .then(res => {
@@ -103,6 +109,7 @@ class StudentAssignmentsView extends Component {
     render() {
         const {email, dueDate} = this.state;
         return(
+<<<<<<< HEAD
             <div>
                 <h1><Label>Student's Assigned to the Assignment</Label></h1>
                 <Button onClick={this.toggle}>+</Button>
@@ -121,6 +128,11 @@ class StudentAssignmentsView extends Component {
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
                 </Modal>
+=======
+            <div style={formContainer}>
+                <h1><Label>Students Assigned to the Assignment</Label></h1>
+                <h1>+</h1>
+>>>>>>> 8465eb8ef4b5cfca9d0e59cae1ba9d0f2e649f17
             <div>
                 {this.state.students.map(student => (
                     <Row key={student[2]} style={{border:"1px solid black"}}>

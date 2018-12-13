@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
+import axios from 'axios';
 
 import { auth } from "../firebase";
 
@@ -50,7 +51,36 @@ class SignUpView extends Component {
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
-        history.push(routes.LANDING);
+
+        // const nameArr = authUser.user.displayName.split(' ');
+
+        // let authUserInfo = new FormData();
+
+        // authUserInfo.append('email', authUser.user.email);
+        // authUserInfo.append('subscribed', false);
+        // console.log(authUserInfo);
+        // console.log(authUser);
+
+        const authUserInfo = {
+          email: authUser.user.email,
+          // name: {
+          //   firstName: nameArr[0],
+          //   lastName: nameArr[1]
+          // },
+          subscribed: false
+        }
+
+        axios
+          .post('https://musicmaker-4b2e8.firebaseapp.com/addNewTeacher', authUserInfo)
+          // .post('http://localhost:8000/addNewTeacher', authUserInfo)
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.log(err);
+          })
+
+        history.push(routes.SETTINGS);
       })
       .catch(error => {
         this.setState(byPropKey("error", error));
@@ -111,7 +141,7 @@ class SignUpView extends Component {
             disabled={isInvalid}
             type="submit"
           >
-            Sign Up
+            Teacher Sign Up
           </Button>
           {error && <p>{error.message}</p>}
         </Form>

@@ -136,7 +136,7 @@ class SignInView extends Component {
                 disabled={isInvalid}
                 onClick={this.onSubmit}
               >
-                Sign In
+                Teacher Sign In
               </Button>
             </ButtonToolbar>
             {error && <p>{error.message}</p>}

@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>849993185408-9ktpn1pn363tk4l7rcefoglkm6a6866o.apps.googleusercontent.com</string>
+	<string>849993185408-qjg2rt77nljoqgsodmr1qa05u42eboo2.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.849993185408-9ktpn1pn363tk4l7rcefoglkm6a6866o</string>
+	<string>com.googleusercontent.apps.849993185408-qjg2rt77nljoqgsodmr1qa05u42eboo2</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBpiGQDK-XmSumUshrqJxsE420qBCuAljA</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.vuk.MusicMaker</string>
+	<string>com.lambdaschool.MusicMaker</string>
 	<key>PROJECT_ID</key>
 	<string>musicmaker-4b2e8</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:849993185408:ios:cce4090a84ab2ffd</string>
+	<string>1:849993185408:ios:e5d8b581b58fbfb0</string>
 	<key>DATABASE_URL</key>
 	<string>https://musicmaker-4b2e8.firebaseio.com</string>
 </dict>

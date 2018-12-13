@@ -5,14 +5,16 @@ import TakeMoney from "../components/StripeFrontend";
 
 import { Row, Col } from "reactstrap";
 
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
+
 class DashboardBillingView extends Component {
   render() {
     return (
       <StripeProvider apiKey="pk_test_YVKiLW0mvujdoxalKItXwyhj">
-        <Row className="container">
-          <Col>
+        <Row className="container" style={formContainer}>
+          <Col style={{margin: "20px"}}>
             <h1>Billing</h1>
-            <Elements>
+            <Elements style={{margin: "20px"}}>
               <TakeMoney />
             </Elements>
           </Col>

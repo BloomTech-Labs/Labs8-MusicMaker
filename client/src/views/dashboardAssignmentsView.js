@@ -1,9 +1,14 @@
-// Assignment List: This page wil allow teacher's to see a list of all their ungraded assignments
+// Assignments List: This page will allow teachers to see a list of all their ungraded assignments
  
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import axios from 'axios';
+// import { Route } from "react-router-dom";
+
+// import * as routes from "../constants/routes";
+// import StudentAssignmentsView from "./studentAssignmentsView";
+
 
 class DashboardAssignmentsView extends Component {
   constructor(props) {
@@ -22,7 +27,7 @@ componentDidMount() {
           this.setState({assignments: res.data})
       })
       .catch(err => console.error('ASSIGNMENTS LIST VIEW AXIOS:', err));
-}
+};
 
   render() {
     return (
@@ -36,13 +41,13 @@ componentDidMount() {
                 <CardText>Experience: {assignment[1].level}</CardText>
                 <CardText>Instrument: {assignment[1].instrument}</CardText>
                 <CardText>Piece: {assignment[1].piece}</CardText>
-                <CardText>Music Sheet: <a href={assignment[1].sheetMusic}><img src={assignment[1].sheetMusic} alt="pdf image" /></a></CardText>
+                {/* <CardText>Music Sheet: <a href={assignment[1].sheetMusic}>pdf image</a></CardText>  //weird error appears, will fix later*/} 
                 <CardText>Instructions: {assignment[1].instructions.substring(0,35)}...</CardText>
-
               </NavLink> 
             </Card>
           ))}
         </div>
+        {/* <Route path={'/assignmentStudents/:assignmentId'} component={StudentAssignmentsView} /> */}
       </div>
     );
   }

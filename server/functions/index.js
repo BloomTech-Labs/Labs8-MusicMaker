@@ -124,7 +124,6 @@ app.get("/teacher/:idTeacher/student/:idStudent", (req, res) => {
 });
 
 // Get the list of assignments from a student
-// Frontend: will have to write code that when "null", return " " for those assignments not completed.
 app.get("/teacher/:idTeacher/student/:idStudent/assignments",(req, res) => {
     try {
       const studentId = req.params["idStudent"];
@@ -173,6 +172,7 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
   try {
     const teacherId = req.params["idTeacher"];
     const assignmentId = req.params["idAssignment"];
+    const combo =[]
   
     //Teacher's db list of students:
     const teacherStudentsRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students');
@@ -190,9 +190,17 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
             return studentRef.doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get().then(assignment => {
               const studentInfo = student.data();
               const assignmentInfo = assignment.data();
+              const reformattedDueDate = parseDate(assignmentInfo.dueDate);
 
-              return Object.assign([assignmentInfo, studentInfo] )
-              // return Object.assign({}, assignmentInfo, studentInfo )  
+              // //  combo.push([assignmentInfo, studentInfo ])
+              // const obj = Object.assign(assignmentInfo, studentInfo)
+              // // return Object.assign({}, assignmentInfo, studentInfo )  
+              // // return [...studentInfo]
+              // const results = Object.keys(obj).map(function(key) {
+              //   return [obj[key]]
+              // })
+              // console.log('******************here', )
+              return [assignment.id, assignmentInfo.assignmentName, student.id, studentInfo.firstName, studentInfo.lastName, reformattedDueDate, assignmentInfo.video]
             });
           });
 
@@ -477,8 +485,6 @@ app.post("/addNewTeacher", (req, res) => {
 
     if (!email) {
       res.status(411).send({REQUIRED: "Please fill all required fields: email missing."});
-    } else if (!firstName || !lastName || !prefix) {
-      res.status(411).send({REQUIRED:"Please fill all required fields: prefix, first and last name."});
     } else {
       teachersRef
         .add({

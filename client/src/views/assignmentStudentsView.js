@@ -47,12 +47,13 @@ class StudentAssignmentsView extends Component {
         const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
 
         const {email, dueDate} = this.state;
+        console.log('State***********', {email, dueDate})
 
 
         axios  
             .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
             .then(res => {
-                console.log('Assign******************', res)
+                console.log('Assign******************', res.data)
               })
               .catch(err => {
                 console.error('ASSIGN VIEW ERROR', err)
@@ -91,7 +92,7 @@ class StudentAssignmentsView extends Component {
         const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
         
         axios
-            .get(`http://localhost:8000/teacher/${teacherId}/assignment/${assignmentId}/students`)
+            .get(`https://musicmaker-4b2e8.firebaseapp.com/${teacherId}/assignment/${assignmentId}/students`)
             .then(res => {
                 // console.log('student******************', res.data)
                 this.setState({students:res.data})
@@ -100,7 +101,7 @@ class StudentAssignmentsView extends Component {
     }
 
     render() {
-        const {email} = this.state;
+        const {email, dueDate} = this.state;
         return(
             <div>
                 <h1><Label>Student's Assigned to the Assignment</Label></h1>
@@ -111,9 +112,9 @@ class StudentAssignmentsView extends Component {
                     <Label for="exampleEmail">Email</Label>
                     <Input type="email" name="email" id="exampleEmail" placeholder="Student Email" value={email} onChange={this.onChange}  />
                     <Label for="exampleDate">Due Date</Label>
-                    <Input type="date" name="dueDate" id="exampleDate" placeholder="mm/dd/yyyy" onChange={this.onChange} />
-                    <Label for="exampleTime">Due Time</Label>
-                    <Input type="time" name="dueDate" id="exampleTime" placeholder="hh:ss" onChange={this.onChange} />
+                    <Input type="date" name="dueDate" id="exampleDate" placeholder="mm/dd/yyyy" value={dueDate} onChange={this.onChange} />
+                    {/* <Label for="exampleTime">Due Time</Label>
+                    <Input type="time" name="dueDate" id="exampleTime" placeholder="hh:ss" value={dueDate} onChange={this.onChange} /> */}
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary"  onClick={this.onSubmit}>Submit</Button>{' '}

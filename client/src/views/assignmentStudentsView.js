@@ -20,7 +20,8 @@ class StudentAssignmentsView extends Component {
         this.state = {
             // assignments: [],
             students: [],
-            modal:false,            
+            modal:false,  
+            dueDate:''          
         };
 
         this.toggle = this.toggle.bind(this);
@@ -31,7 +32,25 @@ class StudentAssignmentsView extends Component {
         this.setState({
           modal: !this.state.modal
         });
-      }
+    };
+
+    onSubmit = event => {
+        event.preventDefault();
+
+        const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
+        const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
+
+        axios  
+            .post(`https://musicmaker-4b2e8.firebaseapp.com/${teacherId}/assignment/${assignmentId}/assignToStudent`)
+            .then(res => {
+                console.log(res)
+                this.props.history.push('/assignmentStudents/:assignmentId') //may need to change?
+              })
+              .catch(err => {
+                console.err('GRADE ASSIGNMENT VIEW ERROR', err)
+              })
+    }
+    
     
      
 

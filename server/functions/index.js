@@ -200,7 +200,7 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
               //   return [obj[key]]
               // })
               // console.log('******************here', )
-              return [assignment.id, assignmentInfo.assignmentName, student.id, studentInfo.firstName, studentInfo.lastName, reformattedDueDate, assignmentInfo.video].sort(-reformattedDueDate)
+              return [assignment.id, assignmentInfo.assignmentName, student.id, studentInfo.firstName, studentInfo.lastName, reformattedDueDate, assignmentInfo.video]
             });
           });
 

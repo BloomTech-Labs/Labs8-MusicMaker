@@ -5,6 +5,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
+
 class DashboardView extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +30,7 @@ class DashboardView extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={formContainer}>
         <div className="d-flex ">
           <h1>Dashboard</h1>
           <Link to="/assignments/create">

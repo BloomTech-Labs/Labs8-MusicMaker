@@ -14,44 +14,26 @@ class Settings extends Component {
         prefix: "",
         firstName: "",
         lastName: ""
-      }
+      },
     };
   };
 
   componentDidMount() {
     const teacherId = 'pwUGQC7SHBiPKPdnOq2c';
+    console.log();
 
       axios
           .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settings`) //match params.id when this becomes fully dynamic
           .then(res => {
-              console.log(res.data)
+              console.log('settings res.data', res.data)
               this.setState({
                   email: res.data.email,
                   prefix: res.data.name.prefix,
                   firstName: res.data.name.firstName,
                   lastName: res.data.name.lastName,
-                  subscribed: true
               })
           })
           .catch(err => console.error('Sorry, an error was encountered.', err));
-  }
-
-  updateName = event => {
-    const teacherId = 'pwUGQC7SHBiPKPdnOq2c';
-    const {prefix, firstName, lastName} = this.state;
-
-    axios
-      .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settingsEdit`, {prefix, firstName, lastName})
-      .then(res => {
-        console.log(res)
-        this.setState({
-          prefix: res.data.prefix,
-          firstName: res.data.firstName,
-          lastName: res.data.lastName
-        })
-        this.props.history.push(`teacher/${teacherId}/settings`); // not sure where exactly this has to be pushed
-      })
-      .catch(err => console.error('Sorry, an error was encountered while updating your settings.', err));
   }
 
   handleChange = event => {
@@ -65,7 +47,20 @@ class Settings extends Component {
     alert(`Settings updated successfully! Your name is now ${this.state.prefix} ${this.state.firstName} ${this.state.lastName}.`);
   }
 
+  updateName = event => {
+    const teacherId = 'pwUGQC7SHBiPKPdnOq2c';
+    const { prefix, firstName, lastName } = this.state;
+
+    axios
+      .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settingsEdit`, { prefix, firstName, lastName })
+      .then(res => {
+        this.props.history.push(`/settings`); // not sure where exactly this has to be pushed
+      })
+      .catch(err => console.error('Sorry, an error was encountered while updating your settings.', err));
+  }
+
   render() {
+    const { email, prefix, firstName, lastName } = this.state;
     return (
       <div className="container" style = {formContainer}>
         <Card style = {{padding: "20px"}}>
@@ -79,11 +74,11 @@ class Settings extends Component {
           <FormGroup>
             <h2>Update Your Information</h2>
               <Label>Title</Label>
-                <Input value = {this.prefix} onChange = {(e) => this.handleChange(e)} type = 'text' />
+                <Input name="prefix" value={prefix} onChange={this.handleChange} type='text' />
               <Label>First Name</Label>
-                <Input value = {this.firstName} onChange = {(e) => this.handleChange(e)} type = 'text' />
+                <Input name="firstName" value={firstName} onChange={this.handleChange} type='text' />
               <Label>Last Name</Label>
-                <Input value = {this.lastName} onChange = {(e) => this.handleChange(e)} type = 'text' />
+                <Input name="lastName" value={lastName} onChange={this.handleChange} type='text' />
           </FormGroup>
           <Button type = 'submit' onClick = {this.updateName}>Submit Changes</Button>
         </Form>

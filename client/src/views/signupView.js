@@ -58,6 +58,8 @@ class SignUpView extends Component {
 
         authUserInfo.append('email', authUser.user.email);
         authUserInfo.append('subscribed', false);
+        console.log(authUserInfo);
+        console.log(authUser);
 
         // const authUserInfo = {
         //   email: authUser.user.email,
@@ -69,7 +71,8 @@ class SignUpView extends Component {
         // }
 
         axios
-          .post('https://musicmaker-4b2e8.firebaseapp.com/addNewTeacher', authUserInfo)
+          // .post('https://musicmaker-4b2e8.firebaseapp.com/addNewTeacher', authUserInfo)
+          .post('http://localhost:8000/addNewTeacher', authUserInfo)
           .then(res => {
             console.log(res);
           })

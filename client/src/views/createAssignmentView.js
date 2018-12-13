@@ -25,6 +25,7 @@ import axios from 'axios';
     this.setState({
       sheetMusic: event.target.files[0], loaded: 0,
     })
+    console.log("sheetMusic*******************", event.target.files[0])
   }
 
   onSubmit = event => {
@@ -40,6 +41,7 @@ import axios from 'axios';
     formData.append('level', level);
     formData.append('instructions', instructions);
     formData.append('file', sheetMusic);
+
 
     axios
       // .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment', 

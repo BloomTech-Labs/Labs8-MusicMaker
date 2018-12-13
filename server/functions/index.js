@@ -334,6 +334,8 @@ app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, r
 // // // POST should create and add a new ungraded assignment under a teacher
 // // // details: assignmentName, instructions, instrument, level, piece, sheetMusic
 app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
+  console.log("**********req.body**********", req.body)
+
   try {
     const teacherId = req.params["idTeacher"];
     console.log("**********teacherId**********", teacherId)
@@ -476,17 +478,10 @@ app.post("/addNewTeacher", (req, res) => {
 
     if (!email) {
       res.status(411).send({REQUIRED: "Please fill all required fields: email missing."});
-    } else if (!firstName || !lastName || !prefix) {
-      res.status(411).send({REQUIRED:"Please fill all required fields: prefix, first and last name."});
     } else {
       teachersRef
         .add({
           'email': email,
-          'name': {
-            'firstName': firstName,
-            'lastName': lastName,
-            'prefix': prefix
-          },
           'subscribed': false
         })
         .then(ref => {
@@ -517,7 +512,7 @@ app.post("/addNewTeacher", (req, res) => {
                     'qrcode': url
                   });
                   
-                res.status(201).send({MESSAGE: `Teacher ${prefix} ${lastName} was successfully added.`});
+                res.status(201).send({MESSAGE: `Teacher was successfully added.`});
               });
             });
         });

@@ -14,7 +14,6 @@ import FirebaseFirestore
 class InitialViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: - Properties
-    let database = Firestore.firestore()
     let blurredBackgroundView = UIVisualEffectView()
     
     //Used for google authentication to pass email so it can post it to firestore
@@ -150,8 +149,9 @@ extension InitialViewController: GIDSignInDelegate {
                 print(error)
                 return
             }
+            let database = Firestore.firestore()
             let currentUser = Auth.auth().currentUser
-            let currentUserReference = self.database.collection("students").document(currentUser?.uid ?? "")
+            let currentUserReference = database.collection("students").document(currentUser?.uid ?? "")
             currentUserReference.getDocument(completion: { (document, error) in
                 if let document = document, document.exists {
                     self.performSegue(withIdentifier: "ShowTeachers", sender: nil)

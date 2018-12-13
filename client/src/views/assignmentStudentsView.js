@@ -20,12 +20,11 @@ class StudentAssignmentsView extends Component {
         this.state = {
             // assignments: [],
             students: [],
-            modal:false,  
+            modal:false,
+            email: '',  
             dueDate:''          
         };
-
         this.toggle = this.toggle.bind(this);
-
     };
 
     toggle() {
@@ -34,20 +33,29 @@ class StudentAssignmentsView extends Component {
         });
     };
 
+    onChange = event => {
+        this.setState({
+          [event.target.name]: event.target.value,
+        });
+      };
+
     onSubmit = event => {
+        console.log("here*****************")
         event.preventDefault();
 
         const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
         const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
 
+        const {email, dueDate} = this.state;
+
+
         axios  
-            .post(`https://musicmaker-4b2e8.firebaseapp.com/${teacherId}/assignment/${assignmentId}/assignToStudent`)
+            .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
             .then(res => {
-                console.log(res)
-                this.props.history.push('/assignmentStudents/:assignmentId') //may need to change?
+                console.log('Assign******************', res)
               })
               .catch(err => {
-                console.err('GRADE ASSIGNMENT VIEW ERROR', err)
+                console.error('ASSIGN VIEW ERROR', err)
               })
     }
     
@@ -82,18 +90,17 @@ class StudentAssignmentsView extends Component {
         const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
         const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
         
-
         axios
-            .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/students`)
+            .get(`http://localhost:8000/teacher/${teacherId}/assignment/${assignmentId}/students`)
             .then(res => {
-                console.log('student******************', res.data)
+                // console.log('student******************', res.data)
                 this.setState({students:res.data})
             })
             .catch(err => console.error('ASSIGNMENT STUDENTS VIEW AXIOS ERROR:', err));
     }
 
     render() {
-        const {date, format, mode, inputFormat} = this.state;
+        const {email} = this.state;
         return(
             <div>
                 <h1><Label>Student's Assigned to the Assignment</Label></h1>
@@ -102,14 +109,14 @@ class StudentAssignmentsView extends Component {
                 <ModalHeader toggle={this.toggle}>Assign Assignment to Student</ModalHeader>
                 <ModalBody>
                     <Label for="exampleEmail">Email</Label>
-                    <Input type="email" name="email" id="exampleEmail" placeholder="Student Email" />
+                    <Input type="email" name="email" id="exampleEmail" placeholder="Student Email" value={email} onChange={this.onChange}  />
                     <Label for="exampleDate">Due Date</Label>
-                    <Input type="date" name="date" id="exampleDate" placeholder="mm/dd/yyyy" />
+                    <Input type="date" name="dueDate" id="exampleDate" placeholder="mm/dd/yyyy" onChange={this.onChange} />
                     <Label for="exampleTime">Due Time</Label>
-                    <Input type="time" name="time" id="exampleTime" placeholder="hh:ss" />
+                    <Input type="time" name="dueDate" id="exampleTime" placeholder="hh:ss" onChange={this.onChange} />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}
+                    <Button color="primary"  onClick={this.onSubmit}>Submit</Button>{' '}
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
                 </Modal>

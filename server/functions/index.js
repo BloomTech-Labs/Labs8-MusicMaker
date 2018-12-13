@@ -292,6 +292,7 @@ app.put("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent", (req,
 //details: assignment name, instructions, instrument, level, music sheet and piece
 app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, res) => {
     try {
+      console.log("\n***********req.body***********\n", req.body)
       const teacherId = req.params["idTeacher"];
       const assignmentId = req.params["idAssignment"];
       const { email, dueDate } = req.body;
@@ -306,6 +307,7 @@ app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, r
         .get()
         .then(students => {
           students.forEach(student => {
+            console.log("\n***********studentId***********\n", student.id)
             const studentId = student.id;
             //Student's teacher assignment db reference:
             const studentTeacherAssignmentRef = studentRef.doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
@@ -489,11 +491,6 @@ app.post("/addNewTeacher", (req, res) => {
       teachersRef
         .add({
           'email': email,
-          'name': {
-            'firstName': firstName,
-            'lastName': lastName,
-            'prefix': prefix
-          },
           'subscribed': false
         })
         .then(ref => {

@@ -54,21 +54,26 @@ class StudentSignupViewController: UIViewController {
     var lastName: String?
     
 
-    // MARK: - Private Methods
-//    private func setupContainerViews() {
-//        emailAndPasswordView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
-//        levelAndInstrumentView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
-//    }
     
     private func writeStudentToFirestore(userId: String, level: String, instrument: String) {
         guard let email = email, let firstName = firstName, let lastName = lastName, let teacherUniqueId = teacherUniqueId else {return}
         
         let database = Firestore.firestore()
         let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level]
-        database.collection("students").document(userId).setData(userDocumentInformation)
-        database.collection("students").document(userId).collection("teachers").document(teacherUniqueId).setData(["exisits": true])
-        database.collection("teachers").document(teacherUniqueId).collection("students").document(userId).setData(userDocumentInformation)
         
+        let teacherDocument = database.collection("teachers").document(teacherUniqueId)
+        
+        teacherDocument.getDocument { (documentSnapshot, error) in
+            if let error = error {
+                NSLog("Error loading teacher \(error)")
+                return
+            }
+            if let name = documentSnapshot?.data()?["name"] as? [String: String] {
+                database.collection("students").document(userId).collection("teachers").document(teacherUniqueId).setData(["name": name])
+                database.collection("students").document(userId).setData(userDocumentInformation)
+                database.collection("teachers").document(teacherUniqueId).collection("students").document(userId).setData(userDocumentInformation)
+            }
+        }
         self.performSegue(withIdentifier: "ShowStudentHome", sender: nil)
         
     }

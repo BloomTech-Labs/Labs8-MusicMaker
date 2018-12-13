@@ -22,9 +22,17 @@ class TeacherTableViewCell: UITableViewCell {
     
     var pieChartDataEntry = [PieChartDataEntry]() {
         didSet {
-            if pieChartDataEntry.count > 0 {
-                if let teacher = teacher {
+            if let teacher = teacher {
+                
+                assignmentsPieChart.noDataText = teacher.name ?? "N/A"
+                assignmentsPieChart.noDataFont = UIFont(name: "Merriweather", size: 28.0)
+                assignmentsPieChart.noDataTextColor = UIColor.blue1
+                if pieChartDataEntry.count > 0 {
+                    
+                    let myAttribute = [NSAttributedString.Key.font: UIFont(name: "Merriweather", size: 20.0)!, NSMutableAttributedString.Key.foregroundColor: UIColor.blue1]
+                    let myAttrString = NSAttributedString(string: teacher.name ?? "N/A", attributes: myAttribute)
                     let chartDataSet = PieChartDataSet(values: pieChartDataEntry, label: nil)
+                    
                     chartDataSet.colors = [UIColor.blue1, UIColor.blue2, UIColor.blue3, UIColor.blue4, UIColor.blue5]
                     chartDataSet.sliceSpace = 2.0
                     let chartData = PieChartData(dataSet: chartDataSet)
@@ -33,8 +41,7 @@ class TeacherTableViewCell: UITableViewCell {
                     formatter.minimumFractionDigits = 0
                     formatter.zeroSymbol = ""
                     assignmentsPieChart.data?.setValueFormatter(DefaultValueFormatter(formatter: formatter))
-                    let myAttribute = [NSAttributedString.Key.font: UIFont(name: "Merriweather", size: 20.0)!, NSMutableAttributedString.Key.foregroundColor: UIColor.blue1]
-                    let myAttrString = NSAttributedString(string: teacher.name ?? "N/A", attributes: myAttribute)
+                    
                     assignmentsPieChart.centerAttributedText = myAttrString
                     assignmentsPieChart.animate(yAxisDuration: 1.0)
                     assignmentsPieChart.drawEntryLabelsEnabled = false
@@ -43,8 +50,13 @@ class TeacherTableViewCell: UITableViewCell {
                     assignmentsPieChart.legend.form = .circle
                     assignmentsPieChart.legend.formSize = 12
                     assignmentsPieChart.legend.textColor = UIColor.blue1
+                    
                 }
+    
+                
             }
+            
+     
         }
     }
 }

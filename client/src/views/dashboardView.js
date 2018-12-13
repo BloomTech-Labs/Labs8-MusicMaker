@@ -32,13 +32,13 @@ class DashboardView extends Component {
     return (
       <div className="container" style={formContainer}>
         <div className="d-flex ">
-          <h1>Dashboard</h1>
+          <h1 style={{marginTop: "10px", marginBottom: "10px"}}>Dashboard</h1>
           <Link to="/assignments/create">
-            <h1> + </h1>
+            <h1 style={{position: "relative", left: "30px", top: "8px"}}> + </h1>
           </Link>
         </div>
         <div>
-          <h3>QR Code</h3>
+          <h3 style={{paddingTop: "20px", paddingBottom: "20px"}}>QR Code</h3>
           <a href={this.state.qrcode}>
             <img
               src={this.state.qrcode}

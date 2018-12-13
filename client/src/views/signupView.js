@@ -141,7 +141,7 @@ class SignUpView extends Component {
             disabled={isInvalid}
             type="submit"
           >
-            Sign Up
+            Teacher Sign Up
           </Button>
           {error && <p>{error.message}</p>}
         </Form>

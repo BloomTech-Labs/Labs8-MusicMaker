@@ -357,14 +357,13 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgb-qT-0lm">
                                             <rect key="frame" x="234" y="10" width="300" height="50"/>
-                                            <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" red="0.0078431372550000003" green="0.51764705879999995" blue="0.6588235294" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Wed-02-qw7"/>
                                                 <constraint firstAttribute="width" constant="300" id="mGG-5a-dF6"/>
                                             </constraints>
-                                            <state key="normal" title="Tap To Record" image="RecordIcon">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            </state>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Tap To Record" image="RecordIcon"/>
                                             <connections>
                                                 <action selector="recordButtonTapped:" destination="hal-Rq-1Ak" eventType="touchUpInside" id="avm-6Z-eHt"/>
                                                 <segue destination="NdW-Gj-ZSF" kind="presentation" identifier="ShowRecord" modalPresentationStyle="fullScreen" id="rQf-wG-mvz"/>
@@ -393,20 +392,18 @@
                                 <rect key="frame" x="0.0" y="1113" width="768" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EY2-oo-8W9" id="CDR-dh-F3I">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="80.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="81"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgn-wz-yJI">
                                             <rect key="frame" x="251.5" y="18.5" width="265" height="50"/>
-                                            <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" red="0.0078431372550000003" green="0.51764705879999995" blue="0.6588235294" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="dfe-rF-m5E"/>
                                                 <constraint firstAttribute="width" constant="265" id="zrx-Ph-d4B"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <state key="normal" title="Submit">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            </state>
+                                            <state key="normal" title="Submit"/>
                                             <connections>
                                                 <action selector="submitButtonTapped:" destination="EY2-oo-8W9" eventType="touchUpInside" id="msv-sZ-gR2"/>
                                             </connections>

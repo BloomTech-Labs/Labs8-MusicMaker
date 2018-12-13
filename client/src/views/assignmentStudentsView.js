@@ -11,8 +11,7 @@ class StudentAssignmentsView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // assignmentId: '',
-            assignments: [],
+            // assignments: [],
             students: [],
         };
     };
@@ -20,15 +19,26 @@ class StudentAssignmentsView extends Component {
     // componentDidMount() {
     //     const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
     //     const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
-      
-    //     axios
-    //         .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}`)
-    //         .then(res => {
-    //             console.log('here*******************', res)
-    //             this.setState({assignments: res.data})
-    //         })
-    //         .catch(err => console.error('ASSIGNMENTS LIST VIEW AXIOS:', err));
-    //   };
+        
+    //     axios.all([
+    //         axios.get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/students`),
+    //         axios.get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}`)
+    //     ])
+    //         .then(axios.spread (function (students, assignment){
+    //             const studentsData = students.data || [];
+    //             const assignmentData = assignment.data || [];
+    //             // const assignmentStudents = assignmentData.concat(studentsData);
+    //             console.log('students**********************', studentsData);
+    //             console.log('assignment**********************', assignmentData.as);
+
+    //             this.setState({
+    //                 students: studentsData,
+    //                 assignment: assignmentData
+    //                 // assignmentStudents: assignmentStudents
+    //             })
+    //         }))
+    //         .catch(err => console.error('ASSIGNMENT STUDENTS VIEW AXIOS ERROR:', err));
+    // }
 
     componentDidMount() {
         const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
@@ -38,7 +48,6 @@ class StudentAssignmentsView extends Component {
         axios
             .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/students`)
             .then(res => {
-                console.log("Students************************", res.data)
                 this.setState({students:res.data})
             })
             .catch(err => console.error('ASSIGNMENT STUDENTS VIEW AXIOS ERROR:', err));
@@ -47,11 +56,14 @@ class StudentAssignmentsView extends Component {
     render() {
         return(
             <div>
-                <h1><Label>{this.state.assignments.assignmentName}</Label></h1>
+                <h1><Label>Student's Assigned to the Assignment</Label></h1>
+                <h1>+</h1>
             <div>
                 {this.state.students.map(student => (
-                    <Row key={student}>
-                        <Col>{student[2]}</Col>
+                    <Row key={student} style={{border:"1px solid black"}}>
+                        <Col>{student[3]} {student[4]}</Col> {/*student name*/}
+                        <Col>{student[5]}</Col> {/*student assignment name*/}
+                        <Col>{student[6]===null ? "" : "Student Completed"}</Col>
                     </Row>
                 ))}
             </div>

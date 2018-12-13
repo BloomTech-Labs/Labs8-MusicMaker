@@ -503,7 +503,7 @@ app.post("/addNewTeacher", (req, res) => {
             type: "image/jpeg",
             rendererOpts: {quality: 0.3}
           };
-          const qrPath = "/tmp/signup_" + lastName + ".jpg";
+          const qrPath = "/tmp/signup_" + email + ".jpg";
           QRCode.toFile(qrPath, ref.id, qrOptions);
 
           bucket
@@ -524,7 +524,7 @@ app.post("/addNewTeacher", (req, res) => {
                     'qrcode': url
                   });
                   
-                res.status(201).send({MESSAGE: `Teacher ${prefix} ${lastName} was successfully added.`});
+                res.status(201).send({MESSAGE: `Teacher was successfully added.`});
               });
             });
         });

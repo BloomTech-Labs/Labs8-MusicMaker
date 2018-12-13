@@ -14,26 +14,52 @@ class Settings extends Component {
         prefix: "",
         firstName: "",
         lastName: ""
-      }
+      },
     };
   };
 
   componentDidMount() {
+    const teacherId = 'pwUGQC7SHBiPKPdnOq2c';
+
       axios
-          .get('https://musicmaker-4b2e8.firebaseapp.com/teacher/pwUGQC7SHBiPKPdnOq2c/settings') //match params.id when this becomes fully dynamic
+          .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settings`) //match params.id when this becomes fully dynamic
           .then(res => {
-              console.log(res.data)
+              console.log('settings res.data', res.data)
               this.setState({
                   email: res.data.email,
                   prefix: res.data.name.prefix,
                   firstName: res.data.name.firstName,
-                  lastName: res.data.name.lastName
+                  lastName: res.data.name.lastName,
               })
           })
           .catch(err => console.error('Sorry, an error was encountered.', err));
   }
 
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
+  };
+
+  handleSubmit(event) {
+    event.preventDefault();
+    alert(`Settings updated successfully! Your name is now ${this.state.prefix} ${this.state.firstName} ${this.state.lastName}.`);
+  }
+
+  updateName = event => {
+    const teacherId = 'pwUGQC7SHBiPKPdnOq2c';
+    const { prefix, firstName, lastName } = this.state;
+
+    axios
+      .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settingsEdit`, { prefix, firstName, lastName })
+      .then(res => {
+        this.props.history.push(`/settings`); // not sure where exactly this has to be pushed
+      })
+      .catch(err => console.error('Sorry, an error was encountered while updating your settings.', err));
+  }
+
   render() {
+    const { email, prefix, firstName, lastName } = this.state;
     return (
       <div className="container" style = {formContainer}>
         <Card style = {{padding: "20px"}}>
@@ -43,6 +69,18 @@ class Settings extends Component {
             <CardText>First Name: {this.state.firstName}</CardText>
             <CardText>Last Name: {this.state.lastName}</CardText>
         </Card>
+        <Form onSubmit = {(e) => this.handleSubmit(e)}>
+          <FormGroup>
+            <h2>Update Your Information</h2>
+              <Label>Title</Label>
+                <Input name="prefix" value={prefix} onChange={this.handleChange} type='text' />
+              <Label>First Name</Label>
+                <Input name="firstName" value={firstName} onChange={this.handleChange} type='text' />
+              <Label>Last Name</Label>
+                <Input name="lastName" value={lastName} onChange={this.handleChange} type='text' />
+          </FormGroup>
+          <Button type = 'submit' onClick = {this.updateName}>Submit Changes</Button>
+        </Form>
       </div>
     );
   }

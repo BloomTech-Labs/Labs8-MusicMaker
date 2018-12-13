@@ -331,6 +331,7 @@
 				39C108FC2194E55900180F37 /* RecordingViewController.swift */,
 				39C47DC721AF233000C1E115 /* SubmittedAssignmentViewController.swift */,
 				399F0B5821B83E8400261477 /* AssignmentsTableViewController.swift */,
+				391A1F8721C2F21A004AE75D /* SplitViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -793,6 +794,7 @@
 				39C108FF2194FD9800180F37 /* CameraPreviewView.swift in Sources */,
 				BF98B14621B5CA9C007B7C45 /* StarRating.swift in Sources */,
 				BF98B14A21B5CD66007B7C45 /* LevelAndInstrumentViewControllerDelegate.swift in Sources */,
+				391A1F8821C2F21A004AE75D /* SplitViewController.swift in Sources */,
 				BFE771AA219E577D00DCE42A /* UserProfileViewController.swift in Sources */,
 				BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */,
 				BFD9032421B9D49500EEB3B1 /* UIColor+Extensions.swift in Sources */,

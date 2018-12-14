@@ -423,7 +423,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="weB-fq-yzR" kind="presentation" identifier="ShowPagePreview" id="8Px-Q6-wmt"/>
+                        <segue destination="weB-fq-yzR" kind="presentation" identifier="ShowPagePreview" modalPresentationStyle="pageSheet" id="8Px-Q6-wmt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaM-KB-y0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>

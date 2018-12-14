@@ -57,23 +57,29 @@ class GradeAssignmentView extends Component {
   };
 
   onSubmit = event => {
-    // event.preventDefault();
+    event.preventDefault();
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in.
+        const assignmentId = this.props.match.params.assignmentId;
+        const studentId = this.props.match.params.studentId;
 
-    // const assignmentId = 'cKoEZeuuKdciV74U9pQq' //this.props.match.params.id;
-    // const studentId = '7HTc3cy6GGPWtjqfpgMB3ij3wY92' //this.props.match.params.id;
+        const {feedback, grade} = this.state;
 
-    // const {feedback, grade} = this.state;
-
-    // axios
-    // .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/student/${studentId}`, {feedback, grade})
-    // .then(res => {
-    //   console.log(res)
-    //   this.props.history.push('/assignments') //may need to change?
-    // })
-    // .catch(err => {
-    //   console.err('GRADE ASSIGNMENT VIEW ERROR', err)
-    // })
-
+        axios
+        .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/student/${studentId}`, {feedback, grade})
+        .then(res => {
+          console.log(res)
+          this.props.history.push('/assignments') //may need to change?
+        })
+        .catch(err => {
+          console.err('GRADE ASSIGNMENT VIEW ERROR', err)
+        })
+      } else {
+        // No user is signed in.
+        return;
+      }
+    })
   }
 
   render() {
@@ -98,8 +104,8 @@ class GradeAssignmentView extends Component {
               <Input style={{width:'80%'}} type="textarea" name="feedback" placeholder="Feedback..." value={feedback} onChange={this.onChange} />
               <Input style={{width:'26%', marginLeft:'10%'}}  type="select" name="grade" onChange={this.onChange}>
                 <option value="none">Choose Grade</option>
-                <option value="Pass">Pass</option>
-                <option value="Fail">Fail</option>
+                <option value="Passed">Passed</option>
+                <option value="Failed">Failed</option>
               </Input>
             </FormGroup>
             <Button type="submit">Submit</Button>

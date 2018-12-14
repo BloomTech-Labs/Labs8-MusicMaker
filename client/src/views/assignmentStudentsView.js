@@ -47,11 +47,13 @@ class StudentAssignmentsView extends Component {
                 const assignmentId = this.props.match.params.assignmentId;
                 const {email, dueDate} = this.state;
 
+                console.log('params******************', user.uid, assignmentId)
+
+
                 axios  
-                    .post(`http://localhost:8000/teacher/${user.uid}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
+                    .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
                     .then(res => {
                         console.log('Assign******************', res, assignmentId)
-                        this.props.history.push(`/assignmentStudents/${assignmentId}`)
                     })
                     .catch(err => {
                         console.error('ASSIGN VIEW ERROR', err)

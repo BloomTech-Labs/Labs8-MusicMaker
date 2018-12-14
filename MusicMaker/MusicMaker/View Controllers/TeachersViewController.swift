@@ -20,6 +20,7 @@ class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+    
         splitViewController?.preferredDisplayMode = .allVisible
         splitViewController?.delegate = self
         tableView.rowHeight = 375
@@ -51,6 +52,8 @@ class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name("FCMToken"), object: nil)
         }
+    
+   
     
     
     override func viewDidLayoutSubviews() {
@@ -104,6 +107,7 @@ class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        
     }
     
     private func fetchStudent() {

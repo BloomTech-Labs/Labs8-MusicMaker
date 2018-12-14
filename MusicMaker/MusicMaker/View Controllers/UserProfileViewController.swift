@@ -13,8 +13,18 @@ import GoogleSignIn
 
 class UserProfileViewController: UIViewController {
     
-    //currentUser?.providerData[0].providerID returns google.com for google auth or password for email/password auth
-
+    // MARK: - View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupNavigationBar()
+        if let student = student {
+            profileImage.createInitialsImage(for: "\(student.firstName) \(student.lastName)", backgroundColor: UIColor.blue3)
+            studentNameLabel.text = "\(student.firstName) \(student.lastName)"
+            studentEmailLabel.text = student.email
+        }
+    }
+    
+    
     // MARK: - Properties
     let database = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
@@ -43,62 +53,97 @@ class UserProfileViewController: UIViewController {
             presentInformationalAlertController(title: "Error Logging Out", message: "Please try again")
         }
     }
+
     
-    // MARK: - View Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupNavigationBar()
-        if let student = student {
-            profileImage.createInitialsImage(for: "\(student.firstName) \(student.lastName)", backgroundColor: UIColor.blue3)
-            studentNameLabel.text = "\(student.firstName) \(student.lastName)"
-            studentEmailLabel.text = student.email
+    private func presentUpdateEmailAlert() {
+        let alert = UIAlertController(title: "Update Email", message: "Enter your new email address", preferredStyle: .alert)
+        var newEmail: UITextField?
+        alert.addTextField { (textField) in
+            textField.borderStyle = UITextField.BorderStyle.none
+            textField.backgroundColor = UIColor.clear
+            textField.attributedPlaceholder = NSAttributedString(string: "Enter your email address",attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            newEmail = textField
         }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { _ in
+            if let newEmail = newEmail?.text {
+                self.updateEmail(to: newEmail)
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+
+    }
+    
+    private func presentUpdatePasswordAlert() {
+        let alert = UIAlertController(title: "Change Password", message: "Confirm your old password", preferredStyle: .alert)
+        var oldPassword: UITextField?
+        var newPassword: UITextField?
+        
+        alert.addTextField { (textField) in
+            textField.borderStyle = UITextField.BorderStyle.none
+            textField.backgroundColor = UIColor.clear
+            textField.attributedPlaceholder = NSAttributedString(string: "Old Password",attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            oldPassword = textField
+        }
+        alert.addTextField { (textField) in
+            textField.borderStyle = UITextField.BorderStyle.none
+            textField.backgroundColor = UIColor.clear
+            textField.attributedPlaceholder = NSAttributedString(string: "New Password",attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            newPassword = textField
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { _ in
+            self.updatePassword(oldPassword: oldPassword?.text ?? "", newPassword: newPassword?.text ?? "")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func updatePassword(oldPassword: String, newPassword: String) {
+        if currentUser?.providerData[0].providerID == "password" {
+            if let student = student {
+                let credential: AuthCredential = EmailAuthProvider.credential(withEmail: student.email, password: oldPassword)
+                currentUser?.reauthenticateAndRetrieveData(with: credential, completion: { (authResult, error) in
+                    if let error = error {
+                        self.title = "Error"
+                        NSLog(error.localizedDescription)
+                    } else {
+                        self.currentUser?.updatePassword(to: newPassword, completion: { (error) in
+                            if let error = error {
+                                self.title = "Error"
+                                NSLog(error.localizedDescription)
+                            } else {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    }
+    
+    private func updateEmail(to newEmail: String) {
+        guard let userUniqueIdentifier = currentUser?.uid else {return}
+        currentUser?.updateEmail(to: newEmail, completion: { (error) in
+            if error == nil {
+                self.database.collection("students").document(userUniqueIdentifier).setData(["email" : newEmail], merge: true)
+            } else {
+                //THERES AN ERROR UPDATE UI
+            }
+        })
     }
     
     
     // MARK: - IBActions
-//    @IBAction func updateEmail(_ sender: Any) {
-//        if updateEmailButton.titleLabel?.text == "Update Email" {
-//            updatedEmailTextField.isHidden = false
-//            updateEmailButton.setTitle("Update", for: .normal)
-//        } else if updateEmailButton.titleLabel?.text == "Update" {
-//            guard let newEmail = updatedEmailTextField.text,
-//                let usersUniqueIdentifier = currentUser?.uid else {return}
-//            currentUser?.updateEmail(to: newEmail, completion: { (error) in
-//                if error != nil {
-//                    self.updateEmailButton.setTitle("Error Updating Email", for: .normal)
-//                } else {
-//                    self.database.collection("students").document(usersUniqueIdentifier).setData(["email" : newEmail], merge: true)
-//                    self.updatedEmailTextField.isHidden = true
-//                    self.updateEmailButton.setTitle("Update Email", for: .normal)
-//                    self.emailLabel.text = newEmail
-//                    self.student?.email = newEmail
-//                }
-//            })
-//        }
-//    }
-    
-    
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
-    
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "ResetPassword":
-            if let resetPasswordVC = segue.destination as? ResetPasswordViewController {
-                resetPasswordVC.student = student
-            }
-        default:
-            break
-        }
-    }
-   
-
 }
+
 // MARK: - UICollectionViewDataSource
 extension UserProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -124,9 +169,14 @@ extension UserProfileViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension UserProfileViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
+        case 0:
+            presentUpdateEmailAlert()
+        case 1:
+            presentUpdatePasswordAlert()
         case 2:
             logStudentOut()
         default:

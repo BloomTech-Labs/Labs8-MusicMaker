@@ -93,7 +93,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
     
     //Presents an alert controller when the user clicks forgot password which sends a password reset option to their email address
     private func presentForgotPasswordAlert() {
-        let alert = UIAlertController(title: "Reset Password", message: "Enter your email address to reset your password", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Change Password", message: "Confirm your old password", preferredStyle: .alert)
         var resetPasswordWithEmailTextField: UITextField?
         alert.addTextField { (textField) in
             textField.borderStyle = UITextField.BorderStyle.none

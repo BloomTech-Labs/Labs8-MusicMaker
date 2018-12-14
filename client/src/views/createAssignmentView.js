@@ -5,6 +5,7 @@
 import React, { Component } from "react";
 import { Input, Form, FormGroup, Label, Button } from 'reactstrap';
 import axios from 'axios';
+import firebase from 'firebase';
 
 const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
@@ -46,23 +47,31 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
     formData.append('level', level);
     formData.append('instructions', instructions);
     formData.append('file', sheetMusic);
-
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in.
+        
     axios
-      // .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment',
-      .post('https://musicmaker-4b2e8.firebaseapp.com/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment',
-        formData,
-        {onUploadProgress: ProgressEvent => {
-          this.setState({
-            loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
-          })
-        }}
-      )
-      .then(res => {
-        console.log(res.statusText, res)
-      })
-      .catch(err => {
-        console.err('CREATE ASSIGNMENT VIEW ERROR', err)
-      })
+    // .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment',
+    .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/createAssignment`,
+      formData,
+      {onUploadProgress: ProgressEvent => {
+        this.setState({
+          loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
+        })
+      }}
+    )
+    .then(res => {
+      console.log(res.statusText, res)
+    })
+    .catch(err => {
+      console.err('CREATE ASSIGNMENT VIEW ERROR', err)
+    })
+      } else {
+        // No user is signed in.
+        return;
+      }
+    });
 }
 
   render() {

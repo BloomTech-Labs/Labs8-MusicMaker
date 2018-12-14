@@ -377,7 +377,6 @@ app.post("/teacher/:uid/createAssignment", (req, res) => {
               Promise.resolve(
                 "https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid
               ).then(url => {
-                console.
                 teacherAssignmentRef
                   .doc(assignment.id)
                   .update({
@@ -469,7 +468,7 @@ app.delete("/teacher/:uid/assignment/:aid", (req, res) => {
 //details: email, name (first, last, and prefix), and generate a new qr code
 app.post("/addNewTeacher/:uid", (req, res) => {
   try {
-    console.log("\n****\n", req.body)
+    console.log("\n****\n", req.params, req.body)
     const { uid } = req.params;
     const { email, firstName, lastName, prefix } = req.body;
 
@@ -486,7 +485,6 @@ app.post("/addNewTeacher/:uid", (req, res) => {
           'subscribed': false
         })
         .then(ref => {
-          // res.status(201).json(uid)
           let uuid = UUID();
           let qrOptions = {
             errorCorrectionLevel: "H",

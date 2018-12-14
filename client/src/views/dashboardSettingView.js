@@ -37,7 +37,6 @@ class Settings extends Component {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      console.log("user****", user)
       if (user) {
         // User is signed in.
         axios
@@ -45,15 +44,15 @@ class Settings extends Component {
             `https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/settings`
           ) //match params.id when this becomes fully dynamic
           .then(res => {
-            console.log(res.data);
+            // console.log("here****" ,res);
             this.setState({
               email: res.data.email
             });
-            // this.setState({
-            //   prefix: res.data.name.prefix,
-            //   firstName: res.data.name.firstName,
-            //   lastName: res.data.name.lastName
-            // });
+            this.setState({
+              prefix: res.data.name.prefix,
+              firstName: res.data.name.firstName,
+              lastName: res.data.name.lastName
+            });
           })
           .catch(err => console.error("Sorry, an error was encountered.", err));
       } else {
@@ -88,7 +87,8 @@ class Settings extends Component {
             { prefix, firstName, lastName }
           )
           .then(res => {
-            this.props.history.push(`/settings`); // not sure where exactly this has to be pushed
+            // console.log('update***', res)
+            this.props.history.push(`/settings`);
           })
           .catch(err =>
             console.error(

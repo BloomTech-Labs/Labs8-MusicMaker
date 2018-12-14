@@ -4,6 +4,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import firebase from 'firebase';
 
 const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
@@ -16,16 +17,22 @@ class DashboardView extends Component {
   }
 
   componentDidMount() {
-    const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
-
-    axios
-      .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settings`)
-      .then(res => {
-        this.setState({
-          qrcode: res.data.qrcode
-        });
-      })
-      .catch(err => console.error("DASHBOARDVIEW AXIOS ERROR:", err));
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in.
+        axios
+        .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/settings`)
+        .then(res => {
+          this.setState({
+            qrcode: res.data.qrcode
+          });
+        })
+        .catch(err => console.error("DASHBOARDVIEW AXIOS ERROR:", err));
+        } else {
+        // No user is signed in.
+        return;
+        }
+    });
   }
 
   render() {

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import axios from 'axios';
 import { Route } from "react-router-dom";
+import firebase from 'firebase';
 
 import * as routes from "../constants/routes";
 import StudentAssignmentsView from "./studentAssignmentsView";
@@ -20,14 +21,21 @@ class StudentListView extends Component {
 };
 
 componentDidMount() {
-  const teacherId = this.props.match.params.id;
-
+  const teacherId = this.props.match.params.id
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      // User is signed in.
   axios
-      .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/students`)
-      .then(res => {
-          this.setState({students: res.data})
-      })
-      .catch(err => console.error('STUDENT LIST VIEW AXIOS:', err));
+  .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/students`)
+  .then(res => {
+      this.setState({students: res.data})
+  })
+  .catch(err => console.error('STUDENT LIST VIEW AXIOS:', err));
+    } else {
+      // No user is signed in.
+      return;
+    }
+  });
 }
 
   render() {

@@ -54,13 +54,6 @@ class SignUpView extends Component {
 
         // const nameArr = authUser.user.displayName.split(' ');
 
-        // let authUserInfo = new FormData();
-
-        // authUserInfo.append('email', authUser.user.email);
-        // authUserInfo.append('subscribed', false);
-        // console.log(authUserInfo);
-        // console.log(authUser);
-
         const authUserInfo = {
           email: authUser.user.email,
           // name: {
@@ -71,8 +64,7 @@ class SignUpView extends Component {
         }
 
         axios
-          .post('https://musicmaker-4b2e8.firebaseapp.com/addNewTeacher', authUserInfo)
-          // .post('http://localhost:8000/addNewTeacher', authUserInfo)
+          .post(`https://musicmaker-4b2e8.firebaseapp.com/addNewTeacher/${authUser.user.uid}`, authUserInfo)
           .then(res => {
             console.log(res);
           })

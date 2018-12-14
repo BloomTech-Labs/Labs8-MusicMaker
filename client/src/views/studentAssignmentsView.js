@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import axios from 'axios';
+import firebase from 'firebase';
 
 const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
@@ -18,14 +19,20 @@ class StudentAssignmentsView extends Component {
     componentDidMount() {
         const teacherId = this.props.match.params.id;
         const studentId = this.props.match.params.id;
-        console.log()
-
-        axios
-            .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/student/${studentId}/assignments`)
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+              // User is signed in.
+              axios
+            .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/student/${studentId}/assignments`)
             .then(res => {
                 this.setState({assignments:res.data})
             })
             .catch(err => console.error('STUDENTS ASSIGNMENTS VIEW AXIOS ERROR:', err));
+            } else {
+              // No user is signed in.
+              return;
+            }
+          });
     }
 
     render() {

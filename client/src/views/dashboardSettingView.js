@@ -42,7 +42,7 @@ class Settings extends Component {
         // User is signed in.
         axios
           .get(
-            `http://localhost:8000/teacher/${user.uid}/settings`
+            `https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/settings`
           ) //match params.id when this becomes fully dynamic
           .then(res => {
             console.log(res.data);

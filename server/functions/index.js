@@ -45,17 +45,17 @@ app.use(fileUpload({
 );
 
 //=======================================================================================================================================================================
-
 // FUNCTION(S) ###########################################################################################################################################################
 function parseDate(date) {
   const month = date.getMonth() + 1;
   const day = date.getDate() + 1;
   const year = date.getFullYear();
-  const hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
-  const minute = date.getMinutes() == "0" ? "00" : date.getMinutes();
-  const amPm = date.getHours() >= 12 ? "PM" : "AM";
+  // const hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours(); //fixing custom time at a later time
+  // const minute = date.getMinutes() == "0" ? "00" : date.getMinutes(); //fixing custom time at a later time
+  // const amPm = date.getHours() >= 12 ? "PM" : "AM"; //fixing custom time at a later time
   const reformattedDueDate =
-    month + "/" + day + "/" + year + " at " + hour + ":" + minute + " " + amPm;
+    month + "/" + day + "/" + year + " at 11:59 PM";
+    // month + "/" + day + "/" + year + " at " + hour + ":" + minute + " " + amPm; //fixing custom time at a later time
   return reformattedDueDate;
 }
 
@@ -63,13 +63,13 @@ function parseDate(date) {
 
 //GET should retrieve a teacher's list of students
 //details: name, instrument, level, email
-app.get("/teacher/:idTeacher/students", (req, res) => {
+app.get("/teacher/:uid/students", (req, res) => {
   try {
-    const teacherId = req.params["idTeacher"];
+    const uid = req.params["uid"]; //teacher id 
     let promises = [];
 
     //teacher's db referencing their students:
-    const teacherStudentsRef = db.collection("teachers").doc(teacherId).collection("students"); 
+    const teacherStudentsRef = db.collection("teachers").doc(uid).collection("students"); 
     //students' db:
     const studentRef = db.collection("students"); 
 
@@ -99,13 +99,13 @@ app.get("/teacher/:idTeacher/students", (req, res) => {
 
 // Get an individual student assigned to the teacher
 //details: name, instrument, level, email
-app.get("/teacher/:idTeacher/student/:idStudent", (req, res) => {
+app.get("/teacher/:uid/student/:sid", (req, res) => {
   try {
-    const teacherId = req.params["idTeacher"];
-    const studentId = req.params["idStudent"];
+    const uid = req.params["uid"]; //teacher id
+    const sid = req.params["sid"]; //student id
 
     //teacher's db referencing their student:
-    const teacherStudentRef = db.collection("teachers").doc(teacherId).collection("students").doc(studentId);
+    const teacherStudentRef = db.collection("teachers").doc(uid).collection("students").doc(sid);
     //students' db:
     const studentRef = db.collection("students"); 
 
@@ -124,14 +124,14 @@ app.get("/teacher/:idTeacher/student/:idStudent", (req, res) => {
 });
 
 // Get the list of assignments from a student
-app.get("/teacher/:idTeacher/student/:idStudent/assignments",(req, res) => {
+app.get("/teacher/:uid/student/:sid/assignments",(req, res) => {
     try {
-      const studentId = req.params["idStudent"];
-      const teacherId = req.params["idTeacher"];
+      const uid = req.params["uid"]; //teacher id
+      const sid = req.params["sid"]; //student id
       const assignments = [];
 
       //Student's assignments db reference:
-      const studentAssignmentsRef = db.collection("students").doc(studentId).collection("teachers").doc(teacherId).collection("assignments");
+      const studentAssignmentsRef = db.collection("students").doc(sid).collection("teachers").doc(uid).collection("assignments");
       
       studentAssignmentsRef
         .orderBy('dueDate', 'asc')
@@ -168,14 +168,13 @@ app.get("/teacher/:idTeacher/student/:idStudent/assignments",(req, res) => {
 // Get a list of students currently assigned to an assignment
 //details: student settings info. and student's assignment info.
 //Frontend: Need to reformat date so that it's properly visible and have it listed newest to oldest assignment
-app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
+app.get("/teacher/:uid/assignment/:aid/students", (req, res) => {
   try {
-    const teacherId = req.params["idTeacher"];
-    const assignmentId = req.params["idAssignment"];
-    const combo =[]
+    const uid = req.params["uid"]; //teacher id
+    const aid = req.params["aid"]; //assignment id
   
     //Teacher's db list of students:
-    const teacherStudentsRef =  db.collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).collection('students');
+    const teacherStudentsRef =  db.collection('teachers').doc(uid).collection('assignments').doc(aid).collection('students');
     //Student db:
     const studentRef = db.collection('students'); 
 
@@ -184,22 +183,14 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
       .then(students => {
         const promises = [];
         students.forEach(student => {
-          const studentId = student.id;
+          const sid = student.id;
 
-          const studentPromise = studentRef.doc(studentId).get().then(student => {
-            return studentRef.doc(studentId).collection('teachers').doc(teacherId).collection('assignments').doc(assignmentId).get().then(assignment => {
+          const studentPromise = studentRef.doc(sid).get().then(student => {
+            return studentRef.doc(sid).collection('teachers').doc(uid).collection('assignments').doc(aid).get().then(assignment => {
               const studentInfo = student.data();
               const assignmentInfo = assignment.data();
               const reformattedDueDate = parseDate(assignmentInfo.dueDate);
 
-              // //  combo.push([assignmentInfo, studentInfo ])
-              // const obj = Object.assign(assignmentInfo, studentInfo)
-              // // return Object.assign({}, assignmentInfo, studentInfo )  
-              // // return [...studentInfo]
-              // const results = Object.keys(obj).map(function(key) {
-              //   return [obj[key]]
-              // })
-              // console.log('******************here', )
               return [assignment.id, assignmentInfo.assignmentName, student.id, studentInfo.firstName, studentInfo.lastName, reformattedDueDate, assignmentInfo.video]
             });
           });
@@ -221,14 +212,14 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/students", (req, res) => {
 
 // Get a completed/uncompleted assignment from a student
 //details: all assignment information
-app.get("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent",(req, res) => {
+app.get("/teacher/:uid/assignment/:aid/student/:sid",(req, res) => {
     try {
-      const teacherId = req.params["idTeacher"];
-      const assignmentId = req.params["idAssignment"];
-      const studentId = req.params["idStudent"];
+      const uid = req.params["uid"]; //teacher id
+      const aid = req.params["aid"]; //assignment id
+      const sid = req.params["sid"]; //student id
 
       //Student's assignment db reference:
-      const studentAssignmentRef = db.collection("students").doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId);
+      const studentAssignmentRef = db.collection("students").doc(sid).collection("teachers").doc(uid).collection("assignments").doc(aid);
       
       studentAssignmentRef
         .get()
@@ -258,15 +249,15 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent",(req, 
 );
 
 // PUT should add feedback and grade (pass/fail) to a student's assignment
-app.put("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent", (req, res) => {
+app.put("/teacher/:uid/assignment/:aid/student/:sid", (req, res) => {
     try {
-      const teacherId = req.params["idTeacher"];
-      const assignmentId = req.params["idAssignment"];
-      const studentId = req.params["idStudent"];
+      const uid = req.params["uid"]; //teacher id
+      const aid = req.params["aid"]; //assignment id
+      const sid = req.params["sid"]; //student id
       const { feedback, grade } = req.body;
 
       //Student's assignment db reference:
-      const studentAssignmentRef = db.collection("students").doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId)
+      const studentAssignmentRef = db.collection("students").doc(sid).collection("teachers").doc(uid).collection("assignments").doc(aid)
 
       if (!feedback || !grade) {
         res.status(411).send({REQUIRED: "You must have all fields filled: grade and feedback."});
@@ -290,32 +281,30 @@ app.put("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent", (req,
 
 //POST Teacher's will be able to give student(s) an assignment
 //details: assignment name, instructions, instrument, level, music sheet and piece
-app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, res) => {
+app.post("/teacher/:uid/assignment/:aid/assignToStudent", (req, res) => {
     try {
-      console.log("\n***********req.body***********\n", req.body)
-      const teacherId = req.params["idTeacher"];
-      const assignmentId = req.params["idAssignment"];
+      const uid = req.params["uid"]; //teacher id
+      const aid = req.params["aid"]; //assignment id
       const { email, dueDate } = req.body;
 
       //student db:
       const studentRef = db.collection("students"); 
       //Teacher's assignment db reference:
-      const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
+      const teacherAssignmentRef = db.collection("teachers").doc(uid).collection("assignments").doc(aid); 
 
       studentRef
         .where("email", "==", email)
         .get()
         .then(students => {
           students.forEach(student => {
-            console.log("\n***********studentId***********\n", student.id)
-            const studentId = student.id;
+            const sid = student.id;
             //Student's teacher assignment db reference:
-            const studentTeacherAssignmentRef = studentRef.doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
+            const studentTeacherAssignmentRef = studentRef.doc(sid).collection("teachers").doc(uid).collection("assignments").doc(aid); 
             
             // Lets teacher store that the student has been given the assignment
             teacherAssignmentRef
               .collection('students')
-              .doc(studentId)
+              .doc(sid)
               .set({
                 'assigned': true
               })
@@ -347,13 +336,13 @@ app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, r
 
 // POST should create and add a new ungraded assignment under a teacher
 // details: assignmentName, instructions, instrument, level, piece, sheetMusic
-app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
+app.post("/teacher/:uid/createAssignment", (req, res) => {
   try {
-    const teacherId = req.params["idTeacher"];
+    const uid = req.params["uid"]; //teacher id
     const { assignmentName, instructions, instrument, level, piece } = req.body;
 
     //Teacher's assignments db reference:
-    const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments"); 
+    const teacherAssignmentRef = db.collection("teachers").doc(uid).collection("assignments"); 
 
     // if (!assignmentName || !instructions || !instrument || !level || !piece) {
     //   res.status(411).send({ REQUIRED: "You must have all fields filled." });
@@ -407,13 +396,13 @@ app.post("/teacher/:idTeacher/createAssignment", (req, res) => {
 
 //GET should retrieve teacher's all ungraded assignments
 //details: assignmentName, instructions, instrument, level, piece, sheetMusic
-app.get("/teacher/:idTeacher/assignments", (req, res) => {
+app.get("/teacher/:uid/assignments", (req, res) => {
   try {
-    const teacherId = req.params["idTeacher"];
+    const uid = req.params["uid"]; //teacher id
     const allAssignments = [];
 
     // Teacher's assignments db reference:
-    const teacherAssignmentsRef = db.collection("teachers").doc(teacherId).collection("assignments");
+    const teacherAssignmentsRef = db.collection("teachers").doc(uid).collection("assignments");
 
     teacherAssignmentsRef
     .get()
@@ -432,13 +421,13 @@ app.get("/teacher/:idTeacher/assignments", (req, res) => {
 
 //GET should retrieve teacher's single ungraded assignment
 //details: assignmentName, instructions, instrument, level, piece
-app.get("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
+app.get("/teacher/:uid/assignment/:aid", (req, res) => {
   try {
-    const teacherId = req.params["idTeacher"];
-    const assignmentId = req.params["idAssignment"];
+    const uid = req.params["uid"]; //teacher id
+    const aid = req.params["aid"]; //assignment id
 
     // Teacher's assignment db reference:
-    const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
+    const teacherAssignmentRef = db.collection("teachers").doc(uid).collection("assignments").doc(aid); 
 
     teacherAssignmentRef
     .get()
@@ -451,15 +440,15 @@ app.get("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
   }
 });
 
-app.delete("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
+app.delete("/teacher/:uid/assignment/:aid", (req, res) => {
   try {
-    const teacherId = req.params["idTeacher"];
-    const assignmentId = req.params["idAssignment"];
+    const uid = req.params["uid"]; //teacher id
+    const aid = req.params["aid"]; //assignment id
 
     // Teacher's assignment db reference:
-    const teacherAssignmentRef = db.collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
+    const teacherAssignmentRef = db.collection("teachers").doc(uid).collection("assignments").doc(aid); 
 
-    if (!assignmentId){
+    if (!aid){
       res.status(404).send({MESSAGE: 'This assignment has already been deleted.'})
     }else {
       teacherAssignmentRef
@@ -478,8 +467,10 @@ app.delete("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
 
 //POST should create and add a new teacher's settings info.
 //details: email, name (first, last, and prefix), and generate a new qr code
-app.post("/addNewTeacher", (req, res) => {
+app.post("/addNewTeacher/:uid", (req, res) => {
   try {
+    console.log("\n****\n", req.body)
+    const { uid } = req.params;
     const { email, firstName, lastName, prefix } = req.body;
 
     //Teachers' db reference:
@@ -489,11 +480,13 @@ app.post("/addNewTeacher", (req, res) => {
       res.status(411).send({REQUIRED: "Please fill all required fields: email missing."});
     } else {
       teachersRef
-        .add({
+        .doc(uid)
+        .set({
           'email': email,
           'subscribed': false
         })
         .then(ref => {
+          // res.status(201).json(uid)
           let uuid = UUID();
           let qrOptions = {
             errorCorrectionLevel: "H",
@@ -501,7 +494,7 @@ app.post("/addNewTeacher", (req, res) => {
             rendererOpts: {quality: 0.3}
           };
           const qrPath = "/tmp/signup_" + email + ".jpg";
-          QRCode.toFile(qrPath, ref.id, qrOptions);
+          QRCode.toFile(qrPath, uid, qrOptions);
 
           bucket
             .upload(qrPath, {
@@ -516,7 +509,7 @@ app.post("/addNewTeacher", (req, res) => {
                 "https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid
               ).then(url => {
                 teachersRef
-                  .doc(ref.id)
+                  .doc(uid)
                   .update({
                     'qrcode': url
                   });
@@ -534,12 +527,12 @@ app.post("/addNewTeacher", (req, res) => {
 
 //GET should retrieve teachers settings info.
 //details: email, name (first, last, and prefix), and qr code
-app.get("/teacher/:idTeacher/settings", (req, res) => {
+app.get("/teacher/:uid/settings", (req, res) => {
   try {
-    const teacherId = req.params["idTeacher"];
+    const uid = req.params["uid"]; //teacher id
 
     //Teacher's db reference:
-    const teacherRef = db.collection("teachers").doc(teacherId); 
+    const teacherRef = db.collection("teachers").doc(uid); 
 
     teacherRef
       .get()
@@ -554,13 +547,13 @@ app.get("/teacher/:idTeacher/settings", (req, res) => {
 
 //PUT should update teachers settings info.
 //details: name (first, last, and prefix)
-app.put("/teacher/:idTeacher/settingsEdit", (req, res) => {
+app.put("/teacher/:uid/settingsEdit", (req, res) => {
   try {
-    const teacherId = req.params["idTeacher"];
+    const uid = req.params["uid"]; //teacher id
     const { firstName, lastName, prefix } = req.body;
 
     //Teacher's db reference:
-    const teacherRef = db.collection("teachers").doc(teacherId); 
+    const teacherRef = db.collection("teachers").doc(uid); 
 
     if (!prefix || !firstName || !lastName) {
       res.status(411).send({REQUIRED: `Prefix, first and/or last name cannot be left empty.`});
@@ -586,12 +579,12 @@ app.put("/teacher/:idTeacher/settingsEdit", (req, res) => {
 
 //POST Teacher can make a payment to subscribe to app 
 //details: in db it'll show that the teacher has payed
-app.post("/teacher/:idTeacher/charge", (req, res) => {
+app.post("/teacher/:uid/charge", (req, res) => {
   try {   
-    const teacherId = req.params["idTeacher"];
+    const uid = req.params["uid"]; //teacher id
 
     //Teacher's db reference:
-    const teacherRef = db.collection("teachers").doc(teacherId); 
+    const teacherRef = db.collection("teachers").doc(uid); 
 
     let { status } = stripe.charges.create({
       amount: 50,

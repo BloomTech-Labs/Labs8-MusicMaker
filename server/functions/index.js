@@ -45,7 +45,18 @@ app.use(fileUpload({
 );
 
 //=======================================================================================================================================================================
-
+function parseDate(date) {
+  const month = date.getMonth() + 1;
+  const day = date.getDate() + 1;
+  const year = date.getFullYear();
+  // const hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+  // const minute = date.getMinutes() == "0" ? "00" : date.getMinutes();
+  // const amPm = date.getHours() >= 12 ? "PM" : "AM";
+  const reformattedDueDate =
+    month + "/" + day + "/" + year + " at 11:59 PM";
+    // month + "/" + day + "/" + year + " at " + hour + ":" + minute + " " + amPm;
+  return reformattedDueDate;
+}
 // FUNCTION(S) ###########################################################################################################################################################
 function parseDate(date) {
   const month = date.getMonth() + 1;

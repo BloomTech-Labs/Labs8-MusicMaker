@@ -10,7 +10,7 @@ import firebase from 'firebase';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import { Route } from "react-router-dom";
 
-// import * as routes from "../constants/routes";
+import * as routes from "../constants/routes";
 // import withPayment from '../components/withPayment';
 // import GradeAssignmentView from "../views/gradeAssignmentView";
 
@@ -20,8 +20,6 @@ class StudentAssignmentsView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // assignments: [],
-            // assignmentId:'',
             students: [],
             modal:false,
             email: '',  
@@ -49,13 +47,11 @@ class StudentAssignmentsView extends Component {
                 const assignmentId = this.props.match.params.assignmentId;
                 const {email, dueDate} = this.state;
 
-                console.log('userId*****', this.props.match.params.assignmentId)
-                console.log('userId*****', user.uid)
-
                 axios  
                     .post(`http://localhost:8000/teacher/${user.uid}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
                     .then(res => {
-                        console.log('Assign******************', res)
+                        console.log('Assign******************', res, assignmentId)
+                        this.props.history.push(`/assignmentStudents/${assignmentId}`)
                     })
                     .catch(err => {
                         console.error('ASSIGN VIEW ERROR', err)
@@ -66,9 +62,6 @@ class StudentAssignmentsView extends Component {
               }
             });
           };
-    
-    
-     
 
     // componentDidMount() {
     //     const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
@@ -95,7 +88,7 @@ class StudentAssignmentsView extends Component {
     // }
 
     componentDidMount() {
-        const assignmentId = 'DQE4Dg2YdgPJKBcr2pXx' //this.props.match.params.id;
+        const assignmentId = this.props.match.params.assignmentId;
 
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
@@ -103,7 +96,7 @@ class StudentAssignmentsView extends Component {
             axios
             .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/students`)
             .then(res => {
-                // console.log('student******************', res.data)
+                console.log('student******************', res.data)
                 this.setState({students:res.data})
             })
             .catch(err => console.error('ASSIGNMENT STUDENTS VIEW AXIOS ERROR:', err));
@@ -115,7 +108,7 @@ class StudentAssignmentsView extends Component {
     }
 
     render() {
-        const {email, dueDate} = this.state;
+        const {students, email, dueDate} = this.state;
         return(
             <div style={formContainer}>
                 <h1><Label>Student's Assigned to the Assignment</Label></h1>
@@ -138,7 +131,7 @@ class StudentAssignmentsView extends Component {
             <div>
                 {this.state.students.map(student => (
                     <Row key={student[2]} style={{border:"1px solid black"}}>
-                        <NavLink to={`/grading/${student[2]}`} style={{textDecoration:"none"}} >
+                        <NavLink to={`/grading/${student[2]}/${student[0]}`} style={{textDecoration:"none"}} >
                             <Col>{student[3]} {student[4]}</Col> {/*student's name*/}
                         </NavLink>
                             <Col>{student[5]}</Col> {/*student's assignment due date*/}

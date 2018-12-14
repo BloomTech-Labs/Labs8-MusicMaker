@@ -15,18 +15,20 @@ class DashboardAssignmentsView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+
       assignments: []
     };
 };
 
 componentDidMount() {
-  // const teacherId = 'pwUGQC7SHBiPKPdnOq2c' 
+  // const teacherId = 'a53ZV8kRfidWZbsCBedg' 
   const teacherId =  this.props.match.params.id;
 
 
   axios
       .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignments`)
       .then(res => {
+          console.log('res**********', res.data)
           this.setState({assignments: res.data})
       })
       .catch(err => console.error('ASSIGNMENTS LIST VIEW AXIOS:', err));

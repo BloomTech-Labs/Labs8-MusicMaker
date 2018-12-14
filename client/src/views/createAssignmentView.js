@@ -36,6 +36,8 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
   onSubmit = event => {
     event.preventDefault();
 
+    const teacherId =  'a53ZV8kRfidWZbsCBedg';
+
     const { assignmentName, piece, instrument, level, instructions, sheetMusic } = this.state;
 
     let formData = new FormData();
@@ -48,8 +50,8 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
     formData.append('file', sheetMusic);
 
     axios
-      // .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment',
-      .post('https://musicmaker-4b2e8.firebaseapp.com/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment',
+      .post(`http://localhost:8000/teacher/${teacherId}/createAssignment`,
+      // .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/createAssignment`,
         formData,
         {onUploadProgress: ProgressEvent => {
           this.setState({
@@ -61,7 +63,7 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
         console.log(res.statusText, res)
       })
       .catch(err => {
-        console.err('CREATE ASSIGNMENT VIEW ERROR', err)
+        console.error('CREATE ASSIGNMENT VIEW ERROR', err)
       })
 }
 

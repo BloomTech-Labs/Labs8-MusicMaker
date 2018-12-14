@@ -134,10 +134,10 @@ class StudentAssignmentsView extends Component {
                 {this.state.students.map(student => (
                     <Row key={student[2]} style={{border:"1px solid black"}}>
                         <NavLink to={`/grading/${student[2]}/${student[0]}`} style={{textDecoration:"none"}} >
-                            <Col>{student[3]} {student[4]}</Col>
+                            <Col>{student[3]} {student[4]}</Col> {/*student's name*/}
                         </NavLink>
-                            <Col>{student[5]}</Col> 
-                            <Col>{student[6]===null ? "" : "Student Completed"}</Col> 
+                            <Col>{student[5]}</Col> {/*student's assignment due date*/}
+                            <Col>{student[6]===null ? "" : "Student Completed"}</Col> {/*student's assignment completion status */}
                     </Row>
                 ))}
             </div>
@@ -147,7 +147,4 @@ class StudentAssignmentsView extends Component {
     }
 
 };
-
-
-
 export default StudentAssignmentsView;

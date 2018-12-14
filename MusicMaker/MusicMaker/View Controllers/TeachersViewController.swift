@@ -14,7 +14,7 @@ import Charts
 import FirebaseMessaging
 
 class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
-    var tapBGGesture: UITapGestureRecognizer!
+   
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -28,18 +28,7 @@ class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
         addTokenIdToStudent()
         refreshTeachers()
     }
-    
-   
-    override func viewDidLayoutSubviews() {
-        qrViewTopConstraint.constant = qrViewIsShowing ? -self.view.frame.height : 0
-    }
-    
-    @objc func hideQrView() {
-        showQrOptions(self)
-        NotificationCenter.default.post(name: .qrHidden, object: nil)
-        refreshTeachers()
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(addTokenIdToStudent), name: NSNotification.Name("FCMToken"), object: nil)
@@ -49,43 +38,25 @@ class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tapBGGesture = UITapGestureRecognizer(target: self, action: #selector(settingsBGTapped))
+        tapBGGesture = UITapGestureRecognizer(target: self, action: #selector(teacherViewTappedWhenFormSheetIsShowing))
         tapBGGesture.delegate = self
         tapBGGesture.numberOfTapsRequired = 1
         tapBGGesture.cancelsTouchesInView = false
         self.view.window!.addGestureRecognizer(tapBGGesture)
     }
-    @objc func settingsBGTapped(sender: UITapGestureRecognizer){
-        if sender.state == UIGestureRecognizer.State.ended{
-            guard let presentedView = presentedViewController?.view else {
-                return
-            }
-            if !presentedView.bounds.contains(sender.location(in: presentedView)) {
-                self.dismiss(animated: true, completion: { () -> Void in
-                })
-            }
-        }
-    }
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
     
+ 
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name("FCMToken"), object: nil)
         }
-
     
-    func refreshTeachers() {
-        MusicMakerModelController.shared.fetchTeachers { (teachers, error) in
-            guard error == nil else {return}
-            if let teachers = teachers {
-                self.teachers = teachers
-                self.tableView.reloadData()
-            }
-        }
+    
+    override func viewDidLayoutSubviews() {
+        qrViewTopConstraint.constant = qrViewIsShowing ? -self.view.frame.height : 0
     }
+
     
     
     // MARK: - IBOutlets
@@ -97,11 +68,37 @@ class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Properties
     var student: Student?
     var teachers = [Teacher]()
+    private var tapBGGesture: UITapGestureRecognizer!
 
     
     
-    
     // MARK: - Private Methods
+    private func refreshTeachers() {
+        MusicMakerModelController.shared.fetchTeachers { (teachers, error) in
+            guard error == nil else {return}
+            if let teachers = teachers {
+                self.teachers = teachers
+                self.tableView.reloadData()
+            }
+        }
+    }
+    @objc private func hideQrView() {
+        showQrOptions(self)
+        NotificationCenter.default.post(name: .qrHidden, object: nil)
+        refreshTeachers()
+    }
+    @objc private func teacherViewTappedWhenFormSheetIsShowing(sender: UITapGestureRecognizer){
+        if sender.state == UIGestureRecognizer.State.ended{
+            guard let presentedView = presentedViewController?.view else {
+                return
+            }
+            if !presentedView.bounds.contains(sender.location(in: presentedView)) {
+                self.dismiss(animated: true, completion: { () -> Void in
+                })
+            }
+        }
+    }
+    
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -133,22 +130,6 @@ class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
 
     // MARK: - IBActions
     @IBAction func showQrOptions(_ sender: Any) {
-//        if qrViewTopConstraint.constant == 0 {
-//            NotificationCenter.default.post(name: .qrShown, object: nil)
-//            qrViewTopConstraint.constant = -self.view.frame.height
-//            qrViewIsShowing = true
-//            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-//                self.view.layoutIfNeeded()
-//            })
-//        } else {
-//            qrViewTopConstraint.constant = 0
-//            qrViewIsShowing = false
-//            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-//                self.view.layoutIfNeeded()
-//            }) { (_) in
-//
-//            }
-//        }
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
             if qrViewTopConstraint.constant == 0 {
@@ -164,7 +145,6 @@ class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
                 UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.view.layoutIfNeeded()
                 }) { (_) in
-
                 }
             }
         case .pad:
@@ -176,7 +156,6 @@ class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         switch segue.identifier {
         case "ShowAssignments":
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
@@ -256,7 +235,12 @@ extension TeachersViewController: UISplitViewControllerDelegate {
         if let _ = splitViewController.viewControllers.last as? UnsubmittedAssignmentViewController, let _ = splitViewController.viewControllers.last as? SubmittedAssignmentViewController {
             return false
         }
-        
         return true
     }
 }
+
+// MARK: - UIGestureRecognizerDelegate
+func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    return true
+}
+

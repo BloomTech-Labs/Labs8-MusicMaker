@@ -31,6 +31,7 @@ class CameraPreviewView: UIView {
         
         imageCover = UIImageView(frame: bounds)
         imageCover.backgroundColor = .darkGray
+        imageCover.image = #imageLiteral(resourceName: "VideoInterruption")
         imageCover.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageCover.isHidden = true
         self.addSubview(imageCover)

@@ -17,8 +17,8 @@ class StudentAssignmentsView extends Component {
     };
 
     componentDidMount() {
-        const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
-        const studentId = '7HTc3cy6GGPWtjqfpgMB3ij3wY92' //this.props.match.params.id;
+        const teacherId = this.props.match.params.id;
+        const studentId = this.props.match.params.id;
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
               // User is signed in.
@@ -38,7 +38,7 @@ class StudentAssignmentsView extends Component {
     render() {
         return(
             <div className = "container" style={formContainer}>
-            <h1><Label>Student's Assigments</Label></h1>
+            <h1 style={{padding: "20px"}}><Label>Student's Assigments</Label></h1>
             <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
               {this.state.assignments.map(assignment => (
                 <Card key={assignment[0]} style={{ width:"35%", margin:"1%", border: "1px solid #A9E8DC"}}>

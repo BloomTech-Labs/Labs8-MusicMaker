@@ -106,7 +106,7 @@ class Settings extends Component {
     const { email, prefix, firstName, lastName } = this.state;
     return (
       <div className="container" style={formContainer}>
-        <Card style={{ padding: "20px" }}>
+        <Form style={{ padding: "20px" }}>
           <CardTitle style={{ margin: "10px" }}>Your Information</CardTitle>
           <CardSubtitle style={{ margin: "10px" }}>
             Email: {this.state.email}
@@ -120,33 +120,33 @@ class Settings extends Component {
           <CardText style={{ margin: "10px" }}>
             Last Name: {this.state.lastName}
           </CardText>
-        </Card>
+        </Form>
         <Form onSubmit={e => this.handleSubmit(e)}>
-          <FormGroup>
-            <h2 style={{ padding: "20px" }}>Update Your Information</h2>
-            <Label style={{ marginLeft: "5px" }}>Title</Label>
+          <FormGroup style={{padding: "20px"}}>
+            <h2>Update Your Information</h2>
+            <Label style={{paddingTop: "10px"}}>Title</Label>
             <Input
               name="prefix"
               value={prefix}
               onChange={this.handleChange}
               type="text"
-              style={{ margin: "10px" }}
+              style={{paddingTop: "5px"}}
             />
-            <Label style={{ margin: "5px" }}>First Name</Label>
+            <Label style={{paddingTop: "10px"}}>First Name</Label>
             <Input
               name="firstName"
               value={firstName}
               onChange={this.handleChange}
               type="text"
-              style={{ margin: "10px" }}
+              style={{paddingTop: "5px"}}
             />
-            <Label style={{ margin: "5px" }}>Last Name</Label>
+            <Label style={{paddingTop: "10px"}}>Last Name</Label>
             <Input
               name="lastName"
               value={lastName}
               onChange={this.handleChange}
               type="text"
-              style={{ margin: "10px" }}
+              style={{paddingTop: "5px"}}
             />
           </FormGroup>
           <Button

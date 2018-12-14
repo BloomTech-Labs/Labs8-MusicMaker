@@ -13,21 +13,21 @@ const formContainer = { maxWidth: 800, height: 90, margin: "0 auto 10px" };
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
-    {authUser => 
+    {authUser =>
     // {
     //   console.log('nav', authUser)
     // }
-      
-      (authUser 
-        ? <NavigationAuth /> 
+
+      (authUser
+        ? <NavigationAuth />
         : <NavigationNonAuth />)
     }
   </AuthUserContext.Consumer>
 );
 
 const NavigationAuth = () => (
-  <Navbar style={formContainer}>
-    <NavbarBrand href={routes.DASHBOARD}>
+  <Navbar style={{formContainer, paddingBottom: "40px"}}>
+    <NavbarBrand href={routes.DASHBOARD} style={{position: "relative", left: "5%"}}>
       <img src={mmLogo} />
     </NavbarBrand>
     <SignOutButton />
@@ -44,7 +44,7 @@ const NavigationNonAuth = () => (
         <NavLink href={routes.SIGN_UP}>Sign Up</NavLink>
       </Button>
       <Button color="primary" size="sm">
-        <NavLink style={{ color: "#FFFFFF" }} href={routes.SIGN_IN}>
+        <NavLink style={{ color: "#FFFFFF"}} href={routes.SIGN_IN}>
           Sign In
         </NavLink>
       </Button>

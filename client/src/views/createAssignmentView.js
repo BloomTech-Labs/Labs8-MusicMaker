@@ -62,7 +62,8 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
       }}
     )
     .then(res => {
-      console.log("res****", res)
+      console.log("res****", res);
+      this.props.history.push(`/assignments`);
     })
     .catch(err => {
       console.err('CREATE ASSIGNMENT VIEW ERROR', err)

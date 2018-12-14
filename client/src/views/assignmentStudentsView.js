@@ -14,12 +14,14 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import withPayment from '../components/withPayment';
 // import GradeAssignmentView from "../views/gradeAssignmentView";
 
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
 class StudentAssignmentsView extends Component {
     constructor(props) {
         super(props);
         this.state = {
             // assignments: [],
+            // assignmentId:'',
             students: [],
             modal:false,
             email: '',  
@@ -41,25 +43,29 @@ class StudentAssignmentsView extends Component {
       };
 
     onSubmit = event => {
-        console.log("here*****************")
-        event.preventDefault();
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                // User is signed in.
+                const assignmentId = this.props.match.params.assignmentId;
+                const {email, dueDate} = this.state;
 
-        const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
-        const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
+                console.log('userId*****', this.props.match.params.assignmentId)
+                console.log('userId*****', user.uid)
 
-        const {email, dueDate} = this.state;
-        console.log('State***********', {email, dueDate})
-
-
-        axios  
-            .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
-            .then(res => {
-                console.log('Assign******************', res.data)
-              })
-              .catch(err => {
-                console.error('ASSIGN VIEW ERROR', err)
-              })
-    }
+                axios  
+                    .post(`http://localhost:8000/teacher/${user.uid}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
+                    .then(res => {
+                        console.log('Assign******************', res)
+                    })
+                    .catch(err => {
+                        console.error('ASSIGN VIEW ERROR', err)
+                    })
+            } else {
+                // No user is signed in.
+                return;
+              }
+            });
+          };
     
     
      
@@ -89,8 +95,7 @@ class StudentAssignmentsView extends Component {
     // }
 
     componentDidMount() {
-        const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
-        const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
+        const assignmentId = 'DQE4Dg2YdgPJKBcr2pXx' //this.props.match.params.id;
 
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
@@ -112,7 +117,7 @@ class StudentAssignmentsView extends Component {
     render() {
         const {email, dueDate} = this.state;
         return(
-            <div>
+            <div style={formContainer}>
                 <h1><Label>Student's Assigned to the Assignment</Label></h1>
                 <Button onClick={this.toggle}>+</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
@@ -126,7 +131,7 @@ class StudentAssignmentsView extends Component {
                     <Input type="time" name="dueDate" id="exampleTime" placeholder="hh:ss" value={dueDate} onChange={this.onChange} /> */}
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary"  onClick={this.onSubmit}>Submit</Button>{' '}
+                    <Button color="primary"  onClick={this.onSubmit}>Submit</Button>
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
                 </Modal>

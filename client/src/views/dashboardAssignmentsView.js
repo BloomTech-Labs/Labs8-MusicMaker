@@ -47,13 +47,13 @@ componentDidMount() {
           {this.state.assignments.map(assignment => (
             <Card key={assignment[0]} style={{ width:"40%", margin:"2.5%", marginBottom: "4%", padding: "1.5%", border: "1px solid #A9E8DC"}}>
               <NavLink to={`/assignmentStudents/${assignment[0]}`} style={{textDecoration:"none", color:"black"}}>
-                <CardTitle>{assignment[1].assignmentName}</CardTitle>
+                <CardTitle style={{paddingTop:"6px"}}>{assignment[1].assignmentName}</CardTitle>
                 <CardText>Experience: {assignment[1].level}</CardText>
                 <CardText>Instrument: {assignment[1].instrument}</CardText>
                 <CardText>Piece: {assignment[1].piece}</CardText>
-                {/* <CardText>Music Sheet: <a href={assignment[1].sheetMusic}>pdf image</a></CardText>  //weird error appears, will fix later*/}
                 <CardText>Instructions: {assignment[1].instructions.substring(0,35)}...</CardText>
               </NavLink>
+              <CardText style={{padding:"15px 0 6px 0"}}>Music Sheet: <a href={assignment[1].sheetMusic}>pdf image</a></CardText> 
             </Card>
           ))}
         </div>

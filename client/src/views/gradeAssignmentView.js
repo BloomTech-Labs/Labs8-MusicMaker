@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { Input, Form, FormGroup, Button } from 'reactstrap';
 import axios from 'axios';
+import firebase from 'firebase';
 
 class GradeAssignmentView extends Component {
   constructor(props) {
@@ -25,21 +26,29 @@ class GradeAssignmentView extends Component {
     const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
     const assignmentId = 'cKoEZeuuKdciV74U9pQq' //this.props.match.params.id;
     const studentId = '7HTc3cy6GGPWtjqfpgMB3ij3wY92' //this.props.match.params.id;
-
-    axios
-      .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/student/${studentId}`)
-      .then(res => {
-        this.setState({
-          assignmentName: res.data[0],
-          instructions: res.data[5],
-          instrument: res.data[2],
-          level: res.data[3],
-          piece: res.data[4],
-          sheetMusic: res.data[6],
-          video: res.data[7]
-        })
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in.
+        axios
+          .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/student/${studentId}`)
+          .then(res => {
+            this.setState({
+              assignmentName: res.data[0],
+              instructions: res.data[5],
+              instrument: res.data[2],
+              level: res.data[3],
+              piece: res.data[4],
+              sheetMusic: res.data[6],
+              video: res.data[7]
+          })
       })
       .catch(err => console.error('An error was encountered.', err));
+      } else {
+        // No user is signed in.
+        return;
+      }
+    });
+    
   } 
 
   onChange = event => {

@@ -113,9 +113,9 @@ class StudentAssignmentsView extends Component {
     render() {
         const {email, dueDate} = this.state;
         return(
-            <div>
-                <h1><Label>Students Assigned to the Assignment</Label></h1>
-                <Button onClick={this.toggle}>+</Button>
+            <div style={formContainer}>
+                <h1 style={{padding: "30px 30px 0 30px"}}><Label>Students Assigned to the Assignment</Label></h1>
+                <Button onClick={this.toggle} style={{margin: "4.5%"}}>+</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                 <ModalHeader toggle={this.toggle}>Assign Assignment to Student</ModalHeader>
                 <ModalBody>

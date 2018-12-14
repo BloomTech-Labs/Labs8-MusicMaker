@@ -7,6 +7,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Merriweather-Black.ttf">
+            <string>Merriweather-Black</string>
+        </array>
+        <array key="Merriweather-Bold.ttf">
+            <string>Merriweather-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Unsubmitted Assignment View Controller-->
         <scene sceneID="eoW-vP-84y">
@@ -190,8 +198,8 @@
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Assignment: Waltz from Sleeping Beauty" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eN-jy-sD6">
-                                            <rect key="frame" x="88.5" y="11" width="591.5" height="37"/>
-                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                            <rect key="frame" x="94" y="11" width="580.5" height="37"/>
+                                            <fontDescription key="fontDescription" name="Merriweather-Black" family="Merriweather" pointSize="28"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -242,8 +250,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music Piece: Waltz from Sleeping Beauty" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41G-wQ-nSC">
-                                            <rect key="frame" x="20" y="11" width="451" height="28"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                            <rect key="frame" x="20" y="11" width="448.5" height="28"/>
+                                            <fontDescription key="fontDescription" name="Merriweather-Bold" family="Merriweather" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -314,8 +322,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I34-B2-X7v">
-                                            <rect key="frame" x="20" y="11" width="131.5" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                            <rect key="frame" x="20" y="11" width="137.5" height="28"/>
+                                            <fontDescription key="fontDescription" name="Merriweather-Bold" family="Merriweather" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -326,7 +334,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bodyTextLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzA-OE-7Ir">
-                                            <rect key="frame" x="20" y="60" width="728" height="21.5"/>
+                                            <rect key="frame" x="20" y="58" width="728" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -392,7 +400,7 @@
                                 <rect key="frame" x="0.0" y="1113" width="768" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EY2-oo-8W9" id="CDR-dh-F3I">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="81"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="80.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgn-wz-yJI">

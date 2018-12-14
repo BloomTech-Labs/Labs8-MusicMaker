@@ -114,22 +114,7 @@ class StudentAssignmentsView extends Component {
         return(
             <div style={formContainer}>
                 <h1><Label>Student's Assigned to the Assignment</Label></h1>
-                <Button onClick={this.toggle}>+</Button>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                <ModalHeader toggle={this.toggle}>Assign Assignment to Student</ModalHeader>
-                <ModalBody>
-                    <Label for="exampleEmail">Email</Label>
-                    <Input type="email" name="email" id="exampleEmail" placeholder="Student Email" value={email} onChange={this.onChange}  />
-                    <Label for="exampleDate">Due Date</Label>
-                    <Input type="date" name="dueDate" id="exampleDate" placeholder="mm/dd/yyyy" value={dueDate} onChange={this.onChange} />
-                    {/* <Label for="exampleTime">Due Time</Label>
-                    <Input type="time" name="dueDate" id="exampleTime" placeholder="hh:ss" value={dueDate} onChange={this.onChange} /> */}
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary"  onClick={this.onSubmit}>Submit</Button>
-                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-                </ModalFooter>
-                </Modal>
+    
             <div>
                 {this.state.students.map(student => (
                     <Row key={student[2]} style={{border:"1px solid black"}}>

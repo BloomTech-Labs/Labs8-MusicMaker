@@ -38,7 +38,8 @@ class GradeAssignmentView extends Component {
               level: res.data[3],
               piece: res.data[4],
               sheetMusic: res.data[6],
-              video: res.data[7]
+              video: res.data[7],
+              grade: res.data[8]
           })
       })
       .catch(err => console.error('An error was encountered.', err));
@@ -69,7 +70,7 @@ class GradeAssignmentView extends Component {
         axios
         .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/student/${studentId}`, {feedback, grade})
         .then(res => {
-          console.log(res)
+          // console.log(res)
           this.props.history.push('/assignments') //may need to change?
         })
         .catch(err => {

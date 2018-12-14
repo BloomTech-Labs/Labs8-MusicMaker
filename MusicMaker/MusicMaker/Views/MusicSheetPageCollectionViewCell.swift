@@ -20,7 +20,7 @@ class MusicSheetPageCollectionViewCell: UICollectionViewCell {
             pdfView.displayMode = .singlePage
             pdfView.autoScales = false
             pdfView.isUserInteractionEnabled = false
-            pdfView.minScaleFactor = 0.01
+            pdfView.minScaleFactor = 0.001
             
             setNeedsLayout()
         }
@@ -29,7 +29,8 @@ class MusicSheetPageCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        pdfView.minScaleFactor = 0.01
+        pdfView.frame = bounds
+        pdfView.minScaleFactor = 0.001
         pdfView.scaleFactor = pdfView.scaleFactorForSizeToFit
     }
     

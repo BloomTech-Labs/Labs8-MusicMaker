@@ -1,6 +1,6 @@
 //Grade Assignment View: This page will let teacher's see a student's assignment both completed and not completed.
 //When the assignment is completed the teacher can see the assignment information and the students video to be able to 
-//give the student feedback and a grade(Pass/Fail).
+//give the student feedback and a grade(Passed/Failed).
 import React, { Component } from 'react';
 import { Input, Form, FormGroup, Button } from 'reactstrap';
 import axios from 'axios';

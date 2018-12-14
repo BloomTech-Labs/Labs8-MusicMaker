@@ -1,5 +1,5 @@
 //Assignment's Students List: After clicking on an assignment from dashboardAssigmentsView.js,
-//it'll take you to another page with "+" to add student's to an assignment, 
+//it'll take you to another page with "+" to add student's to an assignment,
 //click assignment's name to see the full ungraded assignment,
 //click on student to see student's assignment submission for grading.
 import React, { Component } from "react";
@@ -22,8 +22,8 @@ class StudentAssignmentsView extends Component {
         this.state = {
             students: [],
             modal:false,
-            email: '',  
-            dueDate:''          
+            email: '',
+            dueDate:''
         };
         this.toggle = this.toggle.bind(this);
     };
@@ -68,7 +68,7 @@ class StudentAssignmentsView extends Component {
     // componentDidMount() {
     //     const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
     //     const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
-        
+
     //     axios.all([
     //         axios.get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/students`),
     //         axios.get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}`)
@@ -135,7 +135,7 @@ class StudentAssignmentsView extends Component {
                     <Row key={student[2]} style={{border:"1px solid black"}}>
                         <NavLink to={`/grading/${student[2]}/${student[0]}`} style={{textDecoration:"none"}} >
                             <Col>{student[3]} {student[4]}</Col> {/*student's name*/}
-                        </NavLink>
+                        </NavLink> 
                             <Col>{student[5]}</Col> {/*student's assignment due date*/}
                             <Col>{student[6]===null ? "" : "Student Completed"}</Col> {/*student's assignment completion status */}
                     </Row>

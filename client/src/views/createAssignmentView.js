@@ -50,7 +50,7 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
-        
+
     axios
     .post(`http://localhost:8000/teacher/${user.uid}/createAssignment`,
     // .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/createAssignment`,
@@ -81,11 +81,11 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
     return (
       <div className="container" style={formContainer}>
         <Form onSubmit={this.onSubmit}>
-          <h2>Create a new assignment: </h2>
-          <FormGroup>
+          <h2 style={{padding: "20px"}}>Create a new assignment: </h2>
+          <FormGroup style={{padding: "20px"}}>
             <Input type="text" name="assignmentName" placeholder="Assignment Name" value={assignmentName} onChange={this.onChange} />
            </FormGroup>
-           <FormGroup inline style={{display: 'flex', justifyContent: 'space-around'}}>
+           <FormGroup inline style={{display: 'flex', justifyContent: 'space-around', padding: "20px"}}>
              <Input type="text" name="piece" placeholder="Piece Name" value={piece} onChange={this.onChange} />
 
              <Input type="select" name="instrument" onChange={this.onChange}>
@@ -105,15 +105,15 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
               <option value="Expert">Expert</option>
             </Input>
           </FormGroup>
-          <FormGroup>
+          <FormGroup style={{padding: "20px"}}>
             <Label>Instructions</Label>
               <Input type="textarea" name="instructions" placeholder="Instructions..." value={instructions} onChange={this.onChange} />
           </FormGroup>
           <FormGroup style={{display:'flex', alignItems:'center'}}>
-            <Input type ='file' name='sheetMusic' onChange={this.uploadChange} />
+            <Input type ='file' name='sheetMusic' onChange={this.uploadChange} style={{margin: "20px"}} />
             <div style={{paddingRight:'64.5%'}}> {Math.round(this.state.loaded,2) }%</div>
           </FormGroup>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" style={{margin: "20px"}}>Submit</Button>
         </Form>
       </div>
     );

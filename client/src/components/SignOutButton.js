@@ -15,11 +15,11 @@ class SignOutButton extends React.Component {
         auth.doSignOut();
         if (!withAuthentication.authUser || withAuthentication.authUser === null) this.props.history.push(routes.SIGN_IN);
     }
-    
+
     render() {
         return (
-            <Button color="primary" onClick={ this.redirect }>Sign Out</Button>
-        ); 
+            <Button color="primary" onClick={ this.redirect } style={{position: "relative", right: "5.5%"}}>Sign Out</Button>
+        );
     }
 }
 

@@ -35,17 +35,15 @@ componentDidMount() {
       return;
     }
   });
-
-  
 };
 
   render() {
     return (
       <div style={formContainer}>
-        <h1><Label style={{margin: "20px"}}>Assignments</Label></h1>
+        <h1 style={{padding: "20px"}}><Label>Assignments</Label></h1>
         <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
           {this.state.assignments.map(assignment => (
-            <Card key={assignment[0]} style={{ width:"40%", margin:"2.5%", marginBottom: "4%", padding: "1.5%", border: "1px solid #A9E8DC"}}>
+            <Card key={assignment[0]} style={{ width:"40%", margin:"5%", marginBottom: "4%", padding: "3.5%", border: "1px solid #A9E8DC"}}>
               <NavLink to={`/assignmentStudents/${assignment[0]}`} style={{textDecoration:"none", color:"black"}}>
                 <CardTitle style={{paddingTop:"6px"}}>{assignment[1].assignmentName}</CardTitle>
                 <CardText>Experience: {assignment[1].level}</CardText>

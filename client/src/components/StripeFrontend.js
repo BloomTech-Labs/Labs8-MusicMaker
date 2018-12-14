@@ -37,11 +37,11 @@ class TakeMoney extends React.Component {
         </Row>
 
         <Row>
-          <Col>
+          <Col style={{padding: "30px 30px 30px 20px"}}>
             <CardElement />
           </Col>
           <Col>
-            <Button onClick={this.submit}>Send</Button>
+            <Button onClick={this.submit} style={{marginTop: "20px"}}>Send</Button>
           </Col>
         </Row>
       </div>

@@ -94,7 +94,7 @@ class RecordingViewController: UIViewController {
     
     @IBAction func toggleRecord(_ sender: Any) {
         if captureSession.isInterrupted {
-            let alert = UIAlertController(title: "Cannot Record While Multitasking", message: "Please return to fullscreen to begin recording.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Cannot Record and While Multitasking", message: "Please return to fullscreen\nto begin recording.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
             return
@@ -177,7 +177,7 @@ class RecordingViewController: UIViewController {
             
             self.cameraPreviewView.imageCover.isHidden = false
             
-            self.interruptionAlert = UIAlertController(title: "Cannot Record While Multitasking", message: "Please return to fullscreen to begin recording.", preferredStyle: .alert)
+            self.interruptionAlert = UIAlertController(title: "Cannot Record\nWhile Multitasking", message: "Please return to fullscreen\nto begin recording.", preferredStyle: .alert)
             self.interruptionAlert!.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                 self.interruptionAlert = nil
             }))

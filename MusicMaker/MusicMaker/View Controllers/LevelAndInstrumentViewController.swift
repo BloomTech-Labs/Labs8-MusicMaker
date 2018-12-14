@@ -34,7 +34,13 @@ class LevelAndInstrumentViewController: UIViewController {
 
     
     
-    @IBOutlet var instrumentButtons: [UIButton]!
+    @IBOutlet var instrumentButtons: [UIButton]! {
+        didSet {
+            for button in instrumentButtons {
+                button.layer.cornerRadius = 5.0
+            }
+        }
+    }
     
     
     // MARK: - IBActions
@@ -60,7 +66,7 @@ class LevelAndInstrumentViewController: UIViewController {
     @IBAction func instrumentSelected(_ sender: UIButton) {
         for instrument in instrumentButtons {
             if instrument.tag == sender.tag {
-                instrument.backgroundColor = UIColor.lightGray
+                instrument.backgroundColor = UIColor.blue2
             } else {
                 instrument.backgroundColor = UIColor.clear
             }

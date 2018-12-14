@@ -54,6 +54,16 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
             
             if error != nil {
                 NSLog("Error signing in")
+                if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                    switch errorCode {
+                    case .invalidEmail:
+                        self.presentInformationalAlertController(title: "Invalid Email", message: "Please use a valid email address")
+                    case .wrongPassword:
+                        self.presentInformationalAlertController(title: "Wrong Password", message: "Please try again")
+                    default:
+                        self.presentInformationalAlertController(title: "Error Logging In", message: "Please try again")
+                    }
+                }
             }
         }
     }
@@ -83,7 +93,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
     
     //Presents an alert controller when the user clicks forgot password which sends a password reset option to their email address
     private func presentForgotPasswordAlert() {
-        let alert = UIAlertController(title: "Reset Password", message: "Enter your email address to reset your password", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Change Password", message: "Confirm your old password", preferredStyle: .alert)
         var resetPasswordWithEmailTextField: UITextField?
         alert.addTextField { (textField) in
             textField.borderStyle = UITextField.BorderStyle.none

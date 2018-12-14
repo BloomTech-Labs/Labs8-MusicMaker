@@ -104,9 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setRootViewController() {
         if Auth.auth().currentUser != nil {
             let storyboard = UIStoryboard(name: "SplitView", bundle: nil)
-            let initialViewController = storyboard.instantiateInitialViewController() as! UISplitViewController
-            initialViewController.preferredDisplayMode = .allVisible
-            self.window?.rootViewController = initialViewController
+            self.window?.rootViewController = storyboard.instantiateInitialViewController()
         }
     }
 }

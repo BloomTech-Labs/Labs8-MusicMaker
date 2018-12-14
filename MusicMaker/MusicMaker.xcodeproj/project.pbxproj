@@ -32,6 +32,8 @@
 		39CA2B612194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */; };
 		39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */; };
 		BF21929D21C2D19B004F50FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */; };
+		BF21929F21C310CC004F50FE /* UserSettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF21929E21C310CC004F50FE /* UserSettingsCollectionViewCell.swift */; };
+		BF2192A121C3523B004F50FE /* qr.json in Resources */ = {isa = PBXBuildFile; fileRef = BF2192A021C3523B004F50FE /* qr.json */; };
 		BF5D5209219CB05900DFF213 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */; };
 		BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5208219CB05900DFF213 /* HoshiTextField.swift */; };
 		BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5D520B219CC7F200DFF213 /* Teachers.storyboard */; };
@@ -91,9 +93,7 @@
 		BFE771AC219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */; };
 		BFE771D621A352E100DCE42A /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D521A352E100DCE42A /* MenuButton.swift */; };
 		BFE771D821A49BE700DCE42A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D721A49BE700DCE42A /* QRView.swift */; };
-		BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */; };
 		BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */; };
-		BFFB213F21AFA02E0050E013 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB213E21AFA02E0050E013 /* ResetPasswordViewController.swift */; };
 		BFFB214921B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB214821B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift */; };
 		BFFB214B21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB214A21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift */; };
 		BFFB214F21B1F9B90050E013 /* AddTeacherOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB214E21B1F9B90050E013 /* AddTeacherOptionsViewController.swift */; };
@@ -145,6 +145,8 @@
 		39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSaveSubmitTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordingViewController.storyboard; sourceTree = "<group>"; };
 		BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BF21929E21C310CC004F50FE /* UserSettingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF2192A021C3523B004F50FE /* qr.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = qr.json; sourceTree = "<group>"; };
 		BF37286D21C1E766003102BF /* MusicMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicMaker.entitlements; sourceTree = "<group>"; };
 		BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
 		BF5D5208219CB05900DFF213 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
@@ -211,9 +213,7 @@
 		BFE771AB219E59DF00DCE42A /* UIViewController+TransitionAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+TransitionAnimations.swift"; path = "MusicMaker/Storyboards/UIViewController+TransitionAnimations.swift"; sourceTree = SOURCE_ROOT; };
 		BFE771D521A352E100DCE42A /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		BFE771D721A49BE700DCE42A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
-		BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		BFE771DB21A4A61000DCE42A /* scannedSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scannedSound.mp3; sourceTree = "<group>"; };
-		BFFB213E21AFA02E0050E013 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		BFFB214821B0FDFE0050E013 /* AuthenticationOptionsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationOptionsViewControllerDelegate.swift; sourceTree = "<group>"; };
 		BFFB214A21B0FE4F0050E013 /* AuthenticationOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationOptionsViewController.swift; sourceTree = "<group>"; };
 		BFFB214E21B1F9B90050E013 /* AddTeacherOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTeacherOptionsViewController.swift; sourceTree = "<group>"; };
@@ -327,8 +327,6 @@
 				BFD381CF219355510038F974 /* LogInViewController.swift */,
 				BF5D520F219CC8E800DFF213 /* TeachersViewController.swift */,
 				BFE771A9219E577D00DCE42A /* UserProfileViewController.swift */,
-				BFFB213E21AFA02E0050E013 /* ResetPasswordViewController.swift */,
-				BFE771D921A49F1400DCE42A /* InstantPanGestureRecognizer.swift */,
 				399010C421925FC7004670BF /* UnsubmittedAssignmentViewController.swift */,
 				39C108FC2194E55900180F37 /* RecordingViewController.swift */,
 				39C47DC721AF233000C1E115 /* SubmittedAssignmentViewController.swift */,
@@ -369,6 +367,7 @@
 		BFD381C7219353DF0038F974 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF21929E21C310CC004F50FE /* UserSettingsCollectionViewCell.swift */,
 				BFE05CFE21C1A5FD00F46343 /* TeacherTableViewCell.swift */,
 				BF98B14521B5CA9C007B7C45 /* StarRating.swift */,
 				BFE771D721A49BE700DCE42A /* QRView.swift */,
@@ -451,6 +450,7 @@
 				BF9047A221B9C740009F859D /* Fonts */,
 				BF98B13521B4E3A1007B7C45 /* qr_code.json */,
 				BF98B13B21B50D9B007B7C45 /* checkmark.json */,
+				BF2192A021C3523B004F50FE /* qr.json */,
 				BF98B14121B5B784007B7C45 /* eye01.json */,
 				BF5D5215219CCAA100DFF213 /* Protocols */,
 				BFD381CA219353F40038F974 /* Extensions */,
@@ -634,6 +634,7 @@
 				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				39C47DC621AF228900C1E115 /* SubmittedAssignmentViewController.storyboard in Resources */,
+				BF2192A121C3523B004F50FE /* qr.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,7 +775,6 @@
 				393E238C21ACA96000620D94 /* AssignmentPlaybackTableViewCell.swift in Sources */,
 				393E238021AB422700620D94 /* MusicMakerModel.xcdatamodeld in Sources */,
 				BF98B14821B5CAFF007B7C45 /* LevelAndInstrumentViewController.swift in Sources */,
-				BFFB213F21AFA02E0050E013 /* ResetPasswordViewController.swift in Sources */,
 				39CA2B5F2194AED500C6018E /* RecordButtonTableViewCell.swift in Sources */,
 				BFD381D0219355510038F974 /* LogInViewController.swift in Sources */,
 				393E238821AB565800620D94 /* Assignment+Convenience.swift in Sources */,
@@ -802,10 +802,10 @@
 				BFD3EEFD21AE45880097D5AA /* Student.swift in Sources */,
 				399F0B5B21B8436400261477 /* AssignmentTableViewCell.swift in Sources */,
 				BF98B13221B35007007B7C45 /* UISegmentedControl+Extensions.swift in Sources */,
+				BF21929F21C310CC004F50FE /* UserSettingsCollectionViewCell.swift in Sources */,
 				BF98B13A21B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift in Sources */,
 				BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */,
 				39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */,
-				BFE771DA21A49F1400DCE42A /* InstantPanGestureRecognizer.swift in Sources */,
 				BF98B14E21B7262A007B7C45 /* FirstAndLastNameViewControllerDelegate.swift in Sources */,
 				BF98B14C21B5E8A5007B7C45 /* FirstAndLastNameViewController.swift in Sources */,
 				BF98B14421B5C5B0007B7C45 /* EmailAndPasswordViewControllerDelegate.swift in Sources */,

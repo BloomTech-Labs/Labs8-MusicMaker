@@ -147,6 +147,10 @@ extension AddTeacherOptionsViewController: QRScanning {
     
     func qrCodeScanned(_ qrCode: String) {
         let currentUser = Auth.auth().currentUser
+        if isSigningUpWithGoogle {
+            teacherUniqueId = qrCode
+            self.performSegue(withIdentifier: "ShowSignUp", sender: nil)
+        }
         if let user = currentUser {
             let database = Firestore.firestore()
             
@@ -159,12 +163,11 @@ extension AddTeacherOptionsViewController: QRScanning {
                     return
                 }
                 if let name = documentSnapshot?.data()?["name"] as? [String : String] {
-                    database.collection("students").document(user.uid).collection("teachers").document(qrCode).setData(["exists": true, "name": name])
+                    database.collection("students").document(user.uid).collection("teachers").document(qrCode).setData(["name": name])
+                    database.collection("teachers").document(qrCode).collection("students").document(user.uid).setData(["exists": true])
                     NotificationCenter.default.post(name: .newTeacher, object: nil)
                 }
             }
-            
-//            qrScanner.qrView.captureSession?.startRunning()
         } else {
             teacherUniqueId = qrCode
             self.performSegue(withIdentifier: "ShowSignUp", sender: nil)

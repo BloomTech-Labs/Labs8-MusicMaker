@@ -52,8 +52,8 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
         // User is signed in.
 
     axios
-    // .post('http://localhost:8000/teacher/pwUGQC7SHBiPKPdnOq2c/createAssignment',
-    .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/createAssignment`,
+    .post(`http://localhost:8000/teacher/${user.uid}/createAssignment`,
+    // .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/createAssignment`,
       formData,
       {onUploadProgress: ProgressEvent => {
         this.setState({
@@ -62,7 +62,8 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
       }}
     )
     .then(res => {
-      console.log(res.statusText, res)
+      console.log("res****", res);
+      this.props.history.push(`/assignments`);
     })
     .catch(err => {
       console.err('CREATE ASSIGNMENT VIEW ERROR', err)

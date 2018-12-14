@@ -10,7 +10,7 @@ import firebase from 'firebase';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import { Route } from "react-router-dom";
 
-// import * as routes from "../constants/routes";
+import * as routes from "../constants/routes";
 // import withPayment from '../components/withPayment';
 // import GradeAssignmentView from "../views/gradeAssignmentView";
 
@@ -20,7 +20,6 @@ class StudentAssignmentsView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // assignments: [],
             students: [],
             modal:false,
             email: '',
@@ -42,28 +41,29 @@ class StudentAssignmentsView extends Component {
       };
 
     onSubmit = event => {
-        console.log("here*****************")
-        event.preventDefault();
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                // User is signed in.
+                const assignmentId = this.props.match.params.assignmentId;
+                const {email, dueDate} = this.state;
 
-        const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
-        const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
-
-        const {email, dueDate} = this.state;
-        console.log('State***********', {email, dueDate})
-
-
-        axios
-            .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
-            .then(res => {
-                console.log('Assign******************', res.data)
-              })
-              .catch(err => {
-                console.error('ASSIGN VIEW ERROR', err)
-              })
-    }
+                console.log('params******************', user.uid, assignmentId)
 
 
-
+                axios  
+                    .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
+                    .then(res => {
+                        console.log('Assign******************', res, assignmentId)
+                    })
+                    .catch(err => {
+                        console.error('ASSIGN VIEW ERROR', err)
+                    })
+            } else {
+                // No user is signed in.
+                return;
+              }
+            });
+          };
 
     // componentDidMount() {
     //     const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
@@ -90,8 +90,7 @@ class StudentAssignmentsView extends Component {
     // }
 
     componentDidMount() {
-        const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
-        const assignmentId = 'DQE4Dg2YdgPJKBcr2pXx' //this.props.match.params.id;
+        const assignmentId = this.props.match.params.assignmentId;
 
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
@@ -99,7 +98,7 @@ class StudentAssignmentsView extends Component {
             axios
             .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/students`)
             .then(res => {
-                // console.log('student******************', res.data)
+                console.log('student******************', res.data)
                 this.setState({students:res.data})
             })
             .catch(err => console.error('ASSIGNMENT STUDENTS VIEW AXIOS ERROR:', err));
@@ -111,11 +110,11 @@ class StudentAssignmentsView extends Component {
     }
 
     render() {
-        const {email, dueDate} = this.state;
+        const {students, email, dueDate} = this.state;
         return(
             <div style={formContainer}>
-                <h1 style={{padding: "30px 30px 0 30px"}}><Label>Students Assigned to the Assignment</Label></h1>
-                <Button onClick={this.toggle} style={{margin: "4.5%"}}>+</Button>
+                <h1><Label>Student's Assigned to the Assignment</Label></h1>
+                <Button onClick={this.toggle}>+</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                 <ModalHeader toggle={this.toggle}>Assign Assignment to Student</ModalHeader>
                 <ModalBody>
@@ -127,16 +126,16 @@ class StudentAssignmentsView extends Component {
                     <Input type="time" name="dueDate" id="exampleTime" placeholder="hh:ss" value={dueDate} onChange={this.onChange} /> */}
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary"  onClick={this.onSubmit}>Submit</Button>{' '}
+                    <Button color="primary"  onClick={this.onSubmit}>Submit</Button>
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
                 </Modal>
             <div>
                 {this.state.students.map(student => (
                     <Row key={student[2]} style={{border:"1px solid black"}}>
-                        {/* <NavLink to={`/grading/${student[2]}`} style={{textDecoration:"none"}} > */}
+                        <NavLink to={`/grading/${student[2]}/${student[0]}`} style={{textDecoration:"none"}} >
                             <Col>{student[3]} {student[4]}</Col> {/*student's name*/}
-                        {/* </NavLink> */}
+                        </NavLink> 
                             <Col>{student[5]}</Col> {/*student's assignment due date*/}
                             <Col>{student[6]===null ? "" : "Student Completed"}</Col> {/*student's assignment completion status */}
                     </Row>

@@ -44,7 +44,7 @@ class Settings extends Component {
             `https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/settings`
           ) //match params.id when this becomes fully dynamic
           .then(res => {
-            console.log(res.data);
+            // console.log("here****" ,res);
             this.setState({
               email: res.data.email
             });
@@ -87,7 +87,8 @@ class Settings extends Component {
             { prefix, firstName, lastName }
           )
           .then(res => {
-            this.props.history.push(`/settings`); // not sure where exactly this has to be pushed
+            // console.log('update***', res)
+            this.props.history.push(`/settings`);
           })
           .catch(err =>
             console.error(

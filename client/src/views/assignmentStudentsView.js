@@ -91,7 +91,7 @@ class StudentAssignmentsView extends Component {
 
     componentDidMount() {
         const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
-        const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
+        const assignmentId = 'DQE4Dg2YdgPJKBcr2pXx' //this.props.match.params.id;
 
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
@@ -134,9 +134,9 @@ class StudentAssignmentsView extends Component {
             <div>
                 {this.state.students.map(student => (
                     <Row key={student[2]} style={{border:"1px solid black"}}>
-                        <NavLink to={`/grading/${student[2]}`} style={{textDecoration:"none"}} >
+                        {/* <NavLink to={`/grading/${student[2]}`} style={{textDecoration:"none"}} > */}
                             <Col>{student[3]} {student[4]}</Col> {/*student's name*/}
-                        </NavLink>
+                        {/* </NavLink> */}
                             <Col>{student[5]}</Col> {/*student's assignment due date*/}
                             <Col>{student[6]===null ? "" : "Student Completed"}</Col> {/*student's assignment completion status */}
                     </Row>

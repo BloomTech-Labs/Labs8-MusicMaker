@@ -173,6 +173,7 @@ class RecordingViewController: UIViewController {
         interruptionNotificationHandler = NotificationCenter.default.addObserver(forName: .AVCaptureSessionWasInterrupted, object: nil, queue: nil, using: { [weak self] (notification) in
             guard let self = self else { return }
             guard let reason = notification.userInfo?[AVCaptureSessionInterruptionReasonKey] as? Int, AVCaptureSession.InterruptionReason(rawValue: reason) == AVCaptureSession.InterruptionReason.videoDeviceNotAvailableWithMultipleForegroundApps else { return }
+            guard self.shouldShowCamera == true else { return }
             
             self.cameraPreviewView.imageCover.isHidden = false
             

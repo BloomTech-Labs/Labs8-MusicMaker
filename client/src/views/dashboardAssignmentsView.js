@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import axios from 'axios';
+import firebase from 'firebase';
 // import { Route } from "react-router-dom";
 
 // import * as routes from "../constants/routes";
@@ -20,14 +21,22 @@ class DashboardAssignmentsView extends Component {
 };
 
 componentDidMount() {
-  const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
-
-  axios
-      .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignments`)
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      // User is signed in.
+      axios
+      .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignments`)
       .then(res => {
           this.setState({assignments: res.data})
       })
       .catch(err => console.error('ASSIGNMENTS LIST VIEW AXIOS:', err));
+    } else {
+      // No user is signed in.
+      return;
+    }
+  });
+
+  
 };
 
   render() {

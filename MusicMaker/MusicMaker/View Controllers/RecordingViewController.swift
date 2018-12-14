@@ -51,7 +51,20 @@ class RecordingViewController: UIViewController {
     private var panGesture = UIPanGestureRecognizer()
     private var pinchGesture = UIPinchGestureRecognizer()
     
+    private var interruptionNotificationHandler: NSObjectProtocol?
+    private var interruptionEndedNotificationHandler: NSObjectProtocol?
+    private var interruptionAlert: UIAlertController?
+    
     var shouldShowCamera = false
+    
+    deinit {
+        if let interruptionNotificationHandler = interruptionNotificationHandler {
+            NotificationCenter.default.removeObserver(interruptionNotificationHandler)
+        }
+        if let interruptionEndedNotificationHandler = interruptionEndedNotificationHandler {
+            NotificationCenter.default.removeObserver(interruptionEndedNotificationHandler)
+        }
+    }
     
     var selectedPageIndexPath: IndexPath {
         if let pdfDocument = pdfDocument, let pdfPage = pdfView.currentPage {
@@ -80,6 +93,13 @@ class RecordingViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func toggleRecord(_ sender: Any) {
+        if captureSession.isInterrupted {
+            let alert = UIAlertController(title: "Cannot Record While Multitasking", message: "Please return to fullscreen to begin recording.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
         if recordOutput.isRecording {
             recordOutput.stopRecording()
         } else {
@@ -149,6 +169,27 @@ class RecordingViewController: UIViewController {
         }
         
         setupCapture()
+        
+        interruptionNotificationHandler = NotificationCenter.default.addObserver(forName: .AVCaptureSessionWasInterrupted, object: nil, queue: nil, using: { [weak self] (notification) in
+            guard let self = self else { return }
+            guard let reason = notification.userInfo?[AVCaptureSessionInterruptionReasonKey] as? Int, AVCaptureSession.InterruptionReason(rawValue: reason) == AVCaptureSession.InterruptionReason.videoDeviceNotAvailableWithMultipleForegroundApps else { return }
+            
+            self.cameraPreviewView.imageCover.isHidden = false
+            
+            self.interruptionAlert = UIAlertController(title: "Cannot Record While Multitasking", message: "Please return to fullscreen to begin recording.", preferredStyle: .alert)
+            self.interruptionAlert!.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                self.interruptionAlert = nil
+            }))
+            self.present(self.interruptionAlert!, animated: true, completion: nil)
+        })
+        
+        interruptionEndedNotificationHandler = NotificationCenter.default.addObserver(forName: .AVCaptureSessionInterruptionEnded, object: nil, queue: nil, using: { [weak self] (notification) in
+            guard let self = self else { return }
+            
+            self.cameraPreviewView.imageCover.isHidden = true
+            self.interruptionAlert?.dismiss(animated: true, completion: nil)
+            self.interruptionAlert = nil
+        })
     }
     
     override func viewWillLayoutSubviews() {

@@ -35,8 +35,6 @@ componentDidMount() {
       return;
     }
   });
-
-  
 };
 
   render() {

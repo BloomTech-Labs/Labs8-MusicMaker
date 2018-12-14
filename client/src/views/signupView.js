@@ -51,6 +51,7 @@ class SignUpView extends Component {
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
+        console.log(authUser.user.uid);
 
         // const nameArr = authUser.user.displayName.split(' ');
 

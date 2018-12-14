@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import axios from 'axios';
 import firebase from 'firebase';
+import * as routes from '../constants/routes';
 
 const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
@@ -12,27 +13,27 @@ class StudentAssignmentsView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            assignments: []
+            assignments: [],
+            students: []
         };
     };
 
     componentDidMount() {
-        const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
-        const studentId = '7HTc3cy6GGPWtjqfpgMB3ij3wY92' //this.props.match.params.id;
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-              // User is signed in.
-              axios
-            .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/student/${studentId}/assignments`)
-            .then(res => {
-                this.setState({assignments:res.data})
-            })
-            .catch(err => console.error('STUDENTS ASSIGNMENTS VIEW AXIOS ERROR:', err));
-            } else {
-              // No user is signed in.
-              return;
-            }
-          });
+        const studentId = this.props.match.params.studentId //'7HTc3cy6GGPWtjqfpgMB3ij3wY92';
+              firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                //   User is signed in.
+                  axios
+                .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/student/${studentId}/assignments`)
+                .then(res => {
+                    this.setState({assignments: res.data})
+                })
+                .catch(err => console.error('STUDENTS ASSIGNMENTS VIEW AXIOS ERROR:', err));
+                } else {
+                  // No user is signed in.
+                  return;
+                }
+              });
     }
 
     render() {
@@ -52,6 +53,7 @@ class StudentAssignmentsView extends Component {
                     <CardText>Video: <a href={assignment[8]}><img src={assignment[8]===null ? 'Not Completed': assignment[8]} alt={assignment[8]===null ? 'Not Completed': "video image"} /></a></CardText>
                     <CardText>Feedback: {assignment[9]===null ? "Not Graded" : assignment[9]}</CardText>
                     <CardText>Grade: {assignment[10]===null ? "Not Graded" : assignment[10]}</CardText>
+                    <NavLink to={routes.GRADING}><Button>Grade Assignment</Button></NavLink>
                 </Card>
               ))}
             </div>

@@ -292,6 +292,7 @@ app.put("/teacher/:idTeacher/assignment/:idAssignment/student/:idStudent", (req,
 //details: assignment name, instructions, instrument, level, music sheet and piece
 app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, res) => {
     try {
+      console.log("\n***********req.body***********\n", req.body)
       const teacherId = req.params["idTeacher"];
       const assignmentId = req.params["idAssignment"];
       const { email, dueDate } = req.body;
@@ -306,6 +307,7 @@ app.post("/teacher/:idTeacher/assignment/:idAssignment/assignToStudent", (req, r
         .get()
         .then(students => {
           students.forEach(student => {
+            console.log("\n***********studentId***********\n", student.id)
             const studentId = student.id;
             //Student's teacher assignment db reference:
             const studentTeacherAssignmentRef = studentRef.doc(studentId).collection("teachers").doc(teacherId).collection("assignments").doc(assignmentId); 
@@ -478,11 +480,10 @@ app.delete("/teacher/:idTeacher/assignment/:idAssignment", (req, res) => {
 //details: email, name (first, last, and prefix), and generate a new qr code
 app.post("/addNewTeacher", (req, res) => {
   try {
-    const { email,  } = req.body;
-    // firstName, lastName, prefix
+    const { email, firstName, lastName, prefix } = req.body;
+
     //Teachers' db reference:
     const teachersRef = db.collection("teachers") 
-    console.log(req.body);
 
     if (!email) {
       res.status(411).send({REQUIRED: "Please fill all required fields: email missing."});
@@ -493,7 +494,6 @@ app.post("/addNewTeacher", (req, res) => {
           'subscribed': false
         })
         .then(ref => {
-          console.log(ref);
           let uuid = UUID();
           let qrOptions = {
             errorCorrectionLevel: "H",
@@ -514,15 +514,15 @@ app.post("/addNewTeacher", (req, res) => {
               let file = data[0];
               Promise.resolve(
                 "https://firebasestorage.googleapis.com/v0/b/" + bucket.name + "/o/" + encodeURIComponent(file.name) + "?alt=media&token" + uuid
-              ).then(url => { 
+              ).then(url => {
                 teachersRef
                   .doc(ref.id)
                   .update({
                     'qrcode': url
                   });
                   
-                res.status(201).send({MESSAGE: `Teacher ${email} was successfully added.`});
-              });
+                  res.status(201).send({MESSAGE: `Teacher ${email} was successfully added.`});
+                });
             });
         });
     }

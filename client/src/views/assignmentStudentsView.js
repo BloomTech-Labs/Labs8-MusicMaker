@@ -1,5 +1,5 @@
 //Assignment's Students List: After clicking on an assignment from dashboardAssigmentsView.js,
-//it'll take you to another page with "+" to add student's to an assignment, 
+//it'll take you to another page with "+" to add student's to an assignment,
 //click assignment's name to see the full ungraded assignment,
 //click on student to see student's assignment submission for grading.
 import React, { Component } from "react";
@@ -14,6 +14,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import withPayment from '../components/withPayment';
 // import GradeAssignmentView from "../views/gradeAssignmentView";
 
+const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
 class StudentAssignmentsView extends Component {
     constructor(props) {
@@ -22,8 +23,8 @@ class StudentAssignmentsView extends Component {
             // assignments: [],
             students: [],
             modal:false,
-            email: '',  
-            dueDate:''          
+            email: '',
+            dueDate:''
         };
         this.toggle = this.toggle.bind(this);
     };
@@ -51,7 +52,7 @@ class StudentAssignmentsView extends Component {
         console.log('State***********', {email, dueDate})
 
 
-        axios  
+        axios
             .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
             .then(res => {
                 console.log('Assign******************', res.data)
@@ -60,14 +61,14 @@ class StudentAssignmentsView extends Component {
                 console.error('ASSIGN VIEW ERROR', err)
               })
     }
-    
-    
-     
+
+
+
 
     // componentDidMount() {
     //     const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
     //     const assignmentId = 'S1oOiT9EyHGUxwKDOJJI' //this.props.match.params.id;
-        
+
     //     axios.all([
     //         axios.get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}/students`),
     //         axios.get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/assignment/${assignmentId}`)
@@ -113,7 +114,7 @@ class StudentAssignmentsView extends Component {
         const {email, dueDate} = this.state;
         return(
             <div>
-                <h1><Label>Student's Assigned to the Assignment</Label></h1>
+                <h1><Label>Students Assigned to the Assignment</Label></h1>
                 <Button onClick={this.toggle}>+</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                 <ModalHeader toggle={this.toggle}>Assign Assignment to Student</ModalHeader>

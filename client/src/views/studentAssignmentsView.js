@@ -38,7 +38,7 @@ class StudentAssignmentsView extends Component {
     render() {
         return(
             <div className = "container" style={formContainer}>
-            <h1><Label>Student's Assigments</Label></h1>
+            <h1 style={{padding: "20px"}}><Label>Student's Assigments</Label></h1>
             <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
               {this.state.assignments.map(assignment => (
                 <Card key={assignment[0]} style={{ width:"35%", margin:"1%", border: "1px solid #A9E8DC"}}>

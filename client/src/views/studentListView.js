@@ -41,7 +41,7 @@ componentDidMount() {
   render() {
     return (
       <div className="container" style={formContainer}>
-        <h1><Label style={{margin: "15px"}}>Students</Label></h1>
+        <h1 style={{padding: "20px"}}><Label>Students</Label></h1>
         <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
           {this.state.students.map(student => (
             <Card key={student[0]} style={{ width:"40%", margin:"2.5%", marginBottom: "4%", padding: "2%", border: "1px solid #A9E8DC"}}>

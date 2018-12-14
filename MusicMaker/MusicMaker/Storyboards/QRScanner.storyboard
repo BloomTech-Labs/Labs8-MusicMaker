@@ -211,23 +211,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSR-3D-bal">
-                                <rect key="frame" x="20" y="613.5" width="335" height="33.5"/>
-                                <color key="backgroundColor" red="0.66274509800000003" green="0.90980392160000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="20" y="608.5" width="335" height="33.5"/>
+                                <color key="backgroundColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Merriweather-Bold" family="Merriweather" pointSize="20"/>
                                 <state key="normal" title="Select Photo">
-                                    <color key="titleColor" red="0.0078431372550000003" green="0.65098039220000004" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="selectPhoto:" destination="fYe-M4-OMq" eventType="touchUpInside" id="M1g-8T-5f8"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.92156862750000001" green="0.98039215690000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="3Nj-yY-5vd" firstAttribute="trailing" secondItem="JSR-3D-bal" secondAttribute="trailing" constant="20" id="TJN-fV-EaY"/>
                             <constraint firstItem="JSR-3D-bal" firstAttribute="leading" secondItem="3Nj-yY-5vd" secondAttribute="leading" constant="20" id="hs5-5j-V8s"/>
                             <constraint firstItem="JSR-3D-bal" firstAttribute="height" secondItem="b7Q-Nd-W9C" secondAttribute="height" multiplier="0.05" id="iVH-hr-pWZ"/>
-                            <constraint firstItem="3Nj-yY-5vd" firstAttribute="bottom" secondItem="JSR-3D-bal" secondAttribute="bottom" constant="20" id="vZP-pZ-Jmh"/>
+                            <constraint firstItem="3Nj-yY-5vd" firstAttribute="bottom" secondItem="JSR-3D-bal" secondAttribute="bottom" constant="25" id="vZP-pZ-Jmh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Nj-yY-5vd"/>
                     </view>
@@ -237,7 +237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ez-dk-44h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1666" y="-649"/>
+            <point key="canvasLocation" x="1664.8" y="-649.02548725637189"/>
         </scene>
     </scenes>
 </document>

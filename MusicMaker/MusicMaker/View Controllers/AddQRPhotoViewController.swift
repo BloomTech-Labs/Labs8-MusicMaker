@@ -33,11 +33,10 @@ class AddQRPhotoViewController: UIViewController {
     @IBOutlet weak var addPhotosButton: UIButton! {
         didSet {
             addPhotosButton.layer.cornerRadius = 5.0
-            
         }
     }
     
-    // MARK: - Private Methods
+    //MARK: - Private Methods
     private func setupAnimationView() {
         animationView.frame = self.view.frame
         animationView.center = CGPoint(x: self.view.center.x + self.view.frame.width / 5, y: self.view.center.y - self.view.frame.height / 4.5)

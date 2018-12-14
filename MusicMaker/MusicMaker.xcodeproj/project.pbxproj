@@ -33,6 +33,7 @@
 		39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */; };
 		BF21929D21C2D19B004F50FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */; };
 		BF21929F21C310CC004F50FE /* UserSettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF21929E21C310CC004F50FE /* UserSettingsCollectionViewCell.swift */; };
+		BF2192A121C3523B004F50FE /* qr.json in Resources */ = {isa = PBXBuildFile; fileRef = BF2192A021C3523B004F50FE /* qr.json */; };
 		BF5D5209219CB05900DFF213 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */; };
 		BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5208219CB05900DFF213 /* HoshiTextField.swift */; };
 		BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5D520B219CC7F200DFF213 /* Teachers.storyboard */; };
@@ -147,6 +148,7 @@
 		39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordingViewController.storyboard; sourceTree = "<group>"; };
 		BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF21929E21C310CC004F50FE /* UserSettingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF2192A021C3523B004F50FE /* qr.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = qr.json; sourceTree = "<group>"; };
 		BF37286D21C1E766003102BF /* MusicMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicMaker.entitlements; sourceTree = "<group>"; };
 		BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
 		BF5D5208219CB05900DFF213 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 				BF9047A221B9C740009F859D /* Fonts */,
 				BF98B13521B4E3A1007B7C45 /* qr_code.json */,
 				BF98B13B21B50D9B007B7C45 /* checkmark.json */,
+				BF2192A021C3523B004F50FE /* qr.json */,
 				BF98B14121B5B784007B7C45 /* eye01.json */,
 				BF5D5215219CCAA100DFF213 /* Protocols */,
 				BFD381CA219353F40038F974 /* Extensions */,
@@ -637,6 +640,7 @@
 				BFE771DC21A4A61000DCE42A /* scannedSound.mp3 in Resources */,
 				399010C321925474004670BF /* UnsubmittedAssignmentViewController.storyboard in Resources */,
 				39C47DC621AF228900C1E115 /* SubmittedAssignmentViewController.storyboard in Resources */,
+				BF2192A121C3523B004F50FE /* qr.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

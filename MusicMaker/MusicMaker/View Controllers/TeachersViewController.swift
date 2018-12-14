@@ -83,10 +83,12 @@ class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     @objc private func hideQrView() {
-        showQrOptions(self)
+        animateQRViewConstraint()
         NotificationCenter.default.post(name: .qrHidden, object: nil)
         refreshTeachers()
     }
+    
+    
     @objc private func teacherViewTappedWhenFormSheetIsShowing(sender: UITapGestureRecognizer){
         if sender.state == UIGestureRecognizer.State.ended{
             guard let presentedView = presentedViewController?.view else {
@@ -128,25 +130,28 @@ class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
 
+    private func animateQRViewConstraint() {
+        if qrViewTopConstraint.constant == 0 {
+            NotificationCenter.default.post(name: .qrShown, object: nil)
+            qrViewTopConstraint.constant = -self.view.frame.height
+            qrViewIsShowing = true
+            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            qrViewTopConstraint.constant = 0
+            qrViewIsShowing = false
+            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }) { (_) in
+            }
+        }
+    }
     // MARK: - IBActions
     @IBAction func showQrOptions(_ sender: Any) {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
-            if qrViewTopConstraint.constant == 0 {
-                NotificationCenter.default.post(name: .qrShown, object: nil)
-                qrViewTopConstraint.constant = -self.view.frame.height
-                qrViewIsShowing = true
-                UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.view.layoutIfNeeded()
-                })
-            } else {
-                qrViewTopConstraint.constant = 0
-                qrViewIsShowing = false
-                UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.view.layoutIfNeeded()
-                }) { (_) in
-                }
-            }
+            animateQRViewConstraint()
         case .pad:
             self.performSegue(withIdentifier: "PresentQRScanner", sender: nil)
         default:

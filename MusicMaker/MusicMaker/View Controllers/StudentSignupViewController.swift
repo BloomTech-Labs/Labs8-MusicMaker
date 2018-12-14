@@ -52,7 +52,7 @@ class StudentSignupViewController: UIViewController {
     var password: String?
     var firstName: String?
     var lastName: String?
-    
+    var student: Student?
 
     
     private func writeStudentToFirestore(userId: String, level: String, instrument: String) {
@@ -60,7 +60,7 @@ class StudentSignupViewController: UIViewController {
         
         let database = Firestore.firestore()
         let userDocumentInformation = ["email" : email, "firstName": firstName, "lastName" : lastName, "instrument": instrument, "level": level]
-        
+        student = Student(userDocumentInformation)
         let teacherDocument = database.collection("teachers").document(teacherUniqueId)
         
         teacherDocument.getDocument { (documentSnapshot, error) in
@@ -108,6 +108,15 @@ class StudentSignupViewController: UIViewController {
         case "FirstAndLastName":
             if let destinationVC = segue.destination as? FirstAndLastNameViewController {
                 destinationVC.delegate = self
+            }
+        case "ShowStudentHome":
+            if let splitView = segue.destination as? UISplitViewController {
+                if let navController = splitView.viewControllers.first as? UINavigationController {
+                    if let teachersVC = navController.topViewController as? TeachersViewController {
+                        teachersVC.student = student
+                    }
+                }
+                print(splitView.viewControllers)
             }
         default:
             break

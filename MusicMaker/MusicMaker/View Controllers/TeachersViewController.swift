@@ -13,11 +13,13 @@ import FirebaseFirestore
 import Charts
 import FirebaseMessaging
 
-class TeachersViewController: UIViewController {
+class TeachersViewController: UIViewController, UIGestureRecognizerDelegate {
+    var tapBGGesture: UITapGestureRecognizer!
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         splitViewController?.preferredDisplayMode = .allVisible
         splitViewController?.delegate = self
         tableView.rowHeight = 375
@@ -27,6 +29,7 @@ class TeachersViewController: UIViewController {
         refreshTeachers()
     }
     
+   
     override func viewDidLayoutSubviews() {
         qrViewTopConstraint.constant = qrViewIsShowing ? -self.view.frame.height : 0
     }
@@ -43,9 +46,36 @@ class TeachersViewController: UIViewController {
         refreshTeachers()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("FCMToken"), object: nil)
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tapBGGesture = UITapGestureRecognizer(target: self, action: #selector(settingsBGTapped))
+        tapBGGesture.delegate = self
+        tapBGGesture.numberOfTapsRequired = 1
+        tapBGGesture.cancelsTouchesInView = false
+        self.view.window!.addGestureRecognizer(tapBGGesture)
     }
+    @objc func settingsBGTapped(sender: UITapGestureRecognizer){
+        if sender.state == UIGestureRecognizer.State.ended{
+            guard let presentedView = presentedViewController?.view else {
+                return
+            }
+            if !presentedView.bounds.contains(sender.location(in: presentedView)) {
+                self.dismiss(animated: true, completion: { () -> Void in
+                })
+            }
+        }
+    }
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("FCMToken"), object: nil)
+        }
+
     
     func refreshTeachers() {
         MusicMakerModelController.shared.fetchTeachers { (teachers, error) in
@@ -67,11 +97,16 @@ class TeachersViewController: UIViewController {
     // MARK: - Properties
     var student: Student?
     var teachers = [Teacher]()
-    
+
     
     
     
     // MARK: - Private Methods
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
     private func fetchStudent() {
         if student == nil {
             guard let currentUsersUid = Auth.auth().currentUser?.uid else {return}
@@ -98,25 +133,45 @@ class TeachersViewController: UIViewController {
 
     // MARK: - IBActions
     @IBAction func showQrOptions(_ sender: Any) {
-        
-        if qrViewTopConstraint.constant == 0 {
-            NotificationCenter.default.post(name: .qrShown, object: nil)
-            qrViewTopConstraint.constant = -self.view.frame.height
-            qrViewIsShowing = true
-            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.view.layoutIfNeeded()
-            })
-        } else {
-            qrViewTopConstraint.constant = 0
-            qrViewIsShowing = false
-            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.view.layoutIfNeeded()
-            }) { (_) in
-                
+//        if qrViewTopConstraint.constant == 0 {
+//            NotificationCenter.default.post(name: .qrShown, object: nil)
+//            qrViewTopConstraint.constant = -self.view.frame.height
+//            qrViewIsShowing = true
+//            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+//                self.view.layoutIfNeeded()
+//            })
+//        } else {
+//            qrViewTopConstraint.constant = 0
+//            qrViewIsShowing = false
+//            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+//                self.view.layoutIfNeeded()
+//            }) { (_) in
+//
+//            }
+//        }
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            if qrViewTopConstraint.constant == 0 {
+                NotificationCenter.default.post(name: .qrShown, object: nil)
+                qrViewTopConstraint.constant = -self.view.frame.height
+                qrViewIsShowing = true
+                UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    self.view.layoutIfNeeded()
+                })
+            } else {
+                qrViewTopConstraint.constant = 0
+                qrViewIsShowing = false
+                UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    self.view.layoutIfNeeded()
+                }) { (_) in
+
+                }
             }
+        case .pad:
+            self.performSegue(withIdentifier: "PresentQRScanner", sender: nil)
+        default:
+            break
         }
-        
-      
     }
     
     // MARK: - Navigation
@@ -140,7 +195,6 @@ class TeachersViewController: UIViewController {
         }
     }
 }
-
 
 // MARK: - UITableViewDataSource
 extension TeachersViewController: UITableViewDataSource {
@@ -169,7 +223,6 @@ extension TeachersViewController: UITableViewDataSource {
                 switch assignment.status {
                 case .unsubmitted(_, _):
                     numberOfUnsubmittedAssignments.value += 1
-                    print(numberOfUnsubmittedAssignments.value)
                 case .submitted(grade: "Passed"):
                     numberOfPassedAssignments.value += 1
                 case .submitted(grade: "Failed"):

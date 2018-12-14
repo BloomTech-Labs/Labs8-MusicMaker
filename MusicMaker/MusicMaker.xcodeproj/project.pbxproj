@@ -32,6 +32,7 @@
 		39CA2B612194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */; };
 		39CA2B632194DD2E00C6018E /* RecordingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */; };
 		BF21929D21C2D19B004F50FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */; };
+		BF21929F21C310CC004F50FE /* UserSettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF21929E21C310CC004F50FE /* UserSettingsCollectionViewCell.swift */; };
 		BF5D5209219CB05900DFF213 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */; };
 		BF5D520A219CB05900DFF213 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D5208219CB05900DFF213 /* HoshiTextField.swift */; };
 		BF5D520C219CC7F200DFF213 /* Teachers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5D520B219CC7F200DFF213 /* Teachers.storyboard */; };
@@ -145,6 +146,7 @@
 		39CA2B602194B2CA00C6018E /* AssignmentSaveSubmitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSaveSubmitTableViewCell.swift; sourceTree = "<group>"; };
 		39CA2B622194DD2E00C6018E /* RecordingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordingViewController.storyboard; sourceTree = "<group>"; };
 		BF21929C21C2D19B004F50FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BF21929E21C310CC004F50FE /* UserSettingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF37286D21C1E766003102BF /* MusicMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicMaker.entitlements; sourceTree = "<group>"; };
 		BF5D5207219CB05800DFF213 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
 		BF5D5208219CB05900DFF213 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 		BFD381C7219353DF0038F974 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF21929E21C310CC004F50FE /* UserSettingsCollectionViewCell.swift */,
 				BFE05CFE21C1A5FD00F46343 /* TeacherTableViewCell.swift */,
 				BF98B14521B5CA9C007B7C45 /* StarRating.swift */,
 				BFE771D721A49BE700DCE42A /* QRView.swift */,
@@ -802,6 +805,7 @@
 				BFD3EEFD21AE45880097D5AA /* Student.swift in Sources */,
 				399F0B5B21B8436400261477 /* AssignmentTableViewCell.swift in Sources */,
 				BF98B13221B35007007B7C45 /* UISegmentedControl+Extensions.swift in Sources */,
+				BF21929F21C310CC004F50FE /* UserSettingsCollectionViewCell.swift in Sources */,
 				BF98B13A21B4EB8A007B7C45 /* UIViewController+InformationalAlert.swift in Sources */,
 				BFD3EEF521ABCB8A0097D5AA /* UIImage+Extensions.swift in Sources */,
 				39CA2B592193901700C6018E /* MusicSheetPageCollectionViewCell.swift in Sources */,

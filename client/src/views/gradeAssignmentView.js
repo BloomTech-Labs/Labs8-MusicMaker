@@ -24,8 +24,9 @@ class GradeAssignmentView extends Component {
 
   componentDidMount() {
     const teacherId = 'pwUGQC7SHBiPKPdnOq2c' //this.props.match.params.id;
-    const assignmentId = 'cKoEZeuuKdciV74U9pQq' //this.props.match.params.id;
-    const studentId = '7HTc3cy6GGPWtjqfpgMB3ij3wY92' //this.props.match.params.id;
+    const assignmentId = 'DQE4Dg2YdgPJKBcr2pXx' //this.props.match.params.idStudent;
+    const studentId = 'aHJOmoB5wEbaX2picPUK50IXLY73' //this.props.match.params.idAssignment;
+    console.log(this.props.match.params)
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // User is signed in.

@@ -110,7 +110,7 @@ class StudentAssignmentsView extends Component {
     }
 
     render() {
-        const {students, email, dueDate} = this.state;
+        const {email, dueDate} = this.state;
         return(
             <div style={formContainer}>
                 <h1><Label>Student's Assigned to the Assignment</Label></h1>

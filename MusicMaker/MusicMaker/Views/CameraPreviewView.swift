@@ -11,18 +11,30 @@ import AVFoundation
 
 class CameraPreviewView: UIView {
     
+    var imageCover: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        videoPreviewLayer.videoGravity = .resizeAspectFill
-        videoPreviewLayer.masksToBounds = true
+        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        setupView()
+    }
+    
+    private func setupView() {
         videoPreviewLayer.videoGravity = .resizeAspectFill
         videoPreviewLayer.masksToBounds = true
+        
+        imageCover = UIImageView(frame: bounds)
+        imageCover.backgroundColor = .darkGray
+        imageCover.image = #imageLiteral(resourceName: "VideoInterruption")
+        imageCover.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        imageCover.isHidden = true
+        self.addSubview(imageCover)
     }
 
     override class var layerClass: AnyClass {

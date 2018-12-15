@@ -51,7 +51,28 @@ class RecordingViewController: UIViewController {
     private var panGesture = UIPanGestureRecognizer()
     private var pinchGesture = UIPinchGestureRecognizer()
     
+    private var interruptionNotificationHandler: NSObjectProtocol?
+    private var interruptionEndedNotificationHandler: NSObjectProtocol?
+    private var interruptionAlert: UIAlertController?
+    
     var shouldShowCamera = false
+    
+    deinit {
+        if let interruptionNotificationHandler = interruptionNotificationHandler {
+            NotificationCenter.default.removeObserver(interruptionNotificationHandler)
+        }
+        if let interruptionEndedNotificationHandler = interruptionEndedNotificationHandler {
+            NotificationCenter.default.removeObserver(interruptionEndedNotificationHandler)
+        }
+    }
+    
+    var selectedPageIndexPath: IndexPath {
+        if let pdfDocument = pdfDocument, let pdfPage = pdfView.currentPage {
+            // Manually select the page to highlight
+            return IndexPath(item: pdfDocument.index(for: pdfPage), section: 0)
+        }
+        return IndexPath(item: 0, section: 0)
+    }
 
     // MARK: - Outlets
     
@@ -72,6 +93,13 @@ class RecordingViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func toggleRecord(_ sender: Any) {
+        if captureSession.isInterrupted {
+            let alert = UIAlertController(title: "Cannot Record and While Multitasking", message: "Please return to fullscreen\nto begin recording.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
         if recordOutput.isRecording {
             recordOutput.stopRecording()
         } else {
@@ -102,19 +130,15 @@ class RecordingViewController: UIViewController {
     @IBAction func previousPage(_ sender: Any) {
         pdfView.goToPreviousPage(sender)
         
-        if let pdfDocument = pdfDocument, let pdfPage = pdfView.currentPage {
-            // Manually select the page to highlight
-            collectionView.selectItem(at: IndexPath(item: pdfDocument.index(for: pdfPage), section: 0), animated: true, scrollPosition: .top)
-        }
+        // Manually select the page to highlight
+        collectionView.selectItem(at: selectedPageIndexPath, animated: true, scrollPosition: [.top, .left])
     }
     
     @IBAction func nextPage(_ sender: Any) {
         pdfView.goToNextPage(sender)
         
-        if let pdfDocument = pdfDocument, let pdfPage = pdfView.currentPage {
-            // Manually select the page to highlight
-            collectionView.selectItem(at: IndexPath(item: pdfDocument.index(for: pdfPage), section: 0), animated: true, scrollPosition: .top)
-        }
+        // Manually select the page to highlight
+        collectionView.selectItem(at: selectedPageIndexPath, animated: true, scrollPosition: [.top, .left])
     }
     
     @IBAction func close(_ sender: Any) {
@@ -137,14 +161,36 @@ class RecordingViewController: UIViewController {
         
         pdfView.document = pdfDocument
         
-        if let pdfPage = pdfPage, let pdfDocument = pdfDocument {
+        if let pdfPage = pdfPage {
             pdfView.go(to: pdfPage)
             
             // Manually select the page to highlight
-            collectionView.selectItem(at: IndexPath(item: pdfDocument.index(for: pdfPage), section: 0), animated: false, scrollPosition: .top)
+            collectionView.selectItem(at: selectedPageIndexPath, animated: false, scrollPosition: [.top, .left])
         }
         
         setupCapture()
+        
+        interruptionNotificationHandler = NotificationCenter.default.addObserver(forName: .AVCaptureSessionWasInterrupted, object: nil, queue: nil, using: { [weak self] (notification) in
+            guard let self = self else { return }
+            guard let reason = notification.userInfo?[AVCaptureSessionInterruptionReasonKey] as? Int, AVCaptureSession.InterruptionReason(rawValue: reason) == AVCaptureSession.InterruptionReason.videoDeviceNotAvailableWithMultipleForegroundApps else { return }
+            guard self.shouldShowCamera == true else { return }
+            
+            self.cameraPreviewView.imageCover.isHidden = false
+            
+            self.interruptionAlert = UIAlertController(title: "Cannot Record\nWhile Multitasking", message: "Please return to fullscreen\nto begin recording.", preferredStyle: .alert)
+            self.interruptionAlert!.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                self.interruptionAlert = nil
+            }))
+            self.present(self.interruptionAlert!, animated: true, completion: nil)
+        })
+        
+        interruptionEndedNotificationHandler = NotificationCenter.default.addObserver(forName: .AVCaptureSessionInterruptionEnded, object: nil, queue: nil, using: { [weak self] (notification) in
+            guard let self = self else { return }
+            
+            self.cameraPreviewView.imageCover.isHidden = true
+            self.interruptionAlert?.dismiss(animated: true, completion: nil)
+            self.interruptionAlert = nil
+        })
     }
     
     override func viewWillLayoutSubviews() {
@@ -154,90 +200,182 @@ class RecordingViewController: UIViewController {
         let bounds = view.bounds
         let safeArea = view.safeAreaInsets
         
-        let columnWidth: CGFloat = 160.0
-        let recordButtonMargin: CGFloat = 20.0
-        let recordButtonSize: CGFloat = 80.0
-        let closeButtonMargin: CGFloat = 10.0
-        let closeButtonSize: CGFloat = 60.0
+        let collectionViewLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
-        if shouldShowCamera {
-            // View Positioning
-            switch videoPosition {
-            case .topLeft:
-                pdfView.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
-                previousPageButton.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
-                nextPageButton.frame = CGRect(x: safeArea.left + columnWidth + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
-                closeButton.frame = CGRect(x: safeArea.left + columnWidth + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
-                collectionView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
-                collectionView.contentInset = UIEdgeInsets(top: columnWidth, left: 0, bottom: 0, right: 0)
-                collectionView.scrollIndicatorInsets = collectionView.contentInset
-                if !isDraggingVideo {
-                    cameraPreviewView.isHidden = false
-                    cameraPreviewView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: columnWidth)
+        if view.bounds.width < 400 {
+            
+            let columnWidth: CGFloat = 120.0
+            let recordButtonMargin: CGFloat = 10.0
+            let recordButtonSize: CGFloat = 50.0
+            let closeButtonMargin: CGFloat = 8.0
+            let closeButtonSize: CGFloat = 50.0
+            
+            collectionViewLayout.scrollDirection = .horizontal
+            collectionViewLayout.itemSize = CGSize(width: (columnWidth - 12.0)*0.75, height: columnWidth - 12.0)
+            
+            if shouldShowCamera {
+                cameraPreviewView.isHidden = false
+                recordButton.isHidden = false
+                
+                // View Positioning
+                switch videoPosition {
+                case .topLeft:
+                    pdfView.frame = CGRect(x: safeArea.left, y: safeArea.top + columnWidth, width: bounds.width - safeArea.left - safeArea.right, height: bounds.height - safeArea.top - columnWidth - safeArea.bottom)
+                    previousPageButton.frame = CGRect(x: 0, y: safeArea.top + columnWidth, width: bounds.width/2.0, height: bounds.height - safeArea.top - columnWidth)
+                    nextPageButton.frame = CGRect(x: bounds.width/2.0, y: safeArea.top + columnWidth, width: bounds.width/2.0, height: bounds.height - safeArea.top - columnWidth)
+                    closeButton.frame = CGRect(x: closeButtonMargin, y: safeArea.top + columnWidth + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
+                    collectionView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: safeArea.top + columnWidth)
+                    collectionView.contentInset = UIEdgeInsets(top: safeArea.top, left: columnWidth, bottom: 0, right: safeArea.right)
+                    collectionView.scrollIndicatorInsets = collectionView.contentInset
+                    if !isDraggingVideo {
+                        cameraPreviewView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: columnWidth)
+                    }
+                    
+                    recordButton.frame = CGRect(x: bounds.width - recordButtonMargin - recordButtonSize, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
+                    
+                case .topRight:
+                    pdfView.frame = CGRect(x: safeArea.left, y: safeArea.top + columnWidth, width: bounds.width - safeArea.left - safeArea.right, height: bounds.height - safeArea.top - columnWidth - safeArea.bottom)
+                    previousPageButton.frame = CGRect(x: 0, y: safeArea.top + columnWidth, width: bounds.width/2.0, height: bounds.height - safeArea.top - columnWidth)
+                    nextPageButton.frame = CGRect(x: bounds.width/2.0, y: safeArea.top + columnWidth, width: bounds.width/2.0, height: bounds.height - safeArea.top - columnWidth)
+                    closeButton.frame = CGRect(x: closeButtonMargin, y: safeArea.top + columnWidth + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
+                    collectionView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: safeArea.top + columnWidth)
+                    collectionView.contentInset = UIEdgeInsets(top: safeArea.top, left: safeArea.left, bottom: 0, right: columnWidth)
+                    collectionView.scrollIndicatorInsets = collectionView.contentInset
+                    if !isDraggingVideo {
+                        cameraPreviewView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: columnWidth)
+                    }
+                    
+                    recordButton.frame = CGRect(x: bounds.width - recordButtonMargin - recordButtonSize, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
+                    
+                case .bottomLeft:
+                    pdfView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right, height: bounds.height - safeArea.top - columnWidth - safeArea.bottom)
+                    previousPageButton.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width/2.0, height: bounds.height - safeArea.top - columnWidth - safeArea.bottom)
+                    nextPageButton.frame = CGRect(x: bounds.width/2.0, y: safeArea.top, width: bounds.width/2.0, height: bounds.height - safeArea.top - columnWidth - safeArea.bottom)
+                    closeButton.frame = CGRect(x: closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
+                    collectionView.frame = CGRect(x: 0, y: bounds.height - safeArea.bottom - columnWidth, width: bounds.width, height: safeArea.bottom + columnWidth)
+                    collectionView.contentInset = UIEdgeInsets(top: 0, left: columnWidth, bottom: safeArea.bottom, right: safeArea.right)
+                    collectionView.scrollIndicatorInsets = collectionView.contentInset
+                    if !isDraggingVideo {
+                        cameraPreviewView.frame = CGRect(x: safeArea.left, y: bounds.height - columnWidth - safeArea.bottom, width: columnWidth, height: columnWidth)
+                    }
+                    
+                    recordButton.frame = CGRect(x: bounds.width - recordButtonMargin - recordButtonSize, y: bounds.height - recordButtonMargin - recordButtonSize - columnWidth - safeArea.bottom, width: recordButtonSize, height: recordButtonSize)
+                    
+                case .bottomRight:
+                    pdfView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right, height: bounds.height - safeArea.top - columnWidth - safeArea.bottom)
+                    previousPageButton.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width/2.0, height: bounds.height - safeArea.top - columnWidth - safeArea.bottom)
+                    nextPageButton.frame = CGRect(x: bounds.width/2.0, y: safeArea.top, width: bounds.width/2.0, height: bounds.height - safeArea.top - columnWidth - safeArea.bottom)
+                    closeButton.frame = CGRect(x: closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
+                    collectionView.frame = CGRect(x: 0, y: bounds.height - safeArea.bottom - columnWidth, width: bounds.width, height: safeArea.bottom + columnWidth)
+                    collectionView.contentInset = UIEdgeInsets(top: 0, left: safeArea.left, bottom: safeArea.bottom, right: columnWidth)
+                    collectionView.scrollIndicatorInsets = collectionView.contentInset
+                    if !isDraggingVideo {
+                        cameraPreviewView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: bounds.height - columnWidth - safeArea.bottom, width: columnWidth, height: columnWidth)
+                    }
+                    
+                    recordButton.frame = CGRect(x: bounds.width - recordButtonMargin - recordButtonSize, y: bounds.height - recordButtonMargin - recordButtonSize - columnWidth - safeArea.bottom, width: recordButtonSize, height: recordButtonSize)
                 }
                 
-                recordButton.isHidden = false
-                recordButton.frame = CGRect(x: bounds.width - recordButtonMargin - recordButtonSize, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
+            } else {
+                cameraPreviewView.isHidden = true
+                recordButton.isHidden = true
                 
-            case .topRight:
-                pdfView.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
-                previousPageButton.frame = CGRect(x: safeArea.left, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
-                nextPageButton.frame = CGRect(x: safeArea.left + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
-                closeButton.frame = CGRect(x: safeArea.left + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
-                collectionView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
-                collectionView.contentInset = UIEdgeInsets(top: columnWidth, left: 0, bottom: 0, right: 0)
+                pdfView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right, height: bounds.height - safeArea.top - columnWidth - safeArea.bottom)
+                previousPageButton.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width/2.0, height: bounds.height - safeArea.top - columnWidth - safeArea.bottom)
+                nextPageButton.frame = CGRect(x: bounds.width/2.0, y: safeArea.top, width: bounds.width/2.0, height: bounds.height - safeArea.top - columnWidth - safeArea.bottom)
+                closeButton.frame = CGRect(x: closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
+                collectionView.frame = CGRect(x: 0, y: bounds.height - safeArea.bottom - columnWidth, width: bounds.width, height: safeArea.bottom + columnWidth)
+                collectionView.contentInset = UIEdgeInsets(top: 0, left: safeArea.left, bottom: safeArea.bottom, right: safeArea.right)
                 collectionView.scrollIndicatorInsets = collectionView.contentInset
-                if !isDraggingVideo {
-                    cameraPreviewView.isHidden = false
-                    cameraPreviewView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: columnWidth)
-                }
-                
-                recordButton.isHidden = false
-                recordButton.frame = CGRect(x: recordButtonMargin, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
-                
-            case .bottomLeft:
-                pdfView.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
-                previousPageButton.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
-                nextPageButton.frame = CGRect(x: safeArea.left + columnWidth + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
-                closeButton.frame = CGRect(x: safeArea.left + columnWidth + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
-                collectionView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
-                collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: columnWidth, right: 0)
-                collectionView.scrollIndicatorInsets = collectionView.contentInset
-                if !isDraggingVideo {
-                    cameraPreviewView.isHidden = false
-                    cameraPreviewView.frame = CGRect(x: safeArea.left, y: bounds.height - columnWidth, width: columnWidth, height: columnWidth)
-                }
-                
-                recordButton.isHidden = false
-                recordButton.frame = CGRect(x: bounds.width - recordButtonMargin - recordButtonSize, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
-                
-            case .bottomRight:
-                pdfView.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
-                previousPageButton.frame = CGRect(x: safeArea.left, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
-                nextPageButton.frame = CGRect(x: safeArea.left + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
-                closeButton.frame = CGRect(x: safeArea.left + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
-                collectionView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
-                collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: columnWidth, right: 0)
-                collectionView.scrollIndicatorInsets = collectionView.contentInset
-                if !isDraggingVideo {
-                    cameraPreviewView.isHidden = false
-                    cameraPreviewView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: bounds.height - columnWidth, width: columnWidth, height: columnWidth)
-                }
-                
-                recordButton.isHidden = false
-                recordButton.frame = CGRect(x: recordButtonMargin, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
             }
         } else {
-            pdfView.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
-            previousPageButton.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
-            nextPageButton.frame = CGRect(x: safeArea.left + columnWidth + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
-            closeButton.frame = CGRect(x: safeArea.left + columnWidth + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
-            collectionView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
-            collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            collectionView.scrollIndicatorInsets = collectionView.contentInset
-            cameraPreviewView.isHidden = true
-            recordButton.isHidden = true
+            
+            let columnWidth: CGFloat = 160.0
+            let recordButtonMargin: CGFloat = 20.0
+            let recordButtonSize: CGFloat = 80.0
+            let closeButtonMargin: CGFloat = 10.0
+            let closeButtonSize: CGFloat = 60.0
+            
+            collectionViewLayout.scrollDirection = .vertical
+            collectionViewLayout.itemSize = CGSize(width: (columnWidth - 12.0)*0.75, height: columnWidth - 12.0)
+            
+            if shouldShowCamera {
+                cameraPreviewView.isHidden = false
+                recordButton.isHidden = false
+                
+                // View Positioning
+                switch videoPosition {
+                case .topLeft:
+                    pdfView.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
+                    previousPageButton.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+                    nextPageButton.frame = CGRect(x: safeArea.left + columnWidth + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+                    closeButton.frame = CGRect(x: safeArea.left + columnWidth + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
+                    collectionView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
+                    collectionView.contentInset = UIEdgeInsets(top: columnWidth, left: 0, bottom: 0, right: 0)
+                    collectionView.scrollIndicatorInsets = collectionView.contentInset
+                    if !isDraggingVideo {
+                        cameraPreviewView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: columnWidth)
+                    }
+                    
+                    recordButton.frame = CGRect(x: bounds.width - recordButtonMargin - recordButtonSize, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
+                    
+                case .topRight:
+                    pdfView.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
+                    previousPageButton.frame = CGRect(x: safeArea.left, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+                    nextPageButton.frame = CGRect(x: safeArea.left + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+                    closeButton.frame = CGRect(x: safeArea.left + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
+                    collectionView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
+                    collectionView.contentInset = UIEdgeInsets(top: columnWidth, left: 0, bottom: 0, right: 0)
+                    collectionView.scrollIndicatorInsets = collectionView.contentInset
+                    if !isDraggingVideo {
+                        cameraPreviewView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: columnWidth)
+                    }
+                    
+                    recordButton.frame = CGRect(x: recordButtonMargin, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
+                    
+                case .bottomLeft:
+                    pdfView.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
+                    previousPageButton.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+                    nextPageButton.frame = CGRect(x: safeArea.left + columnWidth + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+                    closeButton.frame = CGRect(x: safeArea.left + columnWidth + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
+                    collectionView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
+                    collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: columnWidth, right: 0)
+                    collectionView.scrollIndicatorInsets = collectionView.contentInset
+                    if !isDraggingVideo {
+                        cameraPreviewView.frame = CGRect(x: safeArea.left, y: bounds.height - columnWidth, width: columnWidth, height: columnWidth)
+                    }
+                    
+                    recordButton.frame = CGRect(x: bounds.width - recordButtonMargin - recordButtonSize, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
+                    
+                case .bottomRight:
+                    pdfView.frame = CGRect(x: 0, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
+                    previousPageButton.frame = CGRect(x: safeArea.left, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+                    nextPageButton.frame = CGRect(x: safeArea.left + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+                    closeButton.frame = CGRect(x: safeArea.left + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
+                    collectionView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
+                    collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: columnWidth, right: 0)
+                    collectionView.scrollIndicatorInsets = collectionView.contentInset
+                    if !isDraggingVideo {
+                        cameraPreviewView.frame = CGRect(x: bounds.width - safeArea.right - columnWidth, y: bounds.height - columnWidth, width: columnWidth, height: columnWidth)
+                    }
+                    
+                    recordButton.frame = CGRect(x: recordButtonMargin, y: bounds.height - recordButtonMargin - recordButtonSize, width: recordButtonSize, height: recordButtonSize)
+                }
+            } else {
+                cameraPreviewView.isHidden = true
+                recordButton.isHidden = true
+                
+                pdfView.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: bounds.width - safeArea.left - safeArea.right - columnWidth, height: bounds.height - safeArea.top - safeArea.bottom)
+                previousPageButton.frame = CGRect(x: safeArea.left + columnWidth, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+                nextPageButton.frame = CGRect(x: safeArea.left + columnWidth + (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, y: safeArea.top, width: (bounds.width - safeArea.left - safeArea.right - columnWidth)/2.0, height: bounds.height - safeArea.top - safeArea.bottom)
+                closeButton.frame = CGRect(x: safeArea.left + columnWidth + closeButtonMargin, y: safeArea.top + closeButtonMargin, width: closeButtonSize, height: closeButtonSize)
+                collectionView.frame = CGRect(x: safeArea.left, y: safeArea.top, width: columnWidth, height: bounds.height - safeArea.top)
+                collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                collectionView.scrollIndicatorInsets = collectionView.contentInset
+            }
         }
+        
+        collectionView.scrollToItem(at: selectedPageIndexPath, at: [.centeredHorizontally, .centeredVertically], animated: true)
         
         pdfView.minScaleFactor = 0.01
         pdfView.scaleFactor = pdfView.scaleFactorForSizeToFit

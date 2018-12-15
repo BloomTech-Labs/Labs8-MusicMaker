@@ -5,8 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Teachers-->
@@ -19,40 +17,21 @@
             </objects>
             <point key="canvasLocation" x="-569" y="-518"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="hKQ-N7-upz">
+        <!--NoAssignmentViewController-->
+        <scene sceneID="SsY-Wt-tZc">
             <objects>
-                <viewController id="PdU-mW-jdE" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nAJ-d5-WGX">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Assignment Selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P58-GU-kza">
-                                <rect key="frame" x="217" y="494" width="334" height="36"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="P58-GU-kza" firstAttribute="centerX" secondItem="nAJ-d5-WGX" secondAttribute="centerX" id="LYJ-2L-hIJ"/>
-                            <constraint firstItem="P58-GU-kza" firstAttribute="centerY" secondItem="nAJ-d5-WGX" secondAttribute="centerY" id="r8R-kO-Eol"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="OBf-KA-2MY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aw7-IW-xaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="NoAssignmentViewController" id="0pB-kl-5rt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3b-F6-7BA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-45" y="73"/>
+            <point key="canvasLocation" x="-388" y="-114"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="e4i-9N-xW6">
             <objects>
-                <splitViewController id="LtD-y6-NTp" sceneMemberID="viewController">
+                <splitViewController id="LtD-y6-NTp" customClass="SplitViewController" customModule="MusicMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="PdU-mW-jdE" kind="relationship" relationship="detailViewController" id="QpM-AG-wI2"/>
                         <segue destination="D1X-oC-7RZ" kind="relationship" relationship="masterViewController" id="jIj-gd-Rz5"/>
+                        <segue destination="0pB-kl-5rt" kind="relationship" relationship="detailViewController" id="Xak-fZ-ou1"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AuV-EB-rfD" userLabel="First Responder" sceneMemberID="firstResponder"/>

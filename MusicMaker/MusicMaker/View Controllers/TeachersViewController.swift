@@ -246,6 +246,17 @@ extension TeachersViewController: UISplitViewControllerDelegate {
         }
         return true
     }
+    
+    func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
+        let lastVC = splitViewController.viewControllers.last
+        if let lastVC = lastVC as? UnsubmittedAssignmentViewController {
+            return lastVC
+        } else if let lastVC = lastVC as? SubmittedAssignmentViewController {
+            return lastVC
+        }
+        
+        return UIStoryboard(name: "NoAssignmentViewController", bundle: nil).instantiateInitialViewController()
+    }
 }
 
 // MARK: - UIGestureRecognizerDelegate

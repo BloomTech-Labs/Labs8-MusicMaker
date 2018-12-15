@@ -7,6 +7,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Merriweather-Black.ttf">
+            <string>Merriweather-Black</string>
+        </array>
+        <array key="Merriweather-Bold.ttf">
+            <string>Merriweather-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Unsubmitted Assignment View Controller-->
         <scene sceneID="eoW-vP-84y">
@@ -190,8 +198,8 @@
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Assignment: Waltz from Sleeping Beauty" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eN-jy-sD6">
-                                            <rect key="frame" x="88.5" y="11" width="591.5" height="37"/>
-                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                            <rect key="frame" x="94" y="11" width="580.5" height="37"/>
+                                            <fontDescription key="fontDescription" name="Merriweather-Black" family="Merriweather" pointSize="28"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -242,14 +250,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music Piece: Waltz from Sleeping Beauty" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41G-wQ-nSC">
-                                            <rect key="frame" x="20" y="11" width="451" height="28"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                            <rect key="frame" x="20" y="11" width="448.5" height="28"/>
+                                            <fontDescription key="fontDescription" name="Merriweather-Bold" family="Merriweather" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NOi-b9-l72">
                                             <rect key="frame" x="0.0" y="47" width="768" height="200"/>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <color key="backgroundColor" red="0.66274509800000003" green="0.90980392160000001" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="200" id="VKh-CL-XHb"/>
                                             </constraints>
@@ -314,8 +322,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I34-B2-X7v">
-                                            <rect key="frame" x="20" y="11" width="131.5" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                            <rect key="frame" x="20" y="11" width="137.5" height="28"/>
+                                            <fontDescription key="fontDescription" name="Merriweather-Bold" family="Merriweather" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -326,7 +334,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bodyTextLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzA-OE-7Ir">
-                                            <rect key="frame" x="20" y="60" width="728" height="21.5"/>
+                                            <rect key="frame" x="20" y="58" width="728" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -357,14 +365,13 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgb-qT-0lm">
                                             <rect key="frame" x="234" y="10" width="300" height="50"/>
-                                            <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" red="0.0078431372550000003" green="0.51764705879999995" blue="0.6588235294" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Wed-02-qw7"/>
                                                 <constraint firstAttribute="width" constant="300" id="mGG-5a-dF6"/>
                                             </constraints>
-                                            <state key="normal" title="Tap To Record" image="RecordIcon">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            </state>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Tap To Record" image="RecordIcon"/>
                                             <connections>
                                                 <action selector="recordButtonTapped:" destination="hal-Rq-1Ak" eventType="touchUpInside" id="avm-6Z-eHt"/>
                                                 <segue destination="NdW-Gj-ZSF" kind="presentation" identifier="ShowRecord" modalPresentationStyle="fullScreen" id="rQf-wG-mvz"/>
@@ -398,15 +405,13 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgn-wz-yJI">
                                             <rect key="frame" x="251.5" y="18.5" width="265" height="50"/>
-                                            <color key="backgroundColor" red="0.6429060767" green="0.74506644749999995" blue="0.88638166240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" red="0.0078431372550000003" green="0.51764705879999995" blue="0.6588235294" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="dfe-rF-m5E"/>
                                                 <constraint firstAttribute="width" constant="265" id="zrx-Ph-d4B"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <state key="normal" title="Submit">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            </state>
+                                            <state key="normal" title="Submit"/>
                                             <connections>
                                                 <action selector="submitButtonTapped:" destination="EY2-oo-8W9" eventType="touchUpInside" id="msv-sZ-gR2"/>
                                             </connections>

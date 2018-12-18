@@ -47,13 +47,10 @@ class StudentAssignmentsView extends Component {
                 const assignmentId = this.props.match.params.assignmentId;
                 const {email, dueDate} = this.state;
 
-                console.log('params******************', user.uid, assignmentId)
-
-
                 axios  
                     .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
                     .then(res => {
-                        console.log('Assign******************', res, assignmentId)
+                        console.log('Assign******************', res)
                     })
                     .catch(err => {
                         console.error('ASSIGN VIEW ERROR', err)
@@ -98,7 +95,7 @@ class StudentAssignmentsView extends Component {
             axios
             .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/students`)
             .then(res => {
-                console.log('student******************', res.data)
+                console.log('student******************', res.data[7])
                 this.setState({students:res.data})
             })
             .catch(err => console.error('ASSIGNMENT STUDENTS VIEW AXIOS ERROR:', err));
@@ -138,6 +135,7 @@ class StudentAssignmentsView extends Component {
                         </NavLink> 
                             <Col>{student[5]}</Col> {/*student's assignment due date*/}
                             <Col>{student[6]===null ? "" : "Student Completed"}</Col> {/*student's assignment completion status */}
+                            <Col>{student[7]}</Col> {/*student's assignment grade*/}
                     </Row>
                 ))}
             </div>

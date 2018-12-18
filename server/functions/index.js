@@ -191,7 +191,7 @@ app.get("/teacher/:uid/assignment/:aid/students", (req, res) => {
               const assignmentInfo = assignment.data();
               const reformattedDueDate = parseDate(assignmentInfo.dueDate);
 
-              return [assignment.id, assignmentInfo.assignmentName, student.id, studentInfo.firstName, studentInfo.lastName, reformattedDueDate, assignmentInfo.video]
+              return [assignment.id, assignmentInfo.assignmentName, student.id, studentInfo.firstName, studentInfo.lastName, reformattedDueDate, assignmentInfo.video, assignmentInfo.grade]
             });
           });
 

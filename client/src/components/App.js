@@ -1,10 +1,11 @@
+// Displays components and pageViews
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 
 import withAuthentication from "./withAuthentication";
 import withPayment from './withPayment';
 
-import * as routes from "../constants/routes";
+import * as routes from "../routes/routes";
 import Sidebar from "../components/SideBar";
 import Navigation from "./Navigation";
 import LandingPageView from "../views/landingView";
@@ -37,19 +38,11 @@ class App extends Component {
           <Route exact path={routes.STUDENTS} component={StudentListView} />
           <Route exact path={routes.STUDENTSASSIGNMETS} component={StudentAssignmentsView} />
 
-          <Route
-            exact
-            path={routes.CREATE_ASSIGNMENT}
-            component={CreateAssignmentView}
-          />
+          <Route exact path={routes.CREATE_ASSIGNMENT} component={CreateAssignmentView} />
           <Route exact path={routes.ASSIGNMENTS} component={DashboardAssignmentsView} />
           <Route exact path={routes.ASSIGNMENT_STUDENTS} component={AssignmentStudentsView} />
           <Route exact path={routes.BILLING} component={DashboardBillingView} />
-          <Route
-            exact
-            path={routes.SETTINGS}
-            component={DashboardSettingView}
-          />
+          <Route exact path={routes.SETTINGS} component={DashboardSettingView} />
           <Route exact path={routes.GRADING} component={withPayment(GradeAssignmentView)} />
         </div>
       </div>

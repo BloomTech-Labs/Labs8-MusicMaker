@@ -1,29 +1,27 @@
 # MusicMaker
 
-Music Master Maker is a hybrid app for both web and iOS that allows music teachers to assign pieces for their students to practice, and for students to use their phones to record their practice sessions and submit them back to the teacher for feedback.
+Music Master Maker is a hybrid full-stack web and iOS learning management app for music education. Teachers can use the web app to assign music sheet assignments, track and grade recorded sessions, and provide feedback to students. Students can use the iOS app to record their practices and receive feedback on their sessions.
 
-The app has push notifications and emails students when an assignment has been given and to teachers when one has been submitted.
-
-Students sign up by using their iPhone to scan a QR code provided by the teacher.
+Students signs up by using their portable Apple device to scan a QR code provided in the teacher's home screen.
 
 The app is free for students and has a monthly fee for teachers.
 
 ## Table of Contents
-1. [Live_Versions](#live_versions)
-2. [Feature_List](#feature_list)
-3. [Local_Setup](#local_setup)
+1. [Live Versions](#live-versions)
+2. [Feature List](#feature-list)
+3. [Local Setup](#local-setup)
 4. [Endpoints](#endpoints)
+5. [Meet the Team](#meet-the-team)
+
 
 ## Live Versions
-1. See the deployed FSW Front-end: https://musicmaker-teacher.netlify.com
-* Tech used: React, Redux, Reactstrap
-2. See the deployed Back-end: https://musicmaker-4b2e8.firebaseapp.com/test
-* Tech used: Node, Express, Firebase
-3. See the deployed DB: https://musicmaker-4b2e8.firebaseio.com/
-* Tech used: Firebase, Firestore
+#### Teacher Web App 
+* See the deployed FSW Front-end: https://www.musicmastermaker.com
+* See the deployed Back-end: https://musicmaker-4b2e8.firebaseapp.com
+  * Tech Stack: React, Reactstrap, LESS, Node, Express, Firebase
 
 ## Feature List
-#### Teachers
+#### Teacher Web App Features
 1. Sign up - can use email/password or Google OAuth.
 2. Sign in - can use email/password or Google OAuth.
 3. Reset Password - sends an email to the attached email address to reset.
@@ -35,16 +33,15 @@ The app is free for students and has a monthly fee for teachers.
 9. Billing View - allow payment through the Stripe API. This will enable other pages which have been route-protected.
 10. Settings View - see and edit user account info.
 
-#### Students
-
-## Local setup
+## Local Setup
+#### Teacher Local Web App
 1. Clone repo.
 2. Install environment and packages by typing `yarn install` within both the `/server/functions/` and `/client/` directories.
 3. Type `yarn start` in each directory to spin up the servers.
 4. Edit code as needed.
 
 ## Endpoints
-#### Teachers
+#### Teachers Web App Endpoints
 ###### GET
 1. /test: 
 * test endpoint to check that server is up.
@@ -93,4 +90,12 @@ The app is free for students and has a monthly fee for teachers.
 1. /teacher/:idTeacher/assignment/:idAssignment
 * deletes an assignment template
 
-#### Students
+## Meet the Team
+
+
+|                                                [**Jeanette Fernandez**](https://github.com/jeanfern5)                                                |                                           [**Linh Bouniol**](https://github.com/linhbouniol)                                            |                                            [**Evan Carlstrom**](https://github.com/ecarlstrom)                                             |                                              [**Keiran Kozlowski**](https://github.com/keirankozlowski)                                               |                                            [**Vuk Rado**](https://github.com/vukrado)                                            |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: |
+|                  [<img src="https://avatars2.githubusercontent.com/u/35198028?s=400&v=4" width="80">](https://github.com/jeanfern5)                  |             [<img src="https://avatars0.githubusercontent.com/u/41603901?s=400&v=4" width="80">](https://github.com/linhbouniol)             |            [<img src="https://avatars3.githubusercontent.com/u/4937141?s=400&v=4" width="80">](https://github.com/ecarlstrom)             |             [<img src="https://avatars2.githubusercontent.com/u/24276292?s=400&v=4" width="80">](https://github.com/keirankozlowski)             |          [<img src="https://avatars2.githubusercontent.com/u/33791641?s=400&v=4" width="80">](https://github.com/vukrado)           |
+|                             [<img src="https://github.com/favicon.ico" width="15"> Github](https://github.com/jeanfern5)                             |                        [<img src="https://github.com/favicon.ico" width="15"> Github](https://github.com/linhbouniol)                        |                       [<img src="https://github.com/favicon.ico" width="15"> Github](https://github.com/ecarlstrom)                       |                        [<img src="https://github.com/favicon.ico" width="15"> Github](https://github.com/keirankozlowski)                        |                     [<img src="https://github.com/favicon.ico" width="15"> Github](https://github.com/vukrado)                      |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> LinkedIn](https://www.linkedin.com/in/jeanettefernandez/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> LinkedIn](https://www.linkedin.com/in/linh-bouniol-78599b180/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> LinkedIn](https://www.linkedin.com) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> LinkedIn](https://www.linkedin.com/in/keirankozlowski/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> LinkedIn](https://www.linkedin.com/in/vukrado//) |
+

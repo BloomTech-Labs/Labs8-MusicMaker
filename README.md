@@ -11,7 +11,7 @@ The app is free for students and has a monthly fee for teachers.
 2. [Feature List](#feature-list)
 3. [Local Setup](#local-setup)
 4. [Endpoints](#endpoints)
-5. [Meet the Team](#meet-the-crew)
+5. [Meet the Team](#meet-the-team)
 
 
 ## Live Versions

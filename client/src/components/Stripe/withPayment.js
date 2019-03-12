@@ -3,7 +3,7 @@ import axios from "axios";
 import { withRouter } from 'react-router-dom';
 
 import PaidUserContext from "./PaidUserContext";
-import * as routes from '../constants/routes';
+import * as routes from '../Routes/routes';
 
 const withPayment = Component => {
   class WithPayment extends React.Component {

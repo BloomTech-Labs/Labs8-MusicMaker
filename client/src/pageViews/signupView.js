@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { auth } from "../firebase";
 
-import * as routes from "../constants/routes";
+import * as routes from "../routes/routes";
 
 // Reactstrap styling
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";

@@ -2,9 +2,9 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 
-import { auth } from '../firebase';
+import { auth } from '../../firebase';
 import withAuthentication from './withAuthentication';
-import * as routes from '../constants/routes';
+import * as routes from '../Routes/routes';
 
 class SignOutButton extends React.Component {
     constructor(props) {

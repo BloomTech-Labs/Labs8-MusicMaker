@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Elements, StripeProvider } from "react-stripe-elements";
 
-import TakeMoney from "../components/StripeFrontend";
+import TakeMoney from "../components/Stripe/StripeFrontend";
 
 import { Row, Col } from "reactstrap";
 

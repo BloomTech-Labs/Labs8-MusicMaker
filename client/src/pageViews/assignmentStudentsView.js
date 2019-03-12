@@ -10,7 +10,7 @@ import firebase from 'firebase';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import { Route } from "react-router-dom";
 
-import * as routes from "../constants/routes";
+import * as routes from "../routes/routes";
 // import withPayment from '../components/withPayment';
 // import GradeAssignmentView from "../views/gradeAssignmentView";
 

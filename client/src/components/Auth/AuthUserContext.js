@@ -1,4 +1,4 @@
-//Handles part of Firebase Auth
+//Config for withAuthentication.js
 import React from 'react';
 
 const AuthUserContext = React.createContext(null);

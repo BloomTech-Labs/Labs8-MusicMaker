@@ -2,24 +2,25 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 
-import withAuthentication from "./withAuthentication";
-import withPayment from './withPayment';
+import withAuthentication from "./Auth/withAuthentication";
 
-import * as routes from "../routes/routes";
+import withPayment from './Stripe/withPayment';
+
+import * as routes from "./Routes/routes";
 import Sidebar from "../components/SideBar";
 import Navigation from "./Navigation";
-import LandingPageView from "../views/landingView";
-import SignUpView from "../views/signupView";
-import SignInView from "../views/signinView";
-import DashboardView from "../views/dashboardView";
-import StudentListView from "../views/studentListView";
-import DashboardAssignmentsView from "../views/dashboardAssignmentsView";
-import CreateAssignmentView from "../views/createAssignmentView";
-import DashboardBillingView from "../views/dashboardBillingView";
-import DashboardSettingView from "../views/dashboardSettingView";
-import GradeAssignmentView from "../views/gradeAssignmentView";
-import StudentAssignmentsView from "../views/studentAssignmentsView"
-import AssignmentStudentsView from "../views/assignmentStudentsView"
+import LandingPageView from "../pageViews/landingView";
+import SignUpView from "../pageViews/signupView";
+import SignInView from "../pageViews/signinView";
+import DashboardView from "../pageViews/dashboardView";
+import StudentListView from "../pageViews/studentListView";
+import DashboardAssignmentsView from "../pageViews/dashboardAssignmentsView";
+import CreateAssignmentView from "../pageViews/createAssignmentView";
+import DashboardBillingView from "../pageViews/dashboardBillingView";
+import DashboardSettingView from "../pageViews/dashboardSettingView";
+import GradeAssignmentView from "../pageViews/gradeAssignmentView";
+import StudentAssignmentsView from "../pageViews/studentAssignmentsView"
+import AssignmentStudentsView from "../pageViews/assignmentStudentsView"
 
 class App extends Component {
   render() {

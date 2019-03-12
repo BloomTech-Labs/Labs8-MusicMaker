@@ -3,9 +3,9 @@ import { withRouter } from "react-router-dom";
 import firebase from "firebase/app";
 
 import { auth } from "../firebase";
-import * as routes from "../constants/routes";
+import * as routes from "../routes/routes";
 import { SignUpLink } from "./signupView";
-import ForgotPW from "../components/ForgotPW";
+import ForgotPW from "../components/Auth/ForgotPW";
 
 // Reactstrap styling
 import {

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import firebase from "firebase/app";
 
-import { auth } from "../firebase";
-import * as routes from "../routes/routes";
+import { auth } from "../../firebase/FirebaseConfig";
+import * as routes from "../Routes/routes";
 import { SignUpLink } from "./signupView";
-import ForgotPW from "../components/Auth/ForgotPW";
+import ForgotPW from "../Auth/ForgotPW";
 
 // Reactstrap styling
 import {

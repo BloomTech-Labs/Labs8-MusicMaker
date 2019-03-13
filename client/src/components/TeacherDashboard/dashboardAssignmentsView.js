@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Label, Card, CardText, CardTitle } from 'reactstrap';
 import axios from 'axios';
 import firebase from 'firebase';
 // import { Route } from "react-router-dom";

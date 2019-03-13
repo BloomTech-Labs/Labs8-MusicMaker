@@ -2,10 +2,10 @@
 import React from "react";
 import { Navbar, NavbarBrand, NavLink, Nav, Button } from "reactstrap";
 
-import * as routes from "../routes/routes";
-import AuthUserContext from "./Auth/AuthUserContext";
-import SignOutButton from "./Auth/SignOutButton";
-import mmmLogo from "../styling/imgs/mmmLogo.png";
+import * as routes from "../Routes/routes";
+import AuthUserContext from "../Auth/AuthUserContext";
+import SignOutButton from "../Auth/SignOutButton";
+import mmmLogo from "../Styling/imgs/mmmLogo.png";
 
 const formContainer = { maxWidth: 800, height: 90, margin: "0 auto 10px" };
 

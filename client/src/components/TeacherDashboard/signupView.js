@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from 'axios';
 
-import { auth } from "../firebase";
+import { auth } from "../../firebase/FirebaseConfig";
 
-import * as routes from "../routes/routes";
+import * as routes from "../Routes/routes";
 
 // Reactstrap styling
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";

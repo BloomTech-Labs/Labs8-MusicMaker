@@ -2,10 +2,10 @@
 
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Label, Card, CardText, CardTitle, Button } from 'reactstrap';
 import axios from 'axios';
 import firebase from 'firebase';
-import * as routes from '../routes/routes';
+import * as routes from '../Routes/routes';
 
 const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavItem, NavLink, Nav } from "reactstrap";
-import AuthUserContext from "./Auth/AuthUserContext";
+import AuthUserContext from "../Auth/AuthUserContext";
 import { Button } from 'reactstrap';
 
 const sidebarContainer = { maxWidth: 800, height: 280, margin: '0 auto 10px', marginRight: "-30px", padding: "10px", border: "3px solid #A9E8DC" };

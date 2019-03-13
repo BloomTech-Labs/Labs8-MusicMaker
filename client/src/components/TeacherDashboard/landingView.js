@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import jumbotron from '../less/imgs/landingView.png';
+import jumbotron from '../Styling/imgs/landingView.png';
 // import jumboLogo from "../less/imgs/jumboLogo.png"; <- working on resizing and/or editing this
 import { Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import * as routes from '../routes/routes';
+import * as routes from '../Routes/routes';
 
 const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC"}
 

@@ -3,15 +3,11 @@ import axios from "axios";
 import firebase from "firebase";
 import {
   Button,
-  Card,
-  CardBody,
-  CardImg,
   CardSubtitle,
   CardText,
   CardTitle,
   Form,
   FormGroup,
-  FormTitle,
   Input,
   Label
 } from "reactstrap";

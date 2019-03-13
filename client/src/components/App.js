@@ -7,20 +7,20 @@ import withAuthentication from "./Auth/withAuthentication";
 import withPayment from './Stripe/withPayment';
 
 import * as routes from "./Routes/routes";
-import Sidebar from "../components/SideBar";
-import Navigation from "./Navigation";
-import LandingPageView from "../pageViews/landingView";
-import SignUpView from "../pageViews/signupView";
-import SignInView from "../pageViews/signinView";
-import DashboardView from "../pageViews/dashboardView";
-import StudentListView from "../pageViews/studentListView";
-import DashboardAssignmentsView from "../pageViews/dashboardAssignmentsView";
-import CreateAssignmentView from "../pageViews/createAssignmentView";
-import DashboardBillingView from "../pageViews/dashboardBillingView";
-import DashboardSettingView from "../pageViews/dashboardSettingView";
-import GradeAssignmentView from "../pageViews/gradeAssignmentView";
-import StudentAssignmentsView from "../pageViews/studentAssignmentsView"
-import AssignmentStudentsView from "../pageViews/assignmentStudentsView"
+import Sidebar from "./TeacherDashboard/sidebar";
+import Navigation from "./TeacherDashboard/navigation";
+import LandingPageView from "./TeacherDashboard/landingView";
+import SignUpView from "./TeacherDashboard/signupView";
+import SignInView from "./TeacherDashboard/signinView";
+import DashboardView from "./TeacherDashboard/dashboardView";
+import StudentListView from "./TeacherDashboard/studentListView";
+import DashboardAssignmentsView from "./TeacherDashboard/dashboardAssignmentsView";
+import CreateAssignmentView from "./TeacherDashboard/createAssignmentView";
+import DashboardBillingView from "./TeacherDashboard/dashboardBillingView";
+import DashboardSettingView from "./TeacherDashboard/dashboardSettingView";
+import GradeAssignmentView from "./TeacherDashboard/gradeAssignmentView";
+import StudentAssignmentsView from "./TeacherDashboard/studentAssignmentsView"
+import AssignmentStudentsView from "./TeacherDashboard/assignmentStudentsView"
 
 class App extends Component {
   render() {

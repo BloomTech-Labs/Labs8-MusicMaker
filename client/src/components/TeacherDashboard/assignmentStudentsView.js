@@ -4,13 +4,11 @@
 //click on student to see student's assignment submission for grading.
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Col, Row, Label, FormGroup, Input, DateTimeField } from 'reactstrap';
+import { Col, Row, Label, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import axios from 'axios';
 import firebase from 'firebase';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-// import { Route } from "react-router-dom";
 
-import * as routes from "../routes/routes";
+import * as routes from "../Routes/routes";
 // import withPayment from '../components/withPayment';
 // import GradeAssignmentView from "../views/gradeAssignmentView";
 

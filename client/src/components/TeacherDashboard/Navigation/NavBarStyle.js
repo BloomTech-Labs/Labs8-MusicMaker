@@ -29,7 +29,7 @@ margin-top: 0.5rem;
 cursor: pointer;
 
 &:hover{
-color: #02547D; 
+color: #02BEC4; 
 }
 `;
 

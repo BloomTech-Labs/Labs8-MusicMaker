@@ -22,8 +22,6 @@ export const HeaderContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-display: flex;
-justify-content: space-between;
 `;
 
 export const SidebarContainer = styled.div`

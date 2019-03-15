@@ -11,7 +11,7 @@ margin: 1.875rem 3.5rem;
 export const Img = styled.img`
 height: 3.2rem;
 width: 3.2rem;
-border-radius: 2rem;
+border-radius: 0.5rem;
 `;
 
 export const ButtonsContainer = styled.div`

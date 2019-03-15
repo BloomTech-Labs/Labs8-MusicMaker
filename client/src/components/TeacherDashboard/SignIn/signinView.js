@@ -1,3 +1,4 @@
+//Sign in page view
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import firebase from "firebase/app";
@@ -19,12 +20,13 @@ import {
 
 const SignInPage = ({ history }) => (
   <div className="container" style={formContainer}>
-    <h1 className="subheader" style={{ margin: "20px" }}>
-      Sign In
+    <h1 className="subheader" style={{ margin:"10px 8.5rem 35px", color:"white" }}>
+      Log In
     </h1>
     <SignInView history={history} />
+    {/* <ForgotPW /> */}
+    <p>Forgot Password goes here</p>
     <SignUpLink />
-    <ForgotPW />
   </div>
 );
 
@@ -39,9 +41,8 @@ const INITIAL_STATE = {
 };
 
 const formContainer = {
-  maxWidth: 800,
+  width: "35%",
   margin: "0 auto 10px",
-  border: "3px solid #A9E8DC"
 };
 
 class SignInView extends Component {
@@ -118,25 +119,24 @@ class SignInView extends Component {
               }
               type="password"
             />
-            <ButtonToolbar
-              style={{ paddingTop: "25px", paddingBottom: "20px" }}
-            >
+            <ButtonToolbar style={{ margin:"25px 0" }}>
               <Button
                 color="primary"
                 bsSize="small"
-                style={{ marginRight: "25px" }}
+                style={{ width:"47.5%", marginRight:"5%"}}
                 onClick={this.doSignInWithGoogle}
               >
-                Google Sign In
+                Google Log In
               </Button>
               <Button
                 outline
                 color="primary"
                 bsSize="small"
                 disabled={isInvalid}
+                style={{ width:"47.5%" }}
                 onClick={this.onSubmit}
               >
-                Teacher Sign In
+                Email Log In
               </Button>
             </ButtonToolbar>
             {error && <p>{error.message}</p>}

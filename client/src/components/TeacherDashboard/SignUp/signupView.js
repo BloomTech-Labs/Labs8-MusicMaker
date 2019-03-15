@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 
 const SignUpPage = ({ history }) => (
   <div className="container" style={formContainer}>
-    <h1 className="subheader" style={{ margin:"10px 7.5rem 35px 7.5rem", color:"white" }}>Sign Up</h1>
+    <h1 className="subheader" style={{ margin:"10px 7.5rem 35px", color:"white" }}>Sign Up</h1>
     <SignUpView history={history} />
   </div>
 );
@@ -132,8 +132,8 @@ class SignUpView extends Component {
 }
 
 const SignUpLink = () => (
-  <p className="bodyText" style={{ margin: "20px" }}>
-    Don't have an account? <Link to={routes.SIGN_UP}>Sign Up!</Link>
+  <p className="bodyText" style={{ margin:"30px 25%", color:"white"}}>
+    Don't have an account? <Link to={routes.SIGN_UP} style={{ color:"white"}}>Sign Up!</Link>
   </p>
 );
 

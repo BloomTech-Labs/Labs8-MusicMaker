@@ -1,13 +1,11 @@
+//Sign up page view
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from 'axios';
-
-import { auth } from "../../firebase/FirebaseConfig";
-
-import * as routes from "../Routes/routes";
-
-// Reactstrap styling
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+
+import { auth } from "../../../firebase";
+import * as routes from "../../Routes/routes";
 
 const INITIAL_STATE = {
   email: "",
@@ -18,9 +16,7 @@ const INITIAL_STATE = {
 
 const SignUpPage = ({ history }) => (
   <div className="container" style={formContainer}>
-    <h1 className="subheader" style={{ margin: "20px" }}>
-      Sign Up
-    </h1>
+    <h1 className="subheader" style={{ margin:"10px 7.5rem 35px 7.5rem", color:"white" }}>Sign Up</h1>
     <SignUpView history={history} />
   </div>
 );
@@ -30,9 +26,8 @@ const byPropKey = (propertyName, value) => () => ({
 });
 
 const formContainer = {
-  maxWidth: 800,
+  width: "35%",
   margin: "0 auto 10px",
-  border: "3px solid #A9E8DC"
 };
 
 class SignUpView extends Component {
@@ -44,7 +39,6 @@ class SignUpView extends Component {
 
   onSubmit = event => {
     const { email, passwordOne } = this.state;
-
     const { history } = this.props;
 
     auth
@@ -53,19 +47,13 @@ class SignUpView extends Component {
         this.setState({ ...INITIAL_STATE });
         console.log(authUser.user.uid);
 
-        // const nameArr = authUser.user.displayName.split(' ');
-
         const authUserInfo = {
           email: authUser.user.email,
-          // name: {
-          //   firstName: nameArr[0],
-          //   lastName: nameArr[1]
-          // },
           subscribed: false
         }
 
         axios
-          .post(`https://musicmaker-4b2e8.firebaseapp.com/addNewTeacher/${authUser.user.uid}`, authUserInfo)
+          .post(`${routes.TEACHER_URL}/addNewTeacher/${authUser.user.uid}`, authUserInfo)
           .then(res => {
             console.log(res);
           })
@@ -92,7 +80,7 @@ class SignUpView extends Component {
       email === "";
 
     return (
-      <div className="signup-form" style={{ margin: "20px" }}>
+      <div style={{ margin: "20px" }}>
         <Form onSubmit={this.onSubmit}>
           <FormGroup>
             <Label>Email</Label>
@@ -130,7 +118,7 @@ class SignUpView extends Component {
           <Button
             color="primary"
             bsSize="large"
-            style={{ marginTop: "15px", marginBottom: "15px" }}
+            style={{ margin:"15px 0", width:"100%", background:"#0284A8", fontWeight:"bold" }}
             disabled={isInvalid}
             type="submit"
           >

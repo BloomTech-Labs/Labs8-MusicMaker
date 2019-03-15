@@ -23,7 +23,8 @@ font-size: 1.5rem;
 export const Content = styled.p`
 font-family: san-serif;
 font-size: 0.9rem;
-margin: 1.5rem 0;
+margin: 1.5rem 6%;
+width: 87%;
 `;
 
 export const FinePrint = styled.p`

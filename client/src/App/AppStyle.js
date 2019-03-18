@@ -24,6 +24,11 @@ export const ContentContainer = styled.div`
 `;
 
 export const SidebarContainer = styled.div`
+margin-top: -100px;
+display: flex;
+justify-content: center;
+font-size: 1.25rem;
+
 `;
 
 export const PageViewContainer = styled.div`

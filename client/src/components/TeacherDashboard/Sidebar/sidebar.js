@@ -2,9 +2,7 @@ import React from "react";
 import { NavLink, Nav, Button } from "reactstrap";
 import { FaUsers, FaFileSignature, FaCreditCard, FaCogs } from 'react-icons/fa';
 
-
 import AuthUserContext from "../../Auth/AuthUserContext";
-import {} from "./SidebarStyle"
 
 
 const SideBar = () => (

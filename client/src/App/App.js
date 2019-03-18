@@ -10,7 +10,7 @@ import LandingPageView from "../components/TeacherDashboard/LandingPage/landingP
 import SignUpView from "../components/TeacherDashboard/SignUp/signupView";
 import SignInView from "../components/TeacherDashboard/SignIn/signinView";
 import Sidebar from "../components/TeacherDashboard/Sidebar/sidebar";
-import DashboardView from "../components/TeacherDashboard/dashboardView";
+import DashboardView from "../components/TeacherDashboard/HomeDashboard/dashboardView";
 import StudentListView from "../components/TeacherDashboard/studentListView";
 import DashboardAssignmentsView from "../components/TeacherDashboard/dashboardAssignmentsView";
 import CreateAssignmentView from "../components/TeacherDashboard/createAssignmentView";

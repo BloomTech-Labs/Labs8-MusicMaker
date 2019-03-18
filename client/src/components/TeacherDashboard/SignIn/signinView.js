@@ -2,30 +2,21 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import firebase from "firebase/app";
+import { Button, ButtonToolbar, Form, FormGroup, Input, Label } from "reactstrap";
 
 import { auth } from "../../../firebase";
 import * as routes from "../../Routes/routes";
 import { SignUpLink } from "../SignUp/signupView";
-import ForgotPW from "../../Auth/ForgotPW";
+import ForgotPWModal from "../SignIn/ForgotPWModal"
 
-// Reactstrap styling
-import {
-  Button,
-  ButtonToolbar,
-  Form,
-  FormGroup,
-  Input,
-  Label
-} from "reactstrap";
 
 const SignInPage = ({ history }) => (
   <div className="container" style={formContainer}>
-    <h1 className="subheader" style={{ margin:"10px 8.5rem 35px", color:"white" }}>
+    <h1 className="subheader" style={{ margin:"100px 35% 35px", color:"white" }}>
       Log In
     </h1>
     <SignInView history={history} />
-    {/* <ForgotPW /> */}
-    <p>Forgot Password goes here</p>
+    <ForgotPWModal />
     <SignUpLink />
   </div>
 );
@@ -41,7 +32,7 @@ const INITIAL_STATE = {
 };
 
 const formContainer = {
-  width: "35%",
+  width: "25%",
   margin: "0 auto 10px",
 };
 
@@ -101,7 +92,7 @@ class SignInView extends Component {
       <div className="signin-form" style={{ margin: "20px" }}>
         <Form>
           <FormGroup>
-            <Label>Email</Label>
+            <Label style={{ color:"white", fontWeight:"bold" }}>Email</Label>
             <Input
               value={email}
               onChange={event =>
@@ -111,7 +102,7 @@ class SignInView extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label>Password</Label>
+            <Label style={{ color:"white", fontWeight:"bold" }}>Password</Label>
             <Input
               value={password}
               onChange={event =>
@@ -123,7 +114,7 @@ class SignInView extends Component {
               <Button
                 color="primary"
                 bsSize="small"
-                style={{ width:"47.5%", marginRight:"5%"}}
+                style={{ width:"47.5%", marginRight:"5%", background:"#02547D"}}
                 onClick={this.doSignInWithGoogle}
               >
                 Google Log In
@@ -133,7 +124,7 @@ class SignInView extends Component {
                 color="primary"
                 bsSize="small"
                 disabled={isInvalid}
-                style={{ width:"47.5%" }}
+                style={{ width:"47.5%", color:"white", background:"#02547D" }}
                 onClick={this.onSubmit}
               >
                 Email Log In

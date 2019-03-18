@@ -5,7 +5,7 @@ export const NavBarContainer = styled.div`
 display: flex;
 display-direction: row;
 justify-content: space-between;
-margin: 1.875rem 3.5rem;
+margin: 3rem 7%;
 `;
 
 export const Img = styled.img`

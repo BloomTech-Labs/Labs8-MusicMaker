@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 
 const SignUpPage = ({ history }) => (
   <div className="container" style={formContainer}>
-    <h1 className="subheader" style={{ margin:"10px 7.5rem 35px", color:"white" }}>Sign Up</h1>
+    <h1 className="subheader" style={{ margin:"100px 33% 35px", color:"white" }}>Sign Up</h1>
     <SignUpView history={history} />
   </div>
 );
@@ -26,7 +26,7 @@ const byPropKey = (propertyName, value) => () => ({
 });
 
 const formContainer = {
-  width: "35%",
+  width: "25%",
   margin: "0 auto 10px",
 };
 
@@ -83,7 +83,7 @@ class SignUpView extends Component {
       <div style={{ margin: "20px" }}>
         <Form onSubmit={this.onSubmit}>
           <FormGroup>
-            <Label>Email</Label>
+            <Label style={{ color:"white", fontWeight:"bold" }}>Email</Label>
             <Input
               value={email}
               onChange={event =>
@@ -94,7 +94,7 @@ class SignUpView extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label>Password</Label>
+            <Label style={{ color:"white", fontWeight:"bold" }}>Password</Label>
             <Input
               value={passwordOne}
               onChange={event =>
@@ -105,7 +105,7 @@ class SignUpView extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label>Confirm Password</Label>
+            <Label style={{ color:"white", fontWeight:"bold" }}>Confirm Password</Label>
             <Input
               value={passwordTwo}
               onChange={event =>
@@ -132,8 +132,8 @@ class SignUpView extends Component {
 }
 
 const SignUpLink = () => (
-  <p className="bodyText" style={{ margin:"30px 25%", color:"white"}}>
-    Don't have an account? <Link to={routes.SIGN_UP} style={{ color:"white"}}>Sign Up!</Link>
+  <p className="bodyText" style={{ margin:"20px 29%", color:"white"}}>
+    Don't have an account? <Link to={routes.SIGN_UP} style={{ color:"white", fontWeight: "bold" }}>Sign Up!</Link>
   </p>
 );
 

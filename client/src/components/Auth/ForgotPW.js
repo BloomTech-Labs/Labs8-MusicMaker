@@ -1,14 +1,12 @@
+//Forgot password info that show's up in ForgotPWModal.js
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
 import { auth } from '../../firebase';
-import * as routes from '../Routes/routes';
 
-import { Button, ButtonToolbar, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 
 const PasswordForgetPage = () =>
   <div className="container" style={{ marginLeft: "-17px" }}>
-    <h1 className="bodyText" style={{ margin: "20px" }}>Reset Password?</h1>
     <PasswordForgetForm />
   </div>
 
@@ -20,8 +18,6 @@ const INITIAL_STATE = {
   email: '',
   error: null,
 };
-
-const formContainer = { maxWidth: 800, margin: '0 auto 10px' };
 
 class PasswordForgetForm extends Component {
   constructor(props) {
@@ -56,17 +52,16 @@ class PasswordForgetForm extends Component {
       <div className = 'signin-form' style={{ margin: "20px" }}>
         <Form>
           <FormGroup onSubmit={this.onSubmit}>
-            <Label>Email</Label>
+            <Label style={{ color:"#02547D" }}>Email</Label>
               <Input
                 value={this.state.email}
                 onChange={event => this.setState(byPropKey('email', event.target.value))}
                 type="text"
-                style={{ marginBottom: "30px" }}
+                style={{ marginBottom: "30px", width:"108%" }}
               />
-            <Button color="info" style = {{ marginBottom: "30px" }} disabled={isInvalid} type="submit">
+            <Button color="info" style={{ marginBottom: "30px", width:"108%", background:"#02BEC4" }} disabled={isInvalid} type="submit">
               Reset My Password
             </Button>
-
             { error && <p>{error.message}</p> }
           </FormGroup>
         </Form>
@@ -75,14 +70,9 @@ class PasswordForgetForm extends Component {
   }
 }
 
-const PasswordForgetLink = () =>
-  <p>
-    <Link to={routes.DASHBOARD}>Forgot Password?</Link>
-  </p>
 
 export default PasswordForgetPage;
 
 export {
-  PasswordForgetForm,
-  PasswordForgetLink,
+  PasswordForgetForm
 };

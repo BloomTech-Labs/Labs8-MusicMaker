@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { auth } from '../../firebase';
 import withAuthentication from './withAuthentication';
 import * as routes from '../Routes/routes';
-import { Button } from '../TeacherDashboard/Navigation/NavBarStyle';
+import { Button } from '../Navigation/NavBarStyle';
 
 class SignOutButton extends React.Component {
     constructor(props) {

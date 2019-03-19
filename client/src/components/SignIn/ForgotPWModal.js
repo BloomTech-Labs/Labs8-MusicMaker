@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-import ForgotPW from "../../Auth/ForgotPW";
+import ForgotPW from "../Auth/ForgotPW";
 
 class ModalExample extends React.Component {
   constructor(props) {

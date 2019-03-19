@@ -4,8 +4,8 @@ import { withRouter } from "react-router-dom";
 import firebase from "firebase/app";
 import { Button, ButtonToolbar, Form, FormGroup, Input, Label } from "reactstrap";
 
-import { auth } from "../../../firebase";
-import * as routes from "../../Routes/routes";
+import { auth } from "../../firebase";
+import * as routes from "../Routes/routes";
 import { SignUpLink } from "../SignUp/signupView";
 import ForgotPWModal from "../SignIn/ForgotPWModal"
 

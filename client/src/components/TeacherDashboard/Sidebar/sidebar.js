@@ -1,6 +1,6 @@
 import React from "react";
-import { NavLink, Nav, Button } from "reactstrap";
-import { FaUsers, FaFileSignature, FaCreditCard, FaCogs } from 'react-icons/fa';
+import { NavLink, Nav } from "reactstrap";
+import { FaHome, FaUsers, FaFileSignature, FaCreditCard, FaCogs } from 'react-icons/fa';
 
 import AuthUserContext from "../../Auth/AuthUserContext";
 
@@ -26,18 +26,11 @@ const SidebarStyling = {
 const SideBarAuth = () => {
   return (
     <Nav>
-      {/* <Button> */}
-        <NavLink href="/students" style={SidebarStyling}><FaUsers />Students</NavLink>
-      {/* </Button> */}
-      {/* <Button> */}
-        <NavLink href="/assignments" style={SidebarStyling}><FaFileSignature />Assignments</NavLink>
-      {/* </Button> */}
-      {/* <Button> */}
-        <NavLink href="/billing" style={SidebarStyling}><FaCreditCard />Billing</NavLink>
-      {/* </Button> */}
-      {/* <Button> */}
-        <NavLink href="/settings" style={SidebarStyling}><FaCogs />Settings</NavLink>
-      {/* </Button> */}
+      <NavLink href="/dashboard" style={SidebarStyling}><FaHome />Home</NavLink>
+      <NavLink href="/students" style={SidebarStyling}><FaUsers />Students</NavLink>
+      <NavLink href="/assignments" style={SidebarStyling}><FaFileSignature />Assignments</NavLink>
+      <NavLink href="/billing" style={SidebarStyling}><FaCreditCard />Billing</NavLink>
+      <NavLink href="/settings" style={SidebarStyling}><FaCogs />Settings</NavLink>
     </Nav>
   );
 };

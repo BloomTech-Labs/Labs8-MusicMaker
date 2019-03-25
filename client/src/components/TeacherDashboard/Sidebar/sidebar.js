@@ -3,6 +3,7 @@ import { NavLink, Nav } from "reactstrap";
 import { FaHome, FaUsers, FaFileSignature, FaCreditCard, FaCogs } from 'react-icons/fa';
 
 import AuthUserContext from "../../Auth/AuthUserContext";
+import { Working } from "./SidebarStyle";
 
 
 const SideBar = () => (
@@ -17,20 +18,24 @@ const SidebarNonAuth = () => {
   );
 }
 
-const SidebarStyling = {
-  padding:".5rem 5rem", 
-  color:"white",
-  fontWeight:"bold",
-};
+// const SidebarStyling = {
+//   padding:".5rem 35px", 
+//   color:"white",
+//   fontWeight:"bold",
+//   // color:"#0284A8",
+ 
+
+// };
 
 const SideBarAuth = () => {
   return (
     <Nav>
-      <NavLink href="/dashboard" style={SidebarStyling}><FaHome />Home</NavLink>
-      <NavLink href="/students" style={SidebarStyling}><FaUsers />Students</NavLink>
-      <NavLink href="/assignments" style={SidebarStyling}><FaFileSignature />Assignments</NavLink>
-      <NavLink href="/billing" style={SidebarStyling}><FaCreditCard />Billing</NavLink>
-      <NavLink href="/settings" style={SidebarStyling}><FaCogs />Settings</NavLink>
+      <Working>Hello</Working>
+      <NavLink href="/dashboard" ><Working><FaHome />Home</Working></NavLink>
+      <NavLink href="/students" ><FaUsers />Students</NavLink>
+      <NavLink href="/assignments" ><FaFileSignature />Assignments</NavLink>
+      <NavLink href="/billing" ><FaCreditCard />Billing</NavLink>
+      <NavLink href="/settings" ><FaCogs />Settings</NavLink>
     </Nav>
   );
 };

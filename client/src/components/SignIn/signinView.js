@@ -12,9 +12,9 @@ import ForgotPWModal from "../SignIn/ForgotPWModal"
 
 const SignInPage = ({ history }) => (
   <div className="container" style={formContainer}>
-    <h1 className="subheader" style={{ margin:"100px 35% 35px", color:"white" }}>
+    <h2 className="subheader" style={{ margin:"3.5rem 33% 2.25rem", color:"white", fontWeight:"bold" }}>
       Log In
-    </h1>
+    </h2>
     <SignInView history={history} />
     <ForgotPWModal />
     <SignUpLink />
@@ -33,7 +33,7 @@ const INITIAL_STATE = {
 
 const formContainer = {
   width: "25%",
-  margin: "0 auto 10px",
+  margin: "0 auto 0.625rem",
 };
 
 class SignInView extends Component {
@@ -89,7 +89,7 @@ class SignInView extends Component {
     const isInvalid = password === "" || email === "";
 
     return (
-      <div className="signin-form" style={{ margin: "20px" }}>
+      <div className="signin-form" style={{ margin: "1.25rem" }}>
         <Form>
           <FormGroup>
             <Label style={{ color:"white", fontWeight:"bold" }}>Email</Label>
@@ -110,7 +110,7 @@ class SignInView extends Component {
               }
               type="password"
             />
-            <ButtonToolbar style={{ margin:"25px 0" }}>
+            <ButtonToolbar style={{ margin:"1.5625rem 0" }}>
               <Button
                 color="primary"
                 bsSize="small"

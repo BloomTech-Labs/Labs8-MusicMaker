@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 
 const SignUpPage = ({ history }) => (
   <div className="container" style={formContainer}>
-    <h1 className="subheader" style={{ margin:"100px 33% 35px", color:"white" }}>Sign Up</h1>
+    <h2 className="subheader" style={{ margin:"3.5rem 33% 2.25rem", color:"white", fontWeight:"bold" }}>Sign Up</h2>
     <SignUpView history={history} />
   </div>
 );
@@ -27,7 +27,7 @@ const byPropKey = (propertyName, value) => () => ({
 
 const formContainer = {
   width: "25%",
-  margin: "0 auto 10px",
+  margin: "0 auto 0.625rem",
 };
 
 class SignUpView extends Component {
@@ -80,7 +80,7 @@ class SignUpView extends Component {
       email === "";
 
     return (
-      <div style={{ margin: "20px" }}>
+      <div style={{ margin: "1.25rem" }}>
         <Form onSubmit={this.onSubmit}>
           <FormGroup>
             <Label style={{ color:"white", fontWeight:"bold" }}>Email</Label>
@@ -90,7 +90,7 @@ class SignUpView extends Component {
                 this.setState(byPropKey("email", event.target.value))
               }
               type="text"
-              style={{ marginTop: "5px", marginBottom: "15px" }}
+              style={{ marginTop: "0.3125rem", marginBottom: "0.9375rem" }}
             />
           </FormGroup>
           <FormGroup>
@@ -101,7 +101,7 @@ class SignUpView extends Component {
                 this.setState(byPropKey("passwordOne", event.target.value))
               }
               type="password"
-              style={{ marginTop: "5px", marginBottom: "15px" }}
+              style={{ marginTop: "0.3125rem", marginBottom: "0.9375rem" }}
             />
           </FormGroup>
           <FormGroup>
@@ -112,13 +112,13 @@ class SignUpView extends Component {
                 this.setState(byPropKey("passwordTwo", event.target.value))
               }
               type="password"
-              style={{ marginTop: "5px", marginBottom: "15px" }}
+              style={{ marginTop: "0.3125rem", marginBottom: "0.9375rem" }}
             />
           </FormGroup>
           <Button
             color="primary"
             bsSize="large"
-            style={{ margin:"15px 0", width:"100%", background:"#0284A8", fontWeight:"bold" }}
+            style={{ margin:"0.9375rem 0", width:"100%", background:"#0284A8", fontWeight:"bold" }}
             disabled={isInvalid}
             type="submit"
           >
@@ -132,7 +132,7 @@ class SignUpView extends Component {
 }
 
 const SignUpLink = () => (
-  <p className="bodyText" style={{ margin:"20px 29%", color:"white"}}>
+  <p className="bodyText" style={{ margin:"1.25rem 20%", color:"white"}}>
     Don't have an account? <Link to={routes.SIGN_UP} style={{ color:"white", fontWeight: "bold" }}>Sign Up!</Link>
   </p>
 );

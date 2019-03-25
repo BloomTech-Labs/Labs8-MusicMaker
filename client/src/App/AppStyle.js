@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import img from "../components/Images/landingPageView.jpeg"
+import img from "../components/Images/landingPageView.jpeg";
+
 
 export const AppContainer = styled.div`
 display: flex;

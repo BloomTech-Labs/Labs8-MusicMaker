@@ -12,7 +12,7 @@ import ForgotPWModal from "../SignIn/ForgotPWModal"
 
 const SignInPage = ({ history }) => (
   <div className="container" style={formContainer}>
-    <h2 className="subheader" style={{ margin:"3.5rem 33% 2.25rem", color:"white", fontWeight:"bold" }}>
+    <h2 className="subheader" style={{ margin:"-3.5rem 33% 2.25rem", color:"white", fontWeight:"bold" }}>
       Log In
     </h2>
     <SignInView history={history} />

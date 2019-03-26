@@ -16,5 +16,5 @@ export const SETTINGS = '/settings';
 export const GRADING = '/grading/:studentId/:assignmentId'; //Grade a student's assingment
 
 //URL
-export const TEACHER_URL = 'https://musicmaker-4b2e8.firebaseapp.com/';
+export const TEACHER_URL = 'https://musicmaker-4b2e8.firebaseapp.com';
 

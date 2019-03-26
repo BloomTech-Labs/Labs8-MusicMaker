@@ -6,7 +6,7 @@ display: flex;
 flex-direction: column;
 text-align:center;
 width: 50%;
-margin: 3.5rem 0 0 25%;
+margin: -3.5rem 0 0 25%;
 color: #02547D;
 `;
 

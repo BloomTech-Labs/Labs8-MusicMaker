@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 
 const SignUpPage = ({ history }) => (
   <div className="container" style={formContainer}>
-    <h2 className="subheader" style={{ margin:"3.5rem 33% 2.25rem", color:"white", fontWeight:"bold" }}>Sign Up</h2>
+    <h2 className="subheader" style={{ margin:"-3.5rem 33% 2.25rem", color:"white", fontWeight:"bold" }}>Sign Up</h2>
     <SignUpView history={history} />
   </div>
 );

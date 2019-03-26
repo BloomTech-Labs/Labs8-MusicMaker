@@ -29,7 +29,6 @@ margin-top: -100px;
 display: flex;
 justify-content: center;
 font-size: 1.25rem;
-
 `;
 
 export const PageViewContainer = styled.div`

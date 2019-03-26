@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
+
 export const Working = styled.div `
-padding:.5rem 35px, 
-color:white,
-fontWeight:bold,
+color: #0284A8 !important;
+font-weight: bold;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+padding: 0 2.25rem;
 
 &:hover {
-  color:red
+  color: #02BEC4 !important;
 }
 `;

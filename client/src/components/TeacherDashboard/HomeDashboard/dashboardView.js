@@ -4,9 +4,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import firebase from 'firebase';
-import { Button } from 'reactstrap';
 
 import * as routes from "../../Routes/routes";
+import { HomeContainer, CreateAssignment } from "./HomeDashboardStyling";
 
 
 class DashboardView extends Component {
@@ -14,7 +14,7 @@ class DashboardView extends Component {
     super(props);
     this.state = {
       qrcode: ""
-    };
+    }
   }
 
   componentDidMount() {
@@ -38,22 +38,11 @@ class DashboardView extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="d-flex ">
-          <h1>Dashboard</h1>
-          <Link to="/assignments/create">
-            <Button > + </Button>
-          </Link>
-        </div>
-          <a href={this.state.qrcode}>
-            <img
-              src={this.state.qrcode}
-              alt="qr code image"
-              height="100"
-              width="100"
-            />
-          </a>
-      </div>
+      <HomeContainer>
+        <img src={this.state.qrcode} alt="qr code image" height="25%" width="25%" />
+
+        <Link to="/assignments/create"><CreateAssignment> + </CreateAssignment></Link>
+      </HomeContainer>
     );
   }
 }

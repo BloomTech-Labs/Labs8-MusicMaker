@@ -6,7 +6,7 @@ import axios from "axios";
 import firebase from 'firebase';
 
 import * as routes from "../../Routes/routes";
-import { HomeContainer, CreateAssignment } from "./HomeDashboardStyling";
+import { HomeContainer, CreateAssignment } from "../HomeDashboard/HomeDashboardStyling";
 
 
 class DashboardView extends Component {
@@ -41,7 +41,7 @@ class DashboardView extends Component {
       <HomeContainer>
         <img src={this.state.qrcode} alt="qr code image" height="25%" width="25%" />
 
-        <Link to="/assignments/create"><CreateAssignment> + </CreateAssignment></Link>
+        <Link to="/assignments/createAssignment"><CreateAssignment> + </CreateAssignment></Link>
       </HomeContainer>
     );
   }

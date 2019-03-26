@@ -5,7 +5,7 @@ export const SIGN_IN = '/signin';
 
 //AUTH
 export const DASHBOARD = '/dashboard';
-export const CREATE_ASSIGNMENT = '/assignments/create';
+export const CREATE_ASSIGNMENT = '/assignments/createAssignment';
 export const ASSIGNMENTS = '/assignments';
 export const ASSIGNMENT_STUDENTS = '/assignmentStudents/:assignmentId'; //List of students assigned to an assignment
 export const ASSIGNMENT = '/assignments/:id';

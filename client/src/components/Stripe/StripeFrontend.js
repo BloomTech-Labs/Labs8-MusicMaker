@@ -29,15 +29,15 @@ class TakeMoney extends React.Component {
 
   render() {
     return (
-      <div style={{paddingTop: "15px", paddingBottom: "20px"}}>
+      <div style={{padding:"3.5rem 0"}}>
         <Row>
-          <Col>
+          <Col style={{padding:"0 44%", fontWeight:"bold"}}>
             <h3>Send payment?</h3>
           </Col>
         </Row>
 
         <Row>
-          <Col style={{padding: "30px 30px 30px 20px"}}>
+          <Col style={{padding:"30px 30px 30px 20px"}}>
             <CardElement />
           </Col>
           <Col>

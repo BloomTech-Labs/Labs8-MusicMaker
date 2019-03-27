@@ -12,9 +12,9 @@ import SignInView from "../components/SignIn/signinView";
 import Sidebar from "../components/TeacherDashboard/Sidebar/sidebar";
 import DashboardView from "../components/TeacherDashboard/HomeDashboard/dashboardView";
 import StudentListView from "../components/TeacherDashboard/studentListView";
-import DashboardAssignmentsView from "../components/TeacherDashboard/dashboardAssignmentsView";
+import DashboardAssignmentsView from "../components/TeacherDashboard/ViewAllAssignments/dashboardAssignmentsView";
 import CreateAssignmentView from "../components/TeacherDashboard/CreateAssignment/createAssignmentView";
-import DashboardBillingView from "../components/TeacherDashboard/dashboardBillingView";
+import DashboardBillingView from "../components/TeacherDashboard/Billing/dashboardBillingView";
 import DashboardSettingView from "../components/TeacherDashboard/dashboardSettingView";
 import GradeAssignmentView from "../components/TeacherDashboard/gradeAssignmentView";
 import StudentAssignmentsView from "../components/TeacherDashboard/studentAssignmentsView"

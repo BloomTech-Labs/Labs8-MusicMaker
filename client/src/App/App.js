@@ -15,7 +15,7 @@ import StudentListView from "../components/TeacherDashboard/studentListView";
 import DashboardAssignmentsView from "../components/TeacherDashboard/ViewAllAssignments/dashboardAssignmentsView";
 import CreateAssignmentView from "../components/TeacherDashboard/CreateAssignment/createAssignmentView";
 import DashboardBillingView from "../components/TeacherDashboard/Billing/dashboardBillingView";
-import DashboardSettingView from "../components/TeacherDashboard/dashboardSettingView";
+import DashboardSettingView from "../components/TeacherDashboard/Settings/dashboardSettingView";
 import GradeAssignmentView from "../components/TeacherDashboard/gradeAssignmentView";
 import StudentAssignmentsView from "../components/TeacherDashboard/studentAssignmentsView"
 import AssignmentStudentsView from "../components/TeacherDashboard/assignmentStudentsView"

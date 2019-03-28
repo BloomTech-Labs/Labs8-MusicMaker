@@ -1,61 +1,24 @@
-import React, { Component } from "react";
+//Update account info modal view
+import React from 'react';
 import axios from "axios";
 import firebase from "firebase";
-import {
-  Button,
-  CardSubtitle,
-  CardText,
-  CardTitle,
-  Form,
-  FormGroup,
-  Input,
-  Label
-} from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
 
-const formContainer = {
-  maxWidth: 800,
-  margin: "0 auto 10px",
-  border: "3px solid #A9E8DC"
-};
 
-class Settings extends Component {
+class ModalExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      name: {
-        prefix: "",
-        firstName: "",
-        lastName: ""
-      }
+      modal: false
     };
+
+    this.toggle = this.toggle.bind(this);
   }
 
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        // User is signed in.
-        axios
-          .get(
-            `https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/settings`
-          ) //match params.id when this becomes fully dynamic
-          .then(res => {
-            // console.log("here****" ,res);
-            this.setState({
-              email: res.data.email
-            });
-            this.setState({
-              prefix: res.data.name.prefix,
-              firstName: res.data.name.firstName,
-              lastName: res.data.name.lastName
-            });
-          })
-          .catch(err => console.error("Sorry, an error was encountered.", err));
-      } else {
-        // No user is signed in.
-        return;
-      }
-    });
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
   }
 
   handleChange = event => {
@@ -64,12 +27,12 @@ class Settings extends Component {
     });
   };
 
-  handleSubmit(event) {
-    event.preventDefault();
-    alert(
-      `Settings updated successfully! Your name is now ${this.state.prefix} ${this.state.firstName} ${this.state.lastName}.`
-    );
-  }
+  // handleSubmit(event) {
+  //   // event.preventDefault();
+  //   alert(
+  //     `Settings updated successfully! Your name is now ${this.state.prefix} ${this.state.firstName} ${this.state.lastName}.`
+  //   );
+  // }
 
   updateName = event => {
     firebase.auth().onAuthStateChanged(user => {
@@ -101,24 +64,14 @@ class Settings extends Component {
 
   render() {
     const { email, prefix, firstName, lastName } = this.state;
+
     return (
-      <div className="container" style={formContainer}>
-        <Form style={{ padding: "20px" }}>
-          <CardTitle style={{ margin: "10px" }}>Your Information</CardTitle>
-          <CardSubtitle style={{ margin: "10px" }}>
-            Email: {this.state.email}
-          </CardSubtitle>
-          <CardText style={{ margin: "10px" }}>
-            Title: {this.state.prefix}
-          </CardText>
-          <CardText style={{ margin: "10px" }}>
-            First Name: {this.state.firstName}
-          </CardText>
-          <CardText style={{ margin: "10px" }}>
-            Last Name: {this.state.lastName}
-          </CardText>
-        </Form>
-        <Form onSubmit={e => this.handleSubmit(e)}>
+      <div>
+        <Button style={{background:"none", border:"none", margin:"0 30%" }}  onClick={this.toggle}>Add and change your name HERE!</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle} style={{ color:"#02547D", fontWeight:"bold" }}>Reset Password?</ModalHeader>
+          <ModalBody>
+          <Form /*onSubmit={e => this.handleSubmit(e)}*/>
           <FormGroup style={{padding: "20px"}}>
             <h2>Update Your Information</h2>
             <Label style={{paddingTop: "10px"}}>Title</Label>
@@ -154,9 +107,11 @@ class Settings extends Component {
             Submit Changes
           </Button>
         </Form>
+          </ModalBody>
+        </Modal>
       </div>
     );
   }
 }
 
-export default Settings;
+export default ModalExample;

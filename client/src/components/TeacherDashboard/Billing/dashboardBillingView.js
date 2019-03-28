@@ -9,9 +9,9 @@ class DashboardBillingView extends Component {
   render() {
     return (
       <StripeProvider apiKey="pk_test_YVKiLW0mvujdoxalKItXwyhj">
-        <Row>
+        <Row style={{width:"50%", margin:"3.5rem 37%"}}>
           <Col>
-            <Elements>
+            <Elements style={{padding: "20px"}}>
               <TakeMoney />
             </Elements>
           </Col>

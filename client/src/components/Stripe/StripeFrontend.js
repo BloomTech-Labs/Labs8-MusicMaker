@@ -29,19 +29,19 @@ class TakeMoney extends React.Component {
 
   render() {
     return (
-      <div style={{padding:"3.5rem 0"}}>
+      <div>
         <Row>
-          <Col style={{padding:"0 44%", fontWeight:"bold"}}>
-            <h3>Send payment?</h3>
+          <Col>
+            <h2 style={{margin:"0 0 2rem 19%"}}>Billing</h2>
           </Col>
         </Row>
 
         <Row>
-          <Col style={{padding:"30px 30px 30px 20px"}}>
+          <Col style={{margin:"1.25rem 0"}}>
             <CardElement />
           </Col>
           <Col>
-            <Button onClick={this.submit} style={{marginTop: "20px"}}>Send</Button>
+            <Button onClick={this.submit} style={{padding:"0 5%", margin:"1rem 0"}}>Send</Button>
           </Col>
         </Row>
       </div>

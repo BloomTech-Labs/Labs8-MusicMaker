@@ -1,7 +1,7 @@
 // Assignments List: This page will allow teachers to see a list of all their ungraded assignments
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Label, Card, CardText, CardTitle } from 'reactstrap';
+import { Card, CardText, CardTitle } from 'reactstrap';
 import axios from 'axios';
 import firebase from 'firebase';
 

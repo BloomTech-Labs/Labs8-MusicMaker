@@ -63,50 +63,49 @@ class ModalExample extends React.Component {
   };
 
   render() {
-    const { email, prefix, firstName, lastName } = this.state;
+    const { prefix, firstName, lastName } = this.state;
 
     return (
       <div>
-        <Button style={{background:"none", border:"none", margin:"0 30%" }}  onClick={this.toggle}>Add and change your name HERE!</Button>
+        <Button style={{background:"none", border:"none" /*, margin:"0 30%"*/ }}  onClick={this.toggle}>Add and update your info HERE!</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle} style={{ color:"#02547D", fontWeight:"bold" }}>Reset Password?</ModalHeader>
+          <ModalHeader toggle={this.toggle} style={{ color:"#02547D", fontWeight:"bold" }}>Update Your Information</ModalHeader>
           <ModalBody>
           <Form /*onSubmit={e => this.handleSubmit(e)}*/>
-          <FormGroup style={{padding: "20px"}}>
-            <h2>Update Your Information</h2>
-            <Label style={{paddingTop: "10px"}}>Title</Label>
-            <Input
-              name="prefix"
-              value={prefix}
-              onChange={this.handleChange}
-              type="text"
-              style={{paddingTop: "5px"}}
-            />
-            <Label style={{paddingTop: "10px"}}>First Name</Label>
-            <Input
-              name="firstName"
-              value={firstName}
-              onChange={this.handleChange}
-              type="text"
-              style={{paddingTop: "5px"}}
-            />
-            <Label style={{paddingTop: "10px"}}>Last Name</Label>
-            <Input
-              name="lastName"
-              value={lastName}
-              onChange={this.handleChange}
-              type="text"
-              style={{paddingTop: "5px"}}
-            />
-          </FormGroup>
-          <Button
-            type="submit"
-            onClick={this.updateName}
-            style={{ margin: "20px" }}
-          >
-            Submit Changes
-          </Button>
-        </Form>
+            <FormGroup>
+              <Label style={{paddingTop: "10px", color:"#02547D", fontWeight:"bold"}}>Title</Label>
+              <Input
+                name="prefix"
+                value={prefix}
+                onChange={this.handleChange}
+                type="text"
+                style={{paddingTop: "5px"}}
+              />
+              <Label style={{paddingTop: "10px", color:"#02547D", fontWeight:"bold"}}>First Name</Label>
+              <Input
+                name="firstName"
+                value={firstName}
+                onChange={this.handleChange}
+                type="text"
+                style={{paddingTop: "5px"}}
+              />
+              <Label style={{paddingTop: "10px", color:"#02547D", fontWeight:"bold"}}>Last Name</Label>
+              <Input
+                name="lastName"
+                value={lastName}
+                onChange={this.handleChange}
+                type="text"
+                style={{paddingTop: "5px"}}
+              />
+              </FormGroup>
+              <Button
+                type="submit"
+                onClick={this.updateName}
+                style={{ margin:"-5px 0 10px 0.5%", width:"100%", background:"#02BEC4" }}
+              >
+                Submit Changes
+              </Button>
+          </Form>
           </ModalBody>
         </Modal>
       </div>

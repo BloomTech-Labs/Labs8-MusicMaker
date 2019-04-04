@@ -10,15 +10,15 @@ import LandingPageView from "../components/LandingPage/landingPageView";
 import SignUpView from "../components/SignUp/signupView";
 import SignInView from "../components/SignIn/signinView";
 import Sidebar from "../components/TeacherDashboard/Sidebar/sidebar";
-import DashboardView from "../components/TeacherDashboard/HomeDashboard/dashboardView";
-import StudentListView from "../components/TeacherDashboard/studentListView";
-import DashboardAssignmentsView from "../components/TeacherDashboard/ViewAllAssignments/dashboardAssignmentsView";
+import DashboardView from "../components/TeacherDashboard/HomeTab/dashboardView";
+import StudentListView from "../components/TeacherDashboard/StudentsTab/studentListView";
+import DashboardAssignmentsView from "../components/TeacherDashboard/AssignmentsTab/dashboardAssignmentsView";
 import CreateAssignmentView from "../components/TeacherDashboard/CreateAssignment/createAssignmentView";
-import DashboardBillingView from "../components/TeacherDashboard/Billing/dashboardBillingView";
-import DashboardSettingView from "../components/TeacherDashboard/Settings/dashboardSettingView";
-import GradeAssignmentView from "../components/TeacherDashboard/gradeAssignmentView";
-import StudentAssignmentsView from "../components/TeacherDashboard/studentAssignmentsView"
-import AssignmentStudentsView from "../components/TeacherDashboard/assignmentStudentsView"
+import DashboardBillingView from "../components/TeacherDashboard/BillingTab/dashboardBillingView";
+import DashboardSettingView from "../components/TeacherDashboard/SettingsTab/dashboardSettingView";
+import GradeAssignmentView from "../components/TeacherDashboard/GradeAssignment/gradeAssignmentView";
+import StudentAssignmentsView from "../components/TeacherDashboard/StudentsTab/studentAssignmentsView";
+import AssignmentStudentsView from "../components/TeacherDashboard/AssignmentsTab/assignmentStudentsView";
 import { AppContainer, HeaderContainer, ContentContainer, SidebarContainer, PageViewContainer } from "./AppStyle";
 
 class App extends Component {

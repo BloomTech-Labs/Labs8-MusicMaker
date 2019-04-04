@@ -25,7 +25,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const SidebarContainer = styled.div`
-margin-top: -100px;
+margin-top: -26rem;
 display: flex;
 justify-content: center;
 font-size: 1.25rem;

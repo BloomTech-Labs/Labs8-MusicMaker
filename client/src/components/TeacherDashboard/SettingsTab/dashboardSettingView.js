@@ -7,12 +7,6 @@ import { CardSubtitle, CardText, CardTitle, Form } from "reactstrap";
 import UpdateInfoModal from "./UpdateInfoModal";
 
 
-const formContainer = {
-  maxWidth: 800,
-  margin: "0 auto 10px",
-  border: "3px solid #A9E8DC"
-};
-
 class Settings extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +50,7 @@ class Settings extends Component {
   render() {
 
     return (
-      <div className="container" style={formContainer}>
+      <div>
         <Form style={{ padding: "20px" }}>
           <CardTitle style={{ margin: "10px" }}>Your Information</CardTitle>
           <CardSubtitle style={{ margin: "10px" }}>

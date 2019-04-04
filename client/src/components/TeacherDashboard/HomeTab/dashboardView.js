@@ -6,7 +6,7 @@ import axios from "axios";
 import firebase from 'firebase';
 
 import * as routes from "../../Routes/routes";
-import { HomeContainer, CreateAssignment } from "../HomeDashboard/HomeDashboardStyling";
+import { HomeContainer, CreateAssignment } from "./HomeStyling";
 
 
 class DashboardView extends Component {

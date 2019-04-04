@@ -7,7 +7,7 @@ import axios from 'axios';
 import { Route } from "react-router-dom";
 import firebase from 'firebase';
 
-import * as routes from "../Routes/routes";
+import * as routes from "../../Routes/routes";
 import StudentAssignmentsView from "./studentAssignmentsView";
 
 const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };

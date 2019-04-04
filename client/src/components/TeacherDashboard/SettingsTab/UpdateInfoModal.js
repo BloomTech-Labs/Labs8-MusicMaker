@@ -67,9 +67,9 @@ class ModalExample extends React.Component {
 
     return (
       <div>
-        <Button style={{background:"none", border:"none" /*, margin:"0 30%"*/ }}  onClick={this.toggle}>Add and update your info HERE!</Button>
+        <Button style={{background:"none", border:"none", color:"#f1fbf3", margin:"2rem 0 0 1.5%" }}  onClick={this.toggle}>Add or update your info HERE!</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle} style={{ color:"#02547D", fontWeight:"bold" }}>Update Your Information</ModalHeader>
+          <ModalHeader toggle={this.toggle} style={{ color:"#02547D", fontWeight:"bold" }}>Update Your Information!</ModalHeader>
           <ModalBody>
           <Form /*onSubmit={e => this.handleSubmit(e)}*/>
             <FormGroup>

@@ -2,9 +2,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import firebase from "firebase";
-import { CardSubtitle, CardText, CardTitle, Form } from "reactstrap";
 
 import UpdateInfoModal from "./UpdateInfoModal";
+import { SettingsContainer, Info } from "./SettingsStyling";
 
 
 class Settings extends Component {
@@ -50,24 +50,15 @@ class Settings extends Component {
   render() {
 
     return (
-      <div>
-        <Form style={{ padding: "20px" }}>
-          <CardTitle style={{ margin: "10px" }}>Your Information</CardTitle>
-          <CardSubtitle style={{ margin: "10px" }}>
-            Email: {this.state.email}
-          </CardSubtitle>
-          <CardText style={{ margin: "10px" }}>
-            Title: {this.state.prefix}
-          </CardText>
-          <CardText style={{ margin: "10px" }}>
-            First Name: {this.state.firstName}
-          </CardText>
-          <CardText style={{ margin: "10px" }}>
-            Last Name: {this.state.lastName}
-          </CardText>
-          <UpdateInfoModal />
-        </Form>
-      </div>
+      <SettingsContainer>
+        <h2>Account Information</h2>
+        <Info>
+          <div style={{padding:"0.5rem 0"}}> {this.state.email}</div>
+          <div> {this.state.prefix} {this.state.firstName} {this.state.lastName}</div>
+        </Info>
+
+        <UpdateInfoModal />
+      </SettingsContainer>
     );
   }
 }

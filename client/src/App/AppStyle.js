@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import img from "../components/Images/landingPageView.jpeg"
+import img from "../components/Images/landingPageView.jpeg";
+
 
 export const AppContainer = styled.div`
 display: flex;
@@ -24,11 +25,10 @@ export const ContentContainer = styled.div`
 `;
 
 export const SidebarContainer = styled.div`
-margin-top: -100px;
+margin-top: -26rem;
 display: flex;
 justify-content: center;
 font-size: 1.25rem;
-
 `;
 
 export const PageViewContainer = styled.div`

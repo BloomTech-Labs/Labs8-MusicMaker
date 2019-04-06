@@ -5,7 +5,7 @@ export const SIGN_IN = '/signin';
 
 //AUTH
 export const DASHBOARD = '/dashboard';
-export const CREATE_ASSIGNMENT = '/assignments/create';
+export const CREATE_ASSIGNMENT = '/assignments/createAssignment';
 export const ASSIGNMENTS = '/assignments';
 export const ASSIGNMENT_STUDENTS = '/assignmentStudents/:assignmentId'; //List of students assigned to an assignment
 export const ASSIGNMENT = '/assignments/:id';
@@ -16,5 +16,5 @@ export const SETTINGS = '/settings';
 export const GRADING = '/grading/:studentId/:assignmentId'; //Grade a student's assingment
 
 //URL
-export const TEACHER_URL = 'https://musicmaker-4b2e8.firebaseapp.com/';
+export const TEACHER_URL = 'https://musicmaker-4b2e8.firebaseapp.com';
 

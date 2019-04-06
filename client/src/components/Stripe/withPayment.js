@@ -21,7 +21,7 @@ const withPayment = Component => {
         axios
         .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${teacherId}/settings`)
         .then(res => {
-            if (res.data.subscribed != true) {
+            if (res.data.subscribed !== true) {
                 // this needs to route to a page saying they need to subscribe, set to DASHBOARD for now
                 this.props.history.push(routes.BILLING)
             } else return;

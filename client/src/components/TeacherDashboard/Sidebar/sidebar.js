@@ -1,8 +1,10 @@
+//Sidebar for when the user is logged in.
 import React from "react";
-import { NavLink, Nav, Button } from "reactstrap";
-import { FaUsers, FaFileSignature, FaCreditCard, FaCogs } from 'react-icons/fa';
+import { NavLink } from "react-router-dom";
+import { FaHome, FaUsers, FaFileSignature, FaCreditCard, FaCogs } from 'react-icons/fa';
 
 import AuthUserContext from "../../Auth/AuthUserContext";
+import { Working } from "./SidebarStyle";
 
 
 const SideBar = () => (
@@ -17,28 +19,15 @@ const SidebarNonAuth = () => {
   );
 }
 
-const SidebarStyling = {
-  padding:".5rem 5rem", 
-  color:"white",
-  fontWeight:"bold",
-};
-
 const SideBarAuth = () => {
   return (
-    <Nav>
-      {/* <Button> */}
-        <NavLink href="/students" style={SidebarStyling}><FaUsers />Students</NavLink>
-      {/* </Button> */}
-      {/* <Button> */}
-        <NavLink href="/assignments" style={SidebarStyling}><FaFileSignature />Assignments</NavLink>
-      {/* </Button> */}
-      {/* <Button> */}
-        <NavLink href="/billing" style={SidebarStyling}><FaCreditCard />Billing</NavLink>
-      {/* </Button> */}
-      {/* <Button> */}
-        <NavLink href="/settings" style={SidebarStyling}><FaCogs />Settings</NavLink>
-      {/* </Button> */}
-    </Nav>
+    <Working>
+      <NavLink to="/dashboard" ><Working><span><FaHome /></span>Home</Working></NavLink>
+      <NavLink to="/students" ><Working><span><FaUsers /></span>Students</Working></NavLink>
+      <NavLink to="/assignments" ><Working><span><FaFileSignature /></span>Assignments</Working></NavLink>
+      <NavLink to="/billing" ><Working><span><FaCreditCard /></span>Billing</Working></NavLink>
+      <NavLink to="/settings" ><Working><span><FaCogs /></span>Settings</Working></NavLink>
+    </Working>
   );
 };
 export default SideBar;

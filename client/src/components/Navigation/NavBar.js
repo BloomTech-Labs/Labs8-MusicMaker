@@ -2,10 +2,10 @@
 import React from "react";
 import { NavLink } from "reactstrap";
 
-import * as routes from "../../Routes/routes";
-import AuthUserContext from "../../Auth/AuthUserContext";
-import SignOutButton from "../../Auth/SignOutButton";
-import mmmLogo from "../../Images/mmmLogo.png";
+import * as routes from "../Routes/routes";
+import AuthUserContext from "../Auth/AuthUserContext";
+import SignOutButton from "../Auth/SignOutButton";
+import mmmLogo from "../Images/mmmLogo.png";
 import { NavBarContainer, Img, ButtonsContainer, Button } from "./NavBarStyle"
 
 const Navigation = () => (

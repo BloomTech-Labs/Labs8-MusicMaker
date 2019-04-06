@@ -3,11 +3,12 @@
 //so that the teacher can add students to that assignment.
 
 import React, { Component } from "react";
-import { Input, Form, FormGroup, Label, Button } from 'reactstrap';
+import { Input, Form, FormGroup, Button } from 'reactstrap';
 import axios from 'axios';
 import firebase from 'firebase';
+// import { CreateAssignment } from "../HomeDashboard/HomeDashboardStyling";
+import { CreateAssignmentContainer, H2 } from "./CreateAssignmentStyling";
 
-const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
 
  class CreateAssignmentView extends Component {
   constructor(props) {
@@ -47,56 +48,52 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
     formData.append('level', level);
     formData.append('instructions', instructions);
     formData.append('file', sheetMusic);
+
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
-
-    axios
-    .post(`http://localhost:8000/teacher/${user.uid}/createAssignment`,
-    // .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/createAssignment`,
-      formData,
-      {onUploadProgress: ProgressEvent => {
-        this.setState({
-          loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
+        axios
+        .post(`http://localhost:8000/teacher/${user.uid}/createAssignment`,
+        // .post(`https://musicmaker-4b2e8.firebaseapp.com/${user.uid}/createAssignment`,
+          formData
+        )
+        .then(res => {
+          console.log("-->res", res);
+          this.props.history.push(`/assignments`);
         })
-      }}
-    )
-    .then(res => {
-      console.log("res****", res);
-      this.props.history.push(`/assignments`);
-    })
-    .catch(err => {
-      console.err('CREATE ASSIGNMENT VIEW ERROR', err)
-    })
+        .catch(err => {
+          console.error('CREATE ASSIGNMENT VIEW ERROR', err)
+        })
       } else {
         // No user is signed in.
         return;
       }
     });
-}
+  }
 
   render() {
     const { assignmentName, piece, instructions } = this.state;
 
     return (
-      <div className="container" style={formContainer}>
+      <CreateAssignmentContainer>
         <Form onSubmit={this.onSubmit}>
-          <h2 style={{padding: "20px"}}>Create a new assignment: </h2>
-          <FormGroup style={{padding: "20px"}}>
+          <H2>Create a New Assignment</H2>
+          <FormGroup>
             <Input type="text" name="assignmentName" placeholder="Assignment Name" value={assignmentName} onChange={this.onChange} />
-           </FormGroup>
-           <FormGroup inline style={{display: 'flex', justifyContent: 'space-around', padding: "20px"}}>
-             <Input type="text" name="piece" placeholder="Piece Name" value={piece} onChange={this.onChange} />
+          </FormGroup>
 
-             <Input type="select" name="instrument" onChange={this.onChange}>
-               <option value="None">Choose Instrument</option>
-               <option value="Drum">Drum</option>
-               <option value="Guitar">Guitar</option>
-               <option value="Piano">Piano</option>
-               <option value="Saxophone">Saxophone</option>
-               <option value="Trumpet">Trumpet</option>
-               <option value="Violin">Violin</option>
-             </Input>
+          <FormGroup>
+            <Input type="text" name="piece" placeholder="Piece Name" value={piece} onChange={this.onChange} />
+
+            <Input type="select" name="instrument" onChange={this.onChange}>
+              <option value="None">Choose Instrument</option>
+              <option value="Drum">Drum</option>
+              <option value="Guitar">Guitar</option>
+              <option value="Piano">Piano</option>
+              <option value="Saxophone">Saxophone</option>
+              <option value="Trumpet">Trumpet</option>
+              <option value="Violin">Violin</option>
+            </Input>
 
             <Input type="select" name="level" onChange={this.onChange}>
               <option value="None">Choose Experience</option>
@@ -105,17 +102,18 @@ const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid
               <option value="Expert">Expert</option>
             </Input>
           </FormGroup>
-          <FormGroup style={{padding: "20px"}}>
-            <Label>Instructions</Label>
-              <Input type="textarea" name="instructions" placeholder="Instructions..." value={instructions} onChange={this.onChange} />
+
+          <FormGroup>
+            <Input type="textarea" name="instructions" placeholder="Instructions..." value={instructions} onChange={this.onChange} style={{lineHeight:"2.125rem"}} />
           </FormGroup>
-          <FormGroup style={{display:'flex', alignItems:'center'}}>
-            <Input type ='file' name='sheetMusic' onChange={this.uploadChange} style={{margin: "20px"}} />
-            <div style={{paddingRight:'64.5%'}}> {Math.round(this.state.loaded,2) }%</div>
+
+          <FormGroup style={{display:"flex"}}>
+            <Input type ='file' name='sheetMusic' onChange={this.uploadChange} style={{fontWeight:"bold"}} />
+            <Button type="submit" style={{padding:"0 5%"}}>Submit</Button>
           </FormGroup>
-          <Button type="submit" style={{margin: "20px"}}>Submit</Button>
+
         </Form>
-      </div>
+      </CreateAssignmentContainer>
     );
   }
 }

@@ -7,10 +7,10 @@ import axios from 'axios';
 import { Route } from "react-router-dom";
 import firebase from 'firebase';
 
-import * as routes from "../Routes/routes";
+import * as routes from "../../Routes/routes";
 import StudentAssignmentsView from "./studentAssignmentsView";
 
-const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
+const formContainer = { margin: "3.5rem 0 0 44%"};
 
 class StudentListView extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ componentDidMount() {
   render() {
     return (
       <div className="container" style={formContainer}>
-        <h1 style={{padding: "20px"}}><Label>Students</Label></h1>
+        <h2 style={{padding: "20px"}}><Label>Students</Label></h2>
         <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
           {this.state.students.map(student => (
             <Card key={student[0]} style={{ width:"40%", margin:"2.5%", marginBottom: "4%", padding: "2%", border: "1px solid #A9E8DC"}}>

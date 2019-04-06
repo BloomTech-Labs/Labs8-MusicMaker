@@ -52,7 +52,7 @@ class PasswordForgetForm extends Component {
       <div className = 'signin-form' style={{ margin: "20px" }}>
         <Form>
           <FormGroup onSubmit={this.onSubmit}>
-            <Label style={{ color:"#02547D" }}>Email</Label>
+            <Label style={{ color:"#02547D", fontWeight:"bold" }}>Email</Label>
               <Input
                 value={this.state.email}
                 onChange={event => this.setState(byPropKey('email', event.target.value))}

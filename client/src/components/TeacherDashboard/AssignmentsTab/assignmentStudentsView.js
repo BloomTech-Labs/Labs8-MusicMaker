@@ -8,7 +8,7 @@ import { Col, Row, Label, Button, Modal, ModalHeader, ModalBody, ModalFooter, In
 import axios from 'axios';
 import firebase from 'firebase';
 
-import * as routes from "../Routes/routes";
+import * as routes from "../../Routes/routes";
 // import withPayment from '../components/withPayment';
 // import GradeAssignmentView from "../views/gradeAssignmentView";
 

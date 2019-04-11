@@ -7,14 +7,14 @@ Students signs up by using their portable Apple device to scan a QR code provide
 The app is free for students and has a monthly fee for teachers.
 
 ## Table of Contents
-1. [Live Versions](#live-versions)
-2. [Feature List](#feature-list)
+1. [Visit the Website](#visit-the-website)
+2. [Features List](#features-list)
 3. [Local Setup](#local-setup)
 4. [Endpoints](#endpoints)
 5. [Meet the Team](#meet-the-team)
 
 
-## Live Versions
+## Visit the Website
 #### Teacher Web App 
 * See the deployed FSW Front-end: https://www.musicmastermaker.com
    * Login into teacher Nadia Boulanger's account to see an account with sample students:
@@ -24,7 +24,7 @@ The app is free for students and has a monthly fee for teachers.
 * Tech Stack: React, Reactstrap, Styled-Components, Node, Express, Firebase Auth, Firebase Database
 * Deployment: front-end via Netlify, back-end via Firebase Hosting
 
-## Feature List
+## Features List
 #### Teacher Web App Features
 1. Sign up - can use email/password or Google OAuth.
 2. Sign in - can use email/password or Google OAuth.

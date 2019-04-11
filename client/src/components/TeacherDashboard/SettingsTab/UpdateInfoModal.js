@@ -1,4 +1,5 @@
 //Update account info modal view
+
 import React from 'react';
 import axios from "axios";
 import firebase from "firebase";
@@ -27,13 +28,6 @@ class ModalExample extends React.Component {
     });
   };
 
-  // handleSubmit(event) {
-  //   // event.preventDefault();
-  //   alert(
-  //     `Settings updated successfully! Your name is now ${this.state.prefix} ${this.state.firstName} ${this.state.lastName}.`
-  //   );
-  // }
-
   updateName = event => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -46,7 +40,6 @@ class ModalExample extends React.Component {
             { prefix, firstName, lastName }
           )
           .then(res => {
-            // console.log('update***', res)
             this.props.history.push(`/settings`);
           })
           .catch(err =>
@@ -67,7 +60,7 @@ class ModalExample extends React.Component {
 
     return (
       <div>
-        <Button style={{background:"none", border:"none", color:"#f1fbf3", margin:"2rem 0 0 1.5%" }}  onClick={this.toggle}>Add or update your info HERE!</Button>
+        <Button style={{background:"none", border:"none", color:"#f1fbf3", margin:"2rem 0 0 1.5%" }}  onClick={this.toggle}>Add or update your name HERE!</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle} style={{ color:"#02547D", fontWeight:"bold" }}>Update Your Information!</ModalHeader>
           <ModalBody>

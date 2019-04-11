@@ -11,9 +11,7 @@ import { NavBarContainer, Img, ButtonsContainer, Button } from "./NavBarStyle"
 const Navigation = () => (
   <AuthUserContext.Consumer>
     {authUser =>
-      (authUser
-        ? <NavigationAuth />
-        : <NavigationNonAuth />)
+      (authUser ? <NavigationAuth /> : <NavigationNonAuth />)
     }
   </AuthUserContext.Consumer>
 );
@@ -35,5 +33,7 @@ const NavigationNonAuth = () => (
     </ButtonsContainer>
   </NavBarContainer>
 );
+
+
 
 export default Navigation;

@@ -18,30 +18,28 @@ class TakeMoney extends React.Component {
     axios
       .post("https://musicmaker-4b2e8.firebaseapp.com/teacher/:idTeacher/charge", token)
       .then(response => {
-        console.log(response);
         alert("Payment Success");
       })
       .catch(error => {
-        console.log("Payment Error: ", error);
         alert("Payment Error");
       });
   }
 
   render() {
     return (
-      <div>
+      <div style={{width:"75%", display:"block", margin:"3.5rem auto", }}>
         <Row>
           <Col>
-            <h2 style={{margin:"0 0 2rem 19%"}}>Billing</h2>
+            <h2 style={{textAlign:"center"}}>Billing</h2>
           </Col>
         </Row>
 
-        <Row>
-          <Col style={{margin:"1.25rem 0"}}>
+        <Row style={{display:"flex", marginTop:"3rem"}}>
+          <Col>
             <CardElement />
           </Col>
           <Col>
-            <Button onClick={this.submit} style={{padding:"0 5%", margin:"1rem 0"}}>Send</Button>
+            <Button onClick={this.submit} style={{padding:"0 5%", marginLeft:"58%", width:"40%"}}>Send</Button>
           </Col>
         </Row>
       </div>

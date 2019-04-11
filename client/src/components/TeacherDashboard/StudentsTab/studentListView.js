@@ -40,11 +40,10 @@ componentDidMount() {
         <H2>Students</H2>
         <CardsContainer>
           {this.state.students.map(student => (
-            <Card key={student[0]} style={{ width:"20%", margin:"2.5%", padding:"1.5%", paddingLeft:"3%", border: "1px solid #A9E8DC"}}>
+            <Card key={student[0]} style={{ width:"20%", margin:"2.5%", padding:"1.5%", border: "1px solid #A9E8DC"}}>
               <NavLink to={`/studentAssignments/${student[0]}`} style={{textDecoration:"none", color:"black"}}>
                 <CardTitle style={{paddingTop:"6px", fontWeight:"bold", textAlign:"center"}}>{student[1].firstName} {student[1].lastName}</CardTitle>
-                <CardText >Experience: <span style={{fontWeight:"bold"}}>{student[1].level}</span></CardText>
-                <CardText >Instrument: <span style={{fontWeight:"bold"}}>{student[1].instrument}</span></CardText>
+                <CardText style={{textAlign:"center", fontWeight:"bold"}}>{student[1].level} {student[1].instrument}</CardText>
                 <CardText style={{paddingBottom:"12px", fontWeight:"bold", textAlign:"center"}}>{student[1].email}</CardText>
               </NavLink>
             </Card>

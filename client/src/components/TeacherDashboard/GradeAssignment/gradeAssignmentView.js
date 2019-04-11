@@ -6,6 +6,7 @@ import { Input, Form, FormGroup, Button } from 'reactstrap';
 import axios from 'axios';
 import firebase from 'firebase';
 
+
 class GradeAssignmentView extends Component {
   constructor(props) {
     super(props);
@@ -31,8 +32,6 @@ class GradeAssignmentView extends Component {
         axios
           .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/student/${studentId}`)
           .then(res => {
-            console.log('--->', user.uid, assignmentId, studentId)
-
             this.setState({
               assignmentName: res.data[0],
               instructions: res.data[5],
@@ -42,7 +41,6 @@ class GradeAssignmentView extends Component {
               sheetMusic: res.data[6],
               video: res.data[7]
           })
-          // console.log('--->', this.state.assignmentName, res.data)
       })
       .catch(err => console.error('An error was encountered.', err));
       } else {
@@ -73,8 +71,7 @@ class GradeAssignmentView extends Component {
         axios
         .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/student/${studentId}`, {feedback, grade})
         .then(res => {
-          // console.log(res)
-          this.props.history.push('/assignments') //may need to change?
+          this.props.history.push('/assignments') 
         })
         .catch(err => {
           console.err('GRADE ASSIGNMENT VIEW ERROR', err)

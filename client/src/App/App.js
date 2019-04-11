@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 
 import withAuthentication from "../components/Auth/withAuthentication";
-import withPayment from '../components/Stripe/withPayment';
 import * as routes from "../components/Routes/routes";
 import Navigation from "../components/Navigation/NavBar";
 import LandingPageView from "../components/LandingPage/landingPageView";

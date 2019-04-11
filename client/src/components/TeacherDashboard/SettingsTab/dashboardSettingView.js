@@ -1,4 +1,5 @@
 // Settings page: Add and update account information
+
 import React, { Component } from "react";
 import axios from "axios";
 import firebase from "firebase";
@@ -25,11 +26,8 @@ class Settings extends Component {
       if (user) {
         // User is signed in.
         axios
-          .get(
-            `https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/settings`
-          ) //match params.id when this becomes fully dynamic
+          .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/settings`) 
           .then(res => {
-            // console.log("here****" ,res);
             this.setState({
               email: res.data.email
             });
@@ -53,8 +51,8 @@ class Settings extends Component {
       <SettingsContainer>
         <h2>Account Information</h2>
         <Info>
-          <div style={{padding:"0.5rem 0"}}> {this.state.email}</div>
           <div> {this.state.prefix} {this.state.firstName} {this.state.lastName}</div>
+          <div> You are assigned to {this.state.email}</div>
         </Info>
 
         <UpdateInfoModal />

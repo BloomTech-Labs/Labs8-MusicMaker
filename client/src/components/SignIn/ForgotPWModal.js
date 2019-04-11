@@ -23,7 +23,7 @@ class ModalExample extends React.Component {
   render() {
     return (
       <div>
-        <Button style={{background:"none", border:"none", margin:"0 30%" }}  onClick={this.toggle}>Forgot password?</Button>
+        <Button style={{background:"none", border:"none", margin:"0 auto", width:"100%" }}  onClick={this.toggle}>Forgot password?</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle} style={{ color:"#02547D", fontWeight:"bold" }}>Reset Password?</ModalHeader>
           <ModalBody>

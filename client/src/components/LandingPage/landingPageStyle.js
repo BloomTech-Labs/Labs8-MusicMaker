@@ -6,7 +6,7 @@ display: flex;
 flex-direction: column;
 text-align:center;
 width: 50%;
-margin: -3.5rem 0 0 25%;
+margin: -3.5rem auto;
 color: #02547D;
 `;
 
@@ -24,12 +24,12 @@ font-size: 1.5rem;
 export const Content = styled.p`
 font-family: san-serif;
 font-size: 1.1rem;
-margin: 1.5rem 15%;
+margin: 2.5rem auto;
 width: 70%;
 `;
 
 export const FinePrint = styled.p`
 font-family: san-serif;
 font-size: 0.9rem;
-margin: 0.75rem 0;
+margin: 0.75rem auto;
 `;

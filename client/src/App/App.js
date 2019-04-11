@@ -32,11 +32,13 @@ class App extends Component {
           <Route exact path={routes.LANDING} component={LandingPageView} />
           <Route exact path={routes.SIGN_UP} component={SignUpView} />
           <Route exact path={routes.SIGN_IN} component={SignInView} />
-          
-          <PageViewContainer>
-            <SidebarContainer>
+
+          <SidebarContainer>
               <Sidebar />
-            </SidebarContainer>
+          </SidebarContainer>
+
+          <PageViewContainer>
+            
 
             <Route exact path={routes.DASHBOARD} component={DashboardView} />
             <Route exact path={routes.STUDENTS} component={StudentListView} />

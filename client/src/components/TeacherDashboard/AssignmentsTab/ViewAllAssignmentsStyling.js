@@ -9,7 +9,8 @@ height: 50rem;
 `;
 
 export const H2 = styled.h2`
-margin: 3.5rem 0 0 44%;
+margin-top: 3.5rem;
+text-align:center
 `;
 
 export const CardsContainer = styled.div`

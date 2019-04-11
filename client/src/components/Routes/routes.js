@@ -13,7 +13,7 @@ export const STUDENTS = '/students';
 export const STUDENTSASSIGNMETS = '/studentAssignments/:studentId'; //Lists of a student's (all) assignments
 export const BILLING = '/billing';
 export const SETTINGS = '/settings';
-export const GRADING = '/grading/:studentId/:assignmentId'; //Grade a student's assingment
+export const GRADING = '/grading/:studentId/:assignmentId'; //Grade a student's assignment
 
 //URL
 export const TEACHER_URL = 'https://musicmaker-4b2e8.firebaseapp.com';

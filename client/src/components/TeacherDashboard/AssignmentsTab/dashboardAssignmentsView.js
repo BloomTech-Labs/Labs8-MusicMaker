@@ -1,12 +1,13 @@
 // Assignments List: This page will allow teachers to see a list of all their ungraded assignments
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Card, CardText, CardTitle } from 'reactstrap';
 import axios from 'axios';
 import firebase from 'firebase';
 
-import * as routes from "../../Routes/routes";
+// import * as routes from "../../Routes/routes";
 import { AssignmentsContainer, CardsContainer, H2 } from "./ViewAllAssignmentsStyling";
+import { CreateAssignment } from "../HomeTab/HomeStyling"
 // import StudentAssignmentsView from "./studentAssignmentsView";
 
 
@@ -39,6 +40,7 @@ class DashboardAssignmentsView extends Component {
     return (
       <AssignmentsContainer>
         <H2>Assignments</H2>
+        <Link to="/assignments/createAssignment"><CreateAssignment style={{margin:"1rem 0 0 48%"}}> + </CreateAssignment></Link>
         <CardsContainer>
           {this.state.assignments.map(assignment => (
             <Card key={assignment[0]} style={{ width:"20%", margin:"2.5%", padding:"1.5%", border: "1px solid #A9E8DC"}}>

@@ -3,17 +3,16 @@
 //click assignment's name to see the full ungraded assignment,
 //click on student to see student's assignment submission for grading.
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import { Col, Row, Label, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import axios from 'axios';
 import firebase from 'firebase';
 
-import * as routes from "../../Routes/routes";
-// import withPayment from '../components/withPayment';
-// import GradeAssignmentView from "../views/gradeAssignmentView";
-
-const formContainer = { maxWidth: 800, margin: '0 auto 10px', border: "3px solid #A9E8DC" };
-
+// import * as routes from "../../Routes/routes";
+// import withPayment from '../../Stripe/withPayment';
+// import GradeAssignmentView from '../GradeAssignment/gradeAssignmentView'
+import { AssignmentsContainer, H2 } from "./ViewAllAssignmentsStyling";
+import { CreateAssignment } from "../HomeTab/HomeStyling"
 class StudentAssignmentsView extends Component {
     constructor(props) {
         super(props);
@@ -48,7 +47,7 @@ class StudentAssignmentsView extends Component {
                 axios  
                     .post(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/assignToStudent`, {email, dueDate})
                     .then(res => {
-                        console.log('Assign******************', res)
+                        console.log('Assign******************', res.data)
                     })
                     .catch(err => {
                         console.error('ASSIGN VIEW ERROR', err)
@@ -93,8 +92,7 @@ class StudentAssignmentsView extends Component {
             axios
             .get(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/students`)
             .then(res => {
-                console.log('student******************', res.data[7])
-                this.setState({students:res.data})
+                this.setState({students:res.data});
             })
             .catch(err => console.error('ASSIGNMENT STUDENTS VIEW AXIOS ERROR:', err));
             } else {
@@ -106,39 +104,41 @@ class StudentAssignmentsView extends Component {
 
     render() {
         const {students, email, dueDate} = this.state;
+
         return(
-            <div style={formContainer}>
-                <h1><Label>Student's Assigned to the Assignment</Label></h1>
-                <Button onClick={this.toggle}>+</Button>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+            <AssignmentsContainer>
+                <H2 style={{marginLeft:"42.5%"}}>Assign Students</H2>
+                <CreateAssignment onClick={this.toggle} style={{margin:"1rem 0 0 47%", width:"4.5%"}}>+</CreateAssignment>
+                <Modal isOpen={this.state.modal} onClick={this.onSubmit} className={this.props.className}>
                 <ModalHeader toggle={this.toggle}>Assign Assignment to Student</ModalHeader>
                 <ModalBody>
                     <Label for="exampleEmail">Email</Label>
                     <Input type="email" name="email" id="exampleEmail" placeholder="Student Email" value={email} onChange={this.onChange}  />
                     <Label for="exampleDate">Due Date</Label>
                     <Input type="date" name="dueDate" id="exampleDate" placeholder="mm/dd/yyyy" value={dueDate} onChange={this.onChange} />
-                    {/* <Label for="exampleTime">Due Time</Label>
-                    <Input type="time" name="dueDate" id="exampleTime" placeholder="hh:ss" value={dueDate} onChange={this.onChange} /> */}
+                    {/* <Label for="exampleTime">Due Time</Label> */}
+                    {/* <Input type="time" name="dueDate" id="exampleTime" placeholder="hh:ss" value={dueDate} onChange={this.onChange} /> */}
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary"  onClick={this.onSubmit}>Submit</Button>
+                    <Button color="primary"  onClick={this.toggle}>Submit</Button>
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
                 </Modal>
+
             <div>
-                {this.state.students.map(student => (
-                    <Row key={student[2]} style={{border:"1px solid black"}}>
+                {students.map(student => (
+                    <Row key={student[2]} style={{width:"41%", margin:"1.5rem 31%"}}>
                         <NavLink to={`/grading/${student[2]}/${student[0]}`} style={{textDecoration:"none"}} >
                             <Col>{student[3]} {student[4]}</Col> {/*student's name*/}
                         </NavLink> 
                             <Col>{student[5]}</Col> {/*student's assignment due date*/}
-                            <Col>{student[6]===null ? "" : "Student Completed"}</Col> {/*student's assignment completion status */}
-                            <Col>{student[7]}</Col> {/*student's assignment grade*/}
+                            <Col style={{paddingRight:"0"}}>{student[6]===null ? "Not Completed" : "Student Completed"}</Col> {/*student's assignment completion status */}
+                            <Col style={{paddingLeft:"0"}}>{student[7]===null ? "Grade Pending" : student[7]}</Col> {/*student's assignment grade*/}
                     </Row>
                 ))}
             </div>
             {/* <Route exact path={routes.GRADING} component={withPayment(GradeAssignmentView)} /> */}
-          </div>
+          </AssignmentsContainer>
         )
     }
 

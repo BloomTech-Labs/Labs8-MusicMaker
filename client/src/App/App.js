@@ -47,7 +47,7 @@ class App extends Component {
             <Route exact path={routes.ASSIGNMENT_STUDENTS} component={AssignmentStudentsView} />
             <Route exact path={routes.BILLING} component={DashboardBillingView} />
             <Route exact path={routes.SETTINGS} component={DashboardSettingView} />
-            <Route exact path={routes.GRADING} component={withPayment(GradeAssignmentView)} />
+            <Route exact path={routes.GRADING} component={GradeAssignmentView} />
           </PageViewContainer>
         </ContentContainer>
       </AppContainer>

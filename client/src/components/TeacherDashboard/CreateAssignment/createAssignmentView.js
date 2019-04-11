@@ -6,8 +6,6 @@ import React, { Component } from "react";
 import { Input, Form, FormGroup, Button } from 'reactstrap';
 import axios from 'axios';
 import firebase from 'firebase';
-// import { CreateAssignment } from "../HomeDashboard/HomeDashboardStyling";
-import { CreateAssignmentContainer, H2 } from "./CreateAssignmentStyling";
 
 
  class CreateAssignmentView extends Component {
@@ -75,17 +73,17 @@ import { CreateAssignmentContainer, H2 } from "./CreateAssignmentStyling";
     const { assignmentName, piece, instructions } = this.state;
 
     return (
-      <CreateAssignmentContainer>
+      <div style={{width:"50%", margin:"3.5rem 0 0 25.25%", paddingBottom:"1.5rem", background:"#EBFAEF", border:"1px solid #a9e8dc"}}>
         <Form onSubmit={this.onSubmit}>
-          <H2>Create a New Assignment</H2>
-          <FormGroup>
-            <Input type="text" name="assignmentName" placeholder="Assignment Name" value={assignmentName} onChange={this.onChange} />
-          </FormGroup>
+          <h2 style={{marginTop:"1.5rem", textAlign:"center"}}>Create a New Assignment</h2>
+          
+          <Input type="text" name="assignmentName" placeholder="Assignment Name" value={assignmentName} onChange={this.onChange}
+          style={{width:"80%", display:"block", margin:"1rem auto"}}/>
 
-          <FormGroup>
-            <Input type="text" name="piece" placeholder="Piece Name" value={piece} onChange={this.onChange} />
+          <FormGroup style={{display:"flex", flexDirection:"row", justifyContent:"space-between", margin:"0 10%"}}>
+            <Input type="text" name="piece" placeholder="Piece Name" value={piece} onChange={this.onChange} style={{width:"30%"}}/>
 
-            <Input type="select" name="instrument" onChange={this.onChange}>
+            <Input type="select" name="instrument" onChange={this.onChange} style={{width:"30%"}}>
               <option value="None">Choose Instrument</option>
               <option value="Drum">Drum</option>
               <option value="Guitar">Guitar</option>
@@ -95,7 +93,7 @@ import { CreateAssignmentContainer, H2 } from "./CreateAssignmentStyling";
               <option value="Violin">Violin</option>
             </Input>
 
-            <Input type="select" name="level" onChange={this.onChange}>
+            <Input type="select" name="level" onChange={this.onChange} style={{width:"30%"}}>
               <option value="None">Choose Experience</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
@@ -103,17 +101,16 @@ import { CreateAssignmentContainer, H2 } from "./CreateAssignmentStyling";
             </Input>
           </FormGroup>
 
-          <FormGroup>
-            <Input type="textarea" name="instructions" placeholder="Instructions..." value={instructions} onChange={this.onChange} style={{lineHeight:"2.125rem"}} />
-          </FormGroup>
+          <Input type="textarea" name="instructions" placeholder="Instructions..." value={instructions} onChange={this.onChange} 
+          style={{width:"80%", display:"block", margin:"1rem auto"}} />
 
-          <FormGroup style={{display:"flex"}}>
+          <FormGroup style={{display:"flex", margin:"0 10%"}}>
             <Input type ='file' name='sheetMusic' onChange={this.uploadChange} style={{fontWeight:"bold"}} />
             <Button type="submit" style={{padding:"0 5%"}}>Submit</Button>
           </FormGroup>
 
         </Form>
-      </CreateAssignmentContainer>
+      </div>
     );
   }
 }

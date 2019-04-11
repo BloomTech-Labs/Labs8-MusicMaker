@@ -9,6 +9,9 @@ import { ButtonsContainer, Button } from '../Navigation/NavBarStyle';
 
 
 class SignOutButton extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     redirect = () => {
         auth.doSignOut();
         if (!withAuthentication.authUser || withAuthentication.authUser === null) this.props.history.push(routes.LANDING);

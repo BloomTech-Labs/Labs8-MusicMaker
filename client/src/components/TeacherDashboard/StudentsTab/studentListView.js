@@ -2,15 +2,12 @@
 
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Label, Card, CardText, CardTitle } from 'reactstrap';
+import { Card, CardText, CardTitle } from 'reactstrap';
 import axios from 'axios';
-import { Route } from "react-router-dom";
 import firebase from 'firebase';
 
-import * as routes from "../../Routes/routes";
-import StudentAssignmentsView from "./studentAssignmentsView";
+import { AssignmentsContainer, H2, CardsContainer }  from "../AssignmentsTab/ViewAllAssignmentsStyling"
 
-const formContainer = { margin: "3.5rem 0 0 44%"};
 
 class StudentListView extends Component {
   constructor(props) {
@@ -20,8 +17,7 @@ class StudentListView extends Component {
     };
 };
 
-componentDidMount() {
-  const teacherId = this.props.match.params.id
+componentDidMount() {  
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       // User is signed in.
@@ -40,22 +36,20 @@ componentDidMount() {
 
   render() {
     return (
-      <div className="container" style={formContainer}>
-        <h2 style={{padding: "20px"}}><Label>Students</Label></h2>
-        <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
+      <AssignmentsContainer>
+        <H2>Students</H2>
+        <CardsContainer>
           {this.state.students.map(student => (
-            <Card key={student[0]} style={{ width:"40%", margin:"2.5%", marginBottom: "4%", padding: "2%", border: "1px solid #A9E8DC"}}>
+            <Card key={student[0]} style={{ width:"20%", margin:"2.5%", padding:"1.5%", border: "1px solid #A9E8DC"}}>
               <NavLink to={`/studentAssignments/${student[0]}`} style={{textDecoration:"none", color:"black"}}>
-                <CardTitle>{student[1].firstName} {student[1].lastName}</CardTitle>
-                <CardText>{student[1].instrument}</CardText>
-                <CardText>{student[1].level}</CardText>
-                <CardText>{student[1].email}</CardText>
+                <CardTitle style={{paddingTop:"6px", fontWeight:"bold", textAlign:"center"}}>{student[1].firstName} {student[1].lastName}</CardTitle>
+                <CardText style={{textAlign:"center", fontWeight:"bold"}}>{student[1].level} {student[1].instrument}</CardText>
+                <CardText style={{paddingBottom:"12px", fontWeight:"bold", textAlign:"center"}}>{student[1].email}</CardText>
               </NavLink>
             </Card>
           ))}
-        </div>
-        <Route path={routes.STUDENTSASSIGNMETS} component={StudentAssignmentsView} />
-      </div>
+        </CardsContainer>
+      </AssignmentsContainer>
     );
   }
 }

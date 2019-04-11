@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 
 import withAuthentication from "../components/Auth/withAuthentication";
-import withPayment from '../components/Stripe/withPayment';
 import * as routes from "../components/Routes/routes";
 import Navigation from "../components/Navigation/NavBar";
 import LandingPageView from "../components/LandingPage/landingPageView";
@@ -33,11 +32,13 @@ class App extends Component {
           <Route exact path={routes.LANDING} component={LandingPageView} />
           <Route exact path={routes.SIGN_UP} component={SignUpView} />
           <Route exact path={routes.SIGN_IN} component={SignInView} />
-          
-          <PageViewContainer>
-            <SidebarContainer>
+
+          <SidebarContainer>
               <Sidebar />
-            </SidebarContainer>
+          </SidebarContainer>
+
+          <PageViewContainer>
+            
 
             <Route exact path={routes.DASHBOARD} component={DashboardView} />
             <Route exact path={routes.STUDENTS} component={StudentListView} />
@@ -47,7 +48,7 @@ class App extends Component {
             <Route exact path={routes.ASSIGNMENT_STUDENTS} component={AssignmentStudentsView} />
             <Route exact path={routes.BILLING} component={DashboardBillingView} />
             <Route exact path={routes.SETTINGS} component={DashboardSettingView} />
-            <Route exact path={routes.GRADING} component={withPayment(GradeAssignmentView)} />
+            <Route exact path={routes.GRADING} component={GradeAssignmentView} />
           </PageViewContainer>
         </ContentContainer>
       </AppContainer>

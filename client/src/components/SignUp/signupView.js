@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 
 const SignUpPage = ({ history }) => (
   <div className="container" style={formContainer}>
-    <h2 className="subheader" style={{ margin:"-3.5rem 33% 2.25rem", color:"white", fontWeight:"bold" }}>Sign Up</h2>
+    <h2 className="subheader" style={{ textAlign:"center", color:"white", fontWeight:"bold" }}>Sign Up</h2>
     <SignUpView history={history} />
   </div>
 );
@@ -27,7 +27,7 @@ const byPropKey = (propertyName, value) => () => ({
 
 const formContainer = {
   width: "25%",
-  margin: "0 auto 0.625rem",
+  margin: "0 auto",
 };
 
 class SignUpView extends Component {
@@ -132,8 +132,8 @@ class SignUpView extends Component {
 }
 
 const SignUpLink = () => (
-  <p className="bodyText" style={{ margin:"1.25rem 20%", color:"white"}}>
-    Don't have an account? <Link to={routes.SIGN_UP} style={{ color:"white", fontWeight: "bold" }}>Sign Up!</Link>
+  <p className="bodyText" style={{ margin:"1.25rem auto", color:"white", textAlign:"center"}}>
+    Don't have an account? <Link to={routes.SIGN_UP} style={{ color:"white", fontWeight: "bold"}}>Sign Up!</Link>
   </p>
 );
 

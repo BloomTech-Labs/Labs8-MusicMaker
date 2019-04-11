@@ -6,6 +6,7 @@ import { Input, Form, FormGroup, Button } from 'reactstrap';
 import axios from 'axios';
 import firebase from 'firebase';
 
+
 class GradeAssignmentView extends Component {
   constructor(props) {
     super(props);
@@ -38,8 +39,7 @@ class GradeAssignmentView extends Component {
               level: res.data[3],
               piece: res.data[4],
               sheetMusic: res.data[6],
-              video: res.data[7],
-              grade: res.data[8]
+              video: res.data[7]
           })
       })
       .catch(err => console.error('An error was encountered.', err));
@@ -59,6 +59,7 @@ class GradeAssignmentView extends Component {
 
   onSubmit = event => {
     event.preventDefault();
+
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
@@ -70,8 +71,7 @@ class GradeAssignmentView extends Component {
         axios
         .put(`https://musicmaker-4b2e8.firebaseapp.com/teacher/${user.uid}/assignment/${assignmentId}/student/${studentId}`, {feedback, grade})
         .then(res => {
-          // console.log(res)
-          this.props.history.push('/assignments') //may need to change?
+          this.props.history.push('/assignments') 
         })
         .catch(err => {
           console.err('GRADE ASSIGNMENT VIEW ERROR', err)
@@ -84,33 +84,34 @@ class GradeAssignmentView extends Component {
   }
 
   render() {
-    const { assignmentName, instructions, instrument, level, piece, sheetMusic, video, grade, feedback } = this.state;
+    const { assignmentName, instructions, instrument, level, piece, sheetMusic, video, feedback } = this.state;
+   
     return (
-      <div className="container">
-        {/* <div className="flex-container"> */}
+      <div style={{width:"50%", margin:"3.5rem 0 0 25.25%", paddingBottom:"1.5rem", background:"#EBFAEF", border:"1px solid #a9e8dc"}}>
         <Form onSubmit={this.onSubmit}>
-          <div className="block-container" id="setting">
-            <h1 style={{textAlign:'center'}}>{assignmentName}</h1>
-            <FormGroup style={{display:'flex', justifyContent:'space-between'}}>
-              <p className="bodyText">{piece}</p>
-              <p className="bodyText">{instrument}</p>
+            <h2 style={{marginTop:"1.5rem", textAlign:"center"}}>{assignmentName}</h2>
+            <FormGroup style={{display:"flex", flexDirection:"row", padding:"0 8%", marginTop:"1.5rem", justifyContent:"space-between"}}>
+              {/* <p className="bodyText">{piece}</p> */}
               <p className="bodyText">{level}</p>
-              <p className="bodyText"><a href={sheetMusic}><img src={sheetMusic} alt="pdf image" /></a></p>
+              <p className="bodyText">{instrument}</p>
+              <p className="bodyText">{piece} <a href={sheetMusic}><img src={sheetMusic} alt="Music Sheet" /></a></p>
             </FormGroup>
-            <FormGroup style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
-            <div style={{width:'75%'}}><h6>Instructions:</h6>{instructions}</div>
-            <p className="bodyText"><a href={video}><img src={video} alt="video image" /></a></p>
-            </FormGroup>
-            <FormGroup style={{display:'flex', justifyContent:'space-between'}}>
-              <Input style={{width:'80%'}} type="textarea" name="feedback" placeholder="Feedback..." value={feedback} onChange={this.onChange} />
-              <Input style={{width:'26%', marginLeft:'10%'}}  type="select" name="grade" onChange={this.onChange}>
+
+            <p style={{width:"85%", margin:"0 8%"}}><span style={{fontWeight:"bold"}}>Instructions:</span> <br/> {instructions}</p>
+
+            <FormGroup style={{display:"flex", flexDirection:"row", margin:"1.5rem 8%"}} >
+            <a href={video} style={{fontSize:"1.25rem", paddingRight:"20%"}}><img src={video} alt="Recording" /></a>
+            <Input style={{width:'28%', height:"1%"}}  type="select" name="grade" onChange={this.onChange}>
                 <option value="none">Choose Grade</option>
                 <option value="Passed">Passed</option>
                 <option value="Failed">Failed</option>
-              </Input>
+            </Input>
             </FormGroup>
-            <Button type="submit">Submit</Button>
-          </div>
+
+            <div style={{display:"flex", flexDirection:"row", margin:"0 8%", justifyContent:"space-between"}}>
+              <Input style={{width:'75%'}} type="textarea" name="feedback" placeholder="Feedback..." value={feedback} onChange={this.onChange} />
+              <Button type="submit" style={{float:"right", width:"15%", height:"100%"}}>Submit <br/> Feedback!</Button>
+            </div>
         </Form>
       </div>
     );

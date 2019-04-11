@@ -224,6 +224,7 @@ app.get("/teacher/:uid/assignment/:aid/student/:sid",(req, res) => {
       studentAssignmentRef
         .get()
         .then(assignment => {
+          console
           global = assignment.data();
           reformattedDueDate = parseDate(global.dueDate);
           studentAssignment = [

@@ -4,13 +4,16 @@ import styled from 'styled-components';
 export const SettingsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 3.5rem 0 0 40.7%;
+  margin: 3.5rem auto;
+  width: 50%;
+  text-align:center;
 `;
 
 export const Info = styled.tr`
   font-weight: bold;
-  margin: 1rem 0 1rem 6%;
+  margin: 3rem auto;
   font-size: 1.25rem;
+  line-height: 2rem;
 `
 
 

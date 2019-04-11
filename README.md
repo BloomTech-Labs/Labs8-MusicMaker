@@ -46,52 +46,50 @@ The app is free for students and has a monthly fee for teachers.
 ## Endpoints
 #### Teachers Web App Endpoints
 ###### GET
-1. /test: 
-* test endpoint to check that server is up.
 1. /teacher/:idTeacher/students
-* retrieves a teacher's list of students.
-* fetches student name, instrument, proficiency level, and email.
+  * retrieves a teacher's list of students.
+  * fetches student name, instrument, proficiency level, and email.
 2. /teacher/:idTeacher/student/:idStudent
-* retrieves an individual student assigned to the teacher
-* fetches student name, instrument, proficiency level, and email.
+  * retrieves an individual student assigned to the teacher
+  * fetches student name, instrument, proficiency level, and email.
 3. /teacher/:idTeacher/student/:idStudent/assignments
-* fetches list of assignments the student has been assigned.
+  * fetches list of assignments the student has been assigned.
 4. /teacher/:idTeacher/assignment/:idAssignment/students
-* fetches list of students assigned to the assignment
+  * fetches list of students assigned to the assignment
 5. /teacher/:idTeacher/assignment/:idAssignment/student/:idStudent
-* fetches a completed or uncompleted assignment from a student
+  * fetches a completed or uncompleted assignment from a student
 6. /teacher/:idTeacher/assignments
-* fetches a list of all ungraded assignments for a teacher
+  * fetches a list of all ungraded assignments for a teacher
 7. /teacher/:idTeacher/assignment/:idAssignment
-* fetches an individual ungraded assignment
+  * fetches an individual ungraded assignment
 8. /teacher/:idTeacher/settings
-* retrieves a teacher's account settings
-* fetches email, name (first, last, prefix), and QR code
+  * retrieves a teacher's account settings
+  * fetches email, name (first, last, prefix), and QR code
 
 ###### POST
 1. /teacher/:idTeacher/assignment/:idAssignment/assignToStudent
-* posts an assignment from a teacher to a student, which allows the student access to complete it.
+  * posts an assignment from a teacher to a student, which allows the student access to complete it.
 2. /teacher/:idTeacher/createAssignment
-* posts a new assignment template to a teacher's list of assignments. This assignment can then be assigned to student(s)
+  * posts a new assignment template to a teacher's list of assignments. This assignment can then be assigned to student(s)
 3. /uploadPDF
-* uploads a PDF to the Firestore database
-* should be used in conjunction with the create assignment endpoint.
+  * uploads a PDF to the Firestore database
+  * should be used in conjunction with the create assignment endpoint.
 4. /addNewTeacher
-* adds a teacher's initial settings including name, email, and generates a QR code
+  * adds a teacher's initial settings including name, email, and generates a QR code
 5. /teacher/:idTeacher/charge
-* uses the Stripe API to post a payment to a specific teacher account
-* a paid account allows full access to all features
+  * uses the Stripe API to post a payment to a specific teacher account
+  * a paid account allows full access to all features
 
 ###### PUT
 1. /teacher/:idTeacher/assignment/:idAssignment/student/:idStudent
-* edits an assignment when a teacher grades it. 
-* should post feedback and grade
+  * edits an assignment when a teacher grades it. 
+  * should post feedback and grade
 2. /teacher/:idTeacher/settingsEdit
-* edits teacher account settings
+  * edits teacher account settings
 
 ###### DELETE
 1. /teacher/:idTeacher/assignment/:idAssignment
-* deletes an assignment template
+  * deletes an assignment template
 
 ## Meet the Team
 

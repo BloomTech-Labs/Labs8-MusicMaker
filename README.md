@@ -17,6 +17,9 @@ The app is free for students and has a monthly fee for teachers.
 ## Live Versions
 #### Teacher Web App 
 * See the deployed FSW Front-end: https://www.musicmastermaker.com
+ * Login to Nadia Boulanger's account to see an account with sample data:
+  * username: nadiab@gmail.com
+  * password: 123456
 * See the deployed Back-end: https://musicmaker-4b2e8.firebaseapp.com
   * Tech Stack: React, Reactstrap, LESS, Node, Express, Firebase
 

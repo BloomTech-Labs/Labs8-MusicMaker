@@ -7,15 +7,15 @@ Students signs up by using their portable Apple device to scan a QR code provide
 The app is free for students and has a monthly fee for teachers.
 
 ## Table of Contents
-1. [Visit the Website](#visit-the-website)
+1. [Visit the App](#visit-the-app)
 2. [Features List](#features-list)
 3. [Local Setup](#local-setup)
 4. [Endpoints](#endpoints)
 5. [Meet the Team](#meet-the-team)
 
 
-## Visit the Website
-#### Teacher Web App 
+## Visit the App
+#### Teacher Website 
 * See the deployed FSW Front-end: https://www.musicmastermaker.com
    * Login into teacher Nadia Boulanger's account to see an account with sample students:
      * username: nadiab@gmail.com
